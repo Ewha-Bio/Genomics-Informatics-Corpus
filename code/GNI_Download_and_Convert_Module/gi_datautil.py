@@ -55,7 +55,7 @@ from nltk.corpus import PlaintextCorpusReader
 #   - Makes directory with name 'dirname' in current working directory
 #     when the directory does not exist.
 #
-#   - Return the full path of the directory 'dirnmame'
+#   - Return the full path of the directory 'dirname'
 #
 #######################################################################
 
@@ -72,7 +72,7 @@ def _makeDirectory(rootdir, dirname) :
 # Class : GIPDFDownloader
 #
 #   - Download all Genomics & Informatic journal papers in pdf format
-#     (499 journal papers from 2003 to 2017 )
+#     (499+ journal papers from 2003 to 2018)
 #
 #
 #   [Private Methods]
@@ -91,7 +91,6 @@ class GIPDFDownloader :
     rootURL = "https://genominfo.org/upload/pdf/"
     filenameTypes = []
     
-
     def __init__ (self, dirname) :
         self.workspace = _makeDirectory(os.getcwd(), dirname)
     
@@ -105,9 +104,9 @@ class GIPDFDownloader :
         print ("Build File Names for GI in 2012 to 2016")
         # file name structure from 2012 to 2016 : gni-(10~14)-()
         self.filenameTypes.append(('gni-' + str(vol) + '-' + str(page) + '.pdf' for vol in range(10, 16) for page in range(1, 400)))
-        print ("Build File Names for GI in 2017")
-        # file name structure from 2017 : gi-2017-(15)-()-()
-        self.filenameTypes.append(('gi-2017-' + str(vol) + '-' + str(no) + '-' + str(page) + '.pdf' for vol in range(15, 16) for no in range(1, 5) for page in range(1, 400)))
+        print ("Build File Names for GI in 2017 to 2018")
+        # file name structure from 2017 to 2018: gi-2017-(15)-()-()
+        self.filenameTypes.append(('gi-' + str(year) + '-' + str(vol) + '-' + str(no) + '-' + str(page) + '.pdf' for year in range(2017, 2019) for vol in range(15, 17) for no in range(1, 5) for page in range(1, 400)))
         print ("Complete Building File Names!")
 
     # [can be accessed in public]
@@ -333,4 +332,3 @@ class GIYearClassifier :
             print ("End " + journal)
 
         print (str(self.yearDirectoryList))
-
