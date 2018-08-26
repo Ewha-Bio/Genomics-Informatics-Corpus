@@ -1,0 +1,1237 @@
+Genomics  &  Informatics    Vol.  6(1)  36-43,  March  2008
+
+Differential  Expressions  of  Apoptosis-related  Genes  in  Lung 
+Cancer  Cell  Lines  Determine  the  Responsiveness  to  Ionizing 
+Radiation
+
+Su-Yeon  Lee1,  Moon-Kyung  Choi2,  Jung-Min 
+Lim2,  Hong-Gyun  Wu3,4,  Ju  Han  Kim1  and 
+Woong-Yang  Park2*
+
+1Seoul  National  University  Bioinformatics,  2Departments 
+of  Biochemistry  and  Molecular  Biology,  and  3Radiation 
+Oncology,  4Cancer  Research  Institute,  Seoul  National 
+University  College  of  Medicine,  Seoul  110-799,  Korea
+
+Abstract
+
+Radiotherapy  would  be  the  choice  of  treatment  for  hu-
+man  cancers,  because  of  high  cost-effectiveness.  How-
+ever,  a  certain  population  of  patients  shows  a  resistance 
+to  radiotherapy  and  recurrence.  In  an  effort  to  increase 
+the  efficacy  of  radiotherapy,  many  efforts  were  driven  to 
+find  the  genes  causing  the  unresponsiveness  to  ionizing 
+radiation.  In  this  paper,  we  compared  the  gene  ex-
+pression  profiles  of  two  lung  cancer  cell  lines,  H460  and 
+H1299,  which  showed  differential  responses  to  ionizing 
+radiations.  Each  cell  were  irradiated  at  2  Gy,  and  har-
+vested  after  0,  2,  4,  8,  12  and  24  hours  to  examine  the 
+expressions.  Two-way  ANOVA  analysis  on  time-series 
+experiments  of  two  cells  could  select  2863  genes  differ-
+entially  expressed  upon  ionizing  radiation  among  32,321 
+genes  in  microarray  (p＜0.05).  We  classified  these 
+genes  into  21  clusters  by  SOM  clustering  according  to 
+the  interaction  between  cell  types  and  time.  Two  SOM 
+clusters  were  enriched  with  apoptosis-related  genes  in 
+pathway  analysis.  One  cluster  contained  higher  levels  of 
+phosphatidyl  inositol  3-phosphate  kinase  (PI3K)  subunits 
+in  H1299,  radio-resistant  cells  than  H460,  radiosensitive 
+cells.  TRAIL  receptors  were  expressed  in  H460  cells 
+while  the  decoy  receptor  for  TRAIL  was  expressed  in 
+H1299  cells.  From  these  results,  we  could  characterize 
+the  differential  responsiveness  to  ionizing  radiation  ac-
+cording  to  their  differential  expressions  of  apoptosis-re-
+lated  genes,  which  might  be  the  candidates  to  increase 
+the  power  of  radiotherapy. 
+
+Keywords:  apoptosis,  ionizing  radiation,  lung  cancer,  ra-
+dio-sensitivity,  radiotherapy
+
+*Corresponding  author:  E-mail  wypark@snu.ac.kr
+Tel  +82-2-740-8241,  Fax  +82-2-744-4534
+Accepted  2  March  2008
+
+Introduction
+
+Radiotherapy  would  play  an  important  role  in  cancer 
+treatment  for  long  times  and  widely  used  to  have  more 
+than  one  million  patients  received  radiotherapy  every 
+year  (Wu et al.,  2002).  In  some  type  of  cancers  at  pros-
+tate  and  cervix,  radiotherapy  achieved  high  performance 
+in  cure  rate  in  comparison  to  radical  surgery.  Moreover, 
+it  can  be  applied  to  organ  conservation  surgery  in 
+breast  cancers  and  rectal  cancers.  However,  a  certain 
+proportion  of  patients  do  not  respond  to  radiotherapy, 
+and  the  mechanism  of  radiation  resistance  has  been  the 
+main  target  of  research  to  increase  the  efficacy  of 
+radiotherapy. 
+    Although  single  molecules  were  targeted  to  modulate 
+the radiation responses at pre-clinical models, it was hard 
+to be applied to patients. It might be due to the complex-
+ity  of  radiation  responses  as  shown  in  gene  expression 
+profiling  experiments  (Park et al.,  2002).  Recently  miRNA 
+also has been proposed to be important regulator of radi-
+ation  responses  (Weidhaas et al.,  2007).  Gene  expression 
+profiling  using  microarray  provided  valuable  tools  for  the 
+clinical  oncology  to  determine  the  prognosis  of  patients 
+(Lossos et al.,  2004;  Pomeroy et al.,  2002),  the  molecular 
+diagnosis  (Golub et al.,  1999)  as  well  as  the  responsive-
+ness  to  therapeutics  (Snyder  and  Morgan,  2004).
+    There  have  been  many  reports  on  the  molecular  pat-
+tern  analysis  using  microarray  to  understand  the  chemo- 
+and  radio-resistance  in  cervical  cancer  (Achary  et al., 
+2000;  Tewari et al.,  2005;  Wong et al.,  2006),  rectal  can-
+cer  (Kim et al.,  2007)  and  esophageal  cancer  (Fukuda et 
+al.,  2004).  Most  of  the  studies  are  to  identify  differ-
+entially  expressed  genes  in  patients  with  different  clin-
+ical  outcomes,  which  can  be  applied  to  the  evaluation 
+of  prognosis  more  accurately.  Although  the  conventional 
+parameters  like  tumor  stage  and  grade  can  be  used  to 
+decide  optimal  cancer  therapy,  molecular  markers  would 
+provide  valuable  information  to  make  clinical  decisions 
+(Klopp  and  Eifel,  2006).  Genome-wide  analysis  on  gene 
+expression  can  predict  the  clinical  consequences  more 
+accurately.  In  addition,  the  information  from  gene  ex-
+pression  profiling  can  facilitate  the  development  of  bio-
+logical  target  for  therapeutics  by  identifying  pathways 
+and  determining  steps  contributing  to  the  phenotype. 
+    In  this  study,  we  examined  the  expression  profiles  of 
+two  lung  cancer  cell  lines,  which  showed  differential  re-
+
+Expression  Profiling  on  Ionizing  Radiation    37
+
+sponses  to  ionizing  radiation.  Especially  the  time-series 
+data  of  two  cell  lines  revealed  radiation  response-related 
+genes  from  constitutively  up-  or  down-regulated  genes 
+in  two  cells.  Especially  we  focused  on  the  apoptosis 
+pathway  in  different  clusters  of  radiation  response  to  ex-
+plain  the  differential  responses  upon  ionizing  radiations. 
+
+    After  the  exposure  to  ionizing  radiation  generated  by 
+4MV  linear  accelerator  (Clinac  4/100,  Varian,  Palo  Alto, 
+CA),  cells  were  harvested  at  the  indicated  time.  We  re-
+peated  sets  of  experiment  three  times  to  collect  bio-
+logical  triplicates  in  every  sample.   
+
+Methods
+
+Cell  culture  and  ionizing  radiation
+
+H460  and  H1299  lung  cancer  cells  were  purchased  from 
+ATCC  and  maintained  in  high-glucose  Dulbecco’s  Ea-
+gle’s  medium  (DMEM;  GIBCO/BRL,  Gaithersburg,  Md., 
+USA)  containing  10%  heat-inactivated  fetal  bovine  se-
+rum  (FBS,  GIBCO/BRL)  and  50  U/ml  gamma-interferon 
+(Gemzyme,  Cambridge,  MA,  USA). 
+
+Microarray  and  data  analysis
+
+Samples  in  each  group  were  harvested  in  triplicates  and 
+total  RNAs  were  extracted  by  dissolving  in  TriZol  and 
+the  purification  using  Qiagen  RNAeasy  column  (Park et 
+al.,  2002).  We  used  GeneChip  Human  Gene  1.0  ST  ar-
+ray  from  Affymetrix  which  includes  32,000  human  genes. 
+Fluorescence  intensity  was  processed  and  measured 
+using  Exon  Microarray  Analyzer.  Intensity  data  were  im-
+ported  to  an  in-house  microarray  database  as  described 
+previously  (Lee  et al.,  2006). 
+
+Fig.  1.  SOM  cluster  analysis 
+on  2863  differentially  expres-
+sed  genes. 
+
+Table  1.  Classification  of  SOM  clusters  according  to  their  response  patterns  upon  ionizing  radiation
+
+Group
+
+Radio-sensitive  (RS), 
+    higher  in  radio-sensitive  H460  cells 
+    (H460＞H1299)
+Radio-resistant  (RR), 
+    higher  in  radio-resistant  H1299  cells 
+　(H1299＞H460)
+
+Response  pattern*
+
+Constitutive  (RSC)
+Early  (RSE)
+Late  (RSL)
+Constitutive  (RRC)
+Early  (RRE)
+Late  (RRL)
+
+Cluster  (gene  No.)
+
+104  (39),  105  (531)
+102  (120),  103  (141)
+205  (180),  305  (177),  405  (84)
+301  (123),  401  (176)
+501  (504),  502  (214),  503  (267),  504  (190)
+201  (70)
+
+*“Response  pattern”  represents  the  patterns  of  transcriptional  regulation  in  H460  cells  upon  ionizing  radiation.
+
+38    Genomics  &  Informatics    Vol.  6(1)  36-43,  March  2008
+
+Gene  Ontology  (GO)  and  pathway  analysis   
+
+Results  and  Discussion
+
+Differentially  expressed  genes  were  further  analyzed  us-
+ing  DAVID  for  GO  analysis  as  well  as  pathway  analysis 
+(Dennis  et al.,  2003). 
+
+To  examine  the  molecular  changes  upon  ionizing  radia-
+tion,  we  used  H460  and  H1299  lung  cancer  cells,  which 
+show  different  responses  to  ionizing  radiation  in  the  clo-
+
+Table  2.  Gene  ontology  (GO)  analysis  on  the  genes  in  RS  clusters
+
+Response Cluster
+  pattern
+
+(gene  No.)
+
+GO  term
+
+Count
+
+%
+
+p  value
+
+Fold 
+change
+
+RSE
+
+102  (120) Signal  transduction
+
+Inflammatory  response
+Response  to  biotic  stimulus
+
+103  (141) G-protein  coupled  receptor  protein  signaling  pathway
+
+RSC
+
+104  (39)
+
+Response  to  stimulus
+Phosphoinositide-mediated  signaling
+Regulation  of  progression  through  cell  cycle
+Regulation  of  physiological  process
+
+105  (531) Regulation  of  cell  proliferation
+
+Humoral  immune  response
+Enzyme  linked  receptor  protein  signaling  pathway
+Cell  adhesion
+Apoptosis
+Cell  differentiation
+Response  to  stress
+Dephosphorylation
+Amino  acid  and  derivative  metabolism
+Secretion
+
+RSL
+
+205  (180) Catabolism
+
+Cellular  lipid  metabolism
+Cellular  carbohydrate  metabolism
+Phospholipid  biosynthesis
+Positive  regulation  of  protein  kinase  activity
+Protein  biosynthesis
+Glycoprotein  metabolism
+Cytokine  biosynthesis
+Response  to  stress
+Vesicle-mediated  transport
+Transport
+Small  GTPase  mediated  signal  transduction
+Regulation  of  cell  proliferation
+Protein  transport
+Wnt  receptor  signaling  pathway
+Carboxylic  acid  metabolism
+Ubiquitin  cycle
+Lipid  metabolism
+Intracellular  signaling  cascade
+Intracellular  signaling  cascade
+Regulation  of  transcription
+Negative  regulation  of  nucleobase,  nucleoside,  nucleotide 
+    and  nucleic  acid  metabolism
+Negative  regulation  of  cellular  metabolism
+Protein  ubiquitination
+
+305  (177)
+
+405  (84)
+
+27
+  6
+14
+17
+28
+  4
+  5
+11
+23
+13
+13
+30
+26
+22
+38
+  9
+14
+12
+18
+15
+10
+  4
+  4
+14
+  5
+  3
+16
+  9
+35
+  7
+  7
+10
+  4
+  9
+  9
+10
+15
+11
+17
+  4
+
+  4
+  4
+
+25.00
+5.56
+12.96
+13.49
+22.22
+3.17
+13.16
+28.95
+4.60
+2.60
+2.60
+6.00
+5.20
+4.40
+7.60
+1.80
+2.80
+2.40
+10.40
+8.67
+5.78
+2.31
+2.31
+8.09
+2.89
+1.73
+9.25
+5.17
+20.11
+4.02
+4.02
+5.75
+2.30
+5.17
+5.17
+5.75
+8.62
+13.25
+20.48
+4.82
+
+4.82
+4.82
+
+0.00362 
+0.00368 
+0.01004 
+0.00093 
+0.00485 
+0.01234 
+0.00731 
+0.04775 
+4.3E-06
+0.00069 
+0.00203
+0.00232 
+0.00258 
+0.01247 
+0.02858 
+0.02973
+0.03143
+0.03187 
+2.4E-05
+6.9E-05
+0.00323 
+0.01089
+0.01317 
+0.01934 
+0.03631
+0.04197 
+0.04482 
+0.01121 
+0.01181 
+0.02899 
+0.03906 
+0.04377 
+0.05179
+0.05512 
+0.06438 
+0.07580 
+0.08165 
+0.01106 
+0.01421 
+0.03354 
+
+1.703 
+5.746 
+2.162 
+2.504 
+1.678 
+8.234 
+6.096 
+1.808 
+3.146
+3.246 
+2.866 
+1.815 
+1.907 
+1.781 
+1.414 
+2.470 
+1.921 
+2.064 
+3.329 
+3.584 
+3.298 
+8.635 
+8.050 
+2.030 
+3.984 
+9.134 
+1.705 
+2.943 
+1.488 
+2.995 
+2.787 
+2.132 
+4.731 
+2.163 
+2.092 
+1.912 
+1.597 
+2.462
+1.841
+5.573 
+
+0.04624 
+0.07009 
+
+4.900 
+4.123 
+
+Expression  Profiling  on  Ionizing  Radiation    39
+
+nogenic  assay  to  determine  the  radiation  sensitivity 
+(data  not  shown).  As  previously  reported  (Nishizaki  et 
+al.,  2001),  H1299  showed  higher  clonogenic  survival 
+
+upon  ionizing  radiation.  Using  these  two  lung  cancer 
+cells,  we  examined  the  transcriptomes  of  each  cell  at  0, 
+2,  4,  8,  12  and  24  hours  after  the  exposure  using 
+
+Table  3.  Gene  ontology  analysis  on  the  genes  RR  clusters
+
+GO  term
+
+Count
+
+%
+
+p  value
+
+Fold 
+change
+
+1.522 
+1.515 
+2.503 
+1.852 
+2.046 
+2.234 
+1.726
+2.549 
+3.232 
+3.043 
+5.421 
+
+17.71
+15.42
+4.17
+6.04
+4.79
+3.12
+5.00
+8.17
+5.29
+3.85
+1.92
+
+4.09E-05
+1.90E-04
+4.35E-04
+0.00205
+0.00207 
+0.00762 
+0.01227 
+9.46E-04
+0.00211 
+0.01596 
+0.03703 
+
+28.35
+
+3.51E-08
+
+1.803 
+
+6.51
+4.21
+6.51
+6.51
+6.51
+8.15
+7.07
+1.09
+11.30
+8.70
+9.57
+14.78
+9.57
+6.09
+5.22
+
+9.15
+12.20
+6.71
+4.27
+4.88
+3.05
+4.27
+6.10
+10.77
+
+15.38
+24.62
+13.85
+24.62
+9.23
+6.15
+
+2.883 
+2.67E-04
+3.723 
+7.50E-04
+2.481 
+0.00134 
+2.417 
+0.00175 
+2.069
+0.00784 
+3.389 
+1.22E-04
+6.95E-04
+3.203 
+0.04564  42.624 
+1.45E-09 11.219 
+1.10E-07 12.231 
+7.193 
+2.61E-06
+3.57E-06
+3.998 
+6.751 
+4.59E-06
+6.103 
+9.55E-04
+0.02329 
+3.656 
+
+1.12E-09
+9.38E-05
+0.00868 
+0.01457 
+0.01594 
+0.02793 
+0.02978 
+0.04077 
+1.76E-04
+
+6.70E-04
+0.00502
+0.00782
+0.01734
+0.04261
+0.04591
+
+8.970 
+2.759 
+2.634 
+3.509 
+3.040 
+4.331 
+2.977 
+2.162 
+8.220 
+
+3.979 
+2.104 
+3.032 
+1.835 
+3.055 
+4.897 
+
+Response
+  pattern
+
+Cluster
+
+(gene  No.)
+
+RRE
+
+501  (504)
+
+502  (214)
+
+503  (267)
+
+504  (190)
+
+RRC
+
+301  (123)
+
+ 
+401  (176)
+
+RRL
+
+201  (70)
+
+Regulation  of  metabolism
+Transcription,  DNA-dependent
+Vesicle-mediated  transport
+Cell  cycle
+Ubiquitin  cycle
+Chromosome  organization  and  biogenesis
+Protein  amino  acid  phosphorylation
+Cell  cycle
+Vesicle-mediated  transport
+Protein  kinase  cascade
+Positive  regulation  of  I-kappaB 
+    kinase/NF-kappaB  cascade
+Nucleobase,  nucleoside,  nucleotide 
+    and  nucleic  acid  metabolism
+Ubiquitin  cycle
+Response  to  DNA  damage  stimulus
+Protein  localization
+Establishment  of  cellular  localization
+Cell  cycle
+Protein  transport
+Ubiquitin  cycle
+Phosphatidylinositol  biosynthesis
+M  phase
+Chromatin  assembly  or  disassembly
+Response  to  DNA  damage  stimulus
+Cell  cycle
+Response  to  endogenous  stimulus
+Second-messenger-mediated  signaling
+Regulation  of  transcription  from  RNA 
+    polymerase  II  promoter
+M  phase
+Organelle  organization  and  biogenesis
+Transcription  from  RNA  polymerase  II  promoter
+DNA  repair
+Chromosome  organization  and  biogenesis
+Regulation  of  protein  kinase  activity
+Response  to  endogenous  stimulus
+Cell  proliferation
+Establishment  and/or  maintenance  of 
+    chromatin  architecture
+Cell  cycle
+Regulation  of  transcription,  DNA-dependent
+Organelle  organization  and  biogenesis
+Regulation  of  cellular  metabolism
+Apoptosis
+DNA  repair
+
+85
+74
+20
+29
+23
+15
+24
+17
+11
+  8
+  4
+
+74
+
+17
+11
+17
+17
+17
+15
+13
+  2
+13
+10
+11
+17
+11
+  7
+  6
+
+15
+20
+11
+  7
+  8
+  5
+  7
+10
+  7
+
+10
+16
+  9
+16
+  6
+  4
+
+40    Genomics  &  Informatics    Vol.  6(1)  36-43,  March  2008
+
+microarray.  Because  two  lung  cancer  cells  originated 
+from  two  different  individuals  with  different  genetic 
+backgrounds,  there  should  be  lots  of  discrepancy  in 
+transcription  profiles.  However,  if  we  can  compare  the 
+time-series  expression  patterns  in  parallel,  it  would  be 
+possible  to  detect  the  genes  related  to  differential  re-
+sponses  to  ionizing  radiation.
+    Differentially  expressed  genes  (DEGs)  were  selected  by 
+two-way  ANOVA  on  two  time-series  data  (p＜0.05). 
+
+Then  these  2863  DEGs  were  further  classified  into  21 
+clusters  according  to  their  expression  patterns  using 
+SOM  (Fig.  1).  Fourteen  out  of  21  clusters  containing 
+more  than  10  genes  could  be  divided  into  two  groups 
+like  RS  and  RR  (Table  1).  The  level  of  transcripts  in  RS 
+clusters  are  higher  in  radio-sensitive  H460  cells  than  in 
+H1299  cells,  while  RR  cluster  genes  are  expressed  at 
+higher  levels  in  H1299  cells.  RS  group  contained  7  clus-
+ters  with  1272  genes,  which  were  up-regulated  in  H460 
+
+Table  4.  Pathway  analysis  on  DEGs  in  two-way  ANOVA  analysis
+
+Response
+  pattern
+
+Cluster
+
+RSC
+
+105
+
+RSE
+RSL
+
+　
+RRE
+
+RRC
+
+RRL
+　
+
+103
+305
+
+205
+
+502
+
+501
+
+401
+
+301
+
+201
+
+Pathway  term
+
+Count
+
+%
+
+p  value
+
+HSA00330:Arginine  and  proline  metabolism
+HSA04010:MAPK  signaling  pathway
+HSA05060:Prion  disease
+HSA04610:Complement  and  coagulation  cascades
+HSA02010:ABC  transporters  -  general
+HSA04512:ECM-receptor  interaction
+HSA00380:Tryptophan  metabolism
+HSA04210:Apoptosis
+HSA04060:Cytokine-cytokine  receptor  interaction
+HSA04060:Cytokine-cytokine  receptor  interaction
+HSA00120:Bile  acid  biosynthesis
+HSA00520:Nucleotide  sugars  metabolism
+HSA04910:Insulin  signaling  pathway
+HSA00600:Glycosphingolipid  metabolism
+HSA00512:O-glycan  biosynthesis
+HSA00280:Valine,  leucine  and  isoleucine  degradation
+HSA04350:TGF-beta  signaling  pathway
+HSA00072:Synthesis  and  degradation  of  ketone  bodies
+HSA00650:Butanoate  metabolism
+HSA04510:Focal  adhesion
+HSA04620:Toll-like  receptor  signaling  pathway
+HSA00770:Pantothenate  and  CoA  biosynthesis
+HSA04930:Type  II  diabetes  mellitus
+HSA04360:Axon  guidance
+HSA04910:Insulin  signaling  pathway
+HSA04210:Apoptosis
+HSA04120:Ubiquitin  mediated  proteolysis
+HSA04662:B  cell  receptor  signaling  pathway
+HSA04660:T  cell  receptor  signaling  pathway
+HSA04650:Natural  killer  cell  mediated  cytotoxicity
+HSA04070:Phosphatidylinositol  signaling  system
+HSA04512:ECM-receptor  interaction
+HSA04110:Cell  cycle
+HSA01510:Neurodegenerative  disorders
+HSA04310:WNT  signaling  pathway
+HSA04120:Ubiquitin  mediated  proteolysis
+HSA04110:Cell  cycle
+HSA04010:MAPK  signaling  pathway
+HSA04110:Cell  cycle
+
+  8
+19
+  4
+  7
+  7
+  9
+  8
+  8
+18
+  6
+  3
+  3
+  6
+  5
+  3
+  5
+  4
+  2
+  4
+  6
+  6
+  3
+  4
+  7
+10
+  7
+  4
+  6
+  6
+  8
+  7
+  4
+  6
+  3
+  5
+  3 
+  7
+  4
+  3
+
+1.60
+3.80
+0.80
+1.40
+1.40
+1.80
+1.60
+1.60
+3.60
+4.76
+1.72
+1.72
+3.47
+2.89
+1.73
+2.40
+1.92
+0.96
+1.92
+2.88
+1.25
+0.62
+0.83
+1.46
+2.08
+1.46
+0.83
+1.25
+1.25
+1.67
+1.46
+2.44
+3.66
+2.61
+4.35
+2.61
+6.09
+6.15
+4.62
+
+0.0079 
+0.0322 
+0.0459 
+0.0613 
+0.0083 
+0.0332 
+0.0701 
+0.0844 
+0.0308 
+0.0117 
+0.0591 
+0.0119 
+0.0658 
+0.0045 
+0.0778 
+0.0011 
+0.0327 
+0.0640 
+0.0100 
+0.0305 
+0.0614 
+0.0986 
+0.0816 
+0.0926 
+0.0038 
+0.0167 
+0.0775 
+0.0179 
+0.0637 
+0.0266 
+0.0211 
+0.0619 
+0.0048 
+0.0330 
+0.0339 
+0.0522 
+0.0003 
+0.0743 
+0.0617 
+
+Expression  Profiling  on  Ionizing  Radiation    41
+
+cells.  When  we  examine  the  responses  in  H460  cells  in 
+detail,  RS  group  could  be  classified  into  three  classes 
+according  to  the  gene  expression  patterns  like  con-
+stitutive  (RSC),  early  (RSE)  and  late  (RSL)  up-regulation 
+by  ionizing  radiation.  RR  group  also  could  be  classified 
+as  RRC,  RRE  and  RRL,  too. 
+    We  have  characterized  each  clusters  according  to 
+their  GO  terms  over-represented  in  each  cluster  sig-
+nificantly  (p＜0.05).  As  listed  in  Table  2,  RS  clusters 
+
+were  enriched  with  GO  terms  related  to  the  response  to 
+radiation,  signal  transduction,  apoptosis  and  metabo-
+lism.  For  RR  clusters,  we  could  find  the  GO  terms  re-
+lated  to  cell  cycle,  DNA  damage  and  apoptosis  (Table 
+3).  Using  DAVID  web-accessible  program,  we  examined 
+the  KEGG  pathways  related  to  each  cluster  to  under-
+stand  the  time-series  data  on  the  cellular  responses  to 
+ionizing  radiation  (Table  4).  As  GO  analysis  showed  the 
+enrichment  of  terms  on  biological  process,  apoptosis 
+
+Table  5.  Apoptosis-related  genes  in  three  different  clusters
+
+Response  pattern
+
+ 
+
+(cluster)
+
+RSC  (105)
+
+RRL  (201)
+
+RRE  (501)
+
+　
+
+GenBank  accession
+
+Gene  name
+
+NM_001621
+NM_032977
+NM_001228
+NM_001831
+NM_014800
+NM_003608
+NM_005347
+NM_006410
+NM_000875
+NM_005531
+NM_000575
+NM_000576
+NM_000600
+NM_000314
+NM_017542
+NM_005505
+NM_004760
+NM_002575
+NM_003955
+NM_003238
+NM_003844
+NM_003842
+NM_002546
+NM_018647
+NM_006290
+NM_005157
+NM_001168
+NM_001924
+NM_016639
+NM_002128
+NM_002466
+NM_001065
+NM_006218
+NM_002736
+NM_007236
+NM_001165
+NM_014602
+NM_006219
+NM_016123
+
+Aryl  hydrocarbon  receptor
+Caspase  10,  apoptosis-related  cysteine  peptidase
+Caspase  8,  apoptosis-related  cysteine  peptidase
+Clusterin
+Engulfment  and  cell  motility  1
+G  protein-coupled  receptor  65
+Heat  shock  70kda  protein  5  (glucose-regulated  protein,  78kda)
+Hiv-1  tat  interactive  protein  2,  30kda
+Insulin-like  growth  factor  1  receptor
+Interferon,  gamma-inducible  protein  16
+Interleukin  1,  alpha
+Interleukin  1,  beta
+Interleukin  6  (interferon,  beta  2)
+Phosphatase  and  tensin  homolog  (mutated  in  multiple  advanced  cancers  1)
+Pogo  transposable  element  with  krab  domain
+Scavenger  receptor  class  b,  member  1
+Serine/threonine  kinase  17a  (apoptosis-inducing)
+Serpin  peptidase  inhibitor,  clade  b  (ovalbumin),  member  2
+Suppressor  of  cytokine  signaling  3
+Transforming  growth  factor,  beta  2
+Tumor  necrosis  factor  receptor  superfamily,  member  10a
+Tumor  necrosis  factor  receptor  superfamily,  member  10b
+Tumor  necrosis  factor  receptor  superfamily,  member  11b  (osteoprotegerin)
+Tumor  necrosis  factor  receptor  superfamily,  member  19
+Tumor  necrosis  factor,  alpha-induced  protein  3
+V-abl  abelson  murine  leukemia  viral  oncogene  homolog  1
+Baculoviral  iap  repeat-containing  5  (survivin)
+Growth  arrest  and  dna-damage-inducible,  alpha
+Tumor  necrosis  factor  receptor  superfamily,  member  12a
+High-mobility  group  box  1
+V-myb  myeloblastosis  viral  oncogene  homolog  (avian)-like  2
+Tumor  necrosis  factor  receptor  superfamily,  member  1a
+Phosphoinositide-3-kinase,  catalytic,  alpha  polypeptide
+Protein  kinase,  camp-dependent,  regulatory,  type  ii,  beta
+Calcium  binding  protein  p22
+Baculoviral  iap  repeat-containing  3
+Phosphoinositide-3-kinase,  regulatory  subunit  4,  p150
+Phosphoinositide-3-kinase,  catalytic,  beta  polypeptide
+Interleukin-1  receptor-associated  kinase  4
+
+42    Genomics  &  Informatics    Vol.  6(1)  36-43,  March  2008
+
+pathways  were  significantly  changed  in  both  of  RS 
+(RSC)  and  RR  (RRE)  clusters.  In  addition,  metabolic  and 
+signaling  pathways  were  selected  in  RS  group,  and  cell 
+cycle  pathway  in  RR  group.
+    RSC  cluster  contained  26  apoptosis-related  genes 
+(Table  2),  which  were  over-expressed  in  H460  cells,  but 
+not  changed  upon  ionizing  radiation.  Caspases  (CASP8 
+and  CASP10),  interleukins  (IL1A,  IL1B  and  IL6),  TRAIL 
+receptors  (TNFRSF10A  and  TNFRSF10B)  might  play  an 
+important  role  in  cell  death  upon  ionizing  radiation  in 
+H460  cells  (Table  5).  These  genes  were  present  in  lower 
+levels,  and  not  induced  by  irradiation  in  H1299.  RRL 
+cluster  contained  the  genes  which  were  up-regulated  in 
+H1299  cells,  and  induced  in  H460  cells  after  8  hours  of 
+irradiation.  Among  6  genes,  Survivin 
+(BIRC5)  and 
+GADD45A  might  be  related  to  radio-resistance  of  H1299 
+cells.  RRE  clusters  in  RR  group  contained  7  apopto-
+sis-related  genes  like  PI3K  subunits  (PIK3CA,  PIK3CB 
+and  PIK3R4)  and  IRAK4.  Many  genes  related  to  apopto-
+sis  were  selected  in  two-way  ANOVA  analysis,  and  their 
+differential  activity  to  determine  the  radiation  responses 
+could  be  sorted  out  by  SOM  and  pathway  analysis. 
+    Radiation  sensitivity  is  usually  determined  by  classical 
+clonogenic  assay  in  radiation  biology.  But  it  is  not  easy 
+to  establish  cell  line  from  the  individual  patient's  speci-
+men  and  too  slow  to  be  used  as  a  routine  work.  As  a 
+result,  there  is  no  available  clinical  method  to  predict  ra-
+diation  response  to  radiation  therapy.  If  we  can  predict 
+individual  response  rate  to  radiation  therapy,  we  can 
+modify  total  dose  and  fractionation  schedule  of  radiation 
+therapy  individually  so  as  to  increase  therapeutic  ratio.
+    We  have  examined  the  gene  expression  profiles  to 
+understand  the  underlying  molecular  changes  in  cells 
+with  different  radiation  sensitivity.  From  the  differentially 
+expressed  genes,  we  can  select  the  biomarkers  to  dis-
+criminate  the  radio-resistant  tumors  from  radio-sensitive 
+one.  Using  those  genomic  biomarkers,  we  can  develop 
+the  platform  to  check  the  radiation  response  in  radio-
+therapy  patients.  Further  study  is  undergoing  with  pa-
+tient's  tumor  specimen.
+
+Acknowledgements
+
+This  work  was  supported  by  the  Korea  Science  and 
+Engineering  Foundation  (KOSEF)  grant  funded  by  the 
+Korea  government  (MOST)  to  W.Y.  Park  (2007-03119) 
+and  BK21  to  W.Y.  Park  and  J.H.  Kim. 
+
+References
+
+Achary,  M.P.,  Jaggernauth,  W.,  Gross,  E.,  Alfieri,  A.,  Klinger, 
+H.P.,  and  Vikram,  B.  (2000).  Cell  lines  from  the  same 
+cervical  carcinoma  but  with  different  radiosensitivities  ex-
+hibit  different  cDNA  microarray  patterns  of  gene 
+
+expression.  Cytogenet Cell Genet.  91,  39-43.
+
+Dennis,  G.Jr.,  Sherman,  B.T.,  Hosack,  D.A.,  Yang,  J.,  Gao, 
+W.,  Lane,  H.C.,  and  Lempicki,  R.A.  (2003).  DAVID:  data-
+base 
+integrated 
+discovery.  Genome Biol.  4,  P3.
+
+visualization,  and 
+
+for  annotation, 
+
+Fukuda,  K.,  Sakakura,  C.,  Miyagawa,  K.,  Kuriu,  Y.,  Kin,  S., 
+Nakase,  Y.,  Hagiwara,  A.,  Mitsufuji,  S.,  Okazaki,  Y., 
+Hayashizaki,  Y.,  and  Yamagishi,  H.  (2004).  Differential 
+gene  expression  profiles  of  radioresistant  oesophageal 
+cancer  cell  lines  established  by  continuous  fractionated 
+irradiation.  Br. J. Cancer  91,  1543-1550.
+
+Golub,  T.R.,  Slonim,  D.K.,  Tamayo,  P.,  Huard,  C., 
+Gaasenbeek,  M.,  Mesirov,  J.P.,  Coller,  H.,  Loh,  M.L., 
+Downing,  J.R.,  Caligiuri,  M.A.,  Bloomfield,  C.D.,  and 
+Lander,  E.S.  (1999).  Molecular  classification  of  cancer: 
+class  discovery  and  class  prediction  by  gene  expression 
+monitoring.  Science  286,  531-537.
+
+Kim,  I.J.,  Lim,  S.B.,  Kang,  H.C.,  Chang,  H.J.,  Ahn,  S.A., 
+Park,  H.W.,  Jang,  S.G.,  Park,  J.H.,  Kim,  D.Y.,  Jung,  K.H., 
+Choi,  H.S.,  Jeong,  S.Y.,  Sohn,  D.K.,  Kim,  D.W.,  and 
+Park,  J.G.  (2007).  Microarray  gene  expression  profiling  for 
+predicting  complete  response  to  preoperative  chemo-
+radiotherapy  in  patients  with  advanced  rectal  cancer. Dis. 
+Colon. Rectum.  50,  1342-1353.
+
+Klopp,  A.H.,  and  Eifel,  P.J.  (2006).  Gene  expression  profiling 
+in  cervical  cancer:  state  of  the  art  and  future  directions. 
+Cancer J.  12,  170-174.
+
+Lee,  M.S.,  Jun,  D.H.,  Hwang,  C.I.,  Park,  S.S.,  Kang,  J.J., 
+Park,  H.S.,  Kim,  J.,  Kim,  J.H.,  Seo,  J.S.,  and  Park,  W.Y. 
+(2006).  Selection  of  neural  differentiation-specific  genes 
+by  comparing  profiles  of  random  differentiation. Stem 
+Cells  24,  1946-1955.
+
+Lossos,  I.S.,  Czerwinski,  D.K.,  Alizadeh,  A.A.,  Wechser, 
+M.A.,  Tibshirani,  R.,  Botstein,  D.,  and  Levy,  R.  (2004). 
+Prediction  of  survival  in  diffuse  large-B-cell  lymphoma 
+based  on  the  expression  of  six  genes.  N. Engl. J. Med. 
+350,  1828-1837.
+
+Nishizaki,  M.,  Meyn,  R.E.,  Levy,  L.B.,  Atkinson,  E.N.,  White, 
+R.A.,  Roth,  J.A.,  and  Ji,  L.  (2001).  Synergistic  inhibition  of 
+human  lung  cancer  cell  growth  by  adenovirus-mediated 
+wild-type  p53  gene  transfer  in  combination  with  docetax-
+el  and  radiation  therapeutics  in  vitro  and  in  vivo.  Clin. 
+Cancer Res.  7,  2887-2897.
+
+Park,  W.Y.,  Hwang,  C.I.,  Im,  C.N.,  Kang,  M.J.,  Woo,  J.H., 
+Kim,  J.H.,  Kim,  Y.S.,  Kim,  H.,  Kim,  K.A.,  Yu,  H.J.,  Lee, 
+S.J.,  Lee,  Y.S.,  and  Seo,  J.S.  (2002).  Identification  of  ra-
+diation-specific  responses  from  gene  expression  profile. 
+Oncogene  21,  8521-8528.
+
+Pomeroy,  S.L.,  Tamayo,  P.,  Gaasenbeek,  M.,  Sturla,  L.M., 
+Angelo,  M.,  McLaughlin,  M.E.,  Kim,  J.Y.,  Goumnerova, 
+L.C.,  Black,  P.M.,  Lau,  C.,  Allen,  J.C.,  Zagzag,  D.,  Olson, 
+J.M.,  Curran,  T.,  Wetmore,  C.,  Biegel,  J.A.,  Poggio,  T., 
+Mukherjee,  S.,  Rifkin,  R.,  Califano,  A.,  Stolovitzky,  G., 
+Louis,  D.N.,  Mesirov,  J.P.,  Lander,  E.S.,  and  Golub,  T.R. 
+(2002).  Prediction  of  central  nervous  system  embryonal 
+tumour  outcome  based  on  gene  expression.  Nature  415, 
+436-442.
+
+Snyder,  A.R.,  and  Morgan,  W.F.  (2004).  Gene  expression 
+profiling  after  irradiation:  clues  to  understanding  acute 
+
+Expression  Profiling  on  Ionizing  Radiation    43
+
+and  persistent  responses?  Cancer Metastasis Rev.  23, 
+259-268.
+
+Tewari,  D.,  Monk,  B.J.,  Al-Ghazi,  M.S.,  Parker,  R.,  Heck, 
+J.D.,  Burger,  R.A.,  and  Fruehauf,  J.P.  (2005).  Gene  ex-
+pression  profiling  of  in  vitro  radiation  resistance  in  cer-
+vical  carcinoma:  a  feasibility  study.  Gynecol. Oncol.  99, 
+84-91.
+
+Weidhaas,  J.B.,  Babar,  I.,  Nallur,  S.M.,  Trang,  P.,  Roush, 
+S.,  Boehm,  M.,  Gillespie,  E.,  and  Slack,  F.J.  (2007). 
+MicroRNAs  as  potential  agents  to  alter  resistance  to  cy-
+
+totoxic  anticancer  therapy. Cancer Res.  67,  11111-11116.
+Wong,  Y.F.,  Sahota,  D.S.,  Cheung,  T.H.,  Lo,  K.W.,  Yim, 
+S.F.,  Chung,  T.K.,  Chang,  A.M.,  and  Smith,  D.I.  (2006). 
+Gene  expression  pattern  associated  with  radiotherapy 
+sensitivity  in  cervical  cancer.  Cancer J.  12,  189-193.
+
+Wu,  H.G.,  Bang,  Y.J.,  Choi,  E.K.,  Ahn,  Y.C.,  Kim,  Y.W., 
+Lim,  T.H.,  Suh,  C.,  Park,  K.,  and  Park,  C.I.  (2002).  Phase 
+I  study  of  weekly  docetaxel  and  cisplatin  concurrent  with 
+thoracic  radiotherapy  in  Stage  III  non-small-cell  lung 
+cancer.  Int. J. Radiat. Oncol. Biol. Phys.  52,  75-80.
+
+

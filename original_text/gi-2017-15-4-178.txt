@@ -1,0 +1,1901 @@
+G&I   Genomics & Informatics
+
+APPLICATION NOTE
+
+eISSN 2234-0742
+Genomics Inform 2017;15(4):178-182
+https://doi.org/10.5808/GI.2017.15.4.178
+
+IVAG: An Integrative Visualization Application for 
+
+Various Types of Genomic Data Based on 
+
+R-Shiny and the Docker Platform
+
+Tae-Rim Lee§, Jin Mo Ahn§, Gyuhee Kim§, Sangsoo Kim*
+
+Department of Bioinformatics and Life Science, Soongsil University, Seoul 06978, Korea
+
+Next-generation sequencing (NGS) technology has become a trend in the genomics research area. There are many software 
+programs and automated pipelines to analyze NGS data, which can ease the pain for traditional scientists who are not 
+familiar with computer programming. However, downstream analyses, such as finding differentially expressed genes or 
+visualizing linkage disequilibrium maps and genome-wide association study (GWAS) data, still remain a challenge. Here, we 
+introduce a dockerized web application written in R using the Shiny platform to visualize pre-analyzed RNA sequencing and 
+GWAS data. In addition, we have integrated a genome browser based on the JBrowse platform and an automated inter-
+mediate parsing process required for custom track construction, so that users can easily build and navigate their personal 
+genome tracks with in-house datasets. This application will help scientists perform series of downstream analyses and obtain 
+a more integrative understanding about various types of genomic data by interactively visualizing them with customizable 
+options.
+
+Keywords: docker, genome browser, genome-wide association study, RNA sequencing, Shiny, visualization
+
+Availability: A docker image of IVAG can be downloaded at https://hub.docker.com/r/leetaerim/ivag/. Pre-processed example 
+
+input data and the manual file are available at https://github.com/jmoa/IVAG.
+
+Introduction
+
+Since its advent, high throughput next-generation sequ-
+encing (NGS) technology has revolutionized the genomics 
+research area, including transcriptome analysis and genome- 
+wide association studies (GWASs) taking advantage of acce-
+lerated  sequencing  speed  with  reduced  cost  [1,  2].  Even 
+though many bioinformatics software programs have been 
+developed to handle and analyze the massive data generated 
+from  NGS,  most  of  them  are  based  on  a  command-line 
+interface  and  require  quite  a  high  level  of  computational 
+power [3], which creates a high barrier for wet lab biologists 
+to  enter  into  this  field.  Thanks  to  web-based  analysis 
+platforms, including Galaxy [4] and BIOEXPRESS [5], this 
+barrier has been lowered. However, there still are problems. 
+Downstream analyses, such as finding differentially expre-
+
+ssed genes (DEGs), conducting Gene Ontology (GO) enri-
+chment  analysis,  calculating  linkage  disequilibrium  (LD), 
+annotating gene information into GWAS results, and finally 
+visualizing the resulting data, still require significant com-
+puter programming skills. 
+
+In this study, we present a dockerized application, IVAG. 
+It provides a user-friendly web interface in which all down-
+stream analyses mentioned above can be carried out without 
+any programming knowledge. Detailed parameters for each 
+analysis  step  can  be  adjusted  with  simple  click-and-drag 
+operation.  IVAG  interactively  outputs  publication-quality 
+plots in response to the given parameters, and all of these 
+plots  can  be  downloaded.  Also,  a  variety  of  data  types, 
+ranging  from  RNA  sequencing  (RNA-seq)  and  GWAS 
+results  to  sequence  read  alignments,  gene  annotation, 
+variant  call  information,  and  peak  information,  can  be 
+uploaded  into  the  embedded  genome  browser  and  then 
+
+Received October 30, 2017; Accepted November 17, 2017
+*Corresponding author: Tel: +82-2-820-0457, Fax: +82-2-824-4383, E-mail: sskimb@ssu.ac.kr
+§These authors contributed equally to this work.
+Copyright © 2017 by the Korea Genome Organization
+CC It is identical to the Creative Commons Attribution Non-Commercial License (http://creativecommons.org/licenses/by-nc/4.0/).
+
+visualized  together  to  help  users  gain  greater  integrative 
+insights into their data. Furthermore, IVAG is lightweight, 
+allowing it to be deployed on a desktop computer, as well as 
+a server application.
+
+Methods
+
+IVAG is mostly written in the R programming language 
+[6] and dockerized [7] with all required dependencies to 
+avoid compatibility issues. It uses the Shiny package [8] to 
+build a user-friendly web interface and several other packages 
+to analyze and visualize RNA-seq and GWAS data (Supple-
+mentary Table 1). VCFtools [9] and PLINK (v1.90b4.6) [10] 
+were used for the LD analysis. The JBrowse platform [11] 
+was  integrated  into  IVAG,  and  all  intermediate  steps 
+required  for  custom  track  construction  were  automated 
+using a custom BASH script. Three publicly available plugins 
+(Supplementary  Table  2),  with  slight  modification,  were 
+incorporated into the genome browser to build GWAS, GC 
+content, and browser extensible data (BED) tracks. Gene 
+transfer format (GTF)-to-general feature format 3 (GFF3) 
+format  conversion  was  carried  out  with  Cufflinks  (2.2.1) 
+[12]. Binary sequence alignment map (BAM) and variant call 
+format (VCF) files were sorted with SAMtools [13]. Example 
+data were prepared using publicly available RNA-seq and 
+GWAS data (Supplementary Table 3).
+
+Results
+Workflow
+
+Fig. 1 shows a graphical overview of the pre-analysis steps 
+and the IVAG workflow. The blue line (Fig. 1A) denotes a 
+schematic representation of the external pipelines required 
+for RNA-seq and GWAS data. These parts are prerequisites 
+for downstream analyses prior to IVAG analysis. The red box 
+in the right panel (Fig. 1B) illustrates the IVAG workflow. 
+
+Genomics  &  Informatics  Vol.  15,  No.  4,  2017
+
+The orange items are input files for IVAG, and their detailed 
+formats are described in Supplementary Figs. 1‒29. 
+RNA-seq
+
+IVAG DEG  analysis requires raw count RNA  sequence 
+data that can be generated using open source software, such 
+as Htseq [14]. DEG analysis outputs a DEG results table 
+generated  with  user-specified  parameters  based  on  the  R 
+Bioconductor package edgeR [15]. The output table consists 
+of multiple columns, such as log2 fold-change, log2 count 
+per million, associated p-value, and associated false discovery 
+rate  (Fig.  2A),  and  it  can  be  visualized  as  a  heatmap,  a 
+volcano plot, and a principal component analysis plot (Fig. 
+2B). The heatmap is generated using raw count data, which 
+are converted to counts per million and normalized to a have 
+row-based percentage value. The volcano plot is generated 
+using log2 fold-change  and the  associated false  discovery 
+rate. Principal component analysis is generated using the 
+raw count of each sample normalized to the log2 count per 
+million. The heatmap and volcano plot can be interactively 
+updated based on user-specified filtering criteria, such as 
+false discovery rate or absolute fold-change. GO enrichment 
+analysis uses the DEG analysis results table, GO annotation 
+file,  and GTF  file.  The DEG analysis  results table can be 
+generated using IVAG DEG analysis, or a pre-analyzed DEG 
+analysis  result  can  also  be  used.  The  GO  annotation  file 
+consists of two columns: gene ID and GO category. A GTF 
+file is needed to generate the gene length of each gene in the 
+DEG  analysis  table.  However,  it  can  be  omitted  if  a  user 
+wishes not to take gene length bias into account. IVAG GO 
+enrichment  analysis  outputs  over-represented  and  under- 
+represented GO terms among DEGs (Fig. 2C) using the R 
+Bioconductor package goseq [16]. It also shows a histogram 
+of  DEGs  in  each  GO  category  based  on  its  ontology: 
+biological  process,  cellular  component,  and  molecular 
+function.
+
+Fig.  1. Graphical overview of IVAG workflow. (A) External pre-calculation and automated pipelines for RNA sequencing and genome-wide 
+association study (GWAS) analysis. (B) Schematic representation of the App pipeline. DEG, differentially expressed gene; GO, Gene Ontology;
+GTF,  gene  transfer  format;  SNP,  single  nucleotide  polymorphism;  LD,  linkage  disequilibrium;  PCA,  principal  component  analysis;  QQ,
+quantile-quantile.  aThese  data  can  be  uploaded  directly  to  the  genome  browser.  The  orange  items  are  input  files  for  IVAG,  while  the 
+yellow  ones  are  output  files.
+
+www.genominfo.org
+
+179
+
+TR  Lee, et al.  IVAG:  A  Web  Application  for  RNA-seq  and  GWAS
+
+Fig.  2.  Functions  and  results  of  IVAG.  (A)  Single-factor  differential  expression  analysis.  (B)  Heatmap,  volcano,  and  principal  component
+analysis plot drawn with specified parameters. (C) Result of gene ontology enrichment analysis. Histogram shows how many differentially
+expressed  genes are  allocated to  specific Gene Ontology categories.  (D) Manhattan and quantile-quantile  plots drawn with customizable 
+options. (E) Linkage disequilibrium (LD) analysis generating LD matrix. (F) Pairwise LD heatmap. A group of single nucleotide polymorphisms
+of interest can be the subset. (G) Genome browser track with integrated view of differentially expressed gene and genome-wide association
+study  results.
+
+GWAS
+
+Gene ID annotation requires a tab-separated GWAS result 
+file comprising marker ID, chromosome ID, base position, 
+and p-value columns in order, and a GTF file that contains 
+strand and position information of genes. It returns a new 
+GWAS result file in which gene, upstream, and downstream 
+columns are added. Both GWAS result files, before and after 
+
+this annotation, can be visualized in Manhattan and quan-
+tile-quantile plot with customizable options (Fig. 2D). One 
+can see all information for a specific dot of one’s interest if he 
+clicks on the interactive plots. The LD analysis part is read in 
+a VCF file with several detailed options to generate an LD 
+matrix and a marker information file, which can be visualized 
+in the LD heatmap (Fig. 2E and 2F). 
+
+180
+
+www.genominfo.org
+
+Genome browser
+
+Constructing a custom genome browser with a reference 
+genome sequence is the first step. After selecting one of the 
+genome  browsers  configured  in  IVAG,  various  types  of 
+genomic data, including GTF, GFF3, BAM, BED, BigWig, and 
+VCF, can be uploaded and visualized all together (Fig. 2G). 
+Also,  this  genome  browser  receives  RNA-seq  and  GWAS 
+results generated from IVAG as inputs.
+
+Discussion
+
+IVAG is an easy-to-use, web-based application with three 
+modules, including RNA-seq, GWAS, and a genome browser. 
+This application enables scientists with little computational 
+proficiency to analyze and visualize their data easily. Some 
+web applications provide similar functions for RNA-seq and 
+GWAS, but they have some limitations. For example, DEApp 
+[17]  provides  differential  expression  analysis  using  three 
+different  methods—edgeR,  limma-voom,  and  DESeq2—
+while a heatmap or a principal component analysis plot is not 
+provided. START [18] can output several plots, but it does 
+not  offer  a  GO  enrichment  analysis  function.  LocusTrack 
+[19] can visualize GWAS data and annotate multiple tracks 
+on  them,  but  it  is  limited  to  only  one  species,  human. 
+Zbrowse  [20]  can  be  used  over  every  species.  However, 
+because it focuses on plotting multiple GWAS results in one 
+panel  to  enable  users  to  detect  genotype-environment 
+interactions, the number of markers that can be plotted for 
+one trait is limited to 5,000. IVAG is not limited to a specific 
+organism or the number of markers [14]. Most importantly, 
+IVAG  combines  a  genome  browser  with  analysis  and 
+visualization modules so that users can analyze, visualize, 
+and  finally  navigate  their  entire  data  interactively  in  one 
+application.  We  offer  only  two  analysis  and  visualization 
+modules now, but several more modules are in development 
+and will be included in the near future. 
+
+ORCID:  Tae-Rim  Lee:  http://orcid.org/0000-0003-0684-
+6552; Jin Mo Ahn: http://orcid.org/0000-0002-9073-9911; 
+Gyuhee Kim: http://orcid.org/0000-0002-4054-979X; San
+gsoo Kim: http://orcid.org/0000-0001-9836-9823
+
+Authors’ contribution
+
+Conceptualization: SK
+Formal analysis: TRL, JMA, GK
+Funding acquisition: SK
+Writing – original draft: TRL, JMA, GK, SK
+Writing – review & editing: TRL, SK
+
+Genomics  &  Informatics  Vol.  15,  No.  4,  2017
+
+Acknowledgments
+
+This work was funded by a program (PJ01167402) from 
+the RDA (Rural Development Administration) and a pro-
+gram (NRF-2012M3A9D1054705) from the NRF (National 
+Research Foundation of Korea) and computationally supp-
+orted by a program (NRF-2010-0018156, NTIS1711048528) 
+from KISTI GSDC.
+
+Supplementary materials
+
+Supplementary data including three tables and 29 figures 
+can  be  found  with  this  article  online  at  http://www. 
+genominfo.org/src/sm/gni-15-178-s001.pdf.
+
+References
+
+1. van Dijk EL, Auger H, Jaszczyszyn Y, Thermes C. Ten years of 
+next-generation  sequencing  technology.  Trends  Genet  2014; 
+30:418-426.
+
+2. D’Agostino N, Tripodi P. NGS-based genotyping, high-throu-
+ghput phenotyping and genome-wide association studies laid 
+the foundations for next-generation breeding in horticultural 
+crops. Diversity 2017;9:38.
+
+3. Seemann  T.  Ten  recommendations  for  creating  usable  bio-
+
+informatics command line software. Gigascience 2013;2:15.
+
+4. Goecks J, Nekrutenko A, Taylor J; Galaxy Team. Galaxy: a com-
+prehensive approach for supporting accessible, reproducible, 
+and transparent computational research in the life sciences. 
+Genome Biol 2010;11:R86.
+
+5. Korean Bioinformation Center. Bioexpress. Daejeon: Korean 
+Bioinformation Center, 2017. Accessed 2017 Nov 1. Available 
+from: https:// bioexpress.kobic.re.kr.
+
+6. R Core Team. R: a language and environment for statistical 
+computing. Vienna: R Foundation for Statistical Computing, 
+2017.
+
+7. Merkel D. Docker: lightweight Linux containers for consistent 
+
+development and deployment. Linux J 2014;2014:2.
+
+8. Chang W, Cheng J, Allaire JJ, Xie Y, McPherson J. shiny: Web 
+Application Framework for R. R package version 1.0.5. The 
+Comprehensive  R  Archive  Network,  2017.  Accessed  2017 
+Nov 1. Available from: https://CRAN.R-project.org/package= 
+shiny.
+
+9. Danecek P, Auton A, Abecasis G, Albers CA, Banks E, DePristo 
+MA, et al. The variant call format and VCFtools. Bioinformatics 
+2011;27:2156-2158.
+
+10. Purcell S, Neale B, Todd-Brown K, Thomas L, Ferreira MA, 
+Bender D, et al. PLINK: a tool set for whole-genome associa-
+tion and population-based linkage analyses. Am J Hum Genet 
+2007;81:559-575.
+
+11. Buels R, Yao E, Diesh CM, Hayes RD, Munoz-Torres M, Helt 
+G, et al. JBrowse: a dynamic web platform for genome visual-
+ization and analysis. Genome Biol 2016;17:66.
+
+12. Trapnell C, Williams BA, Pertea G, Mortazavi A, Kwan G, van 
+Baren  MJ,  et  al.  Transcript  assembly  and  quantification  by 
+
+www.genominfo.org
+
+181
+
+TR  Lee, et al.  IVAG:  A  Web  Application  for  RNA-seq  and  GWAS
+
+RNA-Seq  reveals  unannotated  transcripts  and  isoform 
+switching  during  cell  differentiation.  Nat  Biotechnol  2010; 
+28:511-515.
+
+13. Li H, Handsaker B, Wysoker A, Fennell T, Ruan J, Homer N, et 
+al.  The  Sequence  Alignment/Map  format  and  SAMtools. 
+Bioinformatics 2009;25:2078-2079.
+
+14. Anders S, Pyl PT, Huber W. HTSeq: a Python framework to 
+work  with  high-throughput  sequencing  data.  Bioinformatics 
+2015;31:166-169.
+
+15. Robinson MD, McCarthy DJ, Smyth GK. edgeR: a Bioconduc-
+tor package for differential expression analysis of digital gene 
+expression data. Bioinformatics 2010;26:139-140.
+
+16. Young MD, Wakefield MJ, Smyth GK, Oshlack A. Gene ontol-
+
+ogy  analysis  for  RNA-seq:  accounting  for  selection  bias. 
+Genome Biol 2010;11:R14.
+
+17. Li Y, Andrade J. DEApp: an interactive web interface for differ-
+ential expression analysis of next generation sequence data. 
+Source Code Biol Med 2017;12:2.
+
+18. Nelson JW, Sklenar J, Barnes AP, Minnier J. The START App: a 
+web-based  RNAseq  analysis  and  visualization  resource. 
+Bioinformatics 2017;33:447-449.
+
+19. Cuellar-Partida  G,  Renteria  ME,  MacGregor  S.  LocusTrack: 
+Integrated  visualization  of  GWAS  results  and  genomic 
+annotation. Source Code Biol Med 2015;10:1.
+
+20. Ziegler GR, Hartsock RH, Baxter I. Zbrowse: an interactive 
+
+GWAS results browser. PeerJ Comput Sci 2015;1:e3.
+
+182
+
+www.genominfo.org
+
+SUPPLEMENTARY  INFORMATION
+
+IVAG: An Integrative Visualization Application for Various Types of 
+
+Genomic Data Based on R-Shiny and the Docker Platform
+
+Tae-Rim  Lee§,  Jin  Mo  Ahn§,  Gyuhee  Kim§,  Sangsoo  Kim*
+
+Department of Bioinformatics and Life Science, Soongsil University, Seoul 06978, Korea
+
+http://www.genominfo.org/src/sm/gni-15-178-s001.pdf
+
+Supplementary Table 1. R packages used in IVAG 
+
+Name 
+
+Reference 
+
+shiny 
+
+Chang W, Cheng J, Allaire JJ, Xie Y, McPherson J (2017). shiny: Web 
+
+Application Framework for R. R package version 1.0.5. https://CRAN.R-
+project.org/package=shiny 
+
+shinydashboard 
+
+Chang W, Ribeiro BB (2017). shinydashboard: Create Dashboards with 'Shiny'. R 
+
+shinycssloaders 
+
+Sali A (2017). shinycssloaders: add CSS loading animations to 'shiny' outputs. R 
+
+package version 0.6.1. https://CRAN.Rproject.org/package=shinydashboard 
+
+shinyjs 
+
+RColorBrewer 
+
+package version 0.2.0. https://CRAN.R-project.org/package=shinycssloaders 
+
+Attali D (2017). shinyjs: easily improve the user experience of your shiny apps in 
+seconds. R package version 0.9.1. https://CRAN.R-project.org/package=shinyjs 
+Neuwirth E (2014). RColorBrewer: ColorBrewer Palettes. R package version 1.1-
+
+2. https://CRAN.R-project.org/package=RColorBrewer 
+
+gplots 
+
+Warnes GR, Bolker B, Bonebakker L, Gentleman R, Liaw WH, Lumley T, 
+
+Maechler M, Magnusson A, Moeller S, Schwartz M, Venables B (2016).   
+
+gplots: various R programming tools for plotting data. R package version 3.0.1. 
+
+https://CRAN.R-project.org/package=gplots 
+
+ggplot2 
+
+Wickham H. ggplot2: elegant graphics for data analysis. Springer-Verlag, New 
+
+York, 2009 
+
+easyGgplot2 
+
+Kassambara A (2014). easyGgplot2: perform and customize easily a plot with 
+
+ggplot2. R package version 1.0.0.9000. http://www.sthda.com 
+
+rmarkdown 
+
+Allaire JJ, Cheng J, Xie Y, McPherson J, Chang W, Allen J, Wickham H, Atkins 
+
+A, Hyndman R, Arslan R (2017). rmarkdown: dynamic documents for R. R 
+package version 1.6. https://CRAN.R-project.org/package=rmarkdown 
+
+rtracklayer 
+
+Lawrence M, Gentleman R, Carey V. "rtracklayer: an {R} package for interfacing 
+
+DT 
+
+data.table 
+
+gridExtra 
+
+GenomicFeatures 
+
+edgeR 
+
+goseq 
+
+pheatmap 
+
+plotly 
+
+with genome browsers". Bioinformatics 2009;25:1841-1842. 
+
+Xie Y (2016). DT: a wrapper of the JavaScript library 'DataTables'. R package 
+
+version 0.2. https://CRAN.R-project.org/package=DT 
+
+Dowle M, Srinivasan A (2017). data.table: extension of `data.frame`. R package 
+
+version 1.10.4. https://CRAN.R-project.org/package=data.table 
+
+Auguie B (2017). gridExtra: miscellaneous functions for "Grid" graphics. R 
+
+package version 2.3. https://CRAN.R-project.org/package=gridExtra 
+
+Lawrence M, Huber W, Pagés H, Aboyoun P, Carlson M, Gentleman R, et al. 
+Software for computing and annotating genomic ranges. PLoS Comput Biol 
+2013;9:e1003118 
+
+Robinson MD, McCarthy DJ, Smyth GK. edgeR: a bioconductor package for 
+
+differential expression analysis of digital gene expression data. Bioinformatics 
+2010;26:139-140 
+
+Young MD, Wakefield MJ, Smyth GK, Oshlack A. Gene ontology analysis for 
+
+RNA-seq: accounting for selection bias. Genome Biol 2010;11:R14 
+Kolde R (2015). pheatmap: Pretty Heatmaps. R package version 1.0.8. 
+    https://CRAN.R-project.org/package=pheatmap 
+Sievert C, Parmer C, Hocking T, Chamberlain S, Ram K, Corvellec M, Despouy P 
+(2017). plotly: create interactive web graphics via 'plotly.js'. R package version 
+4.7.1. https://CRAN.R-project.org/package=plotly 
+
+manhattanly 
+
+Bhatnagar S (2016). manhattanly: interactive Q-Q and Manhattan plots using 
+
+LDheatmap 
+
+'plotly.js'. R package version 0.2.0. https://CRAN.R-
+project.org/package=manhattanly 
+
+Shin JH, Blay S, McNeney B, Graham J (2006). LDheatmap: an R function for 
+graphical display of pairwise linkage disequilibria between single nucleotide 
+polymorphisms. J Stat Softw 2006;16:Code Snippet 3 
+
+GWASTools 
+
+Gogarten SM, Bhangale T, Conomos MP, Laurie CA, McHugh CP, Painter I, et 
+
+al. GWASTools: an R/Bioconductor package for quality control and analysis of 
+
+genetics 
+
+Warnes G, with contributions from Gregor Gorjanc, Leisch F, Man M (2013). 
+
+genome-wide association studies. Bioinformatics 2012;28:3329-3331   
+
+org.At.tair.db 
+
+Genetics: population genetics. R package version 1.3.8.1. 
+
+    https://CRAN.R-project.org/package=genetics 
+Carlson M (2015). org.At.tair.db: Genome wide annotation for Arabidopsis. R 
+
+package version 3.2.3. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Supplementary Table 2. Plugins attached in JBrowse 
+
+Name 
+gccontent 
+narrowpeak 
+gwasviewer 
+bedGraph to BigWig 
+ 
+
+Reference 
+https://github.com/elsiklab/gccontent 
+https://github.com/cmdcolin/narrowpeak 
+https://github.com/elsiklab/gwasviewer 
+https://github.com/ENCODE-DCC/kentUtils 
+
+Supplementary Table 3. Example data source 
+
+Name 
+RNA-seq single factor 
+RNA-seq multiple factor 
+GWAS and LD analysis   
+
+Reference 
+https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-4298/ 
+https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-4243/ 
+Tutorial data of R package GAPIT 
+http://zzlab.net/GAPIT/GAPIT_Tutorial_Data.zip 
+numeric to vcf format conversion was carried out using TASSEL 
+
+ 
+
+<Supplementary material 2> 
+
+Index 
+
+1. RNA-Seq 
+
+01. DEG analysis for single factor·  ·  ·  ·  ·  ·  ·  ·  ·  ·  03 
+
+02. DEG Visualization·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  04 
+
+03. Gene Ontology Enrichment Analysis  ·  ·  ·  ·  ·  06 
+
+04. DEG analysis for multiple factor·  ·  ·  ·  ·  ·  ·  ·  09 
+
+05. DEG visualization & Gene Ontology Enrichment 
+
+for pre-analyzed data·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  11 
+
+06. Input files  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  12 
+
+2. GWAS 
+
+ 
+
+01. Upload Data  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  14 
+
+02. Manhattan and QQ Plot  ·  ·  ·    ·  ·  ·  ·  ·  ·  ·  ·  ·  15 
+
+03. LD heatmap Visualization    ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  16 
+
+04. Input files  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  17 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+3. Genome Browser 
+
+01. Docker installation  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  20 
+
+02. Launching Docker Image  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  20 
+
+03. Upload Data - Build  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  21 
+
+04. Upload Data - Upload  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  22 
+
+05. Upload Data – Build_folder    ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  23 
+
+06. Remove Data - Track  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·23 
+
+07. Remove Data - Dataset  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  24 
+
+08. RNA-Seq & GWAS  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  24 
+
+09. RNA-Seq  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  24 
+
+10. GWAS  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·    ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  26 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<1.1 DEG analysis for single factor> 
+
+<Figure 1. DEG single factor analysis page > 
+
+ 
+
+○A : Upload  count table generated using htseq-count  or similar software after  mapping RNA-Seq 
+
+data to reference Genome. 
+
+○B : Specify the range of control columns. 
+
+○C : In order to analyze differentially expressed genes, each genes need at least 6~10 counts. However, 
+
+in raw count table, there  are  lots of genes with 0  counts which need to be filtered out. We use 
+
+count per million to filter out genes with low or no counts. CPM cutoff criteria filters gene out using 
+
+the smallest library size. For example, if the smallest library size was 4,000,000, CPM cutoff 2 would 
+
+filter out genes with less than 8 counts. Number of samples to contain above CPM cutoff criteria 
+
+can  be  specified  as  to  how  many  samples  must  satisfy  above  filtering  criteria.  For  example,  raw 
+
+count table with samples having 3 replicates each, if we specify Number of sample to contain above 
+
+CPM as 3, at least 3 samples must meet the filtering criteria in order to proceed. 
+
+○D : Clicking the Start analysis button will run DEG analysis and produce the results as a table. Users 
+
+can click Download button to get the results as text file format. Visualization button will lead the 
+
+users to a page where they can generate Heatmap, Volcano plot, PCA analysis plot with the DEG 
+
+analysis result. Clicking the GO analysis button will lead to a page where Gene Ontology Enrichment 
+
+analysis can be done. 
+
+ 
+
+ 
+
+<1.2 DEG Visualization> 
+
+ 
+
+ 
+
+ 
+
+<Figure 2. Heatmap visualization> 
+
+○A : Specify False Discovery Rate to filter out genes to be used to draw heatmap. Percentage can be 
+
+set  to  draw  heatmap  with  top  n%  of  filtered  genes.  User  can  specify  samples  to  be  drawn  on 
+
+heatmap. 
+
+○B : Generated heatmap 
+
+ 
+
+○C : Shows DEG analysis table of genes used to create heatmap. Click Download button to download 
+
+table in text file format. 
+
+○D : Specify False Discovery Rate to filter out genes to be used to draw heatmap. Percentage can be 
+
+set  to  draw  heatmap  with  top  n%  of  filtered  genes.  User  can  specify  samples  to  be  drawn  on 
+
+heatmap. Gene list can be uploaded to draw heatmap with genes of interest. 
+
+○E : Generated heatmap. 
+
+○F : Shows DEG analysis table of genes used to create heatmap. Click Download button to download 
+
+table in text file format. 
+
+ 
+
+<Figure 3. Volcano plot visualization> 
+
+ 
+
+○A : User can specify False Discovery Rate or Absolute Fold Change to generate Volcano plot. 
+
+○B : Generates volcano plot by plotting logf fold change versus –log10(False Discovery Rate). User 
+
+can download generated plot in PDF format by clicking the Download button. 
+
+○C :  DEG  analysis  result  table  for  genes  used  to  plot  volcano  plot  is  shown.  This  table  can  be 
+
+downloaded in text format by clicking the Download button. 
+
+<Figure 4. PCA plot visualization> 
+
+ 
+
+○A :  Generates  Principal  analysis  plot.  This  can  be  downloaded  in  PDF  format  by  clicking  the 
+
+Download button. 
+
+ 
+
+<1.3 Gene Ontology Enrichment Analysis> 
+
+ 
+
+ 
+
+J r • 
+. 1-1 
+
+® 
+
+-----
+
+@ 
+
+L . 
+I 
+
+@ 
+
+ 
+
+ 
+
+ 
+
+§·%· 
+
+a::.:::: 
+
+L 
+i 
+
+0 
+
+ 
+
+ 
+
+ 
+
+-I 
+
+<Figure 5. Gene Ontology Enrichment analysis page> 
+
+○A :  Specify  filtering  criteria(False  Discovery  Rate)  for  differentially  expressed  genes  which  will  go 
+
+through Gene Ontology Enrichment analysis. 
+
+○B : Specify False Discovery Rate to be used in Gene Ontology Enrichment analysis. 
+
+○C : Upload Gene Ontology annotation file and GTF file. 
+
+○D :  Shows  over  represented  Gene  Ontology  Enrichment  analysis  result  among  differentially 
+
+expressed  genes.  5th  column(numInCat)  shows  how  many  genes  are  allocated  to  the  specific 
+
+category  and  4th  column(numDEInCat)  shows  among  those  genes,  how  many  of  them  are 
+
+differentially expressed. Users can click Download button to retrieve the results in text file format. 
+
+○E :    Shows  under  represented  Gene  Ontology  Enrichment  analysis  result  among  differentially 
+
+expressed  genes.  5th  column(numInCat)  shows  how  many  genes  are  allocated  to  the  specific 
+
+category  and  4th  column(numDEInCat)  shows  among  those  genes,  how  many  of  them  are 
+
+differentially expressed. Users can click Download button to retrieve the results in text file format. 
+
+○F   ~  ○K : Shows the histogram of differentially expressed genes with specific Gene Ontology term 
+
+and ontology such as biological process, cellular component and molecular function. These graphs 
+
+can be downloaded in PDF format by clicking the Download button. 
+
+ 
+
+<1.4 DEG analysis for multiple factor> 
+
+ 
+
+<Figure 6. Multi factor DEG analysis multi factor page> 
+
+ 
+
+○A : Upload  count table generated using htseq-count  or  similar software after  mapping RNA-Seq 
+
+data to reference Genome with meta information file. 
+
+○B : Generates design matrix when all the files are uploaded. 
+
+○C : In order to analyze differentially expressed genes, each genes need at least 6~10 counts. However, 
+
+in raw count table, there  are  lots of genes with 0  counts which need to be filtered out. We use 
+
+count per million to filter out genes with low or no counts. CPM cutoff criteria filters gene out using 
+
+the smallest library size. For example, if the smallest library size was 4,000,000, CPM cutoff 2 would 
+
+filter out genes with less than 8 counts. Number of samples to contain above CPM cutoff criteria 
+
+can  be  specified  as  to  how  many  samples  must  satisfy  above  filtering  criteria.  For  example,  raw 
+
+count table with samples having 3 replicates each, if we specify Number of sample to contain above 
+
+CPM as 3, at least 3 samples must meet the filtering criteria in order to proceed. 
+
+ 
+
+○D : Among multiple samples, choose two samples to proceed DEG analysis. 
+
+○E : Clicking the Start analysis button will run DEG analysis and produce the results as a table. Users 
+
+can click Download button to get the results as text file format. Visualization button will lead the 
+
+users to a page where they can generate Heatmap, Volcano plot, PCA analysis plot with the DEG 
+
+analysis result. Clicking the GO analysis button will lead to a page where Gene Ontology Enrichment 
+
+analysis can be done. 
+
+ 
+
+ 
+
+<1.5 DEG visualization and Gene Ontology Enrichment analysis for pre-analyzed data> 
+
+<Figure 7. Pre-analyzed data upload page> 
+
+ 
+
+○A : Upload  count table generated using htseq-count  or similar software after  mapping RNA-Seq 
+
+data to reference Genome. 
+
+○B : Upload DEG analysis result table. 
+
+○C : Visualization button will lead the users to a page where they can generate Heatmap, Volcano 
+
+plot, PCA analysis plot with the DEG analysis result. Clicking the GO analysis button will lead to a 
+
+page where Gene Ontology Enrichment analysis can be done. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<1.6 Input files> 
+
+~n1  ln2  meth1  meth2  wacerl  water2 
+
+2  AT1G01010 
+3  AT1G01020 
+AT1G01030 
+5  AT1G0101 0 
+6  AT1G01016 
+7  AT1G01050 
+8  AT1G01060 
+9  AT1G01070 
+10  AT1G01073 
+11  AT1G01080 
+12  AT1G01090 
+13  ATlGOllOO 
+14  AT1G01110 
+15  AT1G01115 
+16  AT1G01120 
+17  AT1G01130 
+18  AT1G01HO 
+19  AT1G01150 
+20  AT1G01160 
+21  AT1G01170 
+22  AT1G01180 
+23  AT1G01183 
+21  AT1G01190 
+25  AT1G01200 
+26  AT1G012 10 
+27  AT1G01220 
+28  AT1G01225 
+29  AT1G01230 
+30  AT1G01210 
+31  AT1G01250 
+32  AT1G01260 
+33  AT1G01270 
+34  AT1G01280 
+
+856  1117 
+0 
+2 
+2672 
+
+1030 
+1 
+0 
+1706 
+
+0 
+0 
+0 
+0 
+2116 
+1951 
+7271 
+8519 
+10561 
+13912 
+0 
+0 
+0 
+0 
+0 
+0 
+0 
+0 
+15  17  6 
+19 
+65  51  62  43  60 
+
+110  3 66  119  625  331  1 8 2 
+1095 
+0 
+0 
+2155 
+11  10  20  52  17  30 
+11180 
+652  173  800  H lO 
+109  97  91  119  58  113 
+0 
+0 
+2209 
+8 617 
+1 5938 
+0 
+0 
+0 
+0 
+8 
+68 
+1 78  463  624  1003 
+8 
+1 
+3483 
+5226 
+5 
+3 
+0 
+0 
+0 
+0 
+3 
+3 
+26  21  11  5 
+60 1  628  539  8 98  44 1  615 
+3277 
+779  686  810  1291 
+2 1 99 
+2 120 
+310  301  1098 
+2 
+0 
+1310 
+0 
+0 
+0 
+0 
+
+21  1 9  1 2 
+2737 
+4862 
+15  34  20  19 
+0 
+
+1 979 
+1665 
+0 
+0 
+1 258 
+0 
+0 
+
+0 
+1136 
+0 
+0 
+0 
+0 
+
+1580 
+
+2761 
+
+0 
+1 
+8 
+
+0 
+0 
+2 
+
+0 
+0 
+
+® 
+
+759  1183 
+
+1201 
+
+1831 
+
+3098 
+
+11030 
+
+10013 
+
+1 61 52 
+
+8180 
+
+11682 
+
+612  996 
+
+3061 
+10956 
+1 6053 
+
+1 655 
+5500 
+8958 
+
+2390 
+8672 
+12852 
+
+529  8 29 
+6 
+3300 
+5953 
+
+4585 
+7873 
+
+2468 
+1201 
+
+3396 
+5819 
+
+7001 
+751  1085 
+2881 
+922  1112 
+
+3652 
+
+1 673 
+
+5091 
+
+2318 
+
+1 913 
+
+1035 
+
+1632 
+
+~n 
+1 
+ln 
+2 
+3  met 
+met 
+4 
+5  water 
+6  wa ter 
+
+® 
+
+ 
+
+1 
+2 
+3 
+
+5 
+6 
+
+9 
+:o 
+:1 
+:2 
+:3 
+:1 
+:s 
+16 
+
+r loQfC"  " loQCPM"  " LR"  " PVa lue "  " fOR" 
+"ATlGOl010"  1 . 19688737736099  5 . 5268880833596 4  39 . 3089106372121  3 . 61786523882999e- 10  4 . 80222720 383886e- 08 
+"AT1G01020 "  0 . 0 8228 0 ~9 77 65620 6 3 . 9716571 6089378  0 . 111~3~656713485 0 . 7 38516674183035  0 . 992950029705138 
+"AT1G01030 "  - 0 . 162468882715308  0 . 08237154950 57947  0 . 0 610995702 73467 6  0 . 8 01766390210914  0 . 99158041 2175897 
+"AT1G0101 0 "  0 . 106377858075599  5 . 5 7910126151308  0 . 37 012230935759  0 . 512771163320339  0 . 971600223816011 
+"AT1G01050"  0 . 01 535 7 177 36~83 6 3  6 . 67932177116587  0 . 0081 4645735631103  0 . 928082 41163436  0 . 99598398019637 4 
+"AT1G010 60 "  0 . 0156180016921779  5 . 5115637 311390 6  0 . 01939947 6207291  0 . 88922731121 1195  0 . 99593120 1225289 
+" AT1G01070"  - 0 . 544012070552485  4 . 18302675004 016  5 . 48539100852262  0 . 01 91 759975507977  0 . 211 398693538396 
+"AT1G0108 0 "  0 . 1 7 16675 2 3566418  3 . 2620 3 485385~87 0 . 299539868880617  0 . 5841 7 102551113 6  0 . 97 85114189264 73 
+"AT1G01090"  0 . 0770064556467513  7 . 8 200121 9000772  0 . 2 06235076914 759  0 . 64973445360 6224  0 . 9 67057519001829 
+"AT1G01100"  - 0 . 19437 4421491345  8 . 2499978 2635235  0 . 45092212 10 63243  0 . 5 01897378775529  0 . 9671 35588725176 
+"AT1G01110"  - 0 . 0356166922910766  3 . 18109685561797  0 . 011510637873462  0 . 914560789141767  0 . 995 98398019637 4 
+"AT1 G01120"  0 . 6~1291331519332  6 . 3387621639768  1 1 . 096145550 3092  0 . 000865073303584205  0 . 019692195885181 6 
+"AT1G0 1130 "  0 . 167861553000371  1 . 7 6~56938 5 85317 0 . 977622941176159  0 . 322786369058292  0 . 901971916676201 
+"AT1G011~ 0"  - 0 .542815616073306  2 . 63788851959664  2.135633813438 45  0 . 143910966721881  0 .68 944588214333 
+"AT1G011 60 "  - 0 . 0296111956218807  5 . 15184537653171  0 . 020 371551011 6882  0 . 88619595793983  0 . 99593120422528 9 
+"AT1 G01170"  0.095951 436551 2992  3 . 64734295039377  0 . 1 581 7628576344  0 . 6908 411 4621 376  0 . 98781 3981 55984 1 
+"ATlGOll80"  0 . 24596413317091  3 . 7881988269758  0 . 650351637870101  0 . 41998591580181 7  0 . 95017001 8855293 
+" AT1 G011 90"  - 0 . 375672462290263  3 . 86317903951 983  0 .63570834 3635596  0 . 425269154293829  0 . 951 393075845317 
+
+:e 
+·g 
+2~  "AT1G01200"  0 . 2~65 0 7 ~64 818891 3 . 0117 8043499523  0 . 779877708 445121  0 . 37 717 8543497 332  0 . 93375 4390 53428 4 
+
+© 
+
+ 
+
+ 
+
+○A : Raw count table / Used in DEG analysis 
+
+<Figure 8. > 
+
+○B : Meta information specifying which column belongs to which group in raw count table / Used in 
+
+DEG analysis multiple factor. 
+
+○C : DEG analysis result / pre analyzed DEG result table can be uploaded. Column header must be 
+
+the same as above figure but, ‘logCPM’ and ‘LR’ can be omitted. 
+
+○D : Gene Ontology annotation file / Text file containing Gene ID and corresponding Gene Ontology 
+
+category. Gene ID must be the same as the ones used in raw count table. 
+
+○E : GTF file / Used in Gene Ontology Enrichment analysis to calculate gene length. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+2. GWAS & LD heatmap 
+
+<2.1 Upload Data > 
+
+Upload Data 
+
+Upload Data 
+
+Choose GWAS rtsult d~ta 
+
+8rowu... 
+
+iO 
+
+Choose the  type of Input file: 
+
+•  ul\lipptd.tsv 
+
+/ 
+
+V  lg)zlpped.tsv 
+
+/.,.//.,/
+
+·' · 
+
+,J GeneiD Annotation with GTF fite 
+
+-
+
+C Visualize Manhattan Plot 
+
+0  Viwalut QQ Plot 
+
+. Add Into ~pom't 8rowstr 
+
+Choose LD matrix data 
+
+Srow:;.c ••• 
+
+,. . .-..-· 
+/ 
+
+/ 
+
+......... Choose the type of Input Ole: 
+
+//_.r•" 
+
+un.z.ip.ptd.uv 
+
+/~ Make LD matrix wJth your VCF flte 
+
+C VisuallztltJ..htatmap 
+
+/ ' /, ., ./ /./ 
+
+• AddlntoG<nomo8'7;"/
+
+' 
+
+,.,....,..-·"' 
+
+(g)z1pped.tsv 
+
+,/ 
+
+Up & Do~strt41m Ranking slle(bp}: 
+
+/ 
+
+~ 
+
+,,/ 
+
+// 
+
+Choose the type of Gene nomtnd.lturt: 
+<:  Gtnt IO (txam pt~ 
+
+ENSG00000139618.10) 
+
+V  Gent Name(eumple: BRCA2) 
+
+Choose GTF file 
+
+C Start Annout.on 
+
+J. Oownload 
+
+,/ 
+// 
+
+/ _,,r 
+
+// 
+// 
+
+0  ViSualilt Manhattan Plot 
+
+/ 
+
+C Visualizt QQ Plot 
+
+/ /  
+
+L-------------~~/-··--------------------------------------------------------------------~·------
+
+./ 
+
+!lh .,.. 
+
+ChooseyourVCF tite to make LD(r'2) matrix 
+
+All.Chr6.phas.t3_Shaptit2_mvnu1Unttarattd_v~.201 30S02.gtnotypts.vd 
+
+VCF subsetting options 
+
+CHR: 
+
+From(bp): 
+
+Choose the type of Input file: 
+•  unzlppt<l.vcf 
+oj szippEd.vd 
+
+To(bp): 
+
+10000 
+
+SNP-pruning options 
+Window size In SNPs: 
+
+Number of SNPs to shift I he window at e<lch step: 
+
+Rl thrtshold to ket:p: 
+
+0  Start LOAnatysls 
+
+0  Show anarys.s log 
+
+.!. Oownlo~ LO-matllx(PSeas.ewalt!!) 
+
+.!. Download marl<ef Information 
+
+0  Vlsoalue ll).heatmap 
+
+<Fig. 9. GWAS & LD Upload and Analysis page> 
+
+ 
+
+ 
+
+○A : GWAS result and LD matrix files (TSV format) can be uploaded. Users can move into plotting 
+
+page by clicking Visualize buttons. Also, uploaded files can be added into pre-built genome browser.     
+
+○B : Users can annotate gene information into all markers in the GWAS result file. 
+
+○C : Choose a VCF file you want to use in the LD analysis. 
+
+○D : Subset the region of your interest by assigning CHR, Start, and END parameters. 
+
+○E : All markers will be pruned using PLINK analysis option “--indep-pairwise” to reduce the number 
+
+of  markers  to  be  used  in  LD  calculation.  Detailed  information  for  this  analysis  can  be  found  at 
+
+http://zzz.bwh.harvard.edu/plink/summary.shtml#prune. 
+
+<2.2 Manhattan and QQ Plot Visualization > 
+
+<Fig. 10. Manhattan and QQ plot visualization page> 
+
+ 
+
+○A : Users can select what type of plot to draw; Interactive or Non-Interactive. 
+
+○B : Adjust specific parameters to customize your plot. You can subset the plot by chromosome and 
+
+highlight the SNPs of your interest.   
+
+○C : Detailed information will be shown when the cursor is hovered over a specific point of interest. 
+
+○D : If you click a specific dot, all information for that dot will be recoded here. 
+
+○E : User can move directly into the genome browser to search the SNP selected at the previous 
+
+step. To use this function, genome browser construction should be done in advance. 
+
+○F : Information of all markers that passed the cutoff will be shown here. 
+
+○G :  QQ  plot  can  also  be  drawn.  Light  blue  shade  indicates  the  confidence  interval  for  the  null 
+
+hypothesis that assumes there is no association between SNP and a trait. 
+
+<2.3 LD heatmap Visualization> 
+
+<Fig. 12. LD heatmap visualization page> 
+
+ 
+
+○A : All markers in the LD matrix (uploaded or generated) will be plotted on the upper panel.   
+
+○B : Genomic coordinate map can be added when genomic coordinate information is given. 
+
+○C : The LD heatmap can be subset by uploading a list of markers of your interest 
+
+○D : r2 value for each SNP-SNP pair can be added on the plot. 
+
+<2.4 Input Files >   
+
+GWAS 
+
+<Fig. 13. GWAS_Result.tsv -1 > 
+
+ 
+
+1. IVAG intakes GWAS result summary statistics file that comprise Marker ID, Chromosome, 
+
+position, and p-value columns in order. 
+
+<Fig. 13. GWAS_Result.tsv - 2 > 
+
+ 
+
+2. Another version of the input file contains additional three columns which could be annotated 
+
+from IVAG Gene ID annotation function. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+LD heatmap -1 
+
+<Fig. 14. LD_Matrix_Rsquare.tsv > 
+
+ 
+
+1. LD matrix file is tab-separated and has r2 values for all SNP-SNP pairs in an upper triangular 
+
+matrix form. 
+
+2. The first row (header) is SNPIDs sorted by their position. 
+
+3. The first column, colored in blue, should not be included in the input LD matrix file, but I just 
+
+showed it to help you better understand this format. SNP IDs in column header and row header 
+
+are ordered equally and you can interpret this LD matrix like r2 value between PZA00368.17 and 
+
+PZA03316.3 is 0.025351076 as described in green. 
+
+4. Note that your input file SHOULD look like the red boxed one. 
+
+ 
+
+LD heatmap - 2 
+
+<Fig. 15. SNPid.txt > 
+
+ 
+
+1. This text file has the list of SNP ids of your interest. You can extract a subset of LD heatmap 
+
+that contains only SNPs specified with this file. 
+
+LD heatmap - 3 
+
+<Fig. 16. SNP_Pos_Info.tsv > 
+
+ 
+
+1. genomic coordinate information file requires three columns; SNP, Chromosome, and position.   
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+3. JBrowse 
+
+<3.1 Docker installation > 
+
+Install the docker before running IVAG. Docker is available on multiple platforms, 
+
+on cloud and on-premises. Choose the best installation path for you and install it 
+
+from the URL link below.   
+
+(https://docs.docker.com/engine/installation/) 
+
+ 
+
+<3.2 Launching Docker Image > 
+
+ 
+
+<Figure 17. Example folder mounted on a docker > 
+
+ 
+
+1.  Create DATA directory for mounting docker. 
+
+2.  Create subdirectory raw, json, plink on Data directory. 
+
+- 
+
+- 
+
+raw : Upload file for JBrowse 
+
+json : Information about data uploaded on JBrowse 
+
+-  plink : Save tmp, log files generated from IVAG LD analysis 
+
+3.  Create subdirectory for each species under raw directory and put each data. 
+
+(fasta, bam, gtf, gff3, bed, bw, vcf )   
+
+4.  Specify DATA directory when launching docker image 
+
+ 
+
+DATA directory 
+
+C:\Users\USER\Desktop\DATA 
+
+Docker image 
+
+docker run -ti -v C:\Users\USER\Desktop\DATA:/jbrowse/my_data -p 
+
+  launch commend 
+
+8080:80 -p 8383:3838 leetaerim/ivag:v1 /bin/bash -c "Rscript load.R" 
+
+                                                            <Table 1. Example of launching docker image > 
+
+ 
+
+<3.3 Upload Data – Build > 
+
+<Figure 18. Build Genome Browser page> 
+
+ 
+
+○A : Specify genome browser name 
+
+○B : Shows subdirectory of raw directory mounted on docker. Among the list, select subdirectory to 
+
+construct genome browser. 
+
+○C : Shows files of subdirectory chosen from  ○B . Choose fasta file. 
+
+○D : Click Update list button to refresh list on  ○B . 
+
+○E : Click Build browser button to construct genome browser. 
+
+○F : Leads to JBrowse page 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<3.4 Upload Data – Upload > 
+
+<Figure 19. Upload data to browser page> 
+
+ 
+
+○A : Specify file type to upload. 
+
+  vcf : Takes long time to index data for ID search. So asks whether user will index or not. 
+
+  bam : If bam file size is large, asks whether to divide file into pieces to upload. 
+
+○B : Select genome browser to upload. 
+
+○C : Specify track name. 
+
+○D : Specify data to upload. 
+
+○E : Click Update list button to refresh list on  ○B ,○D . 
+
+○F : Upload to genome browser. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<3.5 Upload Data – Build_folder > 
+
+<Figure 20. Build and Upload folder to browser page> 
+
+○A : Build genome browser using fasta file in specified directory and upload all the file in the 
+
+directory automatically. 
+
+○B : Specify genome browser name. 
+
+○C : Click Update list button to refresh list on  ○A . 
+
+○D : Build genome browser. 
+
+ 
+
+<3.6 Remove Data - Track > 
+
+<Figure 21. Remove Data - Track page> 
+
+○A : Specify genome browser name and type track name to be deleted. 
+
+○B : Remove track. 
+
+ 
+
+ 
+
+ 
+
+<3.7 Remove Data - Dataset > 
+
+<Figure 22. Remove Data - Dataset page> 
+
+○A : Select genome browser to be removed.   
+
+○B : Remove genome browser. 
+
+ 
+
+<3.8 RNA-Seq & GWAS > 
+
+  IVAG RNA-Seq and GWAS analysis result can be uploaded to IVAG genome browser. Results can 
+
+be uploaded via file but can be omitted by clicking “Add into Genome Browser” button on 
+
+analysis page. 
+
+ 
+
+<3.9 RNA-Seq & GWAS – RNA-Seq > 
+
+<Figure 23. JBrowse RNAseq peak track > 
+
+<Figure 24. JBrowse RNAseq peak with logFC track > 
+
+IVAG RNA-Seq analysis result can be uploaded in 3 track types. 
+
+① peak : DEG list is uploaded on JBrowse in bed file format (Figure 23) 
+
+② peak with logFC : Uploaded to JBrowse in BigWig format. (Figure 24) 
+
+ 
+
+ 
+
+ 
+
+③ peak with logCPM : Uploaded to JBrowse in BigWig format. 
+
+ 
+
+<Figure 25. RNAseq&GWAS - RNAseq > 
+
+ 
+
+○A : Upload DEG analysis result table. 
+
+○B : Specify track type. 
+
+○C : Specify analysis level(gene, transcript ). 
+
+○D : Can specify FDR cutoff for DEG.   
+
+○E : Select genome browser to be uploaded. 
+
+○F : Set track name. 
+
+○G : Genome browser needs gene positions in order to process DEG list. Therefore GTF file needs 
+
+to be specified. 
+
+○H : Create RNA-Seq track. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<3.10 RNA-Seq & GWAS - GWAS > 
+
+ 
+
+<Figure 26. JBrowse GWAS track > 
+
+ 
+
+JBrowse GWAS track. X axis shows Genome coordinate and t axis shows –log(p-value). Each dot 
+
+represents SNP. Double click the dot to see the ID and coordinate. 
+
+<Figure 27. JBrowse GWAS with LD track > 
+
+ 
+
+Uploading GWAS data with LD data will produce default GWAS track (Figure 27). Dot represents 
+
+SNP. Double clicking the dot will show R^2 value between other dots (Figure 27). Double clicked 
+
+dot will be shown as pink diamond. 
+
+<Figure 28. RNAseq&GWAS - GWAS > 
+
+ 
+
+○A : Upload IVAG GWAS analysis file. 
+
+○B : LD analysis file can be uploaded as well. 
+
+○C : Select genome browser to be uploaded. 
+
+○D : Set track name. 
+
+○E : JBrowse GWAS track’s y axis represents –log(p-value). Specify the maximum value for y axis. 
+
+○F : Upload GWAS track. 
+
+ 
+
+<Figure 29. RNAseq&GWAS – LD > 
+
+○A : Upload IVAG LD analysis result file. 
+
+○B : Select GWAS track to be uploaded. 
+
+○C : Click Upload data to add LD information to the specified GWAS track. 
+
+ 
+
+ 
+
+

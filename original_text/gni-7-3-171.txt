@@ -1,0 +1,244 @@
+APPLICATION NOTE
+
+Genomics  &  Informatics    Vol.  7(3)  171-174,  September  2009
+
+J2.5dPathway:  A  2.5D  Visualization  Tool  to  Display  Selected 
+Nodes  in  Biological  Pathways,  in  Parallel  Planes
+
+Sung-Il  Ham2,  Eun-Ha  Song1,  San-Duk  Yang1, 
+Chin-Ting  Thong1,  Arang  Rhie1,  Bulgan  Gal-
+badrakh1,  Kyung-Eun  Lee1,  Hyun-Seok  Park1* 
+and  San-Ho  Lee1
+
+1Department  of  Computer  Science,  Ewha  Womans 
+University,  Seoul  120-750,  Korea,  2Department  of  Archi-
+tectural  Engineering,  Yonsei  University,  Seoul  120-749, 
+Korea
+
+Abstract
+
+The  characteristics  of  metabolic  pathways  make  them 
+particularly  amenable  to  layered  graph  drawing  me-
+thods.  This  paper  presents  a  visual  Java-based  tool  for 
+drawing  and  annotating  biological  pathways  in  two- 
+and-a-half  dimensions  (2.5D)  as  an  alternative  to  three- 
+dimensional  (3D)  visualizations.  Such  visualization  allows 
+user  to  display  different  groups  of  clustered  nodes,  in 
+different  parallel  planes,  and  to  see  a  detailed  view  of 
+a  group  of  objects  in  focus  and  its  place  in  the  context 
+of  the  whole  system.  This  tool  is  an  extended  version 
+of  J2dPathway.
+
+Availability:  An  executable  demo  version  is  available  to 
+download  from  Sourceforge.net  (http://sourceforge.net/ 
+projects/j3dpathway/),  with  most  of  the  metabolic  path-
+ways  included.  A  hands-on  tutorial  (in  Korean)  is  also 
+provided.  However,  our  system  still  awaits  full  testing  of 
+its  entire  functionalities  for  practical  usage.  The  current 
+release  lacks  in  some  features,  however  will  constantly 
+updated.  For  academic  purposes,  contact  neo@ewh-
+a.ac.kr  for  source  codes,  for  possible  collaboration.
+
+Keywords:  metabolic  pathways,  pathway  editor,  visual-
+ization
+
+Introduction
+
+Given  the  ever-increasing  complexity  of  biological  net-
+works,  automatic  graph  layout  techniques  are  becoming 
+critically  important.  To  this  end,  three-dimensional  (3D) 
+graph  visualization  methods  have  been  designed  and 
+applied  to  the  visualization  of  large  and  complex  net-
+
+*Corresponding  author:  E-mail  neo@ewha.ac.kr
+Tel  +82-2-3277-2831,  Fax  +82-2-3277-2306
+Accepted  3  September  2009
+
+works,  due  to  the  fact  that  certain  metabolic  pathways 
+have  very  intricate  multidimensional  topology  (Rojdest-
+venski,  2003;  Rzhetsky et al.,  2004;  Iragne et al.,  2005; 
+Yang et al.,  2005).  The  3D  space  offers  less  constraints 
+on  the  topology  and  helps  to  avoid  such  unaesthetic 
+graph  elements  as  line  crossing.  The  extra  dimension 
+gives  greater  flexibility  for  placing  nodes  and  edges  in 
+the  network. 
+    Despite  all  these  merits,  only  a  few  tools  offer 
+three-dimensional  visualizations.  The  problem  is  that,  the 
+resultant  3D  images  of  computer  graphics  are  rendered 
+in  a  2D  media.  Therefore,  making  use  of  higher  di-
+mensions  is  rather  difficult  for  users  generally  viewing 
+the  network  on  a  two-dimensional  screen.
+    An  alternative  approach  to  three-dimensional  graph 
+visualization  would  be  to  present  only  interesting  sub-
+trees  in  different  layers,  originated  from  the  basic  2D 
+graph  visualization.  This  scheme  helps  when  there  is  a 
+possibility  to  group  multiple  nodes  to  a  hyper-node  to 
+reduce  complexity  as  well  as  to  hide  nodes  that  are  not 
+of  interest. 
+    This  paper  presents  a  visual  Java-based  tool  for 
+drawing  and  annotating  biological  pathways  in  two- 
+and-a-half-dimensions  (2.5D)  as  an  alternative  to  the  ex-
+isting  two-dimensional  (2D)  or  three-dimensional  (3D) 
+presentations,  where  two  and  a  half  dimension  is  an  in-
+formal  term  used  to  describe  visual  phenomena  which  is 
+actually  2D  with  3D  looking  graphics  (Baur et al.,  2004; 
+Song et al.,  2009).  Such  visualization  allows  user  to  see 
+a  detailed  view  of  an  objects  in  focus  and  its  place  in 
+the  context  of  the  whole  system.
+
+J2.5dPathway  Browser  Architecture
+
+The  J2.5DPathway  Browser  Tool  is  a  tool  that  hierarchi-
+cally  lists  the  pathways  and  super  nodes.  The  system 
+provides  a  visual  interface  to  biomedical  pathways.  It  is 
+basically  a  graph  visualization  tool.  An  XML-format  input 
+data  may  come  from  web  services  (e.g.,  KEGG:  http:// 
+www.genome.jp/kegg/soap/)  after  the  user  chooses  to 
+view  the  selected  pathway  from  the  J2.5DPathway,  or  it 
+may  come  from  other  file  formats,  which  were  locally 
+saved. 
+    J2.5DPathway  consists  of  four  major  modules:  (1) 
+graphical  user  interface  (GUI),  (2)  two-dimensional  repre-
+sentation,  (3)  two-and-a-half  dimensional  representation, 
+and  (4)  layout  optimizer.  The  layout  optimizer  module 
+permits  user  to  optimize  the  appearance  of  a  graph. 
+
+172    Genomics  &  Informatics    Vol.  7(3)  171-174,  September  2009
+
+Fig.  1.  SourceForge.net  is  the  world's  largest  open  source  software  development  web  site.  It  is  the  global  technology  com-
+munity's  nexus  for  information  exchange,  and  open  source  software  distribution  and  services.  J2.5pathway  system  is  regis-
+tered  in  http://sourceforge.net/projects/j3dpathway/. 
+
+Fig.  2.  Overview  of  the  J2.5dPathway  Browser  Architecture:  J2.5dPathway  was  implemented  in  Java  and  the  Java  based 
+graph  library  yFiles,  an  extensive  JavaTM  class  (Wiese  et al.,  2000).
+
+Implemented  data  structures  are  based  on  an  ontology 
+model  designed  specifically  for  metabolic  pathways.
+    The  GUI  module  comprises  of  a  set  of  tools  for  facili-
+
+tating  interaction  between  the  system  and  the  user  (see 
+Fig.  2).  The  screen  of  J2.5dPathway  system  consists  of 
+Views.  The  tool-bar  menu  at  the  top  lists  various  tool 
+
+J2.5dPathway  Tool  to  Display  Selected  Nodes  in  Biological  Pathways    173
+
+icons.  Most  of  the  functions  of  the  tool  icons  are 
+self-explanatory.  For  example,  clicking  the  Magnifying 
+Glass  tool  manipulates  the  View  to  zoom  in  or  out. 
+Pathways  will  be  initially  displayed  in  the  main  window 
+in  the  middle.  Below  the  main  window,  a  table  lists  all 
+the  nodes  in  the  pathways.  The  interested  nodes  can  be 
+selected,  by  clicking  the  elements  in  the  table.  To  allow 
+user  to  view  several  different  groups  of  nodes,  selected 
+nodes  will  be  displayed  in  different  parallel  planes,  how-
+ever  with  interdependent  layouts.  In  the  case  user  wants 
+to  create  a  new  plane,  he  or  she  may  set  the  plane 
+number  to  a  value  greater  than  one.
+    Alternatively,  a  feature  of  selecting  nodes  of  interest 
+is  also  available  by  clicking  and  dragging  a  rectangular 
+or  circular  area  on  the  2D  plane.  This  is  possible  be-
+cause  J2.5dPathway 
+is  an  extended  version  of 
+J2dPathway  (Song et al.,  2008).    J2dPathway  has  a  fea-
+ture  to  select  arbitrary  nodes  and  abstracts  them  into  a 
+single  node.  One  can  select  several  nodes  by  dragging 
+the  mouse  and  turn  them  into  a  single  super  node. 
+These  abstracted  nodes  are  displayed  in  a  different 
+plane,  in  a  consequent  process. 
+    For  example,  the  selected  nodes  (the  red  nodes)  in 
+
+Fig.  3  are  abstracted  into  a  single  super  node  (Song et 
+al.,  2008)  in  J2dPathway  environment.  However,  the  se-
+lected  nodes  in  the  original  2D  visualization  are  dis-
+played  in  a  different  plane  in  J2.5dPathway  environment. 
+The  transformed  two-and-a-half  dimensional  representa-
+tion  and  the  original  two  dimensional  representations  are 
+basically  consistent  with  each  other.
+
+Implementation
+
+Our  application  was  developed  based  on  Java  3D 
+classes  and  methods,  importing  from  javax.media.j3d 
+(see  Fig.  4).  It  is  implemented  based  on  Java  3D  API 
+(http://java.sun.com/javase/technologies/desktop/java3d/) 
+and  OpenGL  (http://www.opengl.org/about/overview/)  te-
+chnologies,  the  premier  environment  for  developing  port-
+able,  interactive  3D  graphics  applications.  To  run  the 
+J2.5dPathway  system,  the  graph  library  yFiles  should  be 
+also  installed  on  user’s  local  computer  (Wiese  et al., 
+2000).
+
+Fig.  3.  Node  Abstracting  Features  of  J2dPathway  and  J2.5dPathway:  In  J2dPathway,  selected  cyclic  nodes  have  been  ab-
+stracted  into  a  single  super  node.  However,  in  J2.5dPathway,  selected  nodes  will  not  be  abstracted.  Rather,  they  will  be  dis-
+played  in  a  different  plane.  The  circular  area  in  this  snap-shot  is  selected  by  calling  a  subroutine  from  the  main  window  to
+find  a  clique  or  cycle.
+
+174    Genomics  &  Informatics    Vol.  7(3)  171-174,  September  2009
+
+Fig.  4.  The  Top-level  Class  Diagram  of  pathway3D.part3D  Package  of  J2.5dPathway:  Java3D  is  a  part  of  Java  Media 
+Framework  APIs,  which  is  a  standard  extension  of  Java.
+
+Conclusion
+
+Layouts  in  3D  space  may  be  able  to  create  a  more  ef-
+fective  workspace  for  the  study  of  large-scale  metabolic 
+pathways.  Despite  all  the  merits  of  3D  visualization, 
+making  use  of  higher  dimensions  is  difficult  because 
+users  are  generally  viewing  the  3D  visualization  object 
+on  a  two-dimensional  screen.  Consequently,  dynamic 
+navigation  is  a  necessity  in  3D  scheme.  Nevertheless, 
+these  approaches  would  not  be  useful,  without  speci-
+alized  haptic  devices  (Yang et al.,  2005).  A  visualization 
+tool,  such  as  J2.5dPathway,  based  on  two-and-a-half 
+dimensions  (2.5D),  is  a  compromise,  as  an  alternative  to 
+the  existing  two-dimensional  (2D)  or  three-dimensional 
+(3D)  visualizations.
+
+Acknowledgements
+
+This  work  was  partially  supported  by  a  grant  from 
+SMBA  (Small  &  Medium  Business  Administration),  and 
+the  Brain  Korea  21  project.
+
+References
+Baur,  M.,  Brandes,  U.,  Gaertler,  M.,  and  Wagner,  D.  (2004). 
+Drawing  the  as  graph  in  2.5  dimensions,  proceeding  of 
+
+graph  drawing. Lecture Notes in Computer Science  3383, 
+43-48.
+
+Song,  E.H.,  Ham,  S.I.,  Yang,  S.D.,  Rhie,  A.,  Park,  H.S.,  and 
+Lee,  S.H.  (2008).  J2dPathway:  A  global  metabolic  path-
+way  viewer  with  node  abstracting  features.  Genomics 
+Inform.  6,  68-71.
+
+Song,  E.H.  (2009).  2.5D  metabolic  pathway  drawing  mod-
+
+ules  based  on  2-layered  layout  (in  Korean).  Journal of 
+KIISE: Computer Systems and Theory (to be submitted).
+Iragne,  F.,  Nikolski,  M.,  Mathieu.  B.,  Auber,  D.,  and 
+Sherman,  D.  (2005).  ProViz:  protein  interaction  visual-
+ization  and  exploration.  Bioinform.  21,  272-274.
+
+Rojdestvenski,  I.  (2003).  VRML  metabolic  network  visualizer. 
+
+Comp. Bio. Med.  33,  169-182.
+
+Rzhetsky,  A.,  Iossifov,  I.,  Koike,  T.,  Krauthammer,  M.,  Kra, 
+P.,  Morris,  M.,  Yu,  H.,  Duboue,  P.A.,  Weing,  W.,  Wilbur, 
+W.J.,  Hatzivassiloglou,  V.,  and  Friedman,  C. 
+(2004). 
+GeneWays:  a  system  for  extracting,  analyzing,  visualizing, 
+and  integrating  molecular  pathway  data.  J.  Biomed. 
+Informat.  37,  43-53.
+
+Yang,  Y.,  Engin,  L.,  Wurtele,  E.S.,  Cruz-Neira,  C.,  and 
+Dickerson,  J.A.  (2005).  Integration  of  metabolic  networks 
+and  gene  expression  in  virtual  reality.  Bioinform.  21, 
+3645-3650.
+
+Wiese,  R.,  Iglsperger,  M.,  and  Schabert,  P.  (2000).  The 
+yFiles  graph  library:  documentation  and  code.  http:// 
+www-pr.informatik.uni-tuebingen.de/yfiles.
+
+

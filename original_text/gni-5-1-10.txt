@@ -1,0 +1,1044 @@
+Genomics &  lnfonnatics  Vol.  5(1) 10-18, March 2007 
+
+FCAnalyzer: A Functional Clustering Analysis Tool for 
+Predicted Transcription Regulatory Elements and Gene 
+Ontology Terms 
+
+Sang-Bae  Kim1t,  Gii-Mi  Rytii',  YoLng-Jin  Kifli!t, 
+Jee-Yeon  Heo2,  Chan  Park2 ,  Bennseok  OW, 
+Hyung-Lae Kifli!,  Kuchan  Kimfli!,  Kyu-Won  Kiffil* 
+and Young-Youl Kifli!* 
+
+1Korean  Biolnformation  Center,  Kcrea  Research  Institute 
+of Bioscience and  Biotechnology,  Daejon  30&806,  2Center 
+for  Genome  Science,  National  Institute  of Health,  Seoul 
+122-701,  Korea,  3College  of  Pharmacy,  Seoul  National 
+University,  Seoul  157-742,  Korea 
+
+Abstract 
+Numerous  studies  have  reported that  genes with  similar 
+expression patterns are co-regulated. From gene expression 
+data, we have assumed that genes having sinilar expression 
+pattern would share similar transcription factor binding sites 
+(TFBSs). These function as the binding regons fortransaiption 
+factors (TFs) and thereby regulate  gene expression.  In  this 
+context, various analysis tools have been developed. HO'v\ever, 
+they have shortconings in the corrbined analysis of expression 
+patterns and significant TFBSs and in the functional analysis 
+of  target  genes  of  sig1ificantly  overrepresented  putative 
+reg,Jiators. In this study, we present a Vl€b-based  A Functional 
+OusteringAnalysis Tool fer Predicted Transcription Reg,Jiatory 
+Bements and Gene OltologyTerms (FChlalyzer). This system 
+integrates microarray clustering data vvith similar expression 
+patterns,  and  TFBS  data  in  each  cluster.  FCAnalyzer  is 
+designed to perfonn twJ independent clustering procedures. 
+The first process dusters gene expression profiles using the 
+K-means clustering method, and the second process clusters 
+predicted  TFBSs  in  the  upstream  region  of previously 
+clustered genes using the hierarchical biclustering method 
+for  simultaneous  grouping  of genes  and  samples.  This 
+system offers retrieved infonnation for predicted TFBSs in 
+each cluster using  Match™ in the TRANSFAC database. 
+VVe  used  gene  ontology  tenn  analysis  for  functional 
+annotation of genes in the same cluster. VVe also provide 
+the uservvith a combinatorial TFBS analysis ofTFBS pairs. 
+
+trhese  authors contributed  equally. 
+*Corresponding authors: E-mail  youngyk@nih.go.kr, 
+gwonkim@plaza .snu.ac.kr 
+Tel  +82-2-380-2245, Fax +82-2-358-1 063 
+Accepted  19  Dec 2006 
+
+The enrichment ofTFBS analysis and GOtenn analysis 
+is  statistically by the  calculation  of P values  based  on 
+Fisher's  exact  test,  hypergeometric  distribution  and 
+Bonferroni  correction.  FCAnalyzer  is  a  web-based, 
+user-friendly functional  clustering  analysis  system  that 
+facilitates  the  transcriptional  regulatory  analysis  of 
+co-expressed genes. This system presents the analyses 
+of clustered genes, significantTFBSs, sig1ificantly enriched 
+TFBS combinations, their target genes and TFBS-TF pairs. 
+
+Atalalilit,y.This tool  is freely available for academic and 
+nonprofit users  at  http://WNW.ngri.go.kr/cgi-bin/cmams/ 
+fcanalyzer.cgi 
+
+Ksywrxds:  Transcription  regulatory element,  clustering 
+analysis 
+
+Introduction 
+Microarraytechnology is a powerful analytical tool that is 
+commonly used to  elucidate the  expression  patterns  of 
+coordinately regulated genes. Microarrays have provided 
+a revolutionary platfonn for the study of gene expression, 
+regulation  and function  (Walsh  and  Henderson,  2004). 
+They have tremendous potential for the study of biological 
+processes associated vvith health and disease. Microarray(cid:173)
+based gene expression analysis will undoubtedly make a 
+major contribution to our understanding ofthe underlying 
+biological mechanisms of disease, and vvill ultimately lead 
+to  improved  methods  for the  diagnosis,  prognosis  and 
+treatment of disease (Sausville and Holbeck, 2004). The 
+expression  data  produced  by  microarray hybridization 
+experiments  can  lead to the  identification  of clusters  of 
+co-expressed genes that are likely to be co-regulated by 
+shared  regulatory  mechanisms.  Many  types  of high(cid:173)
+throughput functional genomic data that can facil~ate rapid 
+functional annotation of sequenced genomes are currently 
+available.  Due to the  considerable  quantity and  intrinsic 
+variation of the data produced from microarray experiments, 
+statistical  and  computational  approaches,  including 
+clustering analysis, have been used to consolidate useful 
+biological infonnation from microarray data (Lobenhofer 
+eta/., 2001 ). 
+
+Moreover,  the  wide  availability  of genomic  data, 
+including sequences in the upstream regions of genes, has 
+
+made it possible to perfonn large-scale studies combining 
+gene  expression  data,  and  to  enable  researchers  to 
+understand both the regulation  and the mechanism of gene 
+transcription. By analyzing the upstream promoter regions 
+of coexpressed genes, it is possible to elucidate common 
+regulatory patterns characterized byTFBSs (Kellis eta/., 
+2003).  However,  it  is  important to  realize  that  precise 
+analysis  methods  are  necessary to  make  an  accurate 
+functional interpretation of these large-scale data sets. 
+The regulation oftranscription is a very complex process 
+in higher eukaryotic organisms. A large number of nuclear 
+TFs  control  gene  expression  by  binding  to  regulatory 
+sequence elements that are  located upstream from the 
+transcriptional start sites of genes (Villard, 2004 ). TFBSs 
+are  usually  5-25  base  pairs  in  length,  and  are  often 
+represented as matrices. These matrices are referred to 
+in the literature under a variety of labels such as position 
+weight  matrices  (P\I\/Tv1),  position  frequency  matrices 
+(PFM), alignment matrices, profiles and so on (Knuppel et 
+a/., 1994), (Sandelin eta/., 2004).  ManyTFBS prediction 
+programs using P\I\/Tv1,  such as promoterscan (Prestridge, 
+1995), TSSG, and TSSVV(Solovyev and Salamov, 1997) 
+have been  developed (Murakami  eta/., 2004). 
+
+In  order to explain the mechanisms of gene expression 
+in detail, it is crucial that we understand the effects ofTFBSs 
+on transcriptional regulation at a genomic level, as well as 
+gene expression patterns at a transcriptional level (Kasturi 
+and Acharya,  2005). Analysis tools vvhich  function  on  a 
+genomic level  have previously been developed (Roth  et 
+a/.,  1998; Sinha andTompa 2003; Liu  et al.,  2004; Kim et 
+a/.,  2005);  however,  they have  limitations  as  they  are 
+unable to perfonn  this  kind  of combined  data  analysis. 
+Recently, the analysis tool EXPANDER was introduced, 
+vvflich is a java package for the analysis of gene expression 
+data, and provides multiple-functions such as clustering, 
+visualization, biclustering and dovvnstream analysis such 
+as functional enrichment and promoter analysis (Shamir 
+et  a/.,  2005).  Although  it  offers  a  variety  of functional 
+analyses  for  genes,  it  does  not  provide  perspective 
+functional  analysis  between  co-expressed  genes,  their 
+significant  TFBSs  and  the  function  of  target  genes. 
+FCAnalyzer focuses  more on  verifying the  relationship 
+between  the  regulatory  region  and  gene  expression. 
+Additionally,  we  verified  enrichment  for  TFBSs,  TFBS 
+combination and functional annotations in  a cluster based 
+on  Pvalues. 
+
+The  aim  of this study was to offer a novel tool vvhich 
+operates  to  perfonn  both  clustering  analysis  for  the 
+detection  of expression  patterns  and validation  of the 
+transaip:ional regulatory element patterns from coexpressed 
+genes.  VVe  introduce  a  web-based  functional  clustering 
+analysis tool that integrates microarray data with similar 
+
+FCAnalyzer: A Funclia1al  austerin9 Analysis Tool 
+
+11 
+
+expression  patterns  and  TFBS  data  to  identify  novel 
+transcription  regulatory netV\oUrks  of knovvn  genes in  the 
+human, mouse and rat genomes. FCAnalyzer perionns 
+tvvu-step clustering procedures; K-means and hierarchical 
+clustering.  K-means  clustering  is  one  of the  simplest 
+unsupervised  learning  algorithms  used  to  classify,  or 
+group objects together based on  attributes/features, into 
+K number of groups,  vvflere  K is  a positive integer. The 
+grouping is done by minimizing the sum of the squares of 
+distances between  data  and the  corresponding  cluster 
+centroid.  Thus the purpose  of K-means clustering  is to 
+classify the data (favazoie eta/., 1999). The first procedure 
+clusters  gene  expression  profiles  using  the  K-means 
+clustering  method,  and  then  applies  the  hierarchical 
+method (Eisen eta/., 1998) for predicted TFBSs clustering 
+of genes that were previously clustered. The hierarchical 
+method is one  of the most  popular analytical  methods 
+currently  being  used to  characterize  gene-expression. 
+The combined clustering approach that we have developed 
+enables researchers to obtain results vvith  more biological 
+significance than those obtained by analysis with  either 
+TFBSs  or  gene  expression  data  alone.  Using  TFBS 
+analysis vvith the clusters that exhibited similar expression 
+patterns, we obtained TF binding andTFBS infonnation. 
+information  was  used  to  construct  a  matrix 
+This 
+representingTFBS-TF interactions. VVe  expect this tool to 
+be useful in  understanding transcription mechanisms and 
+in  the characterization  of genetic networks. 
+
+In the cluster analysis of gene expression profiles, the 
+functional annotation ofthe cluster is the most prominent 
+method for identifying functions of co-expressed genes. 
+In  order to accomplish the functional annotation of genes 
+within each cluster, we utilized an efficient computational 
+approach  that  relies  on  the  description  of  biological 
+processes,  molecular functions  or cellular components 
+using GO terms (Ashburner eta/., 2000). 
+
+Materials and Methods 
+
+VVe  developed  FCAnalyzer vvhich  functions  as  a web(cid:173)
+based  clustering  analysis tool  vvith  predicted TFBSs of 
+genes vvhich  show similar expression patterns generated 
+from  microarray data.  FCAnalyzer is  implemented in  R 
+language  (http://wwvv.bioconductor.org)  and  uses  the 
+MySQL (http://vvvvw.mysql.com) database. This program is 
+enveloped in  a Perl  script (http://vvvvw.perl.com) in  order to 
+maintain a userfiiendyV\eb interface. FChlalyzeris accessible 
+at http://vvvvw.ng:i .go.kr/cgi-bin/cmams/fcanalyzer.cgi. 
+
+FCAnalyzer consists of three sections: 
+
+12  Genomics &  Informatics  Vol.  5(1)  10-18,  March 2007 
+
+Databases 
+
+Construction ofTFBS matrix databases for kncNvn genes 
+of the human, mouse and rat 
+The TFBS matrix database consists of putative promoter 
+regions  of upstream DNA sequences  around  2,000  bp 
+from the transcription start site.  In  order to construct the 
+TFBS matrix database, we first collected  promoter 
+sequences of known Refseq genes. The genome assemblies 
+used  for promoter sequence  resources were  Build  35  in 
+human, Build 33 in mouse and Rnor3.4 in rat. These data 
+were obtained from the Genome sequencing consortium 
+(http://www.hgsc.bcm.tmc.edu/). We obtained the 2,000 
+bp  promoter region  from the  UCSC Genome  Browser 
+(http://genome.ucsc.edu/) and used the Match™ matrix 
+based  search  program to  predict TFBSs.  Match™ is  a 
+powerful  web-based  tool  which  uses  positional  weight 
+matrices  in  TRANSFAC® Professional.  To  obtain  high 
+fidelity TFBS matrices, we set the parameters of Match™ 
+to minimize false positives. After analyzing TFBS frequencies 
+for each gene, we generated a TFBS frequency matrix in 
+a species. Rows of the matrix are defined as Refseq genes 
+while the columns represent predicted TFBSs. We present 
+here  a  novel  matrix  database  containing  the  results 
+following the application of the TFBS frequency matrix. 
+The matrix identified 343 TFBS for 20233 genes in human, 
+360 TFBS for 13032 genes in  mouse and 320 TFBS for 
+3009 in  rat. 
+Construction ofTF, TFBS and GO information databases 
+Databases were  constructed  to  present TF  and  TFBS 
+
+information in  designated clusters.  The annotation was 
+based  on  the  annotation  used  in  the  TRANSFAC® 
+database, version 8.4. To facilitate the functional annotation 
+of cluster  analysis,  we  constructed  a  GO  annotation 
+database for Refseq  genes.  The  GO project  began  with 
+the  overall  goal  of  providing  a  unified  view  of  gene 
+functional annotations for different organisms with a set 
+of  three  structured  vocabularies;  biological  process, 
+molecular 
+function  and  cellular  component.  The 
+structure  of the  ontology  is  based  on  directed  acyclic 
+graphs  (DAGs)  and  organized  in  a  hierarchy.  GO 
+information  is  useful  for  the  functional  analysis  of 
+specific gene sets such  as  clustered  genes with  same 
+expression patterns (Martinet a/., 2004). We obtained all 
+known  Refseq  information  from  NCBI  (Jenuth  2000; 
+Pruitt  et  a/.,  2003).  All  of the  ontology  data  and  the 
+gene-GO  term  associations  were  taken  from  the  GO 
+consortium  website  and  the  database  for  annotation, 
+visualization  and  integrated discovery (DAVID) (Dennis 
+eta/., 2003). 
+
+Clustering analysis 
+FCAnalyzer  performs  two-step  clustering  procedures: 
+K-means  clustering  of gene  expression  data  and  the 
+subsequent hierarchical  clustering with  predicted  TFBS 
+data for each cluster (Fig.  1). 
+
+Clustering of gene expression profiles 
+FCAnalyzer reads tab-delimited text files containing gene 
+expression profiles with Refseq ID or Unigene ID in rows, 
+
+r+ICit:lster H--.! 2nd Clustering 
+(Hierarchical) 
+
+Cluster 1 
+
+Expression Ratio 
+
+1st 
+
+Cluster n 
+
+TFBS Cluster 
+
+Merged 
+Result 
+
+Fig.  1.  Clustering analysis procedure.  FCAnalyzer perfoll11S two-step clustering procedures following the functional analysis. The first 
+step clusters a gene expression profile with the K-means clustering method and the second procedure clusters TFBSs in genes included 
+in one of the previous clusters.  Users can proceed to the functional  analysis of significant TFBS and GO tell11S. 
+
+and  experiments  in  columns.  Users  can  set  clustering 
+parameter options for two-step clustering methods. The 
+first setting is the  K-means for gene expression  profiles, 
+and the second is the hierarchical setting for a predicted 
+TFBS matrix. To aim at superior clustering resu~s, users can 
+apply other clustering methods (e.g. hierarchical clustering) 
+in the preanalysis module in  FCAnalyzer. The pre-analysis 
+module  provides  various  analyses  of microarray  data, 
+from  raw nonnalization,  to  higher analysis  approaches 
+such as significant gene selection, clustering, classification 
+and visualization. Before the functional analysis, users can 
+evaluate  microarray  data  with  the  pre-process  step  of 
+FCAnalyzer  and  the  clustering  result  is  stored  in  a 
+database.  In  addition,  a  new  TFBS  matrix  profile  for 
+clustered  genes  based  predicted  TFBS  databases  is 
+created for each  cluster. 
+Clustering of predicted TFBSs of genes in a cluster 
+The  nevvly  created  TFBS  profile  includes  all  of  the 
+predicted TFBS  infonnation  for each  gene  in  a cluster. 
+FCAnalyzer  perfonns  consecutive  2-way  hierarchical 
+clustering with the profile. This step is perfonned in  order 
+to find meaningful groups that share a similarTFBS pattern 
+in genes that exhibit the same expression pattern. For the 
+hierarchical dustering ofthe TFBS mabix, users can choose 
+one  of many  different  dissimilarity  and  distance  matrix 
+options  to  establish  optimal  clustering  conditions.  The 
+linkage measures are Ward's minimum variance, complete, 
+single,  average,  median,  centroid  and  Mcquitty.  The 
+default  distance measure  is  binary and  others  are  also 
+available such as euclidean, maximum, manhattan, canberra, 
+uncentered pearson  and centered pearson. 
+
+Follovving the tvvu-step clustering analysis, FCAnalyzer 
+produces heatmap figures  shovving TFBS  clustering for 
+genes in each cluster, and heatmaps for their respective 
+gene  expression  profiles.  In  addition,  it  also  provides 
+tab-delimited text files for the result figures. 
+
+Exploring the biological relevance of clusters 
+EnriciJtrent Analysis ofTFBS 
+FCAnalyzer  provides  significant  TFBS  analysis  and 
+combinatorial TFBS analysis based on Fisher's exact test 
+to identify statistically over-representative TFBSs located 
+in  the  upstream  sequences  of genes  in  a cluster,  and 
+statistically significant enriched TFBS pairs in vvhich two 
+designated TFBSs are shOVVTl  in the cluster. We used the 
+test with  a one-sided option, to compare the number of 
+occurrences  and  nonoccurrences in  genes  of a cluster 
+versus the all genes (Fig. 2 and 3). This process can help 
+the user to understand how gene expression is regulated 
+and  how  biological  infonnation  is  controlled  at  the 
+transcriptional level. 
+
+FCAnalyzer: A Funclia1al  austering Analysis Tool  13 
+
+TFBS-TF analysis 
+Analysis of target genes binding significant TFBSs 
+FCAnalyzer extracts functional annotation based on GO 
+term analysis for potential target genes that are regulated 
+by a specified set ofTFs against significant TFBSs in  a 
+cluster. Functional categorization ofthe target genes may 
+be  very  important  in  the  deduction  of the  function  of 
+co-expressed genes, and in  deciphering the transcriptional 
+regulatory mechanisms in a cluster (Sosinsky eta/., 2003). 
+
+TFBS  Analysis  Result (ordered by P-value) 
+
+Download  Result F1le 
+
+V$SMAD4  06 
+
+V$MAZ  06 
+
+13/85  1032120233  0.00034 
+
+48/85  7765120233  0.00051 
+
+V$PTF1 BET A  06 
+
+4/85 
+
+149/20233 
+
+0.00355 
+
+V$BRN2_01 
+
+V$SRF  05  01 
+
+V$POLY  C 
+
+V$RSRFC4  01 
+
+V$FOXD3  01 
+
+4/85 
+
+175120233 
+
+0.00627 
+
+12185  1301/20233  0.00779 
+2/85 
+1/85 
+
+40/20233 
+
+0.01217 
+
+3/20233 
+
+0.01250 
+
+28/85  4480/20233  0.01368 
+
+V$MEF2  06  01 
+
+22185  3290/20233  0.01503 
+
+Rg.  2.  TFBS analysis result. The user can see the significant 
+TFBS analysis result. The lists are  sorted by p-values. 
+
+TFBS  Analysis  Result (ordered  by P-value) 
+
+Download  Result F1le 
+
+V$AMEF2  06 V$COMP1  01 
+
+V$CHOP  01  V$LPOL YA  B 
+
+V$COREBINDINGFACTOR  06 V$PTF1BETA  06 
+
+V$AMEF2  06 V$VMAF  01 
+
+V$DR4  02 V$MAZ  06 
+
+V$AP4  01  V$NFKAPPAB50  01 
+
+V$AMEF2  06 V$FOXD3  01 
+
+V$FOXD3  01  V$SMAD4  06 
+
+V$DR4  02 V$SREBP1  06 
+
+0.00003 
+
+0.00005 
+
+0.00009 
+
+0.00009 
+
+0.00010 
+
+0.00012 
+
+0.00012 
+
+0.00016 
+
+0.00020 
+
+Fig. 3. Combinatorial TFBS analysis result. The user can see the 
+combinatorial TFBS analysis result. The lists are sorted by p-values. 
+
+14  Genomics &  Informatics  Vol  5(1) 10-18,  March 2007 
+
+To this end, FCAnalyzer provides the processes to select 
+significant TFBSs sorted by the p-value of Fisher's exact 
+test, and then to find the significant GO terms in  putative 
+target genes. 
+TFBS-TF matrix constructor 
+Wth the FCAnalyzer analysis tool, the user is provided with 
+information about TFBS, a matrix and related TFs including 
+a description and binding information. However, there are 
+numerous TFBSs in the genes of a given cluster.  It is possible 
+the binding sub-nelvlork of several TFBSs and TFs of interest 
+may not be accessed. Here, we have developed the TFBS-TF 
+matrix constructor in such a way that it facilitates easy and 
+clear analysis of TFs and TFBS information. This module 
+creates a  TFBS-TF binding matrix for the analysis in  an 
+interactive, web-linked table format (Fig. 4-6). The user can 
+view multiple binding interactions in the context of the TFBS 
+or the TF (Fig.  5). This program also supports interactive 
+TFBS filtering  of low occurrences  and  the  selection  of 
+TFBSs for each cluster (Fig. 4). This procedure could also 
+help to remove false discoveries. 
+
+Functional annotation of gene clusters 
+In the cluster analysis of gene expression profiles, functional 
+annotation  of the  cluster  is  the  major  method  used  for 
+identifying functions of co-expressed  genes.  There  are 
+various  ways to  perform the  analysis  in  relation  to the 
+biological pathway, gene annotation and disease information 
+(Dennis eta/., 2003; Chung eta/., 2004; Dai eta/., 2004). A 
+
+TFBS  Filtering  by p-11alue 
+
+Select TFBS  P-value  <= 
+
+I  Filter TFBS 
+
+I 
+
+.,Please select less th;m  20 TFBSs 
+
+Generating the  selected TFBS  vs  TF 
+matrix 
+View target genes  of selected 
+TFBSs 
+
+View 
+
+View 
+
+I  I 
+
+I  I 
+
+Reset 
+
+Reset 
+
+2180/20233 
+
+4/20233 
+
+10814/20233 
+
+11/46 
+1/46 
+32/46 
+2/46 
+1/46 
+1146 
+
+0.00826 
+0.00904 
+0.01900 
+0.01928 
+0.02468 
+0.02910 
+
+D  V$VMYB_01 
+D  V$1SRE_01 
+D  V$DR4_Q2 
+D  V$1RF_Q6 
+D  V$BELLB 
+D  V$CREB_02 
+Generating the  selected TFBS  vs  TF 
+matrix 
+View target genes  of selected 
+TFBSs 
+Fig. 4. Web interface of interactive TFBS analysis. The user can 
+filter out  non-significant TFBS candidates and view the target 
+genes of TF which binds to selected significant TFBSs. 
+
+94/20233 
+11120233 
+13/20233 
+
+TFBS  YS  TF  matrix:  the list of transcription factors which  bind  to TFBSs 
+
+D 
+D 
+
+D 
+
+D 
+
+D 
+
+D 
+
+D 
+
+D 
+
+D 
+
+D 
+
+0 
+
+0 
+
+0 
+
+0 
+
+0 
+
+0 
+
+0 
+
+0 
+
+0 
+
+0 
+
+Fig. 5. TFBS-TF Matrix view of selected cluster. TFBS-TF matrix 
+constructor facilitates the analysis ofTFBS-TF binding interactions 
+with an easy interface and web-linked TF and TFBS information. 
+
+of selected TFBSs 
+
+V$CREB_02  NM_001428(2023 ) 
+
+V$DR4_Q2 
+
+V$1RF _Q6  NM_002038(2537 ) NM_007209(11224 ) 
+V$1SRE_Ol  NM_002038(2537 ) 
+
+Common 
+
+of selected TFBSs 
+
+General  GO  Analysis 
+
+Significant GO  Analysis 
+
+FIQ. 6. Target genes of selected cluster. The user can seethe targEt 
+genes of selected TFBSs.  General  GO analysis and significant 
+GO term analysis are also available for selected target genes. 
+
+FCAnalyzer provides the user with the functional 
+analysis of the gene cluster of interest with GO information 
+(Fig. 7 and 8). 
+
+FCAnalyzer  provides  GO  term  analysis  of  the  co(cid:173)
+expressed genes to recognize enrichment GO terms in a 
+cluster.  We  used the tool  GO::TermFinder (Boyle  eta/., 
+2004) to locate statistically significant over-represented GO 
+terms,  as  this  tool  calculates  p-values  relative  to  their 
+hypergeometric distribution, and also performs a multiple 
+comparison correction. Therefore, GO term analysis of the 
+clustered  genes  is  informative,  and  provides  a  robust 
+
+FCAnalyzer: A Functional Clustering Analysis Tool  15 
+
+F~g. 7.  Gene  Ontology view of selected cluster.  The user can  select one of three  categories  for  general  or  significant GO term 
+analysis  of a selected cluster in  terms  of biological  process,  molecular function  or cellular component.  The  result  chart for the 
+general GO term  analysis is  shown. 
+
+Biological  Process  Terms 
+
+b1olog1cal_process 
+
+organ 
+
+development 
+
+orgamsmal 
+
+ph~s1olog1cal 
+
+process 
+
+7140  58  7134  7125  7170 
+
+10324  23676 
+
+pvalue: 
+
+<=1e-10 
+
+1e-10  to  1e-8  !R~ 
+
+1e-6  to  1e-4 
+
+Batch  GO 
+
+:V1ew 
+
+>0.01 
+
+Feb  8.  2007 
+
+Result  Table 
+
+Terms from the  Process Ontology with  p-value  as  good  or better than  0.05 
+
+Gene 
+
+Ontology term 
+
+Cluster 
+
+frequency 
+
+Corrected 
+frequency of  P-value 
+
+Genome 
+
+False 
+
+FDR  Positives  annotated to 
+
+the term 
+
+Genes 
+
+"" 
+
+38  out of 1;ssg 
+
+5 out of 77 
+genes.  6.5%  genes.  0.3/o 
+3 out of 77 
+genes.  3.9%  genes.  0.1% 
+
+muscle 
+develoQment 
+muscle 
+contraction 
+striated  muscle  2 out of 77 
+contraction 
+
+genes.  2.6%  genes.  0.0% 
+
+9outof11889 
+
+2outof11889 
+
+_
+00031 
+
+0
+
+0.00%  0.00 
+
+0.00160 
+
+0.00%  0.00 
+
+7140.  §§.  7134. 
+7125.  7170 
+10324.  1160. 
+23676 
+
+0.00310 
+
+0.00%  0.00 
+
+10324.  23676 
+
+Fig.  8.  Enrichment  analysis  of Gene  Ontology terms  of selected  cluster.  The table  shows  representative  TFBS  sorted  by the 
+p-value. The user can view the tree view of significant GO terms and html  output format of the result. 
+
+16  Genomics &  lnfonnatics  Vol.  5(1) 10-18, March 2007 
+
+statistical arguement as the output data can be easily and 
+intuitively viewed and explored in  a web browser. 
+
+The  user can  select  ontologies  of interest for vievving 
+functional  annotation  of any  selected  cluster  in  tenns  of 
+biological process, molecular function or cellular component. 
+For an  easier  method to  examine  dominant tenns  in  the 
+cluster, the user can also set the parameters to filter any 
+tenns of low occurrence. All  figures  and result files  in  a 
+tab-delimited text file format can be doiMlloadedfrom the 
+dovvnload menu  of each  cluster. 
+
+Results 
+FCAnalyzer  supports  graphical  views  and  interactive 
+infonnation  retrievals to provide a user friendly interface. 
+This web based system provides researchers vvith the useful 
+features  of infonnation  databases,  sequential  clustering 
+analysis of gene expression data and clusterinfonnation for 
+functional analysis. To view all ofthe infonnation on a page, 
+the user can  choose to hide or showinfonnation  and the 
+analysis  menu.  We  anticipate  that  these  user  friendly 
+application  interfaces  vvill  facilitate  the  analysis  of gene 
+expression  patterns in the field oftranscriptomics. 
+
+Databases 
+FCAnalyzer provides gene expression dustering infonnation 
+and TFBS clustering infonnation of gene expression profiles. 
+The system offers the description and binding infonnation 
+of  TF  and  TFBS  for  regulatory  analysis.  All  of  the 
+information is implemented in  a web-linked table fonnat in 
+order to pennit compatibility vvith interconnected infonnation. 
+The annotation  infonnation is  mainly retrieved from the 
+TRANSFAC database, DAVID, and the Refseq database. 
+
+Clustering analysis 
+FCAnalyzer  includes  sequential  clustering  analysis 
+procedures with  K-means clustering of gene expression 
+data and subsequent hierarchical clustering of predicted 
+transcription  factor  binding  sites.  To  attain  superior 
+clustering results, users are free to choose other clustering 
+methods  (e.g.  hierarchical  clustering)  in  the pre-analysis 
+module,  and  FCAnalyser  allows  the  researcher  to 
+determine an initial set of cluster centers. The user can view 
+TFBSs vvith  high  frequencies in  genes that  have  a similar 
+expression  patterns.  The TFBSs vvith  high  frequency are 
+presented as the putative regulatory elements playing  an 
+important role  in  gene  expression  regulation.  After the 
+tvvu-step clustering analysis, FCAnalyzerproduces TFBS 
+clustering images for genes in  each cluster, and images 
+for their respective  gene  expression  profiles.  All  of the 
+
+infonnation  required  for  clustering  analysis  is  freely 
+available to dovvnload. 
+
+Exploring the biological ralavanoa of clusters 
+In  this  process,  the  user  can  explore  the  biological 
+relevance of genes identified in  the clusters. This step is 
+an  important  progression  vvhich  functions  to  organize 
+genes with  similar expression  patterns  into  biologically 
+relevant  clusters  using  GO  infonnation  (Maurer  et a/., 
+2005).  The  user  can  select  ontologies  of  interest  for 
+viewing the functional annotation of the selected cluster. 
+FCAnalyzersupports a visual graph chartforvievvingthe 
+GOtenns in order of frequency. This graphical interface 
+enables the user to understand the functional specificity 
+of genes  in  the  designated  cluster.  For TF  and  TFBS 
+interaction  analysis,  the  TFBS-TF  matrix  constructor 
+creates  TFBS-TF  binding  matrices  from  TFBS-TF 
+databases for easy viewing of regulatory interactions. 
+
+Searching  for GO !arms and  TFBS  analysis to 
+ganeraiB a query gena list 
+FCAnalyzer provides  GO terms  and  TFBS  analysis to 
+generate  a query  gene  list  without  expression  values. 
+The  user can  search for the  GO and TFBS  infonnation 
+for genes selected after pre-analysis or other processes. 
+They  may  also  perfonn  further  analysis  such  as  the 
+analysis of target genes against significant TFBSs. 
+
+System performance evaluation 
+For the evaluation of system perfonnance, we used muscle(cid:173)
+specific genes derived from the T-STAG database (Gupta 
+eta/., 2005). T-STAG is a database for analyzing tissue(cid:173)
+and tumor-specific expression patterns in the human and 
+mouse transcriptomes. VVe followed the defau~ parameters 
+ofT-STAG  to  obtain  genes  showing  muscle-specific 
+expression.  Of these,  91  Refseq  mRNA records  were 
+submitted to the statistical analysis module of FCAnalyzer. 
+We applied  Fisher's exact test to the muscle gene sets. 
+Through  this  statistical  analysis,  we  then  predicted the 
+overrepresented TFBS results in muscle-specific genes. 
+Next, we  evaluated the  analysis  results  using literature 
+mining. VVe found that most ofthe putative muscle-specific 
+reg,Jiators have been reported. For example, thewell-knOIMl 
+SMAD and MAZ binding sites are ranked as high as second 
+and  third  in  the  predicted  result.  In  case  of  SMAD, 
+dysfunctional  SMAD  signaling  contributes to  abnonnal 
+smooth muscle cell  proliferation  (Yang eta/., 2005) and 
+rvw: has been irrpicated in ITlJsdefunction (Genna.in-Desprez 
+eta/., 2001 ). Also, mef2 directlyregulatestarget genes at 
+all stages of muscle development (Sandmann eta/., 2006). 
+
+Therefore, 11  out of 15 putative TFBS identified here are 
+knovvn  to be muscle-specific regulators (Table 1). 
+
+Discussion 
+A number of previously developed cluster analysis tools for 
+the study ofmicroarray gene expression data can produce 
+lists of up to hundreds of genes in  groups or clusters of 
+putatively related genes. VVe have developed FCAnalyzer 
+as a tool to help interpret the biological significance of such 
+clusters by using transcription regulatory elements that are 
+based on  predicted TFBSs. Ole limitation ofthis tool is that 
+the input data needs to be filtered by some criteria for the 
+enhancedTFBS clustering. Nevertheless, we expect that 
+FCAnalyzervvill seiVe as a useful tool for the exploratory 
+analysis of transcription  regulatory mechanisms. 
+
+This program is designed to be useful for any researcher 
+vvtlo is confronted vvith data that show putative binding site 
+patterns that are shared by coexpressed genes. It is also 
+expected to provide enhanced verification of the results of 
+analyzing  gene  expression  profiles,  by  offering  TFBS 
+information for genes with  similar expression  patterns. 
+
+Availability and requirements 
+Project name: FCAnalyzer 
+ProjectiDme page:http://wwvv.ngri.go.kr/cgi-bin/cmams/ 
+fcanalyzer.cgi 
+Operatings}5"tem(s): Linux 
+Programnirg larguage: PERL, HTML,  R language 
+OtrerreqLirements: MySQL 
+Any restrictions to use by non-academics: License required 
+
+List of abbreviations 
+
+Transcription factor (TF) 
+Transcription factor binding site (TFBS) 
+Gene Ontology (GO) 
+Position weight matrix (PVVM) 
+
+Acknowledgements 
+
+The authors V\oUuld like to thank Sung-Hoon Lee, Jeong-Ho 
+Cha, Chang-Bum Hong and Dong-Jun Kim for computer 
+system  support  and helpful  comments.  This  study was 
+supported by an  intramural fund from the National Institute 
+of Health, Korea. 
+
+FCAnalyzer: A Funclia1al  austering Analysis Tool  17 
+
+References 
+Ashburner,  M.,  Ball,  C. A  eta/. (2000). Gene ootology: tool 
+for  the  unification  of  bology.  The  Gene  Ontology 
+Consortium. Nat.  Genet.  25,  25-29. 
+
+Boyle,  E.  1.,  VVeng,  S.  eta/. (2004). GO:TermFinder--open 
+source software fer accessing Gene Ontdogy informatioo 
+and finding significantly enriched Gene Ontology terms 
+associated  with  a  list  of  genes.  Bioinformatics  20, 
+3710-3715. 
+
+Chung,  H.  J.,  Kim,  M.  eta/.  (2004). ArrayXPath:  mapping 
+and  visualizing  microarray  gene-expression  data  with 
+integrated biological pathway resources using Scalable 
+Vector  Graphics.  Nucleic  Acids.  Res.  32(Web  SeiVer 
+issue), W460-W464. 
+
+Dai,  H.,  Tian,  B.  eta/. (2004).  Dynamic integration of gene 
+annotation and its application to microarray analysis. J. 
+Bioinform.  Comput.  Bioi.  1,  627-645. 
+
+Dennis,  G.,  Jr.,  Sherman,  B.  T.  et  a/.  (2003).  DAVID: 
+Database for Annctation,  Visualization,  and  Integrated 
+Discovery.  Genome.  Bioi. 4,  P3. 
+
+Eisen,  M.  B.,  Spellman,  P.  T.  eta/. (1998). Cluster analysis 
+and display of genome-wide expression patterns. Proc. 
+Nat/.  Acad.  Sci.  USA 95,  14863-14868. 
+
+Germain-Desprez,  D.,  Brun,  T. eta/. (2001). The SMN genes 
+are  subject to transcriptional  regulation  during  cellular 
+differentiation. Gene.  279,  109-117. 
+
+Gupta, S.,  Vingron, M. eta/. (2005). T-STAG: resource and 
+web-interface fer tissue-specific transcripts and genes. 
+Nucleic Acid.  Res.  33(Web SeiVer issue), VV654-VV658. 
+Jenuth, J.P. (2000). The NCBI. Publicly available tools and 
+resources on the Web. Methods Mol.  Bioi. 132, 301-312. 
+Kasturi,  J.  and Acharya,  R.  (2005).  Clustering  of diverse 
+genonic data  using  information  fusion.  Bioinformatics 
+21,423-429. 
+
+Kellis,  M.,  Pattersoo,  N.  et  a/.  (2003).  Sequencing  and 
+carparisoo of yeast species to identify genes and reg.~latay 
+elements. Nature423,  241-254. 
+
+Kim, J.,  Sec, J. eta/. (2005). TFExplorer: integrated analysis 
+database fer predicted transcription regulatory elements. 
+Bioinformatics 21,  548-550. 
+
+Knuppel,  R.,  Dietze,  P.  eta/. (1994).  TRANSFAC retrieval 
+progam:  a  network  model  database  of  eukaryotic 
+transcription  regulating  sequences  and  proteins.  J. 
+Corrput.  Bioi.  1,  191-198. 
+
+Liu, Y., Wei,  L. eta/. (2004). A suite of web-based programs 
+to search  for  transcriptional  regulatory  motifs.  Nucleic 
+Acids Res.  32(Web SeiVer issue), W204-W2.07. 
+
+Lcbenhofer,  E.  K.,  Bushel,  P.  R.  eta/. (2001). Progress in the 
+application of DNA microarrays. ErMron Health Perspect 
+109,  881-891. 
+
+Martin,  D.,  Brun,  C. ei a/. (2004). GOTOOBox: fi.Jnctiooal analysis 
+
+18  Genomics &  lnfonnatics  Vol.  5(1) 10-18, March 2007 
+
+of gene datasets based on Gene CX!tology. Getx:Jr1"e Bioi. 5, 
+R101. 
+
+Maurer,  M.,  Molidor,  R.  et a/.  (2005).  MARS:  microarray 
+analysis, retrieval,  and stcrage system BIVIC Bioinforrrstics 
+6,  101' 
+
+Murakami, K.,  Kqima, T. ei a/. (2004). Assessment of clusters 
+oftranscription facta bnding sites in relationship to human 
+promoter,  CpG  islands  and  gene  expression.  BMC 
+Genornics 5,  16. 
+
+Prestridge, D. S. (1995). Predcting Pd II  prormter sequences 
+using transcription factor binding sites.  J.  Mol. Bioi.  249, 
+923-932. 
+
+Pruitt,  K.  D.,  Tatusova,  T.  eta/.  (2003).  NCBI  Reference 
+Sequence  project:  update  and  current  status.  Nucleic 
+Acids Res. 31,  34-37. 
+
+Roth,  F. P.,  Hug,es, J.D. eial. (1900). Finding DNAregulatay 
+motifs within unaligned noncoding sequences clustered 
+by whole-genome mRNA quantitatioo.  Nat.  Biotechnol. 
+16,  939-945. 
+
+NCI experience. Eur.  J.  Cancer40,  2544-2549. 
+
+Shamir,  R.,  Maron- Katz,  A  eta/. (2005).  EXPANDER--an 
+integrative program  suite for microarray  data analysis. 
+BMC Bioinforrrstics 6,  232. 
+
+Sinha, S. andTarpa, M.  (2003). YMF: Apr(XJ:'amfordscovery 
+of novel  transcription  factor  binding  sites  by  statistical 
+overrepresentatioo. Nucleic Acids Res. 31,  3586-3588. 
+
+Solovyev,  V.  and  Salamov,  A  (1997).  The  Gene-Finder 
+corrputertools fer analysis of human and mcxlel crganisms 
+gencrne sequences. Proc.  lrt.  Conf. InteR.  Syd. Mol Bioi. 
+5,  294-302. 
+
+Sosinsky, A,  Boo in,  C.  P. eta/. (2003). Target Explorer: An 
+automated tool for the identification of new target genes 
+for a specified set of transcription factors. Nucleic Acids 
+Res. 31,  3589-3592. 
+
+Tavazcie, S.,  Hughes, J.D. eta/. (1999). Systematic detenni(cid:173)
+nation  of genetic network architecture.  Nat.  Genet.  22, 
+281-285. 
+
+Villard,  J.  (2004).  Transcription  regulation  and  human 
+
+Sandelin, A, V\lasserman, W  Wet a/. (2004). ConSite: wei> 
+
+diseases. Swiss Med.  Wk/y,  134,  571-579. 
+
+based  prediction  of regulatory  elements  using  cross(cid:173)
+species comparison. Nucleic Acids Res.32(V\/eb Server 
+issue), V\1249-W252. 
+
+Sandmann, T.,  Jensen,  L  J. eta/. (2000). A temporal map of 
+transcription factor activity: mef2 directly reg,~lates target 
+genes at all stages ofrruscle development Dev:  Ce//1 0, 
+797-807. 
+
+Sausville,  E  A  and Hdl:eck, S. L (2004). Transcrip:ioo profiling 
+of gene expression in drug discovery and develq:~ment: the 
+
+V\lalsh,  B.  and  Henderson,  D.  (2004).  Microarrays  and 
+beyond: what potential  cb current and future genomics 
+tools  have  for  breeders?  J.  Anim  Sci.  82  E-Suppl, 
+E292-E299. 
+
+Yang, X.,  Long,  L  eta/. (2005). Dysfunctional Smad sig1aling 
+contributes to abnormal smooth muscle cell proliferation 
+in familial pulmonary arterial hypertension. Circ.  Res. 96, 
+1053-1003. 
+
+

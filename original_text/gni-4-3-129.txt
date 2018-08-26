@@ -1,0 +1,402 @@
+Genomics &  Informatics  Vol.  4(3) 129-132, September 2006 
+
+GraPT: Genomic InteRpreter about Predictive Toxicology 
+
+Jung  Hoon  Woo1·3,  Yu  Rang  Park\  Yong  Jung\ 
+Jihun Kim1 and Ju Han Kim1• 2* 
+
+1Seoul  National  University  Biomedical 
+Informatics 
+(SNUB!),  2Human  Genome  Research  Institute,  Seoul 
+National  University College  of Medicine,  Seoul  11 0-799, 
+Korea,  3lnterdisciplinary  Program  in  Bioinformatics,  Seoul 
+National  University,  Seoul  151-742,  Korea 
+
+Abstract 
+Toxicogenomics  has  recently  emerged  in  the  field  of 
+toxicology and the DNA microarray technique has become 
+common strategy for predictive toxicology which studies 
+molecular mechanism caused by exposure of chemical or 
+environmental  stress.  Although  microarray  experiment 
+offers extensive genomic information to the researchers, 
+yet high dimensional characteristic of the data often makes 
+it hard to extract meaningful result. Therefore we developed 
+toxicant  enrichment  analysis  similar  to  the  common 
+enrichment  approach.  We  also  developed  web-based 
+system graPT to enable considerable prediction of toxic 
+endpoints of experimental chemical. 
+
+Keywords.  toxicogenomics,  predictive toxicology,  high(cid:173)
+dimensional  data,  toxicant  enrichment  analysis,  web(cid:173)
+based system, prediction, toxic endpoints 
+
+Introduction 
+As genomics technologies have been gradually integrated 
+into  conventional  toxicology,  the  new  era  so-called 
+toxicogenomicsis emerged in this field of study. Especially 
+DNA microarray which explains thousands of transcripts' 
+changes  has  become  a  well  established  method  in 
+biological research fields. Gene expression is a sensitive 
+indicator of toxicant exposure, disease state, and cellular 
+metabolism,  and  thus  represents  a  unique  way  of 
+characterizing how cells and organisms adapt to changes 
+in  external  environment (Lettieri,  2006).  Proponents of 
+toxicogenomics aim to apply mRNA expression technology 
+to study chemical effects in biological systems (Afshri et 
+
+*Corresponding author: E-mail juhan@snu.ac.kr, 
+Tel  +82-2-740-8320, Fax +82-2-742-5947 
+Accepted 20 August 2006 
+
+a/.,  1999; Lovet, 2000). 
+
+Predictive toxicology, predicting toxic endpoints caused 
+by unknown chemical exposure, has been the main issue 
+of conventional study, and accordingly it still is a challenge 
+of toxicogenomics  (Laura et at.,  2004).  Comparing  gene 
+expression  patterns  generated  by  microarray  between 
+model organisms stimulated with toxicant or environmental 
+stress  and  control  have  been  widely  used  strategy  for 
+prediction oftoxicity of new and existing chemicals (Fielden 
+et at., 2001 ). 
+
+However, it is unlikely to get meaningful information 
+directly fromhigh-dimensional gene expression data. The 
+enrichment  approach  with  cluster analysis  (-apowerful 
+technique  for  dimension  reduction)  which  uses  gene 
+ontology (GO), and pathway information has emerged as 
+a result. The relationship between Gene and toxicant can 
+be sources of different kinds of enrichment approach. 
+
+The major purpose of toxicant enrichment analysis is 
+to identify biological function of experimental toxicants and 
+to  get  vital  information  such  as  prediction  of  toxic 
+endpoints.  We developed toxicant enrichment strategy 
+and the graPT based on the gene-toxicant relationship in 
+order to provide information on the association between 
+toxic endpoints and unknown chemicals. 
+
+Methods 
+Public toxicogenomics data localization and 
+integration 
+We localized CTD (Comparative Toxicogenomics Database(cid:173)
+http://ctd.mdibl.orgl)  data  and  CHE (http:lldatabase. 
+healthandenvironment. orgl) Toxic data used for detemining 
+relationship between gene, toxicant, and disease data types. 
+We  localized  Entrez  Gene  (http://www.ncbi.nlm.nih.gov/ 
+entrez/), RefSeq (http://wvvw. ncbi.nlm. nih.gov!RefSeq/), and 
+MeSH (httpJ!www.nlm.nih.gov/mesh/) data for annotating the 
+three  data  types  respectively  and  constructed  relational 
+database by integrating these data sources (Fig.1 ). 
+
+Toxicant enrichment test 
+Frequencies  of toxicant  terms  within  the  dataset  are 
+calculated  and  compared  with  reference  frequencies. 
+The probability of obtaining by chance a number of k of 
+related  genes for given toxicant term among  a dataset 
+size n,  knowing that reference dataset contains m such 
+related  genes out of N  genes,  is then  calculated.  This 
+
+130  Genomics & Informatics  Vol.  4(3) 129-132, September 2006 
+
+. 
+
+I gene 
+I 'It  id:  INTEGER 
+10 name:  VARCHAR 
+0  synonym:  TEXT 
+I 0  seq  id:  TEXT 
+
+. 
+
+I qene  chem  reference 
+'iJ  gene_id: INTEGER  (FK) 
+'\1  chern  id:  INTEGER  (FK) 
+<>  refererence:  TEXT 
+:a ref&ence_has_gene_FKindex2 
+:a ref&ence_has_gene_FKlndex3 
+
+'11  gene_jd 
+
+'11  chem  id 
+
+. 
+
+chem  graph 
+'tfctiNTEGER 
+'\t  chern_jdchem2:  INTEGER 
+'\t  chern  id:  INTEGER  (FK)  --
+o  distance:  INTEGER 
+f.4  chem_graph_FKindexl 
+
+(4 chem_qaph_FKlndex2 
+
+'It  chem  1d 
+
+'It  chemjd 
+
+. 
+
+~ ~ 
+
+chern 
+'if  id:  INTEGER 
+Q  name:  VARCHAR(256) 
+() chemTreeNo:  VARCHAR(SO) 
+()  caslnm:  VARCHAR 
+<>  eqTerm:  VARCHAR 
+0  chemSynonym:  VARCHAR 
+0  casRN:  VARCHAR(SO) 
+0  description: VARCHAR(4000) 
+0  mesh!D:  VARCHAR 
+
+-
+
+. 
+
+disease 
+\)  id:  INTEGER 
+0  name:  VARCHAR(lOOO) 
+0  annotation:  TEXT 
+0  scopeNote:  TEXT 
+0  meshJD:  VARCHAR 
+
+. 
+
+disease  chern  reference 
+'\t  chem_jd:  INTEGER  (FK) 
+'if  disease  ld:  INTEGER  (FK) 
+o  eviStrength: CHAR(lO) 
+0  sideNote:  TEXT 
+0  reference:  TEXT 
+,4 disease_has_chem_FKindexl 
+
+'{I  disease _id 
+
+,4 disease_has_chem_FKJndex2 
+
+'\1  chem  id 
+
+Fig. 1. Entity-Relationship diagram of database in the graPT. Gene, chemicals (toxicant), and disease are the three data types of the 
+grcPT.  Both gene and  disease have respective relationship withchemical.  Information regarding the hierarchy of chemicals is also 
+included in the system. 
+
+probability 
+follows 
+described in  Eq.  (1 ): 
+
+the  hypergeometric  distribution 
+
+threshold about p-value. The ID for genes must contain at 
+least one of GenBank accession number, SwissProt ID or 
+TrEMBL ID. 
+
+P  {  - k}- (7)(~=;) 
+) 
+(7
+
+r  x-
+
+-
+
+(1) 
+
+where the random variable X represents the number 
+of genes within a given gene subset, related with a given 
+toxicant  term.  Because  this  approach  simultaneously 
+tests the statistical significances of the associations of a 
+set  of genes to  multiple toxicants,  multiple  hypothesis 
+testing problems should be considered. We applied FOR 
+to offer a  much  reliable  statistical te·sting  (Benjamini  et 
+a/., 1995). The percentage of such toxicants selected by 
+chance is the FOR, and adjusted P-value threshold was 
+decided by determining the FOR (Storey et at.,  2003) 
+
+Input and output 
+Input 
+A list of differentially expressed genes (DEGs) is produced 
+as a common result of DNA microarray experiments. The 
+input of operation in graPTis the DEGs list and the cut-off 
+
+Output 
+The graPT produces a list of best matching toxicants for 
+input DEGs list with statistical significance scores of none 
+random association (Fig. 2). Relevant toxicants are listed 
+in ascending order of p-values (and adjusted p-value for 
+multiple  testing  problems).  Users  are  provided  with 
+additional  information  on  the  listed  toxicants.  Inputted 
+genes  information  is  hyperlinked  to  an  automated 
+annotation page provided by NCB I gene centric database, 
+Entrez Gene. 
+
+Application 
+Our first application was the data set by Kharasch et at. 
+(2006).  These  data  were  collected  for the  purpose  of 
+identifying genes related in nephrotoxicity from haloalkene 
+fluoromethyl-2,2-difluoro-1-(trifluoromethyl)-vinyl ether 
+(FDVE).  They  performed  t-test  to  select  differentially 
+expressed genes according to the significance assigned 
+at p-value<0.05. We applied toxicant enrichment analysis 
+to the 12 DEGs to find out significantly enriched toxicants 
+
+GraPT:  Genomic lntepreter About Predictive Toxicology 
+
+131 
+
+Input page 
+
+yraPTt& 
+
+'ieratioc 
+
+yraPTt~ 
+
+Result page 
+
+r=.=--=- ~-~-_:_~=--~=- ~----=~== -~--~-~-j!i!¥itJ.!Ll!J~~lt_~~--=--=--==-===~=--:-,:=-] 
+
+GeneE>tprmslonPrufilingofNHphrotoxicltylromtheSifYllflurane 
+
+- Entrez Gene 
+
+2e-<l5 
+3e-<l5 
+3e-{)5 
+5e-C6 
+
+,.,_,. 
+
+2114 
+2113 
+2117 
+?/17 
+
+Basic Chemical (toxicant) Information 
+
+Input gene information 
+
+Significant toxicant information 
+
+Fig.  2.  graPT user interface.  Users determine the differentially expressed genes and threshold of scoring test in  the input page. 
+Output  of operation  is  a  list  of toxicants  sorted  by  p-value.  graPT provides  summary information  for  listed  significant toxicants 
+through its internal annotating system. Users are offered with external link for the information of input genes through the NCBI gene 
+centric database,  Entrez Gene. 
+
+-through genomic information. Significance was assigned 
+at a minimum 2 identified nodes among mapped genes per 
+each toxicant and p-value<0.001. Second application was 
+the  data  set  generated  by  Thukral  et a/.  (2005).  They 
+
+selected 9 DEGs with biomarkers of nephrotoxicity and like 
+the preceding we tested the DEGs with graPT. 8 and 10 
+toxicants  each  were  significantly  enriched  with  two 
+experimental data sets (Table 1 ). 
+
+Table 1.  Result of toxicant enrichment analysis using DEGs sets generated by previous studies 
+
+Thukral  eta!. 
+
+DE Gsa 
+
+GAPDH, CFTR2, KIM, RGN, TNF,  HNMT, 
+SPP1  , HSP70 1B, CLU,  SCF21m1, CRFG, 
+Hspa1a 
+
+GST-pi 2,  Slc21a1, Slc22a2, Slc21a7 
+Osteopontin, Kim1, Timp1,  Regucalcin,  C8 
+
+tcdA protein, Clostridium difficile, Carbamates 
+Hyaluronic Acid,  Kainic Acid, sodium arsenite, 
+geldanamycin 
+Antihypertensive Agents,  Hypoglycemic Agents 
+Procainamide, Sulfobromophthalein, estrone sulfate, 
+Quinidine, Cadmium Chloride,  Leukotriene C4, 
+Testosterone 
+Acetaminophen, Taurocholic Acid, Choline 
+
+a Indicates that differentially expressed genes are selected by author's own criterion. 
+b Indicates selected toxicants by two criteria;  hypergeometric p value <0.001  and number of identified nodes>= 2 
+
+132  Genomics &  Informatics  Vol.  4(3) 129-132, September 2006 
+
+Discussion 
+
+The common toxicogenomics microarray analysis generates 
+set of genes stimulated by the experimental chemical. The 
+graPTitself does not perform any statistical test for selecting 
+differentially expressed genes so that the users should select 
+them by their own  statistical  criterion.  There is no unique 
+standard of scoring and selecting genes-set, several kinds of 
+trials are required to produce best result in graPT. 
+
+Thrrugh perforning statistical test based on hypergeometric 
+distribution, this system permits the automatic ranking of all 
+toxicant terms, as well as the evaluation of the significance 
+of their occurrence within the dataset. We applied the data 
+sets  from  previous  nephrotoxicity  related  studies,  and 
+observed that significantly enriched toxicants were partly 
+related to nephrotoxicity. Our result suggests that if high 
+ranked  toxicants  show  relationship  with  experimental 
+chemical based on the genomic information, researcher can 
+predict toxic endpoints of unknown chemicals more effectively. 
+
+Acknowledgements 
+
+This study was supported by a grant from Korea Health 21 
+R&D Project, Ministry of Health and Welfare, Republic of 
+Korea (0412-MI01-0416-0002). J. W. andY. J's research 
+activity  is  partly  supported  by  a  grant from  the  TGRC 
+project,  Korea Food &  Drug Administration,  Republic of 
+Korea. 
+
+Reference 
+
+Afshari.  C.A.,  Nuwaysir,  E.F.,  and  Barrett,  J.C.  (1999). 
+Application of complementary DNA microarray technology 
+to carcinogen identification, toxicology, and drug safety 
+
+evaluation.  Cancer Res.  59, 4750-4760. 
+
+Benjamini,Y.  and  Hochberg,Y.  (1995).  Controlling the false 
+discovery  rate:  a  practical  and  powerful  approach  to 
+multiple testing.  J.  Statist. Soc.  57,  289-300. 
+
+Fielden, M.R. and  Zacharewski, T.R. (2001 ).Challenges and 
+limitation of genen expression profiling in mechanistic and 
+predictive toxicology.  Toxicological Sciences 60,  6-10. 
+Hamadeh, H.K., Amin, R.P., Paules, R.S., and Afshari, C.A. 
+(2002). An overview of toxicogenomics. Curr.  Issues Mol. 
+Bioi.  4,  45-56. 
+
+Kharasch, E.D., Schroeder, J.L., Bammler, T., Beyer, R., and 
+Srinouanprachanh, S.  (2006). Gene Expression Profiling 
+of  Nephrotoxicity  from  the  Sevoflurane  Degradation 
+Product Fluoromethyl-2,2-difluoro-1-(trifluoro-methyl) vinyl 
+Ether ("Compound A") in Rats.  Toxicol.  Sci. 90, 419-431. 
+Laura, S., Lee, E.B., and Eric, B.W. (2004). Toxicogenomics 
+in Predictive Toxicology in Drug Development. Chemistry 
+and Biology 11,  161-171. 
+
+Lettieri, T.  (2006).Recent Applications of DNA Microarray 
+Technology toT oxioology and  Eootoxioololgy. Environmental 
+Health Perspective 114, 4-9. 
+
+Lovett, R.A.  (2000). Toxicogenomics. Toxicogists brace for 
+
+genomics revolution.  Science 289, 536-537. 
+
+Mattingly,  C.J.,  Colby,  G.T.,  Forrest,  J.N.,  and  Boyer,  J.L. 
+(2003).  The  Comparative  Toxicogenomics  Database 
+(CTD). Environ Health Perspect 111, 793-795. 
+
+Storey, J.D. and Tibshirani, R.  (2003). Statistical significance 
+for genome wide studies. Proc. Nat/. Acad. Sci.  USA 100, 
+9440-9445. 
+
+Thukral, S.K., Nardone, P.J., Hu, R., Sullivan, L.,  Galambos, 
+E., Fitzpatrick, V.D., Healy, L., Bass, M.B., Cosenza, M.E., 
+and  Afshari,  C.A.  (2005).  Prediction  of Nephrotoxicant 
+Action  and  Identification of Candidate Toxicity-Related 
+Biomarkers.  Toxicol.  Pathol.  33,  343-355. 
+
+

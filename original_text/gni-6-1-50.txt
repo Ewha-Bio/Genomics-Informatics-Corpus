@@ -1,0 +1,410 @@
+APPLICATION NOTE
+
+Genomics  &  Informatics    Vol.  6(1)  50-53,  March  2008
+
+Refactoring  the  Code  for  Visualizing  Protein  Database 
+Information  in  a  3D  Viewer  for  Software  Reusability
+
+Yoo  Jin  Chun2,  Seong  Il  Ham3,  San  Duk  Yang2, 
+Arang  Rhie2  and  Hyun  Seok  Park1,2*
+
+1Institute  of  Bioinformatics,  Macrogen  Inc.,  Seoul  153- 
+023,  Korea,  2Department  of  Computer  Science,  Ewha 
+Womans  University,  Seoul  120-750,  Korea,  3Department 
+of  Architectural  Engineering,  Yonsei  University,  Seoul, 
+120-749,  Korea
+
+Abstract
+
+We  have  released  five  Java  Application  Programming 
+Interface  (API)  packages  for  viewing  three-dimensional 
+structures  of  proteins  from  the  Protein  Data  Bank.  To 
+this  end,  the  user  interface  of  an  earlier  version  has 
+been  refactored  in  an  object-oriented  fashion,  in  which 
+refactoring  is  the  process  of  changing  a  software  sys-
+tem  to  improve  its  internal  structure,  without  altering  the 
+external  behavior.  Various  GUI  design  and  features  have 
+been  provided  conveniently 
+the  Model- 
+View-Control  (MVC)  model,  which  is  an  architectural 
+pattern  used  in  software  engineering.
+Availability:  The source code and API specification can be 
+downloaded  from  https://sourceforge.net/projects/j3dpsv/.
+
+thanks 
+
+to 
+
+Keywords:  API,  Bioinformatics,  Protein  structure  visual-
+ization,  Refactoring
+
+Introduction
+
+Since  a  protein  structure  had  been  visualized  entirely 
+with  computers  in  the  mid  1970's  (Beem  et al.,  1977), 
+numerous  programs  for  visualizing  3D  protein  structures 
+have  been  described  (Sayle  et al.,  1995;  Humphrey  et 
+al.,  1996;  Bernstein  et al.,  2000;  DeLano  et al.,  2002; 
+Berman et al.,  2002;  Westbrook et al.,  2003;  O'Donog-
+hue  et al.,  2004;  Herraez  et al.,  2006),  and  programs 
+such  as  Jmol  (http://www.jmol.org/),  RasMol  (http://www. 
+umass.edu/microbio/rasmol/),  Cn3D  (http://www.ncbi.nlm. 
+nih.gov/Structure/CN3D/cn3d.shtml/),  SRS3D  (http://www. 
+srs3d.org/),  PyMOL  (http://www.pymol.org/),  UCSF  Chi-
+mera (http://www.cgl.ucsf.edu/chimera/), VMD (http://www. 
+ks.uiuc.edu/Research/vmd/),  YASARA  (http://www.yasar-
+a.org/),  and  BRAGI  (http://bragi.gbf.de/)1  have  been  dis-
+
+*Corresponding  author:  E-mail  neo@ewha.ac.kr
+Tel  +82-2-3277-2831,  Fax  +82-2-3277-2306
+Accepted  3  March  2008
+
+tributed.  However,  as  most  developers  were  targeting 
+end-users  only,  the  readability  of  the  source  code  was 
+generally  poor.
+    We  had  built  a  3D  protein  visualization  module  from 
+scratch  as  part  of  a  large  bioinformatics  project  (Cho et 
+al.,  2007).  However,  the  architecture  of  the  initial  system 
+was  poorly  designed  such  that  people  outside  of  the 
+formal  developer  group  had  a  hard  time  in  under-
+standing,  modifying,  and  even  utilizing  the  module.  To 
+remedy  the  problem,  we  refactored  the  entire  code  in-
+terfaces  of  the  initial  version  recently  to  enhance  soft-
+ware  reusability  and  code  readability.
+    Moreover,  we  decided  to  participate  in  an  open 
+source  project  by  releasing  five  jar  packages  and  the 
+Application  Programming  Interface2  (API)  specification  in 
+Fig.  1  to  the  public  through  the  Sourceforge3  open 
+source  repository.  API  differs  from  an  end  product  in 
+that  it  is  the  source  code  interface  that  a  library  pro-
+vides 
+for  services  by  other 
+programs.  This  dissemination  may  make  it  possible  to 
+save  software  development  time  for  future  developers.
+
+to  support 
+
+requests 
+
+An  Exemplary  GUI  System
+
+Reusable  modules  and  classes  reduce  implementation 
+time  and  increase  the  likelihood  of  eliminating  bugs  and 
+localizing  code  modifications  when  a  change  in  im-
+plementation  is  required.  In  the  initial  version  of  the  in-
+terface,  all  of  the  classes  got  tangled  with  each  other 
+and  corrupted  the  concept  of  object-oriented  program-
+ming.  However,  they  have  been  completely  redesigned, 
+as  shown  in  Table  1.  This  table  summarizes  the  recent 
+modifications  of  our  system,  and  the  interfaces  for  each 
+class  are  documented,  similar  to  Fig.  2.  The  refactored 
+version  is  now  composed  of  3851  lines,  compared  with 
+the  initial  version,  which  was  composed  of  2765  lines  of 
+code. 
+    By  importing  the  five  packages,  an  exemplary  soft-
+ware  system  called  J3dPSV4  1.0,  shown  in  Fig.  3,  has 
+been  developed  for  viewing  3D  structures  of  proteins 
+for  demonstrational 
+from 
+purposes.  J3dPSV  supports  visualization  of  proteins  for 
+educational  purposes  by  simulating  simple  molecular 
+graphics.  In  addition,  J3dPSV  interactively  displays  a 
+molecule  on  the  screen  in  a  variety  of  color  schemes, 
+molecular  representations,  and  animation  features.  The 
+molecular  model  can  be  changed  by  selecting  the  list 
+(cartoon  tubes,  backbone,  protein,  cylinder,  or  line)  in 
+
+the  Protein  Data  Bank5 
+
+Refactoring  the  PDB  Visualization  Code    51
+
+Fig.  1.  Jar  packages:  pdbCon-
+troller  to  get  information  from  PDB 
+files  and  set  basic  variables; 
+pdbToolBar  to  open  files  and  con-
+trol  3D  images;  threeDModel  to 
+draw  and  change  view  types  of 
+3D 
+to 
+handle  events  related  to  3D  im-
+ages;  twoDTable  to  handle  amino 
+acid  sequences
+
+threeDModel.tool 
+
+images; 
+
+Table  1.  Initial  version  vs.  refactored  version
+
+Initial  version
+
+Refactored  version
+
+Classes
+
+Lines
+
+Packages
+
+Classes
+
+Lines
+
+Packages
+
+AtomObject
+HelixObject
+NamedColor
+Protocol
+PDBOpen
+ThreeDModel
+PDBViewer (main)
+
+PickMouse
+TransColorModel
+TransModel
+
+60
+53
+29
+67
+205
+835
+664
+
+311
+430
+111
+
+Total
+
+2,765
+
+pdbviewer
+
+pdbviewer.tool
+
+AtomObject
+HelixObject
+NamedColor
+Protocol
+PDBOpen
+Protein3DVisualization
+StyleBar
+SequenceTable
+PDBViewer (main)
+PDBToolBar
+PickMouse
+TransColorModel
+TransModel
+
+Total  lines  in  jar  files
+
+Lines  out  of  jar  files
+
+60
+53
+33
+53
+205
+1,157
+155
+576
+380
+183
+408
+470
+118
+
+404
+
+pdbController
+
+1,312
+
+threeDModel
+
+576
+380
+183
+996
+
+twoDTable
+(pdbviewer)
+pdbToolBar
+threeDModel.tool
+
+3,471
+
+380
+
+Total
+
+3,851
+
+the  Style  combo  box  (by  importing  threeDModel.jar  in 
+Table  1).  In  addition  to  the  default  color  scheme,  struc-
+tures  can  be  highlighted  either  by  selecting  the  appro-
+priate  amino  acid  properties  or  by  selecting  secondary 
+structure  types  in  the Select  combo  box.  Ligands  or  wa-
+ter  can  be  displayed  or  hidden  by  selecting  the  radio 
+buttons  between  the Style  and  the Select  combo  boxes. 
+A  rotational  animation  of  the  molecule  can  be  played  by 
+clicking  the  play  button  (▶)  on  the  toolbar.
+    In  complex  computer  applications  that  present  a  large 
+
+amount  of  data  to  the  user,  a  developer  often  wishes  to 
+separate  data (model)  and  user  interface (view),  so  that 
+changes  in  the  graphical  user  interface  will  not  affect 
+data  handling.  Indeed,  dividing  the  program's  structural 
+architecture  between model  and view  increases  data  re-
+organization  without  any  change  in  the  user  interface. 
+The  main  class  of  J3dPSV  roughly  corresponds  to  the 
+view  part,  and  the  five  packages  in  the  compressed  jar 
+files  correspond  to  the  model  part  in  the  MVC  archi-
+tecture,  respectively. 
+
+52    Genomics  &  Informatics    Vol.  6(1)  50-53,  March  2008
+
+Fig.  2.  An  exemplary  API  specification  for  Protein3DVisuali-
+zation  class.
+
+Conclusion  &  Future  Direction
+
+implementation 
+
+Bioinformatics  is  the  field  of  science  in  which  biology 
+and  information  technology  merge  into  a  single  dis-
+cipline;  research  in  bioinformatics  includes  method  de-
+velopment  for  storage  and  retrieval  issues  of  data. 
+According  to  National  Institute  of  Mental  Health,  the  de-
+velopment  and  implementation  of  tools  that  enable  effi-
+cient  access  and  management  of  different  types  of  in-
+formation  is  one  of  the  important  sub-disciplines  within 
+bioinformatics,  in  addition  to  the  development  of  new  al-
+gorithms  and  statistics.
+    This  paper  discusses  the 
+issues. 
+Computer  technologies  such  as  Web  Services6  and  re-
+factoring  are  becoming  significant  in  the  field  of  bio-
+informatics  tool  development  to  improve  internal  con-
+sistency  and  clarity.  By  developing  an  exemplary  GUI 
+system,  we  demonstrated  that  our  refactored  packages 
+can  be  efficiently  imported  into  large-scale  bioinfor-
+matics  applications,  for  which  an  integrative  analysis 
+and  visualization  play  a  vital  role.  It  is  noteworthy  that 
+J3dPSV  provides  most  of  the  fundamental  features  of 
+3D  protein  visualization,  with  only  380  additional  lines  of 
+code  after  importing  the  general  purpose  packages.
+    Currently,  our  packages  do  not  provide  a  command 
+language  interface  for  selecting  parts  of  the  molecule  for 
+a  special  display  mode.  For  more  advanced  users,  we 
+plan  to  provide  APIs  of  built-in  command  languages  and 
+structural  prediction.  We  will  constantly  upgrade  our 
+APIs  and  provide  additional  interfaces  with  more  power-
+ful  features.
+
+Acknowledgements
+
+The  PDBOpen.class  in  the  pdbController.jar  package 
+only  works  with  traditional  PDB  files.  Minor  mod-
+ifications  could  be  necessary  to  make  it  compatible  with 
+recent  changes  in  the  PDB  file  format  to  address  incon-
+
+Fig.  3.  Screen  capture  of  J3dPSV:  three  windows  are  dis-
+played:  the  main  3D  graphics  window 
+in  the  middle 
+(importing  threeDModel.jar),  the  sequence  table  below  it 
+(importing  twoDTable.jar),  and  the  menu  form  and  the  tool-
+bar  on  the  top  (importing  pdbToolBar.jar).  The  3D  viewer 
+and  the  multiple  chain  sequence  table  are  connected 
+together.
+
+sistencies  (Henrick  et al,  2008). 
+    This  work  was  partially  supported  by  a  grant  from  the 
+NEXT  program  of  the  Ministry  of  Information  and 
+Communication  of  Korea.  We  would  like  to  thank  Young 
+Joo  Seol,  and  Jang  Ho  Hahn  of  National  Institute  for 
+Agricultural  Biotechnology,  for  various  communications.
+
+1Other  numerous  software  programs  are  also  distributed  through 
+large  Open  Source  software  development  projects,  such  as 
+SOURCEFORGE.NET  (http://sourceforge.  net)  and  Biojava  (http:// 
+www.biojava.org)  consortium,  or  by  releasing  their  software  in  on-
+line  journals  such  as  Source  Code  for  Biology  and  Medicine 
+(http://www.  scfbm.org/  ).
+2An  API  is  the  specific  method  prescribed  by  an  application  pro-
+gram  by  which  a  programmer  writing  an  application  program  can 
+make  requests  of  another  application.
+3A  source  code  repository  and  centralized  location  for  software  de-
+velopers  to  control  and  manage  open  source  software  develop-
+ment.
+4The  sequence  table  of  J3dPSV  is  connected  to  the  3D  viewer. 
+Clicking  a  mouse  button  while  hovering  over  an  appropriate  part 
+of  the  selected  molecule  will  highlight  both  the  3D  image  and  the 
+sequence  of  this  part  of  the  molecule,  and  the  label  above  the 
+sequence  table  will  display  information  about  this  part.  Dragging 
+the  sequence  table  will  bring  a  similar  result.  As  many  PDB  struc-
+tures  consist  of  multiple  subunits,  clicking  the  Chain  ID  table  al-
+lows  individual  chains  in  the  structure  to  be  viewed  or  hidden. 
+5The  Protein  Data  Bank  archive  maintains  the  coordinates  and  re-
+lated  information  for  more  than  47,000  structures,  including  pro-
+teins,  nucleic  acids,  and  large  macromolecular  complexes  that 
+
+Refactoring  the  PDB  Visualization  Code    53
+
+have  been  determined  using  X-ray  crystallography,  NMR,  and 
+electron  microscopy  techniques. 
+6Web  services  are  frequently  just  Web  APIs  that  can  be  accessed 
+over  a  network,  such  as  the  Internet,  and  executed  on  a  remote 
+system  hosting  the  requested  services.
+
+References 
+
+Beem,  K.M.,  Richardson,  D.C.,  and  Rajagopalan,  K.V. 
+(1977).  Metal  sites  of  copper-zinc  superoxide 
+dismutase.  Biochemistry  16,  1930-1936.
+
+Berman,  H.M.,  Battistuz,  T.,  Bhat,  T.N.,  Bluhm,  W.F.,  Bo-
+urne,  P.E.,  Burkhardt,  K.,  Feng,  Z.,  Gilliland,  G.L.,  Iype, 
+L.,  Jain,  S., et al.  (2002).  The  protein  data  bank. Biopoly-
+mers  22,  2577-2637.
+
+Bernstein,  H.J.  (2000).  Recent  changes  to  RasMol,  re-
+combining  the  variants.  Trends Biochem. Sci.  25,  453- 
+455.
+
+Cho,  M.K.,  et al.  (2007).  The  AB05  NIAB  tools  workbench 
+for  building  automatic  biopathway  maps  for  agricultural 
+
+organisms.  G&I.  5,  95-97.
+
+DeLano,  W.L.  (2002).  The  PyMOL  molecular  graphics  sys-
+tem.  DeLano Scientific.  (San  Carlos,  CA,  USA:  DeLano 
+Scientific)
+
+Henrick,  K.  et al.  (2008).  Remediation  of  the  protein  data 
+
+bank  archive.  Nar.  36,  D426-433.
+
+Herra´ez,  A.  (2006).  Biomolecules  in  the  computer:  jmol  to 
+
+the  rescue.  Biochem. Educ.  34,  255-261.
+
+Humphrey,  W.,  Dalke,  A.,  and  Schulten,  K.  (1996).  VMD- 
+
+visual  molecular  dynamics.  J. Mol. Graphics  14,  33-38.
+
+O'Donoghue,  S.I.,  Meyer,  J.E.,  Schafferhans,  A.,  and  Fries, 
+K.  (2004).  The  SRS  3D  module:  integrating  structures,  se-
+quences,  and  features.  Bioinformatics  20,  2476-2478.
+
+Sayle,  R.A.,  and  Milner-White,  E.J.  (1995).  RASMOL:  bio-
+molecular  graphics  for  all. Trends Biochem. Sci.  20,  374- 
+376.
+
+Westbrook,  J.,  Feng,  Z.,  Chen,  L.,  Yang,  H.,  and  Berman, 
+H.M.  (2003).  The  protein  data  bank  and  structural  geno-
+mics.  Nar.  31,  489-491.
+
+

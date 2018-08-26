@@ -1,0 +1,850 @@
+Genomics &  Informatics- Vol.  4(4) 161-166, December 2006 
+
+Prediction Model for the Cellular Immortalization and 
+Transformation Potentials of Cell Substrates 
+
+Min Su Lee\ Clayton A.  Matthews2
+,  Min-Ju Chae2, 
+Jung  Yun  ChoP,  Yeo Won  Sohn3,  Min-Jung  Kim\ 
+Su-Jae Lee4  and Woong-Yang Park2* 
+
+1 Department of Computer Science and  Engineering,  Ewha 
+Wornans  University,  Seoul  120-759,  Korea,  2Human  Genome 
+Research  Institute  and  Department  of  Biochemistry  and 
+Molecular  Biology,  Seoul  National  University  College  of 
+Medidne,  Seoul  110-799,  Korea,  3Biologics  Headquater,  Korea 
+Food  and  Drug  Administration,  Seoul  122-704,  4Laboratory 
+of Radiation  Experimental  Therapeutics,  Korea  Institute  of 
+Radiological  &  Medical  Sciences,  Seoul  139-706,  Korea 
+
+Abstract 
+The  establishment  of DNA  microarray  technology  has 
+enabled high-throughput analysis and molecular profiling 
+of various types of cancers. By using the gene expression 
+data from microarray analysis we are able to investigate 
+diagnostic applications at the molecular level. The most 
+important step in the application of microarray technology 
+to cancer diagnostics is the selection of specific markers 
+from gene expression profiles. In order to select markers 
+of immortalization and transformation we used c-myc and 
+H-rasv12 oncogene-transfected NIH3T3 cells as our model 
+system. We have identified 8751  differentially expressed 
+genes  in  the  immortalization/transformation  model  by 
+multivariate  permutation  F-test  (95%  confidence,  FOR 
+<0.01 ).  Using the support vector machine algorithm, we 
+selected 13 discriminative genes which could be used to 
+predict immortalization  and  transformation  with  perfect 
+accuracy. We assayed H- rasv12-transfected "transformed" 
+cells to validate our irrrmrtalizatim'transfonration dassification 
+system.  The  selected  molecular  markers  generated 
+valuable additional information for tumor diagnosis, prognosis 
+and therapy development. 
+
+Keyvvords:  microarray, NIH3T3, immortalization, transformation, 
+c-myc, H-msv12
+
+, prediction model, SVM 
+
+Introduction 
+Cell  substrates  can  be  used  to  produce  recombinant 
+
+*Corresponding author: E-mail wypark@snu.ac.kr, 
+Tel +82-2-740-8241, Fax +82-2-744-4534 
+Accepted 4 Dec 2006 
+
+vaccines or proteins for therapeutics. Although the number 
+of residual cells, substrates and adventitious materials is 
+usually minimal  in the final  products,  we need to check 
+whether these substances can lead to transformation and 
+tumors in recipients. To check the tumorigenic potential of 
+cell substrates, it is necessary to check the tumorigenicity 
+in vivo using immunocomprimized animal models such as 
+Balb/c-nu  mice.  However,  these  methods  are  time 
+consuming and expensive making it impractical to test cell 
+substrates candidates in this way. By using biomarkers for 
+cellular  transformation  we  can  classify  cell  substrates 
+according to their transforming potentials without the need 
+for costly animal testing. 
+
+Normal diploid cells can divide a limited number of times 
+before entering  into an  irreversible growth  arrest termed 
+replicative senescence (Hayflick, 1965). A small percentage 
+of cells can acquire unlimited proliferation potential, which 
+is a key step in tumorigenesis (Greider, 1999). Telomerase 
+activity has been  reported to be sufficient to immortalize 
+human diploid fibroblasts (Bodnar eta/., 1998), while other 
+studies have shown that the c-myc oncogene fulfils many of 
+the  criteria for a gene  involved  in  the  immortalization  of 
+human epithelial cells (Bouchard eta/., 1998). 
+
+Signaling from the small GTPase, Ras, has been under 
+intense  investigation  over  the  past  decade  due  to  its 
+involvement  in  mediating  the  pathways  that  control 
+transcriptional activation. The pathways include mediators 
+of critical and diverse cellular functions such as proliferation, 
+development,  differentiation,  and  apoptosis (Ayllon and 
+Rebello, 2000). Mutations conferring constitutive activation 
+of Ras occur frequently in many types of human cancers 
+(Bos, 1989). Signaling pathways downstream of Ras have 
+been  fairly well  defined,  and  their contribution  to  Ras(cid:173)
+mediated transformation has been studied extensively. 
+With  the  aim  of  reconstructing  tumorigenesis,  we 
+have  used  mouse  fibroblast  NIH3T3  cells  to  establish 
+models for immortalization and transformation by c-myc 
+and/or H-rasv12
+.  The  gene expression  profiles of these 
+cells  were  analyzed  by  Affymetrix  microarray  to  find 
+differentially expressed genes in each group. Finally, we 
+selected  13  genes  which  could  be  used  to  predict 
+whether the  tested  cells  were  normal,  immortalized  or 
+transformed with one hundred percent accuracy. These 
+genes and algorithm may be useful  in the classification 
+of cell  substrates to  predict their transforming  potential 
+without the need for in vivo tumorigenicity assays. 
+
+162  Genomics &  Informatics  Vol.  4(4) 161-166, December 2006 
+
+Materials and Methods 
+Immortalization and transformation model 
+NIH3T3  mouse  fibroblast  cells  were  maintained  in 
+DMEM  suppl13mented  with  10% FBS  and  antibiotics of 
+penicillin/streptomycin at 37 oc in a humidified incubator 
+with  a  5%  C02  atmosphere.  We  established  stable 
+NIH3T3(c-myc)  cell  lines  by  transfecting  NIH3T3  cells 
+with  pcDNAe-myc  using  Lipofectamine  (Invitrogen, 
+USA) and  selecting stable transfectants with  Geneticin 
+(Invitrogen,  USA).  The  other  cell  lines  like  NIH3T3(H(cid:173)
+rasv12)  and  f\IIH3T3(c-myc+H-rasv12)  were  established 
+the  same  procedure.  The  expressions  of 
+using 
+transgenes was checked by Western blot analysis (data 
+not shown),  and  the in  vitro  and  in  vivo  transformation 
+potential  of cells  was  checked  using  soft  agar assays 
+and  by  tumor  formation  assays  in  Balb/c-nu  mouse, 
+respectively. 
+
+RNA extraction and microarray experiments 
+Total RNAs from cells was extracted using Trizol reagent 
+(Invitrogen Inc., USA) and purified by column chromatography 
+(RNeasy, Qiagen) according to the protocol provided by 
+the  manufactiUrer.  The quality of RNA was checked  by 
+quantifying  260/280  and  260/230  ratios  and  by  gel 
+electrophoresis  (data  not  shown).  Following  ethanol 
+precipitation,  RNA  was  stored  at  -80 oc  after  ethanol 
+precipitation. Labeling and hybridization was performed 
+as described in Affymetrix microarray protocol (Kim eta/., 
+2004 ).  The array used in this experiment was Affymetrix 
+mouse  genome  430  2.0  array  which  includes  39,000 
+transcripts. Many experiments for control, c-myc, H-rasv12, 
+and  c-myc+H-rasv12  microarray  experiment  were 
+quadruplicated producing a total of 16 sets of microarray 
+data. 
+
+Data analysis 
+Fluorescence  intensity  was  processed  and  measured 
+using  GeneChip scanner 3000  and  intensity data was 
+imported to an in-house microarray database. In order to 
+normalize  data  and  remove  systemic  variance,  RMA 
+(Robust Multi--Array Average) normalization was applied 
+to remove systematic variance (Irizarry eta/., 2003). The 
+application of RMA allowed the  raw  intensity values to 
+be  background  corrected,  log2  transformed  and  then 
+quantile  norn1alized.  A  linear  model  was  fitted  to  the 
+normalized data to obtain an  expression  measurement 
+for each probe set on each array. 
+
+To characterize the differences between immortalized 
+and  transformed  cells,  we  identified  genes  that  were 
+differentially E!Xpressed among control,  immortalized (c-
+
+myc), and transformed (c-myc+H-rasv12) Glasses using the 
+multivariate permutation F-test (Simonet a/., 2004; Korn 
+eta/., 2004).The false discovery rate (FDR) was defined 
+as the  proportion  of genes reported  to  be  differentially 
+expressed by our assay that were false positives. We used 
+the  multivariate  permutation  test  to  provide  a  95% 
+confidence level where the false discovery rate (FOR) was 
+less than  1%. 
+
+Gene  ontology  (GO)  (The  Gene  Ontology  Consortium, 
+2000)  groups  of the  selected  genes were  identified.  This 
+GO  analysis  was  performed  to  provide  information 
+regarding  whether the  list  of significant  genes  selected 
+by  the  analysis  was  different to  a  randomly  generated 
+list  selected  from  all  genes  in  a  given  GO  category. 
+This  type  of analysis  is  different from  a simple  annotation 
+of  a  gene  list  using  GO  categories.  The  data  was 
+expressed  as  the  observed  vs.  the  expected  ratio  where 
+the  observed  was  defined  as  the  number of genes  in 
+the  list  of significant genes  which  fell  into  a GO  category. 
+The  expected  was  defined  as  the  average  number of 
+genes  which  would  be  expected  to  fall  into  that  GO 
+category  in  a subset of genes  randomly  selected  from 
+all  genes  in  the  analysis.  A  GO category  consisted  of 
+not  only  the  genes  which  were  described  by  that  GO 
+term,  but  also  any  gene  which  was  described  by  any 
+members  of  that  GO  term. 
+
+We  also  developed  models  to  predict the  class  for 
+samples, where the gene ontology is unknown. Although 
+the  95%  confidence  with  FDR<0.01  was  a  strict 
+constraint,  the  selected  genes  were  too  numerous  to 
+construct  a  prediction  model.  We  pe1iormed  another 
+feature selection step to obtain compact gene sets for an 
+optimal  prediction  model.  Particularly,  we  used  a 
+method  of  gene  selection  utilizing  support  vector 
+methods  (SVM)  (Vapnik,  1998)  based  on  recursive 
+feature  elimination  (RFE)  (Guyon  eta/.,  2002).  Gene 
+selection  with  SVM  based  on  RFE  13liminates  gene 
+redundancy  automatically  and  yields  better and  more 
+compact gene subsets. We also developed a prediction 
+model using the Sequential Minimal Optimization (SMO) 
+algorithm  with  a  logistic  regression  model  and  RBF 
+kernel  (Platt,  1998)  incorporating  the  !~enes that  were 
+selected  by  SVM  based  on  RFE.  W13  estimated  the 
+prediction error of each model using leave-one-out cross 
+-validation  (LOOCV),  which  is  a  special  case  of n-fold 
+cross-validation, where n is the number of samples in the 
+dataset (Tan eta/., 2005). LOOCV has the advantage of 
+utilizing  as  much  data  as  possible  for  training.  In 
+addition, the test sets were mutually exclusive, and they 
+effectively covered the entire dataset. L.OOCV provided 
+a  method  which  maximized  the  data  obtained  from  a 
+small  dataset  and  while  generating  as  accurate  an 
+
+Prediction Model for the Cellular Immortalization and Transformation Potentials of Cell Substrates  163 
+
+controls,  respectively.  Immortalized  cells  could  form  a 
+colony in in vitro tumorigenicity assay, but not tumor mass 
+in in vivo tumorigenicity assay, while NIH3T3(H-rasv12
+)  and 
+NIH3T3(c-myc+H-rasv12
+)  cells could make massive tumor 
+in vivo as well as in vitro. 
+
+Identifying and characterizing differentially 
+expressed genes 
+We identified 8,751  differentially expressed genes from 
+control,  immortalized,  and  transformed  cells  through 
+multivariate permutation F-test with 95% confidence and 
+1% false discovery rate. Upon analysis of the distribution 
+of those genes along the chromosomes, we did not find 
+any  preferential  locus  among  20  chromosomes  of the 
+mouse genome (Fig.  1 ). These results may indicate that 
+the  transcriptional  regulations  of  immortalization  and 
+transformation do not ioverlab. 
+
+To identify the characteristics of the 8, 751  genes, we 
+performed gene ontology analysis based on observed vs. 
+expected 
+ratio.  Our  analysis  showed  statistically 
+overrepresented GO terms within a group of genes (Table 
+2).  Five  categories  of  gene  ontology  were  related  to 
+differentially  expressed  genes  in  the  immortalization/ 
+transformation model. Oxidoreductase activity, especially 
+related to superoxide radicals, was altered in our model. 
+This  is  likely  to  be  important  in  DNA  damage  and 
+mutagenesis.  In addition, the genes identified that have 
+nucleotide  kinase  activity  are  likely  to  be  important  in 
+
+Ill  Entire geneset 
+•  Selected subset 
+
+estimate as possible (Tan eta/., 2005). 
+
+Results and Discussion 
+Models for immortalization and transformation 
+NIH3T3  mouse  fibroblast  cells  can  be  maintained  in 
+monolayer cells,  but it cannot be grown in  soft agar. To 
+establish models for immortalization and transformation, 
+we introduced c-myc and H-rasv12 expression plasmid to 
+NIH3T3 cells and selected stable cell colonies as reported 
+previously (Wiehle et al.,  1990). The tumorigenic potential 
+of  NIH3T3,  NIH3T3{c-myc),  NIH3T3(H-rasv12
+)  and 
+NIH3T3(c-myc+H-rasv12
+)  cells  were  checked  using  the 
+colony formation in soft agar and tumor formation in vivo 
+in Balb/c-nu mice (Table 1 ). We compared the tumorigenicity 
+using  Vera  and  Hela  cells  as  negative  and  positive 
+
+Table 1.  In vitro and in vivo tumorigenicity assay for NIH3T3, 
+NIH3T3(c-myc),  NIH3T3(H-rasV12)  and  NIH3T3(c-myc+H(cid:173)
+rasV12) cells. 
+
+Tumorigenicity 
+in vitro  in vivo 
+
++ 
+
++ 
+
++ 
+++ 
+++ 
+
+++ 
+++ 
+
+Groups 
+
+Species 
+
+Type 
+
+He La 
+Vero 
+NIH3T3 
+NIH3T3(c-myc) 
+NIH3T3(H-RasV12) 
+NIH3T3( c-myc+H-RasV12) 
+
+human  cervix cancer 
+monkey  fibroblast 
+fibroblast 
+mouse 
+fibroblast 
+mouse 
+mouse 
+fibroblast 
+fibroblast 
+mouse 
+
+(f) 
+Q) 
+c: 
+Q) 
+Ol 
+
+-c: 
+
+Q) 
+u 
+05 
+0.. 
+
+~  ~~I 1~111~~~----
+
+II 
+
+12 
+
+IJ 
+
+U. 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+::!1 
+
+10 
+
+21  =  YX 
+
+Fig.  1. Plotting of selected DEGs for immortalization/transformation and spotted genes for their distributions 
+in mouse chromosome. 
+
+Chromosomal location 
+
+Table 2.  Gene ontology analysis on molecular function of immortalization and transformation-related DEGs 
+
+GO classification 
+
+GO No. 
+16721  Oxidoreductase activity, acting on superoxide radicals as an acceptor 
+5173  Stem cell factor receptor binding 
+19201  Nucleotide kinase activity 
+30693  Caspase activity 
+30020  Extracellular matrix structural constituent conferring tensile strength 
+
+Observed in 
+
+selected subset 
+
+Expected in 
+
+selected subset 
+
+Observed 
+/Expected 
+
+7 
+12 
+20 
+13 
+29 
+
+2.47 
+4.26 
+7.85 
+5.16 
+11.88 
+
+2.84 
+2.82 
+2.55 
+2.52 
+2.44 
+
+164  Genomics &.Informatics  Vol. 4(4) 161-166, December 2006 
+
+0.0  .-I-c:r~O 
+
+1.0 
+
+-LO 
+
+,---, 
+c 
+0 
+:;:::; 
+ro 
+> 
+:;:::; 
+u 
+<( 
+"0  -2.0 
+0 
+~ -3.0 
+N 
+0'1 
+0 
+_J 
+
+-4.0 
+
+Thbsl 
+
+'---!0---
+
+Duspl 
+
+' I  0 ~~D 
+
++ 
+
+0.4 
+
+,---, 
+c 
+0 
+:;:::; 
+ro  0.0 
+> 
+:;:::; 
+;}_  -0.4 
+
+"0 
+~ -o.s 
+'--' 
+N 
+0'1  -1.2 
+0 
+_J 
+
+-1.6 
+
+-5.0 
+
+LO 
+
+0.5 
+
+,---,  LS 
+c 
+0 
+:;:::; 
+ro 
+> 
+:;:::; 
+u 
+<( 
+"0  0.0 
+0 
+LL 
+'--' 
+N 
+0'1 
+0 
+_J 
+
+-o.s 
+
+-1.0 
+
+-LS 
+
+G:>ntrol 
+
+Myc 
+
+Ras  Myc+Ras 
+
+G:>ntrol 
+
+Myc 
+
+Ras  Myc+Ras 
+
+Gadd45a 
+
+Min a 
+
+rl-rr-+ 
+
+r-r~~~ 
+
+,---,  2.0 
+c 
+0 
+:;:::;  1.6 
+ro 
+> 
+.....  1.2 
+u 
+<( 
+"0  0.8 
+0 
+LL  0.4 
+'--' 
+N 
+0'1  0.0 
+0 
+_J 
+
+-0.4 
+
+G:>ntrol 
+
+Myc 
+
+Ras  Myc+Ras 
+
+G:>ntrol 
+
+Myc 
+
+Ras  Myc+Ras 
+
+Fig. 2.  Expression profiles of known  c-myctarget genes like Thbs1  (thrombospondin1),  Dusp1  (dual specificity phosphatase 1), 
+Gadd45a (growth arrest and DNA-damage-inducible 45 alpha) and Mina (mycinducible antigen) 
+
+aberrant  DNA  synthesis  and  metabolism  predisposing 
+cells  to  transformation.  One  of  the  most  interesting 
+categories  deleted  involved  stem  cell  factor  receptor 
+binding which  may be  representative of cancer cell  de(cid:173)
+differentiation in our model. 
+
+We have picked several genes out of the DEG lists to 
+explain the effects of each oncogenes.  In particular,  we 
+tested four gmes, which have been reported to be targets 
+of c-myc transcriptional regulation. All of these genes were 
+up- or down-r-egulated by the expression of c-myc (Fig. 2), 
+however, the expression of all four genes was also affected 
+by the ectopic expression of H-rasv12
+. In the cases of Mina 
+and  Dusp1,  H-rasv12  induced  the  expression  of target 
+genes  at the  level  of c-myc-dependent  regulation.  The 
+induction  of Thbs1  by  H-ras v12  was  higher  than  that 
+observed for c-myc.  More interestingly, the transcription 
+of Gadd45a has been shown to be suppressed by c-myc, 
+while  H-ras v12  could  up-regulate  Gadd45a expression. 
+The  effect  of H-ras v12  was  sufficient  to  overcome  the 
+suppression by c-myc and up-regulate the expression of 
+Gadd45a  in  cells  expressing  both  c-myc and  H-ras v12
+. 
+Although we picked only four genes from the DEG list, the 
+information on gene expression revealed many interesting 
+
+regulatory relationships between diffemnt oncogenes. 
+
+Constructing prediction model 
+To obtain small sets of discriminative genes, we performed 
+an additional feature subset selection process using linear 
+SVM based on RFE and discovered 13 informative genes 
+(Table 3).  We constructed a prediction  model using the 
+SMO algorithm with a logistic regression model and the 
+radial basis function (RBF)-kemel. The performance of the 
+prediction model was assessed using LOOCV and was 
+found  to  be one hundred  percent accurate for the data 
+analyzed.  We also validated our prediction model using 
+microarray data from four H-ras-transfected transformed 
+cell lines and they were correctly dassified as a transformed 
+class. 
+
+In order to visualize selected biomark1ars, we performed 
+hierarchical clustering of 13 gene with average linkage and 
+Manhattan  distance  measures  for  a  total  16  sets  of 
+microarray data (Fig. 3). The heat map illustrated that data 
+from H-rasv12-transfected transformed cell ~H-rasv12) data 
+were closely clustered with c-myc+H-rasv  2  calss. 
+
+We  have  created  composite  profiles  for  an  in  vitro 
+immortalization  and  transformation  model,  which  was 
+
+Prediction Model for the Cellular Immortalization and Transformation Potentials of Cell Substrates  165 
+
+Table 3.  List of 13 biomarker genes selected for the prediction model 
+
+Gene Symbol 
+
+Gene Name 
+
+GeneBank No: 
+
+Pxn 
+B4galt7 
+Glul 
+Fert2 
+Mapre2 
+Cth 
+lfi27 
+Bmp1 
+Maged2 
+Stk24 
+Ugt1a 
+AI cam 
+Chmp4b 
+
+paxillin 
+xylosylprotein beta1 ,4-galactosyltransferase,  polypeptide 7 
+glutamate-ammonia ligase (glutamine synthase) 
+fer (fms/fps related) protein kinase, testis specific 2 
+microtubule-associated protein,  RP/EB family, member 2 
+cystathionase (cystathionine gamma-lyase) 
+interferon, alpha-inducible protein 27 
+bone morphogenetic protein 1 
+melanoma antigen family D,  2 
+serine/threonine kinase 24 (STE20 homolog, yeast) 
+UDP-glucuronosyltransferase 1A 
+activated leukocyte cell adhesion molecule 
+chromatin modifying protein 4B 
+
+AF293883 
+BC027195 
+A1391218 
+AF286537 
+BC027056 
+BC019483 
+AY090098 
+L24755 
+AF319976 
+BG060677 
+087867 
+U95030 
+BC011429 
+
+I 
+
+r-b: = 
+
+(") 
+
+....  N 
+"<I 
+"<I 
+!l. 
+0  0  0  0 
+~  ~  ~  ~ 
+I 
+0 
+0 
+u  u  u  u  u  u  u  u 
+
+....  N 
+.... 
+g, 
+!l. 
+Ill 
+Ill 
+~  ~  ~  ~  0::: 
+I 
+I 
+I 
+
+!l. 
+I 
+
+(") 
+
+"<I  N 
+Ill 
+Ill 
+ro 
+Ill 
+0::: 
+0::: 
+I 
+I 
+
+(") 
+Ill 
+Ill 
+0::: 
+I 
+J:  J:  J:  J: 
+
+0 
+
+0 
+
+~ ....  N 
+
+"<I 
+
+(") 
+
+g,  g,  g,  g, 
+~  ~  ~  ~ 
+I 
+I 
+u  u  u  u 
+I 
+I 
+Ill 
+Ill 
+Ill 
+Ill 
+0::: 
+0::: 
+I 
+I 
+J:  J:  J:  J: 
+
+I 
+I 
+Ill 
+ro 
+0::: 
+I 
+
+I 
+I 
+Ill 
+ro 
+0::: 
+I 
+
+0.0 
+Fig. 3.  Hierarchical clustering of NIH3T3, NIH3T3(c-myc), NIH3T3(H-rasv12
+genes. 
+
+9.96 
+
+) and NIH3T3(c-myctH-rasv12
+
+)  cells using 17 biomarker 
+
+confirmed  by in  vivo tumorigenecity assays.  Using the 
+multivariate  permutation  F-test  (95%  confidence,  FOR 
+<0.01 ), we found 8, 751  differentially expressed genes for 
+our  immortalization/transformation  model. 
+transfected "immortalized" cells, we fourid signatures of 
+known immortalization markers related to telomere and 
+transforming growth factor signaling. A comparison of the 
+known targets for c-myc revealed  that many were also 
+
+In  c-myc(cid:173)
+
+regulated by H-rasv12
+.  In the case of Gadd45a, c-myc alone 
+could suppress its expression while the co-expression of 
+H-rasv12 caused a reversal of this suppression. To enhance 
+the power of analysis of this sysem, more profiles on cell 
+lines and cancer tissues need to be divulged. Based on 
+the wrapper approach w~ were able to select 13 genes to 
+establish  a  prediction  model  for  immortalization  and 
+transformation, which gave perfect accuracy in calssifying 
+
+166  Genomics & Informatics  Vol. 4(4) 161-166, December 2006 
+
+H-rasv12-transfected cells as a transformed class. 
+
+Acknowledgements 
+
+This  work  was  supported  by  research  grant  to  W.-Y. 
+Park from Korea Food and Drug Administration (0694G-
+034, KFDA2006-7100). 
+
+Referenc:es 
+Ayllon,  V.  and  Rebollo,  A.  (2000).  Ras-induced  cellular 
+
+events. Mol Membr Bioi.  17, 65-73. 
+
+Bodnar,  A.G.,  Ouellette,  M.,  Frolkis,  M.,  Holt,  S.E.,  Chiu, 
+C.P., Morin, G.B., Harley, C.B., Shay, J.W., Lichtsteiner, 
+S.,  and  Wright,  W.E.  (1998).  Extension  of life-span  by 
+introduction  of  telomerase  into  normal  human  cells. 
+Science 279,  349-352. 
+
+Bos, J.L. (1989). Ras oncogenes in human cancer.  Cancer 
+
+Res.  49, 4682-4689. 
+
+Bouchard,  C.,  Staller,  P.,  and  Eilers,  M.  (1998).  Control  of 
+
+cell  proliferation by Myc.  Trends Cell Bioi.  8,  202-206. 
+Greider,  C.W.  (1999).  Telomerase activation.  One step on 
+
+the road to cancer? Trends Genet.  15,  109-112. 
+
+Guyon,  1.,  Weston,  J.,  Barnhill,  S.,  and Vapnik,  V.  (2002). 
+Gene  selection  for cancer classification  using  support 
+vector machines.  Machine Learning 46,  389-422. 
+
+Hayflick,  L.  (1965).  The  limited  in  vitro  lifetime  of human 
+
+diploid cell strains. Exp Cell Res.  37,  614-636. 
+
+Irizarry,  R.A.,  Hobbs,  B.,  Collin,  F.,  Beazer-Barclay,  Y.D., 
+Antonellis,  K.J.,  Scherf,  U.,  and  Speed,  T.P.  (2003). 
+
+Exploration, normalization, and summaries of high density 
+oligonucleotide array probe level data. Biostatistics 4, 249-
+264 
+
+Kim, J.H., Ha, I.S., Hwang, C.l., Lee, Y.J., Kim, J., Yang, S.H., 
+Kim,  Y.S.,  Cao,  Y.A.,  Choi,  S.,  and  Park,  W.Y.  (2004). 
+Gene expression profiling of anti-GBM glomerulonephritis 
+model: the role of NF-kappaB in immune complex kidney 
+disease. Kidney Int.  66,  1826-1837. 
+
+Korn,  E.L.,  Troendle,  J.F.,  McShane,  L.M.,  Simon,  R. 
+(2004)  Controlling  the  number  of  false  discoveries: 
+Application  to  high-dimensional  genomic  data.  J  Stat 
+Plan Int.  124, 379-398. 
+
+Platt,  J.  (1998).  Fast  training  of support vector  machines 
+using  sequential  minimal  optimization,  advances  in 
+kernel  methods - Support Vector Learning.  MIT Press, 
+Boston,  MA. 
+
+Simon,  R.,  Korn,  E.,  McShane,  L.,  Radmacher, M., Wright, 
+G.,  Zhao,  Y.  (2004).  Design  and  Analysis  of  DNA 
+Microarray Investigations. Springer-Verlag New York, NY 
+Tan, P.N., Stenbach, M., and Kumar, V. (:2005). Introduction 
+
+to data mining, Addison Wesley,  New York,  NY. 
+
+The  Gene  Ontology  Consortium.  (2000).  Gene  Ontology: 
+Tool for the unification of biology.  Nat.  Genetics 25,  25-
+29. 
+
+Vapnik,  V.N.  (1998).  Statistical  Learning  Theory.  Wiley, 
+
+New York,  NY. 
+
+Wiehle,  RD., Helftenbein, G.,  Land,  H.,  Neumann,  K.,  and 
+Beato,  M.  (1990).  Establishment of rat endometrial cell 
+lines by retroviral mediated transfer of immortalizing and 
+transforming oncogenes.  Oncogene 5,  787-794. 
+
+

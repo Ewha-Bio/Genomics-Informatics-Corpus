@@ -1,0 +1,1237 @@
+Genomics & Informatics  Vol.  3(3) 53-62,  September 2005 
+
+Prediction of Mammalian MicroRNA Targets- Comparative 
+Genomics Approach with Longer a·  UTR Databases 
+
+Seungyoon  Nam1•2,  Young-Kook  KimJ,  Pora  Kim\ 
+V. Narry KimJ, Seokmin Shin2, and Sanghyuk Lee\* 
+
+1Division  of  Molecular  Life  Sciences,  Ewha  Womans 
+University,  Seoul  120-750,  Korea 
+21nterdisciplinary  Program  in  Bioinformatics,  Seoul  National 
+University,  Seoul  151-747,  Korea 
+31nstitute  of  Molecular  Biology  and  Genetics  and  School 
+of  Biological  Science,  Seoul  National  University,  Seoul 
+151-742,  Korea 
+
+Abstract 
+MicroRNAs  play  an  important  role  in  regulating  gene 
+expression, but their target identification is a difficult task 
+due to their short length and imperfect complementarity. 
+Burge  and  coworkers  developed  a  program  called 
+TargetScan that allowed imperfect complementarity and 
+established  a  procedure  favoring  targets  with  multiple 
+binding  sites  conserved  in  multiple  organisms.  We 
+improved their algorithm in two major aspects - (i)  using 
+well-defined  UTR  (untranslated  region)  database,  (ii) 
+examining the extent of conservation  inside the 3'  UTR 
+specifically. Average length in our UTR database, based 
+on  the  ECgene  annotation,  is  more  than  twice  longer 
+than  the  Ensembl.  Then,  TargetScan  was  used  to 
+identify putative binding sites. The extent of conservation 
+varies significantly inside the 3' UTR. We used the "tight" 
+tracks  in  the  UCSC  genome  browser  to  select  the 
+in  multiple  species.  By 
+conserved  binding  sites 
+combining  the  longer  3'  UTR  data,  TargetScan,  and 
+tightly conserved blocks of genomic DNA, we identified 
+107  putative  target  genes  with  multiple  binding  sites 
+conserved  in  multiple  species,  of  which  85  putative 
+targets are novel. 
+
+Keywords: microRNA, microRNA target,  UTR database, 
+comparative genomics 
+
+Introduction 
+MicroRNAs are small non-coding RNAs (typically 21-23 
+
+*Corresponding author:  Email sanghyuk@ewha.ac.kr, 
+Tel  +82-2-3277-2888,  Fax +82-2-3277-2384 
+Accepted 6 August 2005 
+
+nucleotides)  that  play  an  important  role  in  regulating 
+post-transcriptional  translation.  They  bind  to  the target 
+mRNA  by  RNA  base  pairing,  which  causes  target 
+cleavage  or  translational  repression  according  to  the 
+extent of complementarity. Lin-4 discovered in C. elegans, 
+was the first microRNA (Lee et at., 1993; Wightman et at., 
+1993).  It  has multiple complementary sites in  3'  UTR of 
+lin-14. Binding of lin-4 to lin-14leads to transition between 
+larval  stages,  which  suggested  microRNA's  role  in 
+developmental control. To date, several hundred microRNAs 
+have  been  identified  from  various  organisms  and  their 
+sequences  are  available  at  the  Rfam  miRNA  registry 
+website (http://www.sanger.ac.uk/Software/Rfam) (Ambros 
+eta/., 2003a; Griffiths-Janes, 2004). 
+
+MicroRNAs have various  regulatory roles other than 
+controlling developmental timing.  For example,  bantam 
+promotes cell  proliferation  (Abrahante  et at.,  2003) and 
+Drosophila mi R-14 coordinates multiple cellular responses 
+to  stress  (Xu  et at.,  2003).  Recent  study  reports  that 
+human  miR-15  and  miR-16  are  located  in  a  region 
+frequently deleted in chronic lymphocytic leukemia, which 
+means that microRNAs may be tumor suppressors (Cal in 
+eta/., 2002). Functions of microRNAs are closely related 
+to their target gene. 
+
+There are not many microRNAs with known targets in 
+animal. Targets of lin-4, let-7, bantam, and hsa-miR-196 
+are  experimentally  verified  (Abrahante  et  at.,  2003; 
+Brennecke  et at.,  2003;  Lin  et at.,  2003;  Olsen  et at., 
+1999;  Seggerson  et  at.,  2002;  Yekta  et  at.,  2004). 
+Recently  we  have  seen  many  attempts  to  identify 
+microRNA targets computationally in plants and animals. 
+While simple homology search  performs  well  for target 
+search in plants since they usually require almost perfect 
+complementarity  (Ambros  et  a/.,  2003b;  Bartel  et  at., 
+2003),  target  prediction  in  animal  (Enright  et at.,  2003; 
+Kiriakidou  et at.,  2004;  Lewis  et at.,  2003;  Rajewsky  et 
+at.,  2004;  Rhoades  et at.,  2002;  Stark  et at.,  2003)  is 
+much more difficult because of the absence of extensive 
+complementarity  between  mammalian  microRNAs  and 
+their targets (Doench et at., 2003; Lee et at.,  1993; Moss 
+et at.,  1997;  Olsen  et at.,  1999;  Reinhart  et at.,  2000; 
+Wightman et at.,  1993; Zeng et at., 2002). It is found that 
+the  5'  core  element  of  microRNA  should  be  nearly 
+perfectly  complementary  to  the  target  even  though 
+partial  complementarity  between  microRNA  and  its 
+target is allowed in animal. It implies that the residue 2-8 
+
+54  Genomics & Informatics  Vol. 3(3) 53-62, September 2005 
+
+in  the  microRNA  is  an  important  factor  in  recognizing 
+target  sites,  and  this  microRNA  seed  is  conserved  in 
+invertebrates and  in  the  homologous  metazoan  region 
+(Lewis eta/., 2003; Lim et at., 2003). 
+
+indels to make longer conserved blocks whose average 
+block size is 600 bp for human-mouse comparison. The 
+data was downloaded from the UCSC ftp site (ftp://genorne. 
+ucsc.edu/goldenPath/hg16). 
+
+from 
+
+regions 
+
+Recently,  Lewis  et  a/.  developed  a  robust  target 
+prediction program, TargetScan, which utilizes the seed 
+match  and  multiple  binding  sites  conserved  among 
+different species (Lewis  et at.,  2003).  They extracted 3' 
+UTR 
+the  Ensembl  gene  models 
+(http://www.ensembl.org)  and  extended  the  annotated 
+UTRs  by  2kb  to  compensate  for  insufficient  UTR 
+annotation in the rat genome. TargetScan predicted 451 
+putative mammalian microRNA targets,  and they found 
+experimental support for  11  targets out of  15 predicted 
+targets using the luciferase reporter assay. 
+
+However,  when  we examined the predicted  binding 
+sites in those 15 target genes, we found that approximately 
+25 % of those binding sites were not conserved in other 
+species.  Furthermore, 3' UTR region of many genes are 
+longer than 2 kbp. We present a protocol that improves the 
+TargetScan  algorithm  by  constructing  a  better  UTR 
+database and  by examining the extent of conservation 
+inside the 3' UTR specifically. 
+
+Materials and Methods 
+Data preparation 
+ll/laoRNA c:Jatamse: The Rfam database (http:/ /vwwv.sanger. 
+ac.uk/Software/Rfaml) was used as a source of microRNA 
+gene  database  (Ambros  et at.,  2003a;  Griffiths-Janes, 
+2004). The Rfam release 3.0 was downloaded, and 152 
+mature microRNAs from human were selected for target 
+identification.  Most microRNAs are  identical  in  human, 
+mouse, and rat. 
+
+3'Limditab9se:ECgeneversion 1.1  (hg16, mm4, rn3for 
+human,  mouse,  rat,  respectively at UCSC) was used to 
+extract the  3'  UTR  regions  of  human,  mouse,  and  rat 
+genomes.  ECgene  (Kim  et at.,  2004;  Kim  et at.,  2005) 
+builds gene models taking alternative splicing into consid(cid:173)
+eration, and the redundant 3' UTRs from splice variants 
+were  removed  from  the  dataset  to  build  the  non-re(cid:173)
+dundant 3' UTR database. The non-redundant human 3' 
+UTR data in the UTRdb (Pesole eta/., 2002) Release 17 
+is available at http://bighost.area.ba.cnr.it/BIG/UTRHome. 
+Ccnparative genonics data: Among several comparative 
+genomics tracks available in the UCSC genome site, we 
+chose the ''tight" track of the conserved blocks since they 
+were filtered with most stringent conditions. The average 
+block size is approximately 200 bp both for human-mouse 
+and human-rat genomes. The "net" track ignores small 
+
+MicroRNA target scan 
+TargetScan program available at http://genes.mit.edu/ 
+targetscan was used to find the microRNAs targets. We 
+applied the TargetScan program for all microRNAs using 
+our  own  UTR  datasets  from  the  ECgene  for  human, 
+mouse, and rat genomes. We used the default parameters 
+for TargetScan.  Initially,  TargetScan  searches for com(cid:173)
+plementary  matches  (so  called  the  "seed  match")  for 
+bases 2-8 of the microRNA (numbered from the 5' end). 
+The  complementary  seeds  are  extended 
+in  both 
+directions,  and the remaining 3'  portion of microRNA is 
+optimally aligned within 35 bases flanking the target UTR 
+seed.  When 
+the  distance  between  adjacent  seed 
+matches  is  less  than  20  bases,  the  downstream  seed 
+match is discarded as in the original TargetScan paper. 
+
+Conservation of target sites in multiple genomes 
+To use the comparative genomics information available 
+at the UCSC genome center, the target positions within 
+the  UTR  sequence  were  converted  into  the  genomic 
+coordinates.  The  gene  structure  should  be taken  into 
+consideration since the  UTR region  may contain  intron 
+sequences.  Determining conserved target sites is not a 
+trivial task since there are so many putative target sites 
+from the TargetScan and so many conserved blocks in 
+the  "tight"  tracks.  In  an  effort to  reduce  the  number of 
+comparisons,  the binning scheme was implemented as 
+described 
+the  UCSC  genome  browser  paper 
+(Karolchik et at.,  2003;  Kent et at.,  2002). 
+
+in 
+
+Target genes with multiple binding sites 
+Target  genes  with  multiple  binding  sites  are  usually 
+preferred. Lewis eta/. implemented this idea as the Z score 
+that sums contribution of multiple binding sites using the 
+binding energies obtained from Vienna RNA package. In 
+this  study,  filtering target sites  using tight conservation 
+criterion  left manageable number of target sites.  So we 
+constructed a  database containing all  conserved target 
+sites. A simple database query can extract target genes 
+with multiple binding sites if necessary. 
+
+Result 
+Importance of cross-species conservation 
+Conservation of microRNA and target sequences among 
+
+Prediction of Mammalian MicroRNA Targets- Comparative Genomics Approach with Longer 3'  UTR Databases  55 
+
+difference species is an important clue for their functional 
+importance.  Homology by amino acid comparison is not 
+enough to identify microRNA target sites since we need 
+the conservation  in  the 3'  UTR,  not in  the CDS  (coding 
+sequence)  region.  The whole 3'  UTR is  not necessarily 
+conserved in other species. We examined the conservation 
+for 40 predicted binding sites in 14 target genes used in the 
+luciferase  reporter  assay  by  Lewis  et  at.  Using  the 
+PhyloHMM  score  (Siepel  et at.,  2004a;  Siepel  et at., 
+2004b) available at the UCSC genome browser, we found 
+that only 30 binding sites had average score over 0.5. This 
+demonstrates that the extent of conservation should be 
+specifically examined for each binding sites in the UTR, 
+and  the  comparative  genomics  approach  is  a  viable 
+method to confirm whether each binding site is conserved 
+in multiple species. 
+
+We also performed a simulation test on the selection ratio 
+achieved by adopting this cross-species conservation. We 
+selected  a  random  test  set of 56  microRNAs  from  152 
+microRNAs in the Rfam.  A shuffled set was prepared by 
+randomly permuting the microRNA sequences with their 
+nucleotide  composition  unchanged.  Then  we  ran  the 
+TargetScan  to  identify the binding  sites  using the set of 
+longest  UTR for  each  ECgene cluster  (refer to  the  next 
+section). Transcripts with multiple binding sites were 36491 
+and 20615 for the test set and the shuffled set, respectively. 
+Therefore, selection ratio by multiple binding sites is 1.77:1. 
+Examining conservation of the predicted site with PhyloHMM 
+score over 0.9 resulted in 396 and 158 target transcripts for 
+the two sets. This implies that the selection ratio by multiple 
+binding sites and cross-species conservation is 2.51:1. 
+
+Construction of UTR databases 
+
+Proper  3'  UTR  database  is  necessary  for  microRNA 
+target  identification.  Lewis  et  at.  used  the  Ensembl 
+database.  Ensembl  Human  v20.34c.1  includes  22287 
+human  genes,  16203  of  those  with  annotated  3'  UTR 
+region. 6084 genes do not have 3'  UTR region and UTR 
+region  is  not  long  enough  even  for  those  annotated 
+genes. To alleviate this problem,  Lewis  et at.  extended 
+the annotated 3'  UTR region by 2 kbp arbitrarily in their 
+TargetScan  calculation.  Even  though  this  approach 
+recovers  UTR  regions  for  many  genes,  it  certainly 
+introduces false target sites in the intergenic region. 
+
+for  gene  variants 
+
+We  used  the  ECgene  annotation  that  has  several 
+merits  over  other  gene  predictions.  First,  it  includes 
+extensive  gene  modeling 
+from 
+alternative  splicing.  So  UTR  variation  from  alternative 
+splicing or poly A can be naturally taken into consideration. 
+Second, the 3' UTR region in the ECgene is highly reliable 
+since it is based on EST clustering that includes ample 3' 
+EST sequences. Furthermore, the 3' UTRs are substantially 
+longer  since  they  are  extended  by  overlapping  EST 
+sequences aligned in the same orientation. 
+
+In  Fig.  1, we compare the length distribution of the 3' 
+UTR  databases  from  the  Ensembl  and  ECgene.  We 
+extracted 24956 transcripts with 3' UTRs in the Ensembl 
+human using the EnsMart system (Kasprzyk et at., 2004) 
+and  identified corresponding 16201  ECgene transcripts 
+by cross-referencing with RefSeq I D.  More than 40% of 
+the  Ensembl transcripts have 3'  UTRs shorter than 300 
+bp while only about 24% of the ECgene transcripts have 
+less than 300 bp 3'  UTRs. The average 3'  UTR lengths 
+are 549 and 1137 bp for the Ensembl and the ECgene, 
+respectively.  ECgene's  UTR  length  is  almost  twice 
+longer than corresponding Ensembl genes on average. It 
+is also noteworthy that 27 45 ECgene transcripts have 3' 
+UTR region longer than 2 kbp and that 3'  UTR region of 
+
+!:D 
+
+40 
+
+Q) 
+OJ 
+(lj  20 
+...... c 
+Q) 
+u 
+Q:i 
+CL 
+
+3:J 
+
+10 
+
+0 
+
+11 Ensembl 
+11 ECgene 
+
+13J0-
+1!:DO 
+
+1g)}-
+10CJJ 
+
+10CJJ-
+2100 
+
+210J-
+24CO 
+
+2400-
+2700 
+
+270)-
+2000 
+
+UTR I ength  (bp) 
+
+Fig.  1.  UTR length distribution of the Ensembl and ECgene. 
+
+56  Genomics & Informatics  Vol.  3(3) 53-62, September 2005 
+
+152 mature human  miRNAs 
+
+l 
+
+176999 mouse 3'UTR 
+
+269702 human  3'UTR 
+
+934 796 miRNA  : target pairs 
+
+1123986 miRNA  : target pairs 
+
+65066 
+207200 miRt 
+
+1 
+
+Human vs mouse comparison 
+
+-28000 miRNA:target pairs conserved 
+
+Human  vs rat comp 
+-13000 miRNA:target pai 
+
+Human vs mouse vs rat comparison 
+-8000 miRNA:target pairs conserved 
+
+Fig.  2.  Schematic diagram for identification of targets conserved in mammals. 
+
+1116 transcripts  is  longer than  3  kbp.  Extending  UTR 
+region by 2 kbp in the original TargetScan work may not 
+be effective for those genes. Similar comparison with the 
+manually  curated  UTRdb  (Pesole  et at.,  2002}  shows 
+that ECgene's UTR length is longer than UTRdb by 16%. 
+Therefore, we believe that our 3' UTR dataset should be 
+ideal to find any charactristic features within the 3'  UTR 
+such as microRNA target sites. 
+
+Algorithmic overview 
+Brief overview of our strategy is summarized in Fig. 2. All 
+human microRNAs were downloaded from the Rfam site 
+(http://www.sanger.ac.uk/Software/Rfam/).  Database  of 
+3' UTR sequences were constructed from all ECgene (Kim 
+et at.,  2004;  Kim et at.,  2005) transcripts with annotated 
+coding sequences. ECgene contained 269,702 distinctive 
+3' UTR regions for the human transcriptome. Target genes 
+of  each  miRNA  were  predicted  using  the  TargetScan 
+program for our own 3' UTR datasets for human, mouse 
+and rat.  We found  1,123,986 putative target sites in the 
+human  3'  UTR  data.  UTR  regions  in  mouse  and  rat 
+genomes contained  934,796  and  207,200 target  sites, 
+respectively. 
+
+Comparative genomics data available at the UCSC ge-
+
+nome center were used to find conserved target sites in 
+three organisms. We used the "tighf' track (tight subset of 
+the best alignments obtained by BLASTZ) (Schwartz et at., 
+2003),  which  satisfied  the  most  stringent  requirements. 
+Applying  the  conservation  criterion  greatly  reduced  the 
+number of target sites. We found -28,000 target sites con(cid:173)
+served between the human and mouse genomes, which 
+was only 0.7% of miRNA:human target sites (1, 123,986) found 
+by  TargetScan.  Approximately  13,000  conserved  target 
+sites were found for the human and rat genomes. Combining 
+two pair-wise comparisons gave -8,000 target sites con(cid:173)
+served in the human, mouse, and rat genomes. Selecting 
+target genes with multiple (:::C:2) conserved binding sites for 
+a specific microRNA, we found 107 target genes. 
+
+To  compare  our  result  with  the  original  TargetScan 
+work by Lewis et at., we downloaded all target genes and 
+the  binding  sites  from  the  TargetScan  website.  They 
+published 442 target genes with multiple (:::C:2) conserved 
+binding sites, which were considerably larger than our 107 
+target genes.  We shall  refer to their result as "Ensembl 
+targets" since they used the Ensembl gene annotation. 
+
+Candidate target genes 
+Our  result  is  substantially  different  from  the  Ensembl 
+
+Prediction of Mammalian MicroRNA Targets- Comparative Genomics Approach with Longer 3' UTR Databases  57 
+
+targets.  Only  22  out  of  1 07  genes  are  found  by  both 
+methods.  Table  1  is  the  list  of  those  common  target 
+genes from the two studies. It shows that 15 of 22 genes 
+are targets of the same or similar microRNAs.  Detailed 
+examination,  however,  reveals  that  many  genes  are 
+targets  of  different microRNAs even  for those common 
+
+target  genes.  The  difference  is  clearer  in  Table  2 that 
+shows the target genes found by the two methods for 1 0 
+important  microRNAs.  Complete  list  is  provided  as  a 
+supplementary material. We do not find  many common 
+target  genes  (shown  in  bold  character),  and  describe 
+factors for the difference below. 
+
+Table 1.  Comparison of microRNAs targeting the same gene obtained by two methods. 
+
+Gene Symbol 
+
+ECgene ID 
+
+targeting  ECgene gene 
+
+targeting  Ensembl gene 
+
+ZNF238 
+ZFHX1B 
+
+EPC2 
+ACVR1 
+
+RQCD1 
+
+CYP26B1 
+NAP1L5 
+
+PCDHA1 
+
+HOXAS 
+
+ZHX1 
+
+H1C27918 
+H2C14704 
+H2C14989 
+H2C15670 
+
+H2C22107 
+
+H2C7878 
+H4C7703 
+
+H5C12441 
+
+H7C2920 
+
+H8C10857 
+
+FLJ20366 
+
+H8C9935 
+
+SURF4 
+
+H9C12513 
+
+PTK9 
+
+SLC38A2 
+
+FOXG1B 
+
+CHES1 
+SPRED1 
+NPTX1 
+FLRT3 
+GGTL3 
+
+SMARCA1 
+
+H12C4804 
+
+H12C5038 
+
+H14C1087 
+
+H14C7435 
+H15C1874 
+H17C14064 
+H20C1659 
+H20C3603 
+HXC6774 
+
+miR-219 
+miR-19b 
+miR-141 ,miR-200a 
+miR-200b 
+miR-196,miR-203,miR-194 
+miR-196 
+miR-130a,miR-130b,miR-301 
+miR-130,miR-130b 
+miR-30a*,miR-30c,miR-30d,miR-30b,  miR-30a,miR-30d 
+miR-30e 
+miR-93,miR-302 
+miR-141 
+miR-26a,miR-26b 
+miR-26a 
+"R  181 a 
+miR-17-5p,miR-20,miR-106a,miR-185, 
+miR-106b,miR-320 
+m1  -
+miR-19a,miR-19b 
+miR-224 
+miR-15a,miR-16,miR-103,miR-107,mi  miR-103,miR-107 
+R-15b,miR-219,miR-195 
+mi~-19a,miR-19b,miR-130a,miR-130b  "R- 19a miR-19b miR-130 miR-130b 
+,miR-301 
+
+m1 
+
+, 
+
+' 
+
+, 
+
+miR-124a 
+
+miR-124a 
+miR-30a*,miR-30c,miR-30d,miR-30b,  miR-30c,miR-30d 
+miR-30e 
+miR-140 
+miR-26a,miR-26b 
+miR-30a*,miR-30c,miR-30d,miR-30b,  miR-30a,miR-30b,miR-30c,miR-30d,m 
+miR-30e 
+miR-135 
+miR-17-5p,miR-20,miR-1 06a,miR-1 06b  miR-1 b,miR-206 
+miR-30a,miR-200a 
+miR-101 
+miR-125b,miR-125a 
+miR-9* 
+
+miR-210 
+miR-101 
+miR-125a,miR-125b 
+miR-131 
+
+iR-30e,miR-200b 
+miR-132,miR-135b,miR-212 
+
+Ensembl Gene I D 
+
+ENSG00000179456 
+ENSG00000169554 
+ENSG00000135999 
+ENSG00000115170 
+
+ENSG00000144580 
+
+ENSG00000003137 
+ENSG00000177 432 
+
+ENSG00000081842 
+
+ENSG000001 06004 
+ENSG00000189376 
+ENSG00000165156 
+
+ENSG00000147642 
+
+ENSG00000188545 
+ENSG00000148248 
+
+ENSG00000151239 
+
+ENSG00000134294 
+
+ENSG00000176165 
+
+ENSG00000053254 
+ENSG00000166068 
+ENSG00000171246 
+ENSG00000125848 
+ENSG00000131067 
+ENSG000001 02038 
+
+*Target genes found by both methods are listed. 
+* ECgene 10 in version  1.1  is used. 
+* MicroRNAs targeting Ensembl  gene are obtained from the TargetScan website (http://genes.mit.edu/targetscan/) 
+
+Table 2. Target genes for 1 0 selected microRNAs. 
+~~--~fc96~~~~-&ffi-=~&-ffiffiffi&-~ffiffiffiffi .. ffiffiffi ___  "E~~;;~---·-·-~·--··-··-·--··---
+
+let-7a 
+
+let-7b 
+
+miR-15a 
+miR-16 
+
+miR-23a 
+
+miR-26a 
+
+miR-30a 
+
+miR-124a 
+
+miR-181a 
+miR-196 
+
+BZW1 
+
+BZW1 
+
+ZHX1,  BCL2L2 
+ZHX1,  BCL2L2 
+DNAJC6, PDE4B, MAP4K4, M025, 
+BTBD14A 
+EIF4G2,  DRLM 
+
+NPTX1 
+
+SURF4 
+
+HOXC8, TRIP15,  BTBD3,  CGI-72 
+HOXC8,  EPC2 
+
+* Common target genes are shown in  bold character. 
+* Genes with a valid  HUGO gene symbol  are included. 
+
+PuNc, HIC2, NR6A1(GCNF), ADAMTS15, C10orf6, LIMK2, BZW1, APEX1, 
+SFMBT1 
+PUNC,  NR6A1(GCNF), HIC2, ADAMTS15,  LIMK2,  C10orf6, APEX1,  BZW1, 
+NME4,  FBX032, SFMBT1 
+ARHGDIA,  IHPK1,  DEDD,  GCAT,  MFN2, C1orf37 
+IHPK1,  DEDD,  GCAT,  MFN2, C1orf37 
+
+POU4F2, CXCL 12, ZNF292,  UBE2D3,  PPIF, NEK6,  FBX032 
+
+SLC38A2,  MADH1,  PRKWNK3,  NAB1,  PELI2 
+TNRC6,  FOXG1C,  FOXG1B, GLI2, GNAI2,  BCL9,  RQCD1,  SEC24A, 
+STIM2,  LHX1,  RARG,  LIN28 
+ARHQ,  SURF4,  PMX1,  LPIN1, OSBPL3, TCF3,  MITF,  PEA15,  ELOVLS, 
+CD164,  SDFR1, SEMA6C, STAT3,  HMG2L 1, ANGPT1 
+ESM1,  PERQ1,  HOXA 11, PCDHA family,  PCDHAC1,  PCDHAC2,  BCL6B 
+HOXA7,  NR6A1,  CALM1,  CALM2, CALM3 
+
+58  Genomics &  Informatics  Vol. 3(3) 53-62,  September 2005 
+
+The  most  influential  factor  is  the  way to  determine 
+whether  the  target  site  is  conserved  in  other  species. 
+Lewis eta/. used the homologous gene information in the 
+Ensembl annotation system (Birney eta/., 2004). Ensembl 
+homologues are obtained by comparing the amino acid 
+sequence of proteins (Clamp eta/., 2003).  Even though 
+this is perfectly valid for comparing coding regions, it does 
+not guarantee that the UTR regions are conserved. The 
+"Conservation" track (Siepel eta/., 2004a) in Fig. 3 shows 
+the  conservation  level  obtained  by  comparing  five 
+organisms (human, chimp, mouse, rat, and chicken). It can 
+be immediately recognized that the extent of sequence 
+conservation varies dramatically inside the 3' UTR region. 
+Our method uses the "tight" track that includes conserved 
+blocks of high quality only as can be seen in Fig. 3. This 
+is the major reason why the number of target genes is 
+substantially  smaller  in  the  ECgene  targets.  All  of  our 
+target  sites  are  highly  likely  to  be  conserved  in  other 
+species, which reduces risk of being false positives. 
+
+Another  big  difference  is  the  gene  model  and  the 
+
+resultant UTR. ECgene's UTR is significantly longer than 
+other gene models since its algorithm tries to extend the 
+UTR regions if it finds any overlapping ESTs with the same 
+direction. Detailed comparison is given in the next section. 
+Furthermore, alternative splicing is extensively modeled 
+in the ECgene (Kim eta/., 2004; Kim eta/., 2005), which 
+greatly  expands  the  number  of  transcripts.  Current 
+Ensembl database (Ensembl Human v20.34c.1) includes 
+35685 transcripts from 23758 genes. Approximately 70% 
+(16534) of Ensembl have single transcript and remaining 
+7224 genes give 19151 transcripts, implying 2.65 isoforms 
+per gene  if  the  gene  is  alternatively  spliced.  However, 
+current knowledge implies that -70% of human genes are 
+alternatively  spliced  and  that  -3.5  isoforms  exist  for 
+alternatively spliced genes. Therefore transcripts in the 
+Ensembl do not reflect diversity from alternative splicing 
+adequately.  Our UTR database based  on  ECgene has 
+269702 distinct UTR regions. Even though it may include 
+many false positives, its coverage should be most complete. 
+The difference is explored in the following cases in detail. 
+
+Fig. 3. Target binding sites and sequence conservation in CYP26B1. The first track in black color shows all target binding sites found 
+by TargetScan. MicroRNAs with multiple binding sites are shown in colored boxes. The gene is on the antisense strand (3' end on 
+the left side) as indicated by arrows in the intron. The genomic region is mostly the last exon, where the CDS is tall and the 3' UTR 
+region is short. Lower half shows several tracks for comparative genomics. Conservation track in black clearly shows that the binding 
+sites for hsa-miR-141 are not conserved in multiple species. The track labeled as "Mouse Tight" is the most stringent collection of the 
+conserved regions between human and mouse. 
+
+Prediction of Mammalian MicroRNA Targets - Comparative Genomics Approach with Longer 3'  UTR Databases  59 
+
+Human chr 10:89,389,001 -89,396,500 (7.5 kbp) 
+
+tl(ll!l-ftl>l'l;-'-'~ I  ~toiR·Zi 
+
+hS<l•lll 111;-S ill I hS<l~ ill= 
+
+hsa-m iR -1 el:i 
+l'd ... m ~~-1!il!i~ I 
+Nl!=m1R=1111lbl 
+hs:<t-111 ill:-17-ep 
+h:!a--m i~--41@ 
+
+hll<a..ft"iiR.=lS~ 
+hs<!i-!lliR-3'-11 
+Mat-!fi\R-1~ 
+I!  hjj;-lR=i:U. 
+ll>ill-iR=I 
+llsa-miR-1{17Ii  hsa-miR-23b 
+hsa-m ii!-3M I 
+I 
+Ml!=mH'!=il~ 1  hl-ilt=ii!@( 1 
+hsa-miR-11161 
+
+hs:<t-o~,iR-26a I 
+
+hS<~-ill · 
+
+. 
+
+hsa-illdR-:!f.P 
+
+r.; ... m>R=H~~I!l 
+hsa-~tiR-381 
+
+hsa-mlR·i~ I 
+hsa-mll'l:--41171 
+lll,ii=to 'R·l9e I 
+1'\iila·m IR-Iil:U. 1 
+hsa-m iR-193 I 
+hs<~J-miR-2~ \ 
+M<~J-mlR-291D 1 
+hsa-lll iiHH 
+Mllla-tt> ll!i-i'iln  M-!1-m IR-H!6:« 
+1'\s<~J-m iR=2'i!a 1 
+hsa-miR-221 
+n~a-111 '"·l!:e~ 1 
+hs<~-m iR-t.es 1 
+
+'lliia-m il':-2~ I 
+
+hSa-mll':-29c 
+
+hsa-nHR-1931 
+
+M~t•Mil!-:!!!1&1 
+
+li:ll·~-11 i l!i·il.!l I 
+llsa-n>iR-1S€i\  1 
+hs:<t-m iR-328 I 
+hiS.<I-111 iR=$41 I 
+'ll*""' ;"-~m 1 
+
+hiSa-llliR-92 
+
+hla-tn+R-1~ 1 
+
+hiS,...mrR-Is~a I 
+
+hs<~J-mi,R-13ib 
+Ml!l-ftlii'II:·I!IH 
+hSa-miR-142-Sp I 
+hsa-llldR-1 ~:!H!Ir:> I 
+
+hiia....-. iR-illi@(laJ 
+
+hl>~-'ll>iR=1+4I 
+
+1'1111.-M iR-1 ®  I 
+
+hsa-m;R-1+~ 
+i'llia-miR-15"I!i 
+
+!lsa-miR-91 
+
+Fig. 4.  Genome browser for the 3' UTR of PTEN_human.  Binding sites conserved in multiple species are shown in colored boxes. 
+Long vertical line indicates the end of 2 kbp extended region for 3' UTR of the Ensembl transcript. The violet track shows the binding 
+sites conserved  in  human,  mouse,  and  rat genomes.  The red  track is the target sites found  by Lewis  eta! Other information  is 
+comparable to 
+
+Case study 1: CYP2681 
+We  observed  in  Tables  1 and  2 that  target  genes  are 
+much  different  between  two  methods.  For  example, 
+CYP2681  (Nelson,  1999), a member of the cytochrome 
+P450 superfamily of  enzymes,  is target of  miR-93 and 
+miR-302  in  our study,  whereas  miR-141  is  the  binding 
+microRNA in the original TargetScan study. 
+
+Fig. 3 summarizes relevant information for CYP26B1 
+in  the  genome  browser.  It  shows the  gene  structures, 
+binding sites, and comparative genomics data. All target 
+sites found by the TargetScan program are listed without 
+filtering by conservation or multiple binding sites. The 3' 
+UTR  regions  are  more  or  less  the  same  between  the 
+ECgene,  Ensembl gene,  and RefSeq gene tracks.  Both 
+
+60  Genomics &  Informatics  Vol. 3(3) 53-62, September 2005 
+
+miR-93  and  miR-302  have  two  identical  binding  sites 
+(shown in the red boxes). Several tracks are available for 
+comparative genomics. The "conservation" track (Human/ 
+Chimp/Mouse/Rat/Chicken Multiz Alignments & PhyloHMM 
+Cons) is especially useful  (Siepel  eta/., 2004b).  It can  be 
+immediately  seen  that  we  have  two  large  conserved 
+blocks - one for the last exon and the other near the end 
+of 3'  UTR region. The "mouse tight" track is collection of 
+most  highly  conserved  blocks.  Other  tracks  such  as 
+"chain"  and  "nef'  are  conservation  with  less  stringent 
+conditions. We observe that two binding sites of miR-93 and 
+miR-302 appear within the highly conserved genomic locus. 
+The Ensembl target, hsa-miR-141, has three binding 
+sites (shown in boxes) for this gene, which is advantageous 
+over  miR-93  and  miR-302  with  two  binding  sites. 
+However, the conservation level for these target sites is 
+much lower in the "conservation" track,  and they do not 
+qualify for conserved blocks in the mouse tight track. Even 
+though  targets with  multiple binding sites are generally 
+preferred, the mechanism underlying the cooperativeness 
+between  the  binding  sites  is  not  established  well. 
+Conservation in other species should be a clear evidence 
+for its functional importance. Therefore, CYP2681 would 
+not be  a good target for  hsa-miR-141  since  its  binding 
+sites are not conserved  in  high standard.  This example 
+shows  that  finding  target  genes  for  microRNAs  needs 
+subtle  adjustment  of  various  aspects  such  as  multiple 
+binding sites and conservation among different species. 
+
+Case study 2: PTEN 
+PTEN (phosphatase and tensin homolog) is an important 
+gene involved in regulation of the AKT1  signaling pathway. 
+Mutations of PTEN are found in a large number of cancers 
+and it is a potential tumor suppressor gene (Di Cristofano 
+eta/., 2000). Lewis eta/. identified PTEN as a target of two 
+microRNAs- hsa-miR-19a and hsa-miR-19b. Our method 
+did not find any microRNA targeting this gene. The main 
+reason was that the PTEN annotation in rat did not have 
+UTR at all. Lewis eta/. cleverly extended the 3' UTR region 
+by 2 kbp to alleviate this problem. 
+
+Fig. 4 shows the 3' UTR of human PTEN with predicted 
+target sites. The 3' UTR is unusually long- 6.5 kbp and 1.2 
+kbp  in  the  ECgene  and  Ensembl,  respectively.  Even 
+though the human PTEN has three binding sites as Lewis 
+eta/. found, only the first two binding sites are found in the 
+mouse PTEN and the rat PTEN has only one binding site. 
+So hsa-miR-19a and hsa-miR-19b do not have multiple 
+conserved binding sites in  PTEN. 
+
+Instead, we identified many other conserved binding 
+sites as shown in Fig. 4. The major hurdle in identifying 
+conserved targets is the poor annotation in the rat genome. 
+The UTR in the mouse PTEN is 3.3 kbp long, but there are 
+
+many neighboring EST transcripts and it is expected to be 
+as long as the UTR of human PTEN. So, we extended the 
+UTRs of PTEN in mouse and rat to be 6.5 kbp comparable 
+to the human PTEN. The number of binding sites found by 
+TargetScan is shown in Table 3.  We found additional 
+binding sites for five microRNAs (hsa-miR-30a, hsa-miR-
+23a,  hsa-miR-23b,  hsa-miR-29b,  hsa-miR-29c).  Fur(cid:173)
+thermore, four additional microRNAs (hsa-miR-200a, hsa(cid:173)
+miR-181a, hsa-miR-181b, hsa-miR-181c) were identified 
+to have multiple conserved binding sites for PTEN. 
+
+Hsa-miR-23a  and  hsa-miR-23b  have  four  binding 
+sites in human as shown in Fig. 4 and Table 3. The fourth 
+binding site does not belong to the conserved block as can 
+be  seen  in  the conservation  track.  Three  other binding 
+sites appear inside the conserved  region.  However, the 
+third binding  site is located outside the 2 kbp extended 
+region of Ensembl UTR (indicated as long vertical lines in 
+brown color in Fig. 4). So, extending by 2 kbp would not 
+be enough for genes with long 3' UTR. 
+
+Discussion 
+Comparison of our method with the original TargetScan 
+program  suggests  many  important  aspects  in  target 
+prediction of microRNAs. First, using properly annotated 
+3'  UTR database  is essential.  Extending  3'  UTR by  an 
+arbitrary length  is  not desirable since  it increases false 
+positives by introducing target sites outside the real UTR. 
+Extension of 2 kbp was not enough for the case study of 
+PTEN. We need a compromise between sensitivity and 
+specificity. Selecting 3' UTR of reliable transcripts in the 
+
+Table  3.  Number of target  sites  in  the  3'  UTR of PTEN  for 
+various microRNAs 
+
+Micro RNA 
+
+hsa-miR-19a, b 
+hsa-miR-30a 
+hsa-miR-23a, b 
+hsa-miR-29b, c 
+hsa-miR-200a 
+hsa-miR-181a, b, c 
+
+hsa-miR-186 
+
+hsa-miR-26a, b 
+
+hsa-miR-142-5p 
+
+hsa-miR-9 
+
+hsa-miR-10a, b 
+
+Number of target binding sites 
+
+in 3' UTR of PTEN 
+
+Human  Mouse 
+
+Rat 
+
+2 
+
+2 
+2 
+2 
+3 
+3 
+
+2 
+4 
+3 
+3 
+3 
+
+3 
+3 
+4 
+2 
+2 
+2 
+
+4 
+3 
+3 
+1 
+
+* MicroRNAs in bold character have multiple binding sites in human, 
+
+mouse, and rat. 
+
+* The 3' UTR is extended to be 6.5 kbp for all cases. 
+
+Prediction of Mammalian MicroRNA Targets- Comparative Genomics Approach with Longer 3'  UTR Databases  61 
+
+ECgene or Acembly genes (D. Therry-Mieg et at. http://www. 
+ncbi.nlm.nih.gov/IEB/Research/Acembly) database would 
+be the best choice for human and mouse genomes at this 
+point. However, this is not true for rat which has only -0.6 
+million  ESTs  in  the  dbEST,  compared  with  5.64,  4.18 
+million ESTs for human and mouse, respectively. Proper 
+annotation of 3'  UTR is impossible in rat due to the draft 
+quality of the rat genome and insufficient EST data. Their 
+effect on target prediction of microRNAs is obvious as can 
+be  seen  in  Fig.  2.  Number of rat transcripts  is appro(cid:173)
+ximately  1/3  of  human  or  mouse,  and  the  number  of 
+microRNA:target pairs are reduced to 1/5 in rat.  It might be 
+better  to  compare  just  human  and  mouse  genomes, 
+waiting for the rat genome map to be more complete. This 
+would increase the number of target genes substantially. 
+Alternatively,  one may extend the 3'  UTR of  rat  by the 
+amount  inferred  by  human  and  mouse  homologs,  not 
+beyond the gap position. 
+
+Another important aspect is the conservation of target 
+sites in different organisms. As seen in  Fig. 3 and 4, the 
+extent  of conservation  varies  significantly inside the 3' 
+UTR,  which  is  not taken  into  consideration  in  previous 
+studies.  It  would  be  better to  count  the  target  binding 
+sites  within  the  tightly  conserved  blocks  only.  Two 
+comparative  genomics  tracks-PhyloHMM  and  Blastz 
+tight  - in  the  UCSC  genome  browser  should  be  good 
+candidates (Schwartz et at.,  2003; Siepel et at.,  2004a). 
+We  used  the  tight  tracks  for  convenience  since  it 
+provides pairwise comparison of genomes. 
+
+Recent study of Yekta et at.  identified HOXB8 as the 
+target of hsa-mi R-196 (Yekta et at., 2004). The target site 
+is  nearly  perfectly  complementary  to  the  microRNA. 
+TargetScan  allows target  binding  with  mismatches and 
+bulges, producing target sites of 42-43 nucleotides long. 
+Interestingly, TargetScan could not locate the target site 
+for hsa-mi R-196 because the target site has one mismatch 
+in the 5' seed region (2-8 bp of microRNA). This suggests 
+that  minor  mismatches  in  the  seed  region  should  be 
+allowed in search of microRNA targets. 
+
+Acknowledgements 
+
+We  are  grateful  to  the  UCSC  genome  center  for  the 
+comparative  genomics  data  and  to  C.  B.  Burge  and 
+coworkers  for  TargetScan  program.  This  work  was 
+supported by the Ministry of Science and Technology of 
+Korea  through  the  bioinformatics  research  program  of 
+MOST  NRDP  (M1-0217-00-0027)  and 
+the  Korea 
+Science and Engineering Foundation through the center 
+for cell signaling research at Ewha Womans University. 
+
+References 
+Abrahante,  J.E.,  Daul,  A.L.,  Li,  M.,  Volk,  M.L., Tennessen, 
+J.M.,  Miller,  E.A.,  and  Rougvie,  A.E.  (2003).  The 
+Caenorhabditis elegans hunchback-like gene lin-57/hbl-1 
+is  regulated  by 
+controls  developmental 
+microRNAs.  Oev.  Ce//4, 625-637. 
+
+time  and 
+
+Ambros, V., Bartel, B., Bartel, D.P., Burge, C. B., Carrington, 
+J.C., Chen, X., Dreyfuss, G., Eddy, S.R., Griffiths-Jones, 
+S.,  Marshall, M.,  Matzke, M.,  Ruvkun, G., and Tuschl, T. 
+(2003a).  A  uniform  system  for  microRNA  annotation. 
+RNA 9,  277-279. 
+
+Ambros,  V.,  Lee,  R.C.,  Lavanway,  A.,  Williams,  P.T.,  and 
+Jewell, D. (2003b). MicroRNAs and other tiny endogenous 
+RNAs in C.  elegans.  Curr.  Bioi.  13, 807-818. 
+
+Bartel, B. and Bartel, D.P. (2003). MicroRNAs: at the root of 
+
+plant development? Plant Physiol.  132, 709-717. 
+
+Birney, E., Andrews,  D., Bevan, P., Caccamo, M., Chen, Y., 
+Clarke,  L.,  eta/.  (2004).  Ensembl  2004.  Nucleic Acids 
+Res.  32,  D468-D470. 
+
+Brennecke,  J.,  Hipfner,  D.R.,  Stark,  A.,  Russell,  R.B.,  and 
+Cohen, S.M. (2003). Bantam encodes a developmentally 
+regulated  microRNA that controls cell  proliferation  and 
+regulates the proapoptotic gene  hid  in  Drosophila.  Cell 
+113, 25-36. 
+
+Galin,  G.A.,  Dumitru, C.D., Shimizu,  M.,  Bichi,  R., Zupo, S., 
+Noch,  E.,  Aldler,  H.,  Rattan,  S.,  Keating,  M.,  Rai,  K., 
+Rassenti, L., Kipps, T., Negrini, M., Bullrich, F., and Croce, 
+C.M.  (2002).  Frequent deletions and down-regulation of 
+micro- RNA genes miR15 and miR16 at 13q14 in chronic 
+lymphocytic  leukemia.  Proc.  Nat!.  Acad.  Sci.  USA  99, 
+15524-15529. 
+
+Clamp,  M.,  Andrews,  D.,  Barker,  D.,  Bevan,  P.,  Cameron, 
+G.,  et  at.  (2003).  Ensembl  2002:  accommodating 
+comparative genomics.  Nucleic Acids Res.  31,  38-42. 
+
+Di  Cristofano,  A.  and  Pandolfi,  P.P.  (2000).  The  multiple 
+roles of PTEN  in tumor suppression.  Ce//1 00,  387-390. 
+Doench,  J.G.,  Petersen,  C.P.,  and  Sharp,  P.A.  (2003). 
+siRNAs  can  function  as  miRNAs.  Genes  Oev.  17, 
+438-442. 
+
+Enright, A.J., John, B., Gaul, U., Tuschl, T., Sander, C., and 
+Marks,  D.S.  (2003).  MicroRNA  targets  in  Drosophila. 
+Genome Bioi.  5,  R1. 
+
+Griffiths-Janes, S.  (2004). The microRNA Registry.  Nucleic 
+
+Acids Res. 32,  D1 09-D111. 
+
+Karolchik,  D.,  Baertsch,  R.,  Diekhans,  M.,  Furey,  T.S., 
+Hinrichs,  A.,  Lu,  Y.T.,  Roskin,  K.M.,  Schwartz,  M., 
+Sugnet, C.W., Thomas,  D.J., Weber,  R.J.,  Haussler, D., 
+and  Kent,  W.J.  University  of  California  Santa  Cruz. 
+(2003). The UCSC Genome Browser Database. Nucleic 
+Acids Res.  31,  51-54. 
+
+Kasprzyk, A., Keefe, D., Smedley, D., London, D., Spooner, 
+
+62  Genomics & Informatics  Vol.  3(3) 53-62, September 2005 
+
+W.,  Melsopp,  C.,  Hammond,  M.,  Rocca-Serra,  P.,  Cox, 
+T., and B'1rney,  E. (2004). EnsMart: a generic system for 
+fast and flexible access to biological data. Genome Res. 
+14,  160-169. 
+
+Kent,  W.J.,  Sugnet,  C.W.,  Furey,  T.S.,  Roskin,  K.M., 
+Pringle, T.H., Zahler, A.M., and Haussler, D.  (2002). The 
+human  genome  browser at  UCSC.  Genome  Res.  12, 
+996-1006. 
+
+Kim,  N.,  Shin,  S.,  and  Lee,  S.  (2004).  ASmodeler:  Gene 
+modeling of alternative splicing from genomic alignment 
+of  mANA,  EST,  and  protein  sequences.  Nucleic Acids 
+Res. 32, W181-W186. 
+
+Kim,  P.,  Kim,  N.,  Lee,  Y.,  Kim,  B.,  Shin,  Y.,  and  Lee,  S. 
+(2005).  ECgene:  genome  annotation  for  alternative 
+splicing.  Nucleic Acids Res.  33,  D75-D79. 
+
+Kiriakidou,  M.,  Nelson,  P.T.,  Kouranov,  A.,  Fitziev,  P., 
+Bouyioukos,  C.,  Mourelatos,  Z.,  and  Hatzigeorgiou,  A. 
+(2004). A combined computational-experimental approach 
+predicts  human  microRNA  targets.  Genes  Dev.  18, 
+1165-1178. 
+
+Lee,  R.C.,  Feinbaum,  R.L.,  and Ambros,  V.  (1993). The C. 
+elegans  heterochronic gene lin-4 encodes small  RNAs 
+with antisense complementarity to lin-14. Ce//75, 843-854. 
+Lewis, B.P., Shih,  I.H., Jones-Rhoades, M.W., Bartel, D.P., 
+and  Burge,  C.B.  (2003).  Prediction  of  mammalian 
+microRNA targets.  Ce//115, 787-798. 
+
+Lim,  L.P.,  Lau,  N.C.,  Weinstein,  E.G .. ,  Abdelhakim,  A., 
+Yekta, S.,  Rhoades, M.W., Burge, C.B., and Bartel, D.P. 
+(2003).  The  microRNAs  of  Caenorhabditis  elegans. 
+Genes Dev.  17, 991-1008. 
+
+Lin,  S.Y.,  Johnson,  S.M.,  Abraham,  M.,  Vella,  M.C., 
+Pasquinelli, A., Gamberi, C., Gottlieb, E., and Slack, F.J. 
+(2003).  The  C  elegans  hunchback  homolog,  hbl-1, 
+controls 
+is  a  probable 
+microRNA target.  Oev.  Ce//4, 639-650. 
+
+temporal  patterning  and 
+
+Moss,  E.G.,  Lee,  R.C.,  and  Ambros,  V.  (1997).  The  cold 
+shock  domain  protein  LIN-28  controls  developmental 
+timing in  C.  elegans and is  regulated  by the lin-4 RNA. 
+Ce/188,  637-646. 
+
+Nelson, D.R. (1999). A second CYP26 P450 in humans and 
+zebrafish:  CYP26B1.  Arch.  Biochem.  Biophys.  371, 
+345-347. 
+
+Olsen,  P.H.  and  Ambros,  V.  (1999).  The  lin-4  regulatory 
+RNA  controls  developmental  timing  in  Caenorhabditis 
+elegans  by blocking  LIN-14  protein  synthesis  after the 
+initiation of translation.  Dev.  Bioi.  216,  671-680. 
+
+Pesole,  G.,  Liuni,  S.,  Grillo,  G.,  et at.  (2002).  UTRdb  and 
+
+UTRsite:  specialized  databases  of  sequences  and 
+functional  elements of 5'  and 3'  untranslated regions of 
+eukaryotic mRNAs. Update 2002. Nucleic Acids Res. 30, 
+335-340. 
+
+Rajewsky,  N.  and  Socci,  N.D.  (2004).  Computational 
+identification  of  microRNA  targets.  Oev.  Bioi.  267, 
+529-535. 
+
+Reinhart,  B.J.,  Slack,  F.J.,  Basson,  M.,  Pasquinelli,  A.E., 
+Bettinger,  J.C.,  Rougvie,  A.E.,  Horvitz,  H.R.,  and 
+let-7  RNA 
+Ruvkun,  G. 
+in  Caenorhabditis 
+regulates  developmental 
+elegans. Nature 403, 901-906. 
+
+(2000).  The  21-nucleotide 
+
+timing 
+
+Rhoades,  M.W.,  Reinhart,  B.J.,  Lim,  L.P.,  Burge,  C.B., 
+Bartel,  B.,  and  Bartel,  D.P.  (2002).  Prediction  of plant 
+micro RNA targets.  Ce//11 0,  513-520. 
+
+Schwartz, S.,  Kent, W.J., Smit, A.,  Zhang, Z., Baertsch, R., 
+Hardison,  R.C.,  Haussler,  D.,  and  Miller,  W.  (2003). 
+Human-mouse alignments with BLASTZ.  Genome Res. 
+13,  103-107. 
+
+Seggerson,  K.,  Tang,  L.,  and  Moss,  E.G ..  (2002).  Two 
+genetic  circuits  repress  the  Caenorhabditis  elegans 
+heterochronic gene lin-28 after translation initiation. Dev. 
+Bioi.  243, 215-225. 
+
+Siepel, A. and Haussler, D. (2004a). Combining phylogenetic 
+and hidden Markov models in  biosequence analysis.  J. 
+Comput.  Bioi.  11 , 413-428. 
+
+Siepel,  A.  and  Haussler,  D. 
+
+(2004b).  Phylogenetic 
+estimation  of  context-dependent  substitution  rates  by 
+maximum likelihood.  Mol.  Bioi.  Evol. 21, 468-488. 
+
+Stark,  A.,  Brennecke,  J.,  Russell,  A.B.,  and  Cohen,  S.M. 
+(2003).  Identification  of  Drosophila MicroRNA Targets. 
+PLoS.  Bioi.  1,  E60. 
+
+\Nightman, B., Ha, 1., and Ruvkun, G .. (1993). Posttranscriptional 
+regulation  of  the  heterochronic  gene  lin-14  by  lin-4 
+mediates temporal pattern formation in C. elegans.  Ce//75, 
+855-862. 
+
+Xu,  P.,  Vernooy,  S.Y.,  Guo,  M.,  and Hay,  B.A.  (2003). The 
+Drosophila microRNA Mir-14 suppresses cell death and 
+is  required  for  normal  fat  metabolism.  Curr.  Bioi.  13, 
+790-795. 
+
+Yekta, S., Shih, I. H., and Bartel, D.P. (2004}. MicroRNA-directed 
+
+cleavage of HOXB8 mANA.  Science 304, 594-596. 
+
+Zeng,  Y.,  Wagner,  E.J.,  and  Cullen,  B.A.  (2002).  Both 
+natural  and  designed  micro  RNAs  can  inhibit  the 
+expression  of  cognate  mRNAs  when  expressed  in 
+human cells.  Mol.  Ce/19,  1327-1333. 
+
+

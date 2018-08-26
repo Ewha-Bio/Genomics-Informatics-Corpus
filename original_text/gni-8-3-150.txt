@@ -1,0 +1,1400 @@
+Genomics  &  Informatics    Vol.  8(3)  150-158,  September  2010
+
+Application  of  Structural  Equation  Models  to  Genome-wide 
+Association  Analysis
+
+Jiyoung  Kim1,  Junghyun  Namkung2,  Seungmook 
+Lee1  and  Taesung  Park1*
+
+1Department  of  Statistics,  Seoul  National  University, 
+Seoul  151-747,  Korea,  2Department  of  Epidemiology 
+and  Biostatistics,  Case  Western  Reserve  University, 
+2103  Cornell  Road,  Cleveland,  OH  44106-7281,  USA
+
+Abstract
+
+Genome-wise  association  studies  (GWASs)  have  be-
+come  popular  approaches  to  identify  genetic  variants 
+associated  with  human  biological  traits.  In  this  study,  we 
+applied  Structural  Equation  Models  (SEMs)  in  order  to 
+model  complex  relationships  between  genetic  networks 
+and  traits  as  risk  factors.  SEMs  allow  us  to  achieve  a 
+better  understanding  of  biological  mechanisms  through 
+identifying  greater  numbers  of  genes  and  pathways  that 
+are  associated  with  a  set  of  traits  and  the  relationship 
+among  them.  For  efficient  SEM  analysis  for  GWASs,  we 
+developed  a  procedure,  comprised  of  four  stages.  In  the 
+first  stage,  we  conducted  single-SNP  analysis  using  re-
+gression  models,  where  age,  sex,  and  recruited  area 
+were  included  as  adjusting  covariates.  In  the  second 
+stage,  Fisher’s  combination  test  was  conducted  for 
+each  gene  to  detect  significant  genes  using  p-values 
+obtained  from  the  single-SNP  analysis.  In  the  third 
+stage,  Fisher’s  exact  test  was  adopted  to  determine 
+which  biological  pathways  were  enriched  with  significant 
+SNPs.  Finally,  based  on  a  pathway  that  was  associated 
+with  the  four  traits  in  common,  a  SEM  was  fit  to  model 
+a  causal  relationship  among  the  genetic  factors  and 
+traits.  We  applied  our  SEM  model  to  GWAS  data  with 
+four  central  obesity  related  traits:  suprailiac  and  sub-
+scapular  measures 
+fat,  BMI,  and 
+hypertension.  Study  subjects  were  collected  from  two 
+Korean  cohort  regions.  After  quality  control,  327,872 
+SNPs  for  8842  individuals  were  included  in  the  analysis. 
+After  comparing  two  SEMs,  we  concluded  that  supra-
+iliac  and  subscapular  measures  may  indirectly  affect  hy-
+pertension  susceptibility  by  influencing  BMI.  In  con-
+clusion,  our  analysis  demonstrates  that  SEMs  provide  a 
+better  understanding  of  biological  mechanisms  by  identi-
+fying  greater  numbers  of  genes  and  pathways.
+
+for  upper  body 
+
+*Corresponding  author:  E-mail  tspark@stats.snu.ac.kr
+Tel  +82-2-880-8924,  Fax  +82-2-883-6114
+Accepted  2  September  2010
+
+Keywords:  central  obesity,  suprailiac,  subscapular,  body 
+mass  index  (BMI),  hypertension,  genome-wide  associa-
+tion  study  (GWAS),  structural  equation  model  (SEM), 
+gene-based  analysis,  pathway-based  analysis
+
+Introduction
+
+Genome-wide  association  studies  (GWAS)  are  one  of 
+the  major  tools  used  to  detect  disease  susceptibility 
+loci.  They  have  been  successful  in  identifying  associa-
+tions  of  hundreds  of  single  nucleotide  polymorphism 
+(SNPs)  with  complex  traits  (Rioux  et al.,  2007;  Saxena 
+et  al.,  2007;  WTCCC,  2007;  Zanke  et  al.,  2007). 
+However,  testing  only  for  the  association  of  individual 
+SNPs  has  limitations  in  unveiling  the  complex  mecha-
+nism  of  genetic  structures  for  complex  traits  (Lesnick et 
+al.,  2007).  Dissecting  biological  phenomena  and  under-
+standing  the  structure  of  the  complex  components  com-
+prising  a  biological  pathway  are  challenging  tasks. 
+Commonly,  GWASs  have  reported  several  significant 
+SNPs  from  individual  SNP  analyses.  However,  complex 
+traits  are  affected  by  the  joint  action  of  various  genes. 
+If  only  the  significant  SNPs  from  the  individual  SNP 
+analysis  are  considered,  the  genetic  variants  that  have 
+joint  action  in  determining  traits  with  small  individual 
+contributions  will  be  neglected. 
+    Furthermore,  the  functions  of  SNPs  are  not  well  con-
+ceived  in  many  cases,  but  the  functions  of  genes  and 
+pathways  have  been  better  explored.  Therefore,  gene- 
+and  pathway-based  analysis  provides  an  easier  inter-
+pretation  to  unravel  the  mechanisms  of  complex  traits 
+(Baranzini  et al.,  2009;  Kraft  and  Raychaudhuri,  2009; 
+Rajagopalan  and  Agarwal,  2005).  Most  complex  traits 
+arise  from  complex  interactions  among  multiple  genetic 
+factors  and  environmental  factors. 
+    In  this  study,  we  applied  Structural  Equation  Models 
+(SEMs)  in  order  to  model  complex  relationships  between 
+genetic  networks  and  traits  as  risk  factors  (Bollen, 
+1989).  The  SEM  was  originally  developed  in  the  field  of 
+social  science  to  fit  a  model  with  unobserved  variables. 
+It  is  well  known  that  the  main  advantage  of  the  SEM 
+approach  is  that  it  allows  us  to  compare  several  candi-
+date  models.  Our  application  of  the  SEM  to  a  GWAS 
+enables  us  to  investigate  how  each  risk  factor  affects  a 
+targeted  trait  directly  or  through  other  variables,  and 
+SEM  is  used  to  represent  the  relationship  among  multi-
+ple  phenotypes.  In  order  to  choose  the  components 
+
+used  to  build  a  model,  it  is  desirable  to  consider  a  high-
+er  level  of  genetic  components,  such  as  gene  and  bio-
+logical  pathways. 
+    However,  due  to  the  enormous  number  of  SNPs  in  a 
+GWAS,  it  is  practically  difficult  to  apply  SEMs  to  GWAS 
+data.  Thus,  some  step-wise  procedure  for  filtering  out 
+SNPs  is  required  in  order  to  reduce  the  burden  of 
+computation.  Our  proposed  procedure  comprises  four 
+stages.  At  the  first  stage,  single  SNP  association  tests 
+are  conducted.  The  next  step  is  to  combine  P-values  for 
+correlated  SNPs  in  order  to  represent  a  gene  by  using 
+Fisher’s  combination  test  (Zaykin  et al.,  2007).  Next, 
+Fisher’s  exact  test  is  employed  to  find  the  association 
+of  a  pathway  related  with  the  traits.  Finally,  SEMs  are 
+used  to  model  how  each  risk  factor  influences  the  trait 
+of  interest  based  on  the  pathway  chosen  from  the  pre-
+vious  stages. 
+    The proposed SEM approach is applied to a large-scale 
+GWA  dataset  (i.e.,  8842  samples  and  327,872  SNPs), 
+obtained  from  a  Korean  population.  Especially,  our  anal-
+ysis  focuses  on  identifying  the  relationship  between  hy-
+pertension,  obesity,  and  genetic  variants.  In  hyperten-
+sion,  it  is  known  that  greater  fatness  or  obesity  in  the 
+extreme  is  associated  with  greater  blood  pressure  or 
+hypertension  in  the  extreme  (Dustan,  1991).  Understan-
+ding  the  connections  between  hypertension  and  relative 
+obesity  is  an  important  step  in  understanding  the  bio-
+logical  mechanism  between  them  and  providing  useful 
+information  for  the  potential  treatment.  Central  body  fat 
+distribution  is  especially  associated  with  hypertension 
+and  insulin  resistance  (Licata et al.,  1994;  Scaglione et 
+al.,  1995).  In  this  study,  we  investigated  the  genetic 
+components  associated  with  four  central  obesity-related 
+traits  by  conducting  the  proposed  four-stage  analysis 
+for  large-scale  GWAS  data.  Our  GWAS  data  were  col-
+lected  from  the  participants  of  two  cohort  regions  in 
+Korea.  The  four  traits  used  for  analyses  were  suprailiac, 
+subscapular,  BMI,  and  hypertension.  BMI  is  used  for 
+whole-body  obesity,  and  suprailiac  and  subscapular 
+represent  upper  central  body  fatness.
+
+Methods
+
+Study  subjects
+
+The  data  were  collected  from  a  Korea  Association 
+Resource  (KARE)  project  that  was  initiated  in  2007  to 
+undertake  a  large-scale  GWA  analysis.  The  10,038  par-
+ticipants  were  recruited  from  two  community-based  co-
+horts:  Ansung,  representing  mainly  a  rural  community, 
+and  Ansan,  representing  an  urban  community--5018 
+from  Ansung  and  5,020  from  Ansan,  aged  between  40 
+and  69  years  old  (Cho,  et al.,  2009)  (Table  1).  A  total 
+
+GWAS  Using  Structural  Equation  Models      151
+
+of  8800  participants  (4162  men  and  4638  women)  were 
+included  for  the  GWAS  analysis,  excluding  those  who 
+were  taking  medicine  or  therapy  for  lipoprotein  levels.
+
+Genotyping  and  quality  control
+
+The  DNA  samples  were  isolated  from  the  peripheral 
+blood  of  participants  and  genotyped  using  the  Affymet-
+rix  Genome-Wide  Human  SNP  array  5.0.  The  Bayesian 
+Robust  Linear  Modeling  using  Mahalanobis  Distance 
+(BRLMM)  was  used  for  genotype  calling.  Standard  data 
+quality  control  procedures  were  applied  for  the  subjects 
+and  SNPs,  as  described  in  Cho et al.  (2009).  After  con-
+sideration  of  the  sample  and  SNP  quality  controls,  a  to-
+tal  of  8842  participants  and  352,228  SNPs  remained  for 
+the  subsequent  analysis. 
+
+Obesity-related  traits
+
+In  this  study,  four  traits  were  considered:  subscapular, 
+suprailiac,  body  mass  index  (BMI),  and  hypertension. 
+Subscapular  and  suprailiac  values  are  skinfold  thickness 
+measurements  for  upper  central  body  fat  distribution 
+around  the  waist.  The  subscapular  measure  is  a  vertical 
+fold  taken  one  inch  to  the  side  of  the  umbilicus  from  the 
+abdominal.  The  suprailiac  measure  is  a  diagonal  fold 
+taken  midway  between  the  hip  joint  and  the  bottom  of 
+the  rib  cage.  BMI  is  defined  as  the  individual's  body 
+weight  divided  by  the  square  of  his  or  her  height. 
+Hypertensive  status  was  defined  as  a  SBP  ＜140  mm 
+Hg  and/or  DBP  ＜90  mm  Hg,  and  the  blood  pressure 
+was  measured  in  the  supine  position.  One  of  the 
+well-known  risk  factors  of  cardiovascular  diseases  is 
+obesity.  Especially,  multiple  studies  have  reported  that 
+abdominal  obesity  is  a  better  predictor  of  hypertension 
+rather  than  whole  body  fat  mass  (Niskanen et al.,  2004; 
+Selby  et al.,  1989).
+
+Statistical  analysis  of  genetic  association
+
+For  each  SNP,  genetic  association  analyses  were  con-
+
+Table  1.  Demographic  information  of  study  subjects
+
+Features
+
+Total  individuals
+Gender  (male/female)
+Area  (ansung/ansan)
+Age
+Body  mass  index  (BMI) 
+Subscapular  skinfold  (mm)
+Suprailiac  skinfold  (mm)
+
+1Mean  (±Standard  deviation).
+
+8842
+
+4183  (47%)/4659  (53%)
+4205  (48%)/4637  (52%)
+
+52.221  (±8.91)
+24.59  (±3.12)
+  23.69  (±10.96)
+  25.70  (±11.72)
+
+152    Genomics  &  Informatics    Vol.  8(3)  150-158,  September  2010
+
+ducted  for  individual  phenotypes  independently  using 
+three  linear  regression  models  for  quantitative  traits  and 
+a  logistic  regression  model  for  hypertension.  Age,  sex, 
+and  recruited  area  (Ansan  or  Ansung)  were  included  as 
+adjusting  covariates  in  all  of  the  regression  models.  An 
+additive  allelic  effect  was  assumed  for  the  mode  of  ge-
+netic  inheritance.  Association  analyses  were  conducted 
+using  PLINK  software  (Purcell  et al.,  2007). 
+    Next,  gene-based  association  tests  were  conducted 
+using  Fisher's  combination  test  on  the  set  of  p-values 
+obtained  from  the  SNPs  within  a  gene.  The  statistic  (ZF) 
+for K  p-values  obtained  from K  SNPs  in  a  gene  is  given 
+by:
+
+Z
+
+F
+
+K
+
+= − ∑
+
+2
+
+i
+
+1
+=
+
+log
+
+P
+i
+
+,
+
+2K  distribution  when  the  K  P-values 
+
+    which  follows  a  χ2
+are  independent  (Fisher  1925). 
+    Thirdly,  Fisher's  exact  test,  based  on  the  hyper-
+genometric  distribution,  was  employed  to  search  for  bio-
+logical  pathways  that  were  enriched  in  the  significantly 
+associated  genes.  Let N  be  the  total  number  of  genes 
+that  are  of  interest;  S  be  the  number  of  genes  that  are 
+significantly  associated  with  the  disease  (nominal  P-value 
+≤0.05,  by  Fisher's  combination  test),  and  i  and  m  rep-
+resent  the  genes  in  the  pathway  and  significantly  asso-
+ciated  genes  in  the  pathway,  respectively.  The  sig-
+nificance  of  the  overrepresentation  of  a  biological  path-
+way  is  calculated  by: 
+
+P
+
+1
+= −
+
+K
+
+∑
+
+i
+
+=
+
+0
+
+⎛
+⎜
+⎝
+
+S N S
+−
+⎞
+⎟−
+m i
+i
+⎠
+N
+⎞
+⎟
+m
+⎠
+
+⎞⎛
+⎟⎜
+⎠⎝
+⎛
+⎜
+⎝
+
+Combinatorial  analysis  using  SEMs 
+
+SEMs  are  comprehensive  statistical  models  that  allow 
+us  to  test  relations  among  observed  and  latent  (not  ob-
+served  directly)  variables.  The  SEMs  for  our  genetic  net-
+works  were  defined  as  follows:
+
+    y  =  Λyη+ε,
+
+  η =  Bη+ç,
+
+    where y  is  a  vector  representing  the  observed  varia-
+bles;  η is  a  vector  of  the  latent  variables  (pathway);  Λy 
+is  a  matrix  representing  the  true  relationships  between 
+the  SNP  and  pathway;  and  B  is  a  matrix  representing 
+the 
+latent  variables. 
+Random  errors  in  the  equations  are  represented  by  ε 
+
+and ç.  To  fit  this  model,  we  used  AMOS,  a  SEM  soft-
+
+relationships  among 
+
+true 
+
+the 
+
+ware  solution  provided  by  SPSS  (http://www.spss.com/ 
+
+amos/). 
+
+Results
+
+Single-SNP  analysis  using  regression  models 
+
+Of  10,038  participants  recruited  from  two  Korean  cohort 
+areas,  8800  individuals  were  included  to  analyze  the  as-
+sociation  between  genetic  variants  and  four  central  obe-
+sity-related  traits:  suprailiac,  subscapular,  BMI,  and 
+hypertension.  The  association  between  each  of  the 
+327,872  SNPs  and  each  trait  was  evaluated  via  a  re-
+gression  model,  adjusted  for  gender,  age,  and  recruit-
+ment  area.  We  used  a  significance  level  corresponding 
+to  p-value＜1.0e-5  to  determine  which  SNPs  were  asso-
+ciated  with  a  trait.  The  detailed  results  are  in  Table  2. 
+    For  suprailiac,  20  SNPs  resulted  in  a  significant 
+association.  Of  these,  rs16906215  in  TLR4  showed  the 
+strongest  association.  The  TLR4  gene  encodes  a  toll-like 
+receptor  protein,  which  is  an  important  member  of  the 
+innate  immune  response.  This  gene  has  been  reported 
+to  be  associated  with  type  2  diabetes  (Kolz,  2008). 
+However,  the  effect  of  a  SNP  located  far  downstream  of 
+a  gene  is  hard  to  interpret. 
+    For  subscapular,  5  SNPs  from  4  genes  met  the  sig-
+nificance  criteria.  The  four  genes  are  GRIN2A,  NBPF21P, 
+LOC1001131027,  and  FTO,  and  two  SNPs  from  FTO 
+were  identified  to  be  significant.  FTO  is  one  of  the  pop-
+ular  genes  that  are  associated  with  fat  mass  and 
+obesity.  The  rs9939609  allele  in  the  FTO  gene  was  pre-
+viously  reported  to  be  positively  related  with  BMI 
+(Frayling et al.,  2007;  Willer et al.,  2009)  and  type  2  dia-
+betes  (WTCCC,  2007).  Rs9939609  also  showed  a  mar-
+ginally  significant  association  with  subscapular,  produc-
+ing  a  p-value  of  1.14e-05  and  a  significant  association 
+with  BMI  in  our  analysis.  The  most  significant  SNP  was 
+located  upstream  of  the  NMDA  receptor  (GRIN2A)  gene, 
+and  GRIN2A  was  reported  to  be  correlated  with  hyper-
+tension  from  a  previous  GWAS  data  analysis  (Torkamani 
+et al.,  2008). 
+    In  the  analysis  of  hypertension,  four  significant  SNPs 
+were  detected  from  three  genes:  ATP2B1,  CSK,  and 
+PTPN11.  The  results  of  ATP2B1  and  CSK  reproduced 
+the  significant  relationships  between  variants  of  the 
+genes  and  hypertension  that  had  been  previously  re-
+ported  by  Hong et al.,  (2010).  In  their  study,  they  con-
+ducted  a  meta-analysis  using  two  cohort  studies  in 
+Korea,  including  KARE  (Hong et al.,  2010).  ATP2B  was 
+also  reported  to  be  associated  with  hypertension  in  an-
+other  study  (Levy  et al.,  2009).  The  key  function  of 
+ATP2B1  is  to  control  homeostasis  of  cellular  calcium  ion 
+levels,  which  are  related  with  vascular  smooth  muscle 
+contraction  and  dilation.
+
+GWAS  Using  Structural  Equation  Models      153
+
+Table  2.  SNPs  significantly  associated  with  central  obesity-related  traits
+
+RS  number
+
+Chr
+
+P-value
+
+MAF
+
+Gene  Symbol1
+
+Distance
+
+Description
+
+Suprailiac
+
+rs16906215
+rs7681841
+rs10090537
+rs3856726
+rs4472504
+rs17109716
+rs1510447
+rs601619
+rs4745034
+rs17599042
+rs1570064
+rs11876341
+rs17168600
+rs2210977
+rs7583940
+rs6965746
+rs17226252
+rs3103261
+rs1849809
+rs7010545
+Subscapular
+
+rs16951883
+rs17248901
+rs6561930
+rs7193144
+rs8050136
+
+BMI
+
+rs17178527
+rs9939609
+rs11000212
+rs9926289
+rs8050136
+rs527248
+rs7193144
+Hypertension
+rs17249754
+rs7136259
+rs1378942
+rs11066280
+
+9
+4
+8
+3
+8
+14
+8
+18
+9
+12
+6
+18
+7
+1
+2
+7
+5
+2
+4
+8
+
+16
+3
+13
+16
+16
+
+6
+16
+10
+16
+16
+1
+16
+
+12
+12
+15
+12
+
+1.68E-07
+7.48E-07
+9.80E-07
+1.34E-06
+1.36E-06
+1.89E-06
+2.13E-06
+2.16E-06
+4.08E-06
+4.89E-06
+5.25E-06
+6.01E-06
+6.05E-06
+6.86E-06
+7.03E-06
+7.47E-06
+8.74E-06
+9.25E-06
+9.33E-06
+9.76E-06
+
+1.06E-06
+2.66E-06
+3.36E-06
+8.94E-06
+9.01E-06
+
+2.24E-08
+1.43E-06
+1.45E-06
+2.45E-06
+2.68E-06
+2.98E-06
+3.3E-06
+
+1.07E-07
+1.7E-07
+2.81E-07
+7.15E-06
+
+0.025
+0.012
+0.011
+0.012
+0.033
+0.032
+0.232
+0.012
+0.029
+0.034
+0.015
+0.098
+0.036
+0.019
+0.068
+0.309
+0.017
+0.02
+0.245
+0.235
+
+0.018
+0.03
+0.013
+0.126
+0.126
+
+0.25
+0.127
+0.206
+0.127
+0.126
+0.237
+0.126
+
+0.374
+0.381
+0.172
+0.172
+
+TLR4
+FBXO8
+RIMS2
+ATG3
+ZMAT4
+NRXN3
+SGCZ
+CCDC102B
+TRPM3
+MUC19
+RHAG
+MEX3C
+LOC100128217
+MARK1
+LRPPRC
+SLC25A13
+
+DIS3L2
+MGC48628
+SGCZ
+
+GRIN2A
+NBPF21P
+LOC100131027
+FTO
+FTO
+
+LOC729076
+FTO
+DDIT4
+FTO
+FTO
+SEC16B
+FTO
+
+ATP2B1
+ATP2B1
+CSK
+PTPN11
+
+66,490
+0
+0
+97,246
+0
+0
+0
+0
+0
+41,221
+37,578
+76,301
+0
+0
+32,425
+77,756
+16,777,215
+0
+0
+0
+
+42,168
+9,941
+36,359
+0
+0
+
+97,011
+0
+78,025
+0
+0
+22,728
+0
+
+10,742
+31,344
+0
+38,753
+
+down  70k
+intron
+intron
+up  100k
+intron
+intron
+intron
+intron
+intron
+down  50k
+up  40k
+up  80k
+intron
+intron
+up  40k
+up  80k
+
+intron
+intron
+intron
+
+up  50k
+down  10k
+down  40k
+intron
+intron
+
+down  100k
+intron
+up  80k
+intron
+intron
+down  30k
+intron
+
+up  20k
+up  40k
+intron
+up  40k
+
+1Nearby  genes  are  defined  as  the  closest  genes  to  the  SNP  within  signal  boundary  or  the  closest  genes  within  a  200-kb 
+window.
+MAF,  minor  allele  frequency;  BMI,  body  mass  index.
+
+    A  total  of  seven  SNPs  from  four  genes  were  identified 
+for  BMI.  The  four  genes  are  LOC729076,  FTO,  DDIT4, 
+and  SEC16B,  and  four  SNPs,  including  rs9939609, 
+which  was  shown  for  the  subscapular  analysis,  were 
+from  the  FTO  gene.  SEC16B  polymorphisms  were  pre-
+viously  reported  to  be  associated  with  obesity  and  obe-
+sity-induced  diabetes  (Hotta  et al.,  2009).
+
+Gene-based  analysis  using  Fisher’s  combination 
+test
+
+Next,  we  tested  for  the  association  of  genes  using 
+Fisher’s  combination  test,  where  a  set  of  p-values  for 
+SNPs  in  a  gene  were  considered  simultaneously.  We 
+mapped  the  identified  SNPs  to  exon/intron  or  within  the 
+5-kbp  upstream/0.5-kbp  downstream  regions  of  the 
+known  genes.  In  total,  31,207  genes  were  annotated 
+among  327,872  SNPs.  The  P-values  of  the  genes  were 
+calculated  by  Fisher’s  combination  test.  The  numbers  of 
+
+154    Genomics  &  Informatics    Vol.  8(3)  150-158,  September  2010
+
+genes  that  were  significantly  associated  with  a  p-value 
+less  than  1.0e-5  were  selected.  From  the  analysis,  we 
+could  find  that  a  large  portion  of  significant  genes  con-
+tained  insignificant  SNPs.  This  shows  that  joint  analysis 
+of  multiple  loci  within  a  gene  can  have  more  power, 
+when  a  single  SNP  does  not  have  a  strong  effect  on 
+complex  diseases. 
+    For  subscapular,  33  genes  were  found  to  be  asso-
+ciated.  For  subscapular,  54  genes  were  detected. 
+Sixty-nine  genes  showed  a  strong  association  with  BMI. 
+Hypertension  had  75  genes  showing  a  strong  associa-
+tion.  The  gene-based  approach  detected  more  genes  in 
+common  within  the  four  phenotypes  than  the  sin-
+gle-marker  association  analyses.  Three  genes,  SH3RF3, 
+c12ORF51,  and  ATG10,  were  detected  to  be  shared 
+with  hypertension  and  BMI.  BMI  and  suprailiac  shared 
+13  genes,  BMI  and  suprailiac  had  8  genes  in  common. 
+Thus,  subscapular  and  BMI  had  a  much  greater  number 
+of  associated  genes  in  common  than  suprailiac  and 
+BMI.  Subscapular  and  suprailiac  had  9  genes 
+in 
+common.  BMI,  subscapular,  and  suprailiac  had  PDIA6 
+and  SNX9  in  common  (Table  3).  The  PDIA6  gene  enc-
+odes  a  protein  disulfide  isomerase  family  member  pro-
+tein  and  localizes  in  the  endoplasmic  reticulum  (ER).  The 
+role  of  this  gene,  related  to  obesity,  has  been  discussed 
+in  the  aspect  of  one  of  the  adipocyte  extracellular  ma-
+trix  (ECM)  processing  enzymes  (Mariman  and  Wang, 
+2010),  which  partly  explains  the  association  between 
+SNPs  in  PDIA6  and  obesity-related  traits  in  common. 
+
+ways  retrieved  from  the  Kyoto  Encyclopedia  of  Genes 
+and  Genomes  (KEGG;  www.genome.jp/kegg/),  BioCarta 
+(www.biocarta.com/), and GenMAPP (http://www.genmapp. 
+org/)  databases.  Table  4  shows  the  significant  pathways 
+for  each  phenotype,  identified  using  p-values  from 
+Fisher’s  exact  test.  Eighteen  significant  pathways  were 
+detected  for  BMI,  23  significant  pathways  for  hyper-
+tension,  16  significant  pathways  for  suprailiac,  and  17 
+significant  pathways  for  subscapular.  MAPK  signaling 
+pathway  was  shown  to  be  common  for  all  of  the  four 
+analyzed  traits.  Hypertension,  subscapular,  and  supra-
+iliac  had  calcium  signaling  pathway  in  common. 
+    MAPK  signaling  pathway  is  one  of  the  most  ubiquitous 
+signal  transduction  systems.  The  role  of  JNK-MAPK  sig-
+naling  in  obesity  was  reported  by  multiple  studies  (Bost 
+et al.,  2005;  Hirosumi  et al.,  2002).  In  addition,  the 
+MAPK  signaling  pathway  is  claimed  to  be  related  to  car-
+diac  hypertrophy  through  the  Grb2  adapter  protein  and 
+cardiac  p38  MAPK  signaling.  Human  cardiac  hyper-
+trophy  is  a  common  condition  that  often  develops  as  a 
+by-product  of  hypertension  or  valvular  heart  disease 
+(Zhang  et al.,  2003). 
+    The  calcium  signaling  pathwayis  a  well-known  target 
+for  treatment  of  hypertension  (Berridge,  1994).  Recently, 
+calcium  signaling  in  obesity  was  also  studied  and  re-
+ported  to  have  a  role  in  determining  the  cell  fate  of  adi-
+pocytes  (Sergeev,  2009).
+
+SEM  Analysis
+
+Pathway-based  analysis  using  Fisher’s  exact 
+test
+
+In  order  to  determine  the  biological  pathways  that  are 
+associated  with  the  four  traits,  we  conducted  tests  on 
+whether  a  pathway  was  enriched  with  the  significant 
+genes  identified  from  the  gene-based  analysis.  Our 
+pathway-based  analysis  was  conducted  using  465  path-
+
+In  this  analysis,  SEMs  were  used  to  equate  causal  rela-
+tionships  between  genetic  networks  and  correlated  phe-
+notypes  based  on  the  analysis  results  in  the  previous 
+stages.  We  constructed  SEMs,  including  the  MAPK  sig-
+naling  pathway,  which  appears  to  be  significantly  com-
+mon  for  every  phenotype.  SNPs  were  chosen  within 
+genes  from  the  MAPK  signaling  pathwaywith  p-values 
+less  than  1.0e-04  for  each  phenotype.  In  the  models, 
+
+Table 3.  Genes  detected  to  be  significantly  associated  with  more  than  two  traits  from  a  gene-based  association  test.  Genes 
+having  P-values＜1.0E−5  from  Fisher’s  combination  test  were  considered  to  be  significant.  The  numbers  of  significant 
+
+genes  were  55  for  subscapular  (SUB),  54  for  suprailiac  (SUP),  69  for  BMI,  and  75  for  hypertension  (HTN)
+
+Traits
+
+Significant  genes  in  common
+
+PDIA6,  SNX9  LOC,  SNX9,  FBXL20,  SUCLG2,  hCG_1981,  BMPR1B,  COMMD10,  DOCK10
+PDIA6,  LOC34134,  JAKMIP2,  PADI2,  GLI3,  SNX9  LOC,  PARD3B,  SNX9,  NUP205,  FTO,  CDC123,  TULP4,  INDOL1
+PDIA6,  DMGDH,  SSBP3,  SNX9  LOC,  MACF1,  SNX9,  PGCP,  AUTS2
+
+Obesity
+    SUB+SUP
+    BMI+SUB
+    BMI+SUP
+Obesity and hypertension
+    BMI+HTN
+    SUB+HTN
+    SUP+HTN
+
+SH3RF3,  C12orf51,  ATG10
+FBXL20,  HSD17B12
+DCC,  FBXL20,  SRPK1,  FBXL17
+
+Genes  significant  at  more  than  two  traits  are  written  in  bold.
+
+GWAS  Using  Structural  Equation  Models      155
+
+Table  4.  Pathways  significantly  enriched  for  genes  associated  with  one  of  the  four  traits.  p-values  obtained  from  Fisher’s 
+exact  test  based  on  hypergeometric  distribution
+
+Name  of  Pathway
+
+p-value
+
+Name  of  Pathway
+
+Suprailiac
+
+Subscapular
+
+VEGF_SIGNALING_PATHWAY
+CELL_ADHESION_MOLECULES
+ADHERENS_JUNCTION
+PURINE_METABOLISM
+GAP_JUNCTION
+COMPLEMENT_AND_COAGULATION_CASCADES
+ANTIGEN_PROCESSING_AND_PRESENTATION
+RENIN_ANGIOTENSIN_SYSTEM
+CALCIUM_SIGNALING_PATHWAY
+HEMATOPOIETIC_CELL_LINEAGE
+MAPK_SIGNALING_PATHWAY
+B_CELL_RECEPTOR_SIGNALING_PATHWAY
+FC_EPSILON_RI_SIGNALING_PATHWAY
+CIRCADIAN_RHYTHM
+LONG_TERM_POTENTIATION
+
+0.0007
+0.0091
+0.0044
+0.0079
+0.045
+0.0231
+0.0043
+0.0079
+0.0079
+0.0208
+0.0208
+0.0079
+0.0128
+0.0208
+0.0445
+
+METHANE_METABOLISM
+CARBON_FIXATION
+REDUCTIVE_CARBOXYLATE_CYCLE
+THIAMINE_METABOLISM
+RIBOFLAVIN_METABOLISM
+VITAMIN_B6_METABOLISM
+BIOTIN_METABOLISM
+LIPOIC_ACID_METABOLISM
+CALCIUM_SIGNALING_PATHWAY
+RETINOL_METABOLISM
+PORPHYRIN_AND_CHLOROPHYLL_METABOLISM
+LIMONENE_AND_PINENE_DEGRADATION
+PHENYLPROPANOID_BIOSYNTHESIS
+ALKALOID_BIOSYNTHESIS_I
+AMINOACYL_TRNA_BIOSYNTHESIS
+MAPK_SIGNALING_PATHWAY
+GLYCAN_STRUCTURES_DEGRADATION
+
+BMI
+
+Hypertension
+
+p-value
+
+0.00462
+0.00515
+0.00521
+0.00629
+0.0089
+0.01248
+0.01257
+0.01409
+0.01456
+0.01514
+0.01664
+0.01682
+0.0208
+0.02288
+0.0308
+0.03288
+0.04424
+
+0.0005
+0.00515
+0.00629
+0.00629
+
+GLYCOLYSIS_AND_GLUCONEOGENESIS
+CITRATE_CYCLE
+PENTOSE_PHOSPHATE_PATHWAY
+INOSITOL_METABOLISM
+PENTOSE_AND_GLUCURONATE_INTERCONVERSIONS 0.0089
+FRUCTOSE_AND_MANNOSE_METABOLISM
+0.01248
+0.01456
+GALACTOSE_METABOLISM
+FATTY_ACID_METABOLISM
+0.0208
+SYNTHESIS_AND_DEGRADATION_OF_KETONE_BODIES 0.02521
+0.02665
+BIOSYNTHESIS_OF_STEROIDS
+BILE_ACID_BIOSYNTHESIS
+0.03121
+0.03187
+MAPK_SIGNALING_PATHWAY
+0.03329
+ANDROGEN_AND_ESTROGEN_METABOLISM
+OXIDATIVE_PHOSPHORYLATION
+0.03953
+UREA_CYCLE_AND_METABOLISM_OF_AMINO_GROUPS 0.0402
+CAFFEINE_METABOLISM
+GLUTAMATE_METABOLISM
+
+0.04429
+0.04848
+
+0.00007
+HISTIDINE_METABOLISM
+GAMMA_HEXACHLOROCYCLOHEXANE_DEGRADATION 0.00044
+0.00079
+BISPHENOL_A_DEGRADATION
+TRYPTOPHAN_METABOLISM
+0.00079
+PHENYLALANINE_TYROSINE_AND_TRYPTOPHAN_BIOSYNTHESIS 0.00091
+NOVOBIOCIN_BIOSYNTHESIS
+0.00148
+0.00208
+SELENOAMINO_ACID_METABOLISM
+0.00231
+GLUTATHIONE_METABOLISM
+0.00233
+NAPHTHALENE_AND_ANTHRACENE_DEGRADATION
+0.00246
+1,4_DICHLOROBENZENE_DEGRADATION
+ETHYLBENZENE_DEGRADATION
+0.00445
+0.00446
+BUTANOATE_METABOLISM
+0.0045
+MAPK_SIGNALING_PATHWAY
+0.00549
+THIAMINE_METABOLISM
+0.00808
+VITAMIN_B6_METABOLISM
+BIOTIN_METABOLISM
+0.00886
+0.01455
+LIPOIC_ACID_METABOLISM
+0.01808
+RETINOL_METABOLISM
+0.0267
+CALCIUM_SIGNALING_PATHWAY
+0.03128
+MONOTERPENOID_BIOSYNTHESIS
+SULFUR_METABOLISM
+0.03222
+0.04888
+CAPROLACTAM_DEGRADATION
+
+the  pathway  was  treated  as  a  latent  variable,  and  SNPs 
+and  four  phenotypes  were  the  observed  variables.  Two 
+models  were  considered,  as  shown  in  Fig.  1.  Model  1 
+assumes  that  suprailiac  and  subscapular  influence  BMI 
+and  that  BMI  influences  hypertension.  Model  2  assumes 
+that  suprailiac,  subscapular,  and  BMI  influence  hyper-
+tension  simultaneously. 
+    In  an  SEM,  the  goodness-of-fit  index  (GFI)  measures 
+the  relative  differences  between  the  data  and  estimated 
+values  obtained  from  a  model,  while  the  adjusted  GFI 
+(AGFI)  adjusts  the  GFI  according  to  the  degrees  of 
+freedom.  If  these  two  measures  are  close  to  1,  we  can 
+
+conclude  that  the  model  fits  the  data  well.  The  Akaike 
+information  criterion  (AIC)  is  a  well-known  measure  that 
+can  be  used  for  model  comparisons.  The  smaller  the 
+AIC,  the  better  the  model  is.  Three  types  of  good-
+ness-of-fit  measures  were  evaluated  to  select  the  best 
+model  of  the  two  models:  for  model  1,  GFI=0.791, 
+AGFI=0.793,  and  AIC=1132.005;  and 
+for  model  2, 
+GFI=0.774,  AGFI=0.776,  and  AIC=1290.599.  In  general, 
+models  with  GFI  and  AGFI  measures  closer  to  1  and 
+with  smaller  AICs  are  considered  to  fit  well.  As  GFI  and 
+AGFI  were  close  to  1  for  both  models,  both  models  fit 
+the  data  well.  But,  model  1  showed  a  bigger  GFI  and 
+
+156    Genomics  &  Informatics    Vol.  8(3)  150-158,  September  2010
+
+(a)  Model  1. 
+
+(b)  Model  2.
+
+Fig.  1.  Structural  equation  models.
+
+AGFI  with  a  smaller  AIC  than  model  2;  model  1  was  se-
+lected  to  be  the  final  model.  Through  a  comparison  be-
+tween  two  models,  we  concluded  that  suprailiac  and 
+subscapular  indirectly  affect  hypertension  susceptibility 
+by  influencing  BMI.
+
+Discussion
+
+Most  GWASs  have  focused  on  single-SNP  analyses  of 
+single  traits.  The  result  of  a  single-SNP  analysis  is  lim-
+ited  to  correlations  between  candidate  susceptible  loci 
+and  single  traits.  In  this  study,  we  conducted  a  gene- 
+and  pathway-based  analysis  beyond  single-SNP  analy-
+sis.  Based  on  the  gene-  and  pathway-based  analysis, 
+we  proposed  the  use  of  SEMs  to  construct  a  model  for 
+causal  relationships  among  genetic  factors  and  risk  fac-
+tors  in  terms  of  traits  through  an  underlying  biological 
+pathway. 
+    The  gene-based  analysis  detected  more  significant 
+genes  than  the  single-SNP  analysis.  We  demonstrate 
+that  gene-based  analysis  is  a  powerful  method  to  detect 
+genes  that  are  associated  with  traits.  A  gene-based 
+analysis  is  also  easier  to  interpret,  as  function  and  the 
+relevant  disease  with  a  gene  are  better  investigated  than 
+a  SNP. 
+    A  pathway-based  analysis  was  conducted  to  find 
+pathways  that  were  significantly  correlated  with  each 
+phenotype.  In  our  analysis,  a  pathway  that  was  asso-
+ciated  with 
+in  common  was  detected. 
+Pathway-based  analysis  provides  a  more  comprehensive 
+understanding  of  the  biological  process  of  complex 
+traits  than  a  gene-based  or  single-SNP  analysis. 
+    SEM  was  used  to  identify  the  relationship  among  risk 
+factors  of  a  complex  trait.  In  this  study,  SEMs  were 
+used  to  model  how  upper  body  fat  distribution,  repre-
+sented  by  suprailiac  and  subscapular,  and  average  body 
+
+traits 
+
+four 
+
+fat  distribution,  represented  by  BMI,  were  related  with 
+hypertension.  Although  we  fit  a  limited  number  of  SEMs, 
+we  demonstrated  that  SEM  analysis  is  useful  in  inves-
+tigating  complex  biological  phenomena,  because  it  al-
+lows  us  to  present  complex  causal  relationships  in 
+equations  and  express  them  in  path  diagrams  and  be-
+cause  it  deals  better  with  correlated  variables  that  occur 
+frequently  in  biological  data. 
+    However,  SEM  has  some  limitations.  It  requires  an  ini-
+tial  model  to  start  with.  SEM  is  constructed  under  strict 
+multivariate  normality  and  independence  assumptions 
+among  errors.  Another  difficulty  is  that  run  time  in-
+creases  substantially  as 
+the  number  of  variables 
+increases. 
+
+Acknowledgments
+
+the  Consortium 
+
+This  work  was  supported  by 
+for 
+Large-Scale  Genome-Wide  Association  Study,  National 
+Research  Foundation  (KRF-2008-313-C00086),  and  the 
+Brain  Korea  21  Project  of  the  Ministry  of  Education.  The 
+KARE  data  analyzed  in  this  study  were  obtained  from 
+the  Korean  Genome  Analysis  Project  (4845-301),  which 
+was  funded  by  a  grant  from  the  Korea  National  Institute 
+of  Health  (Korea  Center  for  Disease  Control,  Ministry  for 
+Health,  Welfare  and  Family  Affairs),  Republic  of  Korea. 
+The  authors  thank  Hyung-Lae  Kim  (Center  for  Genome 
+Science,  National  Institute  of  Health,  South  Korea),  Nam 
+H.  Cho 
+(Department  of  Preventive  Medicine,  Ajou 
+University,  South  Korea),  and  Chol  Shin  (Department  of 
+Internal  Medicine,  Korea  University  Ansan  Hospital, 
+South  Korea)  for  their  great  efforts  in  generating  and 
+providing  these  valuable  data. 
+
+References
+
+Baranzini,  S.E.,  Galwey,  N.W.,  Wang,  J.,  Khankhanian,  P., 
+Lindberg,  R.,  Pelletier,  D.,  Wu,  W.,  Uitdehaag,  B.M., 
+Kappos,  L.,  Polman,  C.H.,  Matthews,  P.M.,  Hauser,  S.L., 
+Gibson,  R.A.,  Oksenberg,  J.R.,  and  Barnes,  M.R.  (2009). 
+Pathway  and  network-based  analysis  of  genome-wide 
+association  studies  in  multiple  sclerosis. Hum. Mol. Genet. 
+18,  2078-2090.
+
+Berridge,  M.J.  (1994).  The  biology  and  medicine  of  calcium 
+
+signalling.  Mol. Cell Endocrinol.  98,  119-124.
+
+Bost,  F.,  Aouadi,  M.,  Caron,  L.,  and  Binetruy,  B.  (2005). 
+The  role  of  MAPKs  in  adipocyte  differentiation  and 
+obesity.  Biochimie  87,  51-56.
+
+Cho,  Y.S.,  Go,  M.J.,  Kim,  Y.J.,  Heo,  J.Y.,  Oh,  J.H.,  Ban, 
+H.J.,  Yoon,  D.,  Lee,  M.H.,  Kim,  D.J.,  Park,  M.,  Cha,  S.H., 
+Kim,  J.W.,  Han,  B.G.,  Min,  H.,  Ahn,  Y.,  Park,  M.S.,  Han, 
+H.R.,  Jang,  H.Y.,  Cho,  E.Y.,  Lee,  J.E.,  Cho,  N.H.,  Shin, 
+C.,  Park,  T.,  Park,  J.W.,  Lee,  J.K.,  Cardon,  L.,  Clarke,  G., 
+McCarthy,  M.I.,  Lee,  J.Y.,  Oh,  B.,  and  Kim,  H.L.  (2009). 
+A  large-scale  genome-wide  association  study  of  Asian 
+populations  uncovers  genetic  factors  influencing  eight 
+quantitative  traits.  Nat. Genet.  41,  527-534.
+
+Dustan,  H.  (1991).  Obesity  and  hypertension. Diabetes Care 
+
+14,  488-504.
+
+Fisher,  R.A. 
+
+(1925).  Statistical  methods 
+
+for 
+
+research 
+
+workers.  Oliver  and  Lloyd,  London. 
+
+Frayling,  T.M.,  Timpson,  N.J.,  Weedon,  M.N.,  Zeggini,  E., 
+Freathy,  R.M.,  Lindgren,  C.M.,  Perry,  J.R.,  Elliott,  K.S., 
+Lango,  H.,  Rayner,  N.W.,  Shields,  B.,  Harries,  L.W., 
+Barrett,  J.C.,  Ellard,  S.,  Groves,  C.J.,  Knight,  B.,  Patch, 
+A.M.,  Ness,  A.R.,  Ebrahim,  S.,  Lawlor,  D.A.,  Ring,  S.M., 
+Ben-Shlomo,  Y.,  Jarvelin,  M.R.,  Sovio,  U.,  Bennett,  A.J., 
+Melzer,  D.,  Ferrucci,  L.,  Loos,  R.J.,  Barroso,  I.,  Wareham, 
+N.J.,  Karpe,  F.,  Owen,  K.R.,  Cardon,  L.R.,  Walker,  M., 
+Hitman,  G.A.,  Palmer,  C.N.,  Doney,  A.S.,  Morris,  A.D., 
+Smith,  G.D.,  Hattersley,  A.T.,  and  McCarthy,  M.I.  (2007). 
+A  common  variant  in  the  FTO  gene  is  associated  with 
+body  mass  index  and  predisposes  to  childhood  and 
+adult  obesity.  Science  316,  889-894.
+
+Hirosumi,  J.,  Tuncman,  G.,  Chang,  L.,  Gorgun,  C.Z.,  Uysal, 
+K.T.,  Maeda,  K.,  Karin,  M.,  and  Hotamisligil,  G.S.  (2002). 
+A  central  role  for  JNK  in  obesity  and  insulin  resistance. 
+Nature  420,  333-336.
+
+Hong,  K.W.,  Go,  M.J.,  Jin,  H.S.,  Lim,  J.E.,  Lee,  J.Y.,  Han, 
+B.G.,  Hwang,  S.Y.,  Lee,  S.H.,  Park,  H.K.,  Cho,  Y.S.,  and 
+Oh,  B.  (2010).  Genetic  variations  in  ATP2B1,  CSK,  ARSG 
+and  CSMD1  loci  are  related  to  blood  pressure  and/or  hy-
+pertension  in  two  Korean  cohorts.  J. Hum. Hypertens. 
+24,  367-372.
+
+Hotta,  K.,  Nakamura,  M.,  Nakamura,  T.,  Matsuo,  T., 
+Nakata,  Y.,  Kamohara,  S.,  Miyatake,  N.,  Kotani,  K., 
+Komatsu,  R.,  Itoh,  N.,  Mineo,  I.,  Wada,  J.,  Masuzaki,  H., 
+Yoneda,  M.,  Nakajima,  A.,  Funahashi,  T.,  Miyazaki,  S., 
+Tokunaga,  K.,  Kawamoto,  M.,  Ueno,  T.,  Hamaguchi,  K., 
+Tanaka,  K.,  Yamada,  K.,  Hanafusa,  T.,  Oikawa,  S., 
+Yoshimatsu,  H.,  Nakao,  K.,  Sakata,  T.,  Matsuzawa,  Y., 
+Kamatani,  N.,  and,  Y.N.  (2009).  Association  between 
+
+GWAS  Using  Structural  Equation  Models      157
+
+obesity  and  polymorphisms 
+GNPDA2,  BDNF,  FAIM2  and  MC4R 
+population.  J. Hum. Genet.  54,  727-731.
+
+in  SEC16B,  TMEM18, 
+in  a  Japanese 
+
+Kolz,  M.  (2008).  Association  between  variations  in  the  TLR4 
+gene  and  incident  type  2  diabetes  is  modified  by  the  ra-
+tio  of  total  cholesterol  to  HDL-cholesterol.  BMC Med. 
+Genet.  25,  9.
+
+Kraft,  P.,  and  Raychaudhuri,  S.  (2009).  Complex  diseases, 
+complex  genes:  keeping  pathways  on  the  right  track. 
+Epidemiology  20,  508-511.
+
+Lesnick,  T.G.,  Papapetropoulos,  S.,  Mash,  D.C.,  Ffrench- 
+Mullen,  J.,  Shehadeh,  L.,  de  Andrade,  M.,  Henley,  J.R., 
+Rocca,  W.A.,  Ahlskog,  J.E.,  and  Maraganore,  D.M. 
+(2007).  A  genomic  pathway  approach  to  a  complex  dis-
+ease:  axon  guidance  and  Parkinson  disease.  PLoS 
+Genet,  3,  e98.
+
+Levy,  D.,  Ehret,  G.B.,  Rice,  K.,  Verwoert,  G.C.,  Launer,  L.J., 
+Dehghan,  A.,  Glazer,  N.L.,  Morrison,  A.C.,  Johnson,  A.D., 
+Aspelund,  T.,  Aulchenko,  Y.,  Lumley,  T.,  Kottgen,  A., 
+Vasan,  R.S.,  Rivadeneira,  F.,  Eiriksdottir,  G.,  Guo,  X., 
+Arking,  D.E.,  Mitchell,  G.F.,  Mattace-Raso,  F.U.,  Smith, 
+A.V.,  Taylor,  K.,  Scharpf,  R.B.,  Hwang,  S.J.,  Sijbrands, 
+E.J.,  Bis,  J.,  Harris,  T.B.,  Ganesh,  S.K.,  O'Donnell,  C.J., 
+Hofman,  A.,  Rotter,  J.I.,  Coresh,  J.,  Benjamin,  E.J., 
+Uitterlinden,  A.G.,  Heiss,  G.,  Fox,  C.S.,  Witteman,  J.C., 
+Boerwinkle,  E.,  Wang,  T.J.,  Gudnason,  V.,  Larson,  M.G., 
+Chakravarti,  A.,  Psaty,  B.M.,  and  van  Duijn,  C.M.  (2009). 
+Genome-wide  association  study  of  blood  pressure  and 
+hypertension.  Nat. Genet.  41,  677-687.
+
+Licata,  G.,  Scaglione,  R.,  Ganguzza,  A.,  Corrao,  S., 
+Donatelli,  M.,  Parrinello,  G.,  Dichiara,  M.A.,  Merlino,  G., 
+and  Cecala,  M.G. 
+(1994).  Central  obesity  and 
+hypertension.  Relationship  between  fasting  serum  insulin, 
+plasma  renin  activity,  and  diastolic  blood  pressure  in 
+young  obese  subjects.  Am. J. Hypertens.  7,  314-320.
+
+Mariman,  E.C.,  and  Wang,  P.  (2010).  Adipocyte  extracellular 
+matrix  composition,  dynamics  and  role  in  obesity.  Cell 
+Mol. Life Sci.  67,  1277-1292.
+
+Niskanen,  L.,  Laaksonen,  D.E.,  Nyyssönen,  K.,  Punnonen, 
+
+K.,  Valkonen,  V.-P.,  Fuentes,  R.,  Tuomainen,  T.-P., 
+Salonen,  R.,  and  Salonen,  J.T.  (2004).  Inflammation,  ab-
+dominal  obesity,  and 
+smoking  as  predictors  of 
+hypertension.  Hypertension  44,  859-865.
+
+Purcell,  S.,  Neale,  B.,  Todd-Brown,  K.,  Thomas,  L.,  Ferreira, 
+M.A.,  Bender,  D.,  Maller,  J.,  Sklar,  P.,  de  Bakker,  P.I., 
+Daly,  M.J.,  and  Sham,  P.C.  (2007).  PLINK:  a  tool  set  for 
+whole-genome  association  and  population-based  linkage 
+analyses.  Am. J. Hum. Genet.  81,  559-575.
+
+Rajagopalan,  D.,  and  Agarwal,  P.  (2005).  Inferring  pathways 
+from  gene  lists  using  a  literature-derived  network  of  bio-
+logical  relationships.  Bioinformatics  21,  788-793.
+
+Rioux,  J.D.,  Xavier,  R.J.,  Taylor,  K.D.,  Silverberg,  M.S., 
+Goyette,  P.,  Huett,  A.,  Green,  T.,  Kuballa,  P.,  Barmada, 
+M.M.,  Datta,  L.W.,  Shugart,  Y.Y.,  Griffiths,  A.M.,  Targan, 
+S.R.,  Ippoliti,  A.F.,  Bernard,  E.J.,  Mei,  L.,  Nicolae,  D.L., 
+Regueiro,  M.,  Schumm,  L.P.,  Steinhart,  A.H.,  Rotter,  J.I., 
+Duerr,  R.H.,  Cho,  J.H.,  Daly,  M.J.,  and  Brant,  S.R. 
+(2007).  Genome-wide  association  study  identifies  new 
+susceptibility  loci  for  Crohn  disease  and  implicates  au-
+
+158    Genomics  &  Informatics    Vol.  8(3)  150-158,  September  2010
+
+tophagy  in  disease  pathogenesis.  Nat. Genet.  39,  596- 
+604.
+
+Saxena,  R.,  Voight,  B.F.,  Lyssenko,  V.,  Burtt,  N.P.,  de 
+Bakker,  P.I.,  Chen,  H.,  Roix,  J.J.,  Kathiresan,  S., 
+Hirschhorn,  J.N.,  Daly,  M.J.,  Hughes,  T.E.,  Groop,  L., 
+Altshuler,  D.,  Almgren,  P.,  Florez,  J.C.,  Meyer,  J.,  Ardlie, 
+K.,  Bengtsson  Bostrom,  K., 
+Isomaa,  B.,  Lettre,  G., 
+Lindblad,  U.,  Lyon,  H.N.,  Melander,  O.,  Newton-Cheh,  C., 
+Nilsson,  P.,  Orho-Melander,  M.,  Rastam,  L.,  Speliotes, 
+E.K.,  Taskinen,  M.R.,  Tuomi,  T.,  Guiducci,  C.,  Berglund, 
+A.,  Carlson,  J.,  Gianniny,  L.,  Hackett,  R.,  Hall,  L., 
+Holmkvist,  J.,  Laurila,  E.,  Sjogren,  M.,  Sterner,  M.,  Surti, 
+A.,  Svensson,  M.,  Tewhey,  R.,  Blumenstiel,  B.,  Parkin, 
+M.,  Defelice,  M.,  Barry,  R.,  Brodeur,  W.,  Camarata,  J., 
+Chia,  N.,  Fava,  M.,  Gibbons,  J.,  Handsaker,  B.,  Healy, 
+C.,  Nguyen,  K.,  Gates,  C.,  Sougnez,  C.,  Gage,  D., 
+Nizzari,  M.,  Gabriel,  S.B.,  Chirn,  G.W.,  Ma,  Q.,  Parikh, 
+H.,  Richardson,  D.,  Ricke,  D.,  and  Purcell,  S.  (2007). 
+Genome-wide  association  analysis  identifies  loci  for  type 
+2  diabetes  and 
+levels.  Science  316, 
+1331-1336.
+
+triglyceride 
+
+Scaglione,  R.,  Ganguzza,  A.,  Corrao,  S.,  Parrinello,  G., 
+Merlino,  G.,  Dichiara,  M.A.,  Arnone,  S.,  D'Aubert,  M.D., 
+and  Licata,  G.  (1995).  Central  obesity  and  hypertension: 
+pathophysiologic 
+renal  haemodynamics  and 
+function.  Int J Obes Relat. Metab. Disord.  19,  403-409.
+
+role  of 
+
+Selby,  J.V.,  Friedman,  G.D.,  and  Quesenberry,  C.P.,  Jr. 
+(1989).  Precursors  of  essential  hypertension.  The  role  of 
+body  fat  distribution  pattern.  Am.  J.  Epidemiol.  129, 
+43-53.
+
+Sergeev,  I.N.  (2009).  Novel  Mediators  of  Vitamin  D  Signaling 
+in  Cancer  and  Obesity,  Immun.,  Endoc.  &  Metab. Agents 
+in Med. Chem.  9,  153-158.
+
+Torkamani,  A.,  Topol,  E.J.,  and  Schork,  N.J. 
+
+(2008). 
+Pathway  analysis  of  seven  common  diseases  assessed 
+by  genome-wide  association,  Genomics  92,  265-272.
+
+Willer,  C.J.,  Speliotes,  E.K.,  Loos,  R.J.,  Li,  S.,  Lindgren, 
+C.M.,  Heid,  I.M.,  Berndt,  S.I.,  Elliott,  A.L.,  Jackson,  A.U., 
+Lamina,  C.,  Lettre,  G.,  Lim,  N.,  Lyon,  H.N.,  McCarroll, 
+S.A.,  Papadakis,  K.,  Qi,  L.,  Randall,  J.C.,  Roccasecca, 
+R.M.,  Sanna,  S.,  Scheet,  P.,  Weedon,  M.N.,  Wheeler,  E., 
+Zhao,  J.H.,  Jacobs,  L.C.,  Prokopenko,  I.,  Soranzo,  N., 
+Tanaka,  T.,  Timpson,  N.J.,  Almgren,  P.,  Bennett,  A., 
+Bergman,  R.N.,  Bingham,  S.A.,  Bonnycastle,  L.L.,  Brown, 
+M.,  Burtt,  N.P.,  Chines,  P.,  Coin,  L.,  Collins,  F.S., 
+Connell,  J.M.,  Cooper,  C.,  Smith,  G.D.,  Dennison,  E.M., 
+Deodhar,  P.,  Elliott,  P.,  Erdos,  M.R.,  Estrada,  K.,  Evans, 
+D.M.,  Gianniny,  L.,  Gieger,  C.,  Gillson,  C.J.,  Guiducci,  C., 
+Hackett,  R.,  Hadley,  D.,  Hall,  A.S.,  Havulinna,  A.S., 
+Hebebrand,  J.,  Hofman,  A.,  Isomaa,  B.,  Jacobs,  K.B., 
+
+Johnson,  T.,  Jousilahti,  P.,  Jovanovic,  Z.,  Khaw,  K.T., 
+Kraft,  P.,  Kuokkanen,  M.,  Kuusisto,  J.,  Laitinen,  J., 
+Lakatta,  E.G.,  Luan,  J.,  Luben,  R.N.,  Mangino,  M., 
+McArdle,  W.L.,  Meitinger,  T.,  Mulas,  A.,  Munroe,  P.B., 
+Narisu,  N.,  Ness,  A.R.,  Northstone,  K.,  O'Rahilly,  S., 
+Purmann,  C.,  Rees,  M.G.,  Ridderstrale,  M.,  Ring,  S.M., 
+Rivadeneira,  F.,  Ruokonen,  A.,  Sandhu,  M.S.,  Saramies, 
+J.,  Scott,  L.J.,  Scuteri,  A.,  Silander,  K.,  Sims,  M.A.,  Song, 
+K.,  Stephens,  J.,  Stevens,  S.,  Stringham,  H.M.,  Tung, 
+Y.C.,  Valle,  T.T.,  Van  Duijn,  C.M.,  Vimaleswaran,  K.S., 
+Vollenweider,  P.,  Waeber,  G.,  Wallace,  C.,  Watanabe, 
+R.M.,  Waterworth,  D.M.,  Watkins,  N.,  Witteman,  J.C., 
+Zeggini,  E.,  Zhai,  G.,  Zillikens,  M.C.,  Altshuler,  D., 
+Caulfield,  M.J.,  Chanock,  S.J.,  Farooqi,  I.S.,  Ferrucci,  L., 
+Guralnik,  J.M.,  Hattersley,  A.T.,  Hu,  F.B.,  Jarvelin,  M.R., 
+Laakso,  M.,  Mooser,  V.,  Ong,  K.K.,  Ouwehand,  W.H., 
+Salomaa,  V.,  Samani,  N.J.,  Spector,  T.D.,  Tuomi,  T., 
+Tuomilehto,  J.,  Uda,  M.,  Uitterlinden,  A.G.,  Wareham, 
+N.J.,  Deloukas,  P.,  Frayling,  T.M.,  Groop,  L.C.,  Hayes, 
+R.B.,  Hunter,  D.J.,  Mohlke,  K.L.,  Peltonen,  L., 
+Schlessinger,  D.,  Strachan,  D.P.,  Wichmann,  H.E., 
+McCarthy,  M.I.,  Boehnke,  M.,  Barroso,  I.,  Abecasis,  G.R., 
+and  Hirschhorn,  J.N.  (2009).  Six  new  loci  associated  with 
+body  mass  index  highlight  a  neuronal  influence  on  body 
+weight  regulation.  Nat. Genet.  41,  25-34.
+
+WTCCC  (2007).  Genome-wide  association  study  of  14,000 
+cases  of  seven  common  diseases  and  3,000  shared 
+controls.  Nature  447,  661-678.
+
+Zanke,  B.W.,  Greenwood,  C.M.,  Rangrej,  J.,  Kustra,  R., 
+Tenesa,  A.,  Farrington,  S.M.,  Prendergast,  J.,  Olschwang, 
+S.,  Chiang,  T.,  Crowdy,  E.,  Ferretti,  V.,  Laflamme,  P., 
+Sundararajan,  S.,  Roumy,  S.,  Olivier,  J.F.,  Robidoux,  F., 
+Sladek,  R.,  Montpetit,  A.,  Campbell,  P.,  Bezieau,  S., 
+O'Shea,  A.M.,  Zogopoulos,  G.,  Cotterchio,  M.,  Newcomb, 
+P.,  McLaughlin,  J.,  Younghusband,  B.,  Green,  R.,  Green, 
+J.,  Porteous,  M.E.,  Campbell,  H.,  Blanche,  H.,  Sahbatou, 
+M.,  Tubacher,  E.,  Bonaiti-Pellie,  C.,  Buecher,  B.,  Riboli, 
+E.,  Kury,  S.,  Chanock,  S.J.,  Potter,  J.,  Thomas,  G., 
+Gallinger,  S.,  Hudson,  T.J.,  and  Dunlop,  M.G.  (2007). 
+Genome-wide  association  scan  identifies  a  colorectal 
+cancer  susceptibility  locus  on  chromosome  8q24.  Nat. 
+Genet.  39,  989-994.
+
+Zaykin,  D.V.,  Zhivotovsky,  L.A.,  Czika,  W.,  Shao,  S.,  and 
+Wolfinger,  R.D.  (2007).  Combining  p-values  in  large-scale 
+genomics  experiments.  Pharm. Stat.  6,  217-226.
+
+Zhang,  S.,  Weinheimer,  C.,  Courtois,  M.,  Kovacs,  A.,  Zhang, 
+C.E.,  Cheng,  A.M.,  Wang,  Y.,  and  Muslin,  A.J.  (2003). 
+The  role  of  the  Grb2-p38  MAPK  signaling  pathway  in 
+cardiac  hypertrophy  and  fibrosis.  J. Clin. Invest.  111, 
+833-841.
+
+

@@ -1,0 +1,882 @@
+Genomics  &  Informatics  Vol.  4(2) 71-76, June 2006 
+
+Prediction of Exposure to 1763MHz Radiofrequency 
+Radiation Using Support Vector Machine Algorithm in Jurkat 
+Cell Model System 
+
+Tai-Qin  Huang1#,  Min  Su  Lee2#,  Young-Joo  Bae3, 
+Hyun-Seok  Park2
+,  Woong-Yang  Park1  and  Jeong(cid:173)
+Sun Seo1* 
+
+3
+•
+
+1llchun  Molecular  Medicine  Institute  and  Department  of 
+Biochemistry and  1\ilolecular Biology,  Seoul  National  University 
+College  of Medicine,  Seoul  110-799,  Korea,  2Departrnent  of 
+Computer Science and  Engineering,  EINha  W:lrrans University, 
+Seoul  120-750,  Korea,  3Macrogen  Inc.,  Seoul  153-023,  Korea 
+#These  authors  equally  contribute  to  this  work. 
+
+Abstract 
+We  have investigated  biological  responses to  radiofre(cid:173)
+quency (RF) radiation in in vitro and in vivo models.  By 
+measuring the levels of heat shock proteins as well as the 
+activation of mitogen activated protein kinases (MAPKs), 
+we could not detect any differences upon RF exposure. In 
+this  study,  we  used  more sensitive  method  to  find  the 
+molecular  responses  to  RF  radiation.  Jurkat,  human 
+T -lymphocyte  cells  were  exposed  to  1763  MHz  RF 
+radiation at an average specific absorption rate (SAR) of 
+10 W/kg for one hour and harvested immediately (RO) or 
+after five hours (R5).  From the profiles of 30,000 genes, 
+we  selected  68  differentially  expressed  genes  among 
+sham  (S),  RO  and  R5  groups using a random-variance 
+F-test.  Especially 45  annotated  genes were  related  to 
+metabolism, apoptosis or transcription regulation. Based 
+on support vector machine (SVM) algorithm, we designed 
+prediction  model  using  68  genes  to  discriminate  three 
+groups.  Our  prediction  model  could  predict  the  target 
+class of 19 among 20 examples exactly (95% accuracy). 
+From these data, we could  select the 68  biomarkers to 
+predict the  RF  radiation  exposure  with  high  accuracy, 
+which might need to be validated in  in vivo models. 
+
+Keywords:  radiofrequency radiation, mobile phone, gene 
+expression microarray, support vector machine 
+
+Introduction 
+As the total number of mobile phone users has been in-
+
+*Corresponding author: E-mail jeongsun@snu.ac.kr, 
+Tel  +82-2-740-8246, Fax +82-2-741-5423 
+Accepted by 30 May 2006 
+
+creased world-widely, the concerns about possible health 
+effect upon RF radiation raised among the public as well 
+as health care providers. Mostly the carcinogenic effects 
+were studied intensively during last several decades on 
+colon cancer (Wu eta/., 1994 ), mammary tumor (Toler et 
+a/.,  1997),  liver cancer (lmaida eta/.,  1998),  lymphoma 
+(Repacholi eta/., 1997), brain tumor (Salford eta/., 1997) 
+and skin tumorigenesis (Huang eta!., 2005). However, the 
+relationship between cancer and RF radiation seems to be 
+not so evident. At the molecular levels, the effects of RF ra(cid:173)
+diation on DNA damage, chromatin conformation (Belyaev 
+et a/.,  2006),  permeability  of blood-brain  barrier  (BBB) 
+(Persson eta/., 1997), the concentration of zinc ions (Aksen 
+eta/., 2004),  and the activities of ornithine decarboxylase 
+(ODC) (Paul raj eta/., 2002) were studied and reported to be 
+negative. In our recent study for stress response on RF ra(cid:173)
+diation,  1763MHz  RF  radiation  did  not  induce  the  ex(cid:173)
+pression of heat shock proteins or activate MAPKs in mice 
+whole-body exposure model (Lee eta/., 2005a). 
+
+In  in vitro studies using C3H101/2 cells,  exposure to 
+835.62 MHz and 84 7. 7 4 MHz could induce the expression 
+of FOS (Goswami eta/., 1999). The up-regulations of heat 
+shock  proteins  (HSPs)  were  also  reported  in  human 
+glioma M054 cells at a relatively high SAR of more than 
+20 W/kg but not at 5 W/kg {Tian eta!., 2002). Leszczynskin 
+et a/.  (2002)  also  reported  the  phosphorylation  HSP27 
+upon  one  hour  exposure  to  900  MHz  RF  radiation  in 
+human endothelial cells. However, the molecular effect of 
+RF  radiation  is still  debated  by reports on  the failure to 
+detect any changes in the same targets.  No changes in 
+the expression and activation of FOS in C3H1 01/2 cells at 
+5 W/kg and 10 W/kg SAR of RF radiations were reported 
+(Whitehead  et a/.,  2005)  and  no  statistical  significant 
+difference was detected in the number of cells expressing 
+stress proteins (HSP70 and  HSP27) upon  900MHz RF 
+radiation (Lim eta/., 2005). Lantow eta/. (2006) reported 
+altered HSP70 expression level was not observed after 
+co-exposure to RF EMFs+PMA or RF EMFs+LPS. 
+
+Microarray  technology  can  provide  powerful  in(cid:173)
+formation on the molecular characteristics of certain phys(cid:173)
+iological and pathological conditions. A number of inves(cid:173)
+tigators observed gene expression profiles in ionizing radi(cid:173)
+ation  (IR)  (Park eta/.,  2002;  Christiansen  eta/., 2006; 
+Fujimori eta/., 2005) to find IR-specific genes. To under(cid:173)
+stand the host responses to RF radiation, Jurkat cells ex-
+
+72  Genomics & Informatics  Vol.  4(2) 71-76, June 2006 
+
+posed to 1763 GHz RF radiation were examined their ex(cid:173)
+pression patterns to select genes related to RF radiation 
+(Lee eta/., 2005b ).  Radiofrequency radiation; mobile phone; 
+gene expression microarray; support vector machine In this 
+study, we tried to find biomarkers to predict the RF-exposed 
+cells  from  sham- exposed  one  using  gene  expression 
+profiles. Then we developed models to predict the exposure 
+to RF radiation using support vector machine (SVM) algo(cid:173)
+rithm (Vapnik, V.N.,  1998)with selected biomarkers based 
+on the Weka environment (Witten and Frank, 2005). 
+
+Methods 
+Cell culture and in vitro radiofrequency radiation 
+exposure system 
+Jurkat  cells  were  incubated  in  RPMI  1640  medium 
+supplemented with 10% fetal bovine serum (JBI, Korea), 
+2 mM glutamine,  125 units/ml penicillin,  and  125 f.lg/ml 
+streptomycin at 3rC in  a humidified incubator with 5% 
+C02.  For the  RF-EMFs exposure,  cells  were grown  in 
+2.5  x  105 cells/ml 16 hours prior to the exposure. 
+
+In vitro RF exposure system is specially designed for 
+this study in a rectangular-cavity type (Lee eta/., 2005 a). 
+A real CMDA signal1763 MHz is applied to the chamber 
+maintaining  proper  environmental  conditions  like  a 
+ventilation, humidity, and temperature in C02 incubator. 
+In  addition,  a  cooling  device circulating  water through 
+the bottom of the exposure chamber is used to prevent 
+the change in temperature upon RF exposure. 
+
+RF exposure design 
+Jurkat cells were exposed to  10 W/kg of 1763 MHz RF 
+radiation for one hour or one hour a day for 7 days. Cells 
+were  harvested  immediately  as  RO  groups  like  sham 
+(SRO) and PCS-exposed (PRO), and cells were incubated 
+for 5 hours to recover from acute response as R5 groups 
+like  sham  R5  (SR5)  and  PCS-exposed  (PR5).  We 
+repeated sets of experiment five times to collect biological 
+triplicates in every sample. 
+
+RNA extraction and microarray 
+Samples  in  each  group were  harvested  and  their total 
+RNAs  were  extracted  by  dissolving  in  TriZol  (Sigma). 
+After the fractions containing  RNA were collected,  total 
+RNAs  were  purified  using  Qiagen  RNAeasy  column 
+again.  The  array  used  in  this  experiment was Applied 
+Biosystems  1700  full  genome  expression  human 
+microarray which  includes  30,000  human  genes  from 
+the public and Celera database (http://www.pantherdb.org/). 
+
+Data analysis 
+Fluorescence intensity was processed and measured us(cid:173)
+ing Applied Biosystems 1700 Chemiluminescent Microarray 
+Analyzer. Intensity data were imported to an in-house mi(cid:173)
+croarray database. Quantile normalization was applied to 
+remove systematic variance. Quantile normalization is a 
+simple yet powerful method to normalize across arrays by 
+making the distribution of probe intensities for each array 
+in a set of arrays the same, and reduces the variance slight(cid:173)
+ly better than Lowess normalization (Bolstad eta/., 2003). 
+We identified genes that were differentially expressed 
+among the three classes using a random-variance F-test. 
+The random variance F-test is an  improvement over the 
+standard separate F-test as it permits sharing information 
+among genes about within-class validation without assum(cid:173)
+ing that all genes have the same variance (Wright, 2003). 
+Then we identified gene ontology (The Gene Ontology 
+Consortium,  2000) groups of genes whose expression 
+was  differentially  regulated  among  the  classes.  This 
+analysis is different than annotating a gene list using GO 
+categories.  The  GO  analysis  is  to  give  information 
+whether or not the list of significant genes selected by the 
+analysis is different from  a gene list randomly selected 
+from all genes in the analysis, for a given GO category. 
+This is expressed by the observed vs. expected ratio. The 
+observed is defined as the number of genes in the list of 
+significant  genes  which  fall  into  a  GO  category.  The 
+expected  is  defined  as  the  average  number  of genes 
+which would be expected to fall into that GO category in 
+a subset of genes randomly selected from the genes in 
+the analysis. A GO category is considered to consist of not 
+only the genes which are described by that GO term, but 
+also any gene which is described by any children of that 
+GO term. 
+
+Prediction Model 
+We developed models for utilizing gene expression profile 
+to predict the class of future samples using support vector 
+machine (SVM) algorithm (Vapnik,  1998) based on  the 
+Weka  environment  (Witten  and  Frank,  2005).  Support 
+vector machines have exhibited superb performance in 
+binary  classification  tasks.  Intuitively,  SVM  aims  at 
+searching for a hyperplane that separates the two classes 
+of data with the largest margin between the hyperplane 
+and the point closest to it. There are some studies about 
+multiclass decomposition  techniques for SVM  such  as 
+one-versus-the  rest,  pairwise  comparison  and  error(cid:173)
+correcting output coding (ECOC), and they have showed 
+good  performance  than  other  multiclass  classification 
+algorithms.  We  use  a  sequential  minimal  optimization 
+algorithm with a logistic regression model and RBF kernel 
+
+Prediction of Exposure to Radiofrequency Radiation  73 
+
+for training a support vector classifier {Platt,  1998). 
+
+Results and Discussion 
+RF exposure to Jurkat T cells 
+Upon  the  exposure  to  1763MHz  RF  radiation,  Jurkat 
+cells did not show any change in cell  morphologies and 
+
+growth.  We kept the cells  in  C02  incubator while cells 
+were  exposed  to  RF  radiation.  RF  radiation  might 
+produce heat in the culture media,  but isothermal water 
+at 3rc circulated continuously at the bottom of chamber 
+through the experiment.  Because we kept the chamber 
+inside of C02 incubator, they were completely shielded 
+from any electromagnetic field radiation generated from 
+other electronic sources. For sham group, we assembled 
+
+Table 1. List of annotated genes that significantly changed upon exposure to electromagnetic field radiofrequency radiation 
+
+Gene ID 
+hCG1798475.1 
+hCG1785173.2 
+hCG1980142 
+hCG2020065 
+hCG20795.2 
+hCG2041317 
+hCG1748068.1 
+hCG2039732.1 
+hCG32158.3 
+hCG2036819 
+hCG1786105.2 
+hCG28566.3 
+hCG2000944 
+hCG1997617 
+hCG28703.3 
+hCG1787991.1 
+hCG2019985 
+hCG2028915 
+hCG38548.4 
+hCG1812926.1 
+hCG2018817 
+hCG23295.3 
+hCG2036683 
+hCG1783950.2 
+hCG1818126.1 
+hCG18888.4 
+hCG1781181.1 
+hCG32740.4 
+hCG1784632.2 
+hCG1782583.3 
+hCG28043.2 
+hCG1985127.1 
+hCG14997.4 
+hCG41586.2 
+hCG2044640 
+hCG1647586.3 
+hCG1749601.2 
+hCG2028492.1 
+hCG20429.4 
+hCG16728.4 
+hCG39984.3 
+hCG1983553 
+hCG1734197.1 
+hCG2027799 
+hCG1640903.5 
+
+Gene Symbol 
+
+Genbank Ace. 
+NM_001010883  FAM102B 
+NM_001008404  LOC400258 
+U28811 
+GLG1 
+NM_ 183006 
+DLGAP4 
+NM_025194 
+ITPKC 
+XM_496693 
+LOC441016 
+NM_024974 
+FAM106A 
+NM_022105 
+DID01 
+NM_003749 
+IRS2 
+AF426265 
+C21orf87 
+NM_130810 
+DYX1C1 
+NM_003655 
+CBX4 
+NM_024106 
+ZNF426 
+NM_033210 
+ZNF502 
+NM_006260 
+DNAJC3 
+NM_002867 
+RAB3B 
+NM_015678 
+NBEA 
+NM_206886 
+CCDC18 
+NM_025132  WDR19 
+GKAP1 
+NM_025211 
+TSGA101P 
+NM_152762 
+XM_170658 
+EHBP1 L 1 
+OTOP2 
+NM_178160 
+FAM59B 
+XM_097977 
+C10orf118 
+NM_018017 
+EPC1 
+NM_025209 
+NM_015208 
+ANKRD12 
+ERCC6 
+NM_000124 
+LMX1B 
+NM_002316 
+Z21966 
+POU6F1 
+SLC6A1 
+NM_003042 
+NM_194320 
+ZNF169 
+NM_212502 
+PCTK3 
+UNC5A 
+XM_030300 
+C6orf47 
+NM_021184 
+XM_097265 
+LOC147670 
+DUSP21 
+NM_022076 
+FLJ31306 
+BC034618 
+TTLL10 
+NM_153254 
+HMBOX1 
+NM_024567 
+NM_002557 
+OVGP1 
+U2AF1L4 
+NM_144987 
+RNF168 
+NM_152617 
+DKFZp686L 1814 
+NM_194282 
+NM  145024 
+CES7 
+
+SHAM 
+
+9.90  ±  0.30 
+9.72  ±  0.43 
+16.18  ±  0.16 
+11.43  ±  0.17 
+10.44  ±  0.44 
+10.21  ±  0.79 
+10.18  ±  0.48 
+11.96  ±  0.43 
+10.25  ±  0.37 
+9.61  ±  0.46 
+10.32  ±  0.17 
+11.14  ±  0.37 
+13.51  ±  0.13 
+10.12  ±  0.27 
+12.01  ±  0.28 
+10.74  ±  0.48 
+10.59  ±  0.35 
+10.46  ±  0.28 
+11.08  ±  0.28 
+10.33  ±  0.42 
+10.50  ±  0.38 
+9.52  ±  0.52 
+9.62  ±  0.26 
+10.12  ±  0.21 
+10.15  ±  0.69 
+10.95  ±  0.41 
+10.92  ±  0.38 
+10.07  ±  0.45 
+10.46  ±  0.23 
+10.32  ±  0.39 
+9.38  ±  0.44 
+10.50  ±  0.43 
+9.73  ±  0.83 
+9.43  ±  0.50 
+12.28  ±  0.30 
+10.15  ±  0.39 
+10.82  ±  0.60 
+13.14  ±  0.28 
+9.67  ±  0.45 
+14.42  ±  0.22 
+11.65  ±  0.24 
+11.21  ±  0.32 
+11.24  ±  0.44 
+11.18  ±  0.28 
+12.98  ±  0.24 
+
+PRO 
+
+9.25  ±  0.38 
+9.42  ±  0.55 
+15.62  ±  0.36 
+11.80  ±  0.07 
+9.53  ±  0.55 
+11.25  ±  0.29 
+10.41  ±  0.17 
+11.88  ±  0.27 
+10.58  ±  0.33 
+8.89  ±  0.86 
+9.68  ±  0.43 
+10.96  ±  0.19 
+13.42  ±  0.18 
+10.60  ±  0.21 
+11.50  ±  0.22 
+9.94  ±  0.53 
+10.71  ±  0.41 
+10.33  ±  0.18 
+11.24  ±  0.30 
+9.76  ±  0.34 
+9.80  ±  0.89 
+8.98  ±  0.86 
+10.32  ±  0.74 
+9.29  ±  0.82 
+9.32  ±  0.32 
+10.20  ±  0.81 
+10.44  ±  0.24 
+9.97  ±  0.40 
+10.79  ±  0.25 
+10.33  ±  0.70 
+9.17  ±  0.82 
+10.69  ±  0.41 
+10.58  ±  0.46 
+9.57  ±  0.55 
+12.30  ±  0.13 
+10.05  ±  0.19 
+10.13  ±  0.43 
+12.89  ±  0.21 
+8.92  ±  0.80 
+14.01  ±  0.44 
+11.30  ±  0.57 
+11.20  ±  0.23 
+10.64  ±  0.47 
+10.93  ±  0.32 
+12.94  ±  0.18 
+
+PR5 
+
+9.25  ±  0.40 
+8.86  ±  0.27 
+16.04  ±  0.35 
+11.66  ±  0.20 
+9.96  ±  0.59 
+11.11  ±  0.65 
+9.61  ±  0.35 
+13.11  ±  1.30 
+9.51  ±  0.94 
+8.70  ±  0.58 
+9.67  ±  0.80 
+11.59  ±  0.31 
+13.10  ±  0.35 
+10.29  ±  0.34 
+11.87  ±  0.39 
+10.38  ±  0.53 
+10.06  ±  0.40 
+10.02  ±  0.26 
+10.65  ±  0.42 
+10.04  ±  0.16 
+10.69  ±  0.25 
+8.27  ±  1.24 
+9.50  ±  0.65 
+9.91  ±  0.69 
+10.19  ±  0.58 
+10.83  ±  0.19 
+10.81  ±  0.13 
+9.47  ±  0.21 
+10.39  ±  0.16 
+9.61  ±  0.53 
+10.08  ±  0.54 
+10.00  ±  0.44 
+10.38  ±  0.23 
+10.18  ±  0.57 
+12.64  ±  0.15 
+9.50  ±  0.72 
+10.77  ±  0.33 
+12.76  ±  0.25 
+9.64  ±  0.47 
+14.32  ±  0.14 
+11.96  ±  0.45 
+10.77  ±  0.35 
+11.06  ±  0.33 
+11.42  ±  0.26 
+13.28  ±  0.19 
+
+p-Value 
+0.002 
+0.005 
+0.006 
+0.007 
+0.009 
+0.009 
+0.010 
+0.011 
+0.013 
+0.015 
+0.015 
+0.016 
+0.017 
+0.018 
+0.020 
+0.022 
+0.023 
+0.023 
+0.024 
+0.024 
+0.025 
+0.027 
+0.028 
+0.029 
+0.030 
+0.030 
+0.033 
+0.034 
+0.034 
+0.038 
+0.039 
+0.040 
+0.042 
+0.044 
+0.044 
+0.044 
+0.044 
+0.044 
+0.045 
+0.045 
+0.045 
+0.045 
+0.047 
+0.049 
+0.050 
+
+74  Genomics & Informatics  Vol. 4(2) 71-76, June 2006 
+
+Table 2. GO analysis - Molecular Function 
+
+GO id 
+3700 
+16301 
+
+GO classification 
+
+Observed in selected subset  Expected in selected subset  Observed I Expected 
+
+transcription factor activity 
+kinase activity 
+
+3 
+3 
+
+1.31 
+1.47 
+
+2.29 
+2.04 
+
+Table 3. GO analysis - Biological Process 
+
+GO classification 
+
+Observed in selected subset  Expected in selected subset  Observed I Expected 
+
+3 
+7 
+7 
+
+FP rate 
+
+0.1 
+0 
+0 
+
+0.68 
+2.85 
+3.24 
+
+4.43 
+2.46 
+2.16 
+
+Precision 
+
+0.909 
+
+F-Measure 
+
+0.952 
+
+1 
+
+0.889 
+
+GOid 
+6915 
+6355 
+31323 
+
+apoptosis 
+regulation of transcription,  DNA-dependent 
+regulation of cellular metabolism 
+
+Table 4. Detailed accuracy by class 
+
+Class 
+Sham 
+PRO 
+PR5 
+
+TP rate 
+
+1 
+1 
+0.8 
+
+exactly  same  experimental  set  up  for  RF  exposure 
+without applying the current. 
+
+Feature  selection  to  distinguish  among  Sham, 
+PRO, and PR5 
+We  designed  the  experiments  to  identify  the  genes 
+differentially expressed among the three classes- sham, 
+PRO,  and  PR5-using  a  random-variance F-test.  Genes 
+whose p-value were less than 0.05 were considered as 
+statistically significant ones.  By the statistical  analysis, 
+we selected 68 differentially expressed genes and listed 
+fully annotated 45 genes in Table 1. Even though the numbers 
+of genes listed here were quite small,  we could  detect the 
+transcriptional changes in Jurkat cells upon RF-radiation. 
+
+Although there were sizable numbers of un-annotated 
+genes  in  the  feature  gene  lists,  we  analyzed  GO 
+categories  for  just  annotated  genes.  Using  the  GO 
+analysis, we could characterize the biological responses 
+to RF radiation  in Jurkat T cells. As we summarized the 
+categories  in  Table  2  and  Table  3,  cellular  responses 
+require  the  changes  in  the  expression  of transcription 
+factors  and  kinase  enzymes.  Especially  those  genes 
+were related to apoptosis and cellular metabolism. 
+
+Prediction Model 
+The models incorporated 68 genes that were differentially 
+expressed among genes at the 0.05 significance level as 
+assessed by the random variance F-test. We estimated 
+the  prediction  error  of  the  model  with  1 0-fold  cross(cid:173)
+validation.  Specifically,  10-fold  cross-validation  means 
+that the available examples are partitioned into 10 disjoint 
+subsets.  The cross-validation procedure is then run  1 0 
+times, each time using one of the 10 subsets as the test 
+set and the others for training sets. 
+
+The performance criteria that we used are as follows: 
+
+Accuracy  = (TN + TP)  · 1 00 I (TP + FP + FN+ TN) 
+= (TP)  ·  1 00 I (TP + FN) 
+TP-rate 
+= (FP)  ·  100 I (FP + FN) 
+FP-rate 
+Precision  = (TP)  ·  1 00 I (TP + FP) 
+F-measure= 2 · Precision  · Recall I (Precision+ Recall) 
+
+= (2TP)  ·  100 I (2TP + FP + FN) 
+
+The accuracy is the proportion of correctly classified 
+examples among total examples. The true positive rate 
+(TP-rate)  is  the  proportion  of  examples  that  were 
+classified as class x, among all examples that truly have 
+class x,  i.e.  how much  of the class was captured.  It  is 
+equivalent to Recall. The false positive rate (FP-rate) is 
+the proportion of examples that were classified as class 
+x,  but  belong  to  a  different class,  among  all  examples 
+that are not of class x.  The precision of the proportion of 
+the  examples  that  truly  have  class  x  among  all  those 
+which were classified as class x.  F-measure is a single 
+measure  that  characterizes  recall  and  precision.  Our 
+prediction model predicted the target class of 19 among 
+20 examples exactly (95% accuracy). One dataset from 
+PR5 class was misclassified as a sham class (Table 4). 
+
+Acknowledgements 
+
+This work was supported by a grant from The Ministry of 
+Information and Communication of Korea (2006-P20-60) 
+to J.-S. Sea. 
+
+References 
+Aksen,  F., Dasdag, S., Akdag, M.Z., Askin, M., and Dasdag, 
+M.M.  (2004).  The  effects  of  whole  body  cell  phone 
+
+exposure on the T1  relaxation times and trace elements 
+in the serum of rats. Electromagnetic Bioi Med. 23, 7-17. 
+Belyaev, I.Y., Koch, C.B., Terenius, 0., Roxstrom-Lindquist, 
+K.,  Malmgren,  L.O.H.,  Sommer, W.,  Salford,  L.G.,  and 
+Persson,  B.R.  (2006).  Exposure of rat brain to 915 MHz 
+GSM microwaves induces changes in gene expression 
+but  not  double  stranded  DNA  breaks  or  effects  on 
+chromatin conformation. Bioelectromagnetics 27, 295-306. 
+Bolstad,  B.M.,  Irizarry R.  A.,  Astrand,  M.,  and Speed,  T.P. 
+(2003), A comparison of normalization methods for high 
+density  oligonucleotide  array  data  based  on  bias  and 
+variance. Bioinformatics 19,  185-193. 
+
+Christiansen, H., Batusic, D., Saile, B.,  Hermann, R.M., and 
+Dudas,  J.  Rave- Frank,  M.,  Hess,  C.F.,  Schmidberger, 
+H.,  and  Ramadori,  G.(2006). 
+Identification  of  genes 
+responsive to gamma radiation  in  rat hepatocytes and 
+rat liver by eDNA array gene expression analysis. Radiat 
+Res.  165, 318-325. 
+
+Fujimori, A., Okayasu, R., Ishihara, H., Yoshida, S., Eguchi(cid:173)
+Kasai,  K.,  Nojima,  K.,  Ebisawa,  S.,  and  Takahashi,  S. 
+(2005).  Extremely  low  dose  ionizing  radiation  up(cid:173)
+regulates CXC chemokines in normal human fibroblasts. 
+Cancer Res.  65,  10159-10163. 
+
+(1999).  Proto-oncogene  mRNA 
+
+Goswami,  P.C.,  Albee,  L.D.,  Parsian,  A.J.,  Baty,  J.D., 
+Moros,  E.G.,  Pickard,  W.F.,  Roti  Roti,  J.L.,  and  Hunt, 
+C.R. 
+levels  and 
+activities of multiple transcription factors in C3H10T 112 
+murine  embryonic  fibroblasts  exposed  to  835.62  and 
+847.74  MHz  cellular  phone  communication  frequency 
+radiation.  Radiat Res.  151, 300-309. 
+
+Huang,  T.Q.,  Lee,  J.S.,  Kim,  T.H.,  Pack,  J.K.,  Jang,  J.J., 
+and Seo, J.S.  (2005).  Effect of radiofrequency radiation 
+exposure  on  mouse  skin  tumorigenesis  initiated  by 
+7, 12-dimethyl benz[alpha]anthracene.lnt. J.  Radiat. Bioi. 
+81,  861-867. 
+
+lmaida,  K.,  Kuzutani,  K., Wang,  J.,  Fujiwara, 0., Ogiso, T., 
+Kato,  K.,  and  Shirai,  T.  (2001).  Lack  of promotion  of 
+7, 12-dimethylbenz[alpha]thracene-initiated  mouse skin 
+carcinogenesis by 1.5 GHz electromagnetic near fields. 
+Carcinogenesis 22,  1837-1841. 
+
+Lantow,  M.,  Schuderer,  J.,  Hartwig,  C.,  and  Simko,  M. 
+(2006).  Free  radical  release  and  HSP70 expression  in 
+two human immune-relevant cell lines after exposure to 
+1800 MHz radiofrequency  radiation.  Radiat.  Res.  165, 
+88-94. 
+
+Lee, J.S., Huang, T.Q., Lee, J.J., Pack, J.K., Jang, J.J., and 
+Seo,  J.S.  (2005  a).  Subchronic  exposure  of  hsp70. 
+1-deficient  mice  to  radiofrequency  radiation.  Int.  J. 
+Radiat.  Bioi.  81,781-792. 
+
+Lee,  S.,  Johnson,  D.,  Dunbar,  K.,  Dong,  H.,  Ge,  X.,  Kim, 
+Y.C.,  Wing,  C.,  Jayathilaka,  N.,  Emmanuel,  N.,  Zhou, 
+C.Q., Gerber, H.L., Tseng, C.C., and Wang, S.M. (2005 
+
+Prediction of Exposure to Radiofrequency Radiation  75 
+
+b). 2.45 GHz radiofrequency fields alter gene expression 
+in cultured human cells.  FEBS Lett.  579, 4829-4836. 
+
+Leszczynski, D., Joenvaara, S., Reivinen, J., and Kuokka, R. 
+(2002).  Non-thermal activation  of the hsp271p38MAPK 
+stress  pathway  by  mobile  phone  radiation  in  human 
+endothelial cells:  Molecular mechanism for cancer- and 
+blood-brain  barrier-related  effects.  Differentiation  70, 
+120-129. 
+
+Lim,  H.B.,  Cook,  G.G.,  Barker,  A.T.,  and  Coulton,  L.A. 
+(2005).  Effect  of  900  MHz  electromagnetic  fields  on 
+non-thermal  induction of heat-shock proteins in  human 
+leukocytes. Radiat.  Res.  163, 45-52. 
+
+Park,  W.Y.,  Hwang,  C.l.,  lm,  C.N.,  Kang,  M.J.,  Woo,  J.H., 
+Kim,  J.H.,  Kim,  Y.S.,  Kim,  J.H.,  Kim,  H.,  Kim,  K.A.,  Yu, 
+H.J., Lee, S.J., Lee, Y.S., Seo, J.S. (2002). Identification 
+of  radiation-specific  responses  from  gene  expression 
+profile.  Oncogene 21, 8521-8528. 
+
+Paulraj,  R.  and  Behari,  J.  (2002).  The  effect  of low level 
+continuous 2.45 GHz waves on enzymes of developing 
+rat brain.  Electromagnetic Bioi.  Med.  21,  221-231. 
+
+Persson, B.R.R., Salford, L.G., and Brun, A.  (1997). Blood(cid:173)
+
+brain barrier permeability in rats exposed to electromagnetic 
+fields used in wireless communication.  IMreless Networks 
+3, 455-461. 
+
+Platt,  J.  (1998).  Fast training  of support vector machines 
+using  sequential  minimal  optimization.  Advances  in 
+kernel  methods-support  vector  learning.  (Cambridge: 
+MIT Press). 
+
+Repacholi,  M.H.,  Basten,  A.,  Gebski,  V.,  Noonan,  D., 
+Finnie,  J.,  and  Harris,  A.W.  (1997).  Lymphomas  in  E 
+mu-Pim1 transgenic  mice  exposed  to  pulsed  900  MHZ 
+electromagnetic fields.  Radiat.  Res.  147, 631-640. 
+
+Salford,  L.G.,  Brun,  A.,  and  Persson,  B.R.  (1997).  Brain 
+tumor development in  rats exposed to electromagnetic 
+fields used in wireless cellular communication.  IMreless 
+Networks 3,  463-469. 
+
+The  Gene Ontology Consortium (2000).  Gene Ontology  : 
+Tool  for the  unification  of biology.  Nature  Genetics 25, 
+25-29. 
+
+Tian,  F.,  Nakahara,  T.,  Wake,  K.,  Taki,  M.,  Miyakoshi.  J. 
+(2002).  Exposure  to  2.45  GHz  electromagnetic  fields 
+induces hsp70 at a high SAR of more than 20 W/kg but 
+not at 5 W/kg in human glioma M054 cells. Int.  J.  Radiat. 
+Bioi.  78,  433-440. 
+
+Toler,  J.C.,  Shelton,  W.W.,  Fri,  M.R.,  Merritt,  J.H.,  and 
+Stedham, M.  (1997). A long-term,  low-level exposure of 
+mice  prone 
+to  435  MHz 
+radiofrequency radiation.  Radiat.  Res.  148, 227-234. 
+
+to  mammary 
+
+tumors 
+
+Vapnik,V.N.  (1998).  Statistical  Learning  Theory.  Wiley, 
+
+(New York,  NY). 
+
+Whitehead, T.D.,  Brownstein,  B.H.,  Parry,  J.J., Thompson, 
+D., Cha,  B.A., Moros,  E.G., Rogers, B.E., and Roti  Roti, 
+
+76  Genomics & Informatics  Vol. 4(2) 71-76, June 2006 
+
+J.L. (2005). Expression of the proto-oncogene Fos after 
+exposure 
+to 
+wireless communications.  Radiat.  Res.  164, 420-430. 
+
+radiofrequency 
+
+to 
+
+radiation 
+
+relevant 
+
+Witten,  I.J.  and  Frank,  E.  (2005).  Data  mining:  practical 
+machine  teaming  tools  with java  implementations.  M. 
+Kaufmann,  2nd ed.(San Francisco, CA). 
+
+Wright,  G.W.  and  Simon,  R.  (2003).  A  random  variance 
+
+model for detection of differential gene expression in small 
+microarray experiments. Bioinformatics 19, 2448-2455. 
+Wu,  R.Y.,  Ching,  H.,  Shao,  B.J.,  Li,  N.G.,  and  Fu,  Y.D. 
+(1994).  Effects  of 2.45-GHz  microwave  radiation  and 
+phorbol ester 12-0-tetradecanoylphorbol-13-acetate on 
+dimethylhydrazineinduced  colon  cancer  in  mice. 
+Bioelectromagnetics 15,  531  -538. 
+
+

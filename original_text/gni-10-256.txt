@@ -1,0 +1,848 @@
+G&I   Genomics & Informatics
+
+ORIGINAL ARTICLE
+
+pISSN 1598-866X  eISSN 2234-0742
+Genomics Inform 2012;10(4):256-262
+http://dx.doi.org/10.5808/GI.2012.10.4.256
+
+Network Graph Analysis of Gene-Gene Interactions in 
+
+Genome-Wide Association Study Data
+
+Sungyoung Lee1, Min-Seok Kwon1, Taesung Park1,2*
+
+1Interdisciplinary Program in Bioinformatics, Seoul National University, Seoul 151-747, Korea, 
+
+2Department of Statistics, Seoul National University, Seoul 151-747, Korea
+
+Most common complex traits, such as obesity, hypertension, diabetes, and cancers, are known to be associated with multiple 
+genes,  environmental  factors,  and  their  epistasis.  Recently,  the  development  of  advanced  genotyping  technologies  has 
+allowed us to perform genome-wide association studies (GWASs). For detecting the effects of multiple genes on complex 
+traits, many approaches have been proposed for GWASs. Multifactor dimensionality reduction (MDR) is one of the powerful 
+and efficient methods for detecting high-order gene-gene (GxG) interactions. However, the biological interpretation of GxG 
+interactions identified by MDR analysis is not easy. In order to aid the interpretation of MDR results, we propose a network 
+graph analysis to elucidate the meaning of identified GxG interactions. The proposed network graph analysis consists of 
+three steps. The first step is for performing GxG interaction analysis using MDR analysis. The second step is to draw the 
+network graph using the MDR result. The third step is to provide biological evidence of the identified GxG interaction using 
+external biological databases. The proposed method was applied to Korean Association Resource (KARE) data, containing 
+8838 individuals with 327,632 single-nucleotide polymorphisms, in order to perform GxG interaction analysis of body mass 
+index (BMI). Our network graph analysis successfully showed that many identified GxG interactions have known biological 
+evidence related to BMI. We expect that our network graph analysis will be helpful to interpret the biological meaning of GxG 
+interactions.
+
+Keywords: gene-gene interaction, generalized multifactor dimensionality reduction, genome-wide association study, graph 
+
+analysis, graphic processing units, network graph
+
+Introduction
+
+In recent years, a significant advance of technology has 
+been  achieved  in  both  genotyping  and  computing  fields, 
+which has enabled us to perform large-scale genome-wide 
+association studies (GWASs) [1, 2]. GWASs have provided 
+enormous  potential  in  identifying  genetic  variants  for 
+common complex diseases. By GWASs, researchers have dis-
+covered many genetic variants that affect common complex 
+traits, such as height, type 2 diabetes, and blood pressure 
+[3-5].
+
+In particular, the nature of obesity is related with many 
+chronic  diseases,  such  as  type  2  diabetes,  cardiovascular 
+disease, and cancers [6-8]. In addition, it has been found that 
+obesity  may  be  caused  by  multiple  genes,  environmental 
+factors, and those interactions [9-11].
+
+In order to identify the genes associated with obesity, body 
+mass index (BMI) has been commonly used as an obesity- 
+related  phenotype  or  trait  in  GWASs.  Many  studies  have 
+reported that the genetic variants in FTO are associated with 
+BMI [12, 13]. Most of these studies have used the single 
+single-nucleotide polymorphism (SNP) approach, in which 
+each single susceptible locus is searched in association with 
+obesity.  The  single  SNP  approach  has  long  been  used  in 
+detecting  genetic  traits,  and  it  is  especially  optimal  for 
+Mendelian traits. However, complex traits are well known to 
+be  caused  by  multiple  genetic  factors  as  well  as  several 
+environmental  factors  and  their  interactions.  Thus,  the 
+single SNP approach is not appropriate for detecting multi-
+ple  genetic  factors  affecting  common  complex  polygenic 
+traits.
+
+For the identification of multiple and joint genetic factors 
+
+Received October 31, 2012; Revised November 14, 2012; Accepted November 16, 2012
+*Corresponding author: Tel: +82-2-880-8924, Fax: +82-2-883-6144, E-mail: tspark@stats.snu.ac.kr
+Copyright © 2012 by the Korea Genome Organization
+CC It is identical to the Creative Commons Attribution Non-Commercial License (http://creativecommons.org/licenses/by-nc/3.0/).
+
+associated with complex traits, the multifactor dimensio-
+nality  reduction  (MDR)  method  has  been  proposed  by 
+Ritchie et al. [14] and applied in detecting gene-gene (GxG) 
+interactions [15, 16]. However, their approach can be app-
+lied only to binary traits, and the covariates that may affect 
+the phenotype can not be adjusted. In order to overcome 
+these drawbacks, generalized MDR (GMDR) analysis was 
+proposed  by  Lou  et  al.  [17],  in  which  both  binary  and 
+quantitative  traits  can  be  considered  phenotypes  while 
+adjusting for covariates.
+
+Although  MDR  and  GMDR  have  been  widely  used  to 
+detect GxG interactions in genetic association studies, their 
+applications  have  been  mainly  involved  in  dealing  with 
+candidate genes or a small set of genes. Since enormous com-
+putational complexity and high-speed computing resources 
+are required in GWASs, neither MDR nor GMDR has been 
+successfully applied to GWASs. In order to overcome these 
+computational  limitations,  we  previously  proposed  an 
+efficient stepwise approach to identify GxG interactions for 
+GWAS data [18] using cuGWAM, a graphic processing units 
+(GPU)-based MDR program [19].
+
+However, it still remains a challenge to have a biological 
+interpretation of the identified GxG interactions. In order to 
+elucidate the identified GxG interactions, we propose a net-
+work graph analysis. Our network analysis method focuses 
+not only on the biological meaning but also on the strength 
+of interaction.
+
+We applied our network graph approach to Korean Asso-
+ciation Resource (KARE) data for GxG interactions and its 
+interpretation. We first performed GMDR analysis for BMI. 
+Using our network graph analysis, we then identified several 
+GxG interactions having reasonable biological interpretation 
+from the network graph using public biological resources.
+
+Methods
+The KARE data
+
+The  KARE  project,  established  as  part  of  the  Korean 
+Genome Epidemiology Study (KoGES) in 2001, has started 
+to undertake a large-scale genome-wide association analysis 
+in Korean population-based cohort. These cohorts consist of 
+10,038 participants in the urban Ansan (n = 5,020) and rural 
+Ansung (n = 5,018) communities. The objective of the KARE 
+project is to identify genetic factors of several clinical traits 
+and lifestyle-related diseases by GWAS, based on population- 
+based cohorts. In this analysis, we focused on BMI, one of 
+more than 260 lifestyle-related traits.
+
+DNA samples were isolated from the peripheral blood of 
+all  participants  and  were  genotyped  with  Affymetrix  Ge-
+nome-Wide Human SNP array 5.0 (Affymetrix, Rockville, 
+MD, USA). Genotypes were called using Bayesian Robust 
+
+Genomics  &  Informatics  Vol.  10,  No.  4,  2012
+
+Linear Modeling using the Mahalanobis distance (BRLMM) 
+algorithm [20]. We performed a quality control process for 
+the sample and genotype as previously described in Cho et al. 
+[2]. In order to increase the coverage of common variants 
+and  capture  additional  association  signals,  we  performed 
+SNP  imputation  with  PLINK  using  the  Japanese/Chinese 
+(JPT/CHB) component of HapMap as the reference. After 
+sample  and  genotype  quality  controls,  327,872  SNPs  for 
+8,842  individuals  were  available  in  the  KARE  data.  We 
+applied  our  proposed  regularization  method  to  Korean 
+genome-wide data. 
+
+Network graph analysis
+
+GMDR analysis step
+GWAS datasets usually have enormous number of mar-
+kers, which causes a severe computational burden. In order 
+to  deal  with  this  computation  problem,  the  single  SNP 
+association test with covariate adjustment is performed to all 
+SNPs  in  a  dataset.  This  step  can  be  achieved  via  several 
+toolkits  that  support  regression  analysis,  such  as  PLINK. 
+Filtering by specific criteria, such as p-value, is subsequently 
+performed in order to reduce the number of SNPs.
+
+With the selected SNPs from the single SNP association 
+analysis, exhaustive two-way GMDR analysis is then applied. 
+However, general toolkits supporting GMDR analysis can 
+only  handle  hundreds  of  SNPs.  Although  the  number  of 
+SNPs in this step can be reduced by giving more stringent 
+criteria,  it  may  ignore  the  SNPs  having  marginally  less 
+significant  effects.  In  addition,  a  scheme  to  reduce  over-
+fitting,  such  as  cross-validation,  requires  increased  linear 
+computation  time.  In  order  to  solve  this  problem,  faster 
+toolkits  are  recommended,  such  as  GPU-based  GMDR 
+analysis toolkits like cuGWAM [19].
+
+Since the number of combinations in GMDR analysis is 
+usually very large, all results of GMDR can not be stored. 
+Thus, a criterion is needed to store the specific interactions 
+satisfying the criterion, such as balanced accuracy (BA).
+
+Network graph construction
+Network graph is often used to visualize multiple sets of 
+interactions. It consists of nodes and edges connecting two 
+nodes. For simplicity of representation, we focus on two-way 
+interactions. Since the two-way interaction is for the relation-
+ship between two variables, it can be easily represented as a 
+graph that contains two nodes representing two variables of 
+interaction and an edge corresponding to the interaction. 
+According  to  this  scheme,  all  interactions  identified  by 
+GMDR analysis can be visualized in the network graph. 
+
+However,  this  scheme  can  cause  too  complex  a  graph 
+structure when the number of interactions is large. Thus, it 
+is  recommended  to  select  a  certain  number  of  possible 
+
+www.genominfo.org
+
+257
+
+S  Lee,  et  al.  Network  Graph  Analysis  of  Gene-Gene  Interactions
+
+interactions in the network graph to reduce the complexity 
+of the network graph. Alternatively, the complexity of the 
+network graph can be reduced by gene mapping information. 
+Since many SNPs are placed in a gene or adjacent to a gene, 
+it is possible to annotate multiple SNPs into a single node of 
+a gene according to their position. However, this approach 
+requires a delicate mapping process.
+
+In addition, the network graph can represent the strength 
+of the interaction by the thickness of the edge－that is, the 
+higher the number of interactions between two nodes, the 
+thicker the edge becomes. 
+
+Network graph analysis
+It  is  important  to  derive  a  reasonable  biological  inter-
+pretation of identified GxG interactions. Here, we propose a 
+network graph analysis step to aid the biological interpre-
+tation of the identified GxG interaction by using existing 
+biological resources. In other words, the goal of this step is 
+to find known biological evidence that supports the iden-
+tified GxG interactions. 
+
+Resources used in this step consist of either a pair of a 
+marker and target or two related markers, where a marker 
+corresponds  to  a  gene  or  SNP  and  a  target  represents  a 
+biologically  proven  target  related  with  a  marker.  From  a 
+resource  with  marker  and  target  information,  such  as 
+HuGENet [21], miRBase [22], and is-rSNP [23], we simply 
+assume that there is biological evidence if two SNPs within 
+an interaction share the same biological target defined in the 
+biological  resource.  For  resources,  such  as  COXPRESdb 
+[24], having information about the correlation among genes, 
+we assume that all correlated genes in these resources have 
+biological interactions. Although this is a naïve assumption, 
+the use of these resources is mainly to support the inter-
+actions identified by GMDR analysis. Note that many known 
+biological resources have their own unique data structures 
+that differ from each other. Consequently, the integration of 
+
+Table  1.  Top  10  SNPs  from  linear  regression  analysis
+
+SNP
+
+Chr  no.
+
+Position
+
+p-value
+
+Gene
+
+rs17178527
+rs9939609
+rs11000212
+rs9926289
+rs8050136
+rs527248
+rs7193144
+rs17130257
+rs17089410
+rs16953563
+
+  6
+16
+10
+16
+16
+  1
+16
+  1
+13
+15
+
+14,194,7773
+52,378,028
+73,625,658
+52,378,004
+52,373,776
+176,142,137
+52,368,187
+88,342,965
+71,963,496
+64,473,824
+
+2.24  ×  10－8
+-
+1.43  ×  10－6   FTO
+1.45  ×  10－6   ASCC1
+2.45  ×  10－6   FTO
+2.68  ×  10－6   FTO
+2.98  ×  10－6
+-
+3.30  ×  10－6   FTO
+2.33  ×  10－5
+-
+2.38  ×  10－5
+-
+3.09  ×  10－5   MAP2K1
+
+SNP,  single  nucleotide  polymorphism.
+
+multiple  resources  is  recommended  in  order  to  provide 
+further biological evidence for a given GxG interaction.
+
+Results
+
+In  our  GMDR  analysis  using  KARE  data,  we  first  per-
+formed the single SNP association test via PLINK (http:// 
+pngu.mgh.harvard.edu/~purcell/plink/) using a linear re-
+gression model with covariate adjustment of age, area, and 
+sex. We used the p-value from linear regression as a criterion 
+of screening and used a p-value threshold of 3 × 10－1 for the 
+screening process; 101,837 SNPs were carried out after the 
+screening process, as a result of the single SNP association 
+test. The top 10 SNPs with the smallest p-values are listed in 
+Table 1. The GMDR analysis was then performed using our 
+GPU-based software, cuGWAM [19], in order to evaluate all 
+possible  two-way  interactions  and  used  a  10-fold  cross- 
+validation scheme, with covariate adjustment of age, area, 
+and sex. An exhaustive search for two-way interactions from 
+the selected SNPs took 19 h on the GPU system with three 
+GTX285 graphic cards. In this step, a total of 51,853,363,660 
+possible two-way interaction models were evaluated. 
+
+In GMDR analysis, 10-fold cross-validation was used. For 
+each cross-validation set, the top 10,000 interactions with 
+the highest test BAs were selected, where BA is defined as 
+the arithmetic mean of sensitivity and specificity [25]. We 
+then calculated cross-validation consistency (CVC), which 
+represents how many times the same two-way interaction is 
+selected out of 10 cross-validation sets. Finally, we perfor-
+med a screening step for every pair of interactions achieved 
+from GMDR analysis that satisfied the two criteria, CVC ≥ 
+
+Table  2.  Result  of  two-way  interaction  test
+
+Gene
+
+No.  of 
+
+nearby  SNPs
+
+No.  of 
+
+interactions
+
+Associated  genes
+
+ATP10B
+
+156
+
+189
+
+FTO
+rs1281296
+
+NAV2
+SLC10A7
+
+WDR37
+PDZRN4
+NRXN3
+
+  19
+  42
+
+  17
+  18
+
+    9
+    3
+    1
+
+  52
+  42
+
+  18
+  18
+
+  15
+    9
+    1
+
+CHUK,  CBARA1,  SLIT3,
+  WDR37,  WWOX,
+  NAV2,  SLC10A7,
+  NDUFB8,  NDUFC2,
+  NDUFS2,  COX5A,  etc.
+NT5C2,  AS3MT,  CNNM2
+TMCO5,  TFAP2D,
+  RAPGEF1
+JAKMIP2
+CDH13,  ATP10B,
+  R3HDM1
+RPGRIP1L,  DNAJC15
+LOC301738
+GRM8
+
+Bold  letters  indicates  already  identified  for  the  relationship  of 
+obesity. 
+SNP,  single  nucleotide  polymorphism.
+
+258
+
+www.genominfo.org
+
+Genomics  &  Informatics  Vol.  10,  No.  4,  2012
+
+Fig. 1. Visualized result of significant interactions that have their cross-validation consistency  ≥9. Arranged for readability: gray background
+indicates hub node, and red, white, blue, and yellow names indicate that they are identified for their relation with obesity, single-nucleotide 
+polymorphism,  gene,  and  unidentified  gene  locus,  respectively.
+
+Table  3.  Single  nucleotide  polymorphisms  (SNPs)  with  weak 
+marginal  effect  and  strong  interaction
+
+SNP
+
+Chr  no.
+
+Position
+
+rs16972967
+rs1010527
+rs17761748
+rs7191753
+
+18
+  5
+  4
+16
+
+36,089,458
+13,561,265
+88,928,807
+62,342,166
+
+p-value
+
+0.2028
+0.1999
+0.2761
+0.2511
+
+Gene
+
+ATP10B
+PDZRN4
+FTO
+ATP10B
+
+9 and test BA ≥ 0.5. 
+
+Finally, we found 524 two-way interactions under these 
+screening criteria. Among these interactions, 127 are from 
+genes that are known to be associated with obesity and are 
+summarized in Table 2. Among these interactions, five 
+genes－FTO, CBARA1, CHUK, SLIT3, and NRXN3－and 59 
+SNPs have been reported in previous studies [15, 16, 26-29]. 
+Visualization of these 524 two-way interactions into a net-
+work  graph was  then  made  after  annotating  SNPs  to  the 
+genes. We used Gephi (https://gephi.org) as a visualization 
+tool. Gene annotation was performed according to the hg18 
+human genome reference and dbSNP 129. These 524 two- 
+way interactions are displayed in the network graph (Fig. 1). 
+Each node represents either an SNP or gene. If a SNP is 
+annotated to a known gene, then it is denoted by the gene 
+name.  The  number  of  interactions  between  nodes  was 
+represented as the thickness of the edge. For example, node 
+FTO has a very thick edge with node NT5C2. Conversely, 
+some nodes have a large number of nodes that are connected 
+with it. We call these nodes hub nodes or hub SNPs. Hub 
+nodes are represented by a gray background color. 
+
+Fig. 2. A visualization of gene-gene interaction interpretation with
+biological knowledge. Two red circles denote two single-nucleotide
+polymorphisms  (SNPs)  within  a  two-way  interaction,  and  purple 
+circles denote corresponding genes against two SNPs. Gray circles
+denote diseases that are known to be related with both of the genes.
+Yellow and orange circles denote a disrupted transcriptional factor
+by both of the two SNPs and gene sets including genes from both
+SNPs,  respectively.
+
+two-way interactions are related with obesity using DAVID 
+[30], a comprehensive set of functional annotation tools. As 
+a  result,  we  detected  six  genes－NDUFA8,  NDUFB8, 
+NDUFC2,  NDUFS2,  COX5A,  and  ATP6V1B2.  The  role  of 
+these  genes  in  the  metabolism  pathway  is  related  to 
+oxidative phosphorylation, which plays an important role of 
+hepatic  mitochondrial  function  in  the  development  of 
+obesity [31]. 
+
+We investigated which SNPs that were included in the 524 
+
+Among the 524 two-way interactions, some SNPs might 
+
+www.genominfo.org
+
+259
+
+S  Lee,  et  al.  Network  Graph  Analysis  of  Gene-Gene  Interactions
+
+Table  4.  Short  summary  of  biological  knowledge  used  in  this  study 
+
+DB  name
+
+Url
+
+  HuGENet
+
+http://hugenavigator.net
+
+  COXPRESdb
+
+http://coxpresdb.jp
+
+  miRBase
+  is-rSNP
+
+http://mirbase.org
+http://www.genomics.csse.unimelb.edu.au/
+  product-is-rSNP.php
+
+SNP,  single  nucleotide  polymorphism.
+
+Description
+
+A  database  of  published,  population-based  epidemiological  studies  of
+  human  genes  extracted  and  curated  from  PubMed
+A  database  of  providing  a  co-regulated  gene  and  its  correlation  via
+  integration  of  thousands  of  gene  expression  experiments
+A  searchable  database  of  published  miRNA  sequences  and  annotation
+A software tool  that  predicts whether  an SNP is an rSNP  using  statistical
+  framework
+
+Table  5.  Proportion  of  known  biological  interactions  by  cross- 
+validation  consistency  (CVC)
+
+CVC
+
+10
+  9
+  8
+  7
+
+Biological  interaction  known/
+
+Total  no.  of  interactions
+
+Proportion  (%)
+
+  69/179
+  65/345
+  99/623
+114/691
+
+39
+19
+16
+16
+
+have weak main effects but have strong interactions with 
+other SNPs. Table 3 shows the SNPs from hub genes that 
+show significant two-way interactions with other SNPs but 
+have weak marginal effects in the single SNP analysis.
+
+For  the  network  graph  analysis,  four  public  databases 
+(HuGENet [21], COXPRESdb [24], miRBase [22], and is- 
+rSNP  [23])  were  collected  and  used  to  investigate  the 
+biological  relationship  between  two  SNPs  with  an  inter-
+action. A short summary of each database is given in Table 4. 
+All databases used in this study were converted from the 
+original bulk to a database table with automated script for 
+the integrated investigation. The script for this conversion 
+can be provided upon request. 
+
+In order to improve the biological relevance of the inter-
+pretation, we excluded all interactions having linkage dis-
+equilibrium (LD) between two SNPs. One of the results of 
+the network graph analysis is given in Fig. 2. We identified at 
+least one line of biological evidence among 26% of the 524 
+GxG interactions.
+
+In order to investigate the relationship between CVC and 
+the rate of biological evidence, we performed an additional 
+network analysis using 1,838 interactions (CVC ≥ 7) and 
+found out that there was a strong relationship between CVC 
+of the GMDR analysis and the presence of known biological 
+evidence. As shown in Table 5, the proportion of interactions 
+having  a  known  biological  interaction  was  significantly 
+higher when CVC = 10 than when 7 ≤ CVC ＜ 10 (39% vs. 
+17% on average). In addition, from the network analysis of 
+179 interactions having CVC = 10, 69 interactions showed 
+
+biological  evidence  and  30  (43%  of  69)  shared  a  known 
+relationship against BMI-related diseases, such as cardio-
+vascular disease, body weight, hypertension.
+
+Discussion
+
+The main purpose of a GWAS is to detect genetic variants 
+represented  by  a  single  SNP  or  a  set  of  SNPs  that  are 
+associated with common complex polygenic traits of interest 
+[2,  4,  5,  16,  17].  However,  it  is  commonly  known  that 
+multiple  genetic  factors  as  well  as  several  environmental 
+factors  and  their  interactions  are  involved  in  causing 
+complex  diseases.  Thus,  the  single  SNP  approach  is  not 
+appropriate for detecting multiple genetic factors for com-
+mon complex polygenic traits. Recently, many researchers 
+have  tried  GxG  interaction  analysis  in  GWASs.  However, 
+they  focused  on  rather  restricted  regions  with  a  small 
+number of SNPs due to computational complexity [32, 33].
+In this paper, we have successfully performed two-way 
+GxG  interaction  analysis  of  8,838  individuals  with  the 
+selected 101,837 SNPs, which cover most genomic regions. 
+It became possible with the help of a GPU-based system with 
+three  GPU  graphic  cards.  It  took  only  19  h  to  perform 
+51,853,363,660 possible two-way interaction analyses with 
+10-fold cross-validation.
+
+Our results showed that the FTO, CBARA1, CHUK, SLIT3, 
+and NRXN3 genes are strongly associated with obesity. In 
+addition,  our  approach  provided  more  information  about 
+possible  GxG  interactions.  Note  that  some  SNPs  having 
+weak main effects showed strong interactions with other 
+SNPs (Table 3). It would have been very difficult to detect 
+these  SNPs  through  single  SNP  analysis,  which  demon-
+strates  the  usefulness  of  our  approach  in  detecting  GxG 
+interactions.
+
+In addition, our analysis provided some novel interactions 
+that  have  not  been  reported  in  previous  studies.  For 
+example, 9 SNPs from the FTO gene were found to have 
+interactions with SNPs from CNNM2, AS3MT, and NT5C2. 
+Similar  interactions  were  found  between LOC301738  and 
+
+260
+
+www.genominfo.org
+
+PDZRN4, as shown in Fig. 1.
+
+Our  network  graph  summarizes  two-way  interactions 
+between SNPs very efficiently. We expect that this visuali-
+zation tool could be helpful to researchers. It is also quite 
+efficient to identify specific patterns and hub genes. 
+
+Through our network graph analysis, we also identified 
+several  pieces  of  evidence  that  supported  the  identified 
+interactions with known biological information. From the 
+investigation with four published databases, we found that 
+39% of a total of 179 interactions with CVC = 10 are known 
+to have biological interactions from the four databases we 
+collected. In addition, our network graph analysis showed a 
+higher  identification  rate  of  shared  biological  relevance 
+when the CVC was large than when the CVC was low, which 
+suggests that interactions having a high value of CVC tend to 
+share  more  known  biological  evidence  that  are  actually 
+related the phenotype. 
+
+In summary, our network graph analysis from GxG inter-
+action analysis successfully identified the relationship bet-
+ween interactions from GMDR analysis and actual biological 
+relevance. In addition, our strategy interpreted GxG inter-
+actions very effectively in finding known biological evidence 
+using multiple public databases, especially in finding evi-
+dence that is actually related with the phenotype.
+
+Acknowledgments
+
+This work was supported by a National Research Founda-
+tion of Korea (NRF) grant, funded by the Korea government 
+(MEST) (no. 2012R1A3A2026438). 
+
+References
+
+1. Hirschhorn JN, Daly MJ. Genome-wide association studies for 
+common diseases and complex traits. Nat Rev Genet 2005;6: 
+95-108.
+
+2. Cho  YS,  Go  MJ,  Kim  YJ,  Heo  JY,  Oh  JH,  Ban  HJ,  et  al.  A 
+large-scale  genome-wide  association  study  of  Asian  pop-
+ulations uncovers genetic factors influencing eight quantita-
+tive traits. Nat Genet 2009;41:527-534.
+
+3. Weedon MN, Lango H, Lindgren CM, Wallace C, Evans DM, 
+Mangino M, et al. Genome-wide association analysis identifies 
+20  loci  that  influence  adult  height.  Nat  Genet  2008;40: 
+575-583.
+
+4. Voight BF, Scott LJ, Steinthorsdottir V, Morris AP, Dina C, 
+Welch RP, et al. Twelve type 2 diabetes susceptibility loci iden-
+tified through large-scale association analysis. Nat Genet 2010; 
+42:579-589.
+
+5. Newton-Cheh C, Johnson T, Gateva V, Tobin MD, Bochud M, 
+Coin L, et al. Genome-wide association study identifies eight 
+loci associated with blood pressure. Nat Genet 2009;41:666- 
+676.
+
+6. Hill JO, Peters JC. Environmental contributions to the obesity 
+
+Genomics  &  Informatics  Vol.  10,  No.  4,  2012
+
+epidemic. Science 1998;280:1371-1374.
+
+7. Ichihara S, Yamada Y. Genetic factors for human obesity. Cell 
+
+Mol Life Sci 2008;65:1086-1098.
+
+8. Hofker M, Wijmenga C. A supersized list of obesity genes. Nat 
+
+Genet 2009;41:139-140.
+
+9. Feitosa MF, Borecki IB, Rich SS, Arnett DK, Sholinsky P, Myers 
+RH, et al. Quantitative-trait loci influencing body-mass index 
+reside on chromosomes 7 and 13: the National Heart, Lung, 
+and  Blood  Institute  Family  Heart  Study.  Am  J  Hum  Genet 
+2002;70:72-82.
+
+10. Farooqi IS, O'Rahilly S. Genetic factors in human obesity. Obes 
+
+Rev 2007;8 Suppl 1:37-40.
+
+11. Awaya T, Yokosaki Y, Yamane K, Usui H, Kohno N, Eboshida 
+A. Gene-environment association of an ITGB2 sequence var-
+iant  with  obesity  in  ethnic  Japanese.  Obesity  (Silver  Spring) 
+2008;16:1463-1466.
+
+12. Frayling TM, Timpson NJ, Weedon MN, Zeggini E, Freathy 
+RM, Lindgren CM, et al. A common variant in the FTO gene is 
+associated with body mass index and predisposes to child-
+hood and adult obesity. Science 2007;316:889-894.
+
+13. Scuteri A, Sanna S, Chen WM, Uda M, Albai G, Strait J, et al. 
+Genome-wide association scan shows genetic variants in the 
+FTO gene are associated with obesity-related traits. PLoS Genet 
+2007;3:e115.
+
+14. Ritchie MD, Hahn LW, Roodi N, Bailey LR, Dupont WD, Parl 
+FF, et al. Multifactor-dimensionality reduction reveals high- 
+order  interactions  among  estrogen-metabolism  genes  in 
+sporadic breast cancer. Am J Hum Genet 2001;69:138-147.
+
+15. Julià A, Moore J, Miquel L, Alegre C, Barceló  P, Ritchie M, et 
+al. Identification of a two-loci epistatic interaction associated 
+with susceptibility to rheumatoid arthritis through reverse 
+engineering and multifactor dimensionality reduction. Genomics 
+2007;90:6-13.
+
+16. Brassat D, Motsinger AA, Caillier SJ, Erlich HA, Walker K, 
+Steiner LL, et al. Multifactor dimensionality reduction reveals 
+gene-gene interactions associated with multiple sclerosis sus-
+ceptibility  in  African  Americans.  Genes  Immun  2006;7:310- 
+315.
+
+17. Lou XY, Chen GB, Yan L, Ma JZ, Mangold JE, Zhu J, et al. A 
+combinatorial approach to detecting gene-gene and gene-en-
+vironment  interactions  in  family  studies.  Am  J  Hum  Genet 
+2008;83:457-467.
+
+18. Lee SY, Oh SH, Kwon MS, Lee SY, Park TS. Two-way inter-
+action analysis of obesity trait from Korean population using 
+generalized  MDR.  In:  IEEE  International  Conference  on 
+Bioinformatics and Biomedicine Workshops (Di Bernardo D, 
+Li GZ, Chan TF, Luo B, Chen J, Michalowski M, eds.), 2010 
+Dec 18-21, Hong Kong, pp. 353-358.
+
+19. Kwon MS, Kim K, Lee S, Park T. cuGWAM: Genome-wide as-
+sociation multifactor dimensionality reduction using CUDA- 
+enabled high-performance graphics processing unit. Int J Data 
+Min Bioinform 2012;6:471-481.
+
+20. Rabbee N, Speed TP. A genotype calling algorithm for affyme-
+
+trix SNP arrays. Bioinformatics 2006;22:7-12.
+
+21. Yu W, Gwinn M, Clyne M, Yesupriya A, Khoury MJ. A navi-
+gator for human genome epidemiology. Nat Genet 2008;40: 
+124-125.
+
+www.genominfo.org
+
+261
+
+S  Lee,  et  al.  Network  Graph  Analysis  of  Gene-Gene  Interactions
+
+22. Kozomara A, Griffiths-Jones S. miRBase: integrating microRNA 
+annotation and deep-sequencing data. Nucleic Acids Res 2011; 
+39:D152-D157.
+
+23. Macintyre G, Bailey J, Haviv I, Kowalczyk A. is-rSNP: a novel 
+technique for in silico regulatory SNP detection. Bioinformatics 
+2010;26:i524-i530.
+
+24. Obayashi T, Kinoshita K. COXPRESdb: a database to compare 
+gene coexpression in seven model animals. Nucleic Acids Res 
+2011;39:D1016-D1022.
+
+25. Velez DR, White BC, Motsinger AA, Bush WS, Ritchie MD, 
+Williams SM, et al. A balanced accuracy function for epistasis 
+modeling  in  imbalanced  datasets  using  multifactor  dimen-
+sionality reduction. Genet Epidemiol 2007;31:306-315.
+
+26. Bordicchia M, Battistoni I, Mancinelli L, Giannini E, Refi G, 
+Minardi D, et al. Cannabinoid CB1 receptor expression in rela-
+tion to visceral adipose depots, endocannabinoid levels, mi-
+crovascular damage, and the presence of the Cnr1 A3813G 
+variant in humans. Metabolism 2010;59:734-741.
+
+27. Vogel CI, Greene B, Scherag A, Müller TD, Friedel S, Grallert 
+H, et al. Non-replication of an association of CTNNBL1 poly-
+morphisms and obesity in a population of Central European 
+ancestry. BMC Med Genet 2009;10:14.
+
+28. Heard-Costa  NL,  Zillikens  MC,  Monda  KL,  Johansson  A, 
+
+Harris TB, Fu M, et al. NRXN3 is a novel locus for waist circum-
+ference: a genome-wide association study from the CHARGE 
+Consortium. PLoS Genet 2009;5:e1000539.
+
+29. Liu YJ, Guo YF, Zhang LS, Pei YF, Yu N, Yu P, et al. Biological 
+pathway-based genome-wide association analysis identified 
+the vasoactive intestinal peptide (VIP) pathway important for 
+obesity. Obesity (Silver Spring) 2010;18:2339-2346.
+
+30. Huang da W, Sherman BT, Lempicki RA. Bioinformatics en-
+richment tools: paths toward the comprehensive functional 
+analysis of large gene lists. Nucleic Acids Res 2009;37:1-13.
+
+31. Buchner DA, Yazbek SN, Solinas P, Burrage LC, Morgan MG, 
+Hoppel CL, et al. Increased mitochondrial oxidative phosphor-
+ylation  in  the  liver  is  associated  with  obesity  and  insulin 
+resistance. Obesity (Silver Spring) 2011;19:917-924.
+
+32. Neuman RJ, Wasson J, Atzmon G, Wainstein J, Yerushalmi Y, 
+Cohen J, et al. Gene-gene interactions lead to higher risk for 
+development  of  type  2  diabetes  in  an  Ashkenazi  Jewish 
+population. PLoS One 2010;5:e9903.
+
+33. Yu HH, Liu PH, Lin YC, Chen WJ, Lee JH, Wang LC, et al. 
+Interleukin 4 and STAT6 gene polymorphisms are associated 
+with systemic lupus erythematosus in Chinese patients. Lupus 
+2010;19:1219-1228.
+
+262
+
+www.genominfo.org
+
+

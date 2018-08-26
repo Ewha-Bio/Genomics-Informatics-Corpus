@@ -1,0 +1,275 @@
+G&I   Genomics & Informatics
+
+APPLICATION NOTE
+
+eISSN 2234-0742
+Genomics Inform 2015;13(3):90-92
+http://dx.doi.org/10.5808/GI.2015.13.3.90
+
+VBioindex: A Visual Tool to Estimate Biodiversity
+
+Dong Su Yu*, Seung Hwa Yoo
+
+Department of Ecological Assessment, National Institute of Ecology, Seocheon 33657, Korea
+
+Biological  diversity,  also  known  as  biodiversity,  is  an  important  criterion  for  measuring  the  value  of  an  ecosystem.  As 
+biodiversity is closely related to human welfare and quality of life, many efforts to restore and maintain the biodiversity of 
+species  have  been  made  by  government  agencies  and  non-governmental  organizations,  thereby  drawing  a  substantial 
+amount  of  international  attention.  In  the  fields  of  biological  research,  biodiversity  is  widely  measured  using  traditional 
+statistical indices such as the Shannon-Wiener index, species richness, evenness, and relative dominance of species. However, 
+some biologists and ecologists have difficulty using these indices because they require advanced mathematical knowledge 
+and computational techniques. Therefore, we developed VBioindex, a user-friendly program that is capable of measuring the 
+Shannon-Wiener index, species richness, evenness, and relative dominance. VBioindex serves as an easy to use interface and 
+visually  represents  the  results  in  the  form  of  a  simple  chart  and  in  addition,  VBioindex  offers  functions  for  long-term 
+investigations of datasets using time-series analyses.
+
+Keywords: biodiversity, computational biology, ecology
+
+Availability: VBioindex is available at http://sourceforge.net/projects/vbioindex/.
+
+Introduction
+
+The  Convention  on  Biological  Diversity  (CBD)  defines 
+biodiversity as “the variety of life on Earth and the natural 
+patterns”  [1,  2].  CBD  has  underlined  the  importance  of 
+abundant  biodiversity  in  the  sustainable  use  of  natural 
+resources [3]. Moreover, maintaining biological coexistence 
+for all organisms on earth, including animals, plants, and 
+microbes, is imperative for human welfare and quality of life 
+[4]. Thus, many researchers use quantitative measures of 
+biodiversity in an attempt to sustain and restore ecosystems 
+[5].
+
+Biodiversity is generally measured by statistical indices 
+based  on  the  emergence  and/or  existence  of  various 
+organisms  such  as  plants,  animals,  and  microbes;  these 
+indices  can  provide  quantitative  criteria  with  increased 
+confidence for biodiversity [6, 7]. Of the statistical indices, 
+Shannon-Wiener index [8], species richness, and evenness 
+[9] have been widely used as the gold standards, in spite of 
+traditional methods. The Shannon-Wiener index is based on 
+information  theory and is measured using the concept of 
+
+entropy, and it is applied to estimate the degree of species 
+diversity  in  a  region  [10].  Species  richness  and  evenness 
+measure the number of different species per sample and the 
+relative abundance of the different species, respectively [11].
+For measuring biodiversity, there are a few non-commercial 
+tools, such as the Vegan package in R [12], EstimateS [13], 
+and  the  web-based  Shannon  Entropy  Calculator  (http:// 
+www.changbioscience.com/genetics/shannon.html). 
+Although they are highly useful, some of them are difficult 
+and  complicated  for  biologists  to  use,  especially  some 
+programs involving R package. While the web-based tools 
+are easy to use, they are not suitable for personal and/or big 
+data sets. Furthermore, some  programs do not  serve any 
+function  for  long-term  investigations  of  data  sets  using 
+time-series analyses for biodiversity.
+
+We  developed  the  VBioindex  tool  to  aid  scientists  in 
+evaluating the Shannon-Wiener index, species richness, and 
+evenness. Additionally, this program depicts relative domi-
+nance for each species. As VBioindex supports biodiversity 
+analyses for a given period (e.g., for a month, quarter, or 
+year), users can easily analyze a variety of biodiversity data 
+while applying a time-series analysis.
+
+Received June 29, 2015; Revised September 2, 2015; Accepted September 12, 2015
+*Corresponding author: Tel: +82-41-950-5862, Fax: +82-41-950-5952, E-mail: axxa76@nie.re.kr
+Copyright © 2015 by the Korea Genome Organization
+CC It is identical to the Creative Commons Attribution Non-Commercial License (http://creativecommons.org/licenses/by-nc/4.0/).
+
+VBioindex
+VBioindex  supports  four  statistical  indices—the  Shan-
+non-  Wiener  index,  species  richness,  evenness,  and  the 
+relative  dominance  of  species—that  are  widely  used  as 
+important criteria to evaluate ecosystems.
+
+The Shannon-Wiener index (H´) was designed to predict 
+the next letter of communication in a random set of data and 
+to quantify entropy in terms of uncertainty or information 
+content [10]. It has been widely applied in a variety of fields, 
+such as biology and ecology. H´ is measured using entropy 
+with  the  proportion  of  individuals  (n)  for  total  emerged 
+species (s) [10]. 
+
+
+ ∑  
+ 
+
+′  
+
+
+
+  
+
+
+
+Species  richness  (DMg),  known  as  Margalef’s  richness 
+index, is a measure of the variety of species in a given area or 
+sample [10], which is calculated based on emerged species 
+(s), and the individuals (n) of total emerged species [14].
+
+　　　
+
+ 
+ 
+
+  
+  
+
+Species evenness (E) is the degree of the distribution of 
+individual  organisms  among  species  [15],  which  is  mea-
+sured using H´ and the log of emerged species (s) [16].
+
+　　　
+
+′
+ 
+
+Relative dominance (RD) is the frequency of individuals of 
+a species, which generally presents the degree of dominance 
+for a species as a percentage [17].
+
+
+ ∑  
+ 
+
+×100
+
+VBioindex is implemented by clicking a few buttons, such 
+as Open, Save, and some selectable radio buttons (Fig. 1A). 
+An input data file is accepted as a tab-delimited file, labeled 
+with the date, species name, and number of individuals (Fig. 
+1B).  The  results  of  the  four  methods  are  graphically 
+represented charts with a tab-delimited text output file (Fig. 
+1C).  Along  with  presenting  these  biodiversity  indices, 
+
+Genomics  &  Informatics  Vol.  13,  No.  3,  2015
+
+VBioindex  allows  time-series  analyses  at  a  monthly, 
+quarterly,  and  yearly  basis  for  all  statistical  methods,  the 
+functions of which are useful in analyzing long-term species 
+diversity. VBioindex is programmed in Java language (higher 
+than version 1.7), and it can be used in all operating systems 
+in which a Java Virtual Machine has been installed.
+
+Conclusion
+
+Statistical  indices  evaluating  ecology,  such  as  the 
+Shannon-Wiener  index,  species  richness,  evenness,  and 
+relative  dominance,  are  considered  important  criteria  to 
+sustain and restore ecosystems. Although there are a few 
+programs for these indices, some programs are inconvenient 
+to use and do not support various indices. We developed 
+VBioindex,  a  user-friendly  program  that  is  capable  of 
+measuring  the  Shannon-Wiener  index,  species  richness, 
+evenness, and relative dominance. In addition, VBioindex 
+offers options with which a user can analyze a variety of 
+biodiversity  data  while  applying  a  time-series  analysis. 
+VBioindex outputs a tab-delimited text file with visual charts 
+and users can use the output text file with links to other 
+statistical programs for a variety of ecological studies such as 
+
+Fig. 1. Implemented VBioindex Frames: Mainframe (A) of VBioindex,
+input  sample  data  form  (B),  and  visual  output  charts  (C)  for  four 
+indices. Users can see the information such as contents and values,
+by  waving  the  cursor  over  one  of  the  randomly  colored  bars.
+
+www.genominfo.org
+
+91
+
+DS Yu and SH Yoo.  A Visual Tool to Estimate Biodiversity
+
+comparative analyses between many datasets. VBioindex is 
+publically  accessible  at  http://sourceforge.net/projects/ 
+vbioindex/.
+
+Acknowledgments
+
+We thank for all members of the Department of Ecological 
+Assessment,  National  Institute  of  Ecology.  This  research 
+was  supported  by  Ecosystem  Assessments  in  Korean 
+Peninsula Using Integrated Ecological Data (II), funded by 
+the National Institute of Ecology.
+
+References
+
+1. Puppim  de  Oliveira  JA,  Balaban  O,  Doll  CN,  Moreno- 
+Peñaranda R, Gasparatos A, Iossifova D, et al. Cities and bio-
+diversity:  perspectives  and  governance  challenges  for  im-
+plementing the convention on biological diversity (CBD) at 
+the city level. Biol Conserv 2011;144:1302-1313.
+
+2. Rantala  S,  Kitalyi  A,  Lyimo  E,  Swallow  B,  Doggart  N. 
+Integrating  livelihoods  and  multiple  biodiversity  values  in 
+landscape mosaics:  from knowledge  to  action.  In:  The  3rd 
+Tanzania Science, Technologies and Innovations Conference, 
+2008 Nov 5-7, Arusha, Tanzania.
+
+3. Karasov  C.  Focus:  who  reaps  the  benefits  of  biodiversity? 
+
+Environ Health Perspect 2001;109:A582-A587.
+
+4. Cardinale BJ, Duffy JE, Gonzalez A, Hooper DU, Perrings C, 
+Venail P, et al. Biodiversity loss and its impact on humanity. 
+Nature 2012;486:59-67.
+
+5. Fjeldsaå J, Lovett JC. Biodiversity and environmental stability. 
+
+Biodivers Conserv 1997;6:315-323.
+
+6. Begossi A. Use of ecological methods in ethnobotany: diver-
+
+sity indices. Econ Bot 1996;50:280-289.
+
+7. Parnell JJ, Crowl TA, Weimer BC, Pfrender ME. Biodiversity in 
+microbial communities: system scale patterns and mechani-
+sms. Mol Ecol 2009;18:1455-1462.
+
+8. Jost L. Entropy and diversity. Oikos 2006;113:363-375.
+9. Soininen J, Passy S, Hillebrand H. The relationship between 
+species  richness  and  evenness:  a  meta-analysis  of  studies 
+across aquatic ecosystems. Oecologia 2012;169:803-809.
+
+10. Spellerberg IF, Fedor PJ. A tribute to Claude Shannon (1916- 
+2001) and a plea for more rigorous use of species richness, 
+species diversity and the ‘Shannon-Wiener’ Index. Glob Ecol 
+Biogeogr 2003;12:177-179.
+
+11. Heip CH, Herman PM, Soetaert K. Indices of diversity and 
+
+evenness. Oceanis 1998;24:61-87.
+
+12. Dixon P. VEGAN, a package of R functions for community 
+
+ecology. J Veg Sci 2003;14:927-930.
+
+13. Colwell RK. EstimateS: statistical estimation of species rich-
+ness  and  shared  species  from  samples.  Robert  K.  Colwell, 
+2005.
+
+14. Margalef R. Temporal succession and spatial heterogeneity in 
+phytoplankton.  In:  Perspectives  in  Marine  Biology  (Buzzati- 
+Traverso AA, ed.). Berkeley: University of California Press, 
+1958. pp. 323-350.
+
+15. Borneman J, Skroch PW, O'Sullivan KM, Palus JA, Rumjanek 
+NG, Jansen JL, et al. Molecular microbial diversity of an agri-
+cultural  soil  in  Wisconsin.  Appl  Environ  Microbiol  1996;62: 
+1935-1943.
+
+16. Pielou EC. Ecological Diversity. New York: John Wiley & Sons, 
+
+1975.
+
+17. MacArthur  RH,  MacArthur  JW.  On  bird  species  diversity. 
+
+Ecology 1961;42:594-598.
+
+92
+
+www.genominfo.org
+
+

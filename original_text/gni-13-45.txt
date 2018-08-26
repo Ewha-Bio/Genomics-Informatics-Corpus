@@ -1,0 +1,677 @@
+G&I   Genomics & Informatics
+
+ORIGINAL ARTICLE
+
+eISSN 2234-0742
+Genomics Inform 2015;13(2):45-52
+http://dx.doi.org/10.5808/GI.2015.13.2.45
+
+Elucidation of the Molecular Interaction between 
+miRNAs and the HOXA9 Gene, Involved in Acute 
+Myeloid Leukemia, by the Assistance of Argonaute 
+
+Protein through a Computational Approach
+
+Rohit Pritam Das1, V. Badireenath Konkimalla2, Surya Narayan Rath1*, 
+
+Jagadish Hansa3, Manaswini Jagdeb1
+
+1BIF Centre, Department of Bioinformatics, Orissa University of Agriculture & Technology, Bhubaneswar 751003, India, 
+
+2School of Biological Sciences, National Institute of Science Education and Research, Bhubaneswar 751005, India, 
+
+3Department of Surgical Oncology, IMS and SUM Hospital, SOA University, Bhubaneswar 751003, India
+
+Acute myeloid leukemia is a well characterized blood cancer in which the unnatural growth of immature white blood cell 
+takes place, where several genes transcription is regulated by the micro RNAs (miRNAs). Argonaute (AGO) protein is a protein 
+family that binds to the miRNAs and mRNA complex where a strong binding affinity is crucial for its RNA silencing function. 
+By understanding pattern recognition between the miRNAs-mRNA complex and its binding affinity with AGO protein, one 
+can decipher the regulation of a particular gene and develop suitable siRNA for the same in disease condition. In the current 
+work, HOXA9 gene has been selected from literature, whose deregulation is well-established in acute myeloid leukemia. Four 
+miRNAs  (mir-145,  mir-126,  let-7a,  and  mir-196b)  have  been  selected  to  target  mRNA  of  HOXA9  (NCBI  accession  No. 
+NM_152739.3). The binding interaction between mRNAs and mRNA of HOXA9 gene was studied computationally. From 
+result, it was observed mir-145 has highest affinity for HOXA9 gene. Furthermore, the interaction between miRNAs-mRNA 
+duplex of all chosen miRNAs are docked with AGO protein (PDB ID: 3F73, chain A) to study their interaction at molecular level 
+through an in silico approach. The residual interaction and hydrogen bonding are inspected in Discovery Studio 3.5 suites. 
+The current investigation throws light on understanding of AGO-assisted miRNA based gene silencing mechanism in HOXA9 
+gene associated in acute myeloid leukemia computationally.
+
+Keywords: acute myeloid leukemia, Argonaute, HOXA9, in silico, microRNAs, mRNA
+
+Introduction
+
+MicroRNAs  (miRNAs)  are  small  non-coding  single 
+stranded  RNAs  (~18-22  bp)  found  in  most  eukaryotes, 
+playing a crucial role in a wide range of biological processes, 
+such as host-viral interaction, apoptosis, stem cell maintenance, 
+and metabolism, etc. miRNAs are involved in gene silencing 
+mechanisms by targeting un-translated regions of mRNA 
+through sequence complementarity [1, 2], and approximately 
+30% of protein-coding genes are regulated by miRNAs [3]. 
+As  many  genes  can  be  regulated  by  a  single  or  multiple 
+miRNAs, an immense interest has been created to understand 
+
+miRNA-based gene regulation through the identification of 
+miRNAs, as well as their target genes. The Argonaute (AGO) 
+class  of  proteins  plays  a  crucial  functional  role  in  the 
+molecular recognition of miRNA-mRNA hybrids during the 
+process of gene regulation [4, 5], and mutations in either the 
+sequence  of  miRNAs  or  the  miRNA  target  sites  have  a 
+significant contribution in the manifestation of cancer due to 
+the loss of gene regulation [5, 6].
+
+Leukemia is a cancer of white blood cells that is commonly 
+classified  as  acute  myeloid  leukemia  (AML),  acute  lym-
+phoblastic leukemia, and chronic lymphoblastic leukemia. 
+AML  is  a  well-characterized  blood  cancer  in  which  the 
+unnatural growth of immature white blood cells takes place, 
+
+Received March 3, 2015; Revised March 29, 2015; Accepted March 31, 2015
+*Corresponding author: Tel: +91-06742-565760, Fax: +91-06742-565760, E-mail: snrbioinfo@gmail.com
+Copyright © 2015 by the Korea Genome Organization
+CC It is identical to the Creative Commons Attribution Non-Commercial License (http://creativecommons.org/licenses/by-nc/4.0/).
+
+RP Das,  et  al.  Molecular Interaction of miRNAs and Target Gene
+
+where  several  genes  involved  are  either  up-regulated  or 
+down  regulated  by  miRNAs.  Though  the  importance  of 
+miRNAs in gene regulation [2-5, 7, 8] and their regulation by 
+RNA-induced silencing complexes [7] are well established, 
+the  mechanism  of  miRNA-induced  gene  silencing  at  the 
+molecular  level  is  still  unclear  [9,  10].  Despite  several 
+detailed  research  studies,  controlling  abnormal  cell  pro-
+liferation at the molecular level through miRNA-mediated 
+gene silencing is still a major challenge. Therefore, with the 
+current knowledge, attempts have been made to study the 
+AGO  protein-assisted  molecular 
+interaction  between 
+miRNAs  and  their  target  genes,  and  a  computational 
+approach [11] in this regard will be of great aid and value. 
+Here, in this study, the HOXA9 gene was selected from the 
+literature  as  an  important  target  in  AML,  and  in  silico 
+approaches, like miRNA target site prediction, miRNA-mRNA 
+duplex  prediction,  and  molecular  docking  between  AGO 
+protein and four miRNAs, such as mir-145, mir-126, let7a, 
+and mir-196b [8, 12, 13], were conducted to elucidate the 
+AGO  protein-assisted  molecular 
+interaction  between 
+miRNAs and the HOXA9 gene in association with AML [14, 
+15] computationally. 
+
+Methods
+Selection of HOXA9 gene as a target in AML
+
+The leukemia gene database (http://www.bioinformatics. 
+org/legend/leuk_db.htm)  documented  the  AF10,  NUP98, 
+CBFB, NUP214, HOXA9, CREBBP, ARHGEF12, CDX2, LCP1, 
+CEBPA, DEK, FUS, and RUNX1 genes to be involved in AML. 
+Among them, the HOXA9 gene is reported to have major 
+relevance  to  their  regulatory  functions  and  aberrant  ex-
+pression in both mice and humans [14, 15]. Furthermore, 
+identification of miRNAs that target the HOXA9 gene would 
+help us to understand its interaction at the molecular level in 
+AML conditions.
+
+Selection of miRNAs targeting the HOXA9 gene
+
+Firstly, from the literature, the miRNAs with affinity for 
+the HOXA9 gene were identified [12, 13], which was further 
+verified by prediction of miRNA target sites in the HOXA9 
+gene using the miRTarBase web server (http://mirtarbase. 
+mbc.nctu.edu.tw/). The search showed four miRNAs−namely, 
+mir-145,  mir-126,  let-7a,  and  mir-196b−that  have  target 
+sites within HOXA9 (Supplementary Tables 1 and 2). Two 
+different binding sites were identified for mir-196b in the 
+HOXA9 gene, denoted mir-196b.1 and mir-196b.2, respectively.
+
+Prediction of duplex between miRNAs and mRNA of 
+the HOXA9 gene
+
+A computational approach was carried out to study the 
+
+binding mode of selected miRNAs (mir-145, mir-126, let-7a, 
+mir-196b.1, and mir-196b.2) with the mRNA of HOXA9 to 
+confirm the selection of the best miRNA. The properties, like 
+predicted binding sites of HOXA9 for miRNAs (Supplementary 
+Table 3) and minimum free energy (MFE) score of duplex 
+interactions,  were  used  for  confirmation  of  binding.  Two 
+different duplexes were formed for mir-196b (represented as 
+mir-196b.1 and mir-196b.2) with HOXA9 due to the iden-
+tification of two target sites in HOXA9 (Supplementary Table 
+3). The MFE scores for folding of miRNAs and the mRNA 
+duplex (Supplementary Table 4) were calculated using the 
+mfold web server (http://mfold.rna.albany.edu/? q=mfold). 
+The appropriate secondary structures of miRNAs and the 
+mRNA  duplex  (Supplementary  Table  4)  were  predicted 
+using the Centroid Fold web server (http://www.ncrna.org/ 
+centroidfold/). The prediction of tertiary structures of the 
+duplex were performed in 3dRNA web server (http://biophy. 
+hust.edu.cn/3dRNA/3dRNA.html) using dot bracket struc-
+tures (Supplementary Table 4) that resulted from the Centroid 
+Fold.
+
+Molecular interaction between miRNAs and AGO 
+protein 
+
+To illustrate the assistance of catalytic AGO protein for the 
+binding of miRNAs (mir-145, mir-126, let-7a, mir-196b.1, 
+and mir-196b.2) with the HOXA9 gene, docking between 
+AGO protein and miRNA-mRNA duplexes was performed 
+in the PachDock online server [16]. The PachDock algorithm 
+ranked the docked complexes on the basis of geometrical 
+shape  complementary  scores.  Close  amino  acid  residue 
+interactions and participating atoms in hydrogen bonding 
+were  inspected  and  analyzed  in  the  Discovery  Studio  3.5 
+suite  (http://accelrys.com/products/discovery-studio/vis-
+ualization- download.php).
+
+Results
+Duplex interaction between miRNAs and mRNA of 
+the HOXA9 gene
+
+The leukemia gene database search result, supported by 
+literature  evidence  [14,  15],  signifies  that  HOXA9 (NCBI 
+accession No. NM_152739.3) has aberrant expression at the 
+molecular level and was therefore selected as a target gene in 
+AML. Four miRNAs−namely, mir-145, mir-126, let-7a, and 
+mir-196b  (Supplementary  Table  2)−were  taken  from  the 
+literature, and their target sites in the HOXA9 gene were 
+verified through the miRTarBase web server. The predicted 
+binding regions in the HOXA9 gene (Supplementary Tables 1 
+and 3) for the miRNAs above were supported by good MFE 
+scores  calculated  for  the  miRNAs  and  mRNA  duplex 
+(Supplementary Table 4) using the mfold web server, which 
+
+46
+
+www.genominfo.org
+
+(A ) 
+
+mir- 145 
+
+3'C 14 
+
+Genomics  &  Informatics  Vol.  13,  No.  2,  2015
+
+u 17 
+
+u  16 
+
+G8 
+
+(C) 
+
+mRNA 
+
+Let-7a 
+
+A 14 3' 
+
+U13 
+
+G  10 
+
+G9 
+
+3' u 16 
+
+G 15 
+
+(E) 
+
+A 10 
+
+Fig. 1. Three dimensional binding modes of mir-145, mir-126, let-7a, mir-196b.1, and mir-196b.2 with mRNA of  HOXA9 gene are deciphered
+in  section  (A),  (B),  (C),  (D),  and  (E),  respectively.
+
+www.genominfo.org
+
+47
+
+RP Das,  et  al.  Molecular Interaction of miRNAs and Target Gene
+
+implicates a strong affinity between them at the molecular 
+level. Three-dimensional binding modes of all miRNAs and 
+mRNA duplexes (mir-145, mir-126, let-7a, mir-196b.1, and 
+mir-196b.2) were constructed and deciphered (Fig. 1A–1E) 
+using the Discovery Studio 3.5 suite.
+
+Study of binding affinity between miRNAs and AGO 
+protein through docking
+
+The  three-dimensional  structure  of  AGO  protein,  with 
+685 amino acid residues, was retrieved from Protein Data 
+Bank  (PDB  ID:  3F73,  chain  A).  The  AGO  protein  is  a 
+silencing complex structure with a seed containing guide 
+DNA and target RNA duplexes. The structure preparation 
+and  correction  of  AGO  protein  were  performed  in 
+Discovery  Studio  3.5  suite  before  docking.  The  docking 
+between  miRNA-mRNA  duplexes  (mir-145,  mir-126, 
+let-7a, mir-196b.1, and mir-196b.2) and AGO protein was 
+carried out separately in the PachDock online server on the 
+basis of geometrical shape complementary scores. Out of 10 
+binding  complexes  generated  for  each  miRNA-mRNA 
+duplex  docked  with  AGO  protein,  the  highest-scoring 
+complex was chosen as the best binding mode. However, a 
+good dock score in all cases of docking between the selected 
+miRNAs (mir-145, mir-126, let-7a, and mir-196b) and AGO 
+protein implicated a strong interaction between them at the 
+molecular level (Supplementary Table 5).
+
+Study of interaction between miRNAs and AGO 
+protein at the molecular level 
+
+Strong hydrophobic amino acid residues and amino acids 
+with  aromatic  rings,  which  are  relatively  hydrophobic  in 
+nature, generally take part in hydrophobic interactions and 
+contribute towards the stability in binding moieties while 
+the  protein  interacts  with  macromolecules.  From  the 
+inspection  of  the  close  amino  acid  residues  of  AGO 
+protein surrounding the miRNAs (mir-145, mir-126, let-7a, 
+mir-196b.1,  and  mir-196b.2),  some  strongly  hydrophobic 
+amino acids, like LEU 652, LEU 267, ALA 644, and ALA 648 
+in mir-145; LEU 267, LEU 277, LEU 279, LEU 281, ALA 278, 
+ALA 648, and VAL 606 in mir-126; LEU 267, LEU 279, LEU 
+281, and ALA 278in let-7a; ALA 111, VAL 58, and LEU 132 
+in  mir-196b.1;  and  VAL  549,  VAL  152,  and  ALA  170  in 
+mir-196b.2, were observed within a distance of 3.5 Å (Table 1, 
+Fig. 2A–2E). Similarly, amino acids, like TYR 642, PHE 649, 
+and PHE 647 in mir-145; PHE 649 in mir-126; and TYR 171 
+and TYR 135 in mir-196b.2, with aromatic rings were also 
+found in the binding pocket of miRNAs (Table 1, Fig. 2A–2E) 
+within a distance of 3.5 Å. The study of hydrogen bonding 
+patterns between atoms is another major parameter to study 
+the stability of interactions between bio-molecules at their 
+atomic level. Some amino acids, like ARG 615, ARG 651, HIS 
+445, and PHE 649 in mir-145; SER 280, HIS 607, and THR 
+613 in mir-126; SER 280, ARG 608, GLY 612, LEU 281, and 
+
+Table  1.  Amino  acid  residues  of  Argonaute  protein  participating  in  the  interaction  with  mir-145,  mir-126,  let-7a,  mir-196b.1,  and 
+mir-196b.2  within  a  distance  of  3.5  Å
+
+miRNA
+
+mir-145
+
+mir-126
+
+let-7a
+
+mir-196b.1
+
+mir-196b.2
+
+Residue
+
+Hydrophobic  interactionsa 
+
+With  aromatic  ringsb 
+
+Hydrogen  bondingc 
+
+Amino  acid  residues
+
+ARG  661,  LYS  575,  HIS 
+657,  PRO  650,  ASN  449, 
+GLU  442
+ASP  269,  ASP  590,  GLY 
+612,  ARG 611, ARG  608, 
+PRO  614 
+ARG  192,  ARG  611,  ARG 
+615,  THR  266,  PRO  614, 
+HIS  607 
+GLN  551,  GLN  118,  PRO 
+103,  GLY  104,  GLY  131, 
+SER  107,  ARG  114,  GLU 
+130
+ARG  200,  ARG  661,  ARG 
+548,  ARG  574,  ASP  246, 
+ASP  168,  PRO  247,  LYS 
+248,  LYS  575,  GLY  547, 
+GLY  579
+
+LEU  652,  LEU  267,  ALA 
+644,  ALA  648
+
+TYR  642,  PHE  649,  PHE 
+647
+
+ARG  615,  ARG  651,  HIS 
+445
+
+LEU  267,  LEU  277,  LEU 
+279,  LEU  281,  ALA  278, 
+ALA  648,  VAL  606
+LEU  267,  LEU  279,  LEU 
+281,  ALA  278
+
+ALA 111, VAL 58, LEU 132
+
+PHE  649
+
+SER  280,  THR 613, HIS  607
+
+-
+
+-
+
+ARG  608,  THR  613,  SER 
+280,  GLY  612
+
+ARG  51,  ARG  59
+
+VAL  549,  VAL  152,  ALA 
+170
+
+TYR  171,  TYR  135
+
+ARG  580,  GLY  577,  SER 
+576
+
+aAmino acid residues involved in hydrophobic  interactions;  bAmino  acid  residues  with aromatic rings;  cAmino acid  residues participating 
+in  hydrogen  bonding.
+
+48
+
+www.genominfo.org
+
+Genomics  &  Informatics  Vol.  13,  No.  2,  2015
+
+(B) 
+
+(A) 
+
+3 
+
+(C) 
+
+(D) 
+
+(E) 
+
+~TYR\3S 
+~ 
+
+Fig. 2. Amino acid residues of Argonaute protein participating in the interaction with mir-145, mir-126, let-7a, mir-196b.1, and mir-196b.2
+within  distance  of  3.5  Å  are  reported  in  section  (A),  (B),  (C),  (D),  and  (E),  respectively.
+
+www.genominfo.org
+
+49
+
+RP Das,  et  al.  Molecular Interaction of miRNAs and Target Gene
+
+Table  2.  Amino  acid  residues  of  Argonaute  protein  participating  in  hydrogen  bonding  with  miRNAs  within  a  distance  of  3.0  Å
+
+miRNA 
+
+mir-145
+
+mir-126
+
+let-7a
+
+mir-196b.1
+
+mir-196b.2
+
+Residue 
+
+ARG  615
+ARG  615
+ARG  651
+HIS  445
+PHE  649
+SER  280
+SER  280
+HIS  607
+THR  613
+SER  280
+ARG  608
+GLY  612
+LEU  281
+THR  613
+ARG  51
+ARG51
+ARG  59
+ARG  59
+SER  576
+GLY  577
+ARG  580
+ARG  615
+
+Atom
+
+NH1…O4  (U17)
+NH1...O2  (U17)
+NH2…O2  (U16) 
+NE2…H42  (C11)
+O...H22  (U15)
+OG….O3  (U11)
+OG….O5  (A12)
+N….O2  (C13)
+N….O2  (A12)
+N...OP2  (G11)
+N…N7  (G9)
+O…HO2  (G9)
+O…OP1  (A10)
+O…OP2  (A10)
+NH1…OP1  (G13)
+NH2…OP1  (G13)
+N....OP1  (U11)
+NH2…OP1  (U11)
+N…..O2  (G11)
+N…..O4  (G11)
+NE…..OP2  (A10)
+NH1…O3  (A10)
+
+Distance  (Å)
+
+2.47922
+2.10917
+2.45241
+2.37822
+1.97722
+2.40718
+2.09735
+2.45673
+2.35176
+1.84591
+2.06803
+1.45138
+1.83936
+2.30494
+2.9226
+2.0137
+2.90177
+3.07531
+2.00398
+2.40617
+2.07775
+2.40811
+
+THR 613 in let-7a; ARG 51 and ARG 59 in mir-196b.1; and 
+SER 576, GLY 577, ARG 580, and ARG 615 in mir-196b.2 
+(Tables 1 and 2, Fig. 3A–3E), were observed to participate in 
+hydrogen bonding with miRNAs within the binding pocket.
+
+Discussion
+
+The  current  study  focused  on  in  silico  verification  of 
+miRNAs for targeting the HOXA9 gene, associated in AML, 
+and the molecular interaction of catalytic AGO protein with 
+these  miRNAs  to  study  the  gene  silencing  mechanism 
+computationally. As the literature has reported [12, 13], four 
+mature  miRNAs−namely,  miR-145,  mir-126,  let-7a,  and 
+mir-196b−are found to have target sites in the HOXA9 gene 
+and were hence taken for further study. The binding sites in 
+HOXA9 were predicted for these miRNAs using miRTarBase 
+(Supplementary Tables 1 and 3), which was followed by the 
+secondary structure prediction and miRNA-mRNA duplex 
+formation. Two binding sites were predicted for mir-196b 
+in  the  HOXA9  gene  (Supplementary  Table  1),  denoted 
+mir-196b.1 and mir-196b.2, respectively; so, two duplexes 
+are  formed  between  mir-196b  and  mRNA  of  the  HOXA9 
+gene  (Supplementary  Table  3).  The  results  suggested  a 
+strong and energetically favorable binding mode between all 
+miRNA-mRNA duplexes (Supplementary Table 4), which is 
+also supported by the reported interaction between them 
+(Fig. 1). The good MFE score (–5.90 kcal/mol) also reflected 
+
+that mir-145 had the highest binding affinity for the HOXA9 
+gene  (Supplementary  Table  4)  among  all  miRNAs.  Fur-
+thermore, to study the molecular interaction between AGO 
+protein  and  miRNA-mRNA  duplexes  (miR-145,  mir-126, 
+let-7a, mir-196b.1, and mir-196b.2), molecular docking was 
+carried out. The presence of strong hydrophobic amino acid 
+residues (LEU 652, LEU 267, ALA 644, and ALA 648 in 
+mir-145; LEU 267, LEU 277, LEU 279, LEU 281, ALA 278, 
+ALA 648, and VAL 606 in mir-126; LEU 267, LEU 279, LEU 
+281, and ALA 278 in let-7a; ALA 111, VAL 58, and LEU 132 
+in  mir-196b.1;  and  VAL  549,  VAL  152,  and  ALA  170  in 
+mir-196b.2) within a distance of 3.5 Å in the binding pocket 
+of  miRNAs  implicates  strong  binding  interactions  at  the 
+molecular  level  between  AGO  protein  and  all  chosen 
+miRNAs  (Table  1,  Fig.  2A–2E).  Also,  amino  acids  with 
+aromatic rings (TYR 642, PHE 649, and PHE 647 in mir-145; 
+PHE  649  in  mir-126;  and  TYR  171  and  TYR  135  in 
+mir-196b.2) were also observed within a distance of 3.5 Å, 
+which supports the binding interaction (Table 1, Fig. 2A–2E) 
+between AGO protein and miRNAs. The amino acid residues 
+participated in hydrogen bonding (Table 2, Fig. 3A–3E) with 
+miRNAs  (miR-145,  mir-126,  let-7a,  mir-196b.1,  and 
+mir-196b.2)  within  a  distance  of  3.0  Å,  showing  strong 
+evidence  of  binding  and  a  molecular  interaction  between 
+AGO  protein  and  all  chosen  miRNAs.  The  current 
+investigation  proved  that  mir-145,  mir-126, 
+let-7a, 
+mir-196b.1, and mir-196b.2 have strong binding affinity 
+
+50
+
+www.genominfo.org
+
+Genomics  &  Informatics  Vol.  13,  No.  2,  2015
+
+(D) 
+
+:rA1• 
+
+(E) 
+
+Fig. 3. Amino acid residues of Argonaute protein participating in hydrogen bonding interaction with mir-145, mir-126, let-7a, mir-196b.1,
+and  mir-196b.2  within  distance  of  3.0  Å  are  reported  in  section  (A),  (B),  (C),  (D),  and  (E),  respectively.
+
+www.genominfo.org
+
+51
+
+RP Das,  et  al.  Molecular Interaction of miRNAs and Target Gene
+
+for  the  HOXA9  gene  and  also  throws  light  on  AGO 
+protein-assisted molecular interactions with miRNA-mRNA 
+duplex  structures.  This  report  would  be  helpful  in  un-
+derstanding miRNA-based gene silencing mechanisms for 
+the HOXA9 gene in AML disease. Furthermore, a molecular 
+dynamic  simulation  approach  might  be  implemented  to 
+study  the  dynamic  behavior  of  these  interactions,  which 
+would help us better understand miRNA-based gene silencing 
+mechanisms  in  AML  computationally.  Once  validated 
+experimentally, this methodology would further help us to 
+design suitable miRNAs against respective genes rationally. 
+
+Supplementary materials
+
+Supplementary  data  including  five  tables  can  be  found 
+with this article online at http://www.genominfo.org/src/ 
+sm/gni-13-45-s001.pdf.
+
+Acknowledgments
+
+The  authors  are  thankful  to  the  Department  of  Bio-
+technology,  Govt.  of  India,  for  providing  the  BIF  Centre 
+facility  to  carry  out  the  current  research  work.  Also,  the 
+authors are grateful to the authorities of the Department of 
+Bioinformatics,  Centre  for  Post  Graduate  Studies,  Orissa 
+University  of  Agriculture  &  Technology,  Bhubaneswar, 
+Odisha, India, for their constant encouragement and allowing 
+this research work to be accomplished.
+
+References
+
+1. Didiano D, Hobert O. Molecular architecture of a miRNA- 
+
+regulated 3' UTR. RNA 2008;14:1297-1317.
+
+2. Gu W, Xu Y, Xie X, Wang T, Ko JH, Zhou T. The role of RNA 
+structure  at  5'  untranslated  region  in  microRNA-mediated 
+gene regulation. RNA 2014;20:1369-1375.
+
+3. Rajewsky  N.  MicroRNA  target  predictions  in  animals.  Nat 
+
+Genet 2006;38 Suppl:S8-S13.
+
+4. Hutvagner G, Simard MJ. Argonaute proteins: key players in 
+
+RNA silencing. Nat Rev Mol Cell Biol 2008;9:22-32.
+
+5. Farazi TA, Ten Hoeve JJ, Brown M, Mihailovic A, Horlings HM, 
+van de Vijver MJ, et al. Identification of distinct miRNA target 
+regulation between breast cancer molecular subtypes using 
+AGO2-PAR-CLIP  and  patient  datasets.  Genome  Biol  2014; 
+15:R9.
+
+6. Betel  D,  Koppal  A,  Agius  P,  Sander  C,  Leslie  C.  Compre-
+hensive modeling of microRNA targets predicts functional 
+non-conserved  and  non-canonical  sites.  Genome  Biol  2010; 
+11:R90.
+
+7. Macfarlane LA, Murphy PR. MicroRNA: biogenesis, function 
+
+and role in cancer. Curr Genomics 2010;11:537-561.
+
+8. Reinhart BJ, Slack FJ, Basson M, Pasquinelli AE, Bettinger JC, 
+Rougvie AE, et al. The 21-nucleotide let-7 RNA regulates de-
+velopmental  timing  in  Caenorhabditis  elegans.  Nature  2000; 
+403:901-906.
+
+9. Eulalio A, Huntzinger E, Izaurralde E. Getting to the root of 
+
+miRNA-mediated gene silencing. Cell 2008;132:9-14.
+
+10. Ahmad J, Hasnain SE, Siddiqui MA, Ahamed M, Musarrat J, 
+Al-Khedhairy AA. MicroRNA in carcinogenesis and cancer di-
+agnostics:  a  new  paradigm.  Indian  J  Med  Res  2013;137: 
+680-694.
+
+11. Wang Y, Li Y, Ma Z, Yang W, Ai C. Mechanism of microRNA- 
+target interaction: molecular dynamics simulations and ther-
+modynamics analysis. PLoS Comput Biol 2010;6:e1000866.
+
+12. Shen  WF,  Hu  YL,  Uttarwar  L,  Passegue  E,  Largman  C. 
+MicroRNA-126  regulates  HOXA9  by  binding  to  the  ho-
+meobox. Mol Cell Biol 2008;28:4609-4619.
+
+13. Li Z, Huang H, Chen P, He M, Li Y, Arnovitz S, et al. miR-196b 
+directly targets both HOXA9/MEIS1 oncogenes and FAS tu-
+mour suppressor in MLL-rearranged leukaemia. Nat Commun 
+2012;3:688.
+
+14. Thorsteinsdottir U, Kroon E, Jerome L, Blasi F, Sauvageau G. 
+Defining roles for HOX and MEIS1 genes in induction of acute 
+myeloid leukemia. Mol Cell Biol 2001;21:224-234.
+
+15. Alharbi RA, Pettengell R, Pandha HS, Morgan R. The role of 
+HOX  genes  in  normal  hematopoiesis  and  acute  leukemia. 
+Leukemia 2013;27:1000-1008.
+
+16. Schneidman-Duhovny D, Inbar Y, Nussinov R, Wolfson HJ. 
+PatchDock and SymmDock: servers for rigid and symmetric 
+docking. Nucleic Acids Res 2005;33:W363-W367.
+
+52
+
+www.genominfo.org
+
+

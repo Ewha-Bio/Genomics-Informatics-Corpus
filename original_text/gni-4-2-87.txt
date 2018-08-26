@@ -1,0 +1,866 @@
+Genomics &  Informatics  Vol.  4(2) 87-93, June 2006 
+
+Improved Algorithms for the  Identification of Yeast Proteins 
+and Significant Transcription Factor and Motif Analysis 
+
+Seung-Won  Lee\  Seong-Eui  Hong2 ,  Kyoo-Yeol 
+Lee\ Do-il Choi\  Hae-Young Chung2 and Cheoi-Goo 
+Hur1* 
+
+1 Korea  Research  Institute  of Bioscience  and  Biotechnology, 
+Daejeon  305-333,  Korea,  2Pusan  National  University,  Pusan 
+609-735,  Korea 
+
+Abstract 
+With  the  rapid  development  of  MS  technologiesy,  the 
+demands  for  a  more  sophisticated  MS  interpretation 
+algorithm haves grown as well. We have developed a new 
+protein fingerprinting method using a binomial distribution, 
+(fBIND).  Withthe  fBIND,  we  improved  the  performance 
+accuracy of protein fingerprinting up to the maximum 49% 
+(more than MOWSE) and 2% than( at a previous binomial 
+distribution  approach  studied  by  of  Wool  et  a/.)  as 
+compared  to  the  established  algorithms.  Moreover,  we 
+also  suggest  a  the  statistical  approach  to  define  the 
+significance  of  transcription  factors  and  motifs  in  the 
+identified proteins based on the Gene Ontology (GO). 
+
+Abbreviations:  fBIND,  fingerprinting  using  binomial 
+distribution; GO, Gene Ontology; MS, Mass Spectrometry; 
+PMF, peptide mass fingerprinting; nr, nonredundant; SGD, 
+Saccharomyces Genome Database 
+
+Keywords:  peptide mass fingerprinting, molecular weight 
+search, binomial distribution, hypergeometric distribution 
+
+Introduction 
+As the tendency in biology researches has been moved 
+from analysis on few genes/proteins to macroanalysis on 
+more extensive genes/proteins, MS has been recognized 
+as key biotechnology. In particular, MS can be considered 
+as the  most important tool  in  performing  proteomics to 
+understand biological phenomenon of living organisms at 
+the large-scale protein  level.  Accordingly,  a  number of 
+recent  researches  presented  several  software  and 
+algorithms that can effectively analyze the results of MS 
+
+*Corresponding author: E-mail hurlee@kribb.re.kr, 
+Tel  +82-42-879-8560,  Fax +82-42-879-8569 
+Accepted  by 31  May 2006 
+
+and  relevant  researches  have  been  actively continued 
+(Fenyo, 2000;  rogers et at.,  2003; Cutler et at.,  2003). 
+
+While  PepSea  and  Peptldent/Multildent  identified 
+proteins on the basis of the number of matches between 
+peptide molecular weight in  database and peptide from 
+experiments,  they  didn't  support  accurate  analysis 
+(Mann  eta/.,  1993;  Wilkins  eta/.,  1999;  Wilkins eta/., 
+1998).  MOWSE  used  scoring  method  that  reflected 
+characteristics of database beyond  simple matches as 
+calculating 
+frequencies  of  peptide  generated  from 
+proteins  at  10kD  intervals  (Rappin  et at.,  1993).  The 
+researches  based  on  probability  are  MASCOT  that 
+identified  more  reliable  analysis  as  calculating  the 
+probability that  random  hit could  occur,  ProFound  that 
+calculated probability values of proteins using Bayesian 
+approach and research by Wool eta/. that made scoring 
+method using binomial distribution (Perkins eta/.,  1999; 
+Zhang et at.,  2000; Wool and Smilansky, 2002; Clauser 
+et  a/.,  1999).  MassSorter  which  provides  visual  and 
+user-friendly  interface  is  a  convenient  tool  to  analyze 
+data from MS experiment (Barsners eta/., 2006). 
+
+While MOWSE scoring algorithm that is widely used in 
+general is simple and relatively accurate,  it has the limit 
+to  depend  on  relatively  large  masses  among  peptide 
+fragments in experiments. In accordance with the research 
+by  Pappin  eta/.,  most  proteins  are  distributed  around 
+50kD and peptides created as hydrolyzing these proteins 
+in trypsin are mainly small fragments. As reported above, 
+yeast proteins also showed the similar distribution (data 
+not shown).  While most peptides from experiments are 
+small fragments, fragments don't have substantial effects 
+on MOWSE score, but a small number of fragments with 
+relatively  large  molecular weight fragment  significantly 
+influence on MOWSE score. As shown in Fig. 1(A), for the 
+performance of MOWSE scoring, its accuracy is substantially 
+decreased when molecular weights of peptides are small. 
+This phenomenon  is  also appeared  according to intact 
+molecular weight of protein as shown  in  Fig.  1(8). The 
+reason  is  that  proteins  with  larger  molecular  weights 
+create more peptide fragments and on  this occasion,  a 
+number of fragments with  lower molecular weights are 
+generated. This MOWSE scoring algorithm is also applied 
+to other peptide mass fingerprinting (PMF) programs such 
+as MASCOT and MS-Fit. Although scoring algorithm in 
+the research by Wool eta/. was based on relatively simple 
+probability,  its  performance  was  very  remarkable  as 
+
+88  Genomics & Informatics  Vol. 4(2) 87-93,  June 2006 
+
+1.2 
+
+"' u 
+10  0.8 
+e 
+0 
+~ 0.6 
+
+.0 
+
+~ 0.4 e c. 
+
+0.2 
+
+(A) 
+
+1.2 
+
+.... 
+" 
+~ 0.8  -
+
+~ 0.6  -
+:0 
+~ 0.4  -
+0 
+D. 
+
+0.2 
+
+0 
+
+(B) 
+
+protein  m.w.  (kD) 
+
+1500 
+
+2000 
+
+2500 
+
+3000 
+
+3500 
+
+4000 
+
+peptide  m.w. 
+
+Fig. 1. Performance Comparison of MOWSE and Wool et a/.'s study. (A) Performance comparison of MOWSE (squares) and Wool 
+et a/.'s  study  (circles)  according to peptide  ranges  using  SWISS- PROT  release  42;  (B)  Performance  comparison  of MOWSE 
+(squares) and Wool  et al.'s study (circles) according to protein molecular weight using SWISS-PROT release 42. 
+
+1 
+I!  0.9 
+Jl  0.8 
+=0,1 
+0 0.6 
+b  Q.S 
+= 0.4 
+tQ.3 
+~ 0.2 
+~ 0.1 
+0 
+
+(A) 
+
+o.~ r 
+~ 0.8  f 
+e  0.7  -
+0  0.6 
+~ 0.5 
+= 0.4 
+
+.c 
+.,  0.3 
+.c 
+~ 02 
+Q  0.1 
+0 
+
+0 
+
+(C) 
+
+~~ ..  --4= 
+
+=<;::==Q:==-~4 
+
+1500 
+
+2000 
+
+2500 
+
+3000 
+
+3500  4000 
+
+peptide m.w. 
+
+I!  0.9 
+Jl  0.8 
+:  0.7 
+c;Q.6 
+b  Q.S 
+= 0.4 
+t  0.3 
+~ 0.2 
+~ 0.1 
+0 
+
+(B) 
+
+() 
+
+(:! 
+
+0 
+
+0 
+
+-D-MOWSE 
+-¢.....Assaf Wool 
+-u--fBIND 
+
+1500 
+
+2000 
+
+2500 
+
+3000 
+
+3500  4000 
+
+peptide m.w. 
+
+1 
+0.9 
+-g  0.8 
+~ 0.7 
+- 0.6 
+0 
+~ 0.5 
+
+= 0.4 
+
+.0 
+~ 0.3 
+~ 02 
+Q  0.1 
+0 
+(D) 
+
+10 
+
+15 
+
+20 
+
+protein  mw(10  kD) 
+
+--!BIND 
+-<>-Assai Wool 
+--C>-MDWSE 
+
+0 
+
+5 
+
+--~--- ----------'-
+10 
+
+15 
+
+-
+
+20 
+
+protein  m.w.(10kD) 
+
+Fig. 2. Performance Comparison of Algorithms. (A) Performance of MOWSE (squares) and fBIND (triangles) in accordance with 
+peptide ranges using SWISS-PROT release 42; (B) Performance of MOWSE (squares), Wool et al.'s study (circles) and fBI ND (triangles) 
+in accordance with peptide ranges using nr; (C) Performance of MOWSE (squares), Wool  et al.'s study (circles) and fBIND (triangles) 
+in accordance with protein molecular weight using SWISS-PROT release 42; (D) Performance of MOWSE (squares), Wool  et a/.'s study 
+(circles) and fBIND (triangles) in accordance protein molecular weight using nr. 
+
+sh0\11111 in Rg. 1. It derronstrated uniform accurades regardless 
+of peptide fragment ranges and intact molecular weights 
+of proteins  as  shown  in  Fig.  1.  However,  its  accuracy 
+tended  to  be  slightly  declined  because  of  repetitive 
+sequences. Accordingly,  this study developed fBIND to 
+identify  proteins  more  accurately  as  making  up  for 
+disadvantages of existing algorithms. 
+
+Methods and Results 
+Peptide Search Database 
+Peptide  pool  to  analyze  PMF  was  generated  using 
+SWISS-PROT  release  42  and  nonredundant  (nr)  of 
+NCBI.  Then,  only  yeast  proteins  were  collected  in 
+SWISS-PROT  42  and  NCBI  nr  and  then,  theoretical 
+
+515.9165 
+990.1744 
+536.3]83 
+1075.2834 
+1677.8455 
+984.1521 
+3028.8393 
+1181.9084 
+1693.19 
+822.6362 
+2969.1324 
+
+Measured mass  of P87194 
+
+Sua:ess prcbabil ity p  is 
+0.0151247534008 
+
+12/99 matt:res 
+
+G~}n(l-pl• 
+
+~3.51781E-08 
+
+3029.422 
+
+823.4275 
+
+515.3115 
+
+823.4275 
+
+2968.319 
+
+1692.793 
+
+823.4275 
+
+535.3053 
+
+$23.4275 
+
+983.5561 
+
+823.4275 
+
+990.5004 
+
+$2),4275 
+
+1181.576 
+
+823.4275 
+
+1182.67 
+
+823.4275 
+
+823.4752 
+
+823.4275 
+
+1074.648 
+
+823.4275 
+
+1677.819 
+
+~ 1.44479E-10 
+
+'> ___.. 
+
+Improved Algorithms for PMF  89 
+
+>P14907 
+MF'!Pc;QKTI=FSFGTASTTQS5TGO.GO.FGTGQ5TFGF5APTASSITPPFGST 
+GT PFGSPTSV!'GS5TTTFGSSO.GTSIFGS5SAQQTIGGTAGGTFGS5SIFST 
+STTKPPFGGLFGGGTTPSSTGATSIFGATAAKPPFSFGATlDDKKTEPDKPA 
+FSFSSVGKTDAQAPTTGFSFGSQLGGKTVE.oAKPSLSFGSGSO.GAPAGASQ 
+PEPTTEPAKPALSFGTATSDKTTT'TPSFSFGAIGDEKAGATSKQ,.cc::o•i'-~P 
+EEKKDDSSK'. -' ~<'<~CJ SEDKQDGTAK'P F~-,"'~i .PAEKETSK~> L  Fe. o i·.S 
+DEKKDGDASK" f.'c•'  -PDEKASATSKI·,~c -'"'1-~: PEEKKDDSSKi· ' .. '.:~ i 
+CfiSEDKQDGTAK,J  ·F~R' YPAEKETSK''  ''C<'•I.SDEKKDGDASK''FiF 
+·'·'' :. SDEKKDSDSSKPPFSFGTIGEKKDSGSSK•' 'F _,_. •I ... ,PDEKKDEVSK>·~ 
+.:· AEKKESDESKSPFSFGSKPTGKEEGDGAKAAISFGAKPEEQKSSDT 
+SKPPFTFGAQKDEKKTEES5TGK5TADVKS5DSLKLSKPVELKPVSLDKTLD 
+DL VTKWTQL TESASI-FEQYTKKISWDQVLVKGGEQISQL YSDA VMAEHSQ 
+KIDQSLQYJER<:;QDELEFLDFETKTEALLs:>WSTSSGAAADQKRQ::!AYKT 
+AQTLDELSLSSLSSLIVEIVSTFKTTIDIEDEIQLIKILSI-FDALRSLDDSTSLE 
+KQISIKK 
+
+Repetition causes 
+wrong answer Ill 
+
+12/62 matt:res 
+
+(~;)il(l- Pia 
+
+82 3 .427> 
+
+1 
+
+'-----------'1 ~ 
+
+Matcres ofP87194  Matcres ofP149~7 
+
+Fig. 3. Repetitive peptides in a protein. Protein p14907 was searched by peptides extracted from protein p87194 with the binomial 
+distribution approach. This incorrect result arose from many Repetitive peptides.p14907, p 87194 
+
+peptide pool created by trypsin was built up. This peptide 
+pool consisted of only peptides in 500-4000Da that was 
+experimentally  significant  among  molecular weights  of 
+peptides. Moreover, in consideration of errors caused by 
+biological  experiments,  this study assumed the missed 
+cleavage  level  of  trypsin  to  level  2  and  peptides 
+generated  on  this  level  were  included  in  peptide  pool. 
+Next, peptide pool generated by the process above and 
+data  related  to  yeast  protein  were  used  to  construct 
+database  using  MySQL  4.2.13.  Yeast  proteins  in  the 
+database were 5,406 for SWISS-PROT 42 and 9,007 for 
+NCB I nr.  Peptide pool generated by trypsin consisted of 
+718,106  and  1,040,173  records  for  SWISS-PROT  42 
+and NCBI  nr,  respectively. 
+
+Improved algorithm for identifying a protein 
+Like the research by Wool eta/.  scoring method in fBI ND 
+calculated  probabilities  with  respect  to  binomial 
+distribution  as  described  below  and  applied  overlap 
+penalty to reduce impacts from repetitive sequences (Fig. 
+3) and proportional relation between molecular weights of 
+proteins and the number of peptides. 
+
+N = total  number of peptides in a protein 
+r  = number of random match 
+p  = number of match I number of peptide in database 
+k  = frequency of overlapping match in a protein 
+
+Perfonnance of fBI NO 
+The  results  by  fBIND  were  compared  to  those  by 
+MOWSE  and  researches  by  Wool  et  a/.  in  order  to 
+evaluate  performances  of  fBIND  that  were  modified 
+above.  The  test  sets  for  analysis  and  comparison  of 
+performance  randomly  selected  1 00  proteins  from 
+SWISS-PROT  release  42  and  then  10  peptides  from 
+each theoretical peptide pool. Next, random error values 
+among e = {-0.999, -0.998,  --·, 0,  --·, 0.998, 0.999} in the 
+calculated mass of each selected peptide were added up 
+for the test sets. These test sets proteins were divided into 
+the sets by molecular weight of eacha peptide ( <1500Da, 
+
+90  Genomics & Informatics  Vol.  4(2) 87-93,  June 2006 
+
+Table 1.  Description  about function specificity of motifs of protein that is within a particular function  category and comparison to 
+lnterPro GO mapping 
+
+Accession number  Function category 
+
+Motif 
+
+Function category-
+
+specificity 
+
+Motif-related other function 
+
+lnterPro GO 
+
+013527 
+013528 
+
+P00330 
+
+P00410 
+
+DNA recombination  Integ rase,  catalytic domain 
+DNA recombination  TYA transposon protein 
+Zin~ntaining alcohol 
+dehydrogenase superfamily 
+Zin~ntaining alcohol 
+dehydrogenase 
+Copper center Cu(A) 
+
+Energy pathways 
+
+Energy pathways  Cytochrome c oxidase,  subunit II 
+
+Cupredoxin 
+
+YES 
+YES 
+
+YES 
+
+YES 
+
+NO 
+NO 
+
+YES 
+
+NONE 
+NONE 
+alcohol metabolism 
+aldehyde metabolism 
+alcohol metabolism 
+aldehyde metabolism 
+NONE 
+NONE 
+ion transport 
+response to abiotic stimulus 
+
+DNA recombination 
+
+NONE 
+
+NONE 
+
+NONE 
+
+NONE 
+
+electron transport 
+
+NONE 
+
+1500- 2000Da,  2000-2500Da,  2500-3000Da, 
+3000-3500Da, 3500-4000Da) and that by molecular 
+weight (<10kD,  10-20kD,  ···,  180-190kD, 190-200kD) 
+of  eacha  protein,  and  each  set  was  independently 
+analyzed.  It was assumed  that missed  cleavage was  0, 
+mass tolerance was 1 Da and there was no modification. 
+Consequently,  as  shown  in  Fig.  2(a,  b),  MOWSE 
+showed low accuracies of 40.4% (SWISS-PROT release 
+42)  and  12%  (nr)  in  PMF  with  peptides  of  less  than 
+1500Da.  The  accuracies  of  MOWSE  were  gradually 
+improved  in  accordance  with  increases  of  molecular 
+weights  of peptides.  For  peptides  below 4000  Da,  the 
+performances of SWISS-PROT release 42 and nr were 
+improved  up  to  92%  and  79%,  respectively.  This 
+phenomenon  in  accordance  with  peptide  ranges  also 
+influenced  on  performances according to intact protein 
+molecular weights. As shown in Fig. 2(c, d), as the sizes 
+of proteins became larger, performances were gradually 
+decreased. 
+
+Then,  in  the  range  between  190kD and  200kD,  the 
+accuracies in SWISS-PROT release 42 and nr reached 
+57%  and  31%,  respectively.  As  shown  in  Fig.  2,  the 
+performances of fBIND didn't show significant differences 
+as compared to researches by Wool  et at.  It is because 
+scoring method of Wool eta/. showed high performances 
+of  99.1%  and  97.9%  in  average  in  accordance  with 
+peptide ranges and  protein  ranges,  respectively,  when 
+SWISS-PROT release 42 was applied, as shown in Fig. 
+1. The fBI NO that considered influences by increases of 
+random hit rates in accordance with increases of peptide 
+fragments  and  repetitive  sequences demonstrated higher 
+performances as compared to researches by Wool et at.  As 
+illustrated in Fig. 3 (a, b), the performances in accordance 
+with  peptide  ranges were  99.6%  and  97.1% for SWIS 
+S-PROT release 42 and nr,  respectively, with increases 
+of about 1% and  2% for SWISS-PROT release 42  and 
+nr, respectively, as compared to study of Wool eta/. The 
+performances in accordance with sizes of proteins were 
+
+Table 2.  The number of mapping proteins 
+
+Method 
+
+Mapping count 
+
+INTERPRO 
+Cumulative hypergeometric probability 
+Total count of annotated proteins 
+
+2211 
+2223 
+3120 
+
+also improved. The performances were 99.6% and 90.9% 
+in average for SWISS-PROT release 42 and nr, respectively, 
+with  increases of up to  10% and  7% for SWISS-PROT 
+release 42 and nr, respectively, as compared to researches 
+by Wool et at. 
+
+lnterPro, 
+
+Significant transaiption factor/motif analysis 
+This study tried  to  identify proteins more accurately as 
+improving  existing  algorithms  and  analyzed  significant 
+transcription  factor/motif  analysis  to  provide  useful 
+information on identified proteins. MATCHTM and PATCH 
+TM  of  TRANSFAC,  representative  transcription  factor 
+analysis  tools,  are  very  useful  to  find  out transcription 
+factors  binding  on  specific  sequences  using  position(cid:173)
+specific matrixes and patterns (Matys eta/., 2003; Kel eta/., 
+2003).  Moreover, 
+the  representative  motif 
+database, is important database collecting motifs in each 
+protein (Mulder eta/., 2003).  However,  all  of them don't 
+provide  information  on  how  much  important  it  is  the 
+contribution of transcription factors or motifs identified by 
+those tools  and  database  on  functions.  In  accordance 
+with analysis of transcription factors existing on upstream 
+of  yeast  ORF  by  MATCH™  and  PATCH™,  it  was 
+observed  that  a  number  of  transcription  factors  were 
+abundantly  appeared  regardless  of  specific  functions 
+including that HIF-1  was appeared  up to  1614 times on 
+total 5,406 upstream. Therefore, this study tried to analyze 
+significant transcription factors and motifs contributing on 
+specific  functions  using  cumulative  hypergeometric 
+probability distribution as described below. 
+
+Process of transaiption factors and motifs analysis 
+First  of all,  yeast  ORF  and  proteins  were  divided  into 
+relatively detailed function categories of about 1 05 with 
+reference to data annotated with respect to the process 
+among GOtenninology in Saccharomyces Genome Database 
+(SGD) (Dwight eta/., 2002). Then, mapping of ORF region 
+on  chromosome was  conducted  using  sirn4  to  acquire 
+transcription factors binding on upstream of ORF included 
+in each function category {Florea eta/., 1998). As reported 
+by Zhu eta/., -1000 regions from a translation start site was 
+considered as upstream region and transcription factors 
+in relevant upstream region were analyzed by MATCH ™ 
+and  PATCH™  {Zhu  and  Zhang,  1999).  Motifs of each 
+protein were acquired from lnterPro database. Transcription 
+factors and frequencies of motifs in each function category 
+segmented into 105 categories were calculated and then, 
+transcription factors and motifs characteristically appeared 
+in each function categoryvvere analyzed through cumulative 
+hypergeornetric probability distribution as shown below. 
+
+P{x=i}= (7)(~=~) 
+
+(~ 
+
+N  = Total number of ORF/proteins 
+r  =  Number of ORF/proteins in  a specific category 
+m =  Number of specific transcription  factors/motifs 
+
+identified in total ORF/proteins 
+
+i  = Number of specific transcription  factors/motifs 
+identified in ORF/proteins in a specific category 
+
+r 
+
+P{X ~ i}= LP{X = J} 
+
+J=i 
+
+When  p{X:::::  i}:::;  0.001  satisfied,  relevant  motif  is 
+considered as the motifs specifically generated in specific 
+function  categories.  Table  1 described the examples of 
+transcription factors and  motifs specifically generated  in 
+each function acquired by the process above. 
+
+Estimation for analyzing transcription factors and 
+motifs 
+Table  1  described  motifs  and  relevant  characteristics 
+existing in each protein.  013527 has integrase motif as 
+the protein  included in  DNA recombination  among  1 05 
+segmented  categories.  As  a  result  of  analysis  using 
+cumulative hypergeornetric probability distribution, integrase 
+catalytic  domain  is  a  specific  motif  that  is  appeared 
+especially a lot in DNA recombination category and it is 
+considered that it contributes on the functions related to 
+DNA recombination of 013527. This result is the same as 
+
+Improved Algorithms for PMF  91 
+
+GO  mapping  results  of  lnterPro.  P00330  falls  under 
+G0:0006113 fermentation according to GO mapping of 
+SGD and includes in energy pathway, the upper category. 
+Zinc-containing  alcohol  dehydrogenase  superfamily,  a 
+motif found  in  P00330,  is  especially  appeared  a  lot  in 
+energy  pathway  category,  alcohol  metabolism  and 
+aldehyde metabolism category. It contributes on functions 
+related  to  energy  pathway  of  P00330  and  has  the 
+possibility to take part in other functions such as alcohol 
+metabolism  and  aldehyde  pathway.  lnterPro  doesn't 
+provide information on this motif. In accordance with GO 
+mapping of SGD,  P0041 0 was mapped to G0:0009060 
+aerobic respiration and included in energy pathway, the 
+upper category. Copper center cu(A), an identified motif, 
+was a specific motif neither to energy pathway category 
+nor to  other categories.  However,  cupredoxin,  another 
+motif, was appeared especially in the same category as 
+P0041 0 and  also the specific motif in  ion transport and 
+response  to  abiotic  stimulus  category.  As  explained 
+above, this study provided information about contribution 
+of motifs  identified  in  each  protein  through  cumulative 
+hypergeometric probability distribution on functions and 
+suggested to broaden function annotation more extensively. 
+In accordance with annotation of yeast protein with respect 
+to process among  GO mapping data of lnterPro,  about 
+53% oftotal yeast proteins could be annotated. Meanwhile, 
+when  significant factor/motif analysis of this study was 
+combined with lnterPro, about 83% of total proteins were 
+covered {Table 2). The detailed GO mapping information is 
+available at http://genepool.kribb.re.kr/pmf/ coverage. txt 
+
+Discussion 
+
+As large-scale protein researches have been analyzed, 
+researches  on  instrument  related  to  MS,  experimental 
+techniques  and  PMF  algorithm  have  been  actively 
+studied.  In  particular,  we need the algorithm to identify 
+accurate proteins without being sensitive to experimental 
+errors in order to identify effective proteins. In accordance 
+with  the development of MS,  a wide range of research 
+results from algorithms of simple matches to algorithms 
+based on sophisticated probabilities has been reported. 
+Each  algorithm  demonstrates unique characteristics  in 
+accordance with scoring methods. For example, MOWSE 
+scoring  method  based  on  frequency  that  consists  of 
+mainly peptide fragments show lower performances, but 
+that  with  peptide fragments  of high  molecular weights 
+demonstrates significantly higher performances. 
+
+Moreover,  for  PMF  based  on  binomial  distribution 
+presenta::l in the researches by Wool et a/. the performance 
+tends to be slightly decreased when  measured peptide 
+is randomly matched to proteins with repetitive sequences. 
+
+92  Genomics & Informatics  Vol. 4(2) 87-93, June 2006 
+
+Consequently,  this  study developed  the  system  showing 
+better performances as making  up for scoring  methods 
+based  on  MOWSE  and  binomial  distribution  among 
+PMF  algorithms  that  have  been  studied  until  now. 
+Furthermore,  this study tried  to  provide  information for 
+interpreting peptide fingerprinting results for researchers 
+as  analyzing  significant  factors/  motifs  related 
+to 
+regulations and activities of identified proteins as well as 
+for accurate  identification  of proteins.  In  the future,  this 
+study  will  provide  information  on  fBIND  with  respect  to 
+protein-protein  interaction  data  and  protein  sub-cellular 
+localization  information.  The  fBIND  is  available  at  http:// 
+genepool.kribb.re.kr/pmf/ and  supplementary information  is 
+available  at  http://genepool.kribb.re.kr/pmf!lnstruction/ 
+instruction.html 
+
+Acknowledgements 
+
+This research was supported by a grant (CGS0110424) 
+from Crop Functional Genomics Center. 
+
+References 
+Barsnes,  H.,  Mikalsen,  S.O.,  and  Eidhammer,  I.  (2006). 
+MassSorter: a tool for administrating and analyzing data 
+from  mass  spectrometry experiments  on  proteins with 
+known  amino  acid  sequences.  BMC bioinformatics  7, 
+42. 
+
+Camon, E., Magrane, M., Barrell, D., Binns, D., Fleischmann, 
+W., Kersey, P., Mulder, N., Oinn, T., Maslen, J., Cox, A., 
+and Apweiler, R.  (2003). The Gene Ontology Annotation 
+(GOA) Project: Implementation of GO in SWISS-PROT, 
+TrEMBL, and  lnterPro.  Genome Res.  13, 662-672. 
+
+Clauser, K.R., Baker, P., and Burlingame, A.L. (1999). Role 
+of accurate  mass  measurement  (±  10  ppm)  in  protein 
+identification  strategies  employing  MS  or MS/MS  and 
+database searching. Anal.  Chern.  71,  2871-2882. 
+
+Cutler,  P.,  Heald,  G.,  White,  I.R.,  and  Ruan,  J.  (2003).  A 
+novel  approach  to  spot  detection  for  two-dimensional 
+gel electrophoresis images using pixel value collection. 
+Proteomics 3,  392-401. 
+
+Dwight,  S.S.,  Harris,  M.A.,  Dolinski,  K.,  Ball, C.A.,  Binkley, 
+G., Christie, K.R., Fisk, D.G., Issei-Tarver, L., Schroeder, 
+M.,  Sherlock,  G.,  Sethuraman,  A.,  Weng,  S.,  Botstein, 
+D.,  and  Cherry,  J.M.  (2002).  Saccharomyces Genome 
+Database  (SGD)  provides  secondary  gene  annotation 
+using the Gene Ontology (GO).  Nucleic Acids Res.  30, 
+69-72. 
+
+Fenyo,  D.  (2000).  Identifying  the  proteome.  Curr.  Opin. 
+
+Biotechnol.  11, 391-395. 
+
+Florea,  L.,  Hartzell,  G., Zhang,  Z.,  Rubin,  G.M., and Miller, 
+
+W.  (1998).  A  computer  program  for  aligning  a  eDNA 
+sequence  with  a  genomic  DNA  sequence,  Genome 
+Res.  8,  967-974. 
+
+Kel,  A.E.,  Gossling,  E.,  Reuter,  1.,  Cheremushkin,  E, 
+Kei-Margoulis O.V., and Wingender E.  (2003). MATCH: 
+A tool for searching transcription factor binding sites in 
+DNA sequences. Nucleic Acids Res.  31,  3576-3579. 
+
+Mann,  M.,  Hojrup,  P.,  and  Roepstorff,  P.  (1993).  Use  of 
+mass  spectrometric  molecular  weight  information  to 
+identify  proteins  in  sequence  databases.  Bioi.  Mass 
+Spectrom. 22,  338-344. 
+
+Matys, V.,  Fricke,  E.,  Geffers,  R.,  Gossling,  E.,  Haubrock, 
+M.,  Hehl,  R.,  Hornischer,  K.,  Karas,  D.,  Kel,  A.E., 
+Kei-Margoulis,  O.V.,  Kloos,  D.U.,  Land,  S.,  Lewicki(cid:173)
+Potapov,  B.,  Michael,  H.,  Munch,  R.,  Reuter,  1.,  Rotert, 
+S., Saxel,  H., Scheer, M., Thiele, S.,  and Wingender,  E. 
+(2003).  TRANSFAC:  transcriptional  regulation,  from 
+patterns to profiles. Nucleic Acids Res.  31,  374-378. 
+
+Mulder,  N.J.,  Apweiler,  R.,  Attwood,  T.K.,  Bairoch,  A., 
+Barrell, D.,  Bateman, A.,  Binns, D., Biswas, M., Bradley, 
+P.,  Bork,  P.,  Bucher,  P.,  Copley,  R.R.,  Courcelle,  E., 
+Das,  U.,  Durbin,  R.,  Falquet,  L.,  Fleischmann,  W., 
+Griffiths-Janes,  S.,  Haft,  D.,  Harte,  N.,  Hulo,  N.,  Kahn, 
+D.,  Kanapin, A.,  Krestyaninova,  M.,  Lopez,  R.,  Letunic, 
+1.,  Lonsdale,  D.,  Silventoinen, V.,  Orchard,  S.E.,  Pagni, 
+M.,  Peyruc,  D.,  Panting,  C.P.,  Selengut,  J.D.,  Servant, 
+F.,  Sigrist,  C.J.,  Vaughan,  R.,  and  Zdobnov,  E.M. 
+(2003).  The  lnterPro  Database,  2003  brings increased 
+coverage  and  new  features.  Nucleic  Acids  Res.  31, 
+315-318. 
+
+Pappin,  D.J.,  Hojrup,  P.,  and  Bleasby,  A.J.  (1993).  Rapid 
+identification of proteins by peptide-mass finger printing. 
+Curr.  Bioi.  3,  327-332. 
+
+Perkins, D.N., Pappin, D.J., Creasy, D.M., and Cottrell, J.S. 
+(1999). Probability-based protein identification by search(cid:173)
+ing sequence databases using mass spectrometry data. 
+Electrophoresis 20,  3551-3567. 
+
+Rogers, M., Graham, J., and Tonge, R.P. (2003). Statistical 
+Moddels of Shape for the Analysis of Protein  Spots  in 
+2-D Electrophoresis Gel Images. Proteomics 3, 879-886. 
+Wilkins,  M.R.,  Gasteiger,  E.,  Bairoch,  A.,  Sanchez,  J.C., 
+Willianms,  K.L.,  Appel,  R.D.,  and  Hochstrasser,  D.F. 
+(1999).  Protein  identification  and  analysis  tools  in  the 
+ExPASy server. Methods Mol.  Bioi.  112, 531-552. 
+
+Wilkins,  M.R.,  Gasteiger,  E.,  Wheeler,  C.H.,  Lindskog,  1., 
+Sanchez,  J.,  Bairoch,  A.,  Appel,  R.D.,  Dunn,  M.J.,  and 
+Hochstrasser  D.F.  (1998).  Multiple  parameter  cross(cid:173)
+species  protein  identification  using  Multildent-a  world(cid:173)
+wide web accessible tool. Electrophoresis 19, 3199-3206. 
+Wool,  A.  and  Smilansky,  Z.  (2002).  Precalibration  of 
+matrix-assisted laser desorption/ ionization-time of flight 
+spectra  for  peptide  mass  fingerprinting.  Proteomics  2, 
+
+Improved Algorithms for PMF  93 
+
+1365-1373. 
+
+Zhang,  W.  and  Chait,  B.T.  (2000).  ProFound- an  expert 
+system for protein identification using mass spectrometric 
+peptide mapping information. Anal. Chern. 72, 2482-2489. 
+
+Zhu,  J.  and  Zhang,  M.Q.  (1999).  SCPO:  a  promoter 
+database  of  the  yeast  Saccharomyces  cerevisiae. 
+Bioinformatics 15, 607-611. 
+
+

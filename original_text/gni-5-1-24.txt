@@ -1,0 +1,623 @@
+Genomics &  lnfonnatics  Vol.  5(1) 24-29, March 2007 
+
+Evaluation of Advanced Structure-Based Virtual Screening 
+Methods for Computer-Aided Drug Discovery 
+
+HLi Sun Lee\ Jiwon Choi1 and Sukjoon Yoon1* 
+
+1Department  of Biological  Sciences,  Research  Center  for 
+\1\tmen's  Dseases (RC\1\0),  Scri<rnyung \1\tmen's University, 
+Seoul  140-742,  Korea 
+
+Abstract 
+Computational virtual screening has become an  essential 
+platform of drug discoveryforthe efficient identification of 
+active candidates. Moleculardocking, a keytechnologyof 
+receptor-centric virtual  screening,  is commonly used to 
+predict the binding  affinities  of chemical  compounds on 
+target receptors.  Despite the advancement and extensive 
+application ofthese methods, substantial improvement is 
+still required to increase their accuracy and time-efficiency. 
+Here,  we  evaluate  several  advanced  structure-based 
+virtual screening approaches for elucidating the rank-order 
+activity of chemical libraries, and the quantitative structure(cid:173)
+activity relationship  (QSAR).  Our  results  show that the 
+ensemble-average free energy estimation, induding implicit 
+solvation  energy  tenns,  significantly  improves  the  hit 
+enrichment ofthe virtual screening. VVe also demonstrate 
+that  the  assignment  of quantum  mechanical-polarized 
+(OM-polarized) partial charges to docked ligands contributes 
+to the  reproduction  of the crystal  pose of ligands in  the 
+docking and scoring procedure. 
+
+KsyKozfs.· virtual screening, docking and scoring, QSAR, 
+drug discovery 
+
+Introduction 
+Ole ofthe major challenges in  drug discovery is to identify 
+novel compounds vvith  biological activity. Computer-aided 
+drug discovery technology has become an essential and 
+powerful platfonn forthe discovery of new lead compounds, 
+as an alternative from, and complement to experimental 
+approaches. As the number of high resolution structures 
+of potential therapeutic targets and small molecules has 
+grOV\IIl, the significance of in si/ico experimental approaches 
+has become  increasingly important as demonstrated in 
+
+*Corresponding  author:  E-mail  yoonsj@sookmyung.ac.kr 
+Tel  +82-2-71 0-9415, Fax +82-2-2077-7322 
+Accepted  17  Jan  2007 
+
+recent studies by making use of public data (Cherkasov 
+eta/., 2006; Cleves and  Jain, 2006; Yoon eta/., 2005a; b). 
+Virtual high-throughput screening (Klebe, 2006; qJrea 
+and  Matter,  2004), vvhich  is  a method to rapidly identify 
+biologically  active  compounds  in  si/ico,  can  be  roughly 
+divided into two  categories; ligand-centric and receptor(cid:173)
+centric.  Ligand-centric methods essentially focus on  the 
+comparative  analysis  of  the  structural  shapes  and 
+chemical  complementarities  between  compounds  and 
+knOWlligands. A knovvledge ofthe experimentally selected 
+active  compounds  is  a  prerequisite  vvhen  using  this 
+approach (Stahura and Bajorath, 2004). Receptor-centric 
+methods predict the interaction of given compounds vvith 
+a target receptor, and hence they do not require experimental 
+data about the structure ofthe ligand. Molecular docking 
+is one ofthe key methodologies for receptor-centric virtual 
+screening. It is a technique for predicting the best binding 
+mode for a given compound that fits into a target receptor, 
+and evaluating its binding affinity. The docking approach 
+has  become  a  primary  technique  used  in  many  drug 
+discovery programs (Kitchen €t  a/., 2004; Sousa eta/., 2006). 
+The docking process involves a confonnational search 
+for a compound vvhich complements a target binding site, 
+with the aim of identifying the best-matching binding pose. 
+A common  computational  strategy is to  use  a suitable 
+scoring  function  to  theoretically  evaluate  the  binding 
+affinities ofthousands of molecules in a compound library 
+for a target protein. An  accurate rank-ordered prediction 
+of  the  compound  binding  affinities  using  the  scoring 
+function  is an  invaluable step.  Most of scoring functions 
+used in docking programs are designed to predict binding 
+affinity by evaluating the interaction between a compound 
+and a receptor. However, it should be noted that ligand(cid:173)
+receptor recognition  process  is  determined not  only by 
+enthalpic effects but also by entropic effects. Moreover, the 
+scoring functions  have  a simplified form for the  energy 
+function to facilitate high-throughput evaluation of a large 
+number  of compounds  in  a single  docking  run.  These 
+functions may be problematic vvtlen used vvfth contemporary 
+docking programs, and can result in a decrease of virtual 
+screening  accuracy.  To  overcome  this  problem,  more 
+precise but time-consuming computational methodologies 
+are necessary. 
+
+There have been  a number of reports evaluating the 
+efficiency of various virtual screening approaches, including 
+the evaluation of docking programs (Warren eta/., 2006), 
+machine-learning methods for ligand-based descriptors 
+
+Evaluation of Advanced Structure-Based Virtual  Screening Methods for Computer-Aided Drug Discovery 
+
+25 
+
+(Chen eta/., 2007) and comparison of shape-matching vvith 
+docking  (Havvkins  eta/.,  2007).  Here,  we  describe and 
+evaluate several recep:or-cenbic CCllllJUtational methodologies 
+vvflich are applicable for use in drug discovery applications. 
+We focus on accurate docking and rank-ordering for the 
+improvement  of the  predictability  of biologically  active 
+compounds. 
+
+between a receptor and a ligand. MM-GBSA is a method 
+that  combines  OPLS  molecular  mechanics  energies 
+(EMM), surface generalized Born solvation model for polar 
+solvation ( G3GB), and a nonpolar solvation tenn (GNP). The 
+GNP  term  comprises  the  nonpolar  solvent  accessible 
+surface area and van derV\/aals interactions. The total free 
+energy of binding is calculated as: 
+
+Overview of the  Methodologies Tested 
+in This Study 
+We  applied  several  computational  solutions  from  the 
+Schrtidinger  software  package  (Schrtidinger,  LLC: 
+Portland, OR). A brief overview of these methodologies 
+is presented. 
+
+Glide Docking 
+We used the Glide program (Friesneret a/., 2004) as our 
+docking engine. The Glide docking algorithm performs a 
+series of hierarchical  searches for locations of possible 
+ligand affinity vvithin the binding site of a receptor. A rough 
+positioning  and  scoring  algorithm  is  applied  during the 
+in~ial search step, followed by torsional energy optimization 
+on  an  OPLA-AA  non-bonded  potential  energy  grid  for 
+enduring candidate poses. The pose confonnations ofthe 
+very best candidates are further refined by using  Monte 
+Carlo  sampling.  Selection  of the  final  docked  pose  is 
+accomplished using a Glide score, vvflich is a model energy 
+function  that  combines  empirical  and  force-field-based 
+tenns. The Glide score is a modified and extended version 
+of the ChemScore function  (Eldridge eta/., 1997). 
+
+MJI6-I..iglnl Bll11lieaJ!r.-v.ilh Eneogetics 
+(eMlrA<:E) 
+The  eMBrAcE  (MacroMode/  v9.1)  program  calculates 
+binding  energies  between  ligands  and  receptors  using 
+molecular  mechanics  energy  minimization  for  docked 
+confonnations. eMBrAcE applies multiple minimizations, 
+during vvhich each ofthe specified pre-positioned ligands 
+is minimized with the receptor. For the energy-minimized 
+structures, the calculation is perfonned first on the receptor 
+(Eprctem),  then  on  the  ligand  (EJgand),  and  finally  on  the 
+complex (Ewrnpi9x). The energy difference is then calculated 
+as: 
+
+tiE= Ecomp!ex- Et1garxi- Eprclem 
+
+Prime MM-GBSA 
+This application is used to predict the free binding energy 
+
+LiGbim = Gcompiex- (Gprote~n + GJgarxi) 
+G= EMM  + GsGB +GNP 
+
+Ualson 
+The  Liaison  (Liaison v4.0) program is an  application for 
+estimating  the  binding  affinities  between  ligands  and 
+receptors, using a linear interaction  approximation (LIA) 
+model. The LIAmodel is an empirical method fitted to a set 
+of knovvn  binding free  energies.  Liaison  runs molecular 
+mechanics  (MM)  simulations  for  the  ligand-receptor 
+complex, and for the free ligand and free receptor using 
+the surface generalized Born (SGB) continuum solvation 
+model. The simulation data and empirical binding affinities 
+are analyzed to generate the  Liaison parameters, vvhich 
+are subsequently used to predict binding energies for other 
+ligands with  the  same  receptor.  The  empirical  function 
+used by Liaison for the prediction of binding affinities is as 
+follows. 
+
+LIG~ o I ( 0:,~ )- ( u~~) I +~I ( YJ" )- ( uj") I 
+
++71 ( U:"" )- ( ufo") I 
+
+In this equation,  (  ) , band frepresent the ensemble 
+average, the bound form, and the free fonn ofthe ligand, 
+respectively.  Parameters a,  j3  andy are the coefficients. 
+Uvdw,  Uetec  and  Ucw  are the van  der Waals,  electrostatic 
+and cavity energy terms in the SGB model, respectively. 
+
+OM-Polarized Ligand Docking (QPLD) 
+The OM-Polarized Ligand Docking (OPLD) protocol is an 
+improved docking method, vvhich  incorporates quantum 
+mechanical  and  molecular  mechanical 
+(OM/MM) 
+calculations (Cho eta/., 2005). This method applies the 
+Glide algorithm to generate the best candidate poses for 
+ligand docking. The  partial  charges on  the atoms of the 
+ligand are then  replaced vvith  charges derived from OM 
+calculations on the ligand in the field ofthe receptor for each 
+ligand-receptor complex. The charges are calculated from 
+the  electrostatic potential  energy surface  of the  ligand, 
+vvhich  is generated from a single-point calculation  using 
+the BL YP density function for the OM region. Glide then 
+re-docks each of the ligands with updated atom charges, 
+
+26  Genomics &  lnfonnatics  Vol.  5(1) 24-29, March 2007 
+
+and returns the most energetically favorable pose. 
+
+the standard mode of Glide docking (Glide SP 4.0). 
+
+Materials and Methods 
+Preparation of the Receptor 
+Two receptor co-crystal  structures,  estrogen  receptor a 
+(ERa,  PDB  entry:  3ERD)  and  peroxisome  proliferator(cid:173)
+activated receptory (PPARy,  PDB entry: 1 KNU), both  of 
+vvhich  belong to the nuclear receptor superfamily, were 
+used in this study. The coordinates for these proteins were 
+obtained from the RCSB Protein Data Bank (httpJ/WoNW. 
+rcsb.org/pdb). 
+
+Preparation of the Ugands 
+We  obtained  the  SMILES  representation  of  232  test 
+compounds, forvvhich the experimental binding affinities 
+were taken from published data (Blair eta/., 2000; Hong 
+et  a/.,  2002).  The  experimental  binding  affinities  were 
+represented as log(RBA) (Yo on and V\lelsh, 2004), vvflere 
+RBA refers to the relative binding affinity and log(RBA) is 
+defined  as the  logarithm  of the  percent ratio of the  ICffi 
+between  17p.estradiol and a test  compound.  Thus,  the 
+RBA of 17f)-estradiol is 100, and log(RBA) of 17$-estradiol 
+is 2. V\le then generated 3D energy-minimized conformations 
+ofthese compounds using the LigPrep program (LigPrep 
+11.2.0, Schrtidinger, LLC: Portland, OR.). Compounds with 
+atom  types  that  were  not  recognized  by  LigPrep  were 
+eliminated from the test set This resulted in the retention 
+of 173 of the original232 compounds. 
+
+The Glide Docking Protocol 
+For Glide docking,  PDB co-crystal structures of ERa and 
+PPARywere prepared using the Maestro interface of the 
+Schrtidinger software package. All water molecules were 
+removed, and multimeric complexes were simplified from 
+the PDB structures. Prior to molecular docking, receptor 
+structures were preprocessed using protein  preparation 
+and refinement components in the Glide docking package. 
+Hydrogen atoms were added by applying an all-atom force 
+field. Side chains that were not close to the ligand binding 
+site and did not participate in  salt bridges were neutralized. 
+A restrained minimization using the OPLS-AA force field 
+was  perionned  to  refine  the  complex  structure.  This 
+procedure  reorients  side-chain  hydroxyl  groups,  and 
+alleviates  potential  steric  clashes.  The  minimization 
+process was continued until the average  RMS deviation 
+of the non-hydrogen atoms reached the specified limit of 
+0.3 A.  Olce receptor grid files  had  been  generated,  all 
+compounds were docked to the receptor structures using 
+
+Ugand  &  structure-Based  Descriptors  (L.SBD) 
+Protocol 
+The eMBrAcE, Prime MM-GBSAand Liaison calculations 
+were  perfonned  using  the  Ligand  &  Structure-Based 
+Descriptors (LSBD) application ofthe Schrtidinger software 
+package. These calculations were applied the ligand-recep:or 
+complex structures obtained from Glide docking. 
+
+The OM-Polarized Ugand Docking Protocol 
+The grid for QPLD was set up as a grid file in PPARy using 
+the grid generation data from the previous Glide standard 
+docking operation. The ligand to be QPLD-docked was 
+prepared from  the  cognate ligand  bound  in  PPARy. An 
+energy-minimized confonnation of the extracted cognate 
+ligand  was  generated  using  LigPrep.  The  level  of 
+quantum-mechanical treatment was set up as Fast mode. 
+
+Results and Discussion 
+One  of  the  key  challenges  in  computer-aided  drug 
+discovery is to maximize the capabilities of the method in 
+use for predicting and rank-ordering the binding affinities 
+of compounds fora given target protein. The efficiency of 
+a prediction method is predominantly detennined by these 
+capabilities.  Various  descriptors  extracted  from  the 
+structural  information  on  ligand-receptor complex  may 
+provide an  advantageous solution to creating a reliable 
+binding-affinity-prediction model. Here, we combined the 
+results  obtained from  a standard  docking  protocol  with 
+data from three different structure-based descriptors, and 
+then  investigated  the  utility of these  descriptors  on  the 
+virtual  screening efficiency for ERa ligands (Fig. 1 ).  The 
+virtual  screening  efficiency  was  compared  using  an 
+analysis of receiver operating characteristic (ROC) curves 
+(Hand eta/., 2001 ). A ROC curve describes the tradeoff 
+between  sensitivity and specificity, vvhere the sensitivity 
+is  defined  as  the  ability  of  the  model  to  avoid  false 
+negatives, and the specificity relates to its ability to avoid 
+false positives. The area under the ROC curve (AUC) is 
+a measure of the test acruracy. For example, an AUCvalue 
+of  0.5  represents  a  random  prediction,  vvhereas  1.0 
+represents a perfect prediction. 
+
+For a total  of 94 true  positives vvith  log(RBA) > -4.0 
+(corresponding to> 200 J.tM activity), AUC values ranged 
+narrovvly  from  0.71  to  0.75,  depending  on  the  scoring 
+methods  tested.  The  standard  docking  scoring  (Glide 
+score in the figure) method having 0.75 AUC could slightly 
+enrich the virtual screening, and was better than the other 
+
+Evaluation of Advanced Structure-Based Virtual  Screening Methods for Computer-Aided Drug Discovery 
+
+27 
+
+(a) 
+
+100 
+
+80 
+
+tJ)  60 
+(!) 
+> 
+·-e 
+<(  40 
+
+20 
+
+0 
+
+(b) 
+
+100 
+
+80 
+
+(!) 
+
+tJ)  60 
+> ·-e 
+<(  40 
+
+20 
+
+0 
+
+-Glide score, 0.75 
+-eMBrAcE,  0.71 
+MM-GBSA,  0.74 
+-LiaScore,  0.72 
+
+-Glide score, 0.72 
+-eMBrAcE,  0.74 
+MM-GBSA,  0.61 
+LiaScore,  0.82 
+
+-
+
+0 
+
+20 
+
+40 
+60 
+Inactives 
+
+80 
+
+100 
+
+0 
+
+20 
+
+40 
+60 
+Inactives 
+
+80 
+
+100 
+
+(c) 
+
+100 
+
+80 
+
+tJ)  60 
+(!) 
+> 
+·-e 
+<(  40 
+
+20 
+
+0 
+
+-Glide score, 0.77 
+-eMBrAcE,  0.75 
+MM-GBSA,  0.55 
+-LiaScore,  0.89 
+
+0 
+
+20 
+
+40 
+60 
+Inactives 
+
+80 
+
+100 
+
+Fig.  1.  Virtual  screening  efficiency  of  four  different  scoring  methods  on  ERa  ligands;  standard  Glide  docking  (Glide  score), 
+Multi-Ligand  Bimolecular  Association  with  Energetics  (eMBrAcE),  Prime  MM-GBSA  calculation  (MM-GBSA)  and  Liaison 
+calculation  (LiaScore).  (a) 94 true positives with log(RBS) > -4.0,  (b) 43 true positives with  log(RBS) > -2.0,  (c)  13 true positives 
+with log(RBS) > 0.0 out of a total  of 173 compounds.  The calculated AUC values are included in the insets. 
+
+descriptor-combined scoring methods (Fig. 1 a). In Figure 
+1 b we applied a more stringent definition of "active" versus 
+"inactive" compounds. Since -10 1-LM  activity is generally 
+the minimum required to identify initial lead compounds in 
+drug discovery programs,  we set log(RBA) > -2 as the 
+cutoff, which corresponds to a 10-1 00 1-LM activity for ERa. 
+In this case the Liaison scoring method (LiaScore in the 
+figure)  significantly  improved  the  efficiency  of  virtual 
+screening. On the other hand the Prime MM-GBSA method 
+(MM-GBSA  in  Figure)  showed  the  lowest  level  of 
+enrichment  of  the  process.  An  even  more  stringent 
+definition of log(RBA) > 0,  corresponding to the binding 
+affinity in a nanomolar activity range, can indicate a lead 
+compound as being 'promising' in general drug discovery 
+terms.  At  this  cutoff  value  only  13  compounds  were 
+classified as active. The overall trends in the graphs were 
+similar to the graphs of log(RBA) > -2 cutoff. The virtual 
+
+screening efficiency was generally improved, except in the 
+case of the MM-GBSA scoring method (Fig.  1 c).  These 
+results indicate that methodologies with a better prediction 
+precision in binding affinities, though more time-consuming, 
+can provide a significant advantage in prioritizing candidate 
+compounds with high biological activity (low micromolar 
+or nanomolar activity). Among the scoring methods tested, 
+the  Prime  MM-GBSA method showed  a relatively poor 
+prediction capability when screening the compounds with 
+high binding affinities. 
+
+Obtaining  accurate  structural  information  on  the 
+binding pose of a ligand at a binding site is essential to the 
+design of optimized lead compounds in computer-aided 
+drug discovery. An accurate calculation of atomic partial 
+charges of a ligand in the field ofthe receptor would result 
+in improved docking results. We tested whether charges 
+obtained from the QM/MM calculation for ligand/PPARy 
+
+28  Genomics & Informatics  Vol.  5(1) 24-29,  March 2007 
+
+(a) 
+
+(b) 
+
+Fig. 2.  Overlapped docking poses of a cognate ligand at the binding site of PPARy obtained from (a) Glide docking (RMSD = 2.17 
+A)  and  (b)  QPLD  (RMSD = 0.86 A).  In  this figure the conformations of the  ligand  in the co-crystal  structure (purple),  from  Glide 
+docking (brown) and from  QPLD (yellow),  are represented. 
+
+(a) 
+
+(b) 
+
+-0.56 
+
+Fig.  3.  Comparison  between  (a)  force-field  charges  and  (b)  quantum  mechanical  charges  for the  PPARy cognate  ligand  from  standard  Glide 
+docking and QPLD docking. 
+
+structure  would  provide  a  more  precise  binding  pose 
+compared to the standard docking method, which relies 
+on the default force-field charges. The results of a standard 
+docking run and a QPLD run for a cognate ligand of PPARy 
+are  shown  in  Fig.  2.  The  RMSD  (Root  Mean  Square 
+Deviation) value between crystal and docked poses of the 
+cognate ligand was 2.17 A from the standard docking run, 
+while the QPLD method returned a significantly improved 
+RMSD value of 0.86 A. Atomic charge values in parts of 
+the ligand structure were revealed (Fig. 3). We confirmed 
+the existence of significant changes in partial charges by 
+using  the  QM/MM  calculation  of the  QPLD  run.  These 
+results indicate that polarization effects induced by the field 
+of the receptor can significantly affect the final conformation 
+of a ligand bound to PPARy. \J\/e have therefore demonstrated 
+that an additional process of calculating subtle changes 
+in  charges,  by  incorporating  environmental  polarization 
+effects,  considerably  improves the  accuracy  of docking 
+predictions. 
+
+In  this article we have  introduced  several  advanced 
+C0f1"111ter-aided drug discovery rrethodologies fer receptor-entric 
+
+virtual screening. We have evaluated their reliability using 
+a set of test ligands and two receptor structures belonging 
+to the nuclear receptor superfamily. Our data suggest that 
+some of these methodologies significantly improve virtual 
+screening efficiency by better prioritizing active compounds, 
+and  by  more  precisely reproducing  the  crystal  pose  of 
+cognate  ligands.  Although  the  current  study  does  not 
+involve  a  large  number  of  receptors  and  test  sets  of 
+compounds,  our  evaluation  data  should  add  valuable 
+information that may enhance the practice of computer(cid:173)
+ased drug discovery. 
+
+Acknowledgements 
+
+The  authors  gratefully  acknowledge  Dr.  Weida  Tong 
+(National Center for Toxicological Research,  U.S.  Food 
+& Drug Administration,  Jefferson,  AR) for providing the 
+experimental  data  set  and  2D  structures  of  Estrogen 
+Receptor  compounds  which  were  used  in  this  study. 
+This  research  was supported  by  Sookmyung Women's 
+University Research Grants 1-0603-0020. 
+
+Evaluation of Advanced Structure-Based Virtual  Screening Methods for Computer-Aided Drug  Discovery 
+
+2g 
+
+References 
+Blair,  R. M.,  Fang, H.,  Branham, W  S.,  Hass,  B.S., Dial,  S. 
+L.,  Moland,  C.  L.,  Tong,  W,  Shi,  L.,  Perkins,  R.,  and 
+Sheehan,  D.  M.  (2000).  The estrogen  receptor relative 
+binding  affinities  of  188  natural  and  xenochemicals: 
+structural diversity of ligands.  Toxicol.  Sci.  54,  138-153. 
+Chen,  B.,  Harrison,  R.  F.,  Papadatos, G., Willett,  P., V\/ood, 
+D.  J.,  Lewell, X.  0., Greenidge,  P.,  and Stiefl,  N. (2007). 
+Evaluatioo of machine-learning methods for ligand-based 
+virtual  screening.  Journal of computer-aided rrolecular 
+design 21,  53-62. 
+
+Cherkasov, A.,  Ban,  F.,  Li, Y.,  Fallahi, M.,  and Hammond, G. 
+L.  (2006). Progressive docking: a hybrid QSAR/docking 
+approach  for  accelerating  in  silica  high  throughput 
+screening. Journal ci medicinal cherristry49, 7466-7478. 
+Cho, A.  E.,  Guallar, V.,  Berne,  B. J.,  and Friesner,  R. (2005). 
+Importance  of accurate  charges  in  molecular  docking: 
+Quantum  mechanical/molecular  mechanical  (QM/MM) 
+approach. J.  Comput.  Chern.  26,915-931. 
+
+Cleves,  A.  E.  and Jain,  A.  N.  (2006).  Robust ligand-based 
+modeling  of  the  biological  targets  of  known  drugs. 
+Journal of medicinal chemistry 49,  2921-2938. 
+
+Eldridge,  M.D., Murray,  C. W, Auton,  T.  R.,  Paolini,  G. V., 
+and  Mee,  R.  P.  (1997).  Empirical  scoring  functions:  I. 
+The development of a fast empirical scoring function to 
+estimate  the  binding  affinity  of  ligands  in  receptor 
+complexes. Journal of computer-aided rroleculardesign 
+11, 425-445. 
+
+Friesner,  R.A.,  Banks,  J.  L.,  Murphy,  R.  B.,  Halgren, T.A., 
+Klicic,  J.  J.,  Mainz,  D.  T.,  Repasky,  M.  P.,  Knoll,  E.  H., 
+Shelley,  M.,  Perry,  J.  K.,  Shaw,  D.  E.,  Francis,  P.,  and 
+Shenkin,  P.  S.  (2004). Glide:  a new approach for rapid, 
+accurate docking and scoring. 1. Method and assessment 
+of docking accuracy. Journal of medicinalchernistry47, 
+1739-1749. 
+
+Hand,  D., Mannila, H., and Smyth,  P. (2001). PrincipesofData 
+
+Mining.  (Cambridge,  Massachsells: The MIT Press). 
+
+Hawkins,  P.  C.,  Skillman,  A.  G.,  and  Nicholls,  A.  (2007). 
+Comparison  of shape-matching and  docking as virtual 
+
+screening  tools.  Journal  of medicinal  chemistry  50, 
+74-82. 
+
+Hong,  H.,  Tong,  W,  Fang,  H.,  Shi,  L.,  Xie,  0.,  \1\hJ,  J., 
+Perkins,  R.,  V\/alker,  J.  D.,  Branham, W.,  and Sheehan, 
+D.  M. (2002). Prediction of estrogen receptor binding for 
+58,000  chemicals  using  an  integrated  system  of  a 
+tree-based model  with  structural  alerts.  ErMronmental 
+health perspectives 110,  29-36. 
+
+Kitchen,  D.  B.,  Decornez,  H.,  Furr,  J.  R.,  and  Bajorath,  J. 
+(2004). Docking and scoring in virtual screening for drug 
+discovery:  methods  and  applications.  Nat.  Rev.  Drug 
+Discov.  3,  935-949. 
+
+Klebe,  G.  (2006).  Virtual  ligand  screening:  strategies, 
+perspectives  and  limitations.  Drug  Discov.  Today  11, 
+580.594. 
+
+Q:>rea, T.  I.  and Matter, H. (2004). lntegating virtual screening 
+
+in lead discovery.  Curr.  Opin.  Chem  Bioi.  8,  349-358. 
+
+Sousa,  S.  F.,  Fernandes,  P.  A.,  and Ramos,  M.  J.  (2006). 
+future 
+
+Protein-ligand  docking:  current  status  and 
+challenges. Proteins 65,  15-26. 
+
+Stahura,  F.  L.  and  Bajcrath,  J.  (2004).  Virtual  screening 
+methods  that  complement  HTS.  Comb.  Chem  High 
+Throughput Screen.  7,  259-269. 
+
+V\/arren,  G.  L.,  Andrews,  C.  W,  Capelli,  A.  M.,  Clarke,  B., 
+Lalonde,  J.,  Lambert,  M.  H.,  Lindvall,  M.,  Nevins,  N., 
+Serrus,  S.  F.,  Senger,  S.,  Tedesco,  G.,  V\/all,  I.  D., 
+Woolven, J. M.,  Peishoff, C.  E.,  and Head, M.S. (2006). 
+A critical  assessment of docking programs and scoring 
+functions. Journal of medicinal cherristry49, 5912-5931. 
+Yooo,  S.,  Smellie, A., Hartsough,  D.,  and Filikov, A. (2005a). 
+Corrputational  identificatioo  of proteins  for  selectivity 
+assays. Proteins 59,  434-443. 
+
+Yoon,  S.,  Smellie,  A.,  Hartsough,  D.,  and  FilikOv',  A. 
+(2005b).  Surrogate  docking:  structure-based  virtual 
+screening at high throughput speed. Journal of corrputer(cid:173)
+aided rroleculardesign 19,483-497. 
+
+Yoon,  S.  and  V\/elsh,  W  J.  (2004).  Identification  of  a 
+minimal  subset of receptor conformations for  improved 
+multiple cooformation  docking and two-step scoring.  J. 
+Chern.  lnf.  Comput.  Sci.  44,  88-96. 
+
+

@@ -1,0 +1,1483 @@
+Genomics  &  Informatics    Vol.  9(1)  28-36,  March  2011
+
+Finding  Interesting  Genes  Using  Reliability  in  Various  Gene 
+Expression  Models
+
+Eun-Kyung  Lee1*,  Dianne  Cook2  and  Heike 
+Hoffman2
+
+1Department  of  Statistics,  Ewha  Womans  University, 
+Seoul  120-750,  Korea,  2Department  of  Statistics,  Iowa 
+State  University,  Ames,  IA,  USA
+
+Abstract
+
+Most  statistical  methods  for  finding  interesting  genes  are 
+focusing  on  the  summary  values  with  large  fold-changes 
+or  large  variations.  Very  few  methods  consider  the 
+probe  level  data.  We  developed  a  new  measure  to  de-
+tect  reliability  that  incorporates  the  probe  level  data. 
+This  reliability  measure  is  useful  for  exploring  the  micro-
+array  data  without  ignoring  the  probe  level  data.  It  is 
+easy  to  calculate,  and  it  can  be  used  for  all  the  other 
+statistical  methods  as  a  good  guideline  to  find  real  dif-
+ferentially  expressed  genes.  Instead  of  filtering  out 
+genes  before  the  analysis,  we  use  whole  genes  in  the 
+analysis  and  make  decisions  with  new 
+reliability 
+measures. 
+
+Keywords:  microarray,  quality  control,  reliability,  probe 
+level  analysis,  Affymetrix
+
+Introduction
+
+In  Affymetrix  microarrays,  the  expression  of  each  gene 
+is  measured  by  comparing  the  hybridization  of  the  sam-
+ple  mRNA  to  a  set  of  probes.  A  probe  is  composed  of 
+11-20  pairs  of  oligonucleotides,  each  25  base  pairs  in 
+length.  The  first  type  of  probe  in  each  pair  is  known  as 
+a  perfect  match  (PM),  which  is  taken  from  the  target 
+gene  sequence.  The  second  type  is  known  as  a  mis-
+match  (MM),  created  by  changing  the  middle  (13th) 
+base  of  the  PM  sequence.  The  purpose  of  measuring 
+MM  values  is  to  control  for  nonspecific  binding  of 
+mRNA,  but  the  actual  use  of  MM  values  has  become 
+controversial  (Lazaridis  et al.,  2001).
+    A  gene  expression  experiment  is  usually  conducted 
+with  multiple  arrays,  also  called  chips,  to  compare  gene 
+expression  across  different  treatments  (genotype,  co-
+
+*Corresponding  author:  E-mail  lee.eunk@ewha.ac.kr
+Tel  +82-2-3277-6857,  Fax  +82-2-3277-3607
+Accepted  2  March  2011
+
+factor,  replicate).  Each  chip  is  prepared  by  labeling  it 
+with  a  fluorescent  dye  and  hybridizing  it  to  an  array. 
+The  arrays  are  scanned  into  images,  which  are  numeri-
+cally  processed  to  obtain  fluorescence  intensity  values 
+for  each  PM  and  MM  sequence.  Gene  expression  mi-
+croarrays  are  powerful  bioinformatic  tools,  but  the  varia-
+bility  arising  throughout  the  measurement  process  can 
+obscure  the  biological  signals  of  interest.  Quantification 
+of  the  measurement  error  helps  to  extract  significant  bi-
+ological  signals.
+    The  chip-to-chip  variability  is  controlled  by  normal-
+ization,  which  yields  the  same  distribution  of  PM  and 
+MM  values  for  each  chip.  (See  Bolstad et al.,  (2003)  for 
+a  comparison  of  methods.)  After  normalization,  the  val-
+ues  from  a  probe  set  are  summarized  into  a  single  gene 
+expression  measure,  quantifying 
+the  gene  activity. 
+Common  approaches  are  the  average  difference,  the 
+model-based  expression  index  (Li  and  Wong,  2001),  the 
+MAS  5.0  algorithm  from  Affymetrix,  and  the  robust  mul-
+ti-chip  average  (rma)  (Irizarry et al.,  2003).  Fig.  1  shows 
+profile  plots  for  two  genes,  265670_s_a  and  249093_at, 
+each  having  11  PM  values.  The  rma  summary  ex-
+pression  value  is  a  solid  line,  and  the  PM  values  are 
+dashed  lines.  The  horizontal  axis  shows  the  numbers  for 
+the  eight  chips,  organized  into  three  genotypes  (A,  B,  C) 
+and  their  replicates,  and  the  vertical  axis  shows  the 
+log-scale  expression  values.  The  gene  265670_s_a  has 
+much  less  variability  in  PM  value  than  the  gene 
+249093_at,  and  thus,  it  is  considered  to  have  a  more  re-
+liable  measure  of  gene  expression.
+    Commonly  used  models  for  finding  differentially  ex-
+pressed  genes  are  ANOVA  (Churchill,  2004)  and  the 
+HLM  for  one-way  ANOVA  (Chu  et al.,  2002).  These 
+models  compare  the  expression  values  across  ex-
+perimental  treatments  for  each  gene.  Genes  that  have 
+differential  expression  on  different  treatments,  relative  to 
+its  variance  over  all  chips,  will  have  a  low  p-value.  Both 
+of  these  methods  use  the  summary  expression  value.  In 
+practice,  with  our  data  we  have  found  that  they  also 
+yield  somewhat  unsatisfactory  results.  Many  genes  on 
+the  resulting  lists  have  relatively  flat,  uninteresting  pro-
+files,  and  yet,  many  genes  filtered  from  the  list  have  rel-
+atively  structured,  interesting  profiles.  This  has  moti-
+vated  us  to  consider  using  the  PM  value  in  addition  to 
+the  summary  expression  value  to  evaluate  the  sig-
+nificance  of  genes. 
+    Table  1  and  Table  2  show  ANOVA  results  for  two 
+sample  genes,  265670_s_at  and  249093_at.  The  p-val-
+
+Finding  Interesting  Genes  Using  Reliability  in  Various  Gene  Expression  Models    29
+
+Fig.  1.  The  expression  values  of  gene  265670_s_at  and  gene  249093_at.  The  x-axis 
+represents  the  chips  (arrays),  and  the  y-axis  represents  the  expression  values.  The  first
+three  chips  are  the  replicates  of  A,  and  the  area  is  shaded.  The  next  two  chips  are  the
+replicates  of  B,  and  the  others  are  the  replicates  of  C;  this  area  is  also  shaded.  The 
+solid  lines  in  each  treatment  represent  the  RMA  summary  values,  and  all  values  in  the 
+same  treatment  are  connected.  The  dotted  lines  represent  the  normalized  PM  values.
+
+Table  1.  ANOVA  Table  for  265670_s_at
+
+Table  2.  ANOVA  Table  for  249093_at
+
+Source 
+
+Treatment
+Error
+
+df 
+
+2
+5
+
+MS 
+
+4.9763
+0.0054
+
+F 
+
+p-value
+
+Source       
+
+df 
+
+MS         
+
+  F         
+
+p-value   
+
+922.9
+
+ 
+
+3.79＊10-7
+
+　
+
+Treatment
+Error               
+
+2
+5
+
+0.1653
+0.0001
+
+2053.2
+
+5.16＊10-8
+
+ 
+
+ues  for  both  genes  are  very  small,  less  than  10-7,  sug-
+gesting  that  both  genes  have  significantly  different  ex-
+pression  between  treatments.  A  closer  look,  however,  is 
+revealing.  The  gene  265670_s_at  has  a  very  large  mean 
+square  treatment  effect,  4.9763,  and  a  small  mean 
+square  error,  resulting  in  a  high  F  value  and  low 
+p-value.  In  contrast,  the  gene  249093_at  has  a  small 
+mean  square  treatment  effect,  0.1653,  and  a  very  small 
+mean  square  error  effect,  0.0001,  which  also  yields  a 
+high  F  value  and  low  p-value.  The  profiles  of  these  two 
+genes  are  also  plotted  in  Fig.  1.  Although  both  genes 
+are  significant  according  to  the  ANOVA  table,  the  genes 
+are  not  alike.  One  gene  has  very  flat  profiles,  which 
+makes  it  less  interesting  than  the  other  gene.
+    The  two  genes  have  another  difference.  The  profiles 
+of  the  PM  values  are  also  shown  in  Fig.  1.  The  gene 
+249093_at  has  a  lot  more  variability  in  PM  values  than 
+265670_s_at.  The  variability  in  the  PM  value  should  be 
+incorporated  into  a  model  for  detecting  significant  ex-
+pression  differences. 
+    Chu et al.  (2002)  proposed  using  the  HLM  for  one-way 
+ANOVA,  which  is  a  classical  linear  mixed  model,  in-
+corporating  probe-level  data,  for  modeling  expression. 
+To  fit  the  model,  they  use  standard  maximum  likelihood 
+
+(ML)  methods  using  the  Proc  Mixed  procedure  in  SAS 
+and  apply  it  for  each  gene.  They  also  estimate  the  sum-
+mary  values  from  this  model  and  use  them  for  further 
+analysis,  like  clustering.  However,  ML  fitting  for  the 
+model  might  be  too  sensitive  to  outliers.  Fig.  2  shows 
+the  difference  between  RMA  summary  values  and  sum-
+mary  values  from  the  HLM  model  for  two  genes, 
+265670_s_at  (■)  and  249093_at  (○).  For  265670_s_at, 
+the  estimated  values  from  the  HLM  model  are  similar  to 
+the  RMA  summary  values.  However, 
+the  gene 
+249093_at,  which  has  more  varied  PM  values,  shows 
+quite  different  estimated  values  from  the  HLM  model 
+compared  to  the  RMA  summary  values.  This  is  due  to 
+the  variation  in  the  PM  values.
+    In  this  paper,  we  define  the  reliability  of  a  summary 
+gene  expression  value  using  the  variation  of  probe-level 
+data  and  show  how  to  use  this  reliability  measure  with 
+models  for  gene  expression  analysis  and  associated 
+variance  modifications,  such  as  SAM  (Tusher  et al., 
+2001)  and  eBayes  (Smyth,  2004).  Reliability  quantifies 
+the  uncertainty  in  gene  expression  measurements  that 
+can  assist  in  filtering  out  genes  with  too  much  variability 
+in  favor  of  genes  that  have  consistent  measurements 
+and  significant  expression.
+
+30    Genomics  &  Informatics    Vol.  9(1)  28-36,  March  2011
+
+to 
+
+Fig.  2.  The  black  squares  correspond 
+the  gene 
+265670_s_at,  and  the  empty  circles  correspond  to  the  gene 
+249093_at.  The  x-axis  represents  the  expression  values  esti-
+mated  from  the  HLM,  and  the  y-axis  represents  the  RMA 
+expression  values.  The  dashed  line  is  y=x.  For  265670_s_at,
+the  estimated  values  from  the  HLM  are  similar  to  the  RMA 
+summary  values.  However,  the  gene  249093_at  shows  quite 
+different  estimated  values  from  the  mixed  model  compared 
+to  the  RMA  summary  values.
+
+Methods 
+
+We  start  from  the  2-level  hierarchical  linear  model  (HLM) 
+for  one  gene.  Let  be Plk  the  log2-transformed  probe  lev-
+el  intensity  value  of  the  l-th  chip  and  the  k-th  oligonu-
+cleotide  probe,  l  =1,  2,  …,  L,  and  k  =1,  2,… ,  K  (usually 
+between  11-20).  The  chip-to-chip  variability  is  usually 
+controlled  by  normalizing  the  log2-transformed  probe  in-
+tensity  values  using  the  quantile  method.  Then,  the 
+probe  level  model  is 
+
+lk MP
+
+=
+
+γ+
+lk
+
+l
+
+(1)
+    where Ml  represents  the  summary  expression  value  of 
+the l-th  chip  and γlk  is  the  normally  distributed  random 
+error  with  a  mean  of  0  and  a  probe  level  variance  σ2. 
+We  assume  the  common  probe  level  variance  for  each 
+chip.  Because  we  do  not  know  the  true  value  for Ml,  we 
+set  the  level-2  (summary  value  level)  model  as  follows: 
+
+lM
+
+=
+
+εμ+
+l
+
+(2) 
+    where  μ is  the  overall  mean,  and  εl  is  the  random 
+effect  associated  with  the l-th  chip,  assumed  to  be  nor-
+mally  distributed  with  a  mean  of  0  and  a  variance  τ2. 
+We  assume  that  εl  and  γlk  are  independent. 
+
+    Combining  (1)  and  (2)  yields  the  model 
+
+lkPM
+
+=
+
+γεμ +
+lk
+
++
+
+l
+
+(3) 
+
+    which  is  a  one-way  ANOVA  model  with  a  random  ef-
+fect,  where  μ is  the  overall  mean,  εl  is  a  summary  val-
+ue  level  random  effect,  and  γlk  is  a  probe  level  random 
+effect.  Then,  the  variance  of  log2  probe  intensities  is
+
+Var
+
+(
+
+P
+lm
+
+)
+
+=
+
+Var
+
+(
+2
+στγε
+l
+
++
+
+=
+
++
+
+)
+
+2
+
+lk
+
+(4)
+    The  σ2  parameter  represents  the  probe  level  varia-
+bility,  and  τ2  captures  the  variability  of  the  summary 
+values.  Most  models  for  finding  significant  genes  start 
+from  the  summary  value  level  model,  using  the  summary 
+values  and  ignoring  the  probe  level  variability.  Our  inter-
+est  focuses  not  only  on  τ2  but  also  on  σ2.  If  σ2  is 
+large  relative  to  τ2,  the  summary  values  of  the  chips 
+might  be  less  reliable.
+    In  the  2-level  HLM,  the  reliability  ρ of  the  estimated 
+lMˆ   is  defined  as  follows  (Raudenbush  and  Bryk, 
+value 
+2002):
+
+ρ
+=
+
+2
+τ
++
+στ
+
+2
+
+K/2
+
+(5)
+
+    where  τ2  represents  the  variation  of  the  summary 
+value Ml,  and  σ2  represents  the  variation  of  log2  probe 
+intensity  values  PMlm.  Therefore,  this  reliability  can  be 
+written  as:
+
+=ρ
+
+MVAR
+
+(
+
+l
+
+(
+
+MVAR
+l
+VAR
+(
+)
++
+
+)
+PM
+
+/)
+
+K
+
+lm
+
+(6)
+
+    This  measure  is  defined  from  the  structure  of  HLM 
+and  represents  the  reliability  of  the  summary  expression 
+values  of  the  specific  gene.  This  population  version  of 
+the  reliability  is  usually  estimated  by  fitting  the  hier-
+archical  model,  where  a  simple  mean  of  the  log2-trans-
+formed  probe  intensity  values  is  used  as  the  summary 
+value.  However,  a  simple  mean  of  the  log2  probe  in-
+tensities  is  rarely  used  for  the  summary  value  in  micro-
+array  data  analysis.  There  are  a  lot  of  methods  to  calcu-
+late  summary  values  in  robust  way  (Bolstad  et al., 
+2003),  including  RMA.  Recently,  (Millenaar  et al.,  2003) 
+compared  several  calculation  methods  for  summary 
+values.  They  concluded  that  the  user  needs  to  try  sev-
+eral  different  methods.  However,  it  is  usually  not  easy.
+    We  extend  the  approach  by  estimating  reliability  for 
+any  type  of  summary  value  method.  Let  yl  be  a  sum-
+mary  value  of  the  l-th  chip,  and  Pl1,  Pl2,  …,  PlK  are 
+probe-level  data.  yl  is  calculated  from  Pl1,  Pl2,  …,  PlK 
+using  one  of  the  summarization  methods.  Then,  our  new 
+reliability  measure  is  defined  as  follows:
+
+*
+ρ
+
+=
+
+∑
+
+L
+l
+1
+=
+
+(
+
+y
+
+l
+
+−
+
+2
+
+y
+
+)
+
+/(
+
+y
+
+(
+
+∑
+L
+l
+1
+=
+L
+)1
++−
+
+2
+
+l
+
+−
+
+y
+)
+1
+KLK
+
+(
+
+/(
+
+L
+
+−
+
+)1
+
+)1
+−
+∑ ∑
+L
+l
+1
+=
+
+K
+k
+1
+=
+
+(
+
+P
+lk
+
+−
+
+2
+
+P
+l
+
+.
+
+)
+
+(7)
+
+Finding  Interesting  Genes  Using  Reliability  in  Various  Gene  Expression  Models    31
+
+than  0.85.  Therefore,  if  the  ratio  of  variances  between 
+probe-level  data  and  summary  values  is  less  than  or 
+equal  to  1,  we  expect  to  have  a  reliability  greater  than 
+0.92.  If  the  reliability  is  less  than  0.92,  in  this  case,  we 
+
+    This  new  reliability  measure  can  be  calculated  easily 
+with  several  different  summary  expression  values.  If 
+RMA  is  the  summary  estimation  method,  yl  is  a  sum-
+mary  value  from  RMA  (Irizarry et al.,  2003)  and  Pl1,  Pl2, 
+…,  PlK  are  log2  PM  values.  If  MBEI  (Li  and  Wong,  2001) 
+values  are  used,  yl  is  a  summary  value  from  the  dchip 
+method  and  Pl1,  Pl2,  …,  PlK  are  log2  PM  -  log2  MM 
+values.
+    This  new  reliability  statistic,  ρ*,  is  easy  to  calculate, 
+and  it  can  be  applied  for  a  variety  of  summary  value 
+methods.  The  population  version  of  reliability  ρ in  the 
+equation  (6)  is  only  for  the  2-level  HLM  model  and  can 
+lMˆ .  On  the  other  hand,  the  reliability 
+only  be  used  for 
+statistic  ρ*  can  be  used  for  diagnostics  in  models  with 
+various  summary  values.  Therefore,  it  is  possible  to 
+compare  various  methods  to  calculate  summary  values 
+using  this  measure.
+    There  is  no  general  rule  to  decide  whether  the  reli-
+ability  is  high  or  not.  We  suggest  a  guideline  that  helps 
+in  decision-making.  The  definition  of  ρ*  can  be  re-stat-
+ed  as  follows: 
+var(
+var(
+
+ 
+ 
+level
+probe
+data
+)
+ 
+values
+summary
+)
+
+(8)
+
+=
+
+K
+
+1(
+*)
+ρ−
+*
+ρ
+
+where  K  is  a  constant.  Fig.  3  shows  the  relationship  be-
+tween  ρ*  and  this  ratio  of  variances.  If  the  ratio  is  less 
+than  or  equal  to  1,  the  reliability  ρ*  will  be  larger  than 
+0.92.  If  we  allow  this  ratio  up  to  2,  ρ*  should  be  larger 
+
+Fig. 3.  Ratio  of  probe  variance  to  summary  expression  var-
+iance  plotted  against  reliability,  ρ*.  Reliability  larger  than 
+0.92  corresponds  to  a  probe  variance  less  than  or  equal  to 
+the  summary  expression  variance.
+
+Table  3.  This  table  is  the  top  15  genes  that  have  the  smallest  p-value  of  the  ANOVA  test.  The  numbers  under  each  method 
+name  is  the  rank.  A/C  and  B/C  represent  the  fold-changes  between  two  treatments
+
+Affy  ID
+
+Locus  ID
+
+GO.Function
+
+Rel.*
+
+eBayes
+
+SAM
+
+ANOVA
+
+HLM
+
+A/C
+
+B/C
+
+246785_at
+262128_at
+259768_at
+265575_at
+
+262571_at
+262313_at
+256648_at
+
+AT5G27380
+AT1G52690
+AT1G29390
+AT2G14260
+
+AT1G15430
+AT1G70900
+AT3G13580
+
+251428_at
+
+AT3G60140
+
+AT3G17520
+258347_at
+AT2G45820
+266897_at
+{bf  262605_at} AT1G15170
+
+255046_at
+
+AT4G09650
+
+251714_at
+
+AT3G56370
+
+261279_at
+253606_at
+
+AT1G05850
+AT4G30530
+
+Molecular  function  unknown
+
+Aminopeptidase  activity;  catalytic 
+  activity;  hydrolase  activity;
+
+Structural  constituent  of  ribosome; 
+  transcription  regulator  activity;
+Hydrolase  activity,  hydrolyzing 
+  O-glycosyl  compounds;
+
+DNA  binding;
+Antiporter  activity;  drug  transporter 
+  activity;  transporter  activity;
+Hydrogen-transporting  ATP  synthase 
+  activity,  rotational  mechanism;
+ATP  binding;  kinase  activity;  protein 
+  serine/threonine  kinase  activity;
+Chitinase  activity
+Catalytic  activity
+
+0.846
+0.993
+0.930
+0.624
+
+0.852
+0.915
+0.897
+
+0.987
+
+0.846
+0.921
+0.166
+
+129
+1
+33
+1162
+
+611
+133
+111
+
+2
+
+757
+97
+6977
+
+26
+1
+12
+307
+
+152
+41
+44
+
+2
+
+224
+38
+2814
+
+0.927
+
+12
+
+7
+
+0.810
+
+1158
+
+339
+
+0.958
+0.928
+
+30
+24
+
+15
+14
+
+1
+2
+3
+4
+
+5
+6
+7
+
+8
+
+9
+10
+11
+
+12
+
+13
+
+14
+15
+
+985
+2
+277
+5567
+
+1503
+333
+409
+
+-0.203
+4.415
+-1.694
+0.150
+
+0.810
+-1.453
+1.497
+
+-1.579
+0.827
+-2.119
+-0.750
+
+-0.208
+-1.176
+0.216
+
+3
+
+4.198
+
+2.620
+
+1032
+465
+14802
+
+0.883
+0.398
+-0.364
+
+0.070
+-1.418
+-0.274
+
+202
+
+-1.605
+
+-2.917
+
+1353
+
+-0.678
+
+-0.841
+
+64
+204
+
+-0.519
+-1.237
+
+-2.455
+-2.583
+
+32    Genomics  &  Informatics    Vol.  9(1)  28-36,  March  2011
+
+can  not  believe  the  result  from  the  ANOVA.
+
+Results  and  Discussion 
+
+The  experiment  is  a  completely  randomized  design, 
+containing  one  treatment  having  3  levels  -  A,  B,  C  -  and 
+each  is  replicated:
+Treatment
+
+Replicates
+
+A
+B
+C
+
+Chip1,  Chip2,  Chip3
+
+Chip4,  Chip5
+
+Chip6,  Chip7,  Chip8
+
+    The  data  were  recorded  on  the  new  Affymetrix 
+GeneChip  Arabidopsis  Genome  Array.  The  PM  values 
+were  normalized  using  the  quantile  method,  and  RMA 
+was  used  to  determine  the  summary  expression  value.
+
+We  compare  the  gene  lists  resulting  from  the  eBayes 
+(Smyth,  2004)  and  SAM  (Tusher  et al.,  2001)  methods, 
+classical  ANOVA,  and  HLM  for  one-way  ANOVA,  along 
+with  reliability.  Table  3  shows  the  results  ordered  by  the 
+top  15  genes  from  classical  ANOVA.  Table  4  shows  the 
+results  ordered  by  eBayes.  The  tables  display  the  ranks 
+of  the  genes  on  the  list  according  to  the  different 
+methods.  Table  5  lists  genes  that  have  good  reliability 
+and  small  p-values  that  are  unfortunately  prone  to  being 
+filtered  off  a  list  of  interesting  genes.  Table  6  lists  genes 
+that  have  a  small  p-value  but  also  poor  reliability  that 
+perhaps  should  be  filtered  off  a  list  of  interesting  genes.
+    By  classical  ANOVA  (Table  3),  the  most  significantly 
+differentially  expressed  gene,  246785_at,  is  ranked  as 
+low  as  129  by  eBayes,  26  in  the  SAM  method,  and  985 
+
+Table 4.  This  table  is  the  top  15  genes  that  have  smallest  p-value  of  the  eBayes  method.  The  numbers  under  each  method 
+name  is  the  rank.  A/C  and  B/C  represent  the  fold-changes  between  two  treatments
+
+Affy  ID 
+
+Locus  ID
+
+GO.Function
+
+Rel.*
+
+eBayes SAM ANOVA HLM
+
+A/C
+
+B/C
+
+262128_at
+251428_at
+
+AT1G52690 Molecular  function  unknown
+AT3G60140 Hydrolase  activity,  hydrolyzing  O-glycosyl 
+
+254098_at
+264514_at
+
+AT4G25100
+AT1G09500
+
+261309_at
+
+AT1G48600
+
+  compounds
+Iron  superoxide  dismutase  activity
+Alcohol  dehydrogenase  activity;  cinnamyl-alcohol 
+  dehydrogenase  activity
+S-adenosylmethionine-dependent  methyltransfer-
+ase  activity
+lactoylglutathione  lyase  activity
+Proline  dehydrogenase  activity
+
+Aryl-alcohol  dehydrogenase  activity;  mannitol 
+  dehydrogenase  activity
+
+262047_at
+257315_at
+251438_s_at
+252984_at
+
+AT1G80160
+AT3G30775
+AT5G33355 Molecular  function  unknown
+AT4G37990
+
+0.993
+0.987
+
+0.995
+0.970
+
+0.977
+
+0.984
+0.971
+0.975
+0.947
+
+  1
+  2
+
+  3
+  4
+
+  5
+
+  6
+  7
+  8
+  9
+
+10
+
+11
+
+12
+
+13
+14
+15
+
+  1
+  2
+
+  3
+  4
+
+  6
+
+  5
+  9
+11
+  8
+
+10
+
+16
+
+  7
+
+13
+20
+21
+
+  2
+  8
+
+27
+19
+
+28
+
+24
+53
+32
+25
+
+30
+
+52
+
+12
+
+  2
+  3
+
+  1
+17
+
+19
+
+  5
+14
+  7
+85
+
+26
+
+71
+
+4.415
+4.198
+
+0.827
+2.620
+
+-0.774
+3.515
+
+-4.819
+1.609
+
+-2.781
+
+-3.808
+
+3.396
+4.270
+3.406
+3.170
+
+2.313
+2.250
+2.118
+1.562
+
+3.259
+
+1.739
+
+3.282
+
+1.811
+
+202
+
+-1.605
+
+-2.917
+
+33
+107
+76
+
+47
+  4
+161
+
+3.013
+4.420
+-2.300
+
+1.141
+1.011
+-3.862
+
+246114_at
+
+AT5G20250 Hydrolase  activity,  hydrolyzing  O-glycosyl 
+
+0.965
+
+  compounds
+
+264524_at
+
+AT1G10070 Branched-chain-amino-acid  transaminase  activity; 
+
+0.949
+
+  catalytic  activity
+
+255046_at
+
+AT4G09650 Hydrogen-transporting  ATP  synthase  activity, 
+
+0.927
+
+245148_at
+264580_at
+267002_s_at
+
+AT2G45220
+AT1G05340 Molecular  function  unknown
+AT2G34430 Chlorophyll  binding;  O-acetyltransferase  activity; 
+
+  rotational  mechanism
+Enzyme  inhibitor  activity;  pectinesterase  activity 0.952
+0.989
+0.917
+
+  chlorophyll  binding
+
+Table  5.  The  list  of  5  genes  that  are  filtered  out  using  small  fold-changes  but  are  highly  reliable  and  highly  significant.  The 
+numbers  under  each  method  name  is  the  rank.  A/C  and  B/C  represent  the  fold-changes  between  two  treatments
+
+Affy  ID
+
+Locus  ID
+
+GO.Function
+
+Rel.*
+
+eBayes SAM ANOVA HLM
+
+A/C
+
+B/C
+
+262781_s_at
+
+AT3G26340 Endopeptidase  activity;  threonine  endopeptidase 
+
+0.926
+
+820
+
+802
+
+825
+
+478
+
+0.416
+
+-0.911
+
+  activity
+
+254578_at
+252591_at
+261872_s_at
+260705_at
+
+AT4G19410 Carboxylic  ester  hydrolase  activity
+AT3G45600 Molecular  function  unknown
+AT4G21660 Molecular  function  unknown
+AT1G32400 Protein  binding
+
+0.918
+0.917
+0.917
+0.905
+
+784
+811
+554
+814
+
+816
+784
+639
+822
+
+964
+784
+946
+910
+
+380
+540
+518
+570
+
+0.548
+0.361
+0.867
+0.830
+
+-0.875
+-0.953
+-0.838
+-0.489
+
+Finding  Interesting  Genes  Using  Reliability  in  Various  Gene  Expression  Models    33
+
+Table 6.  The  list  of  5  genes  that  are  highly  significant  but  have  very  low  reliability.  The  numbers  under  each  method  name 
+is  the  rank.  A/C  and  B/C  represent  the  fold-changes  between  two  treatments
+
+Affy  ID 
+
+  Locus  ID 
+
+  GO.Function
+
+Rel.*  eBayes SAM  ANOVA HLM 
+
+  A/C 
+
+  B/C
+
+253743_at     
+263048_s_at 
+252024_at     
+260917_at     
+252325_at     
+
+AT4G28940
+AT2G05310
+AT3G52880 
+AT1G02700 
+AT3G48560 
+
+Undetermined
+Chloroplast
+Cytosol;  undetermined
+Mitochondrion
+Cytosol;  chloroplast
+
+0.504
+0.598
+0.622
+0.507
+0.589
+
+725
+789
+797
+939
+957
+
+612
+810
+754
+698
+947
+
+442
+927
+730
+403
+973
+
+5958
+9899
+5085
+6830
+6810
+
+1.065
+-0.111
+-0.427 -1.391
+  0.284 -1.005
+-0.197   0.893
+  0.165 -1.058
+
+Fig.  4.  Profiles  of  summary  expression  and  PM  values  for  genes  ranked  highly  by 
+ANOVA  in  Table  3.  Two  genes,  246785_at  (left)  and  262128_at  (right),  are  ranked  1  and
+2,  respectively,  on  the  ANOVA  list.  262128_at  has  quite  consistent  PM  values  and  big 
+differences  between  the  treatments,  which  clearly  makes  it  an  interesting  gene. 
+246785_at  has  slightly  less  consistency  and  less  difference  between  the  treatments, 
+which  makes  it  really  less  interesting  than  the  number  2  ranked  gene.
+
+Fig.  5.  Profiles  of  summary  expression  and  PM  values  for  genes  ranked  highly  but  hav-
+ing  low  reliability  in  Table  3:  262605\_at  (left)  and  265575_at  (right)  have  large  variability 
+in  PM  values.  They  have  very  low  reliability,  and  yet  they  are  ranked  in  the  top  15  by 
+ANOVA  with  p-values  less  than  1.0-8;  the  profiles  suggest  that  these  two  genes  are  not
+at  all  interesting.
+
+34    Genomics  &  Informatics    Vol.  9(1)  28-36,  March  2011
+
+by  HLM,  and  the  reliability  of  this  gene  is  less  than  per-
+fect  at  0.846.  The  methods  disagree  on  the  significance 
+of  this  gene.  The  second-ranked  gene,  262128_at,  has 
+a  good  reliability  (0.993)  and  is  ranked  highly  by 
+eBayes,  SAM,  and  HLM;  so,  the  methods  all  agree  that 
+this  is  an  interesting  gene.  Fig.  4  shows  the  profiles  of 
+PM  values  for  these  genes.  The  difference  in  variability 
+of  the  PM  values  supports  the  position  that  262128_at 
+is  undoubtedly  an  interesting  gene  but  that  246785_at  is 
+much  less  so.
+    The  worst  genes  on  this  list  (Table  3)  are  262605_at 
+and  265575_at,  with  reliabilities  of  0.166  and  0.624, 
+respectively.  Fig.  5  shows  the  profiles  of  PM  values  for 
+these  genes.  There  is  a  lot  of  variability  in  the  PM 
+values.  Although  they  are  at  the  top  of  the  ANOVA 
+model's  list  of  significant  genes,  they  should  not  be  on 
+a  final  list  of  interesting  genes.
+    Table  4  shows  that  there  is  considerable  agreement 
+about  genes  between  eBayes  and  SAM.  Both  methods 
+adjust  their  test  statistics  by  shrinking  an  individual 
+gene's  variance  estimate  towards  the  variance  of  all 
+genes.  All  of  the  differentially  expressed  genes  on  this 
+list  also  have  high  reliability.  The  HLM  disagrees  with 
+eBayes  and  SAM  about  the  interestingness  of  several  of 
+the  genes.
+    A  comparison  of  all  of  the  genes  is  possible  using 
+brushing  in  a  scatterplot  matrix  (Becker  and  Cleveland, 
+
+1988).  Fig.  6  is  the  screenshot  of  the  brushing  being 
+done  with  GGobi  (Swayne et al.,  2003).  The  scatterplot 
+matrix  has  5  diagnostic  statistics:  reliability,  eBayes  F 
+values,  ANOVA  F  values,  SAM  F  values,  and  HLM  χ2 
+values.  (Large  test  statistics,  F,  χ2  correspond  to  small 
+p-values.)  Each  point  in  this  plot  represents  one  gene, 
+with  its  corresponding  values  on  the  diagnostics  plotted 
+against  the  appropriate  axis.
+    The  diagonal  elements  are  density  plots  of  each 
+diagnostic.  The  eBayes,  ANOVA,  SAM,  and  HLM  test 
+statistics  are  all  strongly  left-skewed,  which  says  that 
+there  are  a  lot  more  small  values  of  these  statistics  and 
+few  high  (important)  values.  Reliability  has  an  unusual 
+distribution  -  fewer  genes  have  high  or  low  reliability 
+and  many  more  genes  are  in  the  mid-range  of  the  scale.
+    The  off-diagonal  plots  in  the  scatterplot  matrix  are  the 
+(5*  4/2=10)  pairwise  plots  of  the  5  diagnostics,  which 
+shows  how  the  statistics  are  related  to  each  other.  The 
+values  for  eBayes  and  SAM  are  very  strongly  related, 
+with  a  slight  non-linear  relationship.  eBayes  and  SAM 
+have  a  reasonably  close  association  with  ANOVA,  with 
+the  exception  of  a  relatively  small  number  of  the  genes. 
+eBayes  and  SAM  have  a  moderate  association  with 
+HLM  -  for  most  genes,  the  HLM  value  seems  to  be  the 
+same  as  the  eBayes  or  SAM  value  plus  a  constant. 
+ANOVA  has  almost  no  relationship  with  HLM.  Reliability 
+has  a  much  different  relationship  with  each  of  the  other 
+
+Fig.  6.  The  scatter  plot  matrix  from  GGobi.  Red  highlighted 
+genes  have  high  reliability  ones.  If  they  also  have  high  val-
+ues  in  the  analysis,  they  must  be  truly  differentially  ex-
+pressed  ones.
+
+Fig.  7.  The  scatter  plot  matrix  of  reliability  and  ANOVA  F 
+statistics  in  GGobi.  Highlighted  genes  (red)  have  high  reli-
+ability  ones.  Genes  with  high  a  ANOVA  rating  and  low  reli-
+ability  are 
+identified  as  246785_at,  265575_at,  and 
+262605_at.
+
+Finding  Interesting  Genes  Using  Reliability  in  Various  Gene  Expression  Models    35
+
+diagnostics.  Reliability  and  eBayes  have  the  strongest 
+association,  where  genes  with  high  test  statistic  values 
+also  generally  have  high  reliability.  Many  genes  with 
+high  reliability  have  low  test  statistic  values.  This  associ-
+ation  is  similar  for  SAM  and  HLM  but  not  so  for  ANOVA; 
+there  are  several  genes  that  have  high  ANOVA  test  sta-
+tistics  but  relatively  low  reliability.
+    Brushing  on  the  scatterplot  matrix  is  done  in  the  den-
+sity  plot  of  reliability.  Genes  with  the  highest  reliability 
+are  brushed  (red).  These  same  genes  are  colored  (red) 
+in  the  other  plots.  The  values  that  these  genes  have  on 
+the  other  diagnostics  is  interesting;  they  cover  the  full 
+range  of  F  statistic  values  for  eBayes,  SAM,  and  ANOVA 
+but  moderate  to  high  values  of  χ2
+  for  HLM.  HLM  uses 
+the  PM  values,  on  which  reliability  is  calculated,  in  the 
+model,  while  the  methods  do  not;  so,  there  should  be 
+some  similarity  between  the  diagnostic  values.  That 
+there  are  some  differences  must  be  due  to  the  use  of 
+non-robust  estimates  of  the  summary  values.  Comparing 
+eBayes  and  ANOVA,  the  high-reliability  genes  have  a 
+very  strong  relationship,  and  there  are  many  genes  rat-
+ed  highly  by  ANOVA  that  have  low  reliability.  The  most 
+interesting  feature  of  the  diagnostics  revealed  by  the 
+scatterplot  matrix  is  that  there  are  three  outliers,  which 
+are  the  three  genes  that  eBayes,  SAM,  and  HLM  all  rate 
+very  highly:  262128_at,  251428_at,  and  254098_at. 
+There  is  also  an  outlier  in  the  values  of  ANOVA,  which 
+have  low  reliability,  and  this  corresponds  to  the  gene 
+that  ANOVA  rates  very  highly,  counter  to  all  of  the  other 
+diagnostics:  246785_at.  We  also  see  several  other  out-
+liers  in  the  ANOVA  and  Reliability  plot  that  have  low  reli-
+ability,  two  of  which  correspond  to  265575_at  and 
+262605_at  (Fig.  7).
+
+    From  this  analysis,  it  looks  like  eBayes,  SAM,  and 
+HLM  all  do  a  reasonable  job  in  finding  significantly  dif-
+ferentially  expressed  genes.  However,  they  can  miss  a 
+few  genes  that  perhaps  should  be  detected,  and  they 
+can  also  accept  a  few  genes  that  perhaps  should  not 
+be  detected.  Reliability  helps  to  uncover  these.
+    Table  5  lists  5  genes  that  have  high  reliability  (＞0.9) 
+and  relatively  high  ranks  (＜1,000).  But,  they  also  have 
+small  fold-changes  that  might  exclude  them  if  filtering  is 
+conducted  before  the  analysis.  Profiles  for  two  of  these 
+genes  are  shown  in  Fig.  8.  These  genes  are  charac-
+terized  by  small  differences  in  the  summary  expression 
+values  for  each  treatment  but  also  by  very  consistent 
+PM  values.  Based  on  the  PM  values,  to  which  eBayes 
+and  SAM  are  blind,  it  could  very  well  be  argued  that 
+these  are  significantly  differentially  expressed  genes. 
+    Table  6  lists  5  genes  that  have  very  low  reliability 
+(＜0.65)  and  relatively  high  ranks  (＜1,000).  They  would 
+be  included  in  the  significantly  differently  expressed 
+genes,  but  the  reliability  of  these  genes  is  very  low, 
+casting  doubt  on  the  interestingness  of  these  genes. 
+Based  on  the  PM  values,  to  which  eBayes  and  SAM  are 
+blind,  it  could  very  well  be  argued  that  they  are  not  sig-
+nificantly  differentially  expressed  genes.
+    In  this  paper,  we  defined  a  new  reliability  statistic  that 
+can  be  used  with  any  other  statistical  method  to  find 
+differentially  expressed  genes.  This  measure  is  very 
+easy  to  calculate,  relative  to  applying  the  eBayes  and 
+SAM  methods.  Therefore,  it  can  be  used  easily  for  the 
+exploratory  data  analysis  step  as  well  as  the  intensive 
+data  analysis  step.  It  also  provides  a  guide  to  the  var-
+iance  of  each  gene's  summary  expression  value.  This 
+statistic  can  also  be  used  with  the  other  statistical 
+
+Fig.  8.  Profiles  of  a  special  group  of  genes  that  have  high  reliability  but  would  be  ex-
+cluded  from  a  list  of  significantly  differentially  expressed  genes  by  all  methods.  The  pro-
+files  show  that  these  genes  may  be  important.  They  have  small  differences  in  the  sum-
+mary  expression  values  for  each  treatment  but  also  very  consistent  PM  values.
+
+36    Genomics  &  Informatics    Vol.  9(1)  28-36,  March  2011
+
+methods,  like  clustering  and  classification.  The  R  pack-
+age  ProbeR  for  calculating  and  exploring  reliability 
+measure  with  GGobi  is  available  at  CRAN  (http://www. 
+r-project.org).
+
+Acknowledgments
+
+We  thank  Steve  Rodermel  for  the  data.  This  work  was 
+supported  by  the  Priority  Research  Centers  Program 
+through  the  National  Research  Foundation  of  Korea 
+(NRF),  funded  by  the  Ministry  of  Education,  Science  and 
+Technology  (2009-0093827)  and  National  Science  Foun-
+dation  Arabidopsis  2010  grants  DBI-0209809  and  DBI- 
+0520267.
+
+References 
+
+Becker,  R.A.  and  Cleveland,  W.S.  (1988).  Brushing  Scatter-
+plots,  in  Cleveland,  W.  S.  and  McGill,  M.  E.  (eds) 
+Dynamic  Graphics  for  Statistics,  Wadsworth,  Monterey, 
+CA.  201-224. 
+
+Bolstad,  B.M.,  Irizarry,  R.A.,  Astrand,  M.,  Speed,  T.P. 
+(2003).  A  comparison  of  normalization  methods  for  high 
+density  oligonucleotide  array  data  based  on  variance  and 
+bias.  Bioinformatics  19,  185-193. 
+
+Chu,  T.M.,  Weir,  B.,  and  Wolfinger,  R.  (2002).  A  systematic 
+statistical  linear  modeling  approach  to  oligonucleotide  ar-
+ray  experiments.  Math. Biosci.  176,  35-51. 
+
+Churchill,  G.A.  (2004).  Using  ANOVA  to  analyze  microarray 
+
+data.  Biotechniques  37,  173-175. 
+
+Irizarry,  R.A.,  Hobbs,  B.,  Collin,  F.,  Beazer-Barclay,  Y.D., 
+Antonellis,  K.J.,  Scherf,  U.,  and  Speed,  T.P.  (2003). 
+Exploration,  normalization  and  summaries  of  high  density 
+oligonucleotide  array  probe  level  data.  Biostatistics  4, 
+249-264. 
+
+Lazaridis,  E.N.,  Sinibaldi,  D.,  Bloom,  G.,  Mane,  S.,  and 
+Jove,  R.  (2001).  A  simple  method  to  improve  probe  set 
+estimates  from  oligonucleotide  arrays.  Math. Biosci.  176, 
+53-58. 
+
+Li,  C.,  and  Wong  W.  H.  (2001).  Model-based  analysis  of  oli-
+gonucleotide  arrays:  model  validation,  design  issues  and 
+standard  error  application.  Genome Biol.  176,  53-58. 
+
+Millenaar,  F.F.,  Okyere,  J.,  May,  S.T.,  Zanten,  M., 
+Voesenek,  L.A.,  and  Peeters,  A.  (2006).  How  to  decide? 
+Different  methods  of  calculating  gene  expression  from 
+short  oligonucleotide  array  data  will  give  different  results. 
+BMC Bioinformatics  7,  137. 
+
+Raudenbush,  S.W.,  and  Bryk,  A.S.  (2002).  Hierarchical  linear 
+models:  Applications  and  data  analysis  methods  (2nd 
+ed.).  Thousand  Oaks,  CA:Sage  Publications. 
+
+Smyth,  G.K.  (2004).  Linear  models  and  empirical  bayes 
+methods  for  assessing  differential  expression  in  micro-
+array  experiments. Stat. Appl. Genet. Mol. Biol.  3,  Article 
+3. 
+
+Swayne,  D.F.,  Lang,  D.T.,  Buja,  A.,  and  Cook,  D.  (2003). 
+GGobi:  Evolving  from  XGobi  into  an  extensible  framework 
+for  interactive  data  visualization.  Computational Statistics 
+and Data Analysis  43,  423-444.  http://www.ggobi.org. 
+
+Tusher,  V.G.,  Tibshirani,  R.,  and  Chu,  G.  (2001).  Signifi-
+cance  analysis  of  microarrays  applied  to  the  ionizing  ra-
+diation  response.  Proc. Natl. Acad. Sci. USA  98,  5116- 
+5121. 
+
+

@@ -1,0 +1,1537 @@
+G&I   Genomics & Informatics
+
+ORIGINAL ARTICLE
+
+eISSN 2234-0742
+Genomics Inform 2017;15(4):128-135
+https://doi.org/10.5808/GI.2017.15.4.128
+
+misMM: An Integrated Pipeline for Misassembly 
+Detection Using Genotyping-by-Sequencing and 
+
+Its Validation with BAC End Library 
+
+Sequences and Gene Synteny
+
+Young-Joon Ko1, Jung Sun Kim2, Sangsoo Kim1*
+
+1Department of Bioinformatics and Life Science, Soongsil University, Seoul 06978, Korea, 2Genomics Division, Department of 
+Agricultural Biotechnology, National Institute of Agricultural Sciences, Rural Development Administration, Jeonju 54874, Korea
+
+As next-generation sequencing technologies have advanced, enormous amounts of whole-genome sequence information in 
+various species have been released. However, it is still difficult to assemble the whole genome precisely, due to inherent 
+limitations of short-read sequencing technologies. In particular, the complexities of plants are incomparable to those of 
+microorganisms or animals because of whole-genome duplications, repeat insertions, and Numt insertions, etc. In this study, 
+we describe a new method for detecting misassembly sequence regions of Brassica rapa with genotyping-by-sequencing,  
+followed by MadMapper clustering. The misassembly candidate regions were cross-checked with BAC clone paired-ends 
+library sequences that have been mapped to the reference genome. The results were further verified with gene synteny 
+relations  between  Brassica  rapa  and  Arabidopsis  thaliana.  We  conclude  that  this  method  will  help  detect  misassembly 
+regions and be applicable to incompletely assembled reference genomes from a variety of species.
+
+Keywords: BAC end library, gene synteny, genotyping-by-sequencing, miassembly, next-generation sequencing, reference 
+
+genome
+
+Introduction
+
+The  genomics  era  has  opened  in  earnest  with  the 
+completion  of  the  Human  Genome  Project.  With  the 
+development of next-generation sequencing (NGS) techno-
+logies,  the  amount  of  genomics  data  has  exploded,  and 
+sequencing targets have become very diverse. As of 2017, 
+there are 7,930 species of eukaryotes, 192,677 species of 
+bacteria, and 1,412 species of archaea that have been offi-
+cially registered in NCBI. As the Nagoya Protocol is initiated, 
+it is expected that these numbers will continue to increase in 
+the  future  due  to  the  policies  of  each  country  to  secure 
+information on biological genetic resources [1, 2]. Despite 
+the fact that the cost of genomic analysis is declining, there 
+are still a number of technical problems that make it difficult 
+to sequence the genome completely [3]. For example, misa-
+
+ssembly due to the inherent limitations of NGS technology is 
+well  known  [4-6].  Especially  in  plants,  there  are  many 
+barriers that make plant genomes hard to sequencing, such 
+as Numts, repeats, and genome duplication events [7-9].
+
+Genotyping-by-sequencing  (GBS)  is  a  technology  that 
+allows  high-throughput  genotyping  by  applying  NGS 
+technology. It is used to analyze single nucleotide polymor-
+phisms  (SNPs)  in  populations  to  find  molecular  markers 
+that  are  related  to  phenotype  and  genotype  or  to  draw 
+genetic linkage maps for plant breeding. By analyzing the 
+pattern of GBS data along each chromosome, one can find 
+out where the gene crossover occurs. On the other hand, a 
+small block that interrupts an otherwise continuous GBS 
+pattern is genetically non-ideal and implies a misassembled 
+region. Therefore, we explored the application of GBS in the 
+detection of misassemblies [10-12].
+
+Brassicaceae is a mustard family containing 372 genera 
+
+Received October 24, 2017; Accepted November 2, 2017
+*Corresponding author: Tel: +82-2-820-0457, Fax: +82-2-824-4383, E-mail: sskimb@ssu.ac.kr
+Copyright © 2017 by the Korea Genome Organization
+CC It is identical to the Creative Commons Attribution Non-Commercial License (http://creativecommons.org/licenses/by-nc/4.0/).
+
+and 4,060 accepted species, and its varieties are cultivated as 
+economically valuable crops not only in East Asia but also 
+globally  [13].  The  triangle  of  U  theory  states  that  the 
+differentiation  of  an  allotetraploid  of  Brassica  species—
+Brassica juncea (AABB), Brassica napus (AACC), and Brassica 
+carinata  (BBCC)—occurs  due  to  the  polyploidization  of 
+diploid  Brassica  species:  Brassica  rapa  (AA),  Brassica  nigra 
+(BB), and Brassica oleracea (CC). This theory has been proven 
+by  genomic  analysis  by  NGS  of  Brassica  species  [14-25]. 
+Research on the correlation between the genetic information 
+and  the  nutrient  content  of  crops  has  been  actively  con-
+ducted in Brassica genomes [26]. The recently published B. 
+rapa V2.1 genome sequence shows much improved quality, 
+as well as a number of misassembly corrections over the 
+previous  version,  V1.5  [17].  This  offers  an  interesting 
+opportunity to test the potential of misassembly detection, 
+based on GBS data.
+
+In this study, we propose a user-friendly pipeline, called 
+misMM, which automatically identifies misassembled can-
+didate  blocks  (MCBs)  and  adjacent  to  destination  blocks 
+(ADBs) and plots the genetic map of MCBs by using raw GBS 
+data sorted by MadMapper [27]. These results are verified by 
+using the BAC end-sequence library published in NCBI and 
+the gene synteny relation between Arabidopsis thaliana and B. 
+rapa [28-31].
+
+Methods
+Data source
+
+The end sequences of B. rapa accession Chiifu-401-42, a 
+Chinese cabbage BAC library (KBrH, KBrB, and KBrS), were 
+downloaded  from  NCBI  and  used  to  verify  the  putative 
+misassembly  genome  regions.  In  order  to  investigate  the 
+gene synteny relation between A. thaliana TAIR10 and B. rapa 
+genome  V1.5,  the  corresponding  general  feature  format 
+
+Genomics  &  Informatics  Vol.  15,  No.  4,  2017
+
+(GFF) annotation files and protein sequences of each species 
+were  downloaded  from  http://ensemblgenomes.org  and 
+http://brassicadb.org, respectively. The GBS data were pro-
+duced by a previous study that investigated the correlation 
+between flavonoid content and the genotype of B. rapa in 69 
+individuals of a doubled haploid F2 generation obtained by 
+microbial  culture  of  an  F1  generation  cross  of  two  sub-
+species—yellow sarson of LP08 (B. rapa ssp. tricolaris) and 
+pak  choi  of  LP21  (B.  rapa  ssp.  chinensis)—with  distinct 
+morphologies  [26].  From  the  study,  genotype  data  were 
+obtained at a total of 8,176 positions.
+
+Configuration of the misMM pipeline for 
+misassembled block detection
+
+misMM,  a  pipeline  for  genome  misassembled  block 
+detection, was written in a Linux shell and with Python ver. 
+2.7  in-house  codes.  The  first  step  is  preprocessing:  after 
+loading all GBS raw data files, markers with a missing value 
+of over 8% were filtered out. If the neighboring positions had 
+the similar GBS pattern with consistency, they were grouped 
+into one block. Our script then automatically prepared the 
+three  kinds  of  input  files  (.loc,  IDs,  and  maps)  for  Mad-
+Mapper  (UC  Davis)  [27],  a  package  that  specializes  in 
+recombinant  inbred  lines  analysis  using  large  genetic 
+markers and easy visualizes the 2D pairwise matrix. The next 
+step  is  the  linkage  grouping  and  block  shuffling  step, 
+performed  with  MadMapper.  By  using  the  default  para-
+meters of MadMapper_RECBIT (rec_cut, 0.2; bit_cut, 100; 
+data_cut, 25; allele_dist, 0.33; missing_data, 50; trio_ana-
+lysis, TRIO; double_cross, 3), linkage grouping and marker 
+extraction were performed by generating a pairwise matrix 
+between GBS patterns of each block. Subsequently, block 
+shuffling was performed by MadMapper_XDELTA (marker 
+fixation, FIXED; shuffle option, SHUFFLE; shuffle block, 6; 
+shuffle step, 3) with each clustered block. At the end of this 
+
+Fig.  1.  Total  work  flow  of  misMM. 
+GBS,  genotyping-by-sequencing.
+
+www.genominfo.org
+
+129
+
+YJ  Ko,  et al.  Detecting  Misassembled  Region  with  GBS  Patterns
+
+process,  it  plotted  a  genetic  map  diagram  with  putative 
+misassembled  blocks.  In  addition,  it  also  generated  2D 
+heatmap graphs for comparing before and after the block 
+shuffling. All of the work flow of this pipeline is described in 
+Fig. 1. The misMM pipeline scripts can be downloaded from 
+http://sskimbnas.ipdisk.co.kr:80/publist/HDD1/misMM/
+misMM.tar.gz.
+
+Validation using BAC end sequences
+
+In  order  to  confirm  the  misassembled  blocks  with 
+experimental  data,  we  extracted  41,969  pairs  of  end 
+sequences from the BAC libraries (KBrS, KBrH, and KBrB) of 
+B. rapa and carried out sequence alignment against the B. 
+rapa  reference  genome  sequence  using  Nucmer  (MUM-
+mer3.23)  with  the  proper  options  (--maxmatch,  use  all 
+anchor  matches;  -g,  global  alignment;  -I,  ＞95%;  -r,  sort 
+output lines by reference). The Nucmer results were then 
+filtered for discordant BAC end pairs with one end aligned to 
+the MCB and the other end to the ADB.
+
+Validation using gene synteny relation between A. 
+thaliana and B. rapa
+
+For validation with gene synteny, the protein sequence of 
+B. rapa were matched to those of A. thaliana using BLASTP 
+(Blast 2.2.26), and the top four hits for each query were 
+retained. The tabulated results were then sorted, based on 
+the  genomic  coordinates  of  each  protein,  and  the  gene 
+synteny relation was examined manually.
+
+Results and Discussion
+
+misMM was developed to provide a streamlined and yet 
+simple-to-use  pipeline  for  the  detection  of  misassembled 
+regions, so-called MCBs, based on GBS data (Fig. 1). This 
+pipeline was tested with the GBS data of B. rapa against the 
+B. rapa V1.5 reference genome, which is known to have some 
+misassembled regions compared to the recently published 
+V2.1 genome [17]. The original linkage score heatmap that 
+was  produced  by  MadMapper  showed  many  off-diagonal 
+cells with a low score that were often clustered in stretch 
+(Fig. 2 left panel). The off-diagonal blocks scoring less than 
+0.33 were defined as MCBs (Table 1, Fig. 3). For each MCB, 
+the corresponding ADB was identified by MadMapper, based 
+on  the  linkage  score  (Table  1).  The  subsequent  shuffled 
+heatmap  showed  clean  clustering,  with  no  low-scoring 
+off-diagonal blocks, implying the unambiguousness of the 
+GBS pattern in detecting misassemblies (Fig. 2 right panel). 
+The MCBs and ADBs were distributed throughout the entire 
+pseudomolecule. A total of 16 MCBs had an average block 
+size of 65,477 bp, and the largest one was 410,190 bp. The 
+average size of the ADBs was 746,707 bp, with a maximum 
+of 4,936,893 bp. The fact that only a few small MCBs were 
+detected and that the corresponding ADBs were large in size 
+implies  that  the  B.  rapa  V1.5  genome  is  well  assembled 
+overall but has a few problematic regions, as shown by the 
+recent update of the genome [17]. 
+
+We used two sets of data to validate that the ADBs were 
+indeed in the neighboring area of the MCBs. The first one 
+was used to find discordant BAC end pairs with one end 
+
+130
+
+www.genominfo.org
+
+Fig. 2. Before and after the results of 
+the  2D  matrix  graphs  of 
+the 
+MadMapper  block  shuffling  analysis. 
+A01 
+the 
+indicate 
+Brassica rapa  pseudomolecules.
+
+through  A10 
+
+Table  1.  Results  of  misassembled  block  detection  analysis  in  Brassica rapa  with  misMM
+
+Genomics  &  Informatics  Vol.  15,  No.  4,  2017
+
+Misassembled  candidate  block
+
+Adjacent  to  destination  block
+
+Start
+
+position
+
+End
+
+position
+
+Block  size 
+
+(bp)
+
+Synteny
+relation
+
+Count  of 
+BAC  end
+
+Block
+No.
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+Chr
+No.
+
+A01
+
+Start
+
+position
+
+End
+
+position
+
+Block  size
+
+(bp)
+
+10,335,503 10,336,457
+
+955
+
+Chr 
+No.
+
+A07
+
+A01
+
+11,453,104 11,488,558
+
+35,455
+
+A04
+
+A01
+A07
+A08
+
+11,830,981
+13,576,261
+1,389,252
+
+-
+-
+
+1,419,543
+
+1
+1
+30,292
+
+A01
+A01
+A02
+A01
+A02
+A02
+
+A01
+A06
+
+17,853,386 17,853,417
+21,422,470 21,756,693
+26,385,973 26,386,023
+23,266,604 23,424,555
+13,440,136 13,440,137
+21,066,162 21,066,274
+
+32
+334,224
+51
+157,952
+2
+113
+
+8,706,169
+8,950,670
+19,457,789 19,703,630
+
+244,502
+245,842
+
+A05
+
+A03
+
+A06
+
+A09
+
+7
+
+A02
+
+21,427,161
+
+8
+
+A03
+
+15,343,238
+
+-
+
+-
+
+1
+
+A10
+
+1
+
+A08
+
+9
+
+A05
+
+8,144,773
+8,217,883
+8,250,451
+
+8,162,600
+8,234,265
+8,352,384
+
+17,828
+16,383
+101,934
+
+A08
+
+2,718,763
+2,970,361
+4,284,326
+5,782,516
+8,306,623
+8,462,236
+3,271,457
+5,227,803
+7,605,871
+10,274,396
+14,602,065
+14,946,890
+6,968,479
+7,231,217
+7,825,594
+8,683,679
+28,233,583
+28,622,787
+29,806,067
+10,280,840
+10,732,633
+14,450,457
+8,950,753
+11,293,419
+11,610,344
+14,915,372
+15,949,568
+19,064,188
+22,634,782
+23,489,828
+11,579,416
+176,000
+1,765,780
+1,786,668
+3,686,351
+5,335,436
+5,648,752
+2,368,697
+4,037,929
+4,787,505
+5,188,553
+7,117,019
+7,559,836
+9,000,508
+19,141,593
+19,394,784
+19,568,112
+19,674,213
+
+2,760,427
+3,340,395
+5,685,009
+8,114,350
+8,390,460
+9,063,378
+4,978,203
+6,734,498
+7,605,928
+14,490,617
+14,704,957
+15,735,698
+7,090,412
+7,782,948
+8,040,473
+9,511,317
+28,599,515
+29,191,693
+31,527,446
+10,357,155
+14,236,176
+14,559,524
+10,162,388
+11,528,445
+14,668,929
+15,794,376
+18,361,629
+22,487,944
+23,337,316
+23,489,836
+
+-
+
+1,638,829
+1,766,618
+1,792,156
+5,224,789
+5,459,255
+5,693,352
+3,803,367
+4,357,798
+4,835,708
+6,046,948
+7,501,164
+8,722,062
+9,002,057
+19,320,715
+19,497,679
+19,621,358
+19,711,491
+
+Related
+
+Related
+
+41,665 No  gene
+370,035
+1,400,684
+2,331,835
+83,838
+601,143
+1,706,747
+1,506,696
+58
+4,216,222
+102,893
+788,809
+121,934
+551,732
+214,880
+827,639
+365,933
+568,907
+1,721,380
+76,316
+3,503,544
+109,068
+1,211,636
+235,027
+3,058,586
+879,005
+2,412,062
+3,423,757
+702,535
+9
+1 No  gene
+
+Related
+
+Related
+
+Related
+
+1,462,830
+839
+5,489
+1,538,439
+123,820
+44,601
+1,434,671
+319,870
+48,204
+858,396
+384,146
+1,162,227
+1,550
+179,123
+102,896
+53,247
+37,279
+
+1
+
+6
+
+1
+
+2
+
+13
+
+63
+
+0
+
+2
+
+Related
+
+Related
+
+16
+
+www.genominfo.org
+
+131
+
+YJ  Ko,  et al.  Detecting  Misassembled  Region  with  GBS  Patterns
+
+Table  1.  Continued
+
+Block
+No.
+
+10
+
+Chr
+No.
+
+A05
+
+Misassembled  candidate  block
+
+Adjacent  to  destination  block
+
+Start
+
+position
+
+End
+
+position
+
+Block  size
+
+(bp)
+
+Chr 
+No.
+
+Start
+
+position
+
+End
+
+position
+
+Block  size 
+
+(bp)
+
+9,669,449 10,079,638
+
+410,190
+
+A01
+
+Synteny
+relation
+
+Count  of 
+BAC  end
+
+Related
+
+23
+
+Related
+
+Related
+
+Related
+
+Related
+
+Related
+
+Related
+
+0
+
+0
+
+5
+
+0
+
+0
+
+0
+
+10,376,926
+10,687,155
+11,519,211
+11,900,084
+16,848,291
+17,226,336
+17,860,877
+9,305,241
+9,711,107
+24,324,484
+24,402,955
+24,619,832
+24,920,288
+11,579,416
+176,000
+1,765,780
+1,786,668
+3,686,351
+5,335,436
+5,648,752
+12,032,914
+12,049,203
+12,473,776
+14,019,224
+14,222,379
+25,996,840
+26,067,147
+27,139,966
+11,596,619
+13,498,575
+14,804,284
+18,558,399
+19,548,342
+19,787,176
+11,146,660
+11,664,229
+11,764,627
+11,928,253
+
+10,494,252
+11,394,090
+11,744,579
+16,836,976
+17,125,316
+17,789,202
+18,575,071
+9,707,259
+10,267,937
+24,353,432
+24,488,344
+24,806,034
+24,920,419
+
+1,638,829
+1,766,618
+1,792,156
+5,224,789
+5,459,255
+5,693,352
+12,032,953
+12,406,487
+13,917,498
+14,200,642
+14,355,939
+26,033,638
+27,037,677
+27,943,662
+13,185,910
+14,449,253
+18,303,089
+19,378,431
+19,666,145
+
+11,437,447
+
+11,814,368
+12,032,475
+
+117,327
+706,936
+225,369
+4,936,893
+277,026
+562,867
+714,195
+402,019
+556,831
+28,949
+85,390
+186,203
+132
+1
+1,462,830
+839
+5,489
+1,538,439
+123,820
+44,601
+40
+357,285
+1,443,723
+181,419
+133,561
+36,799
+970,531
+803,697
+1,589,292
+950,679
+3,498,806
+820,033
+117,804
+1
+290,788
+1
+49,742
+104,223
+
+11
+
+A07
+
+2,319,220
+
+2,321,114
+
+1,895
+
+A01
+
+12
+
+A07
+A08
+
+3,920,950
+3,927,665
+
+4,009,069
+
+-
+
+88,120
+1
+
+A10
+
+13
+
+A07
+
+8,271,542
+
+8,274,604
+
+3,063
+
+A03
+
+14
+
+15
+
+A08 11,266,789
+
+-
+
+1
+
+A03
+
+A05
+A08
+
+8,552,907
+1,584,456
+
+8,593,005
+1,594,851
+
+40,099
+10,396
+
+A02
+
+16
+
+A08
+
+4,941,300
+
+4,969,852
+
+28,553
+
+A10
+
+aligned to the MCB and the other end aligned to the ADB. For 
+example, the MCB of block number 2 in Table 1 was located 
+in  pseudomolecule  A01,  ranging  from  11,453,104  to 
+11,488,588, while its corresponding ADBs were found in 
+A04. Table 2 shows the mapping results of the six BAC end 
+pairs of this block, the sizes of which ranged from 671 bp to 
+1,000  bp,  with  a  mapping  identity  higher  than  97.93%. 
+While  one  end  of  the  BAC  pairs  was  mapped  to  the 
+corresponding  MCB  in  A01,  all  of  the  other  ends  were 
+
+mapped  within  the  ADB,  ranging  from  3,271,457  to 
+4,978,203 in A04. Likewise, 10 out of 16 blocks listed in 
+Table 1 could be confirmed by the BAC end results. The true 
+locations of these blocks could be estimated within the span 
+of the corresponding BAC (average 110 kbp). The rest could 
+not be confirmed, probably due to the distance between the 
+MCB and ADB, making it incompatible with the BAC size.
+The  other  validation  method  was  the  use  of  the  gene 
+synteny relation. Compared to the A. thaliana genome, there 
+
+132
+
+www.genominfo.org
+
+is  evidence  that  the  B.  rapa  genome  has  undergone  trip-
+lication [32]. Accordingly, most of the A. thaliana genes are 
+preserved in gene synteny blocks at three different places. 
+Within block number 2 in Table 1, two B. rapa genes are 
+annotated: Bra033489 and Bra033490 (Table 3). For all 16 
+genes flanking these two genes, orthologs were identified by 
+BLASTP (Table 4). Eight A. thaliana genes in the middle—
+including  the  orthologs  of  two  genes,  AT4G14330  and 
+AT4G14350—were out of order and broke the continuity of 
+the synteny in the region. This is consistent with our finding 
+that this MCB is truly misplaced in B. rapa genome V1.5. The 
+true locations of the two B. rapa genes in this MCB can be 
+inferred by mapping the flanking genes of AT4G14330 and 
+AT4G14350 to the B. rapa genome (Table 5). Indeed, a total 
+of six A. thaliana flanking genes were mapped to the B. rapa 
+
+Fig.  3.  Example  of Brassica rapa  genetic  map  made  with  misMM 
+pipeline.  Red  colors  indicate  misassembled  candidate  blocks.
+
+Genomics  &  Informatics  Vol.  15,  No.  4,  2017
+
+orthologs that were found in the corresponding ADBs. As 
+expected, the gene synteny of this region is also well pre-
+served. In this way, we can estimate the approximate relative 
+locations of these two genes. Based on this relationship, an 
+analysis was carried out with regard to the relationship of the 
+protein orthologs and gene coordination between the two 
+species. First, two genes were annotated in an example block 
+(Table  3).  When  these  two  genes  were  found  in  a  table 
+arranged by the coordinates of the B. rapa gene, there was no 
+continuity between the ortholog genes and the surrounding 
+genes  (Table  4).  But,  when  we  sorted  this  based  on  the 
+coordination of A. thaliana, the ortholog genes belonging to 
+the  ADB  were  located  consecutively  around  the  gene 
+belonging to the MCB (Table 5). Furthermore, the gene order 
+that was inferred here was confirmed in the updated B. rapa 
+V2.1 genome that was recently published [17].
+
+In recent years, studies of expression quantitative trait loci 
+that affect mRNA expression or protein expression using 
+SNPs and studies to find markers that affect the environ-
+mental  adaptation  of  plants  have  been  becoming  widely 
+embraced [33]. For such works, accurate reference genome 
+assembly is required. Toward that goal, our misMM pipeline 
+is a useful tool for the identification of misassemblies in 
+complex genomes using GBS data.
+
+Table 3. Information on  genes  included  in example  misassembled
+candidate  block
+
+Chr  No. Type
+
+Start  point
+
+End  point Brassica rapa  ID
+
+A01
+A01
+
+Gene 11,455,026 11,470,735
+Gene 11,451,545 11,454,600
+
+Bra033489
+Bra033490
+
+Table  2.  Example  of  validation  of  BAC  end  library  results
+
+BAC  ends  library  ID
+
+gi  No.
+
+Length  (bp)
+
+Identity  (%)
+
+KBrB037L22F
+KBrB037L22R
+KBrB039C19R
+KBrB039C19F
+KBrB043O24F
+KBrB043O24R
+KBrB077H15F
+KBrB077H15R
+KBrB097P17F
+KBrB097P17R
+KBrH087A11R
+KBrH087A11F
+
+84732862
+84732863
+84733951
+84733950
+84737591
+84737592
+84762968
+84762969
+114827207
+114827208
+84341421
+84341072
+
+671
+671
+869
+822
+874
+816
+617
+646
+1,000
+937
+831
+844
+
+  97.93
+  99.4
+  99.65
+  99.76
+  99.89
+100
+  98.92
+100
+  98.2
+  98.16
+  99.88
+  99.63
+
+Brassica rapa
+
+Chr  No.
+
+Start  position
+
+End  position
+
+A01
+A04
+A01
+A04
+A01
+A04
+A01
+A04
+A01
+A04
+A01
+A04
+
+11,474,904
+4,869,416
+11,471,320
+4,884,036
+11,452,951
+4,884,025
+11,474,904
+4,884,386
+11,471,303
+4,883,252
+11,466,761
+4,977,838
+
+11,475,144
+4,870,085
+11,472,188
+4,884,855
+11,453,822
+4,884,840
+11,475,088
+4,885,031
+11,472,294
+4,884,169
+11,467,587
+4,978,643
+
+www.genominfo.org
+
+133
+
+YJ  Ko,  et al.  Detecting  Misassembled  Region  with  GBS  Patterns
+
+Table  4.  Example  of  protein  ortholog  list,  sorted  by  Brassica rapa  gene  coordination
+
+Brassica rapa
+
+Arabidopsis thaliana
+
+ID
+
+Chr  No. Start  position End  position
+
+ID
+
+Chr  No. Start  position End  position
+
+Comments
+
+Bra033497
+Bra033496
+Bra033495
+Bra033494
+Bra033493
+Bra033492
+Bra033491
+Bra033490
+Bra033489
+Bra039534
+Bra039535
+Bra039536
+Bra039538
+Bra039539
+Bra039540
+Bra039541
+
+A01
+A01
+A01
+A01
+A01
+A01
+A01
+A01
+A01
+A01
+A01
+A01
+A01
+A01
+A01
+A01
+
+11,382,249
+11,388,925
+11,393,659
+11,410,610
+11,412,702
+11,445,862
+11,450,091
+11,451,545
+11,455,026
+11,504,946
+11,504,946
+11,504,994
+11,510,855
+11,514,776
+11,516,583
+11,521,728
+
+11,386,827
+11,390,027
+11,396,663
+11,412,043
+11,414,443
+11,446,743
+11,451,172
+11,454,600
+11,470,735
+11,505,630
+11,505,422
+11,505,630
+11,512,648
+11,515,144
+11,521,200
+11,523,067
+
+AT4G15570
+AT4G15563
+AT4G15560
+AT4G15550
+AT4G15545
+AT5G49420
+AT4G14320
+AT4G14330
+AT4G14350
+AT2G35280
+AT2G35280
+AT2G35280
+AT3G59380
+AT4G15530
+AT4G15530
+AT4G15520
+
+Chr4
+Chr4
+Chr4
+Chr4
+Chr4
+Chr5
+Chr4
+Chr4
+Chr4
+Chr2
+Chr2
+Chr2
+Chr3
+Chr4
+Chr4
+Chr4
+
+8,892,607
+8,890,879
+8,883,907
+8,877,590
+8,875,918
+20,034,674
+8,241,732
+8,244,194
+8,256,086
+14,859,378
+14,859,378
+14,859,378
+21,944,178
+8,864,828
+8,864,828
+8,862,815
+
+-
+-
+-
+-
+-
+-
+-
+
+8,898,999
+8,892,526
+8,887,565
+8,879,327
+8,877,799
+20,036,170
+8,243,910
+8,247,444 Misassembled  candidate
+8,260,787 Misassembled  candidate
+14,860,200
+14,860,200
+14,860,200
+21,945,943
+8,870,967
+8,870,967
+8,864,618
+
+-
+-
+-
+-
+-
+-
+-
+
+Table  5.  Example  of  protein  ortholog  list,  sorted  by  Arabidopsis thaliana  gene  coordination 
+
+Brassica rapa
+
+Arabidopsis thaliana
+
+ID
+
+Chr  No.
+
+Start  position End  position
+
+ID
+
+Chr  No. Start  position End  position
+
+Comments
+
+Bra032781
+Bra032782
+Bra033490
+Bra033489
+Bra033487
+Bra033486
+Bra033483
+Bra033482
+
+A04
+A04
+A01
+A01
+A04
+A04
+A04
+A04
+
+4,968,584
+4,962,259
+11,451,545
+11,455,026
+4,917,814
+4,915,949
+4,882,642
+4,873,477
+
+4,971,945
+4,963,651
+11,454,600
+11,470,735
+4,918,407
+4,917,119
+4,883,358
+4,873,797
+
+AT4G14290
+AT4G14305
+AT4G14330
+AT4G14350
+AT4G14380
+AT4G14385
+AT4G14440
+AT4G14450
+
+Chr4
+Chr4
+Chr4
+Chr4
+Chr4
+Chr4
+Chr4
+Chr4
+
+8,225,481
+8,235,093
+8,244,194
+8,256,086
+8,285,766
+8,286,986
+8,306,745
+8,309,474
+
+8,230,281
+8,236,715
+8,247,444
+8,260,787
+8,286,772
+8,288,800
+8,307,753
+8,310,058
+
+Included  in  ADB
+Included  in  ADB
+Included  in  MCB
+Included  in  MCB
+Included  in  ADB
+Included  in  ADB
+Included  in  ADB
+Included  in  ADB
+
+Alternative  alignments  due  to  genome  triplication  have  been  removed.
+ADB,  adjacent  to  destination  block;  MCB,  misassembled  candidate  blocks.
+
+ORCID: Young-Joon Ko: http://orcid.org/0000-0002-2386-
+6355; Jung Sun Kim: http://orcid.org/0000-0001-7945-08
+29; Sangsoo Kim: http://orcid.org/0000-0001-9836-9823
+
+Authors’ contribution
+
+Conceptualization: YJK, JSK
+Data curation: YJK
+Formal analysis: YJK
+Funding acquisition: SK
+Methodology: YJK
+Writing – original draft: YJK
+Writing – review & editing: SK, JSK
+
+Acknowledgments
+
+This work was funded by a program (PJ01167402) of the 
+RDA (Rural Development Administration) and a program 
+(NRF-2012M3A9D1054705)  of  the  NRF  (National  Rese-
+arch Foundation of Korea) and computationally supported 
+by  a  program  (NRF-2010-0018156,  NTIS1711048528)  of 
+the KISTI GSDC.
+
+References
+
+1. Comizzoli P, Holt WV. Implications of the Nagoya Protocol for 
+genome resource banks composed of biomaterials from rare 
+and endangered species. Reprod Fertil Dev 2016 Feb 24 [Epub]. 
+https://doi.org/10.1071/RD15429.
+
+2. Schindel DE, du Plessis P. Biodiversity: reap the benefits of the 
+
+134
+
+www.genominfo.org
+
+Nagoya Protocol. Nature 2014;515:37.
+
+3. Burton  JN,  Adey  A,  Patwardhan  RP,  Qiu  R,  Kitzman  JO, 
+Shendure J. Chromosome-scale scaffolding of de novo genome 
+assemblies  based  on  chromatin  interactions.  Nat  Biotechnol 
+2013;31:1119-1125.
+
+4. Muggli MD, Puglisi SJ, Ronen R, Boucher C. Misassembly de-
+tection using paired-end sequence reads and optical mapping 
+data. Bioinformatics 2015;31:i80-i88.
+
+5. Phillippy AM, Schatz MC, Pop M. Genome assembly forensics: 
+
+finding the elusive mis-assembly. Genome Biol 2008;9:R55.
+
+6. Zhu X, Leung HC, Wang R, Chin FY, Yiu SM, Quan G, et al. 
+misFinder: identify mis-assemblies in an unbiased manner us-
+ing  reference  and  paired-end  reads.  BMC  Bioinformatics 
+2015;16:386.
+
+7. Ko YJ, Kim S. Analysis of nuclear mitochondrial DNA seg-
+ments of nine plant species: size, distribution, and insertion 
+Loci. Genomics Inform 2016;14:90-95.
+
+8. Freeling M. Bias in plant gene content following different sorts 
+of  duplication:  tandem,  whole-genome,  segmental,  or  by 
+transposition. Annu Rev Plant Biol 2009;60:433-453.
+
+9. Yim HS, Cho YS, Guang X, Kang SG, Jeong JY, Cha SS, et al. 
+Minke whale genome and aquatic adaptation in cetaceans. Nat 
+Genet 2014;46:88-92.
+
+10. Elshire  RJ,  Glaubitz  JC,  Sun  Q,  Poland  JA,  Kawamoto  K, 
+Buckler ES, et al. A robust, simple genotyping-by-sequencing 
+(GBS)  approach  for  high  diversity  species.  PLoS  One 
+2011;6:e19379.
+
+11. Poland J, Endelman J, Dawson J, Rutkoski J, Wu S, Manes Y, et 
+al.  Genomic  selection  in  wheat  breeding  using  genotyp-
+ing-by-sequencing. Plant Genomes 2012;5:103-113.
+
+12. Poland JA, Brown PJ, Sorrells ME, Jannink JL. Development of 
+high-density genetic maps for barley and wheat using a novel 
+two-enzyme  genotyping-by-sequencing  approach.  PLoS  One 
+2012;7:e32253.
+
+13. The Plant List. Version 1.1. Published on the internet. The 
+Plant  List,  2013.  Accessed  2017  Oct  1.  Available  from: 
+http://www.theplantlist.org.
+
+14. Nagaharu U. Genome analysis in Brassica with special refer-
+ence to the experimental formation of B. napus and peculiar 
+mode of fertilization. Jpn J Bot 1935;7:389-452.
+
+15. Wang X, Wang H, Wang J, Sun R, Wu J, Liu S, et al. The genome 
+of  the  mesopolyploid  crop  species  Brassica  rapa.  Nat  Genet 
+2011;43:1035-1039.
+
+16. Liu S, Liu Y, Yang X, Tong C, Edwards D, Parkin IA, et al. The 
+Brassica oleracea genome reveals the asymmetrical evolution of 
+polyploid genomes. Nat Commun 2014;5:3930.
+
+17. Cai C, Wang X, Liu B, Wu J, Liang J, Cui Y, et al. Brassica rapa ge-
+nome 2.0: a reference upgrade through sequence re-assembly 
+and gene re-annotation. Mol Plant 2017;10:649-651.
+
+18. Boswell  VR.  Our  vegetable  travelers.  Natl  Geogr  Mag 
+
+1949;96:145-217.
+
+19. Chalhoub B, Denoeud F, Liu S, Parkin IA, Tang H, Wang X, et 
+al. Plant genetics: early allopolyploid evolution in the post- 
+
+Genomics  &  Informatics  Vol.  15,  No.  4,  2017
+
+Neolithic  Brassica  napus  oilseed  genome.  Science  2014;345: 
+950-953.
+
+20. Parkin IA, Koh C, Tang H, Robinson SJ, Kagale S, Clarke WE, 
+et al. Transcriptome and methylome profiling reveals relics of 
+genome  dominance  in  the  mesopolyploid  Brassica  oleracea. 
+Genome Biol 2014;15:R77.
+
+21. Yang J, Liu D, Wang X, Ji C, Cheng F, Liu B, et al. The genome 
+sequence of allopolyploid Brassica juncea and analysis of differ-
+ential homoeolog gene expression influencing selection. Nat 
+Genet 2016;48:1225-1232.
+
+22. Moghe GD, Hufnagel DE, Tang H, Xiao Y, Dworkin I, Town 
+CD, et al. Consequences of whole-genome triplication as re-
+vealed by comparative genomic analyses of the wild radish 
+Raphanus raphanistrum and three other Brassicaceae species. 
+Plant Cell 2014;26:1925-1937.
+
+23. Kitashiba H, Li F, Hirakawa H, Kawanabe T, Zou Z, Hasegawa 
+Y, et al. Draft sequences of the radish (Raphanus sativus L.) 
+genome. DNA Res 2014;21:481-490.
+
+24. Mitsui Y, Shimomura M, Komatsu K, Namiki N, Shibata-Hatta 
+M, Imai M, et al. The radish genome and comprehensive gene 
+expression profile of tuberous root formation and develop-
+ment. Sci Rep 2015;5:10835.
+
+25. Jeong YM, Kim N, Ahn BO, Oh M, Chung WH, Chung H, et al. 
+Elucidating the triplicated ancestral genome structure of rad-
+ish based on chromosome-level comparison with the Brassica 
+genomes. Theor Appl Genet 2016;129:1357-1372.
+
+26. Seo MS, Won SY, Kang SH, Kim JS. Analysis of flavonoids in 
+double haploid population derived from microspore culture of 
+F1 hybrid of Brassica rapa. J Plant Biotechnol 2017;44:35-41.
+
+27. Kozik A. Python programs to infer orders of genetic markers 
+and  for  visualization  and  validation  of  genetic  maps  and 
+haplotypes.  Davis:  The  Michelmore  Lab  of  UC  Davis  Ge-
+nome  Center,  2006.  Accessed  2017  Oct  1.  Available  from: 
+http://cgpdb.ucdavis.edu/XLinkage/MadMapper/.
+
+28. Lysak  MA,  Koch  MA,  Pecinka  A,  Schubert  I.  Chromosome 
+triplication  found  across  the  tribe  Brassiceae.  Genome  Res 
+2005;15:516-525.
+
+29. Mun JH, Kwon SJ, Yang TJ, Kim HS, Choi BS, Baek S, et al. The 
+first generation of a BAC-based physical map of Brassica rapa. 
+BMC Genomics 2008;9:280.
+
+30. Sun C, Wu J, Liang J, Schnable JC, Yang W, Cheng F, et al. 
+Impacts of whole-genome triplication on MIRNA evolution in 
+Brassica rapa. Genome Biol Evol 2015;7:3085-3096.
+
+31. Park  TH,  Park  BS,  Kim  JA,  Hong  JK,  Jin  M,  Seol  YJ,  et  al. 
+Construction of random sheared fosmid library from Chinese 
+cabbage  and  its  use  for  Brassica  rapa  genome  sequencing 
+project. J Genet Genomics 2011;38:47-53.
+
+32. Lee TH, Tang H, Wang X, Paterson AH. PGDD: a database of 
+gene  and  genome  duplication  in  plants.  Nucleic  Acids  Res 
+2013;41:D1152-D1158.
+
+33. Yoo W, Kyung S, Han S, Kim S. Investigation of splicing quanti-
+tative  trait  loci  in  Arabidopsis  thaliana.  Genomics  Inform 
+2016;14:211-215.
+
+www.genominfo.org
+
+135
+
+

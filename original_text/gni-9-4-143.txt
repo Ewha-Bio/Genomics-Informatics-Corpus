@@ -1,0 +1,1179 @@
+A R T IC L E
+
+Genomics  &  Informatics
+Vol.  9(4)  143-151,  December  2011
+
+http://dx.doi.org/10.5808/GI.2011.9.4.143
+pISSN 1598-866X eISSN 2234-0742
+
+Directed Causal Network Construction Using Linkage Analysis 
+with  Metabolic  Syndrome-Related  Expression  Quantitative 
+Traits
+
+Kyee-Zu  Kim1,  Jin-Young  Min2,  Geun  Yong  Kwon3, 
+Joohon  Sung1,2  and  Sung-Il  Cho1,2*
+
+1Graduate  School  of  Public  Health,  Seoul  National 
+University,  2Institute  of  Health  &  Environment,  Seoul 
+National  University,  Seoul  151-742,  3Division  of  Epidemic 
+Intelligence  Service,  Korea  Centers  for  Disease  Control 
+and  Prevention,  Osong  363-951,  Korea
+
+Abstract
+
+In  this  study,  we  propose  a  novel,  intuitive  method  of 
+constructing  an  expression  quantitative  trait  (eQT)  net-
+work  that  is  related  to  the  metabolic  syndrome  using 
+LOD  scores  and  peak  loci  for  selected  eQTs,  based  on 
+the  concept  of  gene-gene  interactions.  We  selected  49 
+eQTs  that  were  related  to  insulin  resistance.  A  variance 
+component  linkage  analysis  was  performed  to  explore 
+the  expression  loci  of  each  of  the  eQTs.  The  linkage 
+peak  loci  were  investigated,  and  the  "support  zone"  was 
+defined  within  boundaries  of  an  LOD  score  of  0.5  from 
+the  peak.  If  one  gene  was  located  within  the  "support 
+zone"  of  the  peak  loci  for  the  eQT  of  another  gene,  the 
+relationship  was  considered  as  a  potential  "directed 
+causal  pathway"  from  the  former  to  the  latter  gene.  SNP 
+markers  under  the  linkage  peaks  or  within  the  support 
+zone  were  searched  for  in  the  database  to  identify  the 
+genes  at  the  loci.  Two  groups  of  gene  networks  were 
+formed  separately  around  the  genes  IRS2  and  UGCGL2. 
+The  findings  indicated  evidence  of  networks  between 
+genes  that  were  related  to  the  metabolic  syndrome.  The 
+use  of  linkage  analysis  enabled  the  construction  of  di-
+rected  causal  networks.  This  methodology  showed  that 
+characterizing  and  locating  eQTs  can  provide  an  effec-
+tive  means  of  constructing  a  genetic  network.
+
+Keywords:  genetic  network,  expression  quantitative  trait, 
+linkage  analysis,  metabolic  syndrome
+
+Introduction
+
+The  genetics  of  complex  diseases  is  a  continuous  chal-
+
+*Corresponding  author:  E-mail  persontime@hotmail.com
+Tel  +82-2-880-2717,  Fax  +82-2-743-8240
+Received  15  November  2011,  Revised  26  November  2011, 
+Accepted  30  November  2011
+
+lenge  in  human  genetic  studies  and  chronic  disease  epi-
+demiology  due  to  the  complexity  of  its  biological  implica-
+tions.  Metabolic  syndrome,  which  is  diverse  in  pathology 
+and  considered  to  be  a  growing  health  problem,  con-
+sists  of  a  cluster  of  endocrine-metabolic  disorders,  such 
+as  hypertension,  dyslipidemia,  glucose  intolerance,  and 
+abdominal  obesity  (Reaven,  2002).  Insulin  resistance  has 
+been  considered  an  underlying  risk  factor  of  these  en-
+docrine  disorders  (Reaven,  1988),  and  its  pathological  or 
+epidemiological  characteristics  have  been  continually  in-
+vestigated,  including  its  genetic  aspects.  Genetic  studies 
+on  metabolic  syndrome  have  been  conducted  mostly 
+using  the  candidate  gene  approach,  with  much  success 
+in  identifying  its  genetic  components  (Bonnet  et al., 
+2008;  Groop,  2000;  Horenstein  and  Shuldiner,  2004;  Ma 
+et al.,  2007;  Mercado  et al.,  2002;  Sale  et al.,  2006; 
+Stern,  2003;  Vasseur  et al.,  2006;  Wang  et al.,  2004; 
+Yang  and  Chuang,  2006).  Some  studies  have  focused 
+on  the  relationships  between  components  of  the  meta-
+bolic  syndrome  (Kopf  et al.,  2008;  Mussig  et al.,  2009) 
+or  among  the  candidate  genes  that  are  related  to  it 
+(Foufelle  and  Ferre,  2002).  However,  the  mechanism  that 
+underlies  the  interrelationships  between  related  genes 
+has  been  not  fully  determined,  and  although  various 
+genes  contribute  to  the  disease,  the  effect  size  of  a  sin-
+gle  gene  is  very  weak.
+    Understanding  genetic  components  represents  a  chal-
+lenge  in  not  only  insulin  resistance  but  also  most  com-
+plex  diseases.  To  unravel  the  underlying  genetic  mecha-
+nisms  for  complex  diseases,  various  concepts  and  meth-
+ods  have  been  applied,  such  as  gene-network  (Wessels 
+et al.,  2001),  pathway  analysis  (Yu  et al.,  2009),  and 
+gene-regulator  approaches  (de  Jong,  2002;  Hasty et al., 
+2001).  Gene  set  approaches,  such  as  network  modeling, 
+can  be  utilized  when  information  on  the  genetic  pathway 
+is  lacking.
+    Various  studies  have  contributed  to  determining  gene- 
+gene  interactions  by  constructing  gene  network  models 
+using  several  statistical  approaches  (Markou  and  Singh, 
+2003a).  Some  studies  have  applied  computational  meth-
+ods,  such  as  neural  network  models  (Markou  and  Singh, 
+2003b;  Vohradsky,  2001).  Gene  network  models  that  are 
+based  on  statistical  and  computational  approaches  have 
+been  helpful  in  detecting  the  "lines"  of  gene-gene  inter-
+actions.  However,  exploring  the  biological  or  functional 
+directions  of  network  lines  still  remains  a  challenge,  be-
+
+144 Genomics  &  Informatics Vol.  9(4)  143-151,  December  2011
+
+cause  the  biological  implication  of  these  models  has 
+mostly  been  unconsidered  and  because  interpreting  the 
+metabolic  pathway  among  the  networked  genes  can  be 
+difficult.  The  biological  aspect  of  disease-related  metab-
+olites  must  be  taken  into  account  due  to  its  importance 
+in  understanding  gene-gene  interactions.  A  clear  exam-
+ple  can  be  seen  in  the  components  of  metabolic  syn-
+drome,  such  as  insulin,  lipid,  glucose,  and  adiponectin, 
+which  interact  with  each  other.  Glucose  metabolism  in-
+teracts  with  lipid  metabolism  via  the  central  nervous 
+system  (Schulingkamp et al.,  2000).  The  insulin  pathway 
+is  associated  with  adipose  metabolism,  which  is  evident 
+in  certain  disorders,  such  as  fatty  liver  disease  (Bouzakri 
+et al.,  2006;  Kantartzis et al.,  2009;  Previs et al.,  2000). 
+The  challenges,  nonetheless,  are  in  detecting  the  inter-
+actions  and  effects  of  genes  on  each  other.
+    To  solve  this  problem,  some  studies  have  suggested 
+the  concept  of  a  causal  network,  which  consists  of  bio-
+logical  functions  and  implications  in  the  gene  network 
+construction  (Schadt  and  Lum,  2006).  This  approach  has 
+been  useful  in  clarifying  how  genetic  networks  intervene 
+in  the  biological  pathway  of  animal  populations  (Kulp 
+and  Jagalur,  2006;  Schadt et al.,  2005;  Tu et al.,  2006). 
+In  humans,  however,  the  causal  genetic  network  re-
+mains  a  challenge  because  of  its  complexity  and  numer-
+ous  associated  factors,  including  environmental  and  be-
+havioral  variables. 
+    In  this  study,  we  demonstrated  a  simple,  intuitive 
+method  of  constructing  a  directed  causal  network  with 
+an  expression  quantitative  trait  (eQT)  that  is  related  to 
+metabolic  syndrome.  We  aimed  to  explore  the  direction 
+that  supported  the  biological  function  of  the  eQTs  and 
+not  base  our  interpretation  solely  on  statistical  signifi-
+cance.  To  identify  the  direction,  we  used  information 
+from  the  peak  loci  of  each  eQT  via  variance  component 
+linkage  analysis.  The  use  of  these  eQTs,  which  was  ob-
+tained  during  mRNA  transcription,  can  be  helpful  in 
+identifying  the  genetic  components  that  are  associated 
+with  disease  (Rockman  and  Kruglyak,  2006).  In  the 
+Materials  and  Methods  section,  we  describe  the  data 
+that  we  obtained  and  the  eQT  selection  criteria.  The 
+methodology  of  constructing  the  directed  gene  network 
+modelvia  linkage  analysis  is  also  referred  to  in  this 
+section.  In  the  Results  section,  we  present  the  linkage 
+peak  loci  and  logarithm  of  the  odds  (base  10)  (LOD) 
+scores  of  important  eQTs.  We  also  describe  the  gene 
+network  model  that  is  associated  with  metabolic  syn-
+drome  by  matching  the  peak  loci  and  several  specific 
+genes.  In  the  Discussion  section,  we  show  the  biological 
+implication  of  our  results  with  an  inquiry  into  our  meth-
+odology  of  gene  network  construction.
+
+Methods
+
+Data  and  materials
+
+Data  were  obtained  from  Problem  1  (Genetics  of  Gene 
+Expression  Variation  in  Humans)  of  the  15th  Genetic 
+Analysis  Workshop  (GAW15)  and  contained  194  in-
+dividuals  in  14  3-generation  Centre  d'Etude  du  Polymor-
+phisme  Humain  (CEPH)  Utah  families  (Cheung  and 
+Spielman,  2007;  Morley  et al.,  2004).  The  expression 
+levels  of  3554  genes  in  lymphoblastic  cells  were  ana-
+lyzed  as  phenotypes.  From  these  genes,  we  selected  49 
+eQTs  that  are  known  to  be  associated  with  insulin  re-
+sistance,  based  on  previous  studies  and  gene 
+databases.  The  basic  characteristics  of  the  selected 
+eQTs  are  presented  in  Table  1.   
+    The  genotype  data  were  collected  for  2884  single- 
+nucleotide  polymorphism  (SNP)  markers  across  22  auto-
+somal  chromosomes  and  the  X-linked  chromosome  from 
+194 individuals. Sex-averaged Rutgers Combined Linkage- 
+Physical  Map  (Matise et al.,  2007)  was  matched  with  the 
+original  map  file  to  account  for  the  recombination  frac-
+tion  of  given  SNP  markers.
+
+Gene  network  model  construction  via  linkage 
+analysis
+
+For  each  of  the  49  metabolic  syndrome-related  eQTs, 
+variance  component  linkage  analysis,  which  is  commonly 
+used  for  mapping  quantitative  trait  loci,  was  performed 
+to  search  the  genomic  loci  with  a  linkage  peak  across 
+22  autosomal  chromosomes.  Note  that  the  X-linked  23rd 
+chromosome  was  excluded  from  the  investigation.  The 
+linkage  peak  loci  were  investigated,  and  the  "support 
+zone"  was  defined  within  the  bounds  up  to  an  LOD 
+score  of  0.5  from  the  peak.  Fig.  1  represents  an  exam-
+ple  of  a  linkage  peak  point  and  support  zone  identi-
+fication  with  an  eQT  of  the  IRS2  gene. 
+    To  explore  gene-gene  interactions,  we  studied  the  re-
+lationships  between  all  possible  pairs  of  the  49  genes. 
+We  investigated  whether  SNP  markers,  which  are  lo-
+cated  on  the  linkage  peak,  were  found  in  several  specif-
+ic  genes.  If  one  gene  was  located  within  the  "support 
+zone"  of  the  peak  loci  for  the  eQT  of  another  gene,  the 
+relationship  was  considered  as  a  potential  "directed 
+causal  pathway"  from  the  former  to  the  latter  gene,  ac-
+cording  to  the  following  logic;  if  there  is  a  linkage  be-
+tween  eQT  as  a  phenotype  and  a  genetic  locus,  the 
+causal  direction  can  be  assumed  to  be  from  the  gene 
+to  the  phenotype,  rather  than  the  opposite  direction. 
+Since  a  particular  eQT  represents  the  function  of  the  un-
+derlying  gene  (e.g.,  A),  the  greatest  linkage  signal  is  ob-
+served  on  the  locus  of  A.  In  addition,  if  the  eQT  for  A 
+
+Construction  of  Causal  Genetic  Network  with  eQTs 145
+
+Table  1.  Locations  and  gene  IDs  of  49  insulin  resistance-related  eQTs  located  on  22  autosomal  chromosomes
+
+Gene  ID
+
+203411_s_at
+202377_at
+209094_at
+200788_s_at
+205282_at
+206060_s_at
+204852_s_at
+205720_at
+202718_at
+218257_s_at
+205480_s_at
+200643_at
+219497_s_at
+203555_at
+213521_at
+208510_s_at
+203343_at
+204201_s_at
+207113_s_at
+201393_s_at
+210512_s_at
+205581_s_at
+205207_at
+205084_at
+202006_at
+
+eQT
+
+Location
+
+Gene  ID
+
+eQT
+
+Location
+
+LMNA 
+LEPR 
+DDAH1 
+PEA15 
+LRP8 
+PTPN22 
+PTPN7 
+POMC 
+IGFBP2 
+UGCGL1 
+UGP2 
+HDLBP 
+BCL11A 
+PTPN18 
+PTPN18 
+PPARG 
+UGDH
+PTPN13 
+TNF 
+IGF2R 
+VEGF 
+NOS3 
+IL6 
+BCAP29 
+PTPN12 
+
+1q21.2-q21.3
+1p31.2
+1p22
+1q21.1
+1p34
+1p13.3-p13.1
+1q32.1
+2p23.3
+2q33-q34
+2q14.3
+2p14-p13
+2q3
+2p16.1
+2q21.1
+2q21.1
+3p25
+4p15.1
+4q21.3
+6p21.3
+6q26
+6p12
+7q36
+7p21
+7q22-q31
+7q11.23
+
+209122_at
+209822_s_at
+203327_at
+209468_at
+203683_s_at
+209541_at
+200921_s_at
+206687_s_at
+209185_s_at
+218801_at
+212858_at
+201508_at
+203685_at
+213136_at
+213792_s_at
+202068_s_at
+204908_s_at
+202716_at
+206632_s_at
+204205_at
+209546_s_at
+221013_s_at
+221087_s_at
+219716_at
+
+ADFP 
+VLDLR 
+IDE 
+LRP5 
+VEGFB 
+IGF1 
+BTG1 
+PTPN6 
+IRS2 
+UGCGL2 
+PAQR4 
+IGFBP4 
+BCL2 
+PTPN2 
+INSR 
+LDLR 
+BCL3 
+PTPN1 
+APOBEC3B 
+APOBEC3G 
+APOL1 
+APOL2 
+APOL3 
+APOL6 
+
+9p22.1
+9p24
+10q23-q25
+11q13.4
+11q13
+12q22-q23
+12q22
+12p13
+13q34
+13q32.1
+16p13.3
+17q12-q21.1
+18q21.33
+18p11.3-p11.2
+19p13.3-p13.2
+19p13.3
+19q13.1-q13.2
+20q13.1-q13.2
+22q13.1-q13.2 
+22q13.1-q13.2 
+22q13.1
+22q12 
+22q13.1
+22q12.3
+
+component  linkage  analysis.
+
+Results
+
+Linkage  analysis  of  eQTs
+
+To  identify  the  network  model  of  the  gene  expression 
+levels  that  were  related  to  metabolic  syndrome,  variance 
+component  linkage  analyses  were  performed  individually 
+with  the  49  selected  eQTs.  Table  2  represents  the  LOD 
+scores  and  linkage  peak  loci  of  14  eQTs.  We  identified 
+about  14  linkage  peaks  with  LOD  scores  ＞2.0  for  eQTs, 
+with  6  of  these  eQTs  displaying  LOD  scores  ＞2.5.  For 
+the  genes  ADFP  and  IRS2,  the  highest  LOD  scores  of 
+3.09  and  3.08  were  observed  at  SNPs  on  chromosomes 
+5  and  2,  respectively.
+
+Comparison  of  linkage  peak  loci
+
+To  explore  gene-gene  interactions,  we  investigated  whe-
+ther  the  SNP  markers  on  the  linkage  peak  or  in  the 
+"support  zone"  were  included  in  several  specific  genes. 
+The  results  showed  that  several  SNP  markers  colo-
+calized  within  these  genes.  Since  we  used  a  small  SNP 
+marker  set,  we  considered  that  the  49  selected  eQTs 
+might  not  have  been  identified  with  the  linkage  analysis. 
+
+Fig.  1.  Example  of  identification  of  the  linkage  peak  point 
+and  support  zone.
+
+is  also  linked  with  another  gene  B,  this  linkage  also  im-
+plies  a  causal  direction  from  gene  B  to  the  eQT  pheno-
+type,  which  suggests  a  causal  connection  from  gene  B 
+to  gene  A,  which  underlies  the  eQT.  Genes  from  the  49 
+selected  eQTs  were  preferentially  included  in  the  meta-
+bolic  syndrome-related  gene  network  model  due  to  their 
+association  with  the  mechanisms  of  the  disease.  Other 
+genes,  which  were  identified  with  SNP  markers  in  the 
+support  zone,  were  also  added  in  the  directed  network 
+model.  Merlin  1.1.2  software  was  used  for  the  variance 
+
+146 Genomics  &  Informatics Vol.  9(4)  143-151,  December  2011
+
+Therefore,  we  searched  the  location  of  each  selected 
+eQT  in  the  NCBI  gene  database  to  determine  whether 
+the  location  of  each  eQT  coincided  with  the  linkage 
+peak. 
+    Tables  3  and  4  show  the  relationship  between  genes 
+pairs  with  LOD  scores  of  ＞2.0.  Eight  genes,  LRRIQ1, 
+APOL3,  APOL4,  IGSF4,  ASTN2,  NRP1,  SFXN1,  and 
+ASCL3,  were  located  on  the  peak  of  eQTs,  known  as 
+IGF1,  UGCGL2,  IDE,  BCL2,  BCAP29,  VEGFB,  PTPN6, 
+and  APOBEC3B,  respectively.  Thirty-one  genes  were  lo-
+cated  in  the  support  zone.  Among  the  total  39  genes  at 
+both  the  peak  point  and  support  zone,  7  genes,  known 
+as  APOL3,  IGFBP2,  BTG1,  UGCGL2,  LEPR,  APOL6,  and 
+IRS2,  were  included  in  the  49  selected  eQTs. 
+
+Directed  gene  network  construction
+
+The  gene  network  was  constructed  with  the  selected 
+eQTs,  from  which  two  groups  of  gene  networks  were 
+formed,  each  around  the  genes  IRS2  and  UGCGL2  (Fig. 
+2).  IRS2  was  grouped  with  6  genes,  APOBEC3B,  BTG1, 
+HDLBP,  IDE,  IGF1,  and  IGFBP2.  To  explore  the  biologi-
+cal  network,  the  functions  of  each  gene  were  searched 
+via  the  NCBI  gene  database.  The  IRS2  gene,  which  be-
+longs  to  an  insulin  receptor  substrate  family,  is  known 
+to  play  a  role  in  the  insulin  signaling  pathway.  The  cog-
+rouped  genes  were  also  related  to  insulin  metabolism. 
+We  found  a  stream  from  IGFBP2  to  IDE,  which  con-
+sisted  completely  of  genes  that  play  a  role  in  insulin 
+
+Table  2.  LOD  scores  and  linkage  peak  loci  of  the  eQTs
+
+LOD
+
+eQTs  (peak  LOD  score)
+
+#  SNP  marker
+
+Linkage  peak  loci  (cM)
+
+      ＞3
+
+      ＞2.5
+
+      ＞2
+
+    ADFP
+    IRS2
+    BCAP29
+
+    PTPN1
+    VLDLR
+
+    VEGFB
+    APOBEC3B
+    BTG1
+    BCL2
+    IDE
+
+    IGF1
+    UGCGL2
+
+    UGP2
+
+    PTPN6
+
+(3.09)
+(3.08)
+(2.68)
+
+(2.70)
+(2.65)
+(2.57)
+(2.63)
+(2.46)
+(2.07)
+(2.29)
+(2.50)
+(2.37)
+(2.17)
+(2.02)
+(2.25)
+(2.07)
+(2.25)
+(2.05)
+(2.44)
+
+      (2.4)
+
+(2.25)
+(2.04)
+
+rs952382
+rs599825,  rs1369330
+rs1326808,  rs1372332
+rs1334071,  rs944985,  rs871121
+rs2007439,  rs2051493,  rs2040346
+rs1889383,  rs1209485,  rs1959068,  rs1959064
+rs1425244
+rs1360456,  rs927099
+rs1866661,  rs2028383
+rs1425244
+rs1334071,  rs944985,  rs871121
+rs1013582,  rs220860,  rs220862
+rs1914735,  rs1914732
+rs1341407,  rs778305
+rs931283
+rs1333820,  rs1333798,  rs1556569
+rs1507213,  rs1032957
+rs1414277
+rs739200,  rs715550,  rs878847,  rs80576
+rs1851272,  rs1521563,  rs1402726,  rs188914
+rs1425244
+rs1333820,  rs1333798,  rs1556569 
+rs265976,  rs925197
+
+  Chr5  (69.94)
+  Chr2  (240.2)
+    Chr9  (126.13)
+    Chr9  (126.38)
+Chr22  (19.44)
+Chr14  (53.74)
+  Chr11  (112.55)
+Chr10  (60.68)
+    Chr2  (243.97)
+  Chr11  (112.55)
+    Chr9  (126.38)
+  Chr11  (122.22)
+    Chr2  (118.65)
+  Chr13  (107.14)
+
+Chr5  (6.21)
+Chr13  (80.17)
+Chr12  (84.03)
+  Chr1  (94.99)
+Chr22  (45.07)
+Chr17  (54.41)
+  Chr11  (112.55)
+Chr13  (80.17)
+    Chr5  (199.58)
+
+Table  3.  Genes  located  on  the  exact  linkage  peak  loci  of  the  eQTs
+
+eQT
+
+Peak  location  (Mbp/cM)
+
+#  SNP  markers
+
+Gene  located  on  peak
+
+        APOBEC3B
+        BCAP29
+        BCL2
+        IDE
+        IGF1
+        PTPN6
+        UGCGL2
+
+        VEGFB
+
+  Chr2  (243.97/223.61)
+  Chr9  (126.13/116.61)
+  Chr9  (126.38/116.89-117.07)
+Chr11  (122.22/114.74-114.80)
+Chr12  (99.65/84.02)
+  Chr5  (199.58/174.87)
+Chr22  (45.07/34.86)
+Chr22  (45.07/34.90)
+Chr10  (60.68/33.54-33.56)
+
+rs1866661
+rs1372332
+rs1334071,  rs944985,  rs220862
+rs1013582,  rs220860,  rs220862
+rs1507213,  rs1032957
+rs925197
+rs80576
+rs916336
+rs1360456,  rs927099
+
+aGene  included  in  the  selected  49  metabolic  syndrome-related  eQTs.
+
+ASCL3
+ASTN2
+ASTN2
+IGSF4
+LRRIQ1
+SFXN1
+APOL3a
+APOL4
+NRP1
+
+Construction  of  Causal  Genetic  Network  with  eQTs 147
+
+Table  4.  Genes  located  in  the  linkage  support  zone  of  the  eQTs
+
+eQT
+
+Peak  location  (Mbp/cM)
+
+    ADFP
+    IRS2
+
+  Chr5  (69.94/54.26)
+  Chr2  (240.2/221.60-221.66)
+
+    APOBEC3B
+
+  Chr2  (243.97/223.61)
+
+    VLDLR
+
+Chr11  (112.55-106.54)
+
+    IDE
+
+    UGP2
+
+Chr11  (122.22/114.74-114.80)
+Chr13  (105.71/109.07)
+Chr13  (81.17/87.53-87.56)
+
+    UGCGL2
+
+  Chr1  (94.99/61.12)
+
+Chr22  (45.07/34.86,  34.90)
+
+    IGF1
+
+Chr12  (99.65/84.02)
+
+    BTG1
+
+Chr11  (112.5/106.54)
+
+LOD
+
+2.71
+2.66
+2.72
+2.72
+
+2.69
+2.63
+    2.4
+2.35
+2.26
+2.05
+2.05
+
+    2.3
+2.22
+2.16
+2.08
+1.93
+1.96
+
+1.83
+1.89
+1.85
+
+1.89
+1.89
+    1.9
+ 
+
+1.77
+1.87
+
+1.79
+1.87
+
+aGene  included  in  the  selected  49  metabolic  syndrome-related  eQTs.
+
+#  SNP  markers
+
+Support  genes
+
+rs33721,  rs27508
+rs1425118
+rs207908,  rs207928
+rs207823,  rs83612
+
+rs1866661
+rs1431079,  rs1431077,  rs1431087
+rs1431079,  rs1431077,  rs1431087
+rs933602
+rs2053921,  rs1669086
+rs1284
+rs938569
+
+rs1013582
+rs721487
+rs721487
+rs2039120,  rs354439
+rs2031540
+rs639527
+
+rs991191,  rs1465564,  rs976574
+rs2172962
+rs1511687
+
+rs1476576
+rs1076297
+rs2157199,  rs2032474,  rs933214
+
+rs1882535,  rs2141876
+rs1520723
+
+rs1318933
+rs1013582,  rs220860,  rs220862
+
+MAST4
+TMEM169
+XRCC5
+MARCH_4
+IGFBP2a
+ASCL3
+KIAA1486
+KIAA1486
+DNER
+ARMC9
+GIGYF2
+NGEF
+IGFBP2a
+HDLBPa
+IGSF4
+DSCAML1
+DSCAML1
+IRS2a
+CLDN10
+HS6ST3
+UGCGL2a
+INADL
+IL12RB2
+GNG12
+LEPRa
+OSM
+CCDC157
+LARGE
+APOL6a
+PPFIA2
+CCDC41
+BTG1a
+RDX
+IGSF4
+
+metabolism.  The  UGCGL2  gene  is  known  to  transfer 
+glycosyl  groups  (Arnold  and  Kaufman,  2003).  It  showed 
+a  directed  network  with  4  genes,  known  as  APOL3, 
+APOL6,  LEPR,  and  UGP2.  This  grouped  network  showed 
+a  pathway  of  adipose,  lipid,  and  glucose  metabolites. 
+LEPR,  the  leptin  receptor,  is  known  to  be  related  to  adi-
+pose  tissue  mass  regulation  (Kershaw  and  Flier,  2004; 
+Ronti et al.,  2006).  APOL3  and  APOL6  both  play  a  role 
+in  lipid  metabolism,  in  lipid  transportation  and  lipid  bind-
+ing,  respectively.  UGP2,  which  was  identified  as  being 
+influenced  by  UGCGL2  in  our  study,  undertakes  glucose 
+transfer,  especially  in  liver  and  muscle  tissues.  The 
+shape  of  the  gene  network  between  the  two  groups  is 
+distinct.  The  network  around  the  IRS2  gene  displays  a 
+flow  of  the  insulin  pathway.  However,  in  the  second 
+group  surrounding  the  UGCGL2  gene,  3  of  the  other 
+genes  that  were  identified  influence  UGCGL2.  According 
+
+to  these  results,  we  can  propose  that  IRS2  plays  a  role 
+as  an  intermediator  in  the  insulin  metabolism  pathway 
+and  that  UGCGL2  appears  to  be  at  the  center  of  the 
+lipid  and  glucose  metabolism  pathway.
+
+Discussion
+
+In  this  study,  we  aimed  to  construct  a  directed  gene 
+network  that  was  related  to  metabolic  syndrome  via 
+comparison  of  the  linkage  peak  loci  and  LOD  scores  of 
+selected  eQTs.  Since  the  genetics  of  metabolic  syndrome 
+is  polygenic  and  heterogeneous  (Mercado et al.,  2002), 
+the  gene  set  approach  that  we  have  presented  in  this 
+study  can  be  helpful  in  understanding  the  genetic  com-
+ponents  of  the  disease.  We  explored  the  direction  that 
+supported  the  biological  gene  function.  Two  groups  of 
+gene  networks  were  constructed,  each  surrounding  the 
+
+148 Genomics  &  Informatics Vol.  9(4)  143-151,  December  2011
+
+Fig.  2.  Constructed  gene  network  around  IRS2  and  UGCGL2.  Genes  pertaining  to  the  selected  49eQTs  are  presented  in  the
+pink  box.  Other  genes,  identified  with  the  SNP  marker  located  in  the  support  zone,  are  shown  in  the  green  box.  The  arrow
+pointing  from  the  former  to  the  latter  gene  indicates  the  causal  direction.  (A)  Gene  network  around  IRS2  with  12  genes.  (B) 
+Gene  network  around  UGCGL2  with  5  genes.
+
+genes  IRS2  and  UGCGL2.  The  former  networking  group 
+showed  the  pathway  that  was  related  to  insulin  metabo-
+lism,  and  the  latter  represented  lipid  and  glucose 
+metabolism.
+    We  identified  the  direction  among  gene-gene  inter-
+actions,  and  several  genes  could  be  supported  with 
+known  biological  pathways,  reported  in  previous  studies. 
+For  example,  the  BTG1  gene  was  identified  in  our  study 
+as  belonging  to  a  group  that  was  surrounded  with  IRS2, 
+which  belongs  to  a  family  of  insulin  receptor  substrate 
+proteins  (Saltiel  and  Kahn,  2001).  It  supports  the  known 
+biological  correlation  that  gene  expression  of  BTG1  is 
+regulated  by  insulin  (Kuiperij,  2004).  Insulin  also  plays  a 
+role  in  the  insulin-like  growth  factor-binding  protein 
+(IGFBP)  system  (Kelley et al.,  1996),  as  shown  in  the  re-
+lationship  between  IRS2  and  IGFBP2  in  the  present 
+study.  Also,  we  could  find  the  IGF1  and  IRS2  genes  in 
+the  same  network  in  this  study,  which  could  be  sup-
+ported  by  a  previous  report  that  demonstrated  that  a 
+decrease  in  IGF1  causes  the  degradation  of  IRS2  (Rui 
+et al.,  2001).  We  also  found  studies  that  support  our  re-
+sults  regarding  the  second  group  (e.g.,  leptin  is  asso-
+ciated  with  glucose  levels)  (Schwartz  et al.,  1996). 
+    According  to  our  results,  the  leptin  receptor  LEPR 
+gene  affects  a  glucose-related  gene,  UGCGL2.  Apolipo-
+protein-related  genes,  such  as  APOL3,  APOL4,  and 
+APOL6,  in  our  gene  network  are  also  associated  with 
+glucose  metabolism,  as  suggested  by  increased  apoli-
+poprotein  levels  in  glucose-impaired  patients  (Pietzsch 
+et al.,  1998). 
+    Since  the  biological  correlation  between  endocrine- 
+
+metabolic  components  remains  undiscovered,  we  could 
+not  confirm  the  relationship  between  all  of  the  genes  in 
+our  network.  However,  our  results  also  support  the  evi-
+dence  of  a  gene  network,  which  was  not  based  solely 
+on  biological  evidence.  We  intended  to  replicate  our  re-
+sults  with  a  prior  gene  network  model,  which  included 
+gene  function  with  the  network  construction  (Franke  et 
+al.,  2006).  A  gene  pathway  previously  known  via  Franke 
+et al.  was  found  in  our  study  to  have  relatively  simple 
+structure  associated  with  a  higher  LOD  score.  The  net-
+work  between 
+the  genes  ASCL  and  APOBEC3B 
+(LOD=2.46)  consists  of  only  3  genes.  In  contrast,  BTG1 
+and  IGF1  (LOD=1.5)  constitute  a  more  complex  network 
+with  12  related  genes  (Fig.  3).  We  can  suppose  that 
+higher  LOD  scores  indicate  a  stronger  effect  on  other 
+genes  and  that  their  biological  pathway  is  more  directly 
+associated  with  each  other.
+    This  study  presents  a  robust,  directed  causal  network 
+construction  via  linkage  analysis.  Linkage  analysis  and 
+eQTs  can  be  utilized  to  explore  gene-gene  interaction 
+mechanisms,  including  their  biological  implications.  We 
+also  anticipate  that  our  method  will  help  overcome  the 
+challenge  of  computational  complexity  and  the  cost  of 
+constructing  genetic  networks  (Markou  and  Singh,  2003b; 
+Wessels  et al.,  2001)  due  to  the  simplicity  of  linkage 
+analysis  to  identify  gene  expression  loci. 
+    However,  this  method  of  genetic  network  construction 
+has  several  limitations.  A  linkage  analysis  with  additional 
+SNP  markers,  which  will  increase  its  density,  may  gen-
+erate  more  accurate  LOD  scores  and  increase  the  link-
+age  support  zone.  An  analysis  with  more  eQTs  and  oth-
+
+Construction  of  Causal  Genetic  Network  with  eQTs 149
+
+er  criteria  to  establish  boundaries  of  the  "support  zone" 
+can  also  affect  the  results.  However,  in  our  study,  the 
+support  zone  had  LOD  scores  ＞1.7.  We  considered 
+this  boundary  to  be  acceptable,  based  on  an  LOD  score 
+range  of  1.7-1.8,  which  has  been  considered  potential 
+evidence  of  linkage  among  genes  (Avery  et al.,  2004; 
+Comuzzie et al.,  2001;  Lindgren et al.,  2002;  Zhu et al., 
+2002).
+    Despite  these  limitations,  we  anticipate  that  our  study 
+will  contribute  to  the  understanding  of  the  genetic  com-
+ponents  that  are  involved  in  metabolic  syndrome.  Our 
+methodology  supports  the  characterization  and  location 
+of  eQTs  as  an  effective  approach  for  constructing  a  ge-
+netic  network.
+
+Acknowledgements
+
+This  study  was  supported  by  the  BK21  program. 
+
+References
+Arnold,  S.M.  and  Kaufman,  R.J.  (2003).  The  noncatalytic 
+portion  of  human  UDP-glucose,  glycoprotein  glucosyltrans-
+ferase  1  confers  UDP-glucose  binding  and  transferase 
+function  to  the  catalytic  domain.  J. Biol. Chem.  278, 
+43320-43328.
+
+Avery,  C.L.,  Freedman,  B.I.,  Heiss,  G.,  Kraja,  A.,  Rice,  T., 
+Arnett,  D.,  Miller,  M.B.,  Pankow,  J.S.,  Lewis,  C.E.,  Myers, 
+R.H.,  Hunt,  S.C.,  Almasy,  L.,  North,  K.E.,  and  Hyperten-
+sion  Genetic  Epidemiology  Network.  (2004).  Linkage  anal-
+ysis  of  diabetes  status  among  hypertensive  families,  the 
+Hypertension  Genetic  Epidemiology  Network  study.  Dia-
+betes  53,  3307-3312.
+
+Bonnet,  F.,  Patel,  S.,  Laville,  M.,  Balkau,  B.,  Favuzzi,  A., 
+Monti,  L.D.,  Lalic,  N.,  and  Walker,  M.  (2008).  Influence  of 
+the  ACE  gene  insertion/deletion  polymorphism  on  insulin 
+sensitivity  and  impaired  glucose  tolerance  in  healthy 
+subjects.  Diabetes Care  31,  789-794.
+
+Bouzakri,  K.,  Zachrisson,  A.,  Al-Khalili,  L.,  Zhang,  B.B.,  Kois-
+tinen,  H.A.,  Krook,  A.,  and  Zierath,  J.R.  (2006).  siRNA- 
+based  gene  silencing  reveals  specialized  roles  of  IRS-1/ 
+Akt2  and  IRS-2/Akt1  in  glucose  and  lipid  metabolism  in 
+human  skeletal  muscle.  Cell Metab.  4,  89-96.
+
+Fig.  3.  Evidence  of  gene-gene 
+interactions  from  the  network 
+database  (Franke  et al.,  2006).
+
+Cheung,  V.G.  and  Spielman,  R.S.  (2007).  Data  for  Genetic 
+Analysis  Workshop  (GAW)  15,  Problem  1,  genetics  of 
+gene  expression  variation  in  humans. BMC Proc.  1  Suppl 
+1,  S2.
+
+Comuzzie,  A.G.,  Funahashi,  T.,  Sonnenberg,  G.,  Martin,  L.J., 
+Jacob,  H.J.,  Black,  A.E.,  Maas,  D.,  Takahashi,  M.,  Kihara, 
+S.,  Tanaka,  S.,  Matsuzawa,  Y.,  Blangero,  J.,  Cohen,  D., 
+and  Kissebah,  A.  (2001).  The  genetic  basis  of  plasma 
+variation  in  adiponectin,  a  global  endophenotype  for  obe-
+sity  and  the  metabolic  syndrome.  J. Clin. Endocrinol. 
+Metab.  86,  4321-4325.
+
+de  Jong,  H.  (2002).  Modeling  and  simulation  of  genetic  reg-
+ulatory  systems,  a  literature  review.  J. Comput. Biol.  9, 
+67-103.
+
+Foufelle,  F.  and  Ferre,  P.  (2002).  New  perspectives  in  the 
+regulation  of  hepatic  glycolytic  and  lipogenic  genes  by 
+insulin  and  glucose,  a  role  for  the  transcription  factor 
+sterol  regulatory  element  binding  protein-1c.  Biochem. J. 
+366,  377-391.
+
+Franke,  L.,  van  Bakel,  H.,  Fokkens,  L.,  de  Jong,  E.D., 
+Egmont-Petersen,  M.,  and  Wijmenga,  C.  (2006).  Recons-
+truction  of  a  functional  human  gene  network,  with  an  ap-
+plication  for  prioritizing  positional  candidate  genes.  Am. 
+J. Hum. Genet.  78,  1011-1025.
+
+Groop,  L.  (2000).  Genetics  of  the  metabolic  syndrome.  Br. 
+
+J. Nutr.  83  Suppl  1,  S39-48.
+
+Hasty,  J.,  McMillen,  D.,  Isaacs,  F.,  and  Collins,  J.J.  (2001). 
+Computational  studies  of  gene  regulatory  networks,  in 
+numero  molecular  biology.  Nat. Rev. Genet.  2,  268-279.
+Horenstein,  R.B.  and  Shuldiner,  A.R.  (2004).  Genetics  of 
+
+diabetes.  Rev. Endocr. Metab. Disord.  5,  25-36.
+
+Kantartzis,  K.,  Peter,  A.,  Machicao,  F.,  Machann,  J.,  Wagner, 
+S.,  Konigsrainer,  I.,  Konigsrainer,  A.,  Schick,  F.,  Fritsche, 
+A.,  Haring,  H.U.,  and  Stefan,  N.  (2009).  Dissociation  be-
+tween  Fatty  Liver  and  Insulin  Resistance  in  Humans  car-
+rying  a  Variant  of  the  Patatin-like  Phospholipase  3  Gene. 
+Diabetes.  58,  2616-2623. 
+
+Kelley,  K.M.,  Oh,  Y.,  Gargosky,  S.E.,  Gucev,  Z.,  Matsumoto, 
+T.,  Hwa,  V.,  Ng,  L.,  Simpson,  D.M.,  and  Rosenfeld,  R.G. 
+(1996).  Insulin-like  growth  factor-binding  proteins  (IGFBPs) 
+and  their  regulatory  dynamics. Int. J. Biochem. Cell Biol. 
+28,  619-637.
+
+Kershaw,  E.E  and  Flier,  J.S,  (2004).  Adipose  Tissue  as  an 
+Endocrine  Organ.  J. Clin. Endocrinol. Metab.  89,  2548- 
+2556.
+
+150 Genomics  &  Informatics Vol.  9(4)  143-151,  December  2011
+
+Kopf,  D.,  Cheng,  L.S.,  Blandau,  P.,  Hsueh,  W.,  Raffel,  L.J., 
+Buchanan,  T.A.,  Xiang,  A.H.,  Davis,  R.C.,  Rotter,  J.I.,  and 
+Lehnert,  H.  (2008).  Association  of  insulin  sensitivity  and 
+glucose  tolerance  with  the  c.825C>T  variant  of  the  G 
+protein  beta-3  subunit  gene.  J. Diabetes Complicat.  22, 
+205-209.
+
+Kuiperij,  H.  (2004).  Chapter  4;  Expression  profiling  of  cAMP- 
+regulated  genes  via  MAPK-dependent  and  -independent 
+pathways.  Novel cAMP Targets in Cell Proliferation  pp. 
+53-80.
+
+Kulp,  D.C.  and  Jagalur,  M.  (2006).  Causal  inference  of  reg-
+ulator-target  pairs  by  gene  mapping  of  expression 
+phenotypes.  BMC Genomics  7,  125.
+
+Lindgren,  C.M.,  Mahtani,  M.M.,  Widen,  E.,  McCarthy,  M.I., 
+Daly,  M.J.,  Kirby,  A.,  Reeve,  M.P.,  Kruglyak,  L.,  Parker, 
+A.,  Meyer,  J.  Almgren,  P.,  Lehto,  M.,  Kanninen,  T.,  Tuomi, 
+T.,  Groop,  L.C.,  and  Lander,  E.S.  (2002).  Genomewide 
+search  for  type  2  diabetes  mellitus  susceptibility  loci  in 
+Finnish  families,  the  Botnia  study.  Am. J. Hum. Genet. 
+70,  509-516.
+
+Ma,  L.,  Hanson,  R.L.,  Que,  L.N.,  Cali,  A.M.,  Fu,  M.,  Mack, 
+J.L.,  Infante,  A.M.,  Kobes,  S.,  Bogardus,  C.,  Shuldiner, 
+A.R.  and  Baier,  L.J.  (2007).  Variants  in  ARHGEF11,  a 
+candidate  gene  for  the  linkage  to  type  2  diabetes  on 
+chromosome  1q,  are  nominally  associated  with  insulin  re-
+sistance  and  type  2  diabetes  in  Pima  Indians.  Diabetes 
+56,  1454-1459.
+
+Markou,  M.  and  Singh,  S.  (2003a).  Novelty  detection,  a  re-
+view-part  1,  statistical  approaches.  Singnal Processing 
+83,  2481-2497.
+
+Markou,  M.  and  Singh,  S.  (2003b).  Novelty  detection,  a  re-
+
+view-part  2,  neural  network  based  approaches.  Singnal 
+Processing  83,  23.
+
+Matise,  T.C.,  Chen,  F.,  Chen,  W.,  De  La  Vega,  F.M., 
+Hansen,  M.,  He,  C.,  Hyland,  F.C.,  Kennedy,  G.C.,  Kong, 
+X.,  Murray,  S.S.  Ziegle,  J.S.,  Stewart,  W.C.,  and  Buyske, 
+S.  (2007).  A  second-generation  combined  linkage  phys-
+ical  map  of  the  human  genome. Genome Res.  17,  1783- 
+1786.
+
+Mercado,  M.M.,  McLenithan,  J.C.,  Silver,  K.D.,  and  Shuldi-
+
+ner,  A.R.  (2002).  Genetics  of  insulin  resistance.  Curr. 
+Diab. Rep.  2,  83-95.
+
+Morley,  M.,  Molony,  C.M.,  Weber,  T.M.,  Devlin,  J.L.,  Ewens, 
+K.G.,  Spielman,  R.S.,  and  Cheung,  V.G.  (2004).  Genetic 
+analysis  of  genome-wide  variation  in  human  gene  ex-
+pression.  Nature  430,  743-747.
+
+Mussig,  K.,  Staiger,  H.,  Machicao,  F.,  Kirchhoff,  K.,  Guthoff, 
+M.,  Schafer,  S.A.,  Kantartzis,  K.,  Silbernagel,  G.,  Stefan, 
+
+N.,  Holst,  J.J.  Gallwitz,  B.,  Häring,  H.U.,  and  Fritsche,  A. 
+
+(2009).  Association  of  type  2  diabetes  candidate  poly-
+morphisms  in  KCNQ1  with  incretin  and  insulin  secretion. 
+Diabetes  58,  1715-1720.
+
+Pietzsch,  J.,  Julius,  U.,  Nitzsche,  S.,  and  Hanefeld,  M. 
+(1998).  In  vivo  evidence  for  increased  apolipoprotein  A-I 
+catabolism  in  subjects  with  impaired  glucose  tolerance. 
+Diabetes  47,  1928-1934.
+
+Previs,  S.F.,  Withers,  D.J.,  Ren,  J.M.,  White,  M.F.,  and 
+Shulman,  G.I.  (2000).  Contrasting  effects  of  IRS-1  versus 
+IRS-2  gene  disruption  on  carbohydrate  and  lipid  metabo-
+
+lism  in  vivo.  J. Biol. Chem.  275,  38990-38994.
+
+Reaven,  G.  (2002).  Metabolic  syndrome,  pathophysiology 
+for  management  of  cardiovascular 
+
+implications 
+
+and 
+disease.  Circulation  106,  286-288.
+
+Reaven,  G.M.  (1988).  Banting  lecture  1988.  Role  of  insulin 
+
+resistance  in  human  disease.  Diabetes  37,  1595-1607.
+
+Rockman,  M.V.  and  Kruglyak,  L.  (2006).  Genetics  of  global 
+
+gene  expression.  Nat. Rev. Genet.  7,  862-872.
+
+Ronti,  T,  Lupattelli,  G,  and  Mannarino,  E.  (2006).  The  endo-
+crine  function  of  adipose  tissue,  an  update.  Clin. Endo-
+crinol.  64,  4,  355-365.
+
+Rui,  L.,  Fisher,  T.L.,  Thomas,  J.,  and  White,  M.F.  (2001). 
+Regulation  of  insulin/insulin-like  growth  factor-1  signaling 
+by  proteasome-mediated  degradation  of  insulin  receptor 
+substrate-2.  J. Biol. Chem.  276,  40362-40367.
+
+Sale,  M.M.,  Woods,  J.,  and  Freedman,  B.I.  (2006).  Genetic 
+determinants  of  the  metabolic  syndrome.  Curr. Hyper-
+tens. Rep.  8,  16-22.
+
+Saltiel,  A.R.  and  Kahn,  C.R.  (2001).  Insulin  signalling  and 
+the  regulation  of  glucose  and  lipid  metabolism.  Nature 
+414,  799-806.
+
+Schadt,  E.E.,  Lamb,  J.,  Yang,  X.,  Zhu,  J.,  Edwards,  S., 
+Guhathakurta,  D.,  Sieberts,  S.K.,  Monks,  S.,  Reitman,  M., 
+Zhang,  C.,  Lum,  P.Y.,  Leonardson,  A.,  Thieringer,  R., 
+Metzger,  J.M.,  Yang,  L.,  Castle,  J.,  Zhu,  H.,  Kash,  S.F., 
+Drake,  T.A.,  Sachs,  A.,  and  Lusis,  A.J.  (2005).  An  in-
+tegrative  genomics  approach  to  infer  causal  associations 
+between  gene  expression  and  disease.  Nat. Genet.  37, 
+710-717.
+
+Schadt,  E.E.  and  Lum,  P.Y.  (2006).  Thematic  review  series, 
+systems  biology  approaches  to  metabolic  and  cardiovas-
+cular  disorders.  Reverse  engineering  gene  networks  to 
+identify  key  drivers  of  complex  disease  phenotypes.  J. 
+Lipid Res.  47,  2601-2613.
+
+Schulingkamp,  R.J.,  Pagano,  T.C.,  Hung,  D.,  and  Raffa, 
+R.B.  (2000).  Insulin  receptors  and  insulin  action  in  the 
+brain,  review  and  clinical  implications.  Neurosci. Biobe-
+hav. Rev.  24,  855-872.
+
+Schwartz,  M.W.,  Baskin,  D.G.,  Bukowski,  T.R.,  Kuijper,  J.L., 
+Foster,  D.,  Lasser,  G.,  Prunkard,  D.E.,  Porte,  D.,  Jr., 
+Woods,  S.C.,  Seeley,  R.J.  and  Weigle,  D.S.  (1996). 
+Specificity  of  leptin  action  on  elevated  blood  glucose  lev-
+els  and  hypothalamic  neuropeptide  Y  gene  expression  in 
+ob/ob  mice.  Diabetes  45,  531-535.
+
+Stern,  M.P.  (2003).  Genetics  of  insulin  resistance  syndrome. 
+
+Endocr. Pract.  9  Suppl  2,  35-38.
+
+Tu,  Z.,  Wang,  L.,  Arbeitman,  M.N.,  Chen,  T.,  and  Sun,  F. 
+(2006).  An  integrative  approach  for  causal  gene  identi-
+fication  and  gene  regulatory  pathway  inference.  Bioinfor-
+matics  22,  e489-496.
+
+Vasseur,  F.,  Meyre,  D.,  and  Froguel,  P.  (2006).  Adiponectin, 
+type  2  diabetes  and  the  metabolic  syndrome,  lessons 
+from  human  genetic  studies.  Expert. Rev. Mol. Med.  8, 
+1-12.
+
+Vohradsky,  J.  (2001).  Neural  model  of  the  genetic  network. 
+
+J. Biol. Chem.  276,  36168-36173.
+
+Wang,  H.,  Zhang,  H.,  Jia,  Y.,  Zhang,  Z.,  Craig,  R.,  Wang, 
+X.,  and  Elbein,  S.C.  (2004).  Adiponectin  receptor  1  gene 
+(ADIPOR1)  as  a  candidate  for  type  2  diabetes  and  insulin 
+
+Construction  of  Causal  Genetic  Network  with  eQTs 151
+
+resistance.  Diabetes  53,  2132-2136.
+
+Wessels,  L.F.,  van  Someren,  E.P.,  and  Reinders,  M.J.  (2001). 
+A  comparison  of  genetic  network  models.  Pac. Symp. 
+Biocomput.  508-519.
+
+Yang,  W.S.  and  Chuang,  L.M.  (2006).  Human  genetics  of 
+adiponectin  in  the  metabolic  syndrome. J. Mol. Med.  84, 
+112-121.
+
+Yu,  K.,  Li,  Q.,  Bergen,  A.W.,  Pfeiffer,  R.M.,  Rosenberg,  P.S., 
+
+Caporaso,  N.,  Kraft,  P.,  and  Chatterjee,  N.  (2009).  Pathway 
+analysis  by  adaptive  combination  of  p-values.  Genet. 
+Epidemiol.  38,  700-709.
+
+Zhu,  X.,  Cooper,  R.S.,  Luke,  A.,  Chen,  G.,  Wu,  X.,  Kan,  D., 
+Chakravarti,  A.,  and  Weder,  A.  (2002).  A  genome-wide 
+scan  for  obesity  in  African-Americans.  Diabetes  51,  541- 
+544.
+
+

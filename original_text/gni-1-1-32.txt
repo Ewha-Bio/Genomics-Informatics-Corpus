@@ -1,0 +1,1046 @@
+Genomics &  Informatics  Vol.  1 (1) 32-39, September 2003 
+
+Gene Expression Pattern Analysis via Latent Variable 
+Models Coupled with Topographic Clustering 
+
+Jeong-Ho Chang,  Sung  Wook Chi,  and  Byoung(cid:173)
+TakZhang* 
+
+Biointelligence  Laboratory,  School  of Computer Science  and 
+Engineering, Seoul National University, Seoul, Korea 
+
+Abstract 
+
+We  present a  latent variable  model-based approach 
+to the analysis of gene expression  patterns,  coupled 
+with  topographic clustering.  Aspect model,  a  latent 
+variable  model for dyadic data,  is applied to extract 
+latent patterns under1ying complex variations of gene 
+expression  levels.  Then  a  topographic  clustering  is 
+performed  to find  coherent groups of genes,  based 
+on the extracted  latent patterns as well  as individual 
+gene expression  behaviors.  Applied  to  cell  cycle(cid:173)
+regulated  genes  of the  yeast  Saccharomyces 
+cerevisiae,  the  proposed  method  could  discover 
+biologically  meaningful  patterns  related  with 
+characteristic  expression  behavior in  particular cell 
+cycle phases.  In  addition, the display of the variation 
+in  the composition  of these  latent patterns on the 
+cluster map provided more facilitated interpretation of 
+the resulting  cluster structure.  From  this,  we argue 
+that latent variable models, coupled with topographic 
+clustering,  are  a  promising  tool  for explorative 
+analysis of gene expression data. 
+
+Keywords:  gene  expression  pattern,  latent  variable 
+model, Fisher kernel, topographic clustering 
+
+Introduction 
+
+DNA microarrays from eDNA chips or oligonucleotide chips 
+provide a global, parallel view on the expression patterns of 
+hundreds or thousands of genes in a cell at a specific time, 
+under  a  specific experimental  conditions  or  processes 
+(Baldi and Hatfield, 2002; Shamir and Sharan, 2002). They 
+are  among  the  most powerful  and  versatile  tools  for 
+
+*Corresponding author: E-mail btzhang@bi.snu.ac.kr 
+Accepted 4 April2003 
+
+functional  genomics,  and  advances  in  technologies  for 
+these  high-density  arrays  are  enabling  to  produce 
+enormous  amount  of  expression  data.  For the  efficient 
+exploration and analysis of these massive microarray data, 
+appropriate  analysis  tools  are  needed  which  are  different 
+from  conventional  methods for the traditional  one-gene-in(cid:173)
+one-experiment paradigm. 
+
+Clustering  is  a  key  step  to  analyzing  gene  expression 
+data,  where  genes  are  systematically  grouped  together 
+according to their similarity in  expression  patterns.  Among 
+the  earliest  and  extensively  used  algorithms  are 
+hierarchical  clustering  (Eisen  eta/.,  1998;  Spellman eta/., 
+1998;  Scherf eta/.,  2000)  and  k-means  (Herwig  eta/., 
+1999;  Tavazoie eta/.,  1999).  Eisen  eta/. (Eisen eta/., 
+1998) analyzed the gene expression data of budding yeast 
+Saccharomyces cerevisiae using the hierarchical clustering 
+algorithm  and  showed  that  genes  of  known  similar 
+functions  were  grouped  together with  the  clustering. 
+Tavazoie et a/.  (Tavazoie  et a/.,  1999)  used  the  k-means 
+algorithm to identify transcriptional  regulatory sub-networks 
+in  yeast.  Despite  their successful  applications  in  many 
+other  biological  tasks  as  well  as  these,  however,  the 
+algorithms suffer from  some shortcomings, such  as  lack of 
+robustness,  incompetence  of proper  handling  of  global 
+structure  (hierarchical  clustering)  and  non-structure  in 
+resulting  clusters  (k-means  clustering)  (Tamayo et a/., 
+1999; Fowlkes eta/., 2002). 
+
+In this paper,  we present an effective approach for gene 
+expression  pattern  analysis,  based  on  latent variable 
+models and topographic clustering.  Latent variable models 
+are  a  powerful  tool  for  discovering  latent  structure 
+underlying  data  objects.  They  are  well  suited  to  extract 
+correlational  patterns  of variables  and  provide  a compact, 
+useful  representation  of  data.  Also,  a  natural  similarity 
+metric  between  data can  be  derived  from  latent variable 
+models (Jaakkola and  Haussler,  1999; Tsuda eta/., 2002). 
+Topographic  clustering  algorithms  such  as  SOM  (self(cid:173)
+organizing  maps)  (Kohonen,  1997)  are  an  attractive 
+method for providing not only good clustering performance 
+but also easy visualization  and  interpretation of the  results 
+(Tamayo eta/., 1999; Toronen eta/., 1999). 
+
+We  use an  aspect model that is a latent variable model 
+for  co-occurrence  data  to  extract  significant  patterns 
+underlying gene expression data.  Using these patterns and 
+original  expression  data,  two  cluster  maps  are  produced 
+from  a topographic clustering.  In the first map, each cluster 
+is  represented  by the  average  expression  levels of genes 
+
+Gene Expression Pattern Analysis via Latent Variable Models Coupled with Topographic Clustering  33 
+
+0 
+
+0  0 
+
+Discovery of latent 
+patterns using  latent 
+variable models 
+
+Construction of similarity 
+matris using Fisher kernel 
+from  LVM 
+
+Topographic clustering 
+of genes 
+
+Fig. 1. The overall procedure for gene expression profiling based on latent variable models coupled with topographic clustering. 
+
+in the cluster. The second  map summarizes the clusters in 
+terms of its characteristics in convex combinations of latent 
+patterns. 
+We applied our method to the expression data of cell cycle(cid:173)
+regulated  genes  of  the  yeast  Saccharomyces  cerevisiae. 
+Our results show that the latent patterns discovered by the 
+aspect  model  are  well  reflecting  the  characteristic 
+expression  behaviors  across  various  cell  cycle  phases. 
+Two  independent  cluster  maps  provided  by  topographic 
+clustering  are shown  to  be  useful  in  their ability to  provide 
+an intuitive,  integrated understanding of complex variations 
+of hundreds of genes during the progress of cell cycle. 
+
+Materials and Methods 
+
+Our approach  to  gene  expression  analysis  consists  of 
+three  steps:  (1)  identification  of  meaningful  patterns 
+inherent  in  gene  expression  data  using  a latent  variable 
+model;  (2)  construction  of  a similarity  matrix  containing 
+similarity values  of  all  gene  pairs;  (3)  clustering  of  genes 
+based on the similarity matrix and  a topographic clustering 
+algorithm.  Fig.  1 summarizes  the  overall  procedure  of  our 
+approach to gene expression data analysis. 
+
+Latent pattern analysis based on aspect model 
+As  the  first  step  to  the  analysis  of  gene  expression  data, 
+we use an aspect model (Hofmann, 2001) which  is a latent 
+variable  model  for  co-occurrence  data.  Latent  variable 
+models  are  a powerful  approach  to  probabilistic  modeling 
+where  a set of  observed  variables  are  supplemented  with 
+additional  latent  variables  (Bishop,  1999).  Besides  their 
+efficiency for density estimation,  the  latent variable models 
+
+are  very  useful  in  discovering  latent structure  underlying  a 
+set of data. 
+Let D  be  an  N x M  matrix where  M  is the  number of  data 
+and  N  is  the  number of  attributes  and  each  element  is 
+indexed by (a1,  x.),  (1-:::;i-:::;M,  1-:::;j-:::;N).  In the aspect model, 
+the joint probability of P(a1,  x•)  is decomposed by introducing 
+a latent class variable zEZ={z1.v.  ···, Zk}, 
+
+P(a1, x;) = P(x,)P(a1 I x;) 
+
+=  P(x)'f.P(a1 I zk)P(zk I xJ 
+
+K 
+
+k=l 
+
+(1) 
+
+This  indicates that  the  conditional  probability  or  sample 
+specific  attribute  distribution  P(a1  I x,)is  approximated  by  a 
+convex combination  of K aspects P(a1  I ZK).  The goal of the 
+modeling  by the aspect model  is to  estimate class-specific 
+attribute  distribution  P(a1  I ZK)  and  data  specific  class 
+distribution P(Zk  I x,) from data set. 
+Formally,  the  aspect  model  is  learned  by  maximizing  the 
+log data-likelihood L=logp(D): 
+
+M  N 
+
+L  = 'f.'f.r(a1,x;)IogP(a1,x;), 
+
+i=l  )=1 
+
+(2) 
+
+where  r(a1, x•)  is  the  value  of  a1  in  the  data x,.  The 
+Expectation-Maximization  (EM)  algorithm  (Dempster eta/., 
+1977) is used to estimate the  parameters maximizing L.  In 
+the  E-step,  the  posterior  probabilities  P(z,  I a;,  x,)  are 
+computed  and  in  the  M-step,  the  parameters  P(a1  I Zk)  and 
+P(z,  I x,)  are  estimated.  These  two  steps  are  iteratively 
+alternated until convergence. 
+
+34  Genomics &  Informatics Vol.  1 (1) 32-39, September 2003 
+
+Estimating similarity by the fisher kernel 
+One of the most important things in clustering algorithms is 
+how to  define  (dis)similarity  measure  between  data,  and 
+the  choice  is  quite  subjective.  In  kernel  methods  like 
+support vector  machines  (Cristianini  and  Shawe-Taylor, 
+2000;  Schi:ilkopf  and  Smola,  2001 ),  this  corresponds  to 
+selecting an appropriate kemel function. 
+Given two data vectors x; and x1 in the input space X,  a valid 
+kernel  function  k(x•,  xi)  can  be  represented  as the  inner 
+product  between  two  feature  vectors  in  a  (high 
+dimensional) feature space F, that is, 
+
+(3) 
+
+where  ¢J 
+is  a fixed  mapping from  X to F,  that  is,  ¢J :X---+F. 
+The mapping  ¢J  can  be viewed as a preprocessing step to 
+draw out meaningful features from data, and the technique 
+of kernel function provides an efficient way of inner-product 
+calculation  in  the  feature  space F  (Cristianini  and  Shawe(cid:173)
+Taylor, 2000; Graepel eta/., 1998). 
+
+In this paper,  we  utilize the kernel function  presented  in 
+(Hofmann,  2000),  where  an  intrinsic  kernel,  named  the 
+Fisher kernel,  was  derived  from  the  aspect  model.  The 
+Fisher  kernel  (Jaakkola  and  Haussler,  1999)  is  an 
+approach  to  constructing  kernels  from  generative 
+probabilistic  models  and  defines the  similarity  between 
+data based  on  information-geometric principles  using  the 
+gradient space of the generative model. 
+
+Let  l(x,)  be  the  expected  log-probability of  a sample  x. 
+under the aspect model parameterized by O={Ot,  82}  where 
+Ot={P(zk)  and  02={P(a,!zk)}.  The  kernel  is  derived  by 
+computing  the  Fisher  scores  'Vol (x;)  and  the  Fisher 
+information  matrix I (O)=E{'Vel (x)\leT[ (x)}.  With  the  square(cid:173)
+root  transformation  of  parameters  8={81. 82}  and  the 
+approximation  of I  (0)  as  the  identity  matrix  (Hofmann, 
+2000), the kernel from the aspect model is given by 
+
+where 
+
+k(x.,x)  ==  V~l(x;)I(er1 V9 l(x) 
+~ k/x,,x)+k2(x1,x), 
+
+k1 (x., x1 )  ==  V'~/(x;)V' 91l(x) 
+
+==" P(zk I x,)P(zk I x)' 
+f' 
+
+P(zk) 
+
+k2 (x.,x 1 )  ==  V~zl(x,)'\19 zl(x) 
+
+(4) 
+
+(5) 
+(6) 
+
+"~  I  ~ 
+
+"P(zkla1,x)P(zkla,,x.) 
+==  L..P(a1  x;)P(a1 1  x)L.. 
+. 
+k 
+
+P(a1 I zk) 
+
+1 
+
+1 
+
+Here, Jf({/J,  x,)  in the Equation  (6) is an empirical distribution 
+estimated  by  r(a,xJ!l:mr(am,xJ .Eventually,  this  similarity 
+metric  is  the  linear summation  of  k1  and  b  with  equal 
+weights: k1(Xi,  .x;)  is the similarity in the representation on the 
+
+latent space.  b(x•,  xi)  calculates  the  inner product  of the 
+original  two  data  x,  and  xi,  where  products  of  the 
+corresponding  attributes  are  weighted  by  the  degree  of 
+overlap of respective posterior probabilities (the second line 
+in Equation (6)) (Hofmann, 2000). 
+
+Clustering  by  kernel-based  soft topographic 
+mapping 
+The  kernel-based  soft  topographic  mapping  (STMK) 
+(Graepel et a/.  1998)  is  a topographic clustering  algorithm 
+based  on  kernel-based  distance  measures  and  principles 
+from statistical physics.  It can provide not only a stable and 
+good  clustering  algorithm,  but  also  a topographic  map  of 
+the clustered  data.  By using a specific kernel function  and 
+the  kernel  trick,  the  algorithm  can  also  perform  clustering 
+efficiently  in  a feature  space  related  to  the  original  data 
+space in a nonlinear way, compared to the basic SOM. 
+In  the  SMTK,  clustering  is  defined  in  terms  of  an 
+optimization  problem.  The cost function  E to be optimized 
+is given as 
+
+(7) 
+
+where  M  is the  number of  data  and  c is  the  number of 
+clusters.  The  binary variable  mij  indicates  whether the  ith 
+sample  belongs  to  the jth cluster,  and  eij  is  the  error 
+occurred  by  assigning  the  ith  sample  to  the jth cluster. 
+Given a mapping  ¢J  from input space X to a feature space 
+F  as  explained  above,  the  partial  assignment  cost  eij  is 
+defined as 
+
+1  c 
+
+eif  ==2~?JII~(x,)-ctll' 
+
+2 
+
+(Vj), 
+
+(8) 
+
+where  ¢J (x•)  and  c1  are  a sample and  a cluster center in  a 
+feature space F,  respectively. hJI  is a neighborhood function 
+between jth and  lth clusters,  and  determines the  coupling 
+between the two clusters as in SOM. 
+
+The STMK algorithm provides an  efficient procedure  to 
+find a good solution to the minimization of the cost function 
+in  Equation  (7),  based on  deterministic annealing  (Rose et 
+a/.,  1990)  and  the  EM  algorithm.  Starting  with  a random 
+initialization  of  eij  tor  all  data  and  clusters,  the  algorithm 
+iteratively updates the parameters  using the EM  algorithm 
+with  some  temperature-annealing  schedule.  In  the  E-step, 
+expectation values of m",  the probability that the ith sample 
+is  assigned  to  the jth cluster,  is  estimated  for each  pair of 
+data and clusters. Then all the  parameters related with the 
+calculation  of  cluster centers  in  a feature  space  F  are 
+updated in the M-step. 
+
+Dataset 
+We  applied  our method  to  the  yeast Saccharomyces 
+
+Gene Expression Pattern Analysis via Latent Variable Models Coupled with Topographic Clustering  35 
+
+0.1 
+
+00 
+
+0.1 
+
+0.1 
+
+0.1 
+
+0.05  \J0  0.05 ~ 0.05 
+
+0.1 
+
+10 
+
+20 
+
+00 
+
+10 
+
+20 
+
+00 
+
+10 
+
+20 
+
+0.05  ~ 0.05 
+
+0.1 
+
+0.05 
+
+00 
+
+10 
+
+20 
+
+00 
+
+10 
+
+20 
+
+00 
+
+10 
+
+20 
+
+Fig. 2. The six inherent patterns for the yeast cell cycle data,  extracted by an aspect model with K=6. Each pattern is characterized by its 
+conditional  distribution  P(aj lz,)JI;~,P(a,lz,  Among  the  73  conditions,  patterns  over  18 time  points from  a  factor-based  synchronization 
+are shown. For a clear presentation, patterns were reordered in ascending order according to their first time point of the peak expression, 
+and  probability values  were  rescaled.  The  peak time  indices are  (2,  11),  (2,  11),  (4,  12),  (5,  13),  (7,  15),  and  (9,  17),  from  pattern  1 to 
+pattern 6. 
+
+cerevisiae  cell  cycle  data  (Spellman  et a/.,  1998).  This 
+dataset  (available  at http://cellcycle-www.stanford.edu) 
+contains  the  time  series  of  relative  expression 
+measurements of more than 6,000 genes from cell cultures 
+synchronized  by  three  independent  methods.  In  the  first 
+set, the a mating factor pheromone was used to arrest cells 
+in  G1  and  samples  were  taken  in  every  7  minutes 
+throughout  140  minutes.  In  the  second  set,  centrifugal 
+elutriation  was  used  to  collect  small  G1  cells  in  every  30 
+minutes during  6.5  hours.  In  the third,  cdc15  temperature(cid:173)
+sensitive mutant was used to arrest cells in late mitosis and 
+samples  were  taken  in  every  10  minutes  during  300 
+minutes.  Additionally,  samples  from  arrest  of  a  cdc28 
+temperature-sensitive  mutant  (Cho  et a/.,  1998)  were 
+included  in  the  dataset.  The  analysis  of  these  data  sets 
+enables  researchers  to  identify  cycles  or waves  of 
+expressions that are meaningful in biological processes. 
+
+Spellman  and  his  colleagues  (Spellman,  1998)  have 
+
+identified  800  genes  whose  expressions  are  cell cycle(cid:173)
+regulated  using  their  periodicity  and  correlation  analysis 
+methods.  Among  the  800  yeast  genes,  we  selected  700 
+genes with at most 4 missing entries over 73 conditions:  18 
+time  points  over  a  arrest,  24 over cdc15  arrest,  17  over 
+cdc28  arrest,  and  14  over  elutriation.  For  each  gene,  the 
+missing  values  were  filled  by  the  average  values  of  the 
+either side  of  the  time  points,  assuming  the  smooth 
+variation  of  gene  expression  levels  during  the  cell  cycle. 
+Finally,  the  dataset  is  represented  by  a  73 x 700  matrix 
+where  each  gene  is  represented  by  a  column  vector 
+
+containing 73 attributes of gene expression levels. 
+
+Results 
+
+Initially,  we  applied  the  aspect  model  to extract  latent 
+patterns  inherent  in  the  gene  expression  variation  during 
+the  progress  of  cell  cycle.  In  the  aspect  model,  observed 
+values  are  assumed  to  be  count-valued.  Prior  to  the 
+analysis,  therefore,  all  the  expression  values  vp  (1::.;;  i:s;; 
+700,  1 ::.;;  j::.;;  73)  were  first  transformed  to  positive  integer 
+values by r(aj, w) = [100 x (1/(1 +exp(-vj,)))r. 
+
+The  yeast  cell  cycle  data  was  analyzed  with  varying 
+number of latent factors z={z1,  22,  ... ,  z.<},  from  K=5  to K=10. 
+The  result  with  K=6  is  shown  in  Fig.  2,  where  the 
+expression  patterns  are  plotted  across  the  18 time  points 
+from  the a-factor experiments.  It can  be seen  that different 
+periodicities  of  gene  expression  are  captured  in  the  six 
+patterns.  Compared with  the cell  cycle  phase  described  in 
+(Spellman et at.,  1998), these patterns relatively well  reflect 
+peak expression behaviors in  respective cell  cycle phases: 
+M/G1-phase  (patterns  1 and  2),  G1-phase  (pattern  3), 
+G1/S-phase  (pattern  4),  S/G2-phase  (pattern  5),  and  M(cid:173)
+phase (pattern 6). 
+
+Additionally,  we  clustered  the  700  genes  using  the 
+learned  aspect  model  in  Fig.  2  and  the  STMK  algorithm. 
+
+' By  multiplying  a constant  100,  we  actually consider  to  the 
+second  decimal  point  of  the  values  (in  the  range  of  0 to  1) 
+obtained by 1/(1+exph;)). 
+
+36  Genomics & Informatics Vol. 1 (1) 32-39, September 2003 
+
+0  _i 
+
+'·' 
+
+0  " 
+
+'- .. ' 
+
+,___ 
+
+0 
+
+0 
+
+,' 
+0  ' 
+
+J/ 
+0  -' 
+
+0  -
+
+/ 
+
+0  -
+
+0  _,' 
+
+·-' 
+
+'-...~-/ 
+
+'-... , 
+
+}J 
+0  / 
+
+\'\:3,/  '~ 
+
+,_, 
+
+. 
+
+':j/ 
+0  _/ 
+
+'~!r~· ',~ 
+,, 
+
+:/'  '~>' '~ 
+
+' ... ,,.,." ,'  '. 
+
+'-V/ '-:~~ 
+. 
+
+·-' 
+
+/  ',_/  ''',, 
+
+'J/  -,M/'~"~ 
+. 
+
+o.; ~c,,.re" ,; I ~"~:~  l ,; I ~-~: l ,; I/~~~·~, l ,; I /~:~~ l ,; I ~m·~ • 
+o.~~ct".re" ,;1M l ,;~~~ 0+~~ ]o;~~~ o+'~m·:,~ I 
+0:~,:~~~ l 0:1?~+: -~ 0:1;;+:1H 
+1 ,; I~ I,; 1~:: I,; I~ I,; I~ I,; IN. 
+,; ~:t"~8•
+,:1~~ 1,:1~1 ,:1~ I ,:1;;;; 1,:1~1 ,:i=A0 I 
+,:~ ,:1;~ I ,:1~fi01 ,:1~ I ,:l~i I ,:IN I 
+
+0 ~ 0  -
+
+~~- ',¥/ -,~ 
+
+0  •-,---·----·,,--
+
+0  _,.,-
+
+' .. ·.-·-
+
+',_,." ,, 
+
+' 
+
+0  _./ 
+
+',_,,' 
+
+0  ,_,i 
+
+'.,·' 
+
+/~ 
+
+0  _, 
+
+Fig.  3.  The  STMK clustering  map  of genes from  yeast cell  cycle  data.  700  genes  with  less than  or equal  to 4 missing  values,  among 
+Spellman's 800  putative  cell  cycle-regulated  genes,  were  clustered  into 36  (6 x 6)  groups.  Expression  levels  (y-axis)  over the  18 time 
+points (x-axis) from the experiment of a-factor synchronization are shown.  In each cluster, the solid line is the mean expression values of 
+the genes in the cluster and the dotted line is the standard deviation in expression levels of those. 
+
+The  kernel  function  in  Equation  (4)  was  used  to  calculate 
+similarities  between two  genes.  Fig.  3 shows the  resulting 
+cluster map with 36 clusters on the 6 x 6 grid.  Each cluster 
+is represented  by the average expression pattern of genes 
+in the cluster.  Different periodicities in gene expression are 
+shown  across  the  clusters  on  the  grid  and  the  adjacent 
+clusters have similar patterns. 
+
+Cluster structure  is  also  presented  in  terms  of  latent 
+patterns  (Fig.  4).  A gene x  is mapped  into the  latent space 
+produced by the aspect model and is represented by a vector 
+Of  probabilitieS,  Y,=(f(z!lx.),P(z,,x,),···P(z,lx)),  L/(zljx)=i 
+Then cluster centers C  (1  s  k s36) in the latent space are 
+expressed as linear combinations of y, by 
+
+700 
+
+ck  = La,ky,, 
+
+i=ol 
+
+36 Lhk1P(x,  E  cluster!) 
+a,k  =  1oo  36 LLhk1P(x1  E  cluster!) 
+
+1~1 
+
+j=l  /oj 
+
+where a,k  is the contribution of the ith sample to the cluster k. 
+The genes in a cluster are now distinguished from those 
+in  other clusters  by  the  combination  characteristics  of the 
+latent  patterns.  The  cluster  1 of  the  top-left-most,  for 
+example,  shows the  highest  probabilities  in  the  pattern  3. 
+
+The third pattern in Fig. 2 characterizes genes of which the 
+first  peaks  of  their  expression  are  observed  at  the 
+measurement points  around  21  minutes  from  the  start  of 
+the  a-factor  experiments.  This  is  a typical  expression 
+behavior of the  genes  in  the  G1  phase group identified  in 
+(Spellman eta/.,  1998),  and  all  45  genes (CDC45,  CLBS, 
+MSH2,  MSH6,  etc)  in  the  cluster  1 are  found  in  the  G1 
+phase group.  Nearby clusters of cluster 1 in  Fig.  4 shows 
+the similar combination  patterns,  and most of the genes in 
+those  clusters  are  found  in  the  G1  phase  group.  Similar 
+analysis is possible for clusters 6,  31,  36:  patterns 4 and 5 
+are  dominant  in  cluster 6,  patterns  1 and  2 in  cluster 31, 
+and  pattern  6 in  cluster 36.  Genes  in  those  clusters  are 
+found  in  the  phase  groups  of  which  typical  expression 
+characteristics  are  similar to  the  dominant  patterns.  35 
+genes  (HHF1,  HTA1,  HTA2,  HTB2,  etc)  among  39  in  the 
+cluster  6,  21  (ACE2,  CLB1,  CLB2,  MOB1,  etc)  genes 
+among 24 in  cluster 31,  and all  35  genes (ASH1,  CDC46, 
+MFA2,  SIC1,  etc)  in  cluster 36  belong  to  S phase  group, 
+M/G1  phase  group,  and  G2/M  phase  group,  respectively. 
+The constitution of all the clusters in terms of phase groups 
+identified by Spellman et at. are described in Table 1. 
+
+A closer  examination  of  Fig.  4  provides  another 
+
+Gene Expression Pattern Analysis via Latent Variable Models Coupled with Topographic Clustering  37 
+
+Table 1. The assignment table of 700 genes to 36 clusters. Cluster enumeration is the same as those in Figures 3 and 4.  In each 
+cluster,  genes  assigned  to  the  cluster  are  divided  according  to  their  phase  group  specified  by  Spellman  et  al.  Note  that  these 
+classification of genes in  a cluster are not rigid, since the classification at the boundary between two phases are rather ambiguous 
+(Spellman et al.,  1998). For example, six of the eight genes (PSA1,  CBF2, YLL012W,  YBL009W,  SVL3, KAR3,  SPC98,  SRL 1) in 
+cluster 5,  classified as being peak-expressed in G1  phase, are actually among the first 14 genes from the boundary of G1  and  S 
+phase. 
+
+G1  (45) 
+
+G1  (23) 
+
+G1  (27) 
+MIG1  (8) 
+G1  (6) 
+MIG1  (8) 
+G1  (10) 
+M/G1  (16) 
+
+M/G1  (35), G1 
+(3), G2/M (1) 
+
+G1  (27) 
+
+G1  (13) 
+
+G1  (11) 
+M/G1  (1) 
+G1  (4) 
+M/G1  (8) 
+G2/M (2) 
+
+M/G1  (6) 8 (1) 
+G2/M (8), G1  (1), 
+
+M/G1  (5) 
+
+G1  (31) 
+
+G1  (12) 
+
+G1  (7) 
+M/G1  (1) 
+
+G1  (4), G2/M (1), 
+S (2), 8/G2 (2) 
+G1  (1), M/G1  (3), 
+G2/M (8), 8/G2(1) 
+
+G2/M (29) 
+
+G1  (20) 
+8 (2) 
+
+G1  (3) 
+
+8 (8), 8/G2 (2) 
+G1  (2), G2/M (2) 
+8 (4), S/G2 (5), 
+
+G2/M (5) 
+8/G2(3) 
+G2/M (10) 
+
+G2/M (26) 
+
+G1  (8) 
+8 (13) 
+
+8(3) 
+
+8(5) 
+
+8/G2 (10) 
+8/G2 (15) 
+G2/M (2) 
+8/G2 (3) 
+G2/M (14) 
+G2/M(23) 
+S/G2 (1) 
+
+8 (21) 
+8/G2 (3) 
+8(5) 
+
+8/G2 (12) 
+
+s (1) 
+
+S/G2 (30) 
+8/G2(16) 
+G2/M (2) 
+8/G2 (11) 
+G2/M (4) 
+
+G2/M (35) 
+
+Cluster 1 
+
+Cluster 2 
+
+4 
+
+Cluster 5 
+
+Cluster 6 
+
+Cluster 13 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+Cluster 8 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+Cluster 15 
+
+0.3~0.3 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.2 
+0.1 
+
+0.2 
+0.1 
+
+0.2 
+0.1 
+
+0.2 
+0.1 
+
+Cluster 21 
+
+Cluster 22 
+
+03~03~03 
+
+Cluster 27 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+0.3 
+0.2 
+0.1 
+
+Fig. 4. The STMK clustering map with representation according to the composition of latent patterns. When each gene x,  is represented in 
+the  latent space  by y.={P(z~lx;), .. ·,  P(zdx.)} based  on six patterns (x-axis)  in  Figure  2,  each  cluster shows the  average  responsibilities  (y(cid:173)
+axis) of the latent patterns for expression behaviors of genes in the cluster. 
+
+interesting  interpretation.  When  we  go from  cluster  1 to 
+cluster  6 along  the  top  margin,  for  example,  we  can  see 
+that pattern 3 declines steadily and pattern 5 rises instead. 
+This  shows  the  distinction  among  genes  in  different 
+clusters  in  terms  of  the  peak time  in  their  expression, 
+
+where  the  first  peak time  of the  genes  with  higher 
+probabilities  of  pattern  3  is  earlier than  that  of  the  genes 
+with  the  opposite  combination.  Referred  to  the  G1  phase 
+group ordered by their peak times (Spellman,  1998), genes 
+in  cluster  1 and  cluster 2 are found  in  the  earlier part than 
+
+38  Genomics &  Informatics Vol.1(1) 32-39, September2003 
+
+those in cluster 3 and 4.  Most of the genes in cluster 5 are 
+located  in  the  boundary  of  G1  phase  group  and  S phase 
+group,  and  most  of  those  in  cluster  6 are  found  in  the  S 
+phase  group.  Similar  tendencies  are  observed  in 
+subsequent  routes:  from  cluster  6 to  cluster 36  along  the 
+right margin, from cluster 36 to cluster 31  along the bottom 
+margin  (Table  1 ).  In  this  way,  a  proper  discovery  and 
+exploitation  of the  inherent  structures  in  gene  expression 
+behaviors helps us for further understanding of expression 
+time-series data. 
+
+Conclusions 
+
+We  have  presented  an  effective  approach  for  gene 
+expression  pattern  analysis,  based  on  latent variable 
+models  and  topographic  clustering.  Applied  to  the 
+expression analysis of the cell cycle-regulated genes of the 
+yeast  Saccharomyces  cerevisiae,  various  distinctive 
+patterns  underlying  the  data set were  extracted  by  an 
+efficient  latent variable  model,  that  is,  the  aspect  model. 
+The  identified  patterns  well  correspond  to  the  typical 
+expression  behaviors  of  genes  regulated  in  specific cell 
+cycle  phases.  In  topographical  clustering,  based  on  the 
+STMK algorithm and a similarity measure derived from the 
+aspect  model,  the  discovered  gene  clusters  are  well 
+reflecting their characteristic expression patterns during the 
+progress of cell cycle. 
+
+In  addition,  our apprach  has  provided  two  informative 
+maps  on  the  cluster structure.  The  first  map  depicts  each 
+cluster by the  expression variation  of  genes in  the  cluster, 
+across  the  measured time  points.  In  the  second  map,  the 
+clusters  are  depicted  by the  combination  patterns of latent 
+properties  inherent in  the  data.  A meta-level  analysis  and 
+visualization  based  on  these  coupled  maps  enables  a 
+more principled interpretation of gene expression patterns. 
+As  future  works,  we  are  considering  to  incorporate 
+another  type  of  information  for  gene  expression  data 
+analysis.  The learning in  latent variable models is  basically 
+unsupervised.  In  some  cases,  however,  existing  labeled 
+data can  be  used  during training to  improve  performance. 
+For the  yeast  data,  for  example,  more  than  100 genes 
+have been  already identified  as  being cell  cycle-regulated. 
+Hierarchical  latent variable  models  and  semi-supervised 
+learning  in  the  model  could  be  applied  to  utilizing  this 
+information.  Additionally,  we  will  study on  the  selection  of 
+appropriate  number of  latent  factors  of  aspect  models  in 
+the  analysis  of  gene  expression  data.  In  probabilistic 
+generative models like aspect models, this problem can  be 
+reduced  to  a  model  selection  problem.  Then,  standard 
+techniques  from  statistics,  based  on  various  criteria  such 
+as BIC and MDL, could be used in our works. 
+
+Acknowledgments 
+
+This  research  was  supported  by the  Korean  Ministry of 
+Science  and  Technology  under the  NRL,  IMT-2000,  and 
+BrainTech programs. 
+
+References 
+Baldi,  P.  and  Hatfield,  G.W.  (2002).  DNA Microarrays and  Gene 
+Expression:  From  Experiments  to  Data  Analysis  and 
+Modelings. (Cambrige, UK, Cambridge University Press). 
+
+Bishop,  C.M.  (1999).  Latent  variable  models.  In  Learning  in 
+Graphical  Models,  Jordan,  M.l.,ed.  (Cambrige;  The  MIT 
+Press), pp.371-403. 
+
+Cho,  R.J. et al.  (1998). A genome-wide transcriptional analysis of 
+
+the mitotic cell cycle. Mol. Cell 2, 65-73. 
+
+Cristianini,  N.  and  Shawe-Taylor,  J.  (2000).  An  Introduction  to 
+Support Vector  Machines  and  Other  Kernel-based  Learning 
+Methods (Cambridge; Cambridge University Press). 
+
+Dempster,  A.P.,  Laird,  N.M.,  and  Rubin,  D.B.  (1977).  Maximum 
+likelihood  from  incomplete data via the  EM  algorithm.  Journal 
+of the Royal Statistical Society B 39, 1-38. 
+
+Eisen,  M.B.,  Spellman,  P.T.,  Brown,  P.O.,  and  Botstein,  D. 
+(1998).  Cluster  analysis  and  display  of  genome-wide 
+expression  patterns.  Proc.  Natl.  Acad.  Sci.  USA  95,  14863-
+14868. 
+
+Fowlkes,  C.,  Shan,  Q.,  Belongie,  S.,  and  Malik,  J.  (2002). 
+Extracting  global  structure  from  gene  expression  profiles.  In 
+edso,  Methods  of  Microarray  Data  Analysis  II:  Papers  from 
+CAMDA 01. Lin, S.M. and Johnson, K.F., (Norwell, MA: Kluwer 
+Academic Publishers), pp. 81-90. 
+
+Graepel,  T.,  Burger,  M.,  and  Obermayer,  K.  (1998).  Self(cid:173)
+
+organizing  maps:  Generalizations  and  new  optimization 
+techniques. Neurocomputing 21, 173-190. 
+
+Herwig,  R.,  Poutska,  A.  J.,  Muller,  C.,  Bull,  C.,  Lehrach,  H.,  and 
+o· Brien,  J.  (1999).  Large-scale clustering  of eDNA-fingerprin(cid:173)
+ting data. Genome Research 9,  1093-1105. 
+
+Hofmann,  T.  (2000).  Learning  the  similarity  of  documents:  an 
+information-geometric approach  to  document  retrieval  and 
+categorization.  In  Advances  in  Neural  Information  Processing 
+Systems 12, 914-920. 
+
+Hofmann, T.  (2001 ).  Unsupervised learning by probabilistic latent 
+
+semantic analysis. Machine Learning 42, 177-196. 
+
+Jaakkola,  T.  and  Haussler,  D.  (1999).  Exploiting  generative 
+models  in  discriminative  classifiers.  In  Advances  in  Neural 
+Information Processing Systems 11, 487-493. 
+
+Kohonen,  T.  (1997).  Self-Organizing  Maps  (New York:  Springer(cid:173)
+
+Verlag). 
+
+Rose,  K.,  Gurewitz,  E.,  and  Fox,  G.  (1990).  A deterministic 
+annealing  approach  to  clustering.  Pattern  Recognition  Letters 
+11, 589-594. 
+
+Scherf,  U.  et  al.  (2000).  A gene  expression  database  for  the 
+molecular pharmacology  of cancer.  Nature  Genetics 24,  236-
+244. 
+
+Scholkopf,  B.  and  Sm  Nola,  A.J.  (2001).  Learning  with  Kernels: 
+Support  Vector  Machines,  Regularization,  Optimization,  and 
+Beyond. (Cambridge, MA: MIT Press). 
+
+Gene Expression Pattern Analysis via Latent Variable Models Coupled with Topographic Clustering  39 
+
+Shamir,  R.  and  Sharan,  R.  (2002).  Algorithmic  approaches  to 
+clustering gene expression data. In Jiang, T., Smith, T., Xu,  Y., 
+and Zhang, M., edso,  Current Topics in Computational Biology, 
+Jiang, T.,  Smith,  T.,  Xu,  Y.,  and  Ahang,  M.,  (Cambridge,  MA: 
+MIT Press), pp 269-299. 
+
+Spellman,  P.T.  et al.  (1998).  Comprehensive  identification  of cell 
+cycle-regulated genes of the yeast Saccharomyces cerevisiae 
+by microarray hybridization. Mol. Bioi. Cell 9, 3273-3297. 
+
+Tamayo,  P.,  Slonim,  D.,  Mesirov,  J.,  Zhu,  Q.,  Kitareewan,  S. 
+Dmitrovsky,  E.,  Lander,  E.  S.,  and  Golub,  T.  R.  (1999). 
+Interpreting  patterns  of  gene  expression  with  self-organizing 
+
+maps:  methods  and  application  to  hematopoietic 
+differentiation. Proc. Natl. Acad. Sci. USA 96, 2907-2912. 
+
+Tavazoie,  S.,  Hughes,  J.D.,  Campbell,  M.J.,  Cho,  R.J.,  and 
+Church,  G.M.  (1999).  Systematic  determination  of  genetic 
+network architecture. Nature Genetics 22, 281-285. 
+
+T6r6nen, P., Kolehmainen, M., Wong, G., and Castren, E. (1999). 
+Analysis of gene expression  data  using  self-organizing  maps. 
+FEBS Letters 451 (2),  142-146. 
+
+Tsuda,  K.,  Kin,  T.,  and  Asai,  K.  (2002).  Marginalized  kernels  for 
+biological sequences. Bioinformatics 18(Suppl1), S268-S275. 
+
+

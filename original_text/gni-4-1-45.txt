@@ -1,0 +1,445 @@
+RAPID 
+
+COMMUNICATION 
+
+Genomics & Informatics  Vol.  4{1) 45-47,  March 2006 
+
+D2GSNP: a web server for the selection of Single Nucleotide 
+Polymorphisms within human disease genes 
+
+Hyojin  Kang,  Taehui  Hong,  Won-Hyong  ChUing, 
+Younguk Kim,  Jinhee Jung,  Sohyun Hwang, Are!um 
+Han and Young Joo Kim* 
+
+National  Genome  Information  Center,  Korea  Research 
+Institute  of  Bioscience and  Biotechnology,  52  Eoeun-dong, 
+Yuseong-gu,  Daejeon,  305-333,  Korea 
+
+Abstract 
+D2GSNP  is  a  web-based  server  for  the  selection  of 
+single  nucleotide  polymorphisms  (SNPs)  within  genes 
+related to human diseases. The D2GSNP is based on a 
+relational database created by downloading and parsing 
+OMIM, GAD, and dbSNP, and merging it with positional 
+information  of  UCSC  Golden  Path.  Totally  our  server 
+provides 5,142 and 1,932 non-redundant disease genes 
+from  OMIM  and  GAD,  respectively.  With  the  D2GSNP 
+web  interface,  users  can  select  SNPs  within  genes 
+responding  to  certain  diseases  and  get  their  flanking 
+sequences for further genotyping  experiments such  as 
+association studies. 
+
+Keywords:  SNP,  disease gene, association study 
+Availability:  D2GSNP  is  freely  available  at  http://combio. 
+kribb.  re.kr:8080/D2GSNP/. 
+
+Summary 
+The importance of single nucleotide polymorphism (SI\JP) 
+analysis  has  been 
+increased  continuously  as  the 
+increasing  requirements  of  numerous  applications  in 
+complex genetic disease, pharmacogenomics, population 
+genetics,  and  evolutionary  studies  (Gray  et  at.,  2000; 
+Marnetlos,  G.,  2003;  Mooser  et at.,  2003;  Hacia  et at., 
+1999}. Currently over 10 million human SNPs have bB<en 
+deposited into dbSNP database (Sherry et at., 2001) and 
+many  companies  have  developed  whole  genome 
+platforms for genotyping SNPs such as Affymetrix GeneChip, 
+and lllumina BeadArray systems. Although the genotyping 
+costs  are  rapidly  decreasing,  choosing  effective  SNF>s 
+within  candidate  genes  is  still  important  and  critical  to 
+
+*Corresponding author:  E-mail yjkim8@kribb.re.kr, 
+Tel  +82-42-879-8540,  Fax +82-42-879-8519 
+Accepted 28 February 2006 
+
+complex disease studies which needs numerous SNPs 
+and large sample sets to maximize statistical power (Day, 
+2005;  Hirschhorn, 2005). 
+
+We  have  developed  a  web  server,  D2GSNP,  to 
+support the selection of SNPs within human genes related 
+to diseases (Fig. 1 ). Through the web interface, researchers 
+are able to retrieve genes for queried diseases and SNPs 
+within those genes intuitively.  For example, a researcher 
+who is interested in several diseases with limited resources 
+may  use  D2GSNP  to  pick  a  gene-dense  region  of 
+chromosomes with a few clicks and select effective SNPs for 
+his/her disease association study. To automate the selection 
+step,  D2GSNP  constructed  a  local  relational  database 
+which  integrated  four  public  databases,  OMIM  (Online 
+Mendelian Inheritance in Man), GAD (Genetic Association 
+Database),  dbSNP,  and  UCSC  GoldenPath.  The  web(cid:173)
+based interface was implemented using JavaServer Faces 
+(JSF) technology which has an advantage of constructing a 
+clearly defined architecture by separating application logic 
+and  presentation.  It  helps  the  rapid  construction  of  web 
+services and lowers the cost of maintenance. 
+
+Mapping diseases to genes 
+Previously, there have been many alternative methods to 
+identify human genes related to monogenic or complex 
+diseases (Perez-lratxeta et at., 2002; Lopez-Bigas et at., 
+2004; Tiffin eta/., 2005). We constructed highly accurate 
+gene maps of diseases based on two manually curated 
+databases including OMIM and GAD. OMIM is a catalog 
+of human genes and genetic disorders (Hamosh  et at., 
+2002)  and  GAD  is  an  archive  of  human  genetic 
+association  studies of complex diseases and disorders 
+(Becker eta/., 2004). In detail, we use OMIM Morbid Map 
+which is the cytogenetic map location of disease genes 
+described in OMIM. Among GAD genes, we used genes 
+which  showed  at  least  one  positive  association  to  a 
+disease. As a result, the number of disease-gene records 
+and non-redundant gene counts in OMIM were 4,058 and 
+5, 142,  respectively.  There  were  8,179  disease-gene 
+records and 1 ,932 non-redundant genes in GAD. 
+
+Mapping genes to SNPs 
+In  order to map SNPs to disease genes,  chromosomal 
+position of gene boundaries were retrieved from knownGene, 
+
+46  Genomics &  Informatics  Vol.  4(1) 45-47,  March 2006 
+
+(A) 
+D2G SNP 
+
+(B) 
+D2G SNP 
+
+AboutD2GSNP 
+- D2GSNP  is web-based tools for the selection of a set of SNPs  within candidate 
+genes of human diseases. 
+- Through  the D2GSNP  web  Interface,  researchers can  retrieve candidate genes for 
+query disease and select a  set of SNPs  within those genes. 
+- D2GSNP  provides FAST A formated fianklng sequences of selected SNPs  for 
+genotyplng experiments. 
+Read here how  to use  the 02GSNP 
+
+Disease Gene Info 
+
+Query disease: 1 
+2 
+OM!M  Gene: 
+13 
+GAD Gene: 
+Total  Gene: 
+13 
+
+0  Graph  0  Table  ~ 
+
+Data source 
+NCB!  dbSNP:  ftp Build 125 (OCT  10,  2005) 
+UCSC  GoldenPath  : hg17 (May,  2004) 
+QMIM:  (Feb,  2006) 
+GAQ  : (Feb,  2006) 
+
+Enter disease names 
+stroke 
+
+"'::._ 
+
+~~':,1  mRNA Ace 
+
+Position 
+0  MTHFR  NM_005957f;1~61~0944-
+
+0  AGT 
+
+19305  P42898  1 
+NM_000029 t'!id~~6i5019- 11584  POl 019  1 
+NM_005141 f's'~~~~~{ 1767- 8075  P02675 
+
+0  FGB 
+0  PDE4D  NM_006203 ~i1'~gj~2467-
+0  CDI4 
+
+NM_000591 f'{i~~~~§~ 1504- 1453  P08571 
+I 
+NM_000603f's'6;~~g1~5794- 23530  P29474  I 
+NM_000237n~~~6~~1 0S?-
+I 
+NM_002421 f'~iN~?~~65860- 8245  P03956  1 
+NM_002422 to1it'~~~6 11742- 7809  P08254  1 
+
+27993  P06858 
+
+0  NOS3 
+
+0  LPL 
+
+0  MMPI 
+
+0  MMP3 
+
+I 
+615566 ~08499-1 
+
+Length g;:,i;~D Dis~i~se  OMIM  GAD 
+stroke 
+(6684) 
+stroke 
+(1179) 
+stroke 
+(5810) 
+stroke 
+stroke 
+(600129)(1521) 
+stroke 
+(2757) 
+stroke 
+(3703) 
+stroke 
+(445) 
+stroke 
+(3171) 
+stroke 
+(1764) 
+stroke 
+(1770) 
+
+175540 P04275 
+
+I 
+
+0  VWF 
+
+X04385 
+
+~~f~~~28407-
+
+(D) 
+D2G SNP 
+
+I  !Wi!i!51... 
+
+I 
+
+or load It from disk 
+~I Reset I 
+
+(C) 
+D2G SNP 
+
+Disease Gene Info 
+
+Query disease:  I 
+2 
+OM!M Gene: 
+13 
+GAD Gene: 
+Total  Gene: 
+13 
+
+0  Graph 0  Table 
+
+Chr1  Gene Count:  2 
+I  II  I  11  IM  -
+(II I 
+
+I  Show SNPs 
+
+II  Reline SNPs  I [  Export SNPs 
+
+II 
+
+Export Sequences 
+
+SNP Distribution Info 
+
+Total 
+SNPs 
+
+102 
+
+Species 
+
+Chromosome range 
+
+Length  Average Distance 
+
+Homo sapiens 
+
+chr1: 11780944-
+
+11800083 
+
+19140 
+
+187 
+
+Refine Condition 
+
+tl  ! l I 
+
+I  ex::::=II II £:1 ro i[H lll:l•U•CJI[)Mmi:Jill:l J:;! > 
+
+Function Class:  ~~~ef~~~n~~~~~A~s_nonsynon, UTR,  Intron,  Splice-site, 
+
+Chr4 Gene  Count:  1 
+<I  I  { l  • •  X  • 
+
+I  lll,  IM  I  l  I  • • • •  Ml lM  • 
+
+ChrS  Gene Count:  2 
+<IMMM  I  IX 
+
+i  rMIM  MMIM  I  I, 1lM I> 
+
+Chr7  Gene  Count:  1 
+<IMM  I! l!  I  !lil  X. Mfj( I 
+
+ll  )(JiliM  !I  I) 
+
+SNP Functional Class Info 
+UTR: 
+Intron: 
+Locus: 
+CDS-Synon: 
+CDS-Nonsynon: 
+Synonymy unknown: 
+Splice-site: 
+N/A: 
+
+22 
+48 
+14 
+11 
+7 
+0 
+0 
+0 
+
+SNP Type 
+
+SNP: 
+In-Del: 
+Heterozygous: 
+Mlcrosatellite: 
+
+97 
+5 
+0 
+0 
+
+Fig.  1, A web interface of D2GSNP. (A) Disease name input page.  Users can input multiple disease names through input area, or 
+upload  a  file  which  contains  a  list of disease  names  (B)  Search  result  showing  disease  related  genes  with  a  table  view.  (C) 
+Chromosomal distribution of disease related genes with a graphic view. The bars indicate the locus of the disease genes. (D) SNP 
+search  result  page.  Users  are  able  to  navigate  or refine  a  set  of SNPs  with  various  conditions,  and  download  their  flanking 
+sequences. 
+
+which  provides the information of protein coding genes 
+based  on  proteins from  Uniprot andtheir corresponding 
+mRNAs from  GenBank. To link knownGenes with gene 
+symbols  from  OMIM  and  GAD,  UCSC's  table  kgXref 
+(known  genes 
+reference)  was  used. 
+However, a few gene symbols from OMIM and GAD did 
+
+to  external 
+
+not match with those from kgXref. Some of these orphan 
+gene  symbols  were  finally  linked  through  gene  alias 
+table  based  on  Entrez  gene  which  covers  more  gene 
+symbols.  Our  system  is  based  on  hg17  in  UCSC 
+GoldenPath  and  Build  125  in  dbSNP.  Note  that  the 
+number of SNPs in our database is lower than the total 
+
+D2GSNP: a Web Server for the Selection of Single Nucleotide Polymorphisms within Human Disease Genes  4 7 
+
+number of SNPs in dbSNP, because some of them have 
+not  been  mapped  to  a  unique  position  on  the  human 
+genome yet. 
+
+SNPs filtering and Data export 
+
+The  general  purpose  of  D2GSNP  is  to  select  SI\JPs 
+within  human  genes  related  to  user-queried  disease. 
+SNPs  can  be  filtered  through  their  variation  types, 
+validation status,  minor allele frequency,  and functional 
+classes.  D2GSNP also provides flanking  sequences of 
+selected  SNPs  for  genotyping  experiments.  Flanking 
+sequences  of  SNPs  with  user-defined 
+length  are 
+provided  in  a  FAST A  format  file.  Fig.  1 D  shows  an 
+example of filtered SNPs. Usage details of the D2GSNP 
+are available in the on-line help page. 
+
+Acknowledgements 
+
+This  research  was  supported  by  a  grant  from  KRIBS 
+Research  Initiative  Program  and  in  part by the  Korean 
+HapMap  Project from  the  Korea  Ministry of Science & 
+Technology. 
+
+References 
+
+Day, C.  P. (2005). Genetic studies to identify hepatic fibrosis 
+genes  and  SNPs  in  human  populations.  Methods  Mol. 
+Med.  117, 315-331. 
+
+Gray, I.  C., Campbell, D. A., and Spurr, N. K.  (2000). Single 
+nucleotide  polymorphisms as tools  in  human  genetics. 
+Hum.  Mol.  Gene.  9,  2403-2408. 
+
+Hacia,  J.  G.,  Fan,  J.  B.,  Ryder,  0.,  Jin,  L.,  Edgemon,  K., 
+Ghandour, G.,  Mayer,  R.  A.,  Sun,  B.,  Hsie,  L.,  Robbins, 
+C.  M.  eta/. (1999).  Determination of ancestral alleles for 
+human  single-nucleotide  polymorphisms  using  high(cid:173)
+density oligonucleotide arrays.  Nat.  Genet. 22, 164-167. 
+Hamosh, A., Scott, A. F., Amberger, J., Bocchini, C., Valle, D., 
+and McKusick, V.A. (2002). Online Mendelian Inheritance 
+in  Man  (OMIM),  a  knowledgebase  of  human  genes and 
+
+genetic disorders. Nucleic Acids Res.  30, 52-55. 
+
+Hirschhorn,  J.N.  (2005).  Genetic  approaches  to  studying 
+common diseases and complex traits.  Pediatr.  Res.  57 
+(5 Pt 2), 74R-77R. 
+
+Lopez-Bigas, N.  and Ouzounis, C.A.  (2004). Genome-wide 
+identification  of  genes  likely  to  be  involved  in  human 
+genetic disease.  Nucleic Acids Res.  32, 3108-3114. 
+
+Marnellos,  G.  (2003).  High-throughput  SNP  analysis  for 
+genetic  association  studies.  Curr.  Opin.  Drug  Discov . 
+. De vel.  6,  317-321. 
+
+Mooser, V., Waterworth, D.M., Isenhour, T., and Middleton, 
+L.  (2003). Cardiovascular pharmacogenetics in the SNP 
+era.  J.  Thromb.  Haemost.  1,  1398-1402. 
+
+Perez-lratxeta,  C.,  Bork,  P.,  and  Andrade,  M.A.  (2002). 
+Association  of  genes  to  genetically  inherited  diseases 
+using data mining.  Nature Genet. 31,  316-319. 
+
+Sherry, S.T., Ward, M.H., Kholodov, M., Baker, J., Phan, L., 
+Smigielski,  E.M.,  and  Sirotkin,  K.  (2001).  dbSNP:  the 
+NCBI database of genetic variation.  Nucleic Acids Res. 
+29, 308-311. 
+
+Tiffin, N.,  Kelso, J.F., Powell, A.R., Pan,  H.,  Bajic, V.B., and 
+Hide,  W.A.  (2005).  Integration of text- and data-mining 
+using  ontologies  successfully  selects  disease  gene 
+candidates.  Nucleic Acids Res.  33,  1544-1552. 
+
+Becker,  K.G.,  Barnes,  K.C.,  Bright,  T.J.,  and  Wang,  S.A. 
+(2004). The Genetic Association Database. http://genetica 
+ssociationdb.nih.gov! 
+
+Kent, W.J., Sugnet, C.W., Furey, T.S., Raskin, K.M., Pringle, 
+T.H., Zahler, A.M., and Haussler, D.  (2002). The human 
+genome browser at UCSC.  http://genome.ucsc.edu/ 
+
+McKusick-Nathans  Institute  for  Genetic  Medicine,  Johns 
+Hopkins University (Baltimore, MD) and National Center for 
+Biotechnology  Information,  National  Library  of  Medicine 
+(Bethesda,  MD).  (2000).  Online Mendelian Inheritance in 
+Man, OMIM (TM).  http://www.ncbi.nlm.nih.gov!omiml. 
+
+Sherry,  S.T.,  Ward,  M.H.,  Kholodov,  M.,  Baker,  J.,  Phan,  L., 
+Smigielski, E.M., and Sirotkin, K.  (2001). dbSNP: the NCBI 
+database  of  genetic  variation.  http://www.ncbi.nlm.nih. 
+gov/SNP! 
+
+

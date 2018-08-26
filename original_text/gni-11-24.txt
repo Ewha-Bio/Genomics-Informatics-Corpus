@@ -1,0 +1,1161 @@
+G&I   Genomics & Informatics
+
+ORIGINAL ARTICLE
+
+pISSN 1598-866X  eISSN 2234-0742
+Genomics Inform 2013;11(1):24-33
+http://dx.doi.org/10.5808/GI.2013.11.1.24
+
+Bioinformatics Interpretation of 
+Exome Sequencing: Blood Cancer
+
+Jiwoong Kim1†, Yun-Gyeong Lee1,2†, Namshin Kim1,2*
+
+1Korean Bioinformation Center, Korea Research Institute of Bioscience and Biotechnology, Daejeon 305-806, Korea, 
+
+2Department of Bioinformatics, University of Science and Technology, Daejeon 305-806, Korea
+
+We had analyzed 10 exome sequencing data and single nucleotide polymorphism chips for blood cancer provided by the 
+PGM21 (The National Project for Personalized Genomic Medicine) Award program. We had removed sample G06 because the 
+pair is not correct and G10 because of possible contamination. In-house software somatic copy-number and heterozygosity 
+alteration  estimation  (SCHALE)  was  used  to  detect  one  loss  of  heterozygosity  region  in  G05.  We  had  discovered  27 
+functionally important mutations. Network and pathway analyses gave us clues that NPM1, GATA2, and CEBPA were major 
+driver genes. By comparing with previous somatic mutation profiles, we had concluded that the provided data originated 
+from acute myeloid leukemia. Protein structure modeling showed that somatic mutations in IDH2, RASGEF1B, and MSH4 can 
+affect protein structures.
+
+Keywords: acute myeloid leukemia, computational biology, exome, mutation
+
+Introduction
+
+Thanks to the next-generation sequencing (NGS) tech-
+nology, genomics research area has been developed drama-
+tically in recent years. Since 2008, many efforts have been 
+made  to  find  somatic  mutations  in  cancer  genomes; 
+hundreds of samples by exome sequencing have been used to 
+develop diagnosis and prognosis markers in various cancers 
+in recent researches. Cheaper price has enabled us to get 
+more  exome  sequencing  data  from  hundreds  of  samples, 
+even thousands of genomes.
+
+By applying exome sequencing to cancer genomes, we can 
+discover  somatic  mutations  and  somatic  copy-number 
+alterations (SCNAs) on a massive and genome-wide scale. 
+Traditionally,  array-based  comparative  genomic  hybridi-
+zation  has  been  used  to  discover  SCNA,  but  exome  se-
+quencing  has  many  advantages,  in  that  one  can  derive 
+various  results,  such  as  somatic  mutations,  loss  of  hete-
+rozygosity (LOH), and SCNA. It is still under debate because 
+bioinformatics methods could give different results depen-
+ding  on  their  parameters  and  software,  but  major  driver 
+genes of somatic mutations show a similar consensus.
+
+We  had  used  an  in-house  bioinformatics  pipeline  and 
+databases for this research, especially “somatic copy-number 
+and heterozygosity alteration estimation” (SCHALE) to find 
+LOH  and  SCNA.  Furthermore,  driver  genes  were  also 
+inferred  from  network  and  pathway  analyses.  Protein 
+structure prediction was used to predict putative structural 
+changes  by  somatic  mutations  and  also  possibly  their 
+functional changes.
+
+Methods
+Dataset
+
+Whole-exome sequencing data of tumor/normal paired 
+samples  from  10  individuals  with  blood  cancer  were 
+obtained  in  FASTQ  format  from  PGM21  (The  National 
+Project for Personalized Genomic Medicine). For 10 of the 
+samples, the genotype information from single nucleotide 
+poymorphism (SNP) chip was additionally obtained (but not 
+the raw data).
+
+Data processing and quality control (QC)
+
+The QC of sequencing reads was performed with NGS QC 
+
+Received January 30, 2013; Revised February 20, 2013; Accepted February 22, 2013
+*Corresponding author: Tel: +82-42-879-8540, Fax: +82-42-879-8519, E-mail: deepreds@kribb.re.kr
+†These two authors contributed equally to this work.
+Copyright © 2013 by the Korea Genome Organization
+CC It is identical to the Creative Commons Attribution Non-Commercial License (http://creativecommons.org/licenses/by-nc/3.0/).
+
+Toolkit,  and  the  high-quality  reads  were  aligned  to  the 
+human reference genome (hg19, http://genome.ucsc.edu) 
+using BWA (http://bio-bwa.sourceforge.net/) [1] with de-
+fault  parameteres.  Picard  (http://picard.  sourceforge.net) 
+was  used  to  remove  PCR  duplicates.  Base  quality  recali-
+bration and local realignment around indels were performed 
+using Genome Analysis Toolkit (GATK, http://www. broa-
+dinstitute.org/gatk/). Because our previous study showed 
+that the discordance of indel alignments had potential to 
+generate false-positive somatic mutations, we performed the 
+local realignment after the merging of alignments from same 
+patients. Template lengths were calculated using the pro-
+cessed alignments, and the distributions for each samples 
+were plotted to examine the qualities of sequencing libraries. 
+Variant  genotyping  for  each  sample  was  performed  with 
+UnifiedGenotyper of GATK, and the variants were filtered as 
+follows: mapping quality zero (MQ0) ≥ 4 && MQ0/depth of 
+coverage (DP) ＞ 0.1, variation quality (QUAL) ＜ 200, qua-
+lity by depth (QD) ＜ 5, Fisher strand (FS) ＞ 60, MQ ＜ 40, 
+DP ＜ 10 (5 if no variant allele), genotype quality (GQ) ＜ 13. 
+The  genomic  annotation  of  variants  was  performed  with 
+custom-made scripts and refSeq information. 
+
+Identification of somatic mutations
+
+We had developed a bioinformatics pipeline for this award 
+program (Fig. 1). VarScan [2] was used to identify somatic 
+mutations. The output of VarScan was filtered as follows: 
+somatic p-value  ≤ 0.05, normal allele depth  ≤ 1, tumor 
+allele depth ≥ 5, tumor total depth ≥ 10. The mutation set 
+was annotated using a custom-made script with refSeq, SIFT 
+(http://sift.jcvi.org/), MutationAssessor, phyloP46way (ver-
+tebrate), dbSNP 137 [3], in-house Korean variation data-
+base, etc. We selected the driver mutations that were not in 
+dbSNP 137, excluding clinically associated variants (Flagged 
+track in University of California Santa Cruz [UCSC] Genome 
+Browser) and an in-house Korean variation database, and 
+were deleterious missense, nonsense, read-through, splice- 
+site, or coding indel mutations (NS/SS/I). The deleterious 
+missense mutations were determined if at least 2 out of the 
+following 3 were true: PhyloP score ＞ 1.5, SIFT prediction = 
+deleterious,  MutationAssessor  Func.  Impact  =  high  or 
+medium.
+
+The total numbers of candidates for each filtering step are 
+summarized  in  Fig.  1.  We  found  somatic  mutations  in 
+samples G10, G08, and G09, but they were not NS/SS/I.
+
+Comparison with genotypes from SNP chip
+
+To  compare  with  genotypes  from  SNP  chip,  the  geno-
+typing  was  performed  using  UnifiedGenotyper  with  the 
+intervals, including all the coordinates of SNP chip and the 
+option-output_mode  EMIT_ALL_SITES.  For  each  sample 
+
+Genomics  &  Informatics  Vol.  11,  No.  1,  2013
+
+with genotype information from SNP chip, overall genotype 
+concordance,  non-reference  sensitivity,  and  non-reference 
+discrepancy rate were calculated according to the guide of 
+GATK VariantEval using the genotypes with DP ≥ 5.
+
+Genotype comparison of samples
+
+The multi-sample SNP genotyping was performed with 
+UnifiedGenotyper to compare the genotypes on the variant 
+positions where all samples were able to be genotyped. The 
+filtration  scheme  was  the  same  as  above.  The  distance 
+between two samples was calculated as the sum of genotype 
+difference  values  (0  if  two  genotypes  are  same,  1  if  a 
+genotype is 0/1 and another is 0/0 or 1/1, 2 if a genotype is 
+0/0 and another is 1/1). The distances were divided by the 
+number  of  the  variant  positions.  Heatmap  and  similarity 
+matrix were used to visualize the distances.
+
+Fig.  1.  Bioinformatics  pipeline  for  exome  data  and  numbers  of 
+somatic  mutation  candidates  for  each  filtering  step.  SNP,  single 
+nucleotide polymorphism; LOH, loss of heterozygosity; SCNA, so-
+matic copy-number alterations; SCHALE, somatic copy-number and
+heterozygosity alteration estimation; NS/SS/I, nonsense, splice-site,
+or  coding  indel  mutations.
+
+www.genominfo.org
+
+25
+
+J  Kim,  et  al.  Somatic  Mutation,  LOH,  and  SCNAs  by  Exome-Seq
+
+Genome annotation
+
+We  used  in-house  genome  annotation  pipelines  and 
+
+various databaes, as summarized below.
+
+Genomic annotation: refGene
+Human Genome Variation Society (HGVS) nomenclature: 
+
+nucleotide (non-coding, coding), protein
+
+SIFT - tolerant amino acid substitutions
+MutationAssessor
+phyloP46way_vertebrate
+GERP; GERP_element: rsScore
+RepeatMasker
+Tandem repeat definition
+dbSNP 137; Common, Flagged, Mult
+Korean variation database (54 Personal Genomes)
+OMIM morbid genes
+Oncogenes and tumor suppressors from Ariadne Pathway 
+
+Studio
+
+Detection of LOH and SCNA by SCHALE
+
+Detection LOH and SCNA was performed with custom- 
+made software SCHALE (Fig. 2). For the positions where the 
+genotypes were heterozygous in normal samples, the values 
+of LOH and SCNA were calculated. The values of LOH were 
+
+calculated by the equation:
+LOH = | RT ‒ 0.5 | － | RN ‒ 0.5 |, where RN is the count 
+of reads supporting a non-reference allele divided by the total 
+depth in the normal sample and RT is in tumor sample. The 
+values of SCNA were calculated by the equation:
+
+SCNA  =  log2(tumor  depth/normal  depth),  where  the 
+depths  were  normalized  using  R  library  tweeDEseq.  The 
+values of LOH and SCNA were segmented together using R 
+library  DNAcopy  with  the  parameters  alpha  =  0.01  and 
+undo.SD = 2. The segments and values were plotted for each 
+chromosome with the idiograms in R library SNPchip.
+
+Network analysis
+
+Ingenuity Pathway Analysis (IPA) was used to perform the 
+network study of the identified somatically mutated genes 
+and the genes in the LOH region.
+
+Protein structure modeling
+
+Before  the  structural  modeling,  the  protein  features 
+related to the somatic mutations were found by BLAST on 
+UniProt  (10  most  similar  proteins,  expectation  value  = 
+1e-30)  and  residue  mapping.  Homology  modeling  was 
+performed using MODELLER (http://salilab.org/modeller) 
+with the templates 1LWD for IDH2, 3KSY for RASGEF1B, 
+
+26
+
+www.genominfo.org
+
+Fig.  2.  Somatic  copy-number  and 
+heterozygosity  alteration  estimation 
+(SCHALE), developed for detection of
+loss of heterozygosity  (LOH)  and so-
+matic copy-number alterations (SCNA). 
+TMM,  trimmed  mean  of  M  values; 
+CBS,  circular  binary  segmentation.
+
+and 2O8B for MSH4. Molecular dynamics simulation was 
+performed with GROMACS (http://pubs.acs.org/doi/abs/ 
+10.1021/ct700301q).  The  structural  images  were  drawn 
+using PyMOL (http://www.pymol.org/).
+
+Results
+QC and results
+
+We had used several methods to check the qualities of 
+sequence reads. First, we used NGS QC Tools [4] to confirm 
+sequence qualities (Supplementary Table 1). Overall, they 
+had a very good quality, according to NGS QC Tools results. 
+Template length (library size) was also evenly distributed for 
+
+Genomics  &  Informatics  Vol.  11,  No.  1,  2013
+
+all samples (Supplementary Fig. 1).
+
+Reference genome mapping
+
+About  98%  of  reads  were  mapped  onto  the  human 
+reference  genome  (UCSC  Genome  Browser,  hg19),  sum-
+marized in Supplementary Table 2. After a duplicate removal 
+step, 77‒85% reads were retained; each sample had up to 
+25% duplicates. Eighty-nine percent of target areas covered 
+at least 10 sequence reads, which is sufficient for discovering 
+somatic  mutations. We  did not  get  target  enrichment  kit 
+information  from  PGM21,  so  we  had  compared  coverage 
+information from several kits and concluded that SureSelect 
+All Exon 50Mb was used for exome sequencing. 
+
+Table  1.  A  list  of  functionally  important  somatic  mutations  in  8  samples
+
+Patients
+
+Gene
+
+Mutation
+
+G02, G07 NPM1
+
+Frameshift
+
+G02
+G02
+G02
+G03
+
+G03
+G03
+
+G03
+G03
+G04
+
+G04
+G04
+
+G04
+G04
+G04
+G05
+G05
+G05
+G05
+
+G05
+
+G05
+
+G07
+G07
+G07
+G07
+G07
+G07
+
+ALDH6A1 Missense
+IDH2
+Missense
+MYH13
+Missense
+RPS6KA1 Missense
+
+KCNH1
+Missense
+CACNB4 Missense
+
+RAD21
+KSR2
+CCT7
+
+Nonsense
+Missense
+Frameshift
+
+GATA2
+TRA2B
+
+RBMXL2
+KRT9
+CEBPA
+MAST2
+L1TD1
+MSH4
+GATA2
+
+Missense
+Missense
+
+Missense
+Missense
+In-frame
+Missense
+Nonsense
+Missense
+Missense
+
+VDAC2
+
+Missense
+
+PHF6
+
+Splicing
+
+RASGEF1B Missense
+FZD9
+Missense
+ARHGEF5 Missense
+TLL2
+Missense
+IDH2
+Missense
+ZNF317
+Missense
+
+Nucleotide
+substitution
+
+c.773_776dupTCTG
+c.860_863dupTCTG
+c.166T>A
+c.419G>T
+c.926C>G
+c.2101A>G
+c.2128A>G
+c.856C>T
+c.1184C>T
+c.1232C>T
+c.1286C>T
+c.1238T>A
+c.967C>T
+c.1011C[4]
+c.1362C[4]
+c.1491C[4]
+c.1623C[4]
+c.989G>T
+c.16C>Tc.316C>T
+
+c.727T>A
+c.1004C>T
+c.937_939dupAAG
+c.2384G>A
+c.451G>T
+c.1243G>A
+c.1033T>G
+c.1075T>G
+c.637C>A
+c.682C>A
+c.585+1G>A
+c.588+1G>A
+c.781T>A
+c.1027G>A
+c.3956G>A
+c.2732A>C
+c.419G>A
+c.184G>T
+
+Amino  acid
+substitution
+
+p.Trp259Cysfs*12
+p.Trp288Cysfs*12
+p.Trp56Arg
+p.Arg140Leu
+p.Pro309Arg
+p.Thr701Ala
+p.Thr710Ala
+p.Leu286Phe
+p.Ala395Val
+p.Ala411Val
+p.Ala429Val
+p.Leu413*
+p.Pro323Ser
+p.His339Thrfs*45
+p.His456Thrfs*45
+p.His499Thrfs*45
+p.His543Thrfs*45
+p.Arg330Leu
+p.Arg6Cys
+p.Arg106Cys
+p.Tyr243Asn
+p.Ala335Val
+p.Lys313dup
+p.Arg795His
+p.Glu151*
+p.Glu415Lys
+p.Leu345Val
+p.Leu359Val
+p.Leu213Ile
+p.Leu228Ile
+
+p.Trp261Arg
+p.Gly343Arg
+p.Arg1319His
+p.Asn911Thr
+p.Arg140Gln
+p.Val62Phe
+
+5.145
+
+4.968 Deleterious
+3.725 Deleterious
+1.817 Deleterious
+2.032
+4.024 Deleterious
+1.154 Deleterious
+
+Tolerated
+
+Low
+Medium
+High
+Medium
+High
+High
+
+No
+No
+No
+No
+Yes  (1,462)
+p.V62V
+
+www.genominfo.org
+
+27
+
+SIFT 
+
+prediction
+
+Mutation  Assessor
+
+Func.  Impact
+
+COSMIC
+
+(occurrence)
+
+PhyloP
+
+3.463
+
+4.875 Deleterious
+4.024 Deleterious
+5.335 Deleterious
+4.664 Deleterious
+
+4.083 Deleterious
+5.993
+
+Tolerated
+
+Medium
+High
+High
+Medium
+
+High
+Medium
+
+5.044
+5.180
+5.138
+
+Tolerated
+
+Medium
+
+5.914 Deleterious
+2.951 Deleterious
+
+3.247 Deleterious
+0.137 Deleterious
+5.464
+5.974 Deleterious
+
+High
+Medium
+
+Medium
+Medium
+
+Medium
+
+3.441 Deleterious
+2.421 Deleterious
+
+Low
+High
+
+3.188
+
+Tolerated
+
+Medium
+
+Yes  (2,126)
+
+No
+Yes  (24)
+p.P309T
+No
+
+No
+No
+
+No
+No
+No
+
+p.R330Q
+No
+
+No
+No
+Yes  (46)
+No
+No
+No
+Yes  (16)
+
+No
+
+No
+
+J  Kim,  et  al.  Somatic  Mutation,  LOH,  and  SCNAs  by  Exome-Seq
+
+Genotyping by GATK and comparison with SNP chip
+
+In order to check the genotyping parameters we had used, 
+10 SNP chip results were compared. Because SNP chip data 
+were genotypes, we could not infer copy number changes; we 
+could only calculate concordance between exome sequen-
+cing and SNP chip. We had used a separate bioinformatics 
+pipeline for checking concordance, and GATK [5] was used 
+mainly  for  genotyping  of  germline  samples.  We  had 
+discovered  18,500‒19,200  coding  SNPs.  The  number  of 
+SNPs from the 5' untranslated region (UTR) was close to 
+that of the 3' UTR, so the target enrichment kit was not the 
+latest 3' UTR extension version (Supplementary Table 3). In 
+general, the 3' UTR is much larger than the 5' UTR; a new 3' 
+UTR extension version of the exome kit will give at least a 
+few times more SNPs than 5' UTR.
+
+Two  hundred  fifty  coding  SNPs  were  retained  after 
+removal of dbSNP137 [6] and an in-house Korean database 
+comprised of 54 normal individuals. Among them, we can 
+focus on about 160 variants of NS/SS/I, which is believed to 
+be most functionally important (Supplementary Table 4). 
+
+Overall  concordance  was  at  least  99.6%.  In  recent 
+personal genome papers, they reported more than 99.95% 
+concordance  between  whole-genome  and  SNP  chips. 
+Usually, one can achieve higher concordance if he uses strict 
+parameters for their genotyping. Our purpose is to discover 
+somatic mutations, not genotyping of normal germline, so 
+we did not put much effort to get higher concordance values.
+Especially,  G10.N  SNP  chip  data  were  totally  different 
+from  the exome,  because  only  77% of  SNPs  were  shared 
+(Supplementary Table 5). As one can see in the table, 77% 
+means they are different individuals (false positive for Award 
+program). Distance and similarity matrix were calculated to 
+
+see the differences and similarity (Supplementary Table 6, 
+Supplementary Fig. 2). We had concluded that sample G06 
+has a different sample pair from different individuals. G10 
+also has only 92% similarity and showed a little similarity 
+between G03 and G04. For such reasons, G10 was possibly 
+contaminated  and  therefore  rejected  from  our  bioin-
+formatics analysis.
+
+In  conclusion,  we  had  used  only  8  sample  pairs  for 
+
+discovery of somatic mutations, LOH, and SCNA.
+
+A list of somatic mutations
+
+After removal of SNPs and indels from dbSNP137 [6] and 
+
+Fig.  3.  Changes  in  loss  of  heterozygosity  and  somatic  copy- 
+number  alteration  in  sample  G10. 
+
+28
+
+www.genominfo.org
+
+Fig. 4. Abnormal region on chr1 in
+G05.  LOH,  loss  of  heterozygosity; 
+SNP,  single  nucleotide  poymor-
+phism;  CNA,  copy-number  altera-
+tion.
+
+an in-house Korean database, 27 somatic mutations (NS/ 
+SS/I) were discovered from 8 samples. Among them, NPM1 
+showed  a  TCTG  internal  tandem  insertion.  NPM1-ITD  is 
+known to be major driver gene in acute myeloid leukemia 
+(AML)  (Table  1,  Supplementary  Table  7).  NPM1-ITD  and 
+GATA2  were  recurrently  found  in  two  samples.  We  had 
+removed all variants from dbSNP and an in-house Korean 
+database that showed polymorphisms or normal variants, 
+because they can be putatively functionally neutral, even if 
+they are discovered as somatic mutations.
+
+Fig.  5.  Loss  of  heterozygosity  on  chr13  in  G05.
+
+Genomics  &  Informatics  Vol.  11,  No.  1,  2013
+
+We had downloaded the COSMIC (http://www.sanger.ac. 
+uk/genetics/CGP/cosmic/)  database  and  compared  with 
+our somatic mutations. We found the same highly recurrent 
+somatic  mutation  variants  in  four  genes:  NPM1,  IDH2, 
+CEBPA, and GATA2.
+
+In 26 genes, we can easily see the NPM1, IDH2, GATA2, 
+CEBPA  genes―known  to  be  highly  mutated  in  AML  [3]. 
+Based on the recent somatic mutation profiles from exome 
+sequencing, one can see the following trends of them. In 
+solid  tumors,  somatic  mutation  in  TP53  is  high.  But  in 
+melanoma, BRAF mutation is high. In hepatocellular car-
+cinoma, CTNNB1 mutation is high. It means that somatic 
+mutations can play a different role, depending on cancer. In 
+AML,  other  than  the  well-known  TP53  mutation,  genes, 
+such as FLT3, TET2, and NPM1, show somatic mutations and 
+are the driver genes [7].
+
+Discovery of LOH and SCAN by SCHALE
+
+We  had  used  SCHALE  to  discover  LOH  and  SCNA.  It 
+appears that sample G06 has many LOHs and SCNAs, but an 
+incorrect sample pair can give those results (Supplementary 
+Fig. 3). We also discovered high LOH on chrX in G10 (Fig. 3).
+We  could  not  find  any  somatic  mutations  in  G10. 
+Previously, we had described that it could be contamination, 
+but another possibility is that they are exomes from identical 
+twins with different genders (we do not have any gender 
+information from any samples).
+
+Abnormal regions on chr1 in G05 showed LOH in the 
+germline,  but  it  is  quite  unnatural  (Fig.  4).  We  are  not 
+describing much for this area until experimental validation is 
+
+Fig.  6.  Genes  in  a  loss  of  heterozygosity  region.  Image  adopted  from  University  of  California  Santa  Cruz  (UCSC)  Genome  Browser, 
+chr5:45,578,409-52,035,344.
+
+www.genominfo.org
+
+29
+
+J  Kim,  et  al.  Somatic  Mutation,  LOH,  and  SCNAs  by  Exome-Seq
+
+Fig.  7.  Ingenity  Pathway  Analysis  (IPA)  from  genes  with  loss  of
+heterozygosity  and  somatic  mutation  (sample  G05).  Data  were 
+Ⓡ
+ Systems, http://www.
+analyzed through the use of IPA (Ingenuity
+ingenuity.com)  [8].
+
+Table  2.  Two  top  networks  inferred  from  Ingenuity  Pathway 
+Analysis
+
+ID
+
+Top  networks
+
+Associated  network  functions
+
+1 Cancer,  hematological  disease,  cell  cycle
+2 Cell  death  and  survival,  cell  cycle,  cell-to-cell 
+signaling  and  interaction,  cellular  movement
+
+Score
+
+26
+26
+
+Fig. 8. "Cancer, Hematological Disease, Cell Cycle” Network. Data
+were analyzed through the use of Ingenity Pathway Analysis (IPA)
+Ⓡ
+  Systems,  http://www.ingenuity.com)  [8].
+(Ingenuity
+
+Fig.  9.  Major  interaction  in  top  network.  Data  were  analyzed 
+Ⓡ
+through  the  use  of  Ingenity  Pathway  Analysis  (IPA)  (Ingenuity
+Systems,  http://www.ingenuity.com)  [8].
+
+performed.
+
+We had found one LOH region on chr13 in G05 (Fig. 5). 
+INTS6 and KIAA1704 are located at both ends and poten-
+tially  could  make  a  fusion  gene  (Fig.  6).  Experimental 
+validation  is  also  required  for  this  assumption.  INTS6  is 
+expressed in blood; many expressed sequence tags (ESTs) 
+were  found  in  INTS6  in  UniGene  (http://www.ncbi. 
+nlm.nih.gov/UniGene). But, KIAA1704 has a small number 
+of  ESTs,  so  we  could  not  infer  expression  levels  from 
+UniGene.  There  are  61  genes  on  chr13:45,578,409- 
+52,035,344, and we had an additional set of network and 
+pathway analyses, including 6 genes (MAST2, L1TD1, MSH4, 
+GATA2, VDAC2, and PHF6) with somatic mutations.
+
+The  top  network  is  “Cancer,  Hematological  Disease, 
+Immunological Disease,” comprised of GATA2 and MAST2. 
+
+Many genes in LOH regions are included in this network. We 
+can infer that those genes with somatic mutations and LOH 
+can interact with each other (Fig. 7).
+
+Network and pathway analyses
+
+Using 26 genes, we had used IPA (http://www.ingenuity. 
+com/)  [8]  for  network  and  pathway  analyses.  It  can  be 
+summarized in two major networks (Table 2).
+
+The top network is “Cancer, Hematologicial Disease, Cell 
+Cycle,” and it has NPM1, GATA2, and CEBPA genes (Figs. 8 
+and  9).  These  three  genes  showed  a  highly  connected 
+network and well-known major driver genes in leukemia.
+
+The second network is related to cell death and survival 
+(Fig. 10). IDH2 and PHF6 genes were located in this network. 
+But overall, somatic mutation frequency in the top network 
+
+30
+
+www.genominfo.org
+
+Genomics  &  Informatics  Vol.  11,  No.  1,  2013
+
+is much higher than the second network above.
+
+IPA analysis reports are summarized in Supplementary 
+
+Table 8.
+
+Protein structure modeling
+
+We have examined protein features related to residues 
+substituted  by  the  identified  27  somatic  mutations  and 
+found the features of 19 mutations (Table 3). The mutation 
+of  CEBPA  generates  a  duplication  of  an  amino  acid  that 
+affects the original helical secondary structure. The residue 
+corresponding to the mutation of IDH2 has a function to bind 
+with  its  substrate,  so  the  substitutions  of  the  residue 
+decrease the binding affinity with the substrate. The protein 
+region frame-shifted by the mutation of NPM1 is related to 
+the  function  of  nuclear  localization,  important  for  main-
+taining the structure. The structural modeling of RASGEF1B 
+shows  that  the  mutated  residue  Arg261 generates  a new 
+hydrogen  bond  with  Asn303,  affecting  the  stretch  of 
+neighbor helical structures. The protein structure of MSH4 
+shows that the salt bridge between Glu415 and Arg474 is 
+essential for the folding and stability of the protein structure 
+but is broken by the mutation (Table 4, Fig. 11).
+
+Discussion
+
+We have analyzed 10 exome sequencing samples and SNP 
+chip data using a variety of bioinformatics methods. Accor-
+ding to the concordance results, comparing with SNP chip 
+
+Fig. 10. “Cell Death and Survival, Cell Cycle, Cell-to-Cell Signaling
+and  Interaction,  Cellular  Movement”  Network.  Data  were  ana-
+Ⓡ
+lyzed through the use of Ingenity Pathway Analysis (IPA) (Ingenuity
+Systems,  http://www.  ingenuity.com)  [8].
+
+Table  3.  Protein  residues  in  which  somatic  mutation  is  located
+
+Gene
+
+Amino  acid  substitution
+
+Uniprot  features  of  corresponding  residues  in 
+10  similar  proteins  (expectation  value = 1e-30)
+
+ALDH6A1
+ARHGEF5
+CEBPA
+FZD9
+GATA2
+IDH2
+KCNH1
+KRT9
+MAST2
+MYH13
+NPM1
+
+p.Trp56Arg
+p.Arg1319His
+p.Lys313dup
+p.Gly343Arg
+p.Leu359Val
+p.Arg140Leu,  p.Arg140Gln
+p.Leu286Phe
+p.Ala335Val
+p.Arg795His
+p.Pro309Arg
+p.Trp259Cysfs*12,  p.Trp288Cysfs*12 Required  for  nucleolar  localization,  helix,  mutagenesis  site  (destabilization  of
+
+Transit  peptide  (mitochondrion)
+DH  domain,  required  for RHOG activation and  mediates  interaction  with EPHA2
+Helix
+Cytoplasmic  domain
+GATA-type  2  zinc  finger  region
+Substrate  binding,  helix
+Cytoplasmic  domain
+Coil  2,  Rod,  Necessary  for  interaction  with  PNN
+AGC-kinase  C-terminal  domain
+Myosin  head-like  domain
+
+p.Leu413*
+
+RAD21
+RASGEF1B p.Trp261Arg
+RBMXL2
+p.Tyr243Asn
+RPS6KA1
+p.Thr701Ala,  p.Thr710Ala
+TLL2
+p.Asn911Thr
+TRA2B
+p.Arg6Cys
+VDAC2
+p.Leu213Ile
+ZNF317
+p.Val62Phe
+
+  the  structure)
+Cleavage  by  ESPL1
+Ras-GEF  domain
+Arg/Gly/Pro-rich
+Helix
+Disulfide  bond,  CUB  5  domain
+Arg/Ser-rich  (RS1  domain)
+Transmembrane  region  (beta  stranded)
+KRAB  domain
+
+www.genominfo.org
+
+31
+
+J  Kim,  et  al.  Somatic  Mutation,  LOH,  and  SCNAs  by  Exome-Seq
+
+Table  4.  Protein  structure  modeling
+
+Gene
+
+RefSeq  protein
+
+Template  PDB
+
+Template  PDB  title
+
+Coverage  (%)
+
+IDH2
+
+NP_002159.2
+
+1LWD
+
+RASGEF1B NP_689758.1
+
+3KSY
+
+MSH4
+CACNB4
+
+NP_002431.2
+2O8B
+NP_001005747.1 1T3L
+
+PDB,  Protein  Data  Bank.
+
+Porcine  mitochondrial  NADP+-dependent  isocitrate  dehydrogenase 
+complexed  with  Mn2+  and  isocitrate
+Histone  domain, DH-PH  unit,  and  catalytic unit  of the  Ras activator 
+
+Son  of  Sevenless
+
+Human MutSalpha (MSH2/MSH6)  bound  to  ADP  and a G  T mispair
+Voltage-dependent  calcium  channel  beta  subunit  functional  core 
+
+complexed  with  the  alpha  1  interaction  domain
+
+91.4
+
+77.4
+
+74.0
+63.0
+
+Table  5.  Somatic  mutation  profile  of  three  leukemia  studies
+
+AML
+
+CLL
+
+BC-CML
+
+p16/INK4A
+p53
+RB1
+RUNX1
+ASXL1
+IKZF1
+WT1
+TET2
+IDH1
+NRAS
+KRAS
+CBL
+TP53
+
+p53
+TP53
+SF3B1
+MYD88
+FBXW7
+NOTCH1
+ZMYM3
+DDX3X
+MAPK1
+POT1
+CHD2
+LRP1B
+Fas  (absent)
+Bcl-2  (overexpression)  BCR-ABL  (translocation) 
+ATM  (germline  and
+  somatic  mutation)
+
+EVI1  (overexpression) 
+
+AML1  (translocation)
+
+FLT3
+c-KIT
+NRAS
+KRAS
+AML1
+C/EBPalpha
+PU.1
+NPM1
+CEBPA
+ASXL1
+DNMT3A
+IDH1
+IDH2
+MLL
+PHF6
+
+TET2
+WT1
+ANKRD26
+GATA2
+RUNX1
+TP53
+PML-RARalpha
+  (translocation) 
+AML1-ETO
+  (translocation) 
+PLZF-RARalpha
+  (translocation)
+
+AML,  acute  myeloid  leukemia;  CLL,  chronic  lymphocytic 
+leukemia;  BC-CML,  Blast  Crisis  chronic  myeloid  leukemia.
+
+Fig.  11.  Location  of  somatic  mutation  in  protein  structure.  (A) 
+IDH2.  (B)  RASGEF1B.  (C)  MSH4.
+
+data, we concluded that the G10.N exome sample is not the 
+correct pair. Comparing SNPs between normal and tumor 
+pairs revealed that the normal-tumor pair of sample G06 was 
+not matched, and the G10 exome showed abnormal LOH in 
+chrX but had no somatic mutation. So, we had removed G06 
+and G10 for discovering somatic mutations.
+
+After removing G06 and G10, with 8 paired-end samples, 
+we discovered 27 functionally important somatic mutations 
+with significance. They included well-known genes in AML, 
+
+such as NPM1, IDH2, GATA2, and CEBPA. Especially, NPM1 
+and GATA2 were found in 2 out of 8 samples.
+
+In sample G05, we found one abnormal region at chr1 and 
+an LOH region at chr13. We could conclude that the LOH 
+region could potentially make a fusion gene by INTS6 and 
+KIAA1704, and we did further network analysis on that. The 
+results of IPA analysis gave “Cell Death and Survival, Cell 
+Cycle” network as the top network, and it includes GATA2 
+
+32
+
+www.genominfo.org
+
+and MAST2 (somatic mutation).
+
+We  had  done  IPA  analysis  with  26  genes,  giving  the 
+“Cancer, Hematological Disease, Cell Cycle Network” as the 
+top  network,  and  it  includes  NPM1,  GATA2,  and  CEBPA, 
+which are well-known driver genes in AML [3]. Since those 
+3 genes have many edges in the result, we could conclude 
+that those genes are indirect evidence of driver genes.
+
+The  second  network  is  related  with  “Cell  Death  and 
+Survival,” and it includes IDH2 and PHF6 genes, the same as 
+G05’s top network. So far, our conclusion is that 8 samples 
+are related with the “Cancer, Hematological Disease, Cell 
+Cycle Network” but sample G05 is related with the “Cell 
+Death and Survival Network.”
+
+We had searched previous works of genome-wide somatic 
+mutation  discovery  and  concluded  that  8  exome  samples 
+might be AML. Somatic mutation profiles of blood cancer are 
+summarized in Table 5 [3, 9, 10]. But, we could not find any 
+somatic  mutations  in  the  FLT3  or  RAS  gene.  Chronic 
+lymphocytic  leukemia  and  Blast  Crisis  chronic  myeloid 
+leukemia did not have somatic mutations in NPM1 or CEBPA.
+Seven out of 8 samples showed neither LOH nor SCNA, so 
+we  could  conclude  that  those  patients  had  a  normal 
+karyotype  with  no  translocation  or  inversion.  If  possible, 
+additional RNA-Seq experiments or another technique can 
+provide enough evidence of karyotypes of those samples. 
+
+In CEBPA, IDH2, and NPM1, we saw somatic mutations 
+located in helix regions. By using protein structure mode-
+ling, we found that IDH2, RASGEF1B, and MSH4 could have 
+structural  variations,  affecting  protein  functions.  Somatic 
+mutations in IDH2 could break hydrogen bonds.
+
+Supplementary materials
+
+Supplementary  data  including  eight  tables  and  three 
+figures can be found with this article online at http://www. 
+genominfo.org/src/sm/gni-11-24-s001.pdf.
+
+Acknowledgments
+
+This  work  was  supported  by  a  National  Research 
+
+Genomics  &  Informatics  Vol.  11,  No.  1,  2013
+
+Foundation  of  Korea  (NRF)  grant  funded  by  the  Korea 
+government (MEST) (nos. 20110030770 and 20120009215), 
+a  grant  from  the  Next-Generation  BioGreen  21  Program 
+(nos. PJ008019 and PJ008068), Rural Development Admi-
+nistration,  and  a  grant  from  KRIBB  Research  Initiative 
+Program, Republic of Korea.
+
+References
+
+1. Li H, Durbin R. Fast and accurate short read alignment with 
+Burrows-Wheeler  transform.  Bioinformatics  2009;25:1754- 
+1760.
+
+2. Koboldt DC, Zhang Q, Larson DE, Shen D, McLellan MD, Lin 
+L, et al. VarScan 2: somatic mutation and copy number alter-
+ation discovery in cancer by exome sequencing. Genome Res 
+2012;22:568-576.
+
+3. Godley  LA.  Profiles  in  leukemia.  N  Engl  J  Med  2012;366: 
+
+1152-1153.
+
+4. Patel RK, Jain M. NGS QC Toolkit: a toolkit for quality control 
+of next generation sequencing data. PLoS One 2012;7:e30619.
+5. McKenna A, Hanna M, Banks E, Sivachenko A, Cibulskis K, 
+Kernytsky  A,  et  al.  The  Genome  Analysis  Toolkit:  a  Map-
+Reduce  framework  for  analyzing  next-generation  DNA  se-
+quencing data. Genome Res 2010;20:1297-1303.
+
+6. Liu X, Jian X, Boerwinkle E. dbNSFP: a lightweight database 
+of  human  nonsynonymous  SNPs  and  their  functional 
+predictions. Hum Mutat 2011;32:894-899.
+
+7. Futreal PA, Coin L, Marshall M, Down T, Hubbard T, Wooster 
+R,  et  al.  A  census  of  human  cancer  genes.  Nat  Rev  Cancer 
+2004;4:177-183.
+
+8. Ingenuity Systems. Redwood City: Ingenuity Systems. Acces-
+sed 2013 Jan 1. Available from: http://www.ingenuity.com/.
+9. Grossmann V, Kohlmann A, Zenger M, Schindela S, Eder C, 
+Weissmann S, et al. A deep-sequencing study of chronic mye-
+loid leukemia patients in blast crisis (BC-CML) detects muta-
+tions in 76.9% of cases. Leukemia 2011;25:557-560.
+
+10. Wang  L,  Lawrence  MS,  Wan  Y,  Stojanov  P,  Sougnez  C, 
+Stevenson K,  et  al.  SF3B1  and  other novel cancer  genes  in 
+chronic  lymphocytic  leukemia.  N  Engl  J  Med  2011;365: 
+2497-2506.
+
+www.genominfo.org
+
+33
+
+

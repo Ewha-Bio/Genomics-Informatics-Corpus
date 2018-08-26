@@ -1,0 +1,229 @@
+APPLICATION NOTE
+
+Genomics  &  Informatics    Vol.  6(2)  95-97,  June  2008
+
+A  Bio-database  Management  System  for  the  Monitoring  and 
+Automatic  FTP  of  Public  Databases
+
+informatics  site.  We  have  developed  and  constructed  a 
+management  system  for  the  automatic  update  of  public 
+bio-databases  by  implementing  several  programs  to 
+monitor  and  automatically  FTP  them  at  CCBB  (www. 
+ccbb.re.kr).  Currently,  the  system  supports  major  data-
+bases,  such  as  GenBank  (Benson,  1994),  PIR  (Mc-
+Garvey,  2000),  and  PDB  (Berman,  2000),  and  will  ac-
+commodate  many  more  bio-databases.
+
+Features  and  Results
+
+The  system  is  composed  of  three  major  parts  (Fig.  1). 
+The  first  part  monitors  each  database.  A  web  robot  pro-
+gram  checks  the  version  of  each  database  by  a  sched-
+uled  plan  that  is  controlled  by  a  scheduling  server 
+program.  The  web  robot  program  accesses  the  version 
+information  of  the  each  database  and  compares  the 
+most  recently  updated  information  with  a  parser.  The 
+comparison  and  scheduled  access  are  managed  by 
+each  public  DB  entry,  which  is  stored  in  MySQL  DB 
+(Table  1).
+    If  an  update  is  detected  by  the  web  robot  program, 
+the  second  part,  the  automatic  FTP,  is  triggered,  and 
+raw  data  from  each  database  are  transferred  from  its 
+FTP  site.  The  progress  is  monitored  by  a  web  status  re-
+
+Hongseok  Tae1,  Jeong-Min  Han2,  Bu-Young 
+Ahn3  and  Kiejung  Park1*
+
+1Information  Technology  Institute,  SmallSoft  Co.  Ltd., 
+Daejeon  305-343,  Korea,  2Korean  Medicine  Information 
+Division,  Korea  Institute  of  Oriental  Medicine,  Daejeon 
+305-811,  Korea,  3Contents  Convergence  Team,  Korea 
+Institute  of  Science  and  Technology  Information,  Dae-
+jeon  305-806,  Korea
+
+Abstract
+
+Many  bioinformatics  sites  have  managed  local  bio-data-
+bases,  including  major  databases  such  as  GenBank  and 
+PIR  with  update  load.  We  have  developed  several  pro-
+grams  to  monitor  the  update  status  of  these  databases 
+and  to  FTP  them  automatically.  These  programs  can  be 
+used  for  maintaining  local  bio-databases  as  recent  ver-
+sions  and  providing  up-to-date  databases  through  FTP 
+sites.  Currently,  the  program  serves  major  bio-databases 
+and  will  extend  to  accommodate  many  more  bio-data-
+bases. 
+
+Availability: The  trial  version  of  this  system  is  available 
+from  http://gate.smallsoft.co.kr:8088/bioftp.
+
+Keywords:  bio-database,  FTP,  GenBank,  monitoring, 
+scheduling
+
+Introduction
+
+Bio-databases  have  been  produced  very  rapidly  in  num-
+ber  and  quantity.  Each  original  database  that  has  pro-
+duced  a  site  for  each  database  has  developed  its  own 
+updating  system  for  the  database  internally  and  pro-
+vides  it  publically.  Additionally,  many  bioinformatics  sites 
+have  tried  to  maintain  many  databases  locally  to  pro-
+vide  information  services  based  on  them.  As  each  data-
+base  has  its  own  update  schedule  or  an  irregular  up-
+date  scheme,  the  need  to  monitor  and  update  many 
+bio-databases  has  been  a  burden  for  such  sites.
+    CCBB  of 
+Institute  of  Science  and 
+Technology  Information  has  provided  major  bio-data-
+bases  and  information  services  as  a  Korean  bio-
+
+the  Korea 
+
+*Corresponding  author:  E-mail  kjpark@smallsoft.co.kr
+Tel  +82-42-864-2524,  Fax  +82-42-385-9240
+Accepted  16  June  2008
+
+Fig.  1.  The  system  structure  for  scheduled  monitoring  and 
+automatic  updating  of  bio-databases.
+
+96    Genomics  &  Informatics    Vol.  6(2)  95-97,  June  2008
+
+Table  1.  Summary  of  control  data  for  scheduled  monitor-
+ing  and  automatic  update  of  bio-databases
+
+PublicDB
+
+　Type
+
+Public  DB  Information
+
+db_id
+db_name
+description
+ftp_addr
+
+ftp_port
+ftp_root_dir
+
+public  DB  ID 
+public  DB  name      ex)  GenBank
+
+SMALLINT
+VARCHAR  (20)
+VARCHAR  (255) public  DB  description
+VARCHAR  (20)
+
+public  DB  ftp  address     
+  ex)  ftp.ncbi.nih.gov
+public  DB  ftp  port  number
+
+SMALLINT
+VARCHAR  (255) Corresponding  root  dir  of  the 
+
+file_filter
+
+VARCHAR  (255)
+
+login_id
+login_pwd
+
+VARCHAR  (20)
+VARCHAR  (20)
+
+download_ip VARCHAR  (20)
+
+  public  DB
+file  type  of  public  DB  data   
+  ex)  *.gz
+Login  id  of  public  DB  if  necessary
+Password  of  public  DB  if 
+  necessary
+ip  address  of  a  downloading 
+  server  (the  node  with  parsers 
+  and  schedule  programs)
+
+TINYINT 
+
+download_dir VARCHAR  (255) Downloading  directory
+trigger_day
+download  start  day  of 
+  each  month 
+The  last  downloaded  date  of   
+  public  DB 
+The  last  locally  updated  date  of   
+  public  DB
+
+downloaded DATE
+  _date
+updated
+  _date
+
+DATE
+
+port  (Fig.  2A). 
+    After  the  raw  database  is  downloaded,  the  third  part, 
+the  local  database  update,  is  triggered,  and  parsing  and 
+loading  programs  for  public  databases  are  executed  to 
+construct  the  final  local  database.
+    Many  databases  can  be  added  to  the  system  for  auto-
+matic  update  using  a  database  entry  management  pro-
+gram  (Fig.  2B),  which  supports  the  editing  of  database 
+
+Fig. 2.  (A)  Monitoring  the  progress 
+of 
+(B) 
+Editing  database  entry  information.
+
+the  database  update. 
+
+information  (Table  1),  including  addition,  deletion,  and 
+modification.
+
+Discussion
+
+Due  to  the  exponential  growth  of  public  bio-databases, 
+it  has  been  requested  that  the  integrated  management 
+and  service  system  for  those  data  function  automa-
+tically.  To  address  this  need,  we  have  developed  a 
+bio-database  management  system  for  the  monitoring 
+and  automatic  FTP  of  public  databases.  It  includes  the 
+scheduled  monitoring  of  raw  data  updates,  file  transfer 
+of  raw  databases,  and  execution  of  updating  programs 
+to  reconstruct  local  databases.  The  developed  system 
+can  be  generally  used  for  most  public  bio-databases.
+    Local  databases  are  managed  by  several  DBMS, 
+such  as  MySQL,  Oracle,  and  KRISTAL.  In  fact,  some 
+databases  are  managed  by  MySQL,  and  some  data-
+bases  are  managed  by  KRISTAL  at  KISTI.  Because  the 
+local  database  update  programs  are  independent  of  the 
+developed  system,  the  system  can  be  useful  for  the  up-
+date  of  most  bio-databases  without  a  change  in  the 
+programs.  A  more  convenient  program  can  be  devel-
+oped  to  improve  the  system.
+
+Acknowledgements
+
+This  work  was  supported  by  the  Korea  of  Science  and 
+Technology  Information  grant  from  MOST.
+
+References
+
+Benson,  D.A.,  Boguski,  M.,  Lipman,  D.J.,  and  Ostell,  J. 
+
+(1994).  GenBank.  Nucleic Acid Res. 22,  3441-3444.
+
+McGarvey,  P.B.,  Huang,  H.,  Barker,  W.C.,  Orcutt,  B.C., 
+
+A  Bio-database  Management  System  for  the  Monitoring  and  Automatic  FTP  of  Public  Databases    97
+
+Garavelli,  J.S,  Srinivasarao,  G.Y.,  Yeh,  L.L.,  Xiao,  C.,  and 
+Wu,  C.H.  (2000).  PIR:  a  new  resource  for  bioinformatics. 
+Bioinformatics 16,  290-291. 
+
+Berman,  H.M.,  Westbrook,  J.,  Feng,  Z.,  Gilliland,  G.,  Bhat, 
+
+T.N.,  Weissig,  H.,  Shindyalov,  I.N.,  and  Bourne,  P.E. 
+(2000).  The  protein  data  bank.  Nucleic Acids Res. 28, 
+235-242.
+
+

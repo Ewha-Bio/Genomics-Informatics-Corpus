@@ -1,0 +1,355 @@
+APPLICATION 
+
+NOTES 
+
+Genomics &  Informatics- Vol. 4(4)  167-169, December 2006 
+
+New Approach to the Analysis of Palindromic Structure in 
+Genome Sequences 
+
+Seok-Won Kim\ Yong Seok L..ee2
+,  Sang-Haeng Choi\ 
+Sung-Hwa  Chae1,  Dae-Won  Kim1  and  Hong-Seog 
+Park1* 
+
+1Genome  Research  Center,  KRIBB,  Daejeon  305-806, 
+Korea, 2Department of Parasitology and Malariology, PICR, 
+College of Medicine and Frontier lnje Research for Science 
+and Technology,  lnje University, Busan, 614-753,  Korea 
+
+Abstract 
+PABAP (Palindrome Analysis by BLAST Program) is an 
+analysis  system  that  identifies  palindromic  sequences 
+from a large genome sequence up to several megabases 
+long. It uses NCBI BLAST as a searching engine, and data 
+processing such as alignment filtration and detection of 
+inverted repeats which satisfy user- defined parameters 
+is performed by manipulating data after populating into a 
+MySQL database. PABAP outperforms publicly available 
+palindrome  search  program  in  that  it  can  detect  large 
+palindrome with  internal  spacer at a faster speed from 
+bacterial  genomes.  It  is a  standalone application and  is 
+freely available for noncommercial users. 
+Availability:  This application was implemented with free 
+software (Peri, Apache, MySQL, and NCBI BLAST) and is 
+freely  available  to  noncommercial  users  upon  request. 
+Analysis  of  user  data  can  be  carried  out  directly  at 
+http://chimp.kribb.re.kr/-javamint/palindrome. 
+
+Keywords:  palindrome, inverted repeat,  BLAST 
+
+Palimdromic sequence is a region in DNA containing a pair 
+of inverted repeats, i.e.,  a region whose 5' -to-3' sequence 
+is identical on each DNA strand. Palindromic sequences 
+include inverted repeats having central gap (spacer) and 
+quasi palindromes with nonidentical pair of repeats. These 
+structures are widespreadin the natural plasmids, viral and 
+bacterial  genomes,  eukaryotic  chromosomes  and  cell 
+organelles.  In  case  of prokaryotes,  they may serve as 
+binding sites for regulatory proteins,  while short perfect 
+palindromes  are  known  as  recognition  sites for type  II 
+restriction-modification systems (Gelfand and Koonin, 1997; 
+Rocha eta/., 2001 ). Apparently, they often serve as site 
+
+*Corresponding author:  E-mail hspark@kribb.re.kr, 
+Tel  +82-2-879-8132, Fax +82-2-879-8139 
+Accepted 2 Dec 2006 
+
+for protein-DNA interaction and mediate important cellular 
+functions. Another important property of such motifs is their 
+potential to form intra-strand hydrogen bonds within DNA 
+molecules or in corresponding RNA transcripts. Therefore, 
+they  are  contained  in  genes  encoding  functional  RNA 
+molecules,  the  structure  of  which  depends  on  the 
+formation of proper intra-strand bonding, and in different 
+cis-acting genetic elements, like terminators, attenuators, 
+plasmid and viral origins of replication. Protein binding and 
+secondary structure formation are also modes of action for 
+inverted repeats and related motifs in eukaryotic cells. For 
+example,  palindromes with  a  spacer of one nucleotide 
+were  identified  in  yeast  sequences  regulating  cellular 
+response to the accumulation of unfolded proteins in the 
+endoplasmic  reticulum  (Mori  et  a/.,  1998)  and  a 
+heterodimeric  complex  was  isolated  that  binds  two 
+palindromic  sequences  in  the  promoter  region  of the 
+human erbB-2 gene (Chen and Gill,  1996). In  mouse B 
+lymphoma  cells,  palindromic  and  potential  stem-loop 
+motifs were identified as break-points during class switch 
+recombination (Tashiro eta/., 2001 ); and the formation of 
+intra-strand  secondary  structures  is  essential  in  the 
+
+FAST A fonnatted 
+
+sequence 
+
+Reporting 
+
+Fig.  1. The system flow of PABAP. 
+
+168  Genornics &  Informatics  Vol.  4(4) 167-169, December 2006 
+
+PAB.AP  vel'$/on  7.1.0( Palindrome AnalySiS by BLAST Program l 
+
+Or load it from disk 
+
+· liot!l!7f...  1·  aaarch  I 
+
+Custom DatBmeters : 
+Pure-PalindromE: Search  P 
+Inverted SeCIUen>:es Search  P: 
+Minimal size of e~ach seauences ~ (available minimal size : 41 
+
+Maximal gap SiZ•a of each SeQuences r 
+Maximal mismatl:hes of each seauences·w=~ 
+E-value ~~~  -
+Identities(%) ($--1 
+Maximal length c•f spacer between pair se(IUences j:DXI 
+~seSii:t>l 
+
+Fig. 2.  Snapshot of input page (left) and analysis report (right) 
+
+~ 
+~ 
+~ 
+PAlM? 
+~ 
+~ 
+!!!m§ 
+
+PANS? -~ 
+
+~ 
+~ 
+
+~ wm 
+wm 
+w.w 
+~ 
+E2:!.l 
+~ 
+~ 
+PAl$45 
+
+1100 l<bp 
+
+I 
+t= 
+
+H 
+I" 
+
+IO'Ilii6-1088Ji 
+';'~90-'P:;;l~ 
+9$6$40•95115$9 
+nt--..·23146511 
+l626S67-2Q:6586 
+l$93252- 2593210 
+153$09-15lS26 
+285381~285398 
+3838d9-l838815 
+4S61YI~4H154 
+416199-476216 
+$70110-579747 
+661&1>0-661707 
+781218•78UU 
+85SSll•8S55<40  f--.,------.=_;;_:,-i--r---";---'------"' 
+0 
+0 
+
+8569)g··- I • I 856985-850960  I  N 
+
+~,  O  g  i ru 
+J•• I ll  I  105 
+
+I -.r.. 
+..L. .• 
+J~ 
+t;l,. 
+.l-
+
+,  1- __  1.~.1~~1 
+
+1026906•10JM1) 
+
+1026923--1026906 
+
+M 
+
+10 
+
+0 
+
+I 
+
+lOS 
+
+100 
+100 
+
+H 
+.!i.. 
+
+..L.. 
+
+.!.... 
+
+i. 
+l 
+
+,  1 
+
+Table 1.  Comparative performance of PABAP and Palindrome (EMBOSS). 
+
+Input sequence 
+
+size (bp) 
+
+Inverted repeat (max gap size 3,000 bp) 
+Palindrome 
+
+PABAP 
+
+Pure palindrome (no gap) 
+
+PABAP 
+
+F'alindrome 
+
+1K 
+10K 
+100K 
+1M 
+2M 
+3M 
+
+3 
+55 
+1,962 
+5,093 
+12,103 
+
+2.6 
+20 
+3,542 
+N/A 
+N/A 
+N/A 
+
+64 
+1,912 
+5,132 
+13,267 
+
+0.1 
+11 
+1,724 
+'148,962 
+N/A 
+N/A 
+
+Real  time (elapsed time) in second was  measured from a Red  Hat LINUX-based workstation (Intel Xeon 2.8GHz dual,  1GB memory,  and  kernel 
+2.4.21 ).  Min size for each search was set to 11  bp,  number of max mismatches, 3 bp.  N/A means elapsed time longer than two days. 
+
+process of immunoglobulin gene rearrangement known as 
+V(D)J joining (Cuomo eta/.,  1996). 
+
+We  developed  a  web  application  PABAP  that  can 
+identify  palindrome  sequence  using  genome-scale 
+sequence as an input. In this application, self-against-self 
+BLASTN (Altschul eta/., 1990)search is employed to find 
+out symmetric hits that can  be used for identifying true 
+palindromic sequences or inverted repeats after filtering 
+process with customizable parameters. Fig. 1 shows the 
+processing flow for this application. First, users provide a 
+FAST A-formatted sequence as an input. Threshold values 
+that are used for running  BLAST and filtering  hits after 
+homology search  are given simultaneously at the data 
+input page. P.fter formatting input sequence to generate 
+BLAST -compatible database, BLASTN search is executed 
+using  the  input  sequence  also  as  a  query without  low 
+complexity filter. Output is set to tabular format to facilitate 
+loading results directly into a MySQL database. Filtering 
+is then carried out onto the data records to eliminate 1) 
+self-matches that exactly overlap the same position within 
+
+the sequence and  2)  matches below threshold  values, 
+such as alignment length, sequence identity and gap size. 
+Only  matches  in  the  opposite  direction  to  the  query 
+sequences with spacer length below a threshold are then 
+reported. Results are represented by a table and an image 
+(PDF file) that shows the position of palindromic regions 
+on the input sequence scale (Fig. 2). 
+
+We  compared  the  performance  of  PABAP  with 
+PALINDROME, a program in publicly available EMBOSS 
+package (http://emboss.sourceforge.neU). Time required 
+for finding pure palindromic sequences or inverted repeats 
+heavily depends on the input sequence length and BLAST 
+search parameters (Table 1 ). The most crucial parameter 
+determining  sensitivity was  E  value  cutoff;  larger than 
+50,000 is recommended for detection of palindromes with 
+short  repeat  units.  In  most  cases,  PABAP  surpassed 
+PALINDROME in terms of execution speed. PALINDROME 
+was best suitable only for identification of true palindromes 
+from sequences several kilobases long. Our application 
+is  superior  to  PALINDROME  in  finding  symmetrical 
+
+Palindrome Analysis by BLAST Program  169 
+
+duplication at a gene level or inverted repeats flanking a 
+genomic sequence that are target sites for site-specific 
+recombination. 
+
+We have successfully applied this strategy for finding 
+inverted repeats at the end of putative IS elements from 
+the  genome  sequence  of a  Corynebacterium  species 
+(unpublished  data).  The  strong  point of PABAP lies  in 
+faster speed, flexible parameter setting, ability to identify 
+inverted repeats with atypical geometry (long repeat units 
+or spacers) or low identities,  and  graphical  output that 
+enable us to envisage palindromic sequence context at a 
+genome level. 
+
+Acknowledgements 
+
+This work was supported by National  Joint Agricultural 
+Research Project of RDA (#2006201 030009), Republic 
+of Korea. 
+
+References 
+
+Altschul,  S.F.,  W.  Gish,  W.  Miller,  E.W.  Myers,  and  D.J. 
+Lipman.  (1990).  Basic  local  alignment  search  tool.  J. 
+Mol.  Bioi.  215, 403-410. 
+
+Chen,  Y.  and  G.N.  Gill.  (1996).  A  heterodimeric  nuclear 
+protein complex binds two palindromic sequences in the 
+proximal  enhancer of the  human  erbB-2  gene.  J.  Bioi. 
+Chern.  271,5183-5188. 
+
+Cuomo,  C.A.,  Mundy,  C.L.,  and  Oettinger,  M.A.  (1996). 
+DNA sequence and structure requirements for cleavage 
+ofV(D)J recombination signal sequences. Mol.  Cell Bioi. 
+16,  5683-5690. 
+
+Gelfand,  M.S.  and  E.V.  Koonin.  (1997).  Avoidance  of 
+palindromic words in bacterial and archaeal genomes: a 
+close  connection  with  restriction  enzymes.  Nucleic 
+Acids Res.  25, 2430-2439. 
+
+Mori,  K.,  N.  Ogawa, T.  Kawahara,  H.  Yanagi, and Yura, T. 
+(1998).  Palindrome  with  spacer  of  one  nucleotide  is 
+characteristic ofthe cis-acting unfolded protein response 
+element in Saccharomyces cerevisiae. J.  Bioi.  Chern. 273, 
+9912-9920. 
+
+Rocha, E.P., Danchin, A., and Viari, A. (2001). Evolutionary 
+role  of restriction/modification  systems  as  revealed  by 
+comparative  genome  analysis.  Genome  Res.  11 , 
+946-958. 
+
+Tashiro, J., K.  Kinoshita, and Honjo, T.  (2001 ).  Palindromic 
+but  not  G-rich  sequences  are  targets  of class  switch 
+recombination.  Int.  lmmunol.  13, 495-505. 
+
+

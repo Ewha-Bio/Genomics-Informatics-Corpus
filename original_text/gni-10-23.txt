@@ -1,0 +1,1625 @@
+A R T IC L E
+
+Genomics  &  Informatics
+Vol.  10(1)  23-32,  March  2012
+
+http://dx.doi.org/10.5808/GI.2012.10.1.23
+pISSN 1598-866X eISSN 2234-0742
+
+Possibility  of  the  Use  of  Public  Microarray  Database  for 
+Identifying  Significant  Genes  Associated  with  Oral  Squamous 
+Cell  Carcinoma
+
+Ki-Yeol  Kim1  and  In-Ho  Cha1,2*
+
+1Oral  Cancer  Research  Institute,  College  of  Dentistry, 
+Yonsei  University,  Seoul  120-752,  Korea,  2Department 
+of  Oral  and  Maxillofacial  Surgery,  College  of  Dentistry, 
+Yonsei  University,  Seoul  120-752,  Korea
+
+Abstract
+
+There  are  lots  of  studies  attempting  to  identify  the  ex-
+pression  changes  in  oral  squamous  cell  carcinoma.  Most 
+studies  include  insufficient  samples  to  apply  statistical 
+methods  for  detecting  significant  gene  sets.  This  study 
+combined  two  small  microarray  datasets  from  a  public 
+database  and  identified  significant  genes  associated 
+with  the  progress  of  oral  squamous  cell  carcinoma. 
+There  were  different  expression  scales  between  the  two 
+datasets,  even  though  these  datasets  were  generated 
+under  the  same  platforms  -  Affymetrix  U133A  gene 
+chips.  We  discretized  gene  expressions  of  the  two  data-
+sets  by  adjusting  the  differences  between  the  datasets 
+for  detecting  the  more  reliable  information.  From  the 
+combination  of  the  two  datasets,  we  detected  51  signifi-
+cant  genes  that  were  upregulated  in  oral  squamous  cell 
+carcinoma.  Most  of  them  were  published  in  previous 
+studies  as  cancer-related  genes.  From  these  selected 
+genes,  significant  genetic  pathways  associated  with  ex-
+pression  changes  were  identified.  By  combining  several 
+datasets  from  the  public  database,  sufficient  samples 
+can  be  obtained  for  detecting  reliable  information.  Most 
+of  the  selected  genes  were  known  as  cancer-related 
+genes,  including  oral  squamous  cell  carcinoma.  Several 
+unknown  genes  can  be  biologically  evaluated  in  further 
+studies.
+
+Keywords:  combined  dataset,  genetic  pathway,  oral 
+squamous  cell  carcinoma,  public  microarray  database, 
+significant  gene
+
+Introduction
+
+Despite  recent  advances  in  surgical,  radiation,  and  che-
+
+*Corresponding  author:  E-mail  cha8764@yuhs.ac
+Tel  +82-2-2228-3140,  Fax  +82-2-392-2959
+Received  1  February  2012,  Revised  16  February  2012, 
+Accepted  18  February  2012
+
+motherapeutic  treatment  protocols,  the  prognosis  of  oral 
+squamous  cell  carcinoma  (OSCC)  remains  mournful,  with 
+an  approximate  50%  5-year  mortality  rate  from  disease 
+or  associated  complications  [1].  Therefore,  the  identi-
+fication  of  biological  markers  is  essential  to  make  prog-
+ress  in  detecting  malignancy  at  an  early  stage  and  de-
+veloping  novel  therapies  [2].
+    Microarray  datasets  that  are  created  for  the  same  re-
+search  purposes  in  different  laboratories  have  accumu-
+lated  rapidly.  The  results  from  different  datasets  are  of-
+ten  inconsistent  due  to  the  utilization  of  different  plat-
+forms,  sample  preparations,  or  various  technical  varia-
+tions.  If  we  could  combine  such  datasets  by  adjusting 
+for  systematic  biases  that  exist  among  different  datasets 
+derived  from  different  experimental  conditions,  the  pow-
+er  of  statistical  tests  would  be  improved  by  the  increase 
+in  sample  size  [3]. 
+    In  OSCC,  although  lots  of  microarray-based  studies 
+have  been  conducted  to  provide  insights  into  gene  ex-
+pression  changes,  most  of  these  studies  have  contained 
+insufficient  samples  for  detecting  reliable  information  us-
+ing  statistical  analysis  [4,  5].  Therefore,  this  study  at-
+tempted  to  combine  several  datasets  in  the  public  data-
+base  for  detecting  significant  genes.
+    We  used  two  small  microarray  datasets  of  OSCC  for 
+this  study,  which  were  based  on  the  same  platform  but 
+had  different  expression  scales.  These  two  datasets 
+were  combined  after  discretization,  because  a  previous 
+study  showed  that  classification  could  be  improved  us-
+ing  combined  datasets  after  discretization  [3].  After 
+combining  datasets,  we  used  chi-square  test  for  identi-
+fying  the  significant  genes.  Chi-square  test  has  been 
+used  commonly  to  detect  differentially  expressed  genes 
+after  discretization  of  expression  intensities  in  the  micro-
+array  experiment.
+    In  this  study,  gene  expression  ratios  of  two  datasets 
+were  transformed  with  their  ranks  for  each  dataset. 
+Next,  the  transformed  datasets  were  combined,  and  a 
+nonparametric  statistical  method  was  applied  to  the 
+combined  dataset  to  detect  informative  genes.  Finally, 
+we  showed  that  most  of  the  selected  genes  were 
+known  to  be  involved  in  various  cancers,  including 
+OSCC.
+
+24 Genomics  &  Informatics Vol.  10(1)  23-32,  March  2012
+
+Table  1.  Summaryof  two  microarray  datasets  from  GEO  and  the  combined  dataset
+
+Data  name
+
+Experimental  platform 
+
+No.  of  genes
+
+Data  2004  [4]
+Data  2005  [5]
+Combined  dataset 
+
+Affymetrix  U133A
+Affymetrix  U133A
+
+14,119
+22,283
+14,119
+
+GEO,  Gene  Expression  Omnibus.
+
+No.  of  total 
+
+samples
+
+20
+27
+47
+
+Table  2.  Combination  of  contingency  tables  for  three  datasets  (tij  =  aij  +  bij  +  cij)
+
+Dataset  A
+
+Dataset  B
+
+Dataset  C
+
+P1
+
+a11
+a21
+a31
+
+P2
+
+a12
+a22
+a32
+
+P3
+
+a13
+a23
+a33
+
+P1
+
+b11
+b21
+b31
+
++
+
+P2
+
+b12
+b22
+b32
+
+P3
+
+b13
+b23
+b33
+
+P1
+
+c11
+c21
+c31
+
++
+
+P2
+
+c12
+c22
+c32
+
+P3
+
+c13
+c23
+c33
+
+E1
+E2
+E3
+
+Normal  group
+
+Tumor  group
+
+4
+5
+9
+
+=
+
+16
+22
+38
+
+Combined  dataset
+
+P1
+
+t11
+t21
+t31
+
+P2
+
+t12
+t22
+t32
+
+P3
+
+t13
+t23
+t33
+
+P1,  P2,  and  P3  represent  the  three  different  phenotypes.  E1,  E2,  and  E3  represent  three  groups  by  rank  of  gene  expressions.  aij,  bij,  and 
+cij  are  the  numbers  of  experiments  belonging  to  Pj  and  Ei  at  the  same  time  in  data  A,  data  B,  and  data  C,  respectively.
+
+Methods
+
+Dataset
+
+Two  microarray  datasets  were  used  for  this  study.  We 
+acquired  these  datasets  from  a  public  database  (Gene 
+Expression  Omnibus,  GEO).  One  was  the  expression  da-
+taset  of  16  tumors  and  4  normal  tissues  from  16  pa-
+tients,  using  Affymetrix  U133A  gene  chips  (Affymetrix, 
+Santa  Clara,  CA,  USA).  The  other  microarray  dataset 
+consisted  of  expression  profiles  of  22  tumors  and  5  nor-
+mal  tissues.  These  two  datasets  were  experimented  on 
+under  the  same  platform,  Affymetrix  U133A.  The  data-
+sets  are  summarized  in  Table  1.
+
+Process  for  combining  datasets
+
+For  combining  datasets,  gene  expression  ratios  are  re-
+arranged  in  order  of  expression  ratios  by  each  gene  in 
+each  dataset,  and  the  ranks  are  matched  with  the  cor-
+responding  experimental  group. 
+If  the  experimental 
+groups  are  homogenous,  the  ranks  within  the  same  ex-
+perimental  group  would  be  neighboring.  The  process  of 
+discretization  of  gene  expressions  is  summarized  in  the 
+following  steps  [3]:
+
+(1) Rank  the  gene  expression  ratios  within  a  gene  for 
+
+each  dataset.
+
+(2) List  in  order  of  the  ranks,  and  assign  the  order  of 
+gene  expressions  to  the  corresponding  experimen-
+tal  groups.
+
+(3) Summarize  the  result  of  (2)  in  the  form  of  a  con-
+
+tingency  table  for  each  gene.
+
+(4) Combine  the  contingency  tables  that  have  been 
+
+Table  3.  Summary  of  discretized  data  using  ranks  of  gene
+expressions
+
+Experimental  groups  by 
+
+phenotypes
+
+P1
+
+P2
+
+P3
+
+Marginal 
+
+sum
+
+Experimental  group
+  by  rank  of  gene
+  expression
+Marginal  sum
+
+E1
+E2
+E3
+
+n11
+n21
+n31
+c1
+
+n12
+n22
+n32
+c2
+
+n13
+n23
+n33
+c3
+
+r1
+r2
+r3
+n
+
+summarized  for  each  dataset. 
+
+    When  there  are  three  datasets  to  be  combined,  the 
+datasets  can  be  added  as  a  single  entry,  as  shown  in 
+Table  2,  after  the  transformation  of  each  dataset  by  rank.
+
+Identification  of  significant  genes  from  a  com-
+bined  dataset
+
+After  the  summarization  of  gene  expression  ratios  in  the 
+form  of  a  contingency  table  for  each  gene,  as  shown  in 
+Table  3,  a  nonparametric  statistical  method  was  applied 
+to  the  datasets  for  independence  testing  between  gene 
+expression  patterns  and  experimental  groups.  The  test 
+statistics  are  calculated  as  follows  for  each  gene:
+
+[
+
+n
+ij
+
+2
+χ
+
+= ∑
+
+)]
+2
+
+ˆ
+E n
+(
+−
+ij
+ˆ(
+E n
+)
+ij
+
+ˆ(
+E n
+ij
+
+)
+
+=
+
+, 
+
+j
+
+rc
+i
+n
+
+    When  the  sample  size  is  small  -  generally Ê(nij)  less 
+
+than  5  -  Fisher’s  exact  test  is  recommended  rather  than 
+chi-square  test.
+
+Significant  Genes  Associated  with  Oral  Squamous  Cell  Carcinoma 25
+
+    The  significant  genes  can  be  selected  by  an  in-
+dependence  test  between  the  phenotypes  and  gene  ex-
+pressions  using  this  type  of  summarized  dataset. ci and 
+ri represent  the  marginal  sums  of  the  ith column  and 
+row,  respectively.  nij is  the  number  of  experiments  be-
+longing  to  Ei  and  Pj,  and n  represents  the  total  number 
+of  experiments.
+
+Results
+
+The  clinical  information  and  expression  levels  of  two  da-
+
+Table  4.  Summary  of  two  microarray  datasets
+
+  Subgroup
+    Tumor
+    Normal
+  Sex
+    Male
+    Female
+  Age  (mean,  standard  deviation)
+  Primary  site
+    Tongue
+    Floor  of  mouth
+    Other
+  T  stage
+    T1
+    T2
+    T3
+    T4
+    Missing
+
+Data  2004
+
+Data  2005
+
+16
+  4
+
+15
+  5
+
+22
+  5
+
+21
+  6
+
+56.9  (10.22)
+
+60.03  (14.16)
+
+  7
+  9
+  4
+
+  1
+  7
+  1
+  9
+  2
+
+16
+  5
+  6
+
+  4
+  8
+  4
+10
+  1
+
+tasets  are  summarized  in  Table  4  and  Fig.  1.  Subgroup 
+and  sex  were  similarly  distributed  in  the  two  datasets. 
+The  distributions  of  other  factors  were  not  included.
+    The  scale  of  expression  levels  in  the  two  datasets 
+was  different;  the  expression  values  of  Data  2004 
+ranged  from  0.01  to  740,  and  those  of  Data  2005  were 
+from  0.1  to  19,773.  The  expression  patterns  of  the  two 
+datasets  can  be  explored  in  Fig.  1.
+    Lots  of  outliers  are  shown  in  Fig.  1A  in  the  two  data-
+sets  containing  whole  gene  sets.  However,  in  subsets  of 
+significant  genes,  the  expression  ranges  got  narrow,  and 
+the  outliers  were  decreased  (Fig.  1B).  The  expressions 
+of  tumor  tissues  in  Data  2004  were  upregulated  and 
+varied  compared  with  normal  tissues.  If  there  was  no 
+outlier  with  a  maximum  value  in  the  14th  tumor  tissue 
+in  Data  2004,  the  expressions  of  the  two  different 
+groups  would  be  clearly  distinguished.  Any  clear  differ-
+ences  in  expression  were  not  shown  between  the  two 
+groups  in  Data  2005.
+
+Upregulated 51  genes  in oral  squamous cell car-
+cinoma
+
+To  identify  differently  expressed  genes  between  normal 
+and  tumor  tissues,  we  performed  chi-square  test  using 
+a  combined  microarray  dataset.  Fifty-one  significant 
+genes  were  selected  from  a  combined  dataset  with 
+p-value  less  than  0.005,  which  were  upregulated  in 
+OSCC  tissues.  The  significance  level  can  be  controlled, 
+and  more  genes  can  be  selected  with  a  lower  sig-
+nificance  level.  These  selected  genes  are  summarized  in 
+Table  5. 
+
+Fig.  1.  Comparison  of  expres-
+sion  levels  of  two  datasets.  (A) 
+Whole  gene  set.  (B)  Selected 
+gene  set.
+
+26 Genomics  &  Informatics Vol.  10(1)  23-32,  March  2012
+
+    Many  genes  among  the  selected  genes  were  known 
+as  cancer-related  genes.  STAT1  [6],  SKP2  [7],  IFI16  [8], 
+RHEB  [9],  FIF44  [10],  SOD2  [11,  12],  and  GREM1  [11] 
+are  related  to  OSCC.  Table  6  [13-56]  summarizes  the 
+
+previous  studies  that  have  published  the  relations  of  se-
+lected  genes  with  cancer.
+
+Table  5.  Summary  of  selected  51  upregulated  genes
+
+Affymetrix  No.
+
+Gene
+
+Description
+
+Fold  change
+
+200037_s_at
+200056_s_at 
+200887_s_at 
+201091_s_at 
+201486_at
+201518_at 
+201663_s_at 
+202633_at 
+203038_at 
+203301_s_at 
+203562_at 
+203566_s_at
+203595_s_at 
+203625_x_at 
+203744_at 
+203964_at 
+204211_x_at 
+204439_at 
+204822_at 
+204825_at 
+206765_at 
+207438_s_at 
+208079_s_at 
+208966_x_at
+209095_at 
+209524_at 
+209903_s_at 
+210283_x_at 
+211725_s_at 
+211727_s_at
+212314_at 
+212765_at 
+212959_s_at 
+213008_at 
+213104_at 
+213294_at 
+213404_s_at 
+213452_at 
+213679_at 
+214453_s_at 
+215223_s_at 
+215495_s_at
+216841_s_at 
+217901_at 
+218469_at 
+218627_at 
+218901_at 
+218986_s_at
+219087_at 
+219372_at 
+219787_s_at
+
+CBX3
+C1D
+STAT1
+CBX3
+RCN2
+CBX1
+SMC4
+TOPBP1
+PTPRK
+DMTF1
+FEZ1
+AGL
+IFIT5
+SKP2
+HMGB3
+NMI
+EIF2AK2
+IFI44L
+TTK
+MELK
+KCNJ2
+SNUPN
+AURKA
+IFI16
+DLD
+HDGFRP3
+ATR
+PAIP1
+BID
+COX11
+KIAA0746
+CAMSAP1L1
+GNPTAB
+FANCI
+C16ORF42
+CCDC75
+RHEB
+ZNF184
+TTC30A
+IFI44
+SOD2
+SAMD4A
+SOD2
+DSG2
+GREM1
+DRAM
+PLSCR4
+FLJ20035
+ASPN
+IFT81
+ECT2
+
+Chromobox  homolog  3  (hp1  gamma  homolog,  drosophila)
+Nuclear  dna-binding  protein
+Signal  transducer  and  activator  of  transcription  1,  91kda
+Chromobox  homolog  3  (hp1  gamma  homolog,  drosophila)
+Reticulocalbin  2,  ef-hand  calcium  binding  domain
+Chromobox  homolog  1  (hp1  beta  homolog  drosophila)
+Smc4  structural  maintenance  of  chromosomes  4-like  1  (yeast)
+Topoisomerase  (dna)  ii  binding  protein  1
+Protein  tyrosine  phosphatase,  receptor  type,  k
+Cyclin  d  binding  myb-like  transcription  factor  1
+Fasciculation  and  elongation  protein  zeta  1  (zygin  i)
+Amylo-1,  6-glucosidase,  4-alpha-glucanotransferase 
+Interferon-induced  protein  with  tetratricopeptide  repeats  5
+S-phase  kinase-associated  protein  2  (p45)
+High-mobility  group  box  3
+N-myc  (and  stat)  interactor
+Eukaryotic  translation  initiation  factor  2-alpha  kinase  2
+Interferon-induced  protein  44-like 
+ttk  protein  kinase
+Maternal  embryonic  leucine  zipper  kinase
+Potassium  inwardly-rectifying  channel,  subfamily  j,  member  2
+rna,  u  transporter  1
+Aurora  kinase  a
+Interferon,  gamma-inducible  protein  16
+Dihydrolipoamide  dehydrogenase
+Hepatoma-derived  growth  factor,  related  protein  3
+Ataxia  telangiectasia  and  rad3-related
+Poly(a)  binding  protein  interacting  protein  1
+bh3  interacting  domain  death  agonist
+Cox11  homolog,  cytochrome  c  oxidase  assembly  protein 
+kiaa0746  protein
+Calmodulin-regulated  spectrin-associated  protein  1-like  1
+Hypothetical  protein  dkfzp762b226
+kiaa1794
+Hypothetical  protein  mgc24381
+Coiled-coil  domain-containing  75
+ras  homolog  enriched  in  brain
+Zinc  finger  protein  184  (kruppel-like)
+Hypothetical  protein  flj13946
+Interferon-induced  protein  44
+Superoxide  dismutase  2,  mitochondrial
+Sterile  alpha  motif  domain  containing  4a
+Superoxide  dismutase  2,  mitochondrial
+Desmoglein  2
+Gremlin  1,  cysteine  knot  superfamily,  homolog 
+Damage-regulated  autophagy  modulator 
+Phospholipid  scramblase  4
+Hypothetical  protein  flj10787
+Asporin  (lrr  class  1)
+Intraflagellar  transport  81  homolog  (chlamydomonas)
+Epithelial  cell  transforming  sequence  2  oncogene
+
+2.219978 
+2.448721 
+4.307249 
+3.647541 
+2.279745 
+2.132493 
+2.434400 
+2.189444
+3.345238 
+1.378319 
+2.853794 
+2.114894 
+2.664490 
+2.007377 
+2.974931 
+3.840395
+1.994068 
+124.396853 
+2.414220 
+3.755818 
+1.810372 
+1.913825 
+3.848891 
+2.568727
+1.476130 
+2.724985 
+1.635679 
+1.997611 
+3.476190 
+1.419895 
+10.323529 
+1.717589
+1.733743 
+2.935005 
+2.059115 
+4.261916 
+1.536225 
+1.534287 
+2.374943 
+11.920148
+4.950142 
+3.204074 
+4.790233 
+5.614525 
+3.366686 
+2.780824 
+3.663654 
+6.364550
+7.895878 
+1.875798 
+4.242975
+
+Significant  Genes  Associated  with  Oral  Squamous  Cell  Carcinoma 27
+
+Table  6.  Association  of  the  selected  genes  and  cancer
+
+Gene
+
+CBX3
+C1D
+STAT1
+
+RCN2
+CBX1
+SMC4
+TOPBP1
+PTPRK
+
+DMTF1
+FEZ1
+
+AGL
+IFIT5
+SKP2
+
+HMGB3
+NMI
+
+EIF2AK2
+IFI44L
+TTK
+
+MELK
+
+KCNJ2
+SNUPN
+AURKA
+
+IFI16
+
+DLD
+HDGFRP3
+ATR
+PAIP1
+BID
+COX11
+KIAA0746
+CAMSAP1L1
+GNPTAB
+FANCI
+
+C16ORF42
+CCDC75
+RHEB
+
+ZNF184
+TTC30A
+IFI44
+SOD2
+
+SAMD4A
+
+Cancer 
+
+association
+
+References
+
+OSCC 
+
+association
+
+References
+
+Fold  change
+
+Yes
+Yes
+
+Yes
+Yes
+
+Yes
+Yes
+
+Yes
+Yes
+
+Yes
+
+Yes
+
+Yes
+Yes
+
+Yes
+
+Yes
+
+Yes 
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+Yes
+
+Yes
+
+Hiroi  et al.  [14]
+
+Yang  et al.  [13]
+Hiroi  et al.  [6]
+Laimer  et al.  [15]
+Cavallo  et al.  [16]
+Luo  et al.  [17]
+
+Going  et al.  [18]
+Starr  et al.  [19]
+Flavell  et al.  [20]
+van  Dekken  et al.  [21]
+Califano  et al.  [22]
+Chen  et al.  [23]
+Fabris  et al.  [24]
+
+Shintani  et al.  [25]
+
+Yes
+
+Ben-Izhak  et al.  [7]
+
+Hayes  et al.  [26]
+Fillmore  et al.  [27]
+Quaye  et al.  [28]
+
+Harima  et al.  [29]
+Kono  et al.  [30]
+
+de  Cárcer  et al.  [31]
+
+Suda  et al.  [32]
+Pickard  et al.  [33]
+Kappadakunnel  et al.  [34]
+Gałeza-Kulik  et al.  [35]
+
+Torchia  et al.  [36]
+Chen  et al.  [37]
+Kaestner  et al.  [38]
+Alimirah  et al.  [39]
+Zhang  et al.  [40]
+Ortega-Paino  et al.  [41]
+
+Ahmed  et al.  [42]
+
+Zhi  et al.  [43]
+Barroso  et al.  [44]
+
+Lee  et al.  [45]
+Skrzycki  et al.  [46]
+Olson  et al.  [47]
+
+Lorch  et al.  [48]
+
+De  Andrea  et al.  [8]
+
+Yes
+
+Yes
+
+Yes
+Yes
+
+Chakraborty  et al.  [9]
+
+Ye  et al.  [11]
+Liu  et al.  [12]
+Ye  et al.  [10]
+
+2.219978 
+2.448721 
+4.307249 
+
+2.279745 
+2.132493 
+2.434400 
+2.189444
+3.345238 
+
+1.378319 
+2.853794 
+
+2.114894 
+2.664490 
+2.007377 
+
+2.974931 
+3.840395
+
+1.994068 
+124.396853 
+2.414220 
+
+3.755818 
+
+1.810372 
+1.913825 
+3.848891
+
+2.568727
+
+1.476130 
+2.724985 
+1.635679 
+1.997611 
+3.476190 
+1.419895 
+10.323529 
+1.717589
+1.733743 
+2.935005 
+
+2.059115 
+4.261916 
+1.536225 
+
+1.534287 
+2.374943 
+11.920148
+4.950142 
+
+4.790233 
+
+OSCC,  oral  squamous  cell  carcinoma.
+
+28 Genomics  &  Informatics Vol.  10(1)  23-32,  March  2012
+
+Table  6.  Continued
+
+Gene
+
+DSG2
+
+GREM1
+DRAM
+
+PLSCR4
+FLJ20035
+ASPN
+
+IFT81
+ECT2
+
+Cancer 
+
+association
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+References
+
+Lorch  et al.  [49]
+
+Crighton  et al.  [50]
+Crighton  et al.  [51]
+
+Mackay  et al.  [52]
+Turashvili  et al.  [53]
+
+Fields  and  Justilien  [54]
+Boelens  et al.  [55]
+Hirata  et al.  [56]
+
+OSCC,  oral  squamous  cell  carcinoma.
+
+OSCC 
+
+association
+
+Yes
+
+References
+
+Fold  change
+
+Ye  et al.  [11]
+
+5.614525 
+
+3.366686 
+2.780824 
+
+3.663654 
+6.364550
+7.895878 
+
+1.875798 
+4.242975
+
+way  maps  and  connections  and  specific  gene-gene  in-
+teractions  were  inferred,  functionally  analyzed,  and  used 
+to  build  on  the  existing  pathway  using  the  Ingenuity 
+Pathway  Analysis  (IPA)  knowledge  base  [57]. 
+    To  generate  networks  in  this  work,  the  knowledge 
+base  was  queried  for  interactions  between  the  identified 
+genes  and  all  other  genes  stored  in  the  database.  Four 
+networks  were  found  to  be  significant  in  OSCC.  The 
+network  with  the  highest  score  (Network  1,  score  =  36) 
+was  generated,  with  17  identified  genes  (Table  7,  Fig. 
+3).
+    In  the  network  diagram,  STAT1  and  SOD2  neighbored 
+with  NMI  and  AURKA,  respectively.  The  expression  lev-
+els  of  STAT1  and  SOD2  could  be  expected  to  be  re-
+lated  with  those  of  NMI  and  SOD2.  Actually,  the  ex-
+pressions  of  STAT1  and  SOD2  were  strongly  positively 
+correlated  with  NMI  (r  =  0.95)  and  AURKA  (r  =  0.87), 
+respectively.
+
+Discussion
+
+in 
+
+OSCC  is  associated  with  substantial  mortality  and  mor-
+bidity  [58].  To  identify  potential  biomarkers  for  early  de-
+tection  of  invasive  OSCC,  microarray  experiments  have 
+been  conducted,  and  these  kinds  of  microarray  datasets 
+have  accumulated  rapidly 
+the  public  database. 
+However,  there  are  many  datasets  that  include  in-
+sufficient  sample  sizes  for  detecting  significant  genes  by 
+statistical  analysis.  Therefore,  this  study  attempted  to 
+combine  several  microarray  datasets  from  a  public  data-
+base  to  identify  significant  candidates  as  biomarkers.
+    In  a  microarray  data  analysis,  the  information  from 
+different  datasets  obtained  under  different  experimental 
+conditions  may  be  inconsistent  even  though  they  are 
+performed  with  the  same  research  objectives.  Moreover, 
+even  when  the  datasets  are  generated  by  the  same 
+
+Fig.  2.  Expression  patterns  of  the  selected  51  genes. 
+These  genes  were  upregulated  in  oral  squamous  cell  carci-
+noma  tissues,  and  normal  and  tumor  groups  were  clearly 
+classified  with  these  genes. 
+
+Expression  pattern  of  the  identified  genes
+
+To  investigate  whether  the  different  experimental  groups 
+could  be  classified  with  significant  genes,  an  unsuper-
+vised  hierarchical  clustering  method  was  applied  to  the 
+significant  gene  set  (Fig.  2). 
+    The  normal  group  consisted  of  4  tissues  and  showed 
+significantly  lower  expression  levels  when  compared 
+with  the  tumor  group.  In  Fig.  2,  we  investigated  the 
+classification  availability  of  the  identified  genes  in  Data 
+2004,  not  in  a  combined  dataset,  because  the  two  data-
+sets  have  different  expression  scales. 
+
+Network  analysis
+
+Based  on  all  identified  genes,  new  and  expanded  path-
+
+Significant  Genes  Associated  with  Oral  Squamous  Cell  Carcinoma 29
+
+Table  7.  Four  networks  generated  by  upregulated  genes  in  OSCC
+
+Network
+
+Genes  Ingenuity  networksa
+
+Function
+
+Scoreb
+
+1
+
+2
+
+3
+
+4
+
+Akt,  ATR  (includes  EG:545),  AURKA,  BID,  C11ORF30,  CBX1,  CBX3,  Ck2,  Cyclin  A,
+  Cytochrome  c,  EIF2AK2,  ERK,  GREM1,  GZMK,  Histone  h3,  Histone  h4,  IFI16,
+  IFN  TYPE  1,  IFNA3,  Interferon  alpha,  NFkB  (complex),  NMI,  PDGF  BB,  PI3K,  PIF,
+  Proteasome,  RHEB,  SKP2,  SMC4,  SNUPN,  SOD2,  STAT1,  Tgf  beta,  TOPBP1,  TTK
+AGL,  ASPN,  beta-estradiol,  BTG1,  C1D,  COX11,  DDX60,  DNAJB4,  DSC2,  DSG2,
+  ECT2,  FGF13,  GBP1  (includes  EG:2633),  HNF4A,  IFI44,  IFI44L,  IFIT5,  IFNA2,
+  IFNA4,  IFNA6,  IFNA7,  IFNA5  (includes  EG:3442),  KCNJ2,  MAPK14,  MST1,  MYOG,
+  NUP153,  PARP9,  PTPRK,  RCN2,  SMAD3,  SSTR1,  TGFB1,  TGTP,  TMF1
+CAMSAP1L1,  CDC25A,  CDKN2A,  DHFR,  DISC1,  DLD,  DMTF1,  DRAM
+  (includes  EG:55332),  E2F4,  FANCI,  FEZ1,  GNB2L1,  GNPTAB,  HMGB3,  IFI202B,
+  LBR,  MCM3,  MCM5,  MELK,  MKI67,  MLC1,  PABPC1,  PAIP1,  PDHB,  Pias,  PLSCR4,
+  PRMT1,  RUVBL2,  SAMD4A,  SLC2A4,  TFDP1,  TK1,  TP53,  TRA2B,  YWHAG
+CAMSAP1L1,  CDC25A,  CDKN2A,  DHFR,  DISC1,  DLAT,  DLD,  DMTF1,  DRAM
+  (includes  EG:55332),  E2F4,  EIF4A,  FANCI,  FEZ1,  GNPTAB,  HMGB3,  IFI202B,  LBR,
+  MCM3,  MCM5,  MELK,  MKI67,  MLC1,  PABPC1,  PAIP1,  PDHB,  Pias,  PLSCR4,
+  PRMT1,  RUVBL2,  SAMD4A,  SLC2A4,  TFDP1,  TP53,  TRA2B,  YWHAG
+
+Cancer,  cellular 
+  response  to
+  therapeutics,
+  cell  cycle
+Cell-mediated  immune
+  response,  embryonic
+  development,  antigen
+  presentation
+Cell  cycle,
+  connective  tissue
+  development  and
+  function,  cell  death
+Cell  cycle,  connective 
+  tissue  development 
+  and  function,
+  lipid  metabolism
+
+36
+
+28
+
+24
+
+24
+
+OSCC,  oral  squamous  cell  carcinoma.
+aGenes  in  bold  were  identified  in  this  study;  other  genes  were  neither  on  the  expression  array  data  used  in  this  work  nor  changed  sig-
+nificantly;  bA  score  ＞ 3  was  considered  significant.
+
+detecting  the  more  reliable  information.  Combining  data-
+sets  is  especially  useful  in  OSCC  microarray  datasets, 
+because  there  are  many  datasets  with  insufficient  sam-
+ple  sizes  for  analysis  [4,  5,  59,  60].
+    For  identifying  significant  genes  classifying  tumor  and 
+normal  groups,  we  achieved  two  microarray  datasets 
+from  a  public  database,  GEO.  They  included  20  and  27 
+samples,  and  each  sample  size  was  unbalanced  be-
+tween  the  different  groups.  By  combining  these  two  da-
+tasets,  the  sample  size  was  increased,  and  we  had  a 
+sufficient  sample  size 
+for  statistical  analysis,  even 
+though  it  was  still  unbalanced.  When  these  datasets 
+were  combined,  we  used  the  rank  of  gene  expression, 
+because  the  scale  of  gene  expression  was  different.  In 
+this  study,  we  identified  51  significant  genes  from  a 
+combined  dataset,  and  this  number  could  be  increased 
+or  decreased  by  the  significance  level  (we  used  0.005). 
+The  selected  51  genes  were  upregulated  in  tumor 
+tissues.  Many  of  the  selected  genes  were  proven  to  be 
+cancer-related  genes  by  previous  studies.
+    SOD2  is  associated  with  lymph  node  metastasis  in 
+OSCC  and  may  provide  predictive  values  for  the  diag-
+nosis  of  metastasis  [10].  Metastasis  is  a  critical  event  in 
+OSCC  progression.  An  SOD2  variant  has  also  been  as-
+sociated  with  increased  breast  cancer  and  ovarian  can-
+cer  risk  in  previous  studies  [47,  61].  TopBP1  included 
+eight  BRCT  domains  (originally  identified  in  BRCA1),  and 
+it  was  proposed  as  a  breast  cancer  susceptibility  gene 
+[18,  62]. 
+    By  semiquantitative  reverse  transcription  PCR  analy-
+sis,  RHEB  was  shown  to  be  upregulated  in  OSCC  [9]. 
+In  salivary  cancer,  survival  probability  rates  dropped 
+
+Fig.  3.  Network  with  the  highest  score  (Network  1).  Func-
+tional  relationships  between  genes  based  on  known  inter-
+actions  in  Ingenuity  Pathway  Analysis  (IPA)  knowledge  are 
+described. 
+
+platform,  the  data  agreement  may  be  affected  by  tech-
+nical  variations  between  laboratories.  In  such  cases,  it 
+could  be  necessary  to  use  a  combined  dataset  after  ad-
+justing  for  the  differences  between  such  datasets  for 
+
+30 Genomics  &  Informatics Vol.  10(1)  23-32,  March  2012
+
+when  Skp2  was  overexpressed  [7].  Overexpression  of 
+Skp2  is  associated  with  the  reduction  of  p27  (KIP1)  ex-
+pression  and  may  have  a  role  in  the  progression  of 
+OSCC  [25].
+    The  expression  of  RCN2  was  linearly  related  to  the 
+tumor  mass  increase,  and  its  expression  was  increased 
+in  breast  cancer  [16].  PTPRK  was  proven  as  a  candi-
+date  gene  of  colorectal  cancer  [19],  and  it  is  a  func-
+tional  tumor  suppressor  in  Hodgkin  lymphoma  cells  [20]. 
+DMTF1  was  shown  to  be  amplified  in  adenocarcinoma 
+of  the  gastroesophageal  junction,  residing  at  7q21  by 
+aCGH  experiments  [21].  FEZ1  was  involved  in  ovarian 
+carcinogenesis,  and  its  reduction  or  loss  could  be  an 
+aid  to  the  clinical  management  of  patients  affected  by 
+ovarian  carcinoma  [22].  It  is  also  a  known  tumor  sup-
+pressor  gene  in  breast  cancer  and  gastric  cancer  [23, 
+63]. 
+    Other  ovarian  cancer-related  genes  were  NMI  [27,  28] 
+and FANCI [44]; breast cancer-related genes were COX11 
+[42],  MELK  [33],  and  FANCI  [44]  among  the  selected 
+genes.  MELK  was  known  to  be  associated  with  shorter 
+survival  in  glioblastoma  [34].
+    TTK  was  associated  with  progression  and  metastasis 
+of  advanced  cervical  cancers  after  radiotherapy  [29,  30]. 
+It  might  also  be  a  relevant  candidate  as  a  new  target 
+in  cancer  therapy,  since  it  plays  relevant  roles  in  mitotic 
+progression  and  the  spindle  checkpoint  [31,  32].  Aurora 
+kinase  A  (AURKA)  was  associated  with  skin  tumors  [36] 
+and  colorectal  cancer  [37,  38].
+    In  previous  studies,  OSCC-related  genes  among  the 
+selected  genes  were  STAT1  [14],  SKP2  [7,  25],  IFI16  [8], 
+RHEB  [9],  IFI44  [64],  SOD2  [10-12],  and  GREM1  [11]. 
+The  gene  set,  which  has  not  been  proven  as  OSCC-re-
+lated  genes  until  now,  could  be  expected  to  be  possibly 
+proven  as  OSCC-related  genes  by  biological  evaluation.
+    In  this  study,  we  identified  significant  genes  related 
+with  OSCC  from  two  microarray  datasets  in  a  public 
+database.  For  this,  we  transformed  microarray  datasets 
+using  ranks  of  gene  expressions  with  different  expres-
+sion  scales,  even  though  they  were  constructed  under 
+the  same  experimental  conditions.  This  method  could  be 
+useful  when  using  multiple  datasets  that  are  created  for 
+the  same  research  purpose,  By  combining  these  accu-
+mulated  datasets,  we  can  detect  more  reliable  infor-
+mation  due  to  the  increased  sample  size.  It  saves  time 
+and  money  and  avoids  repeating  experiments.
+
+Acknowledgments
+
+This  work  was  supported  by  the  Priority  Research  Cen-
+ters  Program  through  the  National  Research  Foundation 
+of  Korea  (NRF),  funded  by  the  Ministry  of  Education, 
+Science  and  Technology  (2011-0031396).
+
+References
+
+1. Sparano  A,  Quesnelle  KM,  Kumar  MS,  Wang  Y, 
+Sylvester  AJ,  Feldman  M, et al.  Genome-wide  profiling 
+of  oral  squamous  cell  carcinoma  by  array-based  com-
+parative  genomic  hybridization. Laryngoscope 2006;116: 
+735-741.
+
+2. Smeets  SJ,  Brakenhoff  RH,  Ylstra  B,  van  Wieringen 
+WN,  van  de  Wiel  MA,  Leemans  CR, et al.  Genetic  clas-
+sification  of  oral  and  oropharyngeal  carcinomas  identi-
+fies  subgroups  with  a  different  prognosis.  Cell Oncol 
+2009;31:291-300.
+
+3. Kim  KY,  Ki  DH,  Jeung  HC,  Chung  HC,  Rha  SY. 
+Improving  the  prediction  accuracy  in  classification  using 
+the  combined  data  sets  by  ranks  of  gene  expressions. 
+BMC Bioinformatics 2008;9:283.
+
+4. Toruner  GA,  Ulger  C,  Alkan  M,  Galante  AT,  Rinaggio  J, 
+Wilk  R,  et al.  Association  between  gene  expression 
+profile  and  tumor  invasion  in  oral  squamous  cell  carci-
+noma.  Cancer Genet Cytogenet 2004;154:27-35.
+
+5. O'Donnell  RK,  Kupferman  M,  Wei  SJ,  Singhal  S,  Weber 
+R,  O'Malley  B,  et al.  Gene  expression  signature  pre-
+dicts  lymphatic  metastasis  in  squamous  cell  carcinoma 
+of  the  oral  cavity.  Oncogene 2005;24:1244-1251.
+
+6. Hiroi  M,  Mori  K,  Sakaeda  Y,  Shimada  J,  Ohmori  Y. 
+STAT1  represses  hypoxia-inducible  factor-1-mediated 
+transcription. Biochem Biophys Res Commun 2009;387: 
+806-810.
+
+7. Ben-Izhak  O,  Akrish  S,  Gan  S,  Nagler  RM.  Skp2  and 
+
+salivary  cancer.  Cancer Biol Ther 2009;8:153-158.
+
+8. De  Andrea  M,  Gioia  D,  Mondini  M,  Azzimonti  B,  Renò 
+
+F,  Pecorari  G, et al.  Effects  of  IFI16  overexpression  on 
+the  growth  and  doxorubicin  sensitivity  of  head  and 
+neck  squamous  cell  carcinoma-derived  cell  lines.  Head 
+Neck 2007;29:835-844.
+
+9. Chakraborty  S,  Mohiyuddin  SM,  Gopinath  KS,  Kumar  A. 
+Involvement  of  TSC  genes  and  differential  expression  of 
+other  members  of  the  mTOR  signaling  pathway  in  oral 
+squamous  cell  carcinoma.  BMC Cancer 2008;8:163.
+
+10. Ye  H,  Wang  A,  Lee  BS,  Yu  T,  Sheng  S,  Peng  T, et al. 
+Proteomic  based  identification  of  manganese  super-
+oxide  dismutase  2  (SOD2)  as  a  metastasis  marker  for 
+oral  squamous  cell  carcinoma.  Cancer  Genomics 
+Proteomics 2008;5:85-94.
+
+11. Ye  H,  Yu  T,  Temam  S,  Ziober  BL,  Wang  J,  Schwartz 
+JL,  et al.  Transcriptomic  dissection  of  tongue  squ-
+amous  cell  carcinoma.  BMC Genomics 2008;9:69.
+
+12. Liu  X,  Yu  J,  Jiang  L,  Wang  A,  Shi  F,  Ye  H,  et al. 
+MicroRNA-222  regulates  cell  invasion  by  targeting  matrix 
+metalloproteinase  1  (MMP1)  and  manganese  superoxide 
+dismutase  2  (SOD2)  in  tongue  squamous  cell  carcino-
+ma  cell  lines. Cancer Genomics Proteomics 2009;6:131- 
+139.
+
+13. Yang  ZJ,  Yang  G,  Jiang  YM,  Ran  YL,  Yang  ZH,  Zhang 
+W, et al.  Screening  and  sero-immunoscreening  of  ovar-
+ian  epithelial  cancer  associative  antigens.  Zhonghua Fu 
+Chan Ke Za Zhi 2007;42:834-839.
+
+14. Hiroi  M,  Mori  K,  Sekine  K,  Sakaeda  Y,  Shimada  J, 
+Ohmori  Y.  Mechanisms  of  resistance  to  interferon-gamma- 
+mediated  cell  growth  arrest  in  human  oral  squamous 
+
+Significant  Genes  Associated  with  Oral  Squamous  Cell  Carcinoma 31
+
+carcinoma  cells.  J Biol Chem 2009;284:24869-24880.
+
+15. Laimer  K,  Spizzo  G,  Obrist  P,  Gastl  G,  Brunhuber  T, 
+
+Schäfer  G,  et al.  STAT1  activation  in  squamous  cell 
+
+cancer  of  the  oral  cavity:  a  potential  predictive  marker 
+of  response  to  adjuvant  chemotherapy.  Cancer 2007; 
+110:326-333.
+
+16. Cavallo  F,  Astolfi  A,  Iezzi  M,  Cordero  F,  Lollini  PL, 
+Forni  G, et al.  An  integrated  approach  of  immunogeno-
+mics  and  bioinformatics  to  identify  new  Tumor  Associa-
+ted  Antigens  (TAA)  for  mammary  cancer  immunological 
+prevention.  BMC Bioinformatics 2005;6(Suppl  4):S7.
+
+17. Luo  B,  Cheung  HW,  Subramanian  A,  Sharifnia  T,  Oka-
+moto  M,  Yang  X,  et al.  Highly  parallel  identification  of 
+essential  genes  in  cancer  cells. Proc Natl Acad Sci U S A 
+2008;105:20380-20385.
+
+18. Going  JJ,  Nixon  C,  Dornan  ES,  Boner  W,  Donaldson 
+MM,  Morgan  IM.  Aberrant  expression  of  TopBP1  in 
+breast  cancer.  Histopathology 2007;50:418-424.
+
+19. Starr  TK,  Allaei  R,  Silverstein  KA,  Staggs  RA,  Sarver 
+AL,  Bergemann  TL,  et al.  A  transposon-based  genetic 
+screen  in  mice  identifies  genes  altered  in  colorectal 
+cancer.  Science 2009;323:1747-1750.
+
+20. Flavell  JR,  Baumforth  KR,  Wood  VH,  Davies  GL,  Wei 
+the 
+W,  Reynolds  GM,  et  al.  Down-regulation  of 
+TGF-beta  target  gene,  PTPRK,  by  the  Epstein-Barr  vi-
+rus  encoded  EBNA1  contributes  to  the  growth  and  sur-
+vival  of  Hodgkin  lymphoma  cells.  Blood 2008;111:292- 
+301.
+
+21. van  Dekken  H,  Vissers  K,  Tilanus  HW,  Kuo  WL,  Tanke 
+HJ,  Rosenberg  C, et al.  Genomic  array  and  expression 
+analysis  of  frequent  high-level  amplifications  in  adeno-
+carcinomas  of  the  gastro-esophageal  junction.  Cancer 
+Genet Cytogenet 2006;166:157-162.
+
+22. Califano  D,  Pignata  S,  Pisano  C,  Greggi  S,  Laurelli  G, 
+Losito  NS,  et al.  FEZ1/LZTS1  protein  expression  in 
+ovarian  cancer.  J Cell Physiol 2010;222:382-386.
+
+23. Chen  L,  Zhu  Z,  Sun  X,  Dong  XY,  Wei  J,  Gu  F,  et al. 
+Down-regulation  of  tumor  suppressor  gene  FEZ1/LZTS1 
+in  breast  carcinoma  involves  promoter  methylation  and 
+associates  with  metastasis.  Breast Cancer Res Treat 
+2009;116:471-478.
+
+24. Fabris  C,  Basso  D,  Del  Favero  G,  Meggiato  T,  Piccoli 
+A,  Angonese  C,  et al.  Renal  handling  of  amylase  and 
+immunoreactive  trypsin  in  pancreatic  cancer  and  chron-
+ic  pancreatitis.  Clin Physiol Biochem 1990;8:30-37.
+
+25. Shintani  S,  Li  C,  Mihara  M,  Hino  S,  Nakashiro  K, 
+Hamakawa  H.  Skp2  and  Jab1  expression  are  asso-
+ciated  with  inverse  expression  of  p27(KIP1)  and  poor 
+prognosis  in  oral  squamous  cell  carcinomas.  Oncology 
+2003;65:355-362.
+
+26. Hayes  DC,  Secrist  H,  Bangur  CS,  Wang  T,  Zhang  X, 
+Harlan  D,  et al.  Multigene  real-time  PCR  detection  of 
+circulating  tumor  cells  in  peripheral  blood  of  lung  can-
+cer  patients.  Anticancer Res 2006;26:1567-1575.
+
+27. Fillmore  RA,  Mitra  A,  Xi  Y,  Ju  J,  Scammell  J,  Shevde 
+LA,  et al.  Nmi  (N-Myc  interactor)  inhibits  Wnt/beta-cat-
+enin  signaling  and  retards  tumor  growth.  Int J Cancer 
+2009;125:556-564.
+
+28. Quaye  L,  Song  H,  Ramus  SJ,  Gentry-Maharaj  A, 
+
+HØgdall  E,  DiCioccio  RA,  et al.  Tagging  single-nucleo-
+tide  polymorphisms  in  candidate  oncogenes  and  sus-
+ceptibility  to  ovarian  cancer. Br J Cancer 2009;100:993- 
+1001.
+
+29. Harima  Y,  Ikeda  K,  Utsunomiya  K,  Shiga  T,  Komemushi 
+A,  Kojima  H,  et al.  Identification  of  genes  associated 
+with  progression  and  metastasis  of  advanced  cervical 
+cancers  after  radiotherapy  by  cDNA  microarray  analysis. 
+Int J Radiat Oncol Biol Phys 2009;75:1232-1239.
+
+30. Kono  K,  Mizukami  Y,  Daigo  Y,  Takano  A,  Masuda  K, 
+Yoshida  K, et al.  Vaccination  with  multiple  peptides  de-
+rived  from  novel  cancer-testis  antigens  can  induce  spe-
+cific  T-cell  responses  and  clinical  responses  in  ad-
+vanced  esophageal  cancer.  Cancer Sci 2009;100:1502- 
+1509.
+
+31. de  Cárcer  G,  Pérez  de  Castro  I,  Malumbres  M.  Targe-
+
+ting  cell  cycle  kinases  for  cancer  therapy.  Curr Med 
+Chem 2007;14:969-985.
+
+32. Suda  T,  Tsunoda  T,  Daigo  Y,  Nakamura  Y,  Tahara  H. 
+Identification  of  human  leukocyte  antigen-A24-restricted 
+epitope  peptides  derived  from  gene  products  upregu-
+lated  in  lung  and  esophageal  cancers  as  novel  targets 
+for  immunotherapy.  Cancer  Sci  2007  Sep  2  [Epub]. 
+http://dx.doi.org/10.1111/j.1349-7006.2007.00603.x.
+
+33. Pickard  MR,  Green  AR,  Ellis  IO,  Caldas  C,  Hedge  VL, 
+Mourtada-Maarabouni  M, et al.  Dysregulated  expression 
+of  Fau  and  MELK  is  associated  with  poor  prognosis  in 
+breast  cancer.  Breast Cancer Res 2009;11:R60.
+
+34. Kappadakunnel  M,  Eskin  A,  Dong  J,  Nelson  SF, 
+Mischel  PS,  Liau  LM,  et al.  Stem  cell  associated  gene 
+expression  in  glioblastoma  multiforme:  relationship  to 
+survival  and  the  subventricular  zone.  J  Neurooncol 
+2010;96:359-367.
+
+35. Gałeza-Kulik  M,  Zebracka 
+
+J,  Szpak-Ulczok  S, 
+Czarniecka  AK,  Kukulska  A,  Gubala  E, et al.  Expression 
+of  selected  genes  involved  in  transport  of  ions  in  papil-
+lary  thyroid  carcinoma.  Endokrynol Pol 2006;57(Suppl 
+A):26-31.
+
+36. Torchia  EC,  Chen  Y,  Sheng  H,  Katayama  H,  Fitzpatrick 
+J,  Brinkley  WR,  et al.  A  genetic  variant  of  Aurora  kin-
+ase  A  promotes  genomic  instability  leading  to  highly 
+malignant  skin  tumors.  Cancer Res 2009;69:7207-7215.
+37. Chen  J,  Etzel  CJ,  Amos  CI,  Zhang  Q,  Viscofsky  N, 
+Lindor  NM,  et  al.  Genetic  variants  in  the  cell  cycle  con-
+trol  pathways  contribute  to  early  onset  colorectal  can-
+cer  in  Lynch  syndrome.  Cancer  Causes  Control  2009; 
+20:1769-1777. 
+
+38. Kaestner  P,  Stolz  A,  Bastians  H.  Determinants  for  the 
+efficiency  of  anticancer  drugs  targeting  either  Aurora-A 
+or  Aurora-B  kinases  in  human  colon  carcinoma  cells. 
+Mol Cancer Ther 2009;8:2046-2056.
+
+39. Alimirah  F,  Chen  J,  Davis  FJ,  Choubey  D.  IFI16  in  hu-
+man  prostate  cancer.  Mol Cancer Res 2007;5:251-259.
+40. Zhang  Y,  Howell  RD,  Alfonso  DT,  Yu  J,  Kong  L,  Wittig 
+JC,  et al.  IFI16  inhibits  tumorigenicity  and  cell  pro-
+liferation  of  bone  and  cartilage  tumor  cells. Front Biosci 
+2007;12:4855-4863.
+
+41. Ortega-Paino  E,  Fransson  J,  Ek  S,  Borrebaeck  CA. 
+Functionally  associated  targets  in  mantle  cell  lymphoma 
+
+32 Genomics  &  Informatics Vol.  10(1)  23-32,  March  2012
+
+as  defined  by  DNA  microarrays  and  RNA  interference. 
+Blood 2008;111:1617-1624.
+
+42. Ahmed  S,  Thomas  G,  Ghoussaini  M,  Healey  CS,  Hum-
+phreys  MK,  Platte  R,  et al.  Newly  discovered  breast 
+cancer  susceptibility  loci  on  3p24  and  17q23.2.  Nat 
+Genet 2009;41:585-590.
+
+43. Zhi  G,  Wilson  JB,  Chen  X,  Krause  DS,  Xiao  Y,  Jones 
+NJ,  et  al.  Fanconi  anemia  complementation  group 
+FANCD2  protein  serine  331  phosphorylation  is  impor-
+tant  for  fanconi  anemia  pathway  function  and  BRCA2 
+interaction.  Cancer Res 2009;69:8775-8783.
+
+44. Barroso  E,  Pita  G,  Arias  JI,  Menendez  P,  Zamora  P, 
+Blanco  M,  et al.  The  Fanconi  anemia  family  of  genes 
+and  its  correlation  with  breast  cancer  susceptibility  and 
+breast  cancer  features.  Breast Cancer Res Treat 2009; 
+118:655-660.
+
+45. Lee  ES,  Son  DS,  Kim  SH,  Lee  J,  Jo  J,  Han  J,  et al. 
+Prediction  of  recurrence-free  survival  in  postoperative 
+non-small  cell  lung  cancer  patients  by  using  an  in-
+tegrated  model  of  clinical 
+information  and  gene 
+expression.  Clin Cancer Res 2008;14:7397-7404.
+
+46. Skrzycki  M,  Majewska  M,  Podsiad  M,  Czeczot  H. 
+Expression  and  activity  of  superoxide  dismutase  iso-
+enzymes 
+2009;56:663-670.
+
+in  colorectal  cancer.  Acta  Biochim  Pol 
+
+47. Olson  SH,  Carlson  MD,  Ostrer  H,  Harlap  S,  Stone  A, 
+Winters  M,  et al.  Genetic  variants  in  SOD2,  MPO,  and 
+NQO1,  and  risk  of  ovarian  cancer.  Gynecol  Oncol 
+2004;93:615-620.
+
+48. Lorch  JH,  Thomas  TO,  Schmoll  HJ.  Bortezomib  inhibits 
+cell-cell  adhesion  and  cell  migration  and  enhances  epi-
+dermal  growth  factor  receptor  inhibitor-induced  cell  death 
+in  squamous  cell  cancer. Cancer Res 2007;67:727-734.
+49. Lorch  JH,  Klessner  J,  Park  JK,  Getsios  S,  Wu  YL, 
+Stack  MS,  et al.  Epidermal  growth  factor  receptor  in-
+hibition  promotes  desmosome  assembly  and  strength-
+ens  intercellular  adhesion  in  squamous  cell  carcinoma 
+cells.  J Biol Chem 2004;279:37191-37200.
+
+50. Crighton  D,  Wilkinson  S,  Ryan  KM.  DRAM  links  autoph-
+
+agy  to  p53  and  programmed  cell  death.  Autophagy 
+2007;3:72-74.
+
+51. Crighton  D,  Wilkinson  S,  O'Prey  J,  Syed  N,  Smith  P, 
+Harrison  PR, et al.  DRAM,  a  p53-induced  modulator  of 
+autophagy,  is  critical  for  apoptosis.  Cell  2006;126:121- 
+134.
+
+52. Mackay  A,  Urruticoechea  A,  Dixon  JM,  Dexter  T, 
+Fenwick  K,  Ashworth  A,  et al.  Molecular  response  to 
+aromatase  inhibitor  treatment  in  primary  breast  cancer. 
+Breast Cancer Res 2007;9:R37.
+
+53. Turashvili  G,  Bouchal  J,  Baumforth  K,  Wei  W, 
+Dziechciarkova  M,  Ehrmann  J,  et al.  Novel  markers  for 
+differentiation  of  lobular  and  ductal  invasive  breast  car-
+cinomas  by 
+laser  microdissection  and  microarray 
+analysis.  BMC Cancer 2007;7:55.
+
+54. Fields  AP,  Justilien  V.  The  guanine  nucleotide  exchange 
+factor  (GEF)  Ect2  is  an  oncogene  in  human  cancer. 
+Adv Enzyme Regul 2010;50:190-200.
+
+55. Boelens  MC,  Kok  K,  van  der  Vlies  P,  van  der  Vries  G, 
+Sietsma  H,  Timens  W,  et al.  Genomic  aberrations  in 
+squamous  cell  lung  carcinoma  related  to  lymph  node  or 
+distant  metastasis.  Lung Cancer 2009;66:372-378.
+
+56. Hirata  D,  Yamabuki  T,  Miki  D,  Ito  T,  Tsuchiya  E,  Fujita 
+M,  et al.  Involvement  of  epithelial  cell  transforming  se-
+quence-2  oncoantigen  in  lung  and  esophageal  cancer 
+progression.  Clin Cancer Res 2009;15:256-266.
+
+57. Ingenuity  Systems.  Accessed,  2011  Oct  3.  Avaiable 
+
+from:  http://www.injenuity.com.
+
+58. Chen  C,  Méndez  E,  Houck  J,  Fan  W,  Lohavanichbutr 
+
+P,  Doody  D,  et al.  Gene  expression  profiling  identifies 
+genes  predictive  of  oral  squamous  cell  carcinoma. 
+Cancer Epidemiol Biomarkers Prev 2008;17:2152-2162.
+59. Severino  P,  Alvares  AM,  Michaluart  P  Jr,  Okamoto  OK, 
+Nunes  FD,  Moreira-Filho  CA,  et al.  Global  gene  ex-
+pression  profiling  of  oral  cavity  cancers  suggests  mo-
+lecular  heterogeneity  within  anatomic  subsites.  BMC 
+Res Notes 2008;1:113.
+
+60. Gemenetzidis  E,  Bose  A,  Riaz  AM,  Chaplin  T,  Young 
+BD,  Ali  M, et al.  FOXM1  upregulation  is  an  early  event 
+in  human  squamous  cell  carcinoma  and  it  is  enhanced 
+by  nicotine  during  malignant  transformation.  PLoS One 
+2009;4:e4849.
+
+61. Knight  JA,  Onay  UV,  Wells  S,  Li  H,  Shi  EJ,  Andrulis  IL, 
+et al.  Genetic  variants  of  GPX1  and  SOD2  and  breast 
+cancer  risk  at  the  Ontario  site  of  the  Breast  Cancer 
+Family  Registry.  Cancer  Epidemiol  Biomarkers  Prev 
+2004;13:146-149.
+
+62. Liu  K,  Bellam  N,  Lin  HY,  Wang  B,  Stockard  CR,  Grizzle 
+WE,  et al.  Regulation  of  p53  by  TopBP1:  a  potential 
+mechanism  for  p53  inactivation  in  cancer. Mol Cell Biol 
+2009;29:2673-2693.
+
+63. Vecchione  A,  Ishii  H,  Shiao  YH,  Trapasso  F,  Rugge  M, 
+Tamburrino  JF,  et al.  Fez1/lzts1  alterations  in  gastric 
+carcinoma.  Clin Cancer Res 2001;7:1546-1552.
+
+64. Serrano-Fernández  P,  Möller  S,  Goertsches  R,  Fiedler 
+
+H,  Koczan  D,  Thiesen  HJ,  et al.  Time  course  tran-
+scriptomics  of  IFNB1b  drug  therapy  in  multiple  sclero-
+sis.  Autoimmunity 2010;43:172-178.
+
+

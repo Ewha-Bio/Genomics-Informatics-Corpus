@@ -1,0 +1,739 @@
+APPLICATION NOTE
+Genomics  &  Informatics
+Vol.  9(4)  189-193,  December  2011
+
+http://dx.doi.org/10.5808/GI.2011.9.4.189
+pISSN 1598-866X eISSN 2234-0742
+
+SSR-Primer  Generator:  A  Tool  for  Finding  Simple  Sequence 
+Repeats  and  Designing  SSR-Primers
+
+Chang  Pyo  Hong1,2,  Su  Ryun  Choi1  and  Yong 
+Pyo  Lim1*
+
+1Department  of  Horticulture,  College  of  Agriculture  and 
+Life  Science,  Chungnam  National  University,  Daejeon 
+305-764,  Korea,  2Division  of  Molecular  &  Life  Sciences, 
+Pohang  University  of  Science  &  Technology  (POSTECH), 
+Pohang  790-784,  Korea
+
+Abstract
+
+Simple  sequence  repeats  (SSRs)  are  ubiquitous  short 
+tandem  duplications  found  within  eukaryotic  genomes. 
+Their  length  variability  and  abundance  throughout  the 
+genome  has  led  them  to  be  widely  used  as  molecular 
+markers  for  crop-breeding  programs,  facilitating  the  use 
+of  marker-assisted  selection  as  well  as  estimation  of  ge-
+netic  population  structure.  Here,  we  report  a  software 
+application,  “SSR-Primer Generator”  for  SSR  discovery, 
+SSR-primer  design,  and  homology-based  search  of  in 
+silico  amplicons  from  a  DNA  sequence  dataset.  On  sub-
+mission  of  multiple  FASTA-format  DNA  sequences, 
+those  analyses  are  batch  processed  in  a  Java  runtime 
+environment  (JRE)  platform,  in  a  pipeline,  and  the  result-
+ing  data  are  visualized  in  HTML  tabular  format.  This  ap-
+plication  will  be  a  useful  tool  for  reducing  the  time  and 
+costs  associated  with  the  development  and  application 
+of  SSR  markers.
+
+Keywords:  EST  clustering  and  assembly,  homology- 
+based  search, in silico  amplicon,  PCR,  simple  sequence 
+repeat  (SSR),  SSR-primer
+
+Availability:  SSR-Primer  Generator  is  available  at  http:// 
+168.188.15.158:8080/ssrpg/.  A  source  code  for  SSR- 
+Primer  Generator  is  also  available  from  the  authors  upon 
+request  (yplim@cnu.ac.kr).
+
+Introduction
+
+Simple  sequence  repeats  (SSRs)  are  DNA  elements 
+found  ubiquitously  in  eukaryotic  genomes;  in  SSRs,  1-6 
+nucleotides  are  tandemly  repeated.  SSR  loci  have  a  rel-
+
+*Corresponding  author:  E-mail  yplim@cnu.ac.kr
+Tel  +82-42-821-5739,  Fax  +82-42-823-1382
+Received  11  October  2011,  Revised  20  October  2011, 
+Accepted  15  November  2011
+
+atively  high  mutation  rate,  resulting  in  variation  in  the 
+number  of  repeat  units.  The  instability  of  SSRs  mainly 
+results  from  slipped-strand  mispairing  errors  during  the 
+
+DNA  replication  process  (Schlötterer,  2000).  In  partic-
+
+ular,  the  mutation  rate  of  SSRs  has  been  suggested  to 
+increase  with  the  repeat  number,  with  longer  SSRs  hav-
+ing  a  mutation  bias  to  become  shorter  SSRs  (Kruglyak 
+et al.,  1998).
+ SSRs  are  found  throughout  the  genome.  They  are 
+more  abundant  in  non-coding  regions  than  in  coding  re-
+gions  (Li  et al.,  2004).  In  particular,  SSR  density  in 
+non-coding  regions  was  highest  within  the  5'-UTRs  of 
+genes,  followed  by  that  in  3'-UTRs,  introns,  and  inter-
+genic  regions  (Hong  et al.,  2007).  In  contrast  to  non- 
+coding  regions,  coding  regions  prevalently  harbor  trinu-
+cleotide  SSRs,  reflecting  the  codon  structure  in  these 
+regions  (Hong et al.,  2007).  SSRs  are  also  preferentially 
+associated  with  gene-rich  regions,  with  heterochromatin 
+SSRs  mostly  associated  with  retrotransposons  (Hong et 
+al.,  2007).  These  data  suggest  that  SSR  distribution  is 
+non-random.  In  particular,  association  of  SSRs  with 
+genes  may  play  important  roles  in  determining  gene 
+function,  such  as  altering  transcription,  translation,  RNA 
+splicing  or  stability  (Li et al.,  2004).  As  an  example,  the 
+expansion  of  trinucleotide  GAG  repeats  in  the  coding  re-
+gion  of  the  huntingtin  gene  in  humans  can  lead  to 
+Huntington’s  disease  (reviewed  in  Li  et al.,  2004).
+    The  nature  of  SSRs  gives  them  a  number  of  advan-
+tages  over  other  molecular  markers  (Jewell et al.,  2006): 
+(i)  SSRs  show  high  transferability  between  related  spe-
+cies,  with  high  allelic  diversity;  (ii)  multiple  SSR  alleles 
+may  be  detected  at  a  single  locus  by  using  a  simple 
+PCR-based  screen;  (iii)  SSRs  are  co-dominant;  (iv)  they 
+are  distributed  all  over  the  genome,  but  especially  occur 
+in  association  with  genes;  and  (v)  analysis  of  SSRs  may 
+be  semi-automated.  Thus,  SSR  markers  allow  for  rapid 
+generation  of  genetic  data  from  a  relatively  small 
+amount  of  sample,  with  high  reliability  and  reproduci-
+bility.  They  are  particularly  useful  for  genetic  mapping, 
+linkage  and  association  studies,  as  well  as  for  phyloge-
+netic  and  population  studies.
+    Recently,  with  the  increase  in  the  availability  of  DNA 
+sequence  information,  there  has  been  an  increased 
+need  for  automated  methods  to  find  SSR  loci  and  de-
+sign  primers  for  amplification  of  SSR  loci  from  large  se-
+quence  datasets;  this  would  be  a  particularly  useful  tool 
+in  crop-breeding  programs  where  it  could  aid  marker- 
+assisted  selection  as  well  as  estimation  of  genetic  pop-
+
+190 Genomics  &  Informatics Vol.  9(4)  189-193,  December  2011
+
+ulation  structure.  Moreover,  homology-based  search  for 
+amplicons  including  SSRs  would  be  helpful  to  develop 
+SSR  markers  linked  to  genes.  Given  this  need,  we  have 
+recently  developed  an  application,  “SSR-Primer  Genera-
+tor  (SSRPG),”  which  encompasses  the  following  func-
+tions:  (i)  discovery  of  SSR  loci  from  large  amounts  of 
+DNA  sequence  data,  including  the  SSR  flanking  regions; 
+(ii)  design  of  PCR  primers  that  target  amplification  of  the 
+SSR,  (iii)  homology-based  search  for  the  predicted  SSR 
+amplicons,  and  (iv)  visualization  of  results.  Moreover, 
+SSRPG  provides  a  function  for  producing  SSR-primer 
+pairs  that  are  unique  in  an  analyzed  dataset  and  that 
+form  stable  duplexes  with  the  template  DNAs  under  a 
+given  PCR  condition.  The  described  application  is  pub-
+licly  available  at  the  http://168.188.15.158:8080/ssrpg.
+
+Work  Flow  of  SSRPG
+
+SSRPG  is  a  user-friendly  web-application  for  (i)  finding 
+SSRs,  (ii)  designing  SSR-primers,  and  (iii)  homology- 
+based  search  for  their in silico  amplicons  in  a  batch 
+process  (Fig.  1).
+
+SSR  search 
+
+SSRs  are  searched  from  an  input,  which  should  be  giv-
+en  in  the  form  of  multiple  FASTA  format  DNA  se-
+quences,  by  SPUTNIK.  The  resulting  output  is  a  com-
+bined  result  table  providing  summary  information  of  the 
+SSRs  identified,  and  that  includes  the  repeat  types  iden-
+tified,  the  motifs  involved,  their  positions,  length,  repeat 
+scores,  and  the  flanking  regions.  After  a  search  for 
+SSRs,  sequences  containing  the  SSRs  and  their  flanking 
+regions  and  their  summary  information  are  used  as 
+queries  (sequence,  SSR-target  region,  primer  product 
+size  range,  etc.)  that  are  required  for  the  creation  of  a 
+PRIMER3  input  file.
+
+SSR-primer  design 
+
+A  PRIMER3  input  file  is  created  into  which  the  following 
+parameters  are  entered:  (i)  common  parameters  for  all 
+sequences,  including  required  primer  size  (20  bases), 
+primer  Tm  (59oC),  primer  GC%  (maximum:  60%;  mini-
+mum:  40%),  Max  Tm  difference  (integer:  1),  Max  com-
+plementarity  (PRIMER_SELF_ANY=5),  Max  3'  comple-
+mentarity  (PRIMER_SELF_END=2),  Max  Poly-X  (integer: 
+3),  CG  clamp  (integer:  0),  Max  3'  stability  (integer:  9), 
+and  Max  Ns  accepted  (integer:  0);  and  (ii)  parameters 
+for  individual  sequences,  including  primer  sequence  ID, 
+nucleotide  sequence  containing  the  SSR  derived  from 
+the  first  step  (SSR  search),  the  SSR  target  region,  and 
+the  product  size  range  (minimum:  150  bases).  These  pa-
+rameters  have  been  set  as  strict  criteria  to  ensure  ro-
+bust  PCR  amplification  in  Brassica  species. 
+    SSR-primers  are  designed  from  the  complete  input  by 
+PRIMER3,  and  the  resulting  output  (i.e.,  SSR  ID,  PCR 
+product  size,  primer  ID,  primer  sequence,  primer  length, 
+primer  Tm,  primer  GC%)  is  parsed.  To  increase  the  sta-
+bility  of  primers  as  well  as  PCR  efficiency,  primer  pairs 
+with  simple  repetitive  DNA  sequences  are  filtered  from 
+the  full  list  of  primer  sets,  and  similarly,  cross-homolo-
+gous  primer  pairs  showing  high  sequence  similarity  (i.e., 
+≥90%)  between  different  primer  pairs  are  also  filtered 
+out.  However,  if  one  of  such  a  pair  of  primers  is  unique, 
+the  pair  is  not  removed  from  the  full  list  of  primer  sets, 
+because  it  may  bring  about  specific  amplification  in  a 
+given  template.
+
+Homology-based  search  for  in  silico  amplicons 
+
+The  resulting  in silico  amplicons  (SSR  PCR  products) 
+can  be  selectively  searched  against  NCBI  non-re-
+dundant  protein  sequence  database  by  using  BLASTX, 
+with  adjustment  of  cutoff E-value  (i.e.,  1E-20),  and  best 
+BLAST  hit  for  each  amplicon  is  parsed  (i.e.,  score, 
+
+Fig.  1.  Work  flow  of  SSR-Primer  Generator.
+
+E-value,  description,  and  alignment  result).  This  analysis 
+provides information whether the SSR amplicons are asso-
+ciated  with  protein-coding  regions.  Selectively,  the  use  of 
+nucleotide  sequence  database,  including  promoters,  5'-/ 
+3'-UTRs,  exons,  and  introns,  with  BLASTN  enable  to  ana-
+lyze the genomic feature for amplicons. However, this step 
+will  be  available  with  an  administration  authorization  after 
+local  installation  of  SSRPG  because  of  dependence  on 
+server performance. A source code for SSR-Primer Genera-
+tor is also available from the authors upon request (yplim@ 
+cnu.ac.kr).
+
+Additional  options 
+
+To  produce  SSR-primers  from  unique,  contiguous  tran-
+script  sequence  data,  ESTs  can  be  clustered  and  as-
+sembled  by  TGICL  (Pertea et al.,  2003),  and  the  result-
+ing  contig  and  singleton  sequences  can  then  be  used 
+as  a  query  for  the  analysis  process  in  SSRPG.
+    As  another  option,  redundancy  between  different  pri-
+mer  datasets  that  have  been  generated  in  different  work 
+flows  can  be  assessed.  This  process  would  prevent  du-
+plication  in  primer  orders  when  primers  are  derived  from 
+the  same  DNA  region.
+
+Data  visualization 
+
+After  completion  of  each  process,  the  corresponding  da-
+ta  on  SSRs,  SSR-primers,  and  BLAST  search  are  visua-
+lized  in  HTML  format  and  can  be  downloaded  as  a 
+tab-delimited  text  file.  In  particular,  because  the  results 
+are  cross-linked  to  each  other,  co-visualization  of  differ-
+ent  data  is  allowed  in  HTML  format.  All  results  produced 
+from  each  process  are  also  stored  into  a  MySQL 
+database.
+
+Implementation 
+
+SSRPG  is  supported  on  Linux  and  on  Java  Virtual 
+Machine  (JVM)  operating  systems.  The  programs  (i.e., 
+SPUTNIK,  PRIMER3,  BLAST,  and  Python  scripts  for  da-
+ta  parsing  and  filtering),  which  make  up  the  analysis 
+pipeline  shown  in  Fig.  1,  are  batch-processed  with  sup-
+porting  of  JSP  programming.  Data  processing  and  input 
+and  output  services  are  implemented  as  servlets  running 
+in  an  Apache  Tomcat  container  on  a  Webserver.  A 
+MySQL  database  is  also  used  to  manage  data  that  are 
+produced  during  corresponding  analysis  processes.
+
+Tool  for  SSR  Finding  and  SSR-primer  Design 191
+
+format  DNA  sequences;  (ii)  it  provides  ease  of  use 
+through  access  to  the  web;  (iii)  it  allows  batch  process-
+ing  of  the  analysis  pipeline;  (iv)  it  allows  extra-process-
+ing  for  increasing  the  stability  of  primers  (filtering  of  pri-
+mer  sets  with  repeat  sequences  and  with  cross-homol-
+ogy  between  different  data  sets);  and  (v)  it  allows 
+cross-linking  between  different  results  in  HTML-based 
+tabular  format  (viz.,  data  integration).  Moreover,  homol-
+ogy-based  search  for in silico  amplicons  would  be  help-
+ful  to  develop  SSR  markers  linked  to  genes.  Such  an 
+approach  also  enables  one  to  identify  marker  trans-
+ferability  between  closely  related  genomes  by  compar-
+ing  amplicons  to  other  related  genomic  sequences.
+
+Performance  Testing  of  SSRPG
+
+For  performance  testing  of  SSRPG,  197,047  genomic 
+survey  sequences  (GSSs)  and  148,391  expressed  se-
+quence  tag  (EST)  sequences  of Brassica rapa ssp. peki-
+nensis  were  processed  in  SSRPG.  In  particular,  ESTs 
+were  initially  clustered  and  assembled  by  TGICL,  and  a 
+total  of  16,834  unique  sequences  were  analyzed.  Based 
+on  the  type  of  primary  SSR  motif,  a  total  of  29,245  and 
+4,101  SSRs  were  found  in  the  GSS  and  EST  datasets, 
+respectively,  and  of  those  SSRs  found,  10%  for  GSS 
+and  17%  for  EST  were  finally  designed  as  SSR-primer 
+pairs  (Table  1).  Because  of  the  use  of  stringent  parame-
+ters  for  primer  design  as  well  as  the  filtration  process 
+that  removes  the  primer  pairs  having  simple  repetitive 
+DNA  sequences  and/or  showing  cross-homology  with 
+high  sequence  similarity,  those  SSR-primers  will  enable 
+robust  PCR  amplification.  To  test  the  utility  of  SSR-pri-
+mers  designed,  we  performed  the  PCR  assay  with  150 
+and  114  sampled  GSS-  and  EST-derived  primer  sets, 
+respectively.  The  resulting  assay  revealed  a  high  suc-
+cess  rate  of  PCR  amplification  (98.7%  for  GSS  and 
+95.6%  for  EST)  (Table  1).  Moreover,  clear  single  ampli-
+con  was  observed  in  the  assay  regardless  of  repeat 
+types  (data  not  shown).  This  result  supports  that  SSRPG 
+produces  SSR-primers  with  high  specificity  and  stability 
+for  PCR.  Additionally,  in  the  primer  design,  SSRs  with  C 
+or  G-containing  motif  (i.e.,  AC,  AAG,  ATC,  AAC,  AGG, 
+AGC,  ACT,  CCG,  AAAG  motifs)  showed  relatively  high 
+success  rate  comparing  to  those  with  AT-rich  motif  (i.e., 
+AT,  AAT,  and  AAAT  motifs)  (Table  1).  This  suggests  that 
+the  degree  of  GC  content  as  well  as  low  complexity  in 
+SSRs  and  their  flanking  regions  affect  the  determination 
+of  target  regions  for  SSR-primer  design. 
+
+Features  of  SSRPG
+
+Conclusion
+
+SSRPG  provides  some  advantages  for  discovering  SSRs 
+and  designing  SSR-primers:  (i)  It  uses  multiple  FASTA 
+
+SSRPG  is  a  user-friendly  web  application  for  (i)  SSR 
+discovery,  (ii)  SSR-primer  design,  and  (iii)  homology 
+
+192 Genomics  &  Informatics Vol.  9(4)  189-193,  December  2011
+
+Table  1.  SSR  discovery  and  SSR-primer  design  from  GSSs  and  ESTs  of  Brassica rapa
+
+Repeat  type
+
+Type  of  primary 
+
+SSR  motifa
+
+No.  of  identified 
+
+motif
+
+Dinucleotide
+
+Trinucleotide
+
+Mononucleotide A
+C
+Subtotal  no.
+AG
+AT
+AC
+Subtotal  no.
+AAG
+AAT
+ATC
+AAC
+AGG
+ACC
+ACG
+AGC
+ACT
+CCG
+Subtotal  no.
+
+Tetranucleotide AAAT
+AAAC
+AAAG
+Subtotal  no.
+Total  no.
+
+GSS
+
+9,570
+  518
+10,088
+3,855
+4,169
+  797
+8,821
+3,246
+1,255
+1,343
+1,203
+1,043
+  630
+  256
+  421
+  177
+  314
+9,888
+  238
+  100
+  110
+  448
+29,245
+
+EST
+
+N/Ac
+N/A
+
+  897
+  136
+    99
+1,132
+  835
+    87
+  413
+  247
+  470
+  293
+  103
+  279
+    55
+  136
+2,918
+    14
+    15
+    22
+    51
+4,101
+
+No.  of  SSR-primer  pair
+
+PCR  assay
+
+Before  filtration
+
+After  filtration
+
+Frequency  of 
+SSR-primerb
+
+Tested  primer 
+
+pair  (No.)
+
+Amplification 
+success  (No.)
+
+GSS
+
+EST
+
+GSS
+
+EST
+
+GSS
+
+EST
+
+GSS
+
+EST
+
+GSS
+
+EST
+
+1,949
+  106
+2,055
+  890
+  506
+  183
+1,579
+  789
+  204
+  333
+  281
+  282
+  152
+    56
+  102
+    41
+    86
+2,326
+    40
+    23
+    27
+    90
+6,050
+
+N/A
+N/A
+
+123
+24
+16
+163
+198
+11
+96
+67
+146
+66
+16
+70
+18
+44
+732
+1
+1
+4
+6
+901
+
+942
+57
+999
+390
+268
+76
+734
+366
+107
+166
+135
+130
+70
+25
+59
+22
+47
+1,127
+19
+14
+16
+49
+2,909
+
+N/A
+N/A
+
+94
+20
+12
+126
+157
+8
+78
+51
+109
+49
+14
+55
+14
+38
+573
+1
+1
+1
+3
+702
+
+0.10
+0.11
+
+0.10
+0.06
+0.10
+
+0.11
+0.09
+0.12
+0.11
+0.13
+0.11
+0.10
+0.13
+0.12
+0.15
+
+0.08
+0.14
+0.59
+
+N/A
+N/A
+
+0.11
+0.15
+0.12
+
+0.19
+0.09
+0.19
+0.21
+0.23
+0.17
+0.14
+0.20
+0.25
+0.28
+
+0.07
+0.07
+0.05
+
+0.10
+
+0.17
+
+N/A
+N/A
+
+  10
+N/A
+  10
+
+  10 
+  10
+  10
+  10
+  10
+  10
+  10
+  10
+  10
+  10
+
+N/A
+N/A
+
+N/A
+N/A
+
+N/A
+N/A
+
+17
+  5
+  6
+
+20
+  6
+  8
+  7
+14
+  7
+  6
+  5
+  5
+  5
+
+10
+  N/A
+10
+
+10
+10
+  9
+10
+10
+10
+10
+10
+10
+10
+
+17
+  5
+  5
+
+20
+  6
+  8
+  7
+14
+  6
+  5
+  3
+  5
+  5
+
+  10
+  10
+  10
+150
+
+N/A
+  1
+  2
+  114
+
+  9
+10
+10
+  148
+(98.7%)
+
+N/A
+  1
+  2
+  109
+(95.6%)
+
+aOf  the  entire  motif  identified,  primary  motifs  were  analyzed.  bFrequency,  SSR  motif  no.  corresponding  to  SSR-primers  designed  after  filtra-
+tion/No.  of  identified  SSR  motifs.  cN/A,  not  applicable. 
+
+search  of in silico amplicons  from  a  large  amount  of 
+DNA  sequences  in  a  batch  process.  This  application  will 
+greatly  reduce  the  time  and  costs  associated  with  the 
+development  and  application  of  SSR  markers  in  en-
+deavors  such  as  genetic  mapping,  association  mapping, 
+comparative  analysis  (viz.,  the  study  of  synteny),  and 
+phylogenetics.  Moreover,  this  will  be  a  useful  tool  to 
+provide  public  SSR  marker  resources,  which  would,  in 
+turn,  promote  sharing  of  the  associated  analysis  data.
+
+Acknowledgements
+
+Dr.  CP  Hong  was  supported  by  the  Korea  Research 
+Foundation  Grant  funded  by  the  Korean  Government 
+(KRF-2008-357-F00014).  Dr.  YP  Lim  and  Dr.  SR  Choi 
+were  supported  by  grants  for  the  Technology  Develop-
+ment  Program  for  Agriculture  and  Forestry  (Grant  no. 
+607003-05),  Ministry  of  Food,  Agriculture,  Forestry,  and 
+Fisheries,  Republic  of  Korea,  and  by  a  grant  from  the 
+Next-Generation  BioGreen  21  Program  (Plant  Molecular 
+Breeding  Center  No.  20110701-305-595-001-04-00),  Ru-
+
+ral  Development  Administration,  Republic  of  Korea.
+
+References
+
+Hong,  C.P.,  Piao,  Z.Y.,  Kang,  T.W.,  Batley,  J.,  Yang,  T.J., 
+Hur,  Y.K.,  Bhak,  J.,  Park,  B.S.,  Edwards,  D.,  and  Lim, 
+Y.P.  (2007).  Genomic  distribution  of  simple  sequence  re-
+peats  in  Brassica  rapa. Mol. Cells.  23,  349-356.
+
+Jewell,  E.,  Robinson,  A.,  Savage,  D.,  Erwin,  T.,  Love,  C.G., 
+Lim,  G.A.,  Li,  X.,  Batley,  J.,  Spangenberg,  G.C.,  and 
+Edwards,  D.  (2006).  SSRPrimer  and  SSR  Taxonomy  Tree: 
+Biome  SSR  discovery.  Nucleic Acids Res.  34,  W656- 
+W659.
+
+Kruglyak,  S.,  Durrett,  R.T.,  Schug,  M.D.,  and  Aquadro,  C.F. 
+(1998).  Equilibrium  distributions  of  microsatellite  repeat 
+length  resulting  from  a  balance  between  slippage  events 
+and  point  mutations.  Proc. Natl. Acad. Sci. U.S.A.  95, 
+10774-10778.
+
+Li,  Y.C.,  Korol,  A.B.,  Fahima,  T.,  and  Nevo,  E.  (2004). 
+function,  and 
+
+Microsatellites  within  genes:  structure, 
+evolution.  Mol. Biol. Evol.  21,  991-1007.
+
+Tool  for  SSR  Finding  and  SSR-primer  Design 193
+
+Pertea,  G.,  Huang,  X.,  Liang,  F.,  Antonescu,  V.,  Sultana,  R., 
+Karamycheva,  S.,  Lee,  Y.,  White,  J.,  Cheung,  F.,  Parvizi, 
+B.,  Tsai,  J.,  and  Quackenbush,  J.  (2003).  TIGR  Gene 
+Indices  clustering  tools  (TGICL):  a  software  system  for 
+
+fast  clustering  of  large  EST  datasets.  Bioinformatics 19, 
+651-652.
+
+Schlötterer,  C.  (2000).  Evolutionary  dynamics  of  micro-
+
+satellite  DNA.  Chromosoma 109,  365-371.
+
+

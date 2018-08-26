@@ -1,0 +1,1109 @@
+Genomics  &  Informatics    Vol.  6(4)  202-209,  December  2008
+
+Biological  Pathway  Extension  Using  Microarray  Gene 
+Expression  Data
+
+Tae  Su  Chung1,2†,  Jihun  Kim1†,  Keewon  Kim1 
+and  Ju  Han  Kim1,2*
+
+1Seoul  National  University  Biomedical  Informatics  (SNUBI), 
+Seoul  National  University  College  of  Medicine,  Seoul 
+110-799,  Korea,  2Human  Genome  Research  Institute, 
+Seoul  National  University  College  of  Medicine,  Seoul 
+110-799,  Korea
+
+Abstract
+
+Biological  pathways  are  known  as  collections  of  knowl-
+edge  of  certain  biological  processes.  Although  knowl-
+edge  about  a  pathway  is  quite  significant  to  further 
+analysis,  it  covers  only  tiny  portion  of  genes  that  exists. 
+In  this  paper,  we  suggest  a  model  to  extend  each  in-
+dividual  pathway  using  a  microarray  expression  data 
+based  on  the  known  knowledge  about  the  pathway.  We 
+take  the  Rosetta  compendium  dataset  to  extend  path-
+ways  of  Saccharomyces  cerevisiae  obtained  from  KEGG 
+(Kyoto  Encyclopedia  of  genes  and  genomes)  database. 
+Before  applying  our  model,  we  verify  the  underlying  as-
+sumption  that  microarray  data  reflect  the  interactive 
+knowledge  from  pathway,  and  we  evaluate  our  scoring 
+system  by  introducing  performance  function.  In  the  last 
+step,  we  validate  proposed  candidates  with  the  help  of 
+another  type  of  biological  information.  We  introduced  a 
+pathway  extending  model  using  its  intrinsic  structure 
+and  microarray  expression  data.  The  model  provides  the 
+suitable  candidate  genes  for  each  single  biological  path-
+way  to  extend  it.
+
+Keywords:  biological  pathway,  pathway  extension,  mi-
+croarray  gene  expression
+
+Introduction
+
+Biological  pathways  can  be  regarded  as  a  collection  of 
+known  relations  or  reactions  between  biological  objects 
+(i.e.  genes  or  gene  products).  But  the  knowledge  about 
+biological  pathway  is  not  complete  and  insufficient  to 
+cover  the  whole  number  of  genes  or  gene  products.  In 
+case  of  human,  for  example,  about  3,000  genes  are 
+
+*Corresponding  author:  E-mail  juhan@snu.ac.kr
+†Contributed  equally
+Tel  +82-2-740-8320,  Fax  +82-2-762-3063
+Accepted  19  October  2008
+
+covered  by  the  major  biological  pathway  databases.  The 
+rest  with  the  relation  with  other  genes  remains  to  be 
+explored.  We  view  biological  pathways  as  a  set  of  bio-
+logical  knowledge  that  should  be  expanded  by  using 
+experimental  data  like  DNA  microarray  gene  expression 
+data. 
+    Recently,  microarray  gene  expression  datasets  are  in-
+cessantly  cumulated  with  the  aid  of  recent  technological 
+advances.  Analyzing  these  datasets  makes  it  possible  to 
+measure  the  expressions  of  tens  of  thousands  of  genes 
+simultaneously  under  various  experimental  conditions.  In 
+this  paper,  we  propose  a  model,  PathPlus,  to  determine 
+genes  for  biological  pathway  extension  by  combining 
+the  knowledge  about  biological  pathways  and  the  ex-
+perimental  data  from  DNA  microarray  experiments. 
+    The  most  significant  feature  of  PathPlus  is  that  it  uses 
+established  knowledge  (i.e  biological  pathway)  as  a  tem-
+plate  to  expand  the  knowledge.  Previous  studies  try  to 
+directly  infer  biological  networks  (or  pathways)  from 
+gene  expression  data  by  various  computational  or  stat-
+istical  means  without  using  prior  knowledge  (or  tem-
+plate).  To  induce  networks  of  genes  or  proteins,  for  ex-
+ample,  that  might  conjecture  biological  pathways  from 
+large-scale  data,  some  construct  bayesian  networks 
+from  gene  expression  data  or  infer  functional  protein 
+complexes  from  protein  interaction  data  (Friedman et al., 
+2000).  Others  combine  various  genomic  data  to  infer  bi-
+ological  networks  without  using  prior  knowledge  about 
+biological  interaction.  In  fact,  there  are  a  few  recent 
+works  trying  to  reconstruct  biological  relations  based  on 
+prior  knowledge  (Yamanishi et al.,  2004;  Kharchenko et 
+al.,  2004).  Yamanishi et al.  uses  kernel  method  to  pre-
+dict  new  gene-to-gene  interaction  within  metabolic  path-
+way  and  bases  it  on  known  pathway  knowledge  by 
+adopting  supervised  approach.  The  work  of  Kharchenko 
+et al.  compares  established  metabolic  network  with  ex-
+pression  profiles  to  find  genes  that  can  complete  a  met-
+abolic  pathway  with  some  participants  missed.  While 
+the  methods  are  good  in  finding  missing  genes,  they  do 
+not  suggest  possible  new  members  (or  genes)  for  the 
+given  biological  pathway  for  pathway  extension.
+    We  first  observe  that  a  biological  pathway  contains 
+highly  verified  information  but  covers  only  a  small  frac-
+tion  of  genes,  while  microarray  data  provide  noisy  ex-
+perimental  data  but  covers  the  whole  genome.  The  es-
+sence  of  PathPlus  approach  is  to  determine  candidate 
+genes  that  are  highly  likely  to  be  related  to  a  given 
+pathway  by  combining  microarray  gene  expression  data 
+
+Biological  Pathway  Extension  Using  Microarray  Data    203
+
+Graph  construction  from  biological  pathway
+
+For  the  purpose  of  illustration  in  the  present  study,  we 
+use  pathways  and  gene  expression  profiles  of  Sacchar-
+omyces  cerevisiae.  KEGG  (Kyoto  Encyclopedia  of  genes 
+and  genomes)  database  (Kanehisa,  1996)  provides  88 
+biological  pathways  for  Saccharomyces  cerevisiae.  We 
+extracted  43  pathways  by  removing  those  containing 
+less  than  12  genes  to  avoid  the  perturbation  caused  by 
+the  scarcity  of  basis  knowledge.  KEGG  relations  are  div-
+ided  into  three  categories:  EC  relation,  PP  relations  and 
+GE  relation.  EC  relation  stands  for  relations  between 
+two  genes  whose  protein  products  share  the  same  me-
+tabolite  in  a  metabolic  pathway.  When  two  proteins  in-
+teract  directly,  genes  coding  them  are  said  to  have  PP 
+relation.  GE  relation  means  that  one  gene  or  its  product 
+regulates  the  expression  of  the  other  gene.  In  addition, 
+we  define  co-member  relation  that  refers  to  the  genes 
+assigned  to  the  same  function  in  a  pathway.  To  con-
+struct  a  pathway  graph  from  this  information,  we  make 
+a  node  for  each  gene  and  link  a  pair  of  nodes  when 
+they  are  assigned  one  of  the  relations  listed  above.
+
+Graph  construction  from  microarray  expression 
+data
+
+As  a  source  of  microarray  expression  data,  we  use  the 
+Rosetta  compendium  dataset  (Hughes  et al.,  2000), 
+which  is  hitherto  the  most  systematic  approach  to  pro-
+file  yeast  genes.  The  dataset  is  consisted  of  300  micro-
+array  experiment  results,  which  contain  287  diverse 
+gene  mutations  and  13  chemical  treatments.  They  all 
+cover  6,153  genes  in  each  microarray  data.  The  log-ex-
+pression  ratio  values  are  used  as  entries  of  expression 
+matrix,  and  these  values  are  normalized  so  that  mean 
+and  standard  deviation  of  each  column  are  0  and  1, 
+respectively.
+    The  whole  genes  in  the  microarray  dataset  make  no-
+des  in  reference  graph  of  the  pathway  graph  for  each 
+pathway  we  will  concern.  We  here  present  two  different 
+methods 
+the  microarray 
+dataset.  Each  method  needs  thresholds  in  constructing 
+graphs  and  we  will  give  criteria  to  optimize  threshold  so 
+that  the  resulting  graph  reflects  the  biological  knowledge 
+in  some  sense.
+Method of linking co-DEGs:  The  process  of  identify-
+ing  DEGs  (differentially  expressed  genes)  is  one  of  the 
+major  steps  of  analyzing  gene  expression  data  under 
+the  assumption  that  the  expression  data  are  modeled  to 
+find  significant  changes  in  gene  expression  levels  be-
+tween  treatment  conditions  and  control  conditions.
+    Many  reasonable  procedures  and  statistical  methods 
+
+to  construct  graph 
+
+from 
+
+Fig.  1.  Overview  of  PathPlus.  To  combine  biological  path-
+way  and  microarray  gene  expression  data,  that  have  differ-
+ent  data  structures,  we  transform  both  into  graphs,  pathway
+graphs  and  reference  graphs.  Applying  a  scoring  system, 
+we  obtain  a  set  of  candidate  genes  with  high  scores  for 
+each  pathway.  The  set  is  verified  by  using  another  knowl-
+edge  resource,  the  Gene  Ontology.
+
+and  the  known  knowledge  about  the  biological  pathway 
+(Fig.  1). 
+    To  combine  biological  pathways  and  microarray  data-
+sets,  that  are  very  different  in  data  structure,  we  trans-
+form  both  into  a  common  template  structure,  a  graph. 
+We  transform  each  pathway  into  a  graph  whose  nodes 
+correspond  to  genes  or  gene  products  and  edges  to  bi-
+ological  relations  between  them.  Then,  we  extract  from 
+microarray  data  a  reference  graph  having  the  largest 
+structural  similarity  with  the  given  pathway  graph  by  op-
+timizing  the  parameters  of  graph  construction.  PathPlus 
+provides  a  score  measuring  the  likelihood  of  a  gene  to 
+be  related  to  a  pathway  using  the  structure  of  the  refer-
+ence  graph.  The  scoring  system  is  based  on  the  cen-
+trality  measures  introduced  by  the  social  network  analy-
+sis  (Bogatti  et al.,  1997;  Faust,  1997).
+    Finally,  we  obtain  sets  of  candidate  genes  with  high 
+scores  for  biological  pathways  and  evaluate  the  results 
+by  verifying  the  functions  of  the  candidate  genes  using 
+another  heterogeneous  data,  the  Gene  Ontology  (GO), 
+with  promising  results.  PathPlus  approach  may  contrib-
+ute  to  establish  methodological  concepts  in  knowledge 
+extension  and  to  give  insights  into  biologically  untapped 
+territories.
+
+Methods
+
+To  combine  the  two  different  data  types,  biological 
+pathways  and  microarray  gene-expression  data,  Path-
+Plus  use  graph  as  the  common  template  for  analysis.  A 
+graph  consists  of  a  set  of  nodes  and  a  set  of  edges. 
+Nodes  represent  genes  (or  gene  products)  and  edges 
+gene-to-gene  interactions  in  the  present  study. 
+
+204    Genomics  &  Informatics    Vol.  6(4)  202-209,  December  2008
+
+for  optimizing  threshold  to  determining  DEGs  are  in-
+troduced  and  applied  to  further  analysis  (Iyer  et al., 
+1999;  Tusher  et al.,  2001;  Dudoit  et al.,  2002).  Linking 
+co-DEGs  methods  constructs  a  graph  by  linking  two 
+genes  that  are  co-DEGs,  i.e.,  they  are  DEGs  under 
+same  experimental  condition.  The  method  was  applied 
+to 
+the  microarray  expression  dataset  with  various 
+threshold  values.
+Method of linking similarly expressed genes:  This 
+method  is  the  way  of  determining  edges  based  on  ex-
+pression  similarity.  In  this  paper,  the  absolute  value  of 
+Pearson  correlation  coefficient  is  taken  as  similarity 
+system.  When  a  similarity  of  a  pair  of  genes  exceeds  a 
+given  threshold,  these  two  genes  are  linked  in  this 
+method.
+
+The  most  compatible  reference  graph  of  path-
+way  graph
+
+Among  all  possible  values  of  threshold,  single  value  is 
+to  be  determined  so  that  the  compatibility  between 
+pathway  graph  and  reference  graph  can  be  maximized. 
+The  compatibility  between  two  graph  structures  is  de-
+signed  to  indicate  the  measurement  by  which  two  graph 
+structures  are  similar.  Here  we  will  introduce  the  notion 
+of  compatibility  between  two  graphs,  in  the  general  con-
+text  of  graph  theory.  The  geodesic  distance d(g, h; G) 
+between  nodes g  and h  is  defied  by  the  length  of  short-
+est  path  from g  to h  in  the  graph G.  This  distance  rep-
+
+resents  the  global  structure  of  graph  (Chartrand  et al., 
+1988).  If  two  graphs G1  and G2  are  constructed  on  the 
+same  set  of  nodes,  then  the  geodesic  distance  of  two 
+graphs  can  be  easily  defined  by  the  average  of  differ-
+ences  of  all  geodesic  distances  of  all  pairs  of  nodes  in 
+each  graph,  i.e. 
+
+dist(G1,G2) =
+
+Σ|d(g,h;G1)-d(g,h;G2)|
+
+n(n-1)/2
+
+   
+
+where  the  summation  is  taken  over  all  (unordered)  pairs 
+of  nodes  and n  is  the  number  of  common  set  of  nodes. 
+We  here  note  that  it  is  symmetric  and  satisfies  triangle 
+inequality  (Chartrand  et al.,  1988).  Now  let  GP  be  the 
+pathway  graph  and GM  = GM(q)  is  a  (reference)  graph 
+constructed  by  microarray  data  with  threshold  q  using 
+certain  graph  construction  method.  Then  the  compati-
+bility  Comp(GP, GM)  is  obtained  by
+
+Comp(GP, GM) = 1 - dist(GP, GM|GP)/(n-1)
+
+    Here n  is  the  number  of  genes  in GP,  and GM|GP  is 
+the  relative  subgraph  of  GM  to  GP.  Since  the  pathway 
+graph  GP  contains  only  small  subset  of  genes  that  are 
+described  in  graph GM,  it  is  natural  to  compare GP  and 
+subgraph  of GM.  It  is  clear  that  the  compatibility  lies  be-
+tween  0  and  1  and  it  becomes  1  only  when GM  includes 
+exactly  same  suture  of GP.  The  most  compatible  refer-
+ence  graph  of GP  is  the  graph GM  which  maximize  the 
+compatibility  with  GP.  Simple  greedy  algorithm  is  used 
+to  find  such  optimal  threshold  for  each  pathway.  It  is 
+
+Fig.  2.  Compatibilities  between  pathway  graph  and  various  reference  graphs.  When  a  pathway  graph  is  given  at  (A),  various
+reference  graphs  can  be  compared  to  it  according  to  different  parameters  ((B),  (C)  and  (D)).  Triangular  tables  represent  geo-
+desic  distances  of  gene  pairs  in  pathway  graph  (A)  and  reference  graphs  (B)-(D)  which  are  restricted  to  genes  in  the  pathway,
+respectively.  In  this  figure,  (C)  is  determined  to  be  the  most  compatible  reference  graph  of  (A).
+
+worthy  to  note  that  different  optimal  threshold  may  used 
+for  extending  different  pathways.
+    The  effect  of  threshold  optimization  on  compatibility  is 
+illustrated  in  Fig.  2.  When  a  pathway  graph  is  given  in 
+(A),  various  reference  graphs  can  be  compared  to  it  ac-
+cording  to  different  parameters  ((B),  (C)  and  (D)).  In  this 
+figure,  (C)  is  determined  to  be  the  most  compatible  ref-
+erence  graph  of  (A).
+
+Scoring  system
+
+With  the  most  compatible  reference  graph  of  a  pathway 
+graph,  we  suggest  a  gene  list  supposed  to  be  related 
+to  the  given  pathway  by  investigating  scoring  system 
+which  is  designed  to  assign  a  higher  score  on  a  gene 
+that  is  more  likely  to  be  related  to  the  pathway.  We  in-
+vent  scoring  system  based  on  the  idea  of  centrality 
+measures  introduced  by  social  network  analysis  (Bogatti 
+et al.,  1997).  Social  network  analysis  has  its  strength  in 
+reflecting  the  structure  of  a  graph  being  observed, 
+though  it  does  not  directly  represent  quantitative  rela-
+tions  between  two  nodes.  Because  many  biological  net-
+works  are  known  to  work  in  on-off  manner,  we  suggest 
+that  social  network  analysis  would  be  a  suitable  method 
+to  analyze  biological  networks.  Here  in  this  paper,  we 
+make  our  scoring  system  by  adopting  closeness  central-
+ity  and  betweenness  centrality  from  social  network  anal-
+ysis  (Bogatti et al.,  1997;  Faust,  1997).  The  normalized 
+betweenness  centrality  Cbet(g)  and  normalized  close-
+ness  centrality  Cclo(g)  of  a  node  g  are  defined  by
+
+Biological  Pathway  Extension  Using  Microarray  Data    205
+
+Cbet(g) =
+
+1
+
+(n-1)(n-2)/2
+
+Σ
+x≠g
+y≠g
+
+path(x,y;g)
+
+path(x,y)
+
+    and
+
+Cclo(g) =
+
+n-1
+
+Σd(g,x)
+x≠g
+
+    Here n  is  the  number  of  nodes  in  the  graph, path(x, 
+y)  is  the  number  of  all  shortest  paths  from x  to y,  and 
+path(x, y; g)  is  the  number  of  shortest  paths  from  x 
+and y,  which  pass  through g.  In  the  definition  of  close-
+ness  centrality,  the  geodesic  distance  d(g, x)  is  used. 
+Betweenness  centrality  of  a  node  measures  the  poten-
+tial  to  mediate  flows  of  resources  or  information  be-
+tween  other  nodes,  and  closeness  centrality  of  a  node 
+measures  the  distances  by  efficient  paths  from  the  node 
+to  all  the  other  nodes.
+    Fig.  3  illustrates  the  different  behaviors  of  the  two 
+centrality  measures  in  a  certain  types  of  graphs.  In  (A), 
+centrality  of  a  is  expected  to  be  greater  than  that  of  b, 
+since  the  node  a  make  connection  of  two  disconnected 
+subgraphs,  while  the  node  b  is  related  with  only  single 
+subgraph.  Although  both  centralities  of  a  are  greater 
+than  those  of  b,  betweenness  centralities  of  a  and  b 
+distinguish  their  social  roles  dramatically.  On  the  other 
+hand,  in  (B),  closeness  centralities  can  discriminate  the 
+social  roles  rather  than  betweenness  centralities.  In  this 
+case,  related  nodes  with  c  are  more  central  than  nodes 
+related  with  d.  To  assign  a  score S(g)  of  a  gene g,  we 
+need  to  construct  a  temporary  graph  which  is  a  sub-
+graph  of  the  most  compatible  reference  graph  GM, 
+whose  nodes  are  set  of  genes  in  the  pathway  graph GP 
+
+Fig.  3.  Distribution  of  scores  of 
+specific  nodes  in  certain  types  of 
+graphs.  In  (A),  betweenness  scores 
+of  a  and  b  distinguish  social  roles 
+of  a  and  b  dramatically,  while  clo-
+seness  scores  discriminates  social 
+roles  of  c  and  d  in  (B).
+
+206    Genomics  &  Informatics    Vol.  6(4)  202-209,  December  2008
+
+plus  a  gene g.  We  define  two  scoring  systems  by  nor-
+malized  betweenness  and  closeness  centrality  measures 
+of g  in  the  temporary  graph.  We  call  them  the  between-
+ness  scoring  system  and  closeness  scoring  system, 
+respectively. 
+
+Results  and  Discussion
+
+Correlation  between  microarray  data  and  path-
+way  knowledge
+
+The  basic  assumption  of  PathPlus  is  that  gene  ex-
+pression  profile  reflects  pathway  structure  and  pathway 
+structure  affects  gene  expression  profile.  We  defined 
+two  ‘expressional  homogeneity’  indices,  co-degree  and 
+similarity,  between  a  pair  of  genes. 
+    Co-degree  between  two  genes  in  a  microarray  gene- 
+expression  dataset  is  defined  as  the  number  of  con-
+ditions 
+in  which  both  are  differentially  expressed. 
+Similarity  between  two  genes  is  defined  as  the  absolute 
+value  of  the  Pearson  correlation  between  the  two  gene 
+profile  vectors.  Two  genes  directly  connected  in  a  path-
+way  graph  are  expected  to  have  higher  homogeneity  in-
+dices  than  those  non-connected.
+    We  further  defined  three  more  measures,  E(P,M)  = 
+the  average  of  the  homogeneity  (i.e.  co-degree  or  sim-
+ilarity)  indices  of  all  directly  connected  pairs  in  a  path-
+way  graph P, N(P,M)  =  the  average  of  the  homogeneity 
+(i.e.  co-degree  or  similarity)  indices  of  all  pairs  that  are 
+
+not  directly  connected  in  a  pathway  graph P,  and R(M) 
+=  the  average  of  homogeneity  indices  of  all  gene  pairs 
+in  a  microarray  dataset  M. 
+    If  the  basic  assumption  of  PathPlus  holds,  we  expect 
+that  the  inequality E(P,M)  ＞ N(P,M)  ＞ R(M)  should 
+be  satisfied.  Fig.  4  demonstrates  the  distributions  of  the 
+average  homogeneity  indices  of  directly  connected  and 
+non-directly-connected  gene  pairs  for  selected  pathways 
+and  those  of  all  gene  pairs  from  the  whole  microarray 
+dataset.  Because  it  is  observed  that  the  inequality 
+holds,  it  is  suggested  that  microarray  gene-expression 
+profile  reflects  biological  pathway  structures  and  vice 
+versa.  These  measures  were  only  introduced  to  show 
+the  correlation  between  microarray  data  and  pathway 
+knowledge.
+
+Performance  evaluation  of  scoring  systems
+
+PathPlus  assigns  a  score  for  each  candidate  gene.  We 
+evaluated the reliability of the scoring system. To measure 
+the  reliability  of  scoring  system  or  performance  of  model, 
+we introduce a performance function, f(k) = M(k)/nㆍ100 
+(%),  where M(k)  is  the  number  of  genes  that  included 
+in  the  original  pathway  among  top  k  ranked  genes,  and 
+n  is  the  number  of  genes  in  the  pathway,  and  k  runs 
+from  0  to N,  the  number  of  candidate  genes.  (N=6,153 
+in  this  study). 
+    Fig.  5  shows  performance  functions  of  each  scoring 
+systems  in  each  graph-construction  methods.  It  also 
+
+Fig. 4.  Correlation  between  microarray  data  and  knowledge  about  selected  pathways.  Both  (A)  Co-degree  and  (B)  sim-
+ilarity  of  connected  gene  pairs  (i.e.  the  gray  bars)  show  higher  values  than  non-connected  ones  (i.e.  the  white  bars)
+for  random  selected  10  pathways.  Overall  results  are  similar  to  this  result.  The  dotted  horizontal  lines  represent  the 
+mean  homogeneity  values  of  the  whole  gene  pairs.
+
+Biological  Pathway  Extension  Using  Microarray  Data    207
+
+Fig.  5.  Performance  functions  of  pathways.  (A),  (B),  (E),  (F)  use  reference  graph  constructed  by  linking  co-DEGs,  (C),  (D),  (G),
+(H)  use  method  of  linking  similarly  expressed  genes.  The  first  and  third  columns  applied  by  betweenness  scoring  system,  and
+the  remains  are  applied  by  closeness  one.  The  upper  part  give  performances  of  actual  pathways  and  the  lower  part  show
+performances  of  randomly  constructed  pathways.
+
+provided  the  performance  of  randomly  constructed 
+pathways. 
+    Fig.  5  (A),  (B),  (E)  and  (F)  are  performance  functions 
+of  pathways  using  the  reference  graph  constructed  by 
+the  method  of  linking  co-DEGs,  while  (C),  (D),  (G)  and 
+(H)  are  using  the  method  of  linking  similarly  expressed 
+genes.  The  (A),  (C),  (E)  and  (G)  are  applied  by  the  be-
+tweenness  scoring  system,  and  the  remaining  part  (B), 
+(D),  (F)  and  (H)  are  applied  by  the  closeness  scoring 
+system.  The  upper  part  (A),  (B),  (C)  and  (D)  show  per-
+formances  of  actual  pathways,  but  the  lower  part  (E), 
+(F),  (G)  and  (H)  represent  performances  of  randomly 
+constructed  pathways.  As  expected,  performances  func-
+tions  of  randomly  constructed  pathways  are  roughly  lo-
+cated  on  the  diagonal  lines  connecting  origin  and 
+top-right  point  (N, 100).  The  curves  of  actual  perform-
+ances  are  located  in  the  upper  triangular  parts  in  gen-
+eral,  so  we  expect  that  two  scoring  systems  make  quite 
+good  results  of  our  purpose.  Betweenness  scoring  sys-
+tems  give  more  stable  performance  with  the  reference 
+graph  constructed  by  linking  co-DEGs.  The  reference 
+graph  obtained  by  the  method  of  linking  similarly  ex-
+pressed  genes  serves  not-so-good  performance  scoring 
+systems.  These  poor  results  maybe  related  to  the  sim-
+ilarity  system  (the  absolute  value  of  Pearson  correlation 
+coefficient)  of  two  genes.  Pearson  correlation  usually  ig-
+
+nores  the  local  similarity,  i.e.,  it  may  assign  low  sim-
+ilarity  to  pair  of  genes  which  are  highly  co-expressed 
+only  in  the  small  number  of  experimental  conditions. 
+The  linking  co-DEGs  methods  overcome  the  locality 
+problem  in  some  sense.
+
+Validation  of  the  model  via  extrinsic  information
+
+The  candidate  gene  list  has  been  obtained  by  applying 
+our  model  to  each  pathway.  Since  we  have  two  scoring 
+systems  and  also  two  methods  to  construct  reference 
+graphs,  each  pathway  has  4  lists  of  candidates.  Table 
+1  and  2  show  the  top-ranked  genes  with  respect  to  the 
+pathways:  "glycolysis  /  gluconegenesis"  and  "TCA  cy-
+cle".  These  two  pathways  are  selected  due  to  their  bio-
+logical  significances  and  performances.  In  these  tables, 
+we  find  that  ranks  of  gene  list  from  different  scoring 
+systems  are  quite  compatible  each  other,  but  different 
+types  of  constructing  reference  graph  create  incon-
+sistent  lists  of  candidates.  Each  table  consists  of  two 
+lists  classified  by  its  methods  of  graph  construction,  and 
+in  each  part,  sums  of  ranks  (r),  ranks  in  betweenness 
+scoring  system  (rb),  ranks  in  closeness  scoring  system 
+(rc)  and  grades  are  examined.  The  grades  are  assigned 
+by  the  association  with  amiGO  annotation  and  standard 
+biological  references.  The  grade  "A"  is  assigned  to 
+
+208    Genomics  &  Informatics    Vol.  6(4)  202-209,  December  2008
+
+Table  1.  Candidate  genes  to  extend  pathway:  Glycosis/  Gluconeogenesis
+
+Linking  co-DEGs
+
+Linking  similarly  expressed  genes
+
+ORF
+
+YFL014W
+YGL255W
+YML128C
+YBR296C
+YGL117W
+YLR303W
+YFR053C
+YHR136C
+YKL096W
+YDL037C
+YCL018W
+YBR147W
+YGR110W
+YML123C
+YGR035C
+YMR094W
+YMR096W
+YNL160W
+YNR058W
+YBR047W
+
+r
+
+3
+5
+7
+11
+13
+13
+14
+15
+17
+23
+27
+29
+33
+33
+35
+35
+37
+39
+48
+50
+
+rb
+
+2
+3
+4
+7
+8
+5
+1
+9
+10
+6
+11
+14
+12
+24
+15
+25
+26
+27
+13
+36
+
+rc
+
+1
+2
+3
+4
+5
+8
+13
+6
+7
+17
+16
+15
+21
+9
+20
+10
+11
+12
+35
+14
+
+Grade
+
+ORF
+
+B
+C
+?
+?
+?
+B
+A
+B
+B
+?
+B
+?
+?
+A
+?
+C
+C
+A
+C
+?
+
+YBR019C
+YMR323W
+YLR377C
+YKR097W
+YPL017C
+YGL256W
+YAL054C
+YDR050C
+YDR045C
+YJR141W
+YDR380W
+YPL146C
+YNL001W
+YMR233W
+YJL068C
+YCR095C
+YLR336C
+YJR003C
+YLR287C
+YPR169W
+
+r
+
+2
+5
+6
+7
+11
+12
+13
+18
+19
+19
+20
+25
+26
+34
+37
+40
+42
+48
+50
+50
+
+rb
+
+1
+3
+2
+4
+5
+7
+6
+10
+9
+8
+11
+13
+12
+14
+20
+17
+23
+30
+21
+18
+
+rc
+
+1
+2
+4
+3
+6
+5
+7
+8
+10
+11
+9
+12
+14
+20
+17
+23
+19
+18
+29
+32
+
+Grade
+
+A
+B
+A
+A
+B
+B
+A
+A
+C
+?
+A
+?
+?
+?
+B
+?
+?
+?
+?
+?
+
+In  the  table,  r  is  for  sums  of  ranks,  rb  for  betweenness  ranks,  rc  for  closeness  ranks.  The  grades  are  assigned  by  the  asso-
+ciation  with  amiGO  annotation.  The  grade  “A”  is  for  genes  that  clearly  associated  with  the  pathway,  “B”  is  for  genes  that 
+have  equivocal  interpretation,  “C”  is  for  genes  without  association  and  “?”  is  for  genes  with  unknown  functional  annotation.
+
+Table  2.  Candidate  genes  to  extend  pathway:  TCA  cycle
+
+Linking  co-DEGs
+
+Linking  similarly  expressed  genes
+
+ORF
+
+YBR296C
+YFL014W
+YGL255W
+YML128C
+YIR039C
+YGL117W
+YBR072W
+YLR303W
+YCL040W
+YJL159W
+YOR383C
+YPR167C
+YFR053C
+YKL096W
+YJL116C
+YCL018W
+YJL079C
+YMR276W
+YOR382W
+YJR028W
+
+r
+
+2
+4
+6
+8
+12
+15
+17
+19
+21
+25
+33
+34
+35
+38
+39
+45
+47
+47
+47
+50
+
+rb
+
+1
+2
+3
+4
+5
+9
+7
+10
+16
+17
+8
+6
+22
+21
+24
+12
+33
+26
+23
+34
+
+rc
+
+1
+2
+3
+4
+7
+6
+10
+9
+5
+8
+25
+28
+13
+17
+15
+33
+14
+21
+24
+16
+
+Grade
+
+ORF
+
+A
+B
+C
+?
+B
+?
+B
+C
+A
+C
+?
+C
+A
+C
+?
+C
+?
+C
+?
+C
+
+YJL045W
+YKR097W
+YMR323W
+YDR380W
+YDR148C
+YPL017C
+YHR196W
+YDR299W
+YPL146C
+YGR128C
+YJR041C
+YJR003C
+YLR051C
+YJL068C
+YLR022C
+YPL210C
+YBR142W
+YLR435W
+YHR197W
+YBR242W
+
+r
+
+2
+5
+5
+9
+10
+11
+18
+24
+24
+26
+26
+27
+33
+38
+38
+40
+43
+43
+45
+50
+
+rb
+
+1
+2
+3
+4
+6
+5
+8
+10
+13
+11
+7
+9
+12
+21
+18
+16
+30
+20
+14
+23
+
+rc
+
+1
+3
+2
+5
+4
+6
+10
+14
+11
+15
+19
+18
+21
+17
+20
+24
+13
+23
+31
+27
+
+Grade
+
+A
+A
+A
+A
+?
+B
+C
+?
+?
+B
+B
+?
+?
+B
+?
+C
+B
+?
+?
+?
+
+In  the  table,  r  is  for  sums  of  ranks,  rb  for  betweenness  ranks,  rc  for  closeness  ranks.  The  grades  are  assigned  by  the  asso-
+ciation  with  amiGO  annotation.  The  grade  “A”  is  for  genes  that  clearly  associated  with  the  pathway,  “B”  is  for  genes  that 
+have  equivocal  interpretation,  “C”  is  for  genes  without  association  and  “?”  is  for  genes  with  unknown  functional  annotation.
+
+the  pathway  also  have  been 
+
+genes  that  are  clearly  associated  with  the  pathway,  "B" 
+is  genes  with  equivocal  interpretation,  "C"  is  genes  with-
+out  association  and  "?"  is  for  the  case  of  unknown  func-
+tional  annotation.  All  grade  is  endowed  with  subjectivity.
+    Let  us  look  into  the  candidates  for  "glycolysis  /  gluco-
+neogenesis"pathway.  A  few  candidates  are  annotated  a 
+general  or  vital  cellular  function  or  component  that  we 
+cannot  easily  judge  the  relevance  to  the  pathway 
+(YFL014W, YML128C, YHR136C, YKL096W and YMR094W). 
+A  few  others  are  not  revealed  about  their  functions 
+(YBR296C,  YGL117W,  YDL037C,  YGR110W,  YBR147W 
+and  YGR035C).  And  some  genes  suggestive  of  strong 
+relation  with 
+found 
+(YFR053C, YML123C, YNL160W and YBR296C). YFR053C 
+functions  as  a  hexokinase,  which  is  one  of  the  key  en-
+zymes  of  glycolysis  but  has  been  omitted  from  pathway 
+graph  because  the  gene  ID  has  not  been  served  by 
+KEGG  database  (E.C  2.7.1.1.  in  glycolysis  /  gluconeo-
+genesis  pathway  data  from  KEGG  corresponds  to  it). 
+YBR296C  and  YML123C  are  genes  whose  products 
+function  as  phosphate  transporters-glycolysis  process  is 
+intrinsically  linked  with  citric  acid  cycle,  which  is  sub-
+sequently  linked  with  oxidative  phosphorylation.  There-
+fore  the  extension  of  glycolysis  /  gluconeogenesis  path-
+way  toward  oxidative  phosphorylation  via  phosphate 
+transporter  can  be  sufficiently  persuasive.
+    The  next  candidate  list  is  the  one  for  extension  of  cit-
+ric  acid  cycle.  This  pathway  is  historically  well  known, 
+and  is  considered  to  be  centrally  located  within  a  meta-
+bolic  pathway  network.  (Jeong  et al.,  2001)  Hence  al-
+most  every  gene  might  be  traced  to  its  relation  to  citric 
+acid  cycle  within  a  few  connections. 
+    Nevertheless,  in  the  list  are  some  genes  that  draw  our 
+attention  (YLR303W,  YCL040W,  YCL018W,  YOL151W, 
+YCL030C,  YDL022W,  YFR053C  and  YJL116C).  YLR303W 
+deals  with  serine  metabolism,  which  is  initiated  from  a 
+precursor  of  citric  acid  cycle,  3-phosphoglycerate. 
+YCL040W  is  a  gene  with  glucokinase  activity  that  is  es-
+sential  in  glycolysis/glucokinase  pathway,  which,  as  we 
+mentioned  above,  is  closely  lined  with  citric  acid  cycle. 
+YJL116C  is  a  gene  for  mitochondrion  organization  and 
+biogenesis  and  citric  acid  cycle  occurs  within 
+mitochondrion.  YOL151W  is  known  to  have  oxidor-
+eductase  activity,  which  is  crucial  for  oxidative  phos-
+phorylation-  the  very  next  step  of  citric  acid  cycle  for 
+energy  generation.  YDL022W  is  related  to  NAD  activity, 
+which  plays  a  key  role  in  citric  acid  cycle.  Similarly,  oth-
+ers  participate  in  or  are  related  to  citric  acid  cycle; 
+YCL018W  is  related  to  the  cycle  through  malate  met-
+albolism,  YCL020C  through  histidine  metabolism  and 
+YFR053C  through  fructose  metabolism.
+
+Biological  Pathway  Extension  Using  Microarray  Data    209
+
+Conclusions 
+
+In  this  paper,  we  made  an  attempt  to  extend  an  estab-
+lished  pathway  through  microarray  expression  data.  To 
+obtain  this  goal,  we  transformed  knowledge  about  path-
+ways  and  microarray  expression  data,  respectively,  into 
+graph  structures,  and  analyzed  two  graphs  with  a  scor-
+ing  system  we  invented  based  on  social  network  theory. 
+We  also  validated  the  reliability  of  the  scoring  system  by 
+computing  prediction  powers.  Then  final  result  of  candi-
+date  lists  has  been  presented  and  has  been  examined 
+through  another  source  of  biological  data,  amiGO 
+annotation.
+
+References
+
+Bogatti,  S.P.,  and  Everett,  M.G.  (1997).  Network  analysis  of 
+
+2-mode  data.  Social Networks  19,  243-269.
+
+Chartrand,  G.,  Kubicki,  G.,  and  Schultz,  M.  (1988).  Graph  sim-
+ilarity  and  distance  in  graphs. Aequationes Math.  55,  129-145.
+Dudoit,  S.,  Yang,  Y.H.,  Gallow,  M.J.,  and  Speed,  T.P. 
+(2002).  Statistical  methods  for  identifying  differentially  ex-
+pressed  genes  in  replicated  cDNA  microarray  experi-
+ments.  Statistica Sinica.  12,  111-139.
+
+Faust,  K.  (1997).  Centrality  in  affiliation  networks.  Social 
+
+Networks  19,  157-191.
+
+Friedman,  N.,  Linial,  M.,  Nachman,  I.,  and  Pe’er,  D.  (2000). 
+Using  Bayesian  Network  to  Analyze  Expression  Data. 
+Journal of Computational Biology  7,  601-620.
+
+Hughes,  T.R.,  Marton,  M.J.,  Jones,  A.R.,  Roberts,  C.J., 
+Stoughton,  R.,  Armour,  C.D.,  Bennett,  H.A.,  Coffey,  E., 
+Dai,  H.,  He,  Y.D.,  Kidd,  M.J.,  King,  A.M.,  Meyer,  M.R., 
+Slade,  D.,  Lum,  P.Y.,  Stepaniants,  S.B.,  Shoemarker, 
+D.D.,  Gachotte,  D.,  Chakraburtty,  K.,  Simon,  J.,  Bard,  M., 
+and  Friend,  S.H.  (2000).  Functional  discovery  via  a  com-
+pendium  of  expression  profiles.  Cell  102,  109-126.
+
+Iyer,  V.R.,  Eisen,  M.B.,  Ross,  D.T.,  Schuler,  G.,  Moore,  T., 
+Lee,  J.C.,  Trent,  J.M.,  Staudt,  L.M.,  Hudson,  J.  Jr., 
+Boguski,  M.S.,  Lashkari,  D.,  Shalon,  D.,  Botstein,  D.,  and 
+Brown,  P.O.  (1999).  The  transcriptional  program  in  the  re-
+sponse  of human  fibroblasts  to  serum. Science  283,  83-87.
+Jeong,  H.,  Mason,  S.P.,  Barabasi,  A.L.,  and  Oltvai,  Z.N. 
+(2001).  Lethality  and  centrality  in  protein  networks. Nature 
+6833,  41-2.
+
+Kanehisa,  M.  (1996).  Toward  pathway  engineering:  a  new 
+database  of  genetic  and  molecular  pathways.  Science & 
+Technology Japan  59,  34-38.
+
+Kharchenko,  P.,  Vitkuo,  D.,  and  Church,  G.M.  (2004).  Filling 
+in  a  metabolic  networks  using  expression 
+
+gaps 
+information.  Bioinformatics  20  (Suppl.  1),  i178-i185.
+
+Tusher,  V.G.,  Tibshirani,  R.,  and  Chu,  G.  (2001).  Signifi-
+cance  analysis  of  microarrays  applied  to  the  ionizing  ra-
+diation  response. Proc. Natl. Acad. Sci. USA.  98,  5116-5121.
+Yamanishi,  Y.,  Vert,  J.P.,  Nakaya,  A.,  and  Kanehisa,  M. 
+(2004).  Protein  network  inference  from  multiple  genomic 
+data:  a  supervised  approach.  Bioinformatics  20  (Supple. 
+1),  i363-i370.
+
+

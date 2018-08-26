@@ -1,0 +1,657 @@
+APPL/CA TION 
+
+NOTE 
+
+Genomics  &  Informatics  Vol.  5(3)  129-132, September 2007 
+
+arraylmpute: Software for Exploratory Analysis and Imputation 
+of Missing Values for Microarray Data 
+
+Eun-Kyung Lee 1,  Dankyu Yoon2 and Taesung Part<3* 
+
+1Department  of  Clinical  Pharmacology  and  Therapeutics, 
+University of Ulsan,  Seoul  138-736,  Korea,  21nterdisciplinary 
+Program  in  Bioinformatics,  Seoul  National  University,  Seoul 
+151-921,  Korea,  3Department of Statistics,  Seoul  National 
+University,  Seoul  151-921,  Korea 
+
+Abstract 
+arraylmpute is a software for exploratory analysis of missing 
+data and imputation of missing values in microarray data. 
+It  also  provides a  comparative analysis of the  imputed 
+values obtained from various imputation methods. Thus, 
+it allows the users to choose an  appropriate imputation 
+method for microarray data. It is built on Rand provides 
+a user-friendly graphical interface. Therefore, the users 
+can  easily use arraylmpute to explore,  estimate missing 
+data, and compare imputation methods for further analysis. 
+
+Keywords:  imputation, microarray data,  missing data 
+
+Introduction 
+Microarray  experiments  generate  data  sets  for  the 
+expression levels of thousands of genes simultaneously. 
+However,  these  experiments  often  produce  missing 
+values due to various reasons such as scratches on the 
+chip,  spotting  problem,  and the presence of dust.  Most 
+statistical methods for analyzing microarray data cannot be 
+applied when the data contain missing values. Therefore, 
+the  missing values  have to  be  estimated  before further 
+analysis of the microarray data. 
+
+Many imputation methods for the estimation of missing 
+values have been developed, such as weighted k-nearest 
+neighbors imputation  (kNN,  Troyanskaya  et at.,  2002), 
+Bayesian principal component analysis (BPCA, Oba et at., 
+2003),  local  least  squares  imputation  (LLS,  Kim  et at., 
+2004), and robust least squares imputation with principal 
+components (RLSP, Yoon et at.,  2006). 
+
+Even though many sophisticated imputation methods 
+
+are currently available, the performanceof the proposed 
+imputation method mainly depends on the characteristics 
+of the missing data. Further, it has been shown that even 
+a small number of poorly estimated missing values might 
+produce misleading results (Wang et at., 2006). Therefore, 
+it is important to use an appropriate imputation method. 
+arraylmputehas been developed to provide an exploratory 
+analysis  of missing  data  and  the  imputation  of missing 
+values by various imputation methods. Further, it provides 
+a comparative analysis of the imputed values to let the user 
+choose an appropriate imputation method for the data. The 
+advantage  of arraylmpute  is  its  user-friendly  graphical 
+interface.  Therefore,  the  users  can  easily  perform  an 
+analysis for the missing data by a simple click ofthe mouse. 
+
+Exploratory Analysis of Missing Data 
+arraylmpute provides various techniques to explore the 
+missing data. It calculates missing rates for each chip and 
+provides a  bar chart to compare the chip-wise  missing 
+rates (Fig. 1 a). Further, it calculates the missing rates for 
+each gene and provides the distribution of the gene-wise 
+missing rates (Fig.  1 b). 
+
+arraylmpute  also  provides  a  heat  map  to  display 
+missing  patterns.  First,  arraylmpute  provides  a  global 
+missing pattern plot, where the x-axis represents chips, 
+and they-axis represents genes (Fig. 1c). The red spots 
+represent the missing values. From this map, we can easily 
+find the missing patterns. In chip X04T, the missing values 
+tend to cluster and produce several blocks. arraylmpute 
+also produces an individual heat map for each chip, where 
+the x and y-axes represent the two-dimensional location 
+of the gene in the chip.  Fig.  1 d and 1 e show the missing 
+patterns for the chips X01 T and X04T, respectively. In Fig. 
+1d,  there  are  no  specific  patterns  of red  spots,  which 
+suggests that the missing pattern of X01T is random. On 
+the other hand, in  Fig.  1e, most red spots are located in 
+the right lower corner. In this case, experimenters need to 
+check the right lower corner of this chip for any possible 
+artifacts of the chip. 
+
+*Corresponding author:  E-mail tspark@stats.snu.ac.kr 
+Tel +82-2-880-8924, Fax +82-2-8830-6114 
+Accepted  13 August 2007 
+
+Comparison of Imputation Methods 
+For the imputation of missing values, arraylmpute provides 
+
+130  Genomics & Informatics  Vol.  5(3) 129-132, September 2007 
+
+(a) missing rates for each chip 
+
+(c) Heatmap of overall! missing pattern 
+
+1.0 
+
+0.8 
+
+0.6 
+
+0.4 
+
+0.2 
+
+00 
+
+1-"' 0 
+
+X 
+
+1-g 
+X 
+
+1-
+L[) 
+0 
+X 
+
+1-
+0 
+
+1-
+(D 
+
+~  x 
+
+{b) Histogram of missing rates of each gene 
+
+-
+
+-
+
+0 
+... 
+~ 
+
+0 
+0 
+
+s 
+
+0 
+0 
+<{) 
+
+0 
+0 
+N 
+
+0 
+
+Q) 
+
+> 
+u c 
+:> r:r 
+~ 
+lL 
+
+r-r--
+
+r-
+
+-
+
+-
+
+r-
+
+r-
+
+-
+
+r-
+
+-
+
+~ 
+
+0.0 
+
+0.2 
+
+0.4 
+
+0.6 
+
+0.8 
+
+missing  rate 
+
+(d) X01T 
+
+(e) X04T 
+
+-
+
+- _:_:;-" 
+
+-..- ~- -
+
+{':"_- :---::11 
+I 
+- I .. 
+_---~:- -.---=~I 
+-- -- "1 
+- -
+
+Fig.  1. Various exploratory tools in  arraylmpute for estimating missing  patterns.  {a).  Bar chart to compare the chip-wise missing 
+rates. (b).Histogram of gene-wise missing rates. {c) Heat map to display overall missing pattern. (d)-( e) Heat map to display missing 
+pattern for each chip. 
+
+several  imputation  methods  such  as  average  impute 
+(AVE,  Feten eta/, 2005),  kNN,  LLS,  RLSP,  and  BPCA. 
+Therefore,  the users can  impute the missing values  by 
+these  methods  and  simultaneously  compare  them  to 
+choose an appropriate imputation method. In addition, the 
+users can upload their own imputed values from their newly 
+developed imputation method and compare them with the 
+imputed values provided by arraylmpute. 
+
+For an  overall  comparison,  arraylmpute  provides  a 
+
+scatter plot for each pair of the imputed values as well as 
+the corresponding p-value of the pairwise t-test (Fig. 2a). 
+arraylmpute also provides a profile plot to compare the 
+imputed values for each gene (Fig.  2b). 
+
+In order to compare imputation methods, arraylmpute 
+generates  missing  observations  randomly  and  then 
+imputes the missing observations using all the imputation 
+methods available. arraylmpute computes the normalized 
+root mean squared errors (NRMSE, Oba et at., 2003) for 
+
+arraylmpute: Software for Exploratory Analysis and Imputation of Missing Values for Microarray Data  131 
+
+Adj. Pvalues of paired t-test between two imputation methods 
+
+-1.0 
+
+0.0 
+
+1.0 
+
+-1.5  -0.5  0.5  1.5 
+
+B 
+
+f ~ 0000 ·11  0.0000  11· oo~oo ·11  0.0000  t : 
+; 1 '\,I EJ 1 0.0000 11  0.0000 11  0.0000 1 , 
+.,~~EBB~ 
+:CSJ~0BB 
+·CSJ~00B! 
+
+0 ~, 0 
+
+0.0390 
+
+0.1145 
+
+LLS 
+
+° 0 
+~0 li 
+
+.....: 
+: 
+
+0 
+
+0 
+
+0 
+
+-020 
+
+-0.05 
+
+0.10 
+
+-1.5 
+
+00  1.0  2.0 
+
+-1  5 
+
+0.0  1.0  2.0 
+
+2.0  ., 
+
+1.5  ·i 
+
+I 
+I 
+I 
+I 
+
+I 
+I 
+I 
+I 
+I 
+
+., 
+
+1.0 
+
+I 
+I 
+I 
+I 
+I 
+
+(]) 
+:;, 
+m 
+> 
+., 
+c  0.5 
+0 
+' 
+'iii 
+(J) 
+' ' 
+~ 
+Q_  0.0  ., 
+>< 
+' 
+(]) 
+-0.5  ... I 
+
+' 
+
+I 
+I 
+
+I 
+
+Gene1847 
+
+TRUE 
+AVE 
+kNN 
+LLS 
+RLSP 
+BPCA 
+
+tl',:\, 
+
+, 
+
+I 
+
+I 
+
+I 
+
+I 
+I 
+~I  I 
+' 
+I 
+I 
+I 
+I 
+I 
+
+~  I 
+J'l'f 
+
+;f,/  I 
+;1,11 
+I l l '  
+
+I 
+I 
+I 
+I 
+I 
+I 
+
+I 
+! 
+
++--- ,.::/:~-------+--+-
+:  I 
+' 
+
+I  . 
+
+' 
+' 
+
+I'  I 
+
+I 
+I 
+
+I' 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+I 
+
+. 
+
+' I 
+-1.0  ·" 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+1 
+/ I  
+
+I  I 
+
+I 
+
+-f/  • 
+f 
+
+.I 
+
+: 
+
+• 
+
+: 
+
+I 
+
+~- ;-- ~-- "!"-:-;--;- -;- ~-- ~- -:-;-- ~--;- ;-- ~--;- -~ 
+~~~~~~~~2~~~~~~~~~ 
+E  E  ~ E  ~ ~ E  £  E  -~-~-~-~-~-~-~-~-~ 
+oooooooooooBBBBBBB 
+
+Fig. 2.  Comparison of imputed values. (a) Scatter plot matrix of various imputed values with p-values from t-test.  (b) Profile plot to 
+compare imputed values for each gene. The grey dots represent non-missing data. 
+
+LLS NRMSE = 0.0094 
+
+RLSP  NRMSE = 0.0085 
+
+N 
+' 
+
+-2 
+
+0 
+
+2 
+
+4 
+
+true. value 
+
+BPCA NRMSE = 0.0142 
+
+41 .., 
+"' ... 
+!: 
+ci. 
+(f) 
+..J 
+a: 
+
+"" 
+
+N 
+
+0 
+
+N 
+' 
+
+.. .., 
+... 
+"  N 
+E 
+i z 
+"" 
+
+0 
+
+N 
+I 
+
+-2 
+
+0 
+
+2 
+
+4 
+
+true.v.alue 
+
+kNN NRMSE = 0.1575 
+
+-Notes--------------(cid:173)
+####11111#######1111111.~1 
+Voting result 
+(#of best genes/total gene) 
+
+AVE impute :  40 I 775 
+kNN impute:  46/775 
+LLS impute:  158/775 
+RLSP impute:  2131775 
+BPCA •mpute : 326/775 
+Chlsq. test p-value:  0 
+###11111##########111##. 
+###DIIIJ########l#llll#. 
+A NOVA 
+Imputation method 
+df1 
+p-value 
+4  3096  84.622  «.0001 
+##li##IIA'####Il####~''III#IJ. "!I 
+( 
+
+dt2 
+
+F 
+
+) 
+
+I - -----·-----
+
+-2 
+
+0 
+
+2 
+
+4 
+
+true.v.alue 
+
+-2 
+
+0 
+
+2 
+
+4 
+
+true.ualue 
+
+Fig.  3.  Guidelines to  select the  best  imputation  method.  Scatter plots  with  true values with  NRMSE valuescompare 
+imputed values for each gene. The grey dots represent non-missing data. 
+
+132  Genomics &  Informatics  Vol.  5(3) 129-132, September 2007 
+
+each imputation method by comparing the imputed values 
+with the true values (Fig. 3). Even though NRMSE is the 
+most  commonly  used  measure  for  performance  of 
+imputation, NRMSE is sensitive to outliers. To overcome 
+this  limitation,  arraylmpute  provides  another  measure 
+based on voting.  For each gene, arraylmpute votes the 
+imputation  method  that  has  the  smallest  absolute 
+difference  between  the  imputed  values  and  the  true 
+observed  values.  One  gene  is  allowed  to vote for one 
+imputation method. 
+
+arraylmpute  also  provides  a  test  of  significant 
+differences between  imputation  methods based  on  the 
+mixed effect model (Fig. 3) in which imputation method is 
+treated  as  a  fixed  effect.  All  imputation  methods  in 
+arraylmputeare developed under the missing at random 
+(MAR)  assumption.  However,  the  missing  patterns  of 
+some  chips  may  be  missing  not  at  random  (MNAR) 
+(Fig.1 c),  and  they  should  be  treated  in  different  ways 
+(Scheel eta/., 2005). arraylmpute will be a useful tool to 
+check whether the missing pattern is MAR or MNAR. 
+
+Implementation 
+
+This software runs on R with a couple of R packages-RGtk2 
+and cairoDevice-for graphical user interface. 
+
+Acknowledgments 
+
+The  work  was  supported  by  the  National  Research 
+Laboratory Program of Korea Science and Engineering 
+Foundation (M1 0500000126). 
+
+References 
+Feten, G., Almoy, T., and Aastveit, A. H. (2005). Prediction of 
+Missing Values in Microarray and Use of Mixed Models to 
+Evaluate  the  Predictors  Stat  App/  Genet  Mol  Bioi.  4, 
+Article10. 
+
+Kim,  H.,  Golub,  G.H.,  and  Park,  H.  (2005).  Missing Value 
+Estimation  for  DNA  microarray  gene  expression  data: 
+local 
+imputation.  Bioinformatics  21, 
+187-198. 
+
+least  squares 
+
+Oba, S., Sato, M., Takemasa, 1.,  Monden, M., Matsubara, K, 
+and Ishii, S. (2003). A Bayesian missing value estimation 
+method for gene expression profile data.  Bioinformatics 
+19, 2088-2096. 
+
+Scheel, 1., Aldrin, M., Glad, 1.,  Sorum, R, Lyun, H., and Frigessi, 
+A. . (2005). The influence of missing value imputation on 
+detection  of  differentially  expressed  genes 
+from 
+microarray data.  Bioinformatics 21, 4272-4279. 
+
+Troyanskaya, 0., Cantor, M., Sherlock, G. Brown, P., Hastie, 
+T.,Tibshirani, R.,  Botstein, D., and Altman, R.  B.  (2001 ). 
+Missing value estimation methods for DNA microarrays. 
+Bioinformatics 17,  520-525. 
+
+Yoon, D., Lee, E.K., and Park, T. (2007). Robust imputation 
+method  for  missing  values  in  microarray  data.  BMC 
+Bioinformatics 8,  S6. 
+
+Wang, D., Lv, Y., Guo, Z., Li, X., Li, Y., Zhu, J., Yang, D., Xu, 
+J.,  Wang  C.,  Rao,  S.  and  Yang,  B.  (2006).  Effects  of 
+replacing the unreliable eDNA microarray measurements 
+on the disease classification based on gene expression 
+profiles and functional  modules.  Bioinformatics 22,  2883-
+2889. 
+
+

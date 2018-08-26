@@ -1,0 +1,885 @@
+G&I   Genomics & Informatics
+
+APPLICATION NOTE
+
+pISSN 1598-866X  eISSN 2234-0742
+Genomics Inform 2012;10(4):266-270
+http://dx.doi.org/10.5808/GI.2012.10.4.266
+
+Developing JSequitur to Study the Hierarchical 
+
+Structure of Biological Sequences in a Grammatical 
+
+Inference Framework of String Compression 
+
+Algorithms
+
+Bulgan Galbadrakh, Kyung-Eun Lee, Hyun-Seok Park*
+
+Department of Computer Science, Ewha Womans University, Seoul 120-750, Korea
+
+Grammatical inference methods are expected to find grammatical structures hidden in biological sequences. One hopes that 
+studies of grammar serve as an appropriate tool for theory formation. Thus, we have developed JSequitur for automatically 
+generating the grammatical structure of biological sequences in an inference framework of string compression algorithms. 
+Our  original  motivation  was  to  find  any  grammatical  traits  of  several  cancer  genes  that  can  be  detected  by  string 
+compression algorithms. Through this research, we could not find any meaningful unique traits of the cancer genes yet, but 
+we could observe some interesting traits in regards to the relationship among gene length, similarity of sequences, the 
+patterns of the generated grammar, and compression rate. 
+
+Keywords: context-free grammar, formal language theory, natural language processing, stochastic modeling 
+
+Availability: JSequitur is freely available for academic purposes. Please contact neo@ewha.ac.kr.
+
+Introduction
+
+In formal language theory a language is simply a set of 
+strings of characters drawn from some alphabet, where the 
+alphabet (terminal) is a set of symbols. When we consider 
+biological sequences simply as a language in the context of 
+formal  language  theory  (treating  DNA,  RNA,  or  protein 
+sequences just as strings of alphabets of four nucleotides or 
+20 amino acids), a grammatical inference method based on 
+formal language theory can be applied [1-3].
+
+Nevill-Manning and Witten [4] pioneered the attempt to 
+produce the context-free grammarof biological sequences in 
+an automatic way. This task can be formalized as the problem 
+of finding the smallest context-free grammar by recursively 
+replacing the repeats by a new symbol. The algorithm builds 
+a hierarchy of phrases by forming a new rule out of existing 
+pairs of symbols, including non-terminal symbols.
+
+For example, if we consider the string “atattattatt,” the 
+simplest way to represent the string by context-free gram-
+
+mar is the following:
+
+<Grammar 0>
+S → atattattatt 
+The most frequently occurring sequence in the string is 
+“at,”  which  occurs  four  times.  Thus,  introducing  a  new 
+nonterminal symbol, ‘A,’ and creating a new rule for this 
+yields the following modified grammar:
+
+<Grammar 1>
+S → AAtAtAt
+A → at, 
+where the grammar consists of a start symbol (i.e., S), two 
+terminal symbols (i.e., a, t) represented by lowercase letters, 
+two  non-terminal  symbols  (i.e.,  S,  A)  represented  by 
+uppercase  letters,  and  two  production  rules  (i.e.,  S  → 
+AAtAtAt, A → at) with a left- and a right-hand side con-
+sisting of a sequence of these symbols.
+
+Repeatedly  replacing  the  frequently  occurring  patterns 
+“At,”  again  to  a  new  nonterminal  symbol,  B,  gives  the 
+following modified grammar:
+
+Received November 1, 2012; Revised November 14, 2012; Accepted November 16, 2012
+*Corresponding author: Tel: +82-2-3277-2831, Fax: +82-2-3277-2306, E-mail: neo@ewha.ac.kr
+Copyright © 2012 by the Korea Genome Organization
+CC It is identical to the Creative Commons Attribution Non-Commercial License (http://creativecommons.org/licenses/by-nc/3.0/).
+
+<Grammar 2>
+S → ABBB
+A → at
+B→ At,
+where the grammar consists of a start symbol (i.e., S), two 
+terminal  symbols  (i.e.,  a,  t),  three  non-terminal  symbols 
+(i.e., S, A, B), and three production rules (i.e., S → ABBB, A 
+→ at, B → At).
+
+By applying the three production rules by replacing an 
+occurrence of the nonterminals on the left-hand side of the 
+production rule with those that appear on the right-hand 
+side,  the  string  “atattattatt”  can  be  derived  from  the 
+non-terminal S by constantly applying a series of derivations: 
+S → ABBB → atBBB → atAtBB → atattBB → atattAtB → 
+
+Fig.  1.  User  interface  of  JSequitur  program.
+
+Genomics  &  Informatics  Vol.  10,  No.  4,  2012
+
+atattattB → atattattAt → atattattatt.
+
+Based on this concept, grammar-based compression algo-
+rithms have shown some success for various applications 
+[4-7]. Especially, grammar can capture distant repetitions 
+occurring far apart, which was a limitation of sliding window 
+approaches. However, grammar-based compression algori-
+thms at this moment do not show the best performance for 
+compression itself [6]. Thus, our motivation of this study is 
+not to develop a new algorithm or find the most efficient way 
+to compress biological sequences for storage purposes. Our 
+sole purpose of developing a new tool is to investigate any 
+grammatical traits of biological sequences, based on formal 
+language theory.
+
+Implementation
+
+We  have  developed  a  slightly  modified  version  of  Se-
+quitur [4] called JSequitur for automatically creating hie-
+rarchical structures of sequences [8], as in Fig. 1. Our main 
+contribution  is  to  improve  Sequitur  to  work  better  in  a 
+graphic user interface (GUI) environment, as our main in-
+terest was in studying the generated grammar, rather than 
+enhancing  the  compression  rate  itself.  JSequitur  is  im-
+plemented in Java and organized into six classes, as in Fig. 2: 
+Sequitur, Symbol, Guard, Terminal, Nonterminal, and Rule. 
+Sequitur class is called first and connects with all of the other 
+classes. Symbol class is the connecter class, which streams 
+sequences  of  input  to  the  system.  Rule  class  accesses 
+Terminal and NonTerminal classes in order to create rules. 
+Guard  class,  which  is  based  on  digram  uniqueness,  is 
+responsible for rule confirmation.
+
+Thus, our string compression algorithm operates by 
+
+Fig.  2.  JSequitur  class  diagram.
+
+www.genominfo.org
+
+267
+
+B  Galbadrakh,  et  al.  Developing  JSequitur  to  Study  the  Structure  of  Biological  Sequences
+
+Table 1.  One hundred  four  genes and their  compression  rates
+
+Table  1.  Continued
+
+No.
+
+Gene
+
+Length Compressed 
+
+length
+
+No.  of 
+rules
+
+Compression 
+
+ratio
+
+No.
+
+Gene
+
+Length Compressed 
+
+length
+
+No.  of 
+rules
+
+Compression 
+
+ratio
+
+TERC
+
+TNFRSF6B
+S100A4
+
+587
+  1
+  2 MIF
+1,099
+  3 HSPB1
+2,262
+2,662
+  4
+2,844
+  5
+  6 CDKN2D
+3,274
+  7 GSTP1
+3,977
+  8 HRAS
+4,301
+EMS1
+4,741
+  9
+TCL1A
+5,498
+10
+TFF1
+5,530
+11
+TCTA
+5,553
+12
+13 MUC1
+5,729
+SNCG
+6,148
+14
+IL6
+6,312
+15
+16 CDKN1B
+6,504
+17 MYC
+6,976
+18 KLK3
+7,604
+19 GSTM1
+7,734
+20 CYP1A1
+7,793
+22 KISS1
+7,997
+23 ARHC
+8,159
+PLAU
+8,318
+24
+25 MYCN
+8,381
+26 MYCL1
+8,570
+27 HSPCB
+8,796
+28 CYP2A6
+8,982
+29 BAX
+9,021
+30 CYP17
+9,103
+31 GSTT1
+10,590
+ING1
+10,841
+32
+33 CYP1B1
+11,152
+34 NAT2
+12,959
+12,976
+35
+13,312
+36
+37 CDKN1A
+14,144
+38 RASSF1
+14,497
+39 CTSD
+14,613
+40 BIRC5
+14,872
+41 MMP11
+14,908
+PCNA
+15,170
+42
+43 CYP2E
+15,280
+44 RCA1
+15,646
+45 BAG1
+15,979
+46 CCNE1
+16,009
+47 CCND1
+17,380
+48 BCL1
+17,380
+TAL1
+17,525
+49
+50 NAT1
+18,081
+51 CEACAM8 19,094
+LIBC
+20,296
+52
+53 VEGF
+21,163
+54 MPL
+21,659
+55
+22,189
+
+TFAP2C
+FGF8
+
+SLC2A3
+
+157
+265
+528
+571
+630
+713
+847
+869
+978
+1,142
+1,110
+1,104
+1,034
+1,221
+1,283
+1,293
+1,409
+1,487
+1,525
+1,527
+1,526
+1,587
+1,624
+1,655
+1,688
+1,685
+1,701
+1,667
+1,735
+1,941
+2,069
+2,128
+2,406
+2,458
+2,437
+2,645
+2,621
+2,558
+2,536
+2,695
+2,726
+2,750
+2,660
+2,967
+2,902
+3,132
+3,132
+3,154
+3,236
+3,348
+3,603
+3,702
+3,807
+3,853
+
+  45
+  79
+131
+153
+163
+173
+200
+206
+235
+264
+274
+279
+268
+271
+287
+301
+300
+329
+325
+352
+342
+349
+346
+350
+359
+380
+395
+383
+393
+439
+438
+443
+484
+510
+507
+524
+533
+532
+571
+555
+572
+582
+611
+572
+589
+597
+597
+629
+634
+662
+711
+720
+723
+748
+
+0.2675 
+0.2411 
+0.2334 
+0.2145 
+0.2215 
+0.2178 
+0.2130 
+0.2020 
+0.2063 
+0.2077 
+0.2007 
+0.1988 
+0.1805 
+0.1986 
+0.2033 
+0.1988 
+0.2020 
+0.1956 
+0.1972 
+0.1959 
+0.1908 
+0.1945 
+0.1952 
+0.1975 
+0.1970 
+0.1916 
+0.1894 
+0.1848 
+0.1906 
+0.1833 
+0.1909 
+0.1908 
+0.1857 
+0.1894 
+0.1831 
+0.1870 
+0.1808 
+0.1751 
+0.1705 
+0.1808 
+0.1797 
+0.1800 
+0.1700 
+0.1857 
+0.1813 
+0.1802 
+0.1802 
+0.1800 
+0.1790 
+0.1753 
+0.1775 
+0.1749 
+0.1758 
+0.1736 
+
+  56 STIP1
+23,964
+  57 TP53
+24,886
+  58 IGF2
+26,633
+  59 CSK
+27,449
+  60 STK11
+29,427
+  61 TFAP2A
+29,746
+  62 ERBB3
+30,527
+  63 MSH6
+31,034
+  64 MLLT6
+31,438
+  65 BCL6
+31,653
+  66 SLC22A1L
+33,184
+  67 PSEN2
+33,192
+  68 CDKN2A
+34,762
+  69 TPMT
+34,883
+  70 POU2AF1
+35,332
+  71 MMP2
+35,758
+  72 PI5
+36,627
+  73 COMT
+36,706
+  74 TFAP2B
+37,554
+  75 NOTCH4
+37,993
+  76 TOP2A
+38,258
+  77 MKI67
+38,410
+  78 SLC2A1
+43,942
+  79 MDM2
+48,414
+  80 CD9
+49,342
+  82 THBS2
+49,741
+  83 BCAR1
+50,730
+  84 PPP2R1B
+51,400
+  85 SH3GL1
+52,262
+  86 ERBB2
+52,679
+  87 TERT
+54,445
+  88 PDGFRB
+54,627
+  89 AXL
+55,332
+  90 GAS6
+56,583
+  91 EFNB2
+58,902
+  92 KRAS2
+59,377
+  93 TSG101
+60,640
+  94 EIF3S6
+61,084
+  95 WT1
+62,089
+  96 RARA
+63,015
+  97 TNFRSF10B 63,771
+  98 NOTCH1
+66,745
+  99 LASP1
+67,486
+100 EIF4E
+67,834
+101 ARHA
+68,833
+102 PML
+69,091
+103 CHEK2
+70,320
+104 COT
+70,410
+
+4,022
+3,972
+4,512
+4,662
+4,792
+5,180
+5,021
+5,038
+5,346
+5,426
+5,440
+5,660
+5,940
+5,702
+5,809
+6,058
+6,098
+5,860
+6,392
+6,191
+6,027
+6,258
+7,254
+7,466
+7,937
+7,801
+8,015
+8,203
+8,222
+8,151
+7,781
+8,684
+8,369
+8,476
+9,472
+9,280
+9,516
+9,600
+9,980
+9,783
+9,896
+8,476
+10,220
+10,262
+9,651
+10,636
+10,317
+10,930
+
+825
+860
+881
+875
+932
+923
+961
+973
+974
+971
+1,010
+978
+987
+1,053
+1087
+1,074
+1,079
+1,131
+1,123
+1,123
+1,159
+1,152
+1,178
+1,409
+1,400
+1,377
+1,397
+1,452
+1,465
+1,504
+1,531
+1,533
+1,608
+1,551
+1,538
+1,623
+1,640
+1,574
+1,718
+1,681
+1,720
+1,551
+1,816
+1,814
+1,917
+1,826
+1,921
+1,797
+
+0.1678 
+0.1596 
+0.1694 
+0.1698 
+0.1628 
+0.1741 
+0.1645 
+0.1623 
+0.1700 
+0.1714 
+0.1639 
+0.1705 
+0.1709 
+0.1635 
+0.1644 
+0.1694 
+0.1665 
+0.1596 
+0.1702 
+0.1630 
+0.1575 
+0.1629 
+0.1651 
+0.1542 
+0.1609 
+0.1568 
+0.1580 
+0.1596 
+0.1573 
+0.1547 
+0.1429 
+0.1590 
+0.1513 
+0.1498 
+0.1608 
+0.1563 
+0.1569 
+0.1572 
+0.1607 
+0.1552 
+0.1552 
+0.1270 
+0.1514 
+0.1513 
+0.1402 
+0.1539 
+0.1467 
+0.1552 
+
+reading in a new symbol and processing it by appending it to 
+the top-level string and then examining the last symbols of 
+that string; it then applies zero or more of the following 
+transformations until none applies anywhere in the grammar; 
+
+268
+
+www.genominfo.org
+
+Genomics  &  Informatics  Vol.  10,  No.  4,  2012
+
+it then repeats the cycle by reading in a new symbol. 
+
+The following production rules, which have been created 
+automatically, are an exemplary output of applying JSequitur 
+to  the  partial  sequence  of  the  TERT  gene  (175  bp, 
+“gcccccgggtgtccctgtcacgtgcagggtgagtgaggcgcggtccccgggtgtc
+cctgtcacgtgcagggtgagtgaggcgcggtccccgggtgtccctgtcacgtgcag
+ggtgagtgaggcgcggtcccc”):
+
+R0 → g R1 R2 R3 R4 R5 R6 R7 R6 R8 R5 R9 R1 R3 R4 R10 
+
+R11 g a R4 a R12 R13 R14 R7 R15 R8 R16 R10 R14 c
+
+R1 → c c
+R2 → R1 c
+R3 → R11 R17 R2 R18
+R4 → R17 g
+R5 → R16 R13 R19
+R6 → t R2
+R7 → R19 R4
+R8 → R18 R4
+R9 → t R1
+R10 → a a
+R11 → R12 R17
+R12 → g g
+R13 → c g
+R14 → R19 R15
+R15 → R9 c
+R16 → R10 R11 g a R4 a R12
+R17 → g t
+R18 → t R17 R10 c
+R19 → R13 g,
+where the grammar consists of a start symbol (i.e., R0), 
+four  terminal  symbols  (i.e.,  a,  t,  g,  c),  20  non-terminal 
+symbols (i.e., R0-R19), and 20 production rules for each 
+nonterminal. In summary, the partial sequence of 175 bp of 
+the TERT gene could be compressed to 37 symbols with 20 
+rules. 
+
+For testing purposes, 104 cancerous genes from 6 cancer 
+
+Fig. 3. Compression rates
+in relation to gene length.
+
+types  (bladder,  breast,  endometrial,  leukemia,  lung,  and 
+melanoma) were initially chosen, and JSequitur was applied. 
+Table  1  shows  the  result  of  applying  one  of  the  string 
+compression algorithms of JSequitur to these genes. 
+
+The rule column in Table 1 shows the number of generated 
+rules from the context-free grammar, while the ratio column 
+shows  the  ratios  of  the  compressed  sequences  vs.  the 
+original sequences.
+
+Fig. 3 is a sorted diagram in the order of the length of the 
+original sequence. In this specific case, it shows that the 
+length of the original sequence influences the compression 
+rate  of  the  target  sequence,  even  though  there  are  many 
+other factors that influence compression rate. For example, 
+compression rate can also be influenced by the algorithm 
+itself, depending on whether we replace the longest pattern 
+first or the most frequently occurring pattern first. 
+
+We  also  compared  some  mouse  genes  to  find  any  ho-
+mologous  traits  in  regards  to  compression  rate  and  hie-
+rarchical  structure  of  the  grammar.  For  example,  we 
+compared  human  MUC1  (Homo  sapiens,  5,279  bp)  with 
+mouse  MUC1  (Mus  musculus,  5,614  bp),  and  the  com-
+pression rates for these two sequences were 0.180 and 0.195, 
+respectively. For the ARHA genes, the compression rate for 
+human  ARHA  (68,833  bp)  was  0.140,  whereas  that  for 
+mouse ARHA (41,255 bp) was 0.157. Thus, the distance on 
+the  evolutionary  tree  can  be  measured  by  compression 
+algorithms, to a certain extent. 
+
+Conclusion and Future Direction
+
+We have developed a GUI-based JSequitur, based on string 
+compression algorithms, to examine grammatical traits of 
+biological  sequences.  On  top  of  compression  capacity,  a 
+string  compression  algorithm  is  appealing  for  studying 
+biological sequences, because it can give insights into the 
+
+www.genominfo.org
+
+269
+
+B  Galbadrakh,  et  al.  Developing  JSequitur  to  Study  the  Structure  of  Biological  Sequences
+
+structure of these sequences. Precisely constructed models 
+for linguistic structure can play a vital role in the process of 
+discovery itself.
+
+We also applied JSequitur to analyze 104 cancer genes for 
+testing  purposes  only.  Even  though  there  are  some 
+interesting results in regards to the relationship among gene 
+length, similarity of sequences, the patterns of the generated 
+grammar, and compression rate, our test samples were too 
+small  to  conclude  anything.  Thus,  our  result  should  be 
+regarded  as  preliminary  for  future  research.  We  should 
+consider various factors other than grammatical structures 
+and compression rates.
+
+As our main purpose of developing the tool was to exa-
+mine  any  grammatical  traits  of  biological  sequences,  the 
+graphical user interface was important for a semiautomatic 
+screening  process.  However,  we  still  need  to  implement 
+various features to compare gene structures to summarize 
+statistics  in  regards  to  grammatical  structures  and  to 
+combine evolutionary trees. Hopefully, these features will be 
+implemented in the next version of JSequitur. We also hope 
+to  enhance  the  algorithm  more  elaborately  to  handle 
+reversal, translocation, and shuffling.
+
+References
+
+1. Sakakibara Y. Grammatical inference in bioinformatics. IEEE 
+
+Trans Pattern Anal Mach Intell 2005;27:1051-1062.
+
+2. Coste  F.  Modelling  biological  sequences  by  grammatical 
+inference. In: ICGI 2010 Tutorial Day. Valencia: International 
+Conference on Grammatical Inference, 2010. Accessed 2012 
+Nov  1.  Available  from:  http://www.irisa.fr/symbiose/peo-
+ple/fcoste/pub/biblio_tutoICGI2010_coste.pdf.
+
+3. Park HS, Galbadrakh B, Kim YM. Recent progresses in the lin-
+guistic modeling of biological sequences based on formal lan-
+guage theory. Genomics Inform 2011;9:5-11.
+
+4. Nevill-Manning  CG,  Witten  IH.  Compression  and  ex-
+planation using hierarchical grammars. Comput J 1997;40:1 
+03-116.
+
+5. Lanctot JK, Li M, Yang E. Estimating DNA sequence entropy. 
+In:  Proceedings  of  the  11th  ACM-SIAM  Symposium  on 
+Discrete  Algorithms,  2000  Jan  9-11,  San  Franciscon,  CA. 
+Philadelphia: Society for Industrial and Applied Mathematics, 
+2000. pp. 409-418.
+
+6. Cherniavsky  N,  Ladner  R.  Grammar-based  compression  of 
+DNA sequences. UW CSE Technical Report (TR2007-05-02). 
+In:  DIMACS  Working  Group  on  the  Burrows-Wheeler 
+Transfrom, 2004 Aug 19-20, Piscataway, NJ.
+
+7. Carrascosa R, Coste F, Gallé M, Infante-Lopez G. Searching for 
+smallest  grammars  on  large  sequences  and  application  to 
+DNA. J Discrete Algorithms 2012;11:62-72.
+
+8. Galbadrakh B. Identifying hierarchical structure in biological 
+sequences  based  on  context-free  grammars.  M.S.  Thesis. 
+Seoul: Ewha Womans University, 2011.
+
+270
+
+www.genominfo.org
+
+

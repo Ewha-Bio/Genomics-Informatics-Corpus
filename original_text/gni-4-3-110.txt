@@ -1,0 +1,1126 @@
+Genomics & Informatics  Vol.  4(3) 110-117, September 2006 
+
+Significant Gene Selection Using Integrated Microarray Data 
+Set with Batch Effect 
+
+Ki  Yeol  Kim\  Hyun  Cheol  Chung2
+Jeunif,  Ji  Hye  Shin\  Tae  Soo  Kim4
+Young Rha3,4* 
+
+4
+·
+
+·5,  Hei  Cheul 
+·5  and  Sun 
+
+3
+
+·
+
+10ral  Cancer  Research  Institute,  Yonsei  University  College 
+of  Dentistry,  2Department  of  Internal  Medicine,  Yonsei 
+University  College  of  Medicine,  38rain  Korea  21  Project 
+for  Medical  Science,  Yonsei  University College  of Medicine, 
+4Cancer  Metastasis  Research  Center,  Yonsei  University 
+College  of Medicine,  syonsei  Cancer Center,  Yonsei  University 
+College  of Medicine,  134  Shinchon-Dong,  Seodaemun-Ku, 
+Seoul  120-752,  Korea 
+
+Abstract 
+
+In  microarray  technology,  many  diverse  experimental 
+features  can  cause  biases  including  RNA  sources, 
+microarray  production  or  different  platforms,  diverse 
+sample  processing  and  various  experiment  protocols. 
+These systematic effects cause a substantial obstacle in 
+the  analysis  of microarray  data.  When  such  data  sets 
+derived from different experimental processes were used, 
+the analysis result was almost inconsistent and  it is  not 
+reliable. Therefore, one of the most pressing challenges in 
+the microarray field is how to combine data that comes from 
+two different groups. As the novel trial to integrate two data 
+sets with batch effect, we simply applied standardization 
+to microarray data before the significant gene selection. In 
+the gene selection step, we used new defined measure that 
+considers the distance between a gene and an ideal gene 
+as well as the between-slide and within-slide variations. 
+Also we discussed the association of biological functions 
+and different expression patterns in selected discriminative 
+gene set. As a result, we could confirm that batch effect was 
+minimized by standardization and the selected genes from 
+the standardized data included various expression patterns 
+and the significant biological functions. 
+
+Keywords.  genomic data,  integration,  batch effect, 
+bioinformatics 
+
+*Corresponding author:  E-mail rha7655@yumc.yonsei.ac.kr, 
+Tel  +82-2-2228-8050 Fax +82-2-362-5592 
+Accepted by 31  May 2006 
+
+Introduction 
+
+In  microarray  technology,  many  diverse  experimental 
+features can cause experimental  biases including RNA 
+sources  and  quality,  microarray production  or different 
+platforms.  Additionally,  samples  can  be  collected  and 
+processed  at  different  institutions  and  assayed  using 
+different array hybridization protocols. These systematic 
+effects causing diverse variations present a substantial 
+obstacle to the analysis of microarray data.  Due to the 
+limited  numbers  of  miroarray  experiments,  however, 
+sometimes the indication to use whole data regardless 
+of platforms is increasing. When such data sets derived 
+from  different  experimental  processes  were  used,  the 
+result  of  analysis  was  often  inconsistent  with  little 
+reliable information. Therefore, one of the most pressing 
+challenges in the microarray field is how to combine the 
+data that comes from the two different groups. 
+
+Most  existing  studies  that  have  analyzed  multiple 
+independently  collected  microarray  data  sets  have 
+focused  on  the differential  expressions,  comparing two 
+or  more  similar  data  sets  to  find  the  genes  that 
+distinguish different groups of samples (Breitling  eta/., 
+2002; Rhodes eta/., 2002; Yuen eta/., 2002; Choi eta/., 
+2003;  Detours  et at.,  2003;  Ramaswamy  et at.,  2003; 
+Sorlie  et  a/.,  2003;  Xin  et a/.,  2003).  Another  type  of 
+comparison is exemplified by a study that examined the 
+variability of expression for the individual gene in several 
+human  and  mouse data sets  (Lee  eta/.,  2002).  These 
+studies  have  exploited  the  availability  of multiple  data 
+sets to identify more robust sets of genes than would be 
+found using a single data set. 
+
+Recently,  the integration of the data sets before the 
+significant gene selection  has been  introduced using a 
+method  by correcting  systematic bias of the data sets, 
+Singular Value Decompositions (SVDs) in the yeast cell 
+cycle experiments (Alter eta/., 2000),  and in a data set 
+containing many soft tissue tumors (Nielsen eta/., 2002). 
+It  has  been  suggested  that  SVD  is  an  inappropriate 
+method  when  the  magnitude  of  the  systematic  effect 
+variation  is  similar  to  other  components  of variations, 
+although  SVD  is  a  method  to  find  directions  of  large 
+variation for removal of systematic effects (Benito eta/., 
+2004 ).  Distance  Weighted  Discrimination  (DWD),  a 
+modified form of SVM for the adjustment of systematic 
+effects  eliminated  source  effect  and  showed  the  good 
+performance (Benito eta/., 2004).  However, it still could 
+
+not correct some problem such as dispersion of different 
+data  sets.  Moreover,  previous  studies  have  not  been 
+discussed  the  biological  significance  for  evaluation  of 
+integration method. 
+
+Here, we suggested a method which effectively integrates 
+the  different  experimental  features  and  selected  the 
+discriminative gene set from the integrated data set using 
+the unique gene selection method,  and finally discussed 
+biological significance of selected gene set. 
+
+Materials and Methods 
+Data sets 
+A microarray data set used in this study was consisted of 
+5  experimental  groups  to  understand  the  molecular 
+mechanism of tumor angiogenesis in vitro. The HUVEC 
+(Human Umbilical Vein Endothelial Cells) were obtained 
+from ATCC (American Tissue Culture Collection,  USA) 
+and  cultured  following  the  recommended  guidelines. 
+The  HUVEC were  cultured  in  5  different experimental 
+conditions including 1) with serum, 2) upon the matrigel 
+as  an  extracellular  matrix,  3)  with  co-culturing  with 
+YCC-3  gastric  cancer  cells,  which  is  established  from 
+the ascites of Korean advanced gastric cancer patient in 
+the  Cancer  Metastasis  Research  Center  (CMRC, 
+Yonsei University College of Medicine, Seoul, Korea), 4) 
+without  serum,  and  5)  combination  of  matrigel  and 
+co-culturing with YCC-3 cells. 
+
+The  eDNA microarray was  performed  using  human 
+eDNA  chips  (CMRC-GT,  Seoul,  Korea)  with  17664 
+genes  in  2  batches,  which  were  spotted  in  2  different 
+time  with  the  same  eDNA  clones.  eDNA  microarray 
+experiments were performed  in  triplicates following the 
+established protocol of CMRC in a reference design with 
+the Yonsei Reference RNA of 11  cancer cell line pooled 
+RNA (CMRC, Seoul,  Korea,  Kim eta/., 2005). This data 
+set included missing entries in the range of 349 to 785 for 
+each  experiment,  and  16466  genes  without  missing 
+entries were used for further analysis. 
+
+Data normalization 
+We  normalized  expression 
+intensities  so  that  the 
+intensities or log-ratios have similar distributions across 
+a series of arrays. The method used in this study is that 
+the MAD (median-absolute-deviation) scale estimator is 
+replaced  with 
+the 
+A-values1) are normalized as well as the M-values2l. 
+
+the  median-absolute-value  and 
+
+Integration of Microarray Data 
+
+111 
+
+Within-slide  normalization 
+
+transforms  expression 
+values to make intensities consistent within  each array 
+and between-slide normalization transforms expression 
+values  to  achieve  consistency  between  arrays. 
+Normalization  between  arrays  is  usually,  but  not 
+necessarily,  applied  after  normalization  within  arrays. 
+We  applied  between-slide  normalization  to  expression 
+data because there were different dispersions between 
+arrays  after  within-slide  normalization.  We  executed 
+normalization  by  using  'limma'  library  of  R  package 
+(http://www.r-project.org). 
+
+Standardization of expression data 
+In order to reduce the bias which can be occurred in each 
+gene expression from different batches, we standardized 
+gene expression ratio to a mean ± s.d. of 0 ± 1 in each 
+batch respectively. The standardized expression ratio Zij 
+is calculated as following. 
+
+where  X;1  is  the  expression  level  of it"  gene  in  l" 
+
+experiment. 
+
+X;  is the mean expression level of ith  gene. 
+Denominator is standard deviation of expression 
+levels of ith gene. 
+N;  is the number of experiments of i1
+
+"  gene. 
+
+Significant gene selection 
+We  selected  discriminative  genes  that  differently 
+expressed  in  various  experimental  groups  after  the 
+normalization and standardization of microarray data set. 
+The parametric statistical methods, including t-test, were 
+not  appropriate  to  the  current  data  set  because  the 
+replications of data were not sufficient enough to assume 
+any  specific  distribution  of  data.  Even  nonparametric 
+method,  requiring  at  least 5  replications  of data (Kanji, 
+1993), was not applicable. Therefore, we defined a new 
+measure for the discriminative gene selection, based on 
+the variation rather than a mean difference between slides. 
+
+where  xk  is mean expression of kth  experimental group. 
+
+2)  R (Red  Intensity) = (Rtoreground-Rbackground), 
+
+G (green  Intensity)= (Gtoreground-Gbackground), 
+M= (log2R+Iog2G)/2 
+
+112  Genomics & Informatics  Vol. 4(3) 110-117, September 2006 
+
+std(xk) is between-slide variation. 
+std(x;k) is within-slide variation of i 1"gene in k1
+" 
+
+experimental group. 
+
+The  small  value  of this  measure  suggests  that the 
+"  gene have small variation in 
+expression values of the i1
+each experimental group and  large difference between 
+different  experimental  groups  at 
+time. 
+Therefore it implies that the i1
+
+"  gene is discriminative. 
+
+the  same 
+
+In the selection of significant genes which have clear 
+
+expression pattern-over expressed or under expressed(cid:173)
+in  a  specific experimental  group,  we  defined  the  ideal 
+genes  expressed  in  a  specific  experimental  group. 
+When  we  defined  new  measure,  we  considered  the 
+distance between these ideal  genes and  each gene,  in 
+addition  to  variation  of expression  values of a gene.  It 
+resulted that the selected genes with smaller within-slide 
+closed  to  expression  levels  of ideal  genes.  We  could 
+define 
+the  case  of  three 
+experimental groups as following. 
+
+ideal  genes 
+
+three 
+
+in 
+
+1 
+1 
+
+-1 
+
+Igene 1  =  -1  ,Jgene2  = 
+
+-1 
+-1 
+-1 
+-1 
+
+-1 
+-1 
+-1 
+-1 
+,Igene3  =  -1 
+-1 
+1 
+1 
+
+-1 
+-1 
+-1 
+1 
+1 
+1 
+-1 
+-1 
+-1 
+
+}  Experimental group 1 
+
+}  Experimental group 2 
+
+}  Experimental group 3 
+
+The  new metric,  MM,  was defined  as following  and 
+
+calculated for each gene. 
+
+MM (i)  =dist(g (i),Igene) X  Estd(x;k)  1 std(xk) 
+
+where 9;is the expression of 'i1
+dist (g ( i) ,!gene)  is  distance  between  each  ith  gene 
+
+"  gene. 
+
+and ideal target genes. 
+
+A gene with small MM is considered as discriminative 
+and it is over-expressed or under-expressed in experimental 
+groups. 
+
+We evaluated the selected gene set by classification 
+accuracy  and  used  Random  Forest  algorithm  (RF, 
+8reiman,  2001 ).  We  used  RF  program  in  R  package 
+(http://www.r-project.org) with the following steps. 
+
+( 1) Generate n data sets of bootstrap samples {81,  82 , 
+· · .. · ·,  8n} by allowing repetition ofthe same sample. 
+(2) Use each sample 8k to construct a Tree classifier 
+Tk  to  predict  those  samples  that  are  not  in  8k 
+,called  out-of-bag 
+(008)  samples.  These 
+
+predictions are called out-of-bag estimators. 
+
+(3)  Final  prediction  is  the  average  of  out-of-bag 
+estimators over all bootstrap samples and we get 
+average  of them  which  is  overall  classification 
+error (008 error). 
+
+that  classified 
+
+Annotation of selected genes 
+We investigated the significance of biological functions of 
+selected  discriminative  genes 
+five 
+experimental  groups  accurately.  These  genes  were 
+separated into five gene clusters by k-means3l clustering 
+method under the assumption that they have five different 
+expression  patterns  because 
+five 
+experimental groups exactly. We used EASE (Expression 
+Analysis Systematic Explorer, http.!ldavid.niaid.nih.gov/ 
+david/) to analyze the significance of biological functions 
+for five gene clusters. 
+
+they  classified 
+
+Results and Discussion 
+Fig.  1 shows the result of within and between-slide normal(cid:173)
+ization of microarray data. 
+
+The last six boxplots in Fig.  1 b had larger inter-quartile 
+range (lOR) than the other box plots. It means there were 
+larger variations in the 9-151
+h experiments than the other 
+experiments  when  only within-slide  normalization  was 
+applied to data set. Those experiments were processed 
+experimentally in different batches and this problem was 
+removed by between-slide normalization (Fig.  1c). 
+
+M.YCC3  and  woSerum  experimental  groups  were 
+experimentally processed in the same batch differing from 
+the  remainder  groups.  When  we  applied  unsupervised 
+clustering method with whole data set, three experimental 
+groups (HUVEC,  Matrigel, YCC3) and two experimental 
+groups (woSerum, M.YCC3) were separated and groups 
+in  same  batch  were  fastened  together.  Therefore,  we 
+could confirm that some batch effect exists in the data set 
+(Fig.  2a).  With  standardization  of  data,  HUVEC  and 
+woSurum  experimental  groups  from  different  batches 
+were  fastened  together and  other experimental  groups 
+were well intermingled (Fig. 2b ), suggesting that the batch 
+effect is minimized. 
+
+As a next step, we selected the discriminative genes 
+that classified  different experimental  groups accurately 
+by  the  proposed  method.  Only  three  most  significant 
+genes  had  0%  008 (one  out  of  bag)  error.  Table  1 
+shows the summarization of these selected genes. 
+
+We  noted  that  the  008  error  did  not  increase  in 
+
+3) A non-hierarchical clustering method which divides the data 
+
+set into k groups.  k is pre-defined. 
+
+Integration of Microarray Data 
+
+113 
+
+: 
+
+• 
+
+• 
+
+w 
+
+I 
+
+• 
+
+: 
+
+: 
+
+I 
+
+! 
+
+I 
+
+0 
+
+• 
+
+• 
+
+0 
+
+1 
+
+• 
+
+llllllllllillll 
+6ooooo$$$oooose 
+
+0 
+
+0 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+1 
+
+I 
+
+I 
+
+I 
+
+I 
+
+0  00$0$$$0$$0$$$0 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+I 
+
+lffllltff[fl!ll 
+
+I  i! 
+i  •  :  :  •  :  !  :  a 
+
+• •   : 
+:  ;  ;  •  i  I 
+
+I  :  ;  :  J 
+
+I 
+
+I 
+
+• 
+
+: 
+
+I 
+
+I 
+
+• 
+
+; 
+
+• 
+
+I 
+
+. 
+
+lfl  l!l[f[flllf 
+
+: i  1  I  ;  ; 
+
+: 
+
+1 
+
+i 
+
+I 
+
+j 
+
+I 
+
+3 
+
+5 
+
+7 
+
+9 
+
+11 
+
+13  15 
+
+3 
+
+5 
+
+7 
+
+9 
+
+11  13  15 
+
+3 
+
+5 
+
+7 
+
+9 
+
+11 
+
+13  15 
+
+(a) 
+
+(b) 
+
+(c) 
+
+Fig.  1  Boxplots  of raw  data,  after  within-slide,  and  between-slide  normalized  data.  (a)  is  boxplot  of the  M-values  from  15 
+experiments.  (b)  is  boxplot of the same arrays after within-slide normalization to equalize the median absolute value for each 
+array.  (c) is boxplot after between-slide normalization. 
+
+Cluster Dendrogram 
+
+Cluster Dendrogram 
+
+0 m 
+
+Batch  A 
+
+(a) 
+
+F2 
+
+0 
+~ 
+
+f;l 
+
+0 
+
+:g, 
+'@ 
+:r: 
+
+~~  ~~ 
+Q  ~ 
+Q 
+Q 
+>-
+>-
+
+Batch  A 
+
+Batch  B 
+
+Batch  A 
+
+Batch  8 
+
+(b) 
+
+'E 
+
+'E 
+2 
+i  ~ 
+~ 
+
+~  E 
+~'  i  2 
+u 
+~ 
+" 
+Batch  B 
+
+Fig. 2.  Hierarchical clustering analysis of raw data (a) and standardized data (b).  HUVEC1-3: HUVEC in the conventional culture 
+condition with serum, Matrigel1-3: cultured HUVEC in Matrigel, YCC3_1-3: Co-cultured HUVEC with YCC-3, woSerum1-3: HUVEC 
+cultured without Serum,  M.YCC3_1-3:  cultured HUVEC in  Matrigel and co-cultured with YCC-3. The numbers behind experiment 
+labels represent the numbers of replicates in the experiment. 
+
+classification even though we increased genes to 200 by 
+ranking  approach4)  (Data  is  not  shown).  When  we 
+investigated expression  patterns of top  100 genes,  the 
+
+4)  One approach for gene selection which select genes sequentially 
+
+from a gene that have the least measure 
+
+experimental  groups  and  gene  groups  were  clustered 
+together  showing  no  more  batch  effects  (Fig.  3).  By 
+using  new  defined  metric  for  gene  selection,  top  100 
+genes  had  similar  expression  values  in  the  same 
+experimental group and the clear difference between the 
+
+114  Genomics &  Informatics  Vol.  4(3) 110-117, September 2006 
+
+Fig. 3.  Cluster analysis of top 100 genes. Five experimental groups were classified accurately with top 100 genes and genes were 
+clustered into five groups with different expression patterns. 
+
+Table 1. Summary of top three discriminative genes selected 
+by the proposed method 
+
+AA458634 
+
+T49159 
+
+A1524212 
+
+Gene description 
+
+diaphorase (NADH/NADPH) 
+(cytochrome b-5 reductase) 
+plasminogen activator inhibitor, type II 
+(arginine-serpin) 
+ESTs, Weakly similar to ALU7 _HUMAN ALU 
+SUBFAMILY SQ SEQUENCE CONTAMINATION 
+WARNING ENTRY [H.sapiens] 
+
+groups.  Even though,  the clustering  result  using whole 
+gene set was slightly different from the one using top 100 
+genes,  it showed  more specific patterns.  Therefore we 
+confirmed  that  small  set  of  genes  might  be  more 
+effective to classify different experimental groups. 
+
+We  analyzed  biological  interpretations  of five  gene 
+clusters  by  k-means  clustering  method  and  explored 
+expression  patterns  of  each  cluster  (Table  2).  Five 
+clusters  showed  the  different  expression  patterns  and 
+were  expected  that  such  different expression  patterns 
+have different biological functions. 
+
+In addition, we did significance analysis of biological 
+functions  using  EASE  and  used  top  1000  genes  as 
+background  genes.  EASE  calculates  the  degree  of 
+significance, EASE score, of biological function including 
+selected gene set. Fisher exact test can be used for this 
+purpose,  however, we offered  EASE score.  We should 
+put  whole  gene  set  as  background  to  calculate  EASE 
+score but used top 1000 genes because of run time error 
+possibly  due  to  huge  data  size.  Therefore,  if we  used 
+whole  gene  set as  background,  EASE  score  might be 
+decreased than  the  values  shown  in  Table 3.  Top  100 
+genes were concerned with various biological functions 
+corresponding to three categories of biological process, 
+molecular  function,  and  cellular  component.  We  also 
+investigated the association of expression patterns and 
+
+corresponding biological functions for each gene clusters 
+Biological  functions  in  the  first  gene  cluster  were 
+mainly related to molecular function. All of the biological 
+functions  of  the  second  gene  cluster  were  about 
+biological processes, which were highly significant. The 
+third  and  the  fourth  gene  clusters  had  not  include 
+significant  biological  functions  but  those  genes  were 
+relatively significant in cellular component and biological 
+process  respectively.  The  fifth  gene  cluster  included 
+genes that had biological functions related to Carboxylic 
+acid metabolism and Organic acid metabolism. Meanwhile, 
+we observed some ir-regularities. As in Table 3, the same 
+gene sets had highly significant two biological functions; 
+one is Regulation of cell cycle and Mitotic cell cycle in the 
+second  gene  cluster  and  the  other  is  Carboxylic  acid 
+metabolism and Organic acid metabolism in the fifth gene 
+cluster. 
+
+AA458634,  T49159,  and  Al524212,  which  were 
+selected  as the  most significant genes,  were clustered 
+into the first and the fourth gene clusters. While AA458634 
+was  concerned  as  in  highly  significant  function  of 
+biological process, T 49159 was related to the cell death 
+but not concerned to any significant biological function. 
+From  this,  we  confirmed  that  the  significant  biological 
+functions are caused by the interactions of genes or gene 
+sets,  not by the several most significant genes. 
+
+We selected  seven  genes with  0%  OOB error from 
+non-standardized data set. It is relatively larger gene set 
+comparing to the result from the standardized data set and 
+any of them were not consistent with three genes selected 
+from standardized data set (data not shown).  From the 
+functional annotation analysis using DAVID (Database for 
+Annotation,  Visualization  and  Integrated  Discovery,  http.!/ 
+apps1.niaid.nih.gov!davidl),  72.6%  of  top  100  genes 
+selected from the standardized data set included in any 
+categories  of  biological  functions  but  64.9%  in  the 
+
+Integration of Microarray Data 
+
+115 
+
+Table 2. Summary of top five genes for each gene cluster 
+
+Gene cluster 
+
+Gene ID 
+
+Gene description 
+
+AA458634 
+T49159 
+AA283090 
+N33920 
+AA599127 
+AA278384 
+AA262212 
+R16712 
+AA598610 
+AA873060 
+AA857098 
+R36467 
+AA461456 
+N47717 
+AA877213 
+Al524212 
+
+AA481519 
+Al347124 
+AA410188 
+AA465166 
+AA894927 
+AW055062 
+H26184 
+R41787 
+AA664040 
+
+diaphorase (NADH/NADPH) (cytochrome b-5 reductase) 
+plasminogen activator inhibitor, type II  (arginine-serpin) 
+CD44 antigen (homing function and Indian blood group system) 
+diubiquitin 
+superoxide dismutase 1, soluble (amyotrophic lateral sclerosis 1 (adult)) 
+cell division cycle 2,  G1  to Sand G2 toM 
+KIAA0008 gene product 
+anillin 
+mesoderm specific transcript (mouse) homolog 
+leukemia-associated phosphoprotein p18 (stathmin) 
+collagen, type V, alpha 2 
+transforming growth factor,  beta 1 
+collagen, type V, alpha 2 
+fatty acid binding protein 5 (psoriasis-associated) 
+cytochrome P450, subfamily XXIV (vitamin D 24-hydroxylase) 
+ESTs, Weakly similar to ALU7 _HUMAN ALU SUBFAMILY SQ SEQUENCE CONTAMINATION 
+WARNING ENTRY [H.sapiens] 
+potassium voltage-gated channel,  shaker-related subfamily,  beta member 3 
+hypothetical protein, expressed in osteoblast 
+hypothetical protein, expressed in osteoblast 
+cyclin L ania-6a 
+asparagine synthetase 
+phospholipase A2, group IVC (cytosolic, calcium-independent) 
+CCAAT/enhancer binding protein (C/EBP), beta 
+cadherin  13, H-cadherin (heart) 
+tryptophanyl-tRNA synthetase 
+
+2 
+
+3 
+
+4 
+
+5 
+
+non-standardized data set did. Also, the result of cluster 
+analysis  of  top  100  genes  was  unbalanced  in  non(cid:173)
+standardized  data  set.  Almost  half of the  genes  were 
+clustered into the second gene cluster and only eight and 
+five genes were clustered into the forth and the fifth gene 
+clusters,  respectively.  Gene  sets  expressed  in  three 
+experimental conditions- Matrigel, YCC3, and M.YCC3-
+included significant biological functions, while gene sets 
+expressed in the other experimental conditions did not in 
+the non-standardized data set (The least EASE scores 
+were  0.49  and  0.34).  Though  the  significances  of 
+biological functions of the third and the forth gene clusters 
+in standardized data set were low, five gene clusters had 
+relatively significant biological functions. This means that 
+we could select more discriminative genes representing 
+various expression patterns, which can be interpreted as 
+various  representative  biological  functions  from  the 
+standardized data set. 
+
+Most  selected  discriminative  genes  from  the  non(cid:173)
+
+standardized  data  were  clustered  into  the  same  gene 
+cluster meaning that the selected genes had  redundant 
+expression  patterns.  On  the  other  hand,  the  selected 
+genes  from  the  standardized  data  included  various 
+expression  patterns  and 
+the  significant  biological 
+functions.  It suggests that the problem of redundancy in 
+gene selection was solved by the standardization. 
+
+Before  discriminative  gene  selection,  we  applied 
+standardization to expression ratios respectively in each 
+batch to control batch effect. As a result, we could confirm 
+that batch effect was minimized using dendrograms). The 
+selected discriminative genes in this study were selected 
+by the  expression  pattern  but  not  by  the  magnitude  of 
+expression  ratio.  However  this  method  can  not  be 
+appropriate when  different batches  include  biologically 
+significant  differences  because  the  standardization 
+transforms the expression values into a relative score of 
+a gene expression in each batch. Hence, currently we are 
+on  the study about investigating  more efficient method 
+that is useful in such condition. 
+
+Acknowledgements 
+
+This  work  was  supported  by  the  Korea  Science  and 
+Engineering  Foundation  (KOSEF)  through  the  Cancer 
+Metastasis  Research  Center  (CMRC)  at  the  Yonsei 
+University College of Medicine, and the Korea Research 
+Foundation  Grant  funded  by  the  Korean  Government 
+(MOEHRD,  KRF-2005-005-J05901 ). 
+
+5) Tree diagram frequently used to illustrate the arrangement of 
+
+the clusters produced by a clustering algorithm. 
+
+116  Genomics &  Informatics  Vol.  4(3) 110-117, September 2006 
+
+Table 3.  Summary of biological functions of five gene clusters. 
+
+System & category 
+
+Gene ID 
+
+EASE score** 
+
+AA283090,  Al268937 
+Al889554,  R45640 
+
+AA458634, Al268937 
+Al889554, W46900 
+
+AA278384,AA284072 
+AA454094,AA598974 
+AA774665,  Al932735 
+H59204, R16712 
+
+AA278384,AA284072 
+AA454094,AA598974 
+AA774665,  Al932735 
+H59204, R16712 
+
+AA857098,  H95960 
+R75635 
+
+AA460152,AA487034 
+AA683077 
+
+AA464417,AA490996 
+AA862371,AA985421 
+Al431726, N25945 
+
+AA454597,AA464417 
+AA663439,AA862371 
+AA985421,  N25945 
+
+AA171606,AA664040 
+AA894927,  AI015679, 
+AW055062 
+
+AA171606,AA664040 
+AA894927,  AI015679 
+AW055062 
+
+0.00297 
+
+0.00926 
+
+0.000458 
+
+0.000671 
+
+0.0751 
+
+0.0803 
+
+0.0777 
+
+0.155 
+
+0.0125 
+
+0.0125 
+
+Gene cluster* 
+(#of genes) 
+
+1 (19) 
+
+Molecular function 
+Glycosaminoglycan binding 
+
+Biological process 
+Response to chemical substance 
+
+2 (18) 
+
+3 (18) 
+
+2 
+
+6 
+
+10  14 
+
+6 
+
+10  14 
+
+Biological process 
+
+Biological process 
+Mitotic cell cycle 
+
+Cellular component 
+Extracellular matrix 
+
+:hTI/l 
+:@]  Regulation of cell cycle 
+:UZ\J 
+:f!IDJ 
+;0] Carboxylic acid metabolism 
+
+Biological process 
+Organic acid metabolism 
+
+Cellular component 
+Integral to membrane 
+
+Biological process 
+
+6 
+
+10  14 
+
+6 
+
+10 
+
+14 
+
+2 
+
+2 
+
+5 (25) 
+
+2 
+
+6 
+
+10 
+
+14 
+
+Molecular function 
+Protein serine/threonine kinase activity 
+
+4 (20) 
+
+Biological process 
+Organismal physiological process 
+
+* Plots in the first column show the expression patterns of standardized data for each gene cluster. 
+**Small EASE score means that the corresponding biological function is significant. 
+
+References 
+Alter,  0.,  Brown,  P.O.,  and  Botstein,  D.  (2000).  Singular 
+value decomposition for genome-wide expression data 
+processing  and  modeling.  Proc.  Nat/.  Acad.  Sci.  USA 
+97,  10101-10106. 
+
+Benito,  M.,  Parker,  J.,  Du,  Q.,  Wu,  J.,  Xiang,  D.,  Perou, 
+C.M., and Marron, J.S. (2004). Adjustment of systematic 
+microarray data biases. Bioinformatics 20,  105-114. 
+
+Brei man, L. (2001 ).  Random Forests. Berkeley, CA, Statistics 
+
+Department,  University of California 1-33. 
+
+Breitling,  R.,  Sharif,  0.,  Hartman,  M.L.,  and  Krisans,  S.K. 
+(2002). Loss of compartmentalization causes misregulation 
+of lysine biosynthesis in peroxisome-deficient yeast cells. 
+Eukaryot.  Ce//1, 978-986. 
+
+Choi, J.K., Yu, U., Kim, S., and Yoo, O.J: (2003). Combining 
+multiple  microarray  studies  and  modeling  interstudy 
+variation.  Bioinformatics 19,  184-190. 
+
+Detours,  V.,  Dumont,  J.E.,  Bersini,  H.,  and  Maenhaut,  C. 
+(2003). Integration and cross-validation of high-throughput 
+
+Integration of Microarray Data 
+
+117 
+
+gene  expression  data:  Comparing  heterogeneous  data 
+sets. FEBS Lett.  546,  98-102. 
+
+(2003).  A  molecular signature of metastasis in  primary 
+solid tumors. Nat.  Genet.  33,  49-54. 
+
+EASE (Expression Analysis Systematic Explorer). http.!ldavid. 
+
+niaid. nih. gov/david/ 
+
+Kanji, G.K. (1993). 100 Statistical Tests.  (London, Thousand 
+
+Oaks,  New Delhi, SAGE publication). 
+
+Kim, T.M., Jeong, H.J., Sea, M.Y., Kim, S.C., Cho, G., Park, 
+K.H.,  et at.  (2005).  Determination  of genes  related  to 
+gastrointestinal  tract  origin  cancer cells  using  a  eDNA 
+microarray.  Clin Cancer Res.  11, 79-86. 
+
+Lee, P.O., Sladek, R.,  Greenwood, C.M., and Hudson, T.J. 
+(2002).  Control  genes  and  variability:  Absence  of 
+ubiquitous reference transcripts  in  diverse  mammalian 
+expression studies.  Genome Res.  12, 292-297. 
+
+Nielsen, T.O., West, R.B., Linn, S.C., Alter, 0., Knowling, M.A., 
+O'Connell, J.X., Zhu, S.,  Fero, M., Sherlock, G.,  Pollack, 
+J.R., Brown, P.O., Botstein, D., and van de Rijn, M. (2002). 
+Molecular characterisation of soft tissue tumours: a gene 
+expression study. Lancet359, 1301-1307. 
+
+R:  A  language  and  environment for statistical  computing. 
+
+http://www.R-project.org. 
+
+Ramaswamy, S., Ross, K.N., Lander, E.S., and Golub, T.R. 
+
+Rhodes,  D.R.,  Barrette, T.R.,  Rubin,  M.A.,  Ghosh, D.,  and 
+Chinnaiyan, A.M.  (2002).  Meta-analysis of microarrays: 
+lnterstudy validation of gene expression profiles reveals 
+pathway dysregulation in prostate cancer.  Cancer Res. 
+62, 4427-4433. 
+
+Sorlie, T., Tibshirani, R.,  Parker, J., Hastie, T., Marron, J.S., 
+Nobel, A., Deng, S., Johnsen, H., Pesich, R., Geisler, S., 
+et  at.  (2003).  Repeated  observation  of  breast  tumor 
+subtypes  in  independent  gene  expression  data  sets. 
+Proc.  Nat/.  Acad.  Sci.  USA 100, 8418-8423 
+
+Xin,  W.,  Rhodes,  D.R.,  Ingold,  C.,  Chinnaiyan,  A.M.,  and 
+Rubin,  M.A. (2003).  Dysregulation of the annexin family 
+protein 
+is  associated  with  prostate  cancer 
+progression. Am. J.  Pathol.  162, 255-261. 
+
+family 
+
+Yuen,  T.,  Wurmbach,  E.,  Pfeffer,  R.L.,  Ebersole,  B.J.,  and 
+Sealfon,  S.C.  (2002).  Accuracy  and  calibration  of 
+commercial oligonudeotide and custom eDNA microarrays. 
+Nucleic Acids Res.  30,  e48. 
+
+

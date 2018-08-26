@@ -1,0 +1,3500 @@
+Genomics  &  Informatics    Vol.  6(4)  210-222,  December  2008
+
+Microarray  Data  Analysis  of  Perturbed  Pathways  in  Breast 
+Cancer  Tissues
+
+Changsik  Kim,  Jiwon  Choi  and  Sukjoon  Yoon*
+
+Introduction
+
+Department  of  Biological  Sciences,  Research  Center  for 
+Women’s  Diseases  (RCWD),  Sookmyung  Women’s  Uni-
+versity,  Seoul  140-742,  Korea
+
+Abstract
+
+Due  to  the  polygenic  nature  of  cancer,  it  is  believed  that 
+breast  cancer  is  caused  by  the  perturbation  of  multiple 
+genes  and  their  complex  interactions,  which  contribute 
+to  the  wide  aspects  of  disease  phenotypes.  A  systems 
+biology  approach  for  the  identification  of  subnetworks  of 
+interconnected  genes  as  functional  modules  is  required 
+to  understand  the  complex  nature  of  diseases  such  as 
+breast  cancer.  In  this  study,  we  apply  a  3-step  strategy 
+for  the  interpretation  of  microarray  data,  focusing  on 
+identifying  significantly  perturbed  metabolic  pathways 
+rather  than  analyzing  a  large  amount  of  overexpressed 
+and  underexpressed  individual  genes.  The  selected 
+pathways  are  considered  to  be  dysregulated  functional 
+modules  that  putatively  contribute  to  the  progression  of 
+disease.  The  subnetwork  of  protein-protein  interactions 
+for  these  dysregulated  pathways  are  constructed  for  fur-
+ther  detailed  analysis.  We  evaluated  the  method  by  ana-
+lyzing  microarray  datasets  of  breast  cancer  tissues;  i.e., 
+normal  and  invasive  breast  cancer  tissues.  Using  the 
+strategy  of  microarray  analysis,  we  selected  several  sig-
+nificantly  perturbed  pathways  that  are  implicated  in  the 
+regulation  of  progression  of  breast  cancers,  including 
+the  extracellular  matrix-receptor  interaction  pathway  and 
+the  focal  adhesion  pathway.  Moreover,  these  selected 
+pathways  include  several  known  breast  cancer-related 
+genes.  It  is  concluded  from  this  study  that  the  present 
+strategy  is  capable  of  selecting  interesting  perturbed 
+pathways  that  putatively  play  a  role  in  the  progression 
+of  breast  cancer  and  provides  an  improved  interpret-
+ability  of  networks  of  protein-protein  interactions.
+
+Keywords:  breast  cancer,  microarray,  metabolic  path-
+ways,  protein-protein  interactions,  systems  biology
+
+*Corresponding  author:  E-mail  yoonsj@sookmyung.ac.kr
+Tel  +82-2-710-9415,  Fax  +82-2-2077-7322
+Accepted  21  November  2008
+
+Microarray  experiments  have  been  a  popular  approach 
+for  identifying  marker  genes  that  are  related  to  the  pro-
+gression  of  disease  by  providing  insights  into  ge-
+nome-wide  gene  expression  data.  Conventional  analysis 
+of  microarray  data  has  focused  on  finding  significantly 
+overexpressed  and  underexpressed  genes  as  putative 
+markers  of  disease.  This  has  been  useful  in  discriminat-
+ing  the  roles  of  various  individual  genes  in  the  pro-
+gression  of  disease  and  in  correlating  dissected  ex-
+pression  signatures  with  clinical  outcomes  (Dhanasekar-
+an  et al.,  2001;  Beer  et al.,  2002;  van’t  Veer  et al., 
+2002;  Glinsky  et al.,  2004).  However,  comparing  ex-
+pression  data  between  normal  and  diseased  conditions 
+can  typically  yield  thousands  of  genes  that  are  differ-
+entially  expressed  between  the  conditions  with  a  stat-
+istical  confidence  (p＜0.05)  (Dhanasekaran et al.,  2001). 
+That  is,  the  conventional  method  may  not  be  sufficient 
+to  narrow  down  the  target  pathways  and  genes  for  dis-
+criminating  disease  states,  because  only  a  few  sig-
+nificantly  dysregulated  candidates  genes  can  be  studied 
+in  detail  at  any  given  moment.  Moreover,  most  proteins 
+are  known  to  mediate  their  functions  within  regulated 
+complex  networks  or  pathways  of  interconnected  mac-
+romolecules  by  forming  dynamic  topological  interac-
+tomes.  Additionally,  genes  that  are  not  significantly  al-
+tered  may  play  a  critical  role  with  other  significantly 
+dysregulated  components  in  their  biological  pathways. 
+Therefore,  a  systems  biology  approach  that  can  identify 
+pathways  with  these  proteins  would  significantly  im-
+prove  the  ability  to  find  disease-associated  genes  from 
+micorarray  datasets.  This  also  would  be  useful  in  under-
+standing  the  relationship  between  pathways  and  various 
+phenotypes.
+    There  has  been  a  tremendous  increase  in  information 
+for  constructing  large-scale  protein-protein  interaction 
+networks  from  public  interactome  databases,  such  as 
+HPRD  (Peri et al.,  2004).  A  number  of  approaches  have 
+been  demonstrated  for  identifying  subnetworks  of  pro-
+tein-protein  interactions,  based  on  coherent  expression 
+patterns  of  their  genes  (Chen  and  Yuan,  2006;  Chuang 
+et al.,  2007).  There  also  is  a  study  that  has  identified 
+candidate  genes  that  are  related  to  certain  diseases 
+based  only  on  the  topological  features  of  the  network  of 
+disease-related  protein-protein  interactions  (Hwang  et 
+al.,  2008).  Recently,  several  methods  for  integrating  mi-
+croarray  data  with  metabolic  pathways  have  been  pre-
+
+sented  (Setlur et al.,  2007;  Grosu et al.,  2008).  None  of 
+these  approaches  has  mapped  transcriptional  changes 
+in  both  metabolic  pathways  and  protein-protein 
+interactions.  Moreover,  protein-protein  interaction  net-
+works  have  very  complex  topological  characteristics  that 
+sometimes  impose  difficulties  in  interpretation.  There-
+fore,  it  will  be  convenient  for  the  interpretation  if  the 
+functional  modules  that  have  significantly  perturbed 
+genes  are  first  identified  to  construct  a  subnetwork  of 
+protein-protein  interactions  in  each  functional  module.  It 
+is  believed  that  these  subnetworks  of  protein-protein  in-
+teractions  in  each  functional  module  will  provide  greater 
+interpretability  than  the  genome-wide  network  of  pro-
+tein-protein  interactions.  Based  on  these  points  of  view, 
+we  applied  3  steps  of  microarray  data  analysis.  First, 
+differentially  expressed  genes  were  selected  using  the 
+standard  t  test.  Second,  significantly  perturbed  metabol-
+ic  pathways  were  selected  based  on  those  differentially 
+expressed  genes.  A  test  for  the  statistical  significance  of 
+the  selected  pathways  also  is  presented  in  this  study. 
+Third,  subnetworks  of  protein-protein  interactions  in 
+those  perturbed  metabolic  pathways  were  constructed 
+for  further  interpretation  of  pathways  in  detail.
+    Breast  cancer  is  one  of  many  complex  progressive 
+diseases.  Due  to  its  polygenic  nature,  it  is  believed  that 
+breast  cancer  is  caused  not  by  single  genes  but  rather 
+by  perturbations  of  multiple  genes  and  their  complex  in-
+teractions,  which  contribute  to  the  wide  aspects  of  dis-
+ease  phenotypes.  Therefore,  we  apply  the  strategy  of 
+microarray  analysis  using  the  “score  of  perturbation”  to 
+identify  significantly  perturbed  pathways.  To  this  end, 
+we  identified  significantly  perturbed  pathways  in  breast 
+cancer  tissues,  thereby  providing  interesting  pathways 
+that  putatively  play  roles  in  the  progression  of  breast 
+cancer.  Furthermore,  we  constructed  a  subnetwork  of 
+protein-protein  interactions  in  these  significantly  per-
+turbed  pathways  for  further  interpretation  of  pathways  in 
+detail.
+
+Methods
+
+We  used  the  dataset  from  Turashvili et al.  (2007),  which 
+consists  of  2  types  of  breast  cancer  tissues;  i.e,  invasive 
+lobular  and  ductal  carcinomas.  This  dataset  includes  a 
+total  of  30  samples  that  consist  of  normal  ductal  cells 
+from  10  patients,  normal  lobular  cells  from  10  patients, 
+invasive  ductal  carcinoma  cells  from  5  patients,  and  in-
+vasive  lobular  carcinoma  cells  from  5  patients,  which 
+were  microdissected  from  cryosections  of  10  mastec-
+tomy  specimens  from  postmenopausal  patients.  In  this 
+dataset,  50  nanograms  of  total  RNA  was  amplified  and 
+labeled  by  PCR  and  in  vitro  transcription,  and  samples 
+were  analyzed  using  Affymetrix  U133  Plus  2.0  Arrays. 
+
+Microarray  Data  Analysis  of  Perturbed  Pathways    211
+
+Pathways  from  KEGG  (http://www.genome.jp/kegg/path-
+way.html)  databases  were  used  as  pathway  references 
+for  analysis. 
+    The  basic  idea  of  our  approach  is  to  identify  per-
+turbed  pathways  that  have  relatively  large  amounts  of 
+overexpressed  or  underexpressed  genes.  To  begin,  a  p 
+value  that  is  calculated  from  the  standard  t  test  is  as-
+signed  to  every  gene  in  each  pathway,  and  the  number 
+of  significantly  perturbed  genes  (p＜0.01)  is  counted  in 
+each  pathway.  Note  that  the  t  test  for  each  gene  is 
+conducted  by  comparing  2  mean  values  of  gene  ex-
+pression  between  20  samples  of  normal  breast  cancer 
+cells  and  10  samples  of  invasive  cancer  cells.  The  score 
+of  perturbation  for  each  pathway  is  assigned  with  the 
+probability  that  we  can,  by  chance,  expect  at  least  the 
+same  number  of  significantly  perturbed  genes  in  each 
+pathway,  given  the  number  of  significantly  perturbed 
+genes  in  the  background  set  of  genes.  This  probability 
+is  calculated  using  the  cumulative  hypergeometric  dis-
+tribution  as  follows: 
+
+(
+NnrxP
+
+,
+
+,
+
+,
+
+)
+
+=
+
+min
+
+nr
+,
+
+(
+∑
+
+xi
+=
+
+r
+i
+
+⎛
+⎜⎜
+⎝
+
+)
+
+⎞
+⎟⎟
+⎠
+
+⎞
+⎛
+⎟⎟
+⎜⎜
+⎠
+⎝
+⎛
+⎜⎜
+⎝
+
+rN
+−
+in
+−
+N
+⎞
+⎟⎟
+n
+⎠
+
+    where n  is  the  number  of  genes  in  each  pathway, N 
+the  number  of  genes  in  whole  pathways,  x  the  number 
+of  significantly  perturbed  genes  in  each  pathway,  and r 
+is  the  number  of  significantly  perturbed  genes  in  whole 
+pathways.  The  pathways  that  have  p＜0.01  are  selected 
+as  significantly  perturbed  genes 
+in  breast  cancer 
+tissues.
+
+Results  and  Discussion
+
+To  explore  perturbed  pathways  in  breast  cancer  tissues, 
+we  analyzed  the  microarray  dataset  from  Turashvilli  et 
+al.  (2007),  which  was  downloaded  from  the  NCBI  GEO 
+(http://www.ncbi.nlm.nih.gov/geo/)  database.  The  dataset 
+was  standardized  such  that  each  sample  array  has  a 
+mean  of  0  and  a  standard  deviation  of  1.  The  dataset 
+contains  samples  of  2  breast  cancer  tissues  and  their 
+corresponding  normal  cells.  The  standard  t  test  was 
+used  to  score  genes  for  overexpression  or  under-
+expression  in  breast  cancer  tissues  in  comparison  with 
+their  normal  tissues.  The  list  of  significantly  perturbed 
+genes  (p＜0.01)  was  classified  into  known  biological 
+pathways  to  select  target  pathways  that  are  perturbed 
+in  breast  cancer  tissues,  as  described  in  Methods.  As  a 
+result,  it  was  found  that  36  pathways  were  significantly 
+perturbed,  based  on  the  score  of  perturbation  (p＜0.01) 
+in  breast  cancer  tissues  (see  Supplementary  Table  S1). 
+    Table  1  shows  36  significantly  perturbed  pathways, 
+
+212    Genomics  &  Informatics    Vol.  6(4)  210-222,  December  2008
+
+Table  1.  Top  36  perturbed  pathways  in  which  component  genes  are  significantly  perturbed  (p＜0.01)  in  breast  cancer  tis-
+sues
+
+Pathway
+
+Focal  adhesion
+Cell  junctions
+ECM-receptor  interaction
+Systemic  lupus  erythematosus
+Regulation  of  actin  cytoskeleton
+Axon  guidance
+Prostate  cancer
+Drug  metabolism  -  cytochrome  P450
+Colorectal  cancer
+Cytokine-cytokine  receptor  interaction
+p53  signaling  pathway
+Cell  cycle
+Cell  adhesion  molecules  (CAMs)
+Renal  cell  carcinoma
+Melanoma
+Glutathione  metabolism
+Metabolism  of  xenobiotics  by  cytochrome  P450
+Leukocyte  transendothelial  migration
+alpha-Linolenic  acid  metabolism
+Toll-like  receptor  signaling  pathway
+Small  cell  lung  cancer
+Bladder  cancer
+Pancreatic  cancer
+MAPK  signaling  pathway
+Vibrio  cholerae  infection
+Adherens  junction
+Tight  junction
+Glioma
+GnRH  signaling  pathway
+Biosynthesis  of  unsaturated  fatty  acids
+PPAR  signaling  pathway
+Nitrogen  metabolism
+Complement  and  coagulation  cascades
+TGF-beta  signaling  pathway
+Non-small  cell  lung  cancer
+Neurodegenerative  diseases
+
+N1
+
+199
+134
+87
+125
+217
+129
+91
+67
+85
+273
+68
+115
+132
+69
+71
+47
+65
+116
+17
+104
+87
+42
+73
+269
+60
+76
+135
+65
+100
+23
+68
+24
+69
+87
+54
+39
+
+N2
+
+N3
+
+N4
+
+19
+12
+15
+23
+11
+8
+6
+2
+3
+7
+4
+9
+7
+5
+5
+1
+2
+7
+1
+7
+5
+4
+5
+5
+4
+3
+3
+4
+5
+1
+2
+1
+2
+4
+4
+2
+
+16
+17
+7
+1
+14
+7
+6
+8
+8
+14
+5
+3
+6
+4
+4
+6
+6
+4
+3
+3
+4
+2
+3
+13
+3
+5
+8
+3
+4
+3
+5
+3
+5
+4
+2
+3
+
+35
+29
+22
+24
+25
+15
+12
+10
+11
+21
+9
+12
+13
+9
+9
+7
+8
+11
+4
+10
+9
+6
+8
+18
+7
+8
+11
+7
+9
+4
+7
+4
+7
+8
+6
+5
+
+N5
+
+5.08E-17
+1.09E-16
+2.44E-14
+1.05E-12
+2.91E-08
+1.94E-05
+3.91E-05
+6.05E-05
+9.90E-05
+0.00023
+0.000365
+0.000384
+0.000388
+0.000408
+0.000506
+0.000812
+0.001268
+0.001501
+0.002006
+0.002214
+0.002215
+0.002405
+0.002697
+0.003258
+0.003474
+0.003477
+0.004968
+0.005453
+0.005691
+0.00639
+0.006989
+0.007472
+0.007566
+0.007923
+0.008535
+0.008856
+
+Note  that  N1  represents  the  total  number  of  genes  in  each  pathway,  N2  is  the  number  of  overexpressed  genes  (p＜0.01) 
+in  each  pathway,  N3  is  the  number  of  underexpressed  genes  (p＜0.01)  in  each  pathway,  N4  is  the  total  number  of  sig-
+nificantly  perturbed  genes  in  each  pathway  (i.e., N4=N2+N3),  and N5  is  the  score  of  perturbation;  i.e.,  p-values  by  the  cu-
+mulative  hypergeometric  distribution.
+
+including  Cell  Junctions  (Fig.  1),  the  ECM-receptor  inter-
+action  pathway  (Fig.  2),  the  Focal  Adhesion  pathway 
+(Fig.  3),  and  the  p53  signaling  pathway,  which  have 
+been  implicated  to  play  a  role  in  the  progression  of 
+breast  cancers  (Behmoaram  et al.,  2008;  Fata  et al., 
+2004;  Lin  et al.,  2000;  Ryan  et al.,  2000).  It  is  well 
+known  that  most  cancers  lack  active  tumor  suppressor 
+p53,  which  inhibits  cell  growth  through  activation  of  cell 
+cycle  arrest  and  apoptosis  and  that  the  activation  of 
+NFKB1  is  induced  by  p53  (Ryan  et al.,  2000).
+    There  are  significant  amounts  of  evidence  that  the 
+ECM-receptor  pathway  is  related  to  the  progression  of 
+
+breast  cancer.  For  instance,  Fata et al.  (2004)  reviewed 
+considerable  research  that  indicated  that  mammary 
+gland  branching  morphogenesis  is  dependent,  in  part, 
+on  the  ECM;  ECM-receptors,  such  as  integrins  and  oth-
+er  ECM  receptors;  and  ECM-degrading  enzymes,  includ-
+ing  matrix  metalloproteinases  (MMPs)  and  their  in-
+hibitors,  tissue  inhibitors  of  metalloproteinases  (TIMPs). 
+They  also  provided  some  evidence  that  these  ECM 
+processes  affect  1  or  more  of  the  following  processes: 
+cell  survival,  polarity,  proliferation,  differentiation,  adhe-
+sion,  and  migration.
+    It  is  well  known  that  breast  carcinoma  most  often  is 
+
+Microarray  Data  Analysis  of  Perturbed  Pathways    213
+
+Fig.  1.  Summary  of 
+the  Cell 
+Junctions  pathway  from  the  KEGG 
+( h t t p : / / w w w . g e n o m e . j p / k e g g ) 
+database.  Grey-colored  boxes  rep-
+resent  protein  complexes  with  at 
+least  1  significantly  perturbed  pro-
+tein  (p＜0.01)  in  breast  cancer  tis-
+sues.  Note  that  the  list  of  perturbed 
+genes  is  tabulated  in  Table  2.
+
+Fig.  2.  Summary  of  the  ECM-re-
+ceptor  Interaction  pathway 
+from 
+the  KEGG  (http://www.genome.jp/
+kegg)  database.  Grey-colored  box-
+es 
+represent  protein  complexes 
+with  at  least  1  significantly  per-
+turbed  protein  (p＜0.01)  in  breast 
+cancer  tissues.  Note  that  the  list 
+of  perturbed  genes  is  tabulated  in 
+Table  2.
+
+associated  with  an  extensive  ‘stromal  reaction’,  termed 
+desmoplasia,  in  which  excess  collagen  is  deposited 
+(Fata et al.,  2004).  It  also  has  been  shown  that  aberra-
+tions  in  the  integrity,  deposition,  and  composition  of  the 
+ECM  often  are  associated  with  breast  cancer  (Lochter 
+and  Bissell,  1995;  Petersen  et al.,  2001).
+    In  addition,  upregulation  of  expression  of  the  fibrillar 
+
+collagen  gene  is  an  indicator  of  the  metastatic  pheno-
+type  (van't  Veer et al.,  2002;  van  de  Vijver et al.,  2002; 
+Wang et al.,  2002).  The  ECM  and  its  receptors  that  at-
+tenuate  or  augment  signaling  regulate  branching  mor-
+phogenesis  in  a  process  that  may  be  considered  as 
+controlled  invasion.  For  instance,  it  has  been  shown  that 
+increased  collagen  type  I  upregulates  activated  MMP  2 
+
+214    Genomics  &  Informatics    Vol.  6(4)  210-222,  December  2008
+
+Fig.  3.  Summary  of  the Focal Adhesion  pathway  from  the  KEGG  (http://www.genome.jp/kegg)  database.  Grey-colored  boxes
+represent  protein  complexes  with  at  least  1  significantly  perturbed  protein  (p＜0.01)  in  breast  cancer  tissues.  Note  that  the 
+list  of  perturbed  genes  is  tabulated  in  Table  2.
+
+Table 2.  List  of  significantly  perturbed  genes  (p＜0.01)  in  the Cell Junctions, ECM-receptor interactions,  and Focal Adhesion
+pathways
+
+Genes
+
+Path1
+
+Path2
+
+Path3
+
+Genes
+
+Path1
+
+Path2
+
+Path3
+
+▽
+▽
+▽
+▽
+▽
+▽
+▽
+
+△
+△
+△
+
+COL11A1
+COL1A1
+COL1A2
+COL3A1
+COL4A1
+COL5A1
+COL5A2
+COL6A1
+COL6A3
+COMP
+THBS2
+FN1
+LAMB3
+LAMC2
+TNR
+ITGB4
+ITGA2
+ITGA3
+ITGB8
+COL17A1
+DSC3
+DSG3
+DSG4
+KRT14
+KRT15
+
+△
+△
+△
+△
+△
+△
+△
+△
+△
+△
+△
+△
+▽
+▽
+▽
+▽
+
+▽
+▽
+▽
+▽
+▽
+▽
+
+△
+△
+△
+△
+△
+△
+△
+△
+△
+△
+△
+△
+▽
+▽
+▽
+▽
+▽
+▽
+▽
+
+△
+△
+△
+△
+△
+△
+△
+△
+△
+△
+△
+△
+▽
+▽
+▽
+▽
+▽
+▽
+▽
+
+KRT16
+KRT17
+KRT23
+KRT5
+KRT6B
+KRT7
+KRT81
+FNDC1
+FNDC3A
+HMMR
+CAV1
+ACTN1
+ARHGAP5
+DOCK1
+EGFR
+JUN
+MET
+MYL9
+MYLK
+PARVB
+PDGFB
+PDGFRA
+PIK3CB
+VEGFA
+
+▽
+▽
+▽
+△
+▽
+▽
+▽
+▽
+▽
+△
+△
+▽
+△
+△
+
+△ corresponds  to  significantly  overexpressed  genes  and  ▽ to  significantly  underexpressed  genes.  Note  that Path1
+represents  the  Cell Junctions  pathway,  Path2  is  the  ECM-receptor interactions  pathway,  and  Path3  is  the  Focal 
+Adhesion  pathway.  It  is  noteworthy  that  there  are  several  genes  that  are  involved  in  more  than  1  pathway,  allowing 
+crosstalk  between  pathways.
+
+in  human  metastatic  breast  cancer  cells  (Thompson  et 
+al.,  1994).  Other  collagens,  such  as  types  III,  V,  and  VII, 
+also  are  altered  with  regard  to  expression  and  deposi-
+tion  in  breast  cancer  (Barsky et al.,  1982;  Fukuda et al., 
+2000;  Lagace et al.,  1985;  Wetzels et al.,  1991),  trigger-
+ing  signals  that  lead  to  the  loss  of  structure  and  func-
+tion  in  breast.
+    There  also  are  several  indications  that  the  focal  adhe-
+sion  pathway  is  related  to  the  progression  of  breast 
+cancer.  For  instance,  Lin et al.  (2000)  reported  a  direct 
+effect  of  progesterone  in  inducing  the  spread  and  adhe-
+sion  of  breast  cancer  cells,  with  the  conclusion  that  pro-
+gesterone-induced  cell  spreading  and  focal  adhesion 
+may  have  significant 
+tumor 
+metastasis.  In  addition,  there  is  crosstalk  between  the 
+ECM-receptor  pathway  and  the  focal  adhesion  pathway, 
+in  which  several  proteins  bind  to  form  ECMs  that  bind 
+to  their  receptors,  triggering  signaling  cascades  within 
+the  focal  adhesion  pathway  and  leading  to  cell  motility, 
+cell  proliferation,  and  cell  survival  (Fig.  2,  3).
+    Table  2  shows  overexpressed  and  underexpressed 
+genes  in  Cell  Junctions,  the  ECM-receptor  interaction 
+pathway,  and  the  Focal  Adhesion  pathway,  including 
+THBS2,  PDGF,  COL1A1,  COLA2,  COL3A1,  COL5A1, 
+and  COL5A2.  There  are  several  indications  that  these 
+genes  are  associated  with  cancer.  For  instance,  THBS2 
+has  been  shown  to  function  as  a  potent  inhibitor  of  tu-
+mor  growth  and  angiogenesis  (Potikyan  et al.,  2007; 
+
+implications 
+
+in  breast 
+
+Microarray  Data  Analysis  of  Perturbed  Pathways    215
+
+Hawighorst et al.,  2001).  PDGF  is  known  to  activate  the 
+RAS/PIK3/AKT1/IKK/NFKB1  pathway,  in  which  NFKB1 
+induces  putative  antiapoptotic  genes  (Romashkova  et 
+al.,  1999).  Collagen  type  I  (COL1A1,  COL1A2),  type  III 
+(COL3A1),  and  type  V  (COL5A1,  COL5A2)  are  implicated 
+in  playing  roles  in  the  progression  of  metastatic  breast 
+cancer  (Barsky et al.,  1982;  Fukuda et al.,  2000;  Lagace 
+et al.,  1985;  Thompson  et al.,  1994;  Wetzels  et al., 
+1991).
+    Based  on  the  selected  perturbed  pathways,  we  com-
+bined  selected  metabolic  pathways  with  protein-protein 
+interaction  information  by  constructing  a  subnetwork  of 
+protein-protein  interactions  (e.g.,  Fig.  4).  To  contruct  a 
+subnetwork  of  protein-protein  interactions  for  each  path-
+way,  information  on  protein-protein  interactions  was  ex-
+tracted  from  the  Human  Protein  Reference  Database 
+(HPRD)  (Peri  et al.,  2004).  Fig.  4  shows  that  protein 
+complexes  can  be  identified  based  on  the  definitions  in 
+individual  metabolic  pathways,  in  which  the  protein-pro-
+tein  interactions  can  be  categorized  into  intra-  or  in-
+ter-pathway  interactions.  It  also  is  possible  to  identify 
+significantly  perturbed  proteins  within  the  protein  com-
+plexes  for  a  more  detailed  analysis  of  the  pathways.
+    Based  on  perturbation  score,  we  present  36  sig-
+nificantly  perturbed  pathways,  instead  of  collecting  a 
+large  amount  of  significantly  dysregulated  individual 
+genes.  The  selected  pathways  are  then  considered  to 
+be  dysregulated  functional  modules  that  putatively  con-
+
+(A)
+
+(B)
+
+Fig.  4.  (A)  Subnetwork  of  protein-protein  interactions  in  the Cell Junctions  pathway.  The  rectangular  boxes  with  dashed  lines
+represent  the  protein  complexes  of  IF, Actin, ITGB4, ITGA6,  and  BP180,  respectively  (see  Fig.  1).  (B)  Subnetwork  of  pro-
+tein-protein  interactions  in  both  the  ECM-receptor Interaction  and  Focal Adhesion  pathways.  The  rectangular  boxes  with 
+dashed  lines  represent  the  protein  complexes  of  ECM, ITGA,  and  ITGB,  respectively  (see  Fig.  3).  Note  that  3  protein  com-
+plexes  in  (B)  can  be  subdivided  into  smaller  protein  complexes  based  on  the  definition  of  the  ECM-receptor  pathway  (Fig.
+2).  Note  also  that  grey-colored  nodes  represent  significantly  perturbed  genes  (p＜0.01)  in  breast  cancer  tissues.
+
+216    Genomics  &  Informatics    Vol.  6(4)  210-222,  December  2008
+
+tribute  to  the  progression  of  disease.  The  result  of  this 
+study  suggests  that  the  strategy  of  microarray  analysis, 
+using  the  score  of  perturbation,  selects  several  interest-
+ing  perturbed  pathways  that  are  implicated  in  the  pro-
+gression  of  breast  cancer.  It  also  was  found  that  these 
+selected  pathways  include  several  known  breast  can-
+cer-related  genes.  Therefore,  based  on  the  selected 
+pathways,  this  study  sets  the  stage  for  further  inves-
+tigation  of  the  basic  mechanisms  that  serve  as  a  basis 
+for  discriminating  different  breast  cancer  types  to  find 
+new  therapeutic  drug  targets.
+
+Acknowledgments
+
+This  research  was  supported  by  Sookmyung  Women’s 
+University  Research  Grants  1-0703-0148.
+
+References
+
+Barsky,  S.H.,  Rao,  C.N.,  Grotendorst,  G.R.,  and  Liotta,  L.A. 
+(1982).  Increased  content  of  Type  V  Collagen  in  desmo-
+plasia  of  human  breast  carcinoma.  Am. J. Pathol.  108, 
+276-283.
+
+Beer,  D.G.,  Kardia,  S.L.,  Huang,  C.C.,  et  al. 
+
+(2002). 
+Gene-expression  profiles  predict  survival  of  patients  with 
+lung  adenocarcinoma.  Nat. Med.  8,  816-824.
+
+Behmoaram,  E.,  Bijian,  K.,  Jie,  S.,  Xu,  Y.,  Darnel,  A., 
+Bismar,  T.A.,  and  Alaoui-Jamali,  M.A.  (2008).  Focal  adhe-
+sion  kinase-related  proline-rich  tyrosine  kinase  2  and  fo-
+cal  adhesion  kinase  are  co-overexpressed  in  early-stage 
+and  invasive  ErbB-2-positive  breast  cancer  and  cooper-
+ate  for  breast  cancer  cell  tumorigenesis  and  invasi-
+veness.  American Journal of Pathology  173,  1540-1550.
+
+Chen,  J.,  and  Yuan,  B.  (2006).  Detecting  functional  modules 
+in  the  yeast  protein-protein  interaction  network.  Bioinfor-
+matics  22,  2283-2290.
+
+Chuang,  H.Y.,  Lee,  E.,  Liu,  Y.T.,  Lee,  D.,  and  Ideker,  T. 
+(2007).  Network-based  classification  of  breast  cancer 
+metastasis.  Molecular Systems Biology  3,  140.
+
+Dhanasekaran,  S.M.,  Barrette,  T.R.,  Ghosh,  D., et al.  (2001). 
+Delineation  of  prognostic  biomarkers  in  prostate  cancer. 
+Nature  412,  822-826.
+
+Fata,  J.E.,  Werb,  Z.,  and  Bissell,  M.J.  (2004).  Regulation  of 
+mammary  gland  branching  morphogenesis  by  the  ex-
+tracellular  matrix  and  its  remodeling  enzymes.  Breast 
+Cancer Res.  6,  1-11.
+
+Fukuda,  Y., 
+
+Ishizaki,  M.,  Okada,  Y.,  Seiki,  M.,  and 
+Yamanaka,  N.  (2000).  Matrix  metalloproteinases  and  tis-
+sue  inhibitor  of  metalloproteinase-2  in  fetal  rabbit  lung. 
+Am. J. Physiol. Lung Cell Mol. Physiol.  279,  555-561.
+
+Glinsky,  G.V.,  Glinskii,  A.B.,  Stephenson,  A.J.,  Hoffman, 
+R.M.,  and  Gerald,  W.L.  (2004).  Gene  expression  profiling 
+predicts  clinical  outcome  of  prostate  cancer.  J. Clin. 
+Invest.  113,  913-923.
+
+Grosu,  P.,  Townsend,  J.P.,  Hartl,  D.L.,  and  Cavalieri,  D. 
+(2008).  Pathway  processor:  a  tool  for  integrating  whole- 
+genome  expression 
+into  metabolic  networks. 
+
+results 
+
+Genome Research  12,  1121-1126.
+
+Hawighorst,  T.,  Velasco,  P.,  Streit,  M.,  Hong,  Y.K., 
+Kyriakides,  T.R.,  Brown,  L.R.,  Bornstein,  P.,  and  Detmar, 
+M.  (2001).  Thrombospondin-2  plays  a  protective  role  in 
+multistep  carcinogenesis:  a  novel  host  anti-tumor  defense 
+mechanism.  The EMBO Journal  20,  2631-2640.
+
+Hwang,  S.,  Son,  S.W.,  Kim,  S.C.,  Kim,  Y.J.,  Jeong,  H.,  and 
+Lee,  D.  (2008).  A  protein  interaction  network  associated 
+with  asthma. Journal of Theoretical Biology  252,  722-731.
+Lagace,  R.,  Grimaud,  J.A.,  Schurch,  W.,  and  Seemayer, 
+T.A.  (1985).  Myofibroblastic  stromal  reaction  in  carcinoma 
+of  the  breast:  variations  of  collagenous  matrix  and  struc-
+tural  glycoproteins. Virchows Arch. A. Pathol. Anat. Histo-
+pathol.  408,  49-59.
+
+Lin,  V.C.,  Ng,  E.H.,  Aw,  S.E.,  Tan,  M.G.,  Ng,  E.H.,  and  Bay, 
+B.H.  (2000).  Progesterone  Induces  Focal  Adhesion  in 
+Breast  Cancer  Cells  MDA-MB-231  Transfected  with  pro-
+gesterone 
+Endocrinology  14,  348-358.
+
+receptor  complementary  DNA.  Molecular 
+
+Lochter,  A.,  and  Bissell,  M.J.  (1995).  Involvement  of  ex-
+
+tracellular  matrix  constituents  in  breast  cancer.  Semin. 
+Cancer Biol.  6,  165-173.
+
+Peri,  S.,  Navarro,  J.D.,  Kristiansen,  T.Z.,  Amanchy,  R., 
+Surendranath,  V.,  Muthusamy,  B.,  Gandhi,  T.K., 
+Chandrika,  K.N.,  Deshpande,  N.,  Suresh,  S.,  Rashmi, 
+B.P.,  Shanker,  K.,  Padma,  N.,  Niranjan,  V.,  Harsha,  H.C., 
+Talreja,  N.,  Vrushabendra,  B.M.,  Ramya,  M.A.,  Yatish, 
+A.J.,  Joy,  M.,  Shivashankar,  H.N.,  Kavitha,  M.P., 
+Menezes,  M.,  Choudhury,  D.R.,  Ghosh,  N.,  Saravana,  R., 
+Chandran,  S.,  Mohan,  S.,  Jonnalagadda,  C.K.,  Prasad, 
+C.K.,  Kumar-Sinha,  C.,  Deshpande,  K.S.,  and  Pandey,  A. 
+(2004).  Human  protein  reference  database  as  a  discovery 
+resource  for  proteomics.  Nucleic Acids Res.  32,  D497- 
+D501.
+
+Petersen,  O.W.,  Lind,  N.H.,  Gudjonsson,  T.,  Villadsen,  R., 
+Ronnov-Jessen,  L.,  and  Bissell,  M.J.  (2001).  The  plasticity 
+of  human  breast  carcinoma  cells  is  more  than  epithelial 
+to  mesenchymal  conversion.  Breast  Cancer  Res.  3, 
+213-217.
+
+Potikyan,  G.,  Savene,  O.V.,  Gaulden,  J.M.,  France,  K.A., 
+Zhou,  Z.,  Kleinerman,  E.S.,  Lessnick,  S.L.,  and  Denny, 
+C.T.  (2007).  EWS/FLI1  regulates  tumor  angiogenesis  in 
+Ewing's  sarcoma  via  suppression  of  thrombospondins. 
+Cancer Research  67,  6675-6684.
+
+Romashkova,  J.A.,  and  Makarov,  S.S.  (1999).  NF-kappa-B 
+is  a  target  of  AKT  in  anti-apoptotic  PDGF  signalling. 
+Nature  401,  86-90.
+
+Ryan,  K.M.,  Ernst,  M.K.,  Rice,  N.R.,  and  Vousden,  K.H. 
+in  p53-mediated  pro-
+
+(2000).  Role  of  NF-kappa-B 
+grammed  cell  death.  Nature  404,  892-897.
+
+Setlur,  S.R.,  Royce,  T.E.,  Sboner,  A.,  Mosquera,  J.M., 
+Demichelis,  F.,  Hofer,  M.D.,  Mertz,  K.D.,  Gerstein,  M., 
+and  Rubin,  M.A.  (2007).  Integrative  microarray  analysis  of 
+pathways  dysregulated  in  metastatic  prostate  cancer. 
+Cancer Res.  67,  10296-10303.
+
+Thompson,  E.W.,  Yu,  M.,  Bueno,  J.,  Jin,  L.,  Maiti,  S.N., 
+Palao-Marco,  F.L.,  Pulyaeva,  H.,  Tamborlane,  J.W., 
+Tirgari,  R.,  Wapnir,  I.,  et al.  (1994).  Collagen  induced 
+MMP-2  activation  in  human  breast  cancer. Breast Cancer 
+
+Microarray  Data  Analysis  of  Perturbed  Pathways    217
+
+Res. Treat.  31,  357-370.
+
+Turashvili,  G.,  Bouchal,  J.,  Baumforth,  K.,  Wei,  W.,  et al. 
+(2007).  Novel  markers  for  differentiation  of  lobular  and 
+ductal 
+laser  micro-
+dissection  and  microarray  analysis.  BMC Cancer  7,  55.
+
+invasive  breast  carcinomas  by 
+
+van  de  Vijver,  M.J.,  He,  Y.D.,  van't  Veer,  L.J.,  Dai,  H.,  Hart, 
+A.A.,  Voskuil,  D.W.,  Schreiber,  G.J.,  Peterse,  J.L., 
+Roberts,  C.,  Marton,  M.J.,  Parrish,  M.,  Atsma,  D., 
+Witteveen,  A.,  Glas,  A.,  Delahaye,  L.,  van  der  Velde,  T., 
+Bartelink,  H.,  Rodenhuis,  S.,  Rutgers,  E.T.,  Friend,  S.H., 
+and  Bernards,  R.  (2002).  A  gene-expression  signature  as 
+a  predictor  of  survival  in  breast  cancer. N. Engl. J. Med. 
+347,  1999-2009.
+
+van’t  Veer,  L.J.,  Dai,  H.,  van  de  Vijver,  M.J.,  et al.  (2002). 
+Gene  expression  profiling  predicts  clinical  outcome  of 
+breast  cancer.  Nature  415,  530-536.
+
+van't  Veer,  L.J.,  Dai,  H.,  van  de  Vijver,  M.J.,  He,  Y.D.,  Hart, 
+A.A.,  Bernards,  R.,  and  Friend,  S.H.  (2002).  Expression 
+profiling  predicts  outcome 
+in  breast  cancer.  Breast 
+Cancer Res.  5,  57-58.
+
+Wang,  W.,  Wyckoff,  J.B.,  Frohlich,  V.C.,  Oleynikov,  Y., 
+Huttelmaier,  S.,  Zavadil,  J.,  Cermak,  L.,  Bottinger,  E.P., 
+Singer,  R.H.,  White,  J.G.,  Segall,  J.E.,  and  Condeelis, 
+J.S.  (2002).  Single  cell  behavior  in  metastatic  primary 
+mammary  tumors  correlated  with  gene  expression  pat-
+terns  revealed  by  molecular  profiling.  Cancer Res.  62, 
+6278-6288.
+
+Wetzels,  R.H.,  Robben,  H.C.,  Leigh,  I.M.,  Schaafsma,  H.E., 
+Vooijs,  G.P.,  and  Ramaekers,  F.C.  (1991).  Distribution 
+patterns  of  type  VII  collagen  in  normal  and  malignant  hu-
+man  tissues.  Am. J. Pathol. 139,  451-459.
+
+218    Genomics  &  Informatics    Vol.  6(4)  210-222,  December  2008
+
+Supplementary  Table  S1.  The  list  of  all  pathways  from  KEGG  database,  which  are  sorted  according  to  the  scores  of 
+perturbation.  Note  that  N1  represents  the  total  number  of  genes  in  each  pathway,  N2  is  the  number  of  overexpressed 
+genes  (p＜0.01)  in  each  pathway,  N3  is  the  number  of  underexpressed  genes  (p＜0.01)  in  each  pathway,  N4  is  the  total 
+number  of  significantly  perturbed  genes  in  each  pathway  (i.e., N4=N2+N3),  and N5  is  the  score  of  perturbation  i.e.,  p-val-
+Supplementary  Table  S1.  Continued
+ues  by  the  cumulative  hypergeometric  distribution
+
+KEGG  Pathway  Description
+
+Systemic  lupus  erythematosus
+Keratan  sulfate  biosynthesis
+ECM-receptor  interaction
+Chondroitin  sulfate  biosynthesis
+Cell  junctions
+Maturity  onset  diabetes  of  the  young
+alpha-Linolenic  acid  metabolism
+Linoleic  acid  metabolism
+Focal  adhesion
+Glycosphingolipid  biosynthesis  -  lactoseries
+Glycosphingolipid  biosynthesis  -  neo-lactoseries
+Reductive  carboxylate  cycle  (CO2  fixation)
+Ether  lipid  metabolism
+Nitrogen  metabolism
+Valine,  leucine  and  isoleucine  biosynthesis
+Glycan  structures  -  biosynthesis  2
+Prion  disease
+Protein  export
+Graft-versus-host  disease
+Glycosphingolipid  biosynthesis  -  globoseries
+Sulfur  metabolism
+Bladder  cancer
+GnRH  signaling  pathway
+ABC  transporters  -  General
+Glycerophospholipid  metabolism
+VEGF  signaling  pathway
+Cell  adhesion  molecules  (CAMs)
+Type  I  diabetes  mellitus
+Toll-like  receptor  signaling  pathway
+Pyrimidine  metabolism
+Riboflavin  metabolism
+One  carbon  pool  by  folate
+Cell  cycle
+Propanoate  metabolism
+Renin-angiotensin  system
+Cysteine  metabolism
+Glycan  structures  -  biosynthesis  1
+Basal  transcription  factors
+Autoimmune  thyroid  disease
+Arachidonic  acid  metabolism
+Nicotinate  and  nicotinamide  metabolism
+T  cell  receptor  signaling  pathway
+Ribosome
+Fructose  and  mannose  metabolism
+Allograft  rejection
+Fc  epsilon  RI  signaling  pathway
+
+#  of 
+
+genes  in 
+pathway
+
+#  of 
+genes 
+
+linked  to 
+GPL570 
+Probes
+
+p＜0.05
+#  of  Over 
+
+p＜0.01
+#  of  Over 
+
+Expressed  Genes
+
+Expressed  Genes
+
+Lobular 
+Carci-
+noma
+
+Ductal 
+Carci-
+noma
+
+Lobular 
+Carci-
+noma
+
+Ductal 
+Carci-
+noma
+
+P1
+
+P2
+
+P3
+
+134
+16
+88
+22
+138
+25
+17
+29
+200
+10
+21
+11
+33
+24
+12
+63
+14
+15
+42
+14
+14
+42
+100
+44
+72
+73
+133
+44
+107
+91
+16
+16
+119
+34
+17
+17
+123
+37
+53
+56
+37
+93
+91
+38
+38
+77
+
+122
+16
+87
+22
+134
+23
+17
+29
+198
+10
+21
+11
+33
+24
+12
+63
+13
+14
+42
+14
+14
+42
+100
+43
+72
+73
+132
+44
+104
+90
+16
+16
+115
+33
+17
+17
+121
+35
+53
+55
+37
+93
+75
+38
+38
+77
+
+6
+1
+18
+1
+15
+2
+2
+1
+28
+0
+2
+1
+4
+2
+3
+4
+1
+1
+3
+0
+4
+8
+10
+3
+8
+6
+7
+4
+11
+6
+1
+2
+14
+2
+2
+2
+8
+1
+5
+1
+1
+6
+0
+2
+4
+7
+
+55
+4
+25
+5
+26
+7
+3
+4
+29
+3
+4
+1
+4
+1
+2
+11
+2
+2
+8
+2
+2
+9
+12
+4
+5
+9
+24
+8
+17
+18
+1
+4
+22
+3
+2
+1
+21
+5
+10
+4
+4
+17
+15
+3
+6
+7
+
+1
+1
+8
+1
+8
+1
+1
+1
+10
+0
+0
+0
+2
+1
+0
+1
+0
+1
+0
+0
+0
+2
+5
+2
+2
+3
+1
+0
+3
+1
+1
+0
+0
+1
+1
+0
+2
+0
+0
+1
+0
+1
+0
+1
+0
+3
+
+34
+3
+11
+2
+10
+2
+1
+2
+10
+1
+2
+1
+1
+1
+1
+4
+1
+0
+3
+1
+1
+1
+2
+1
+3
+2
+8
+3
+4
+5
+0
+1
+7
+1
+0
+1
+5
+2
+3
+2
+2
+4
+4
+1
+2
+1
+
+0.8
+6.3 
+9.2 
+4.5 
+6.0 
+4.3 
+5.9 
+3.4 
+5.1 
+0.0 
+0.0 
+0.0 
+6.1 
+4.2 
+0.0 
+1.6 
+0.0 
+7.1 
+0.0 
+0.0 
+0.0 
+4.8 
+5.0 
+4.7 
+2.8 
+4.1 
+0.8 
+0.0 
+2.9 
+1.1 
+6.3 
+0.0 
+0.0 
+3.0 
+5.9 
+0.0 
+1.7 
+0.0 
+0.0 
+1.8 
+0.0 
+1.1 
+0.0 
+2.6 
+0.0 
+3.9 
+
+27.9 
+18.8 
+12.6 
+9.1 
+7.5 
+8.7 
+5.9 
+6.9 
+5.1 
+10.0 
+9.5 
+9.1 
+3.0 
+4.2 
+8.3 
+6.3 
+7.7 
+0.0 
+7.1 
+7.1 
+7.1 
+2.4 
+2.0 
+2.3 
+4.2 
+2.7 
+6.1 
+6.8 
+3.8 
+5.6 
+0.0 
+6.3 
+6.1 
+3.0 
+0.0 
+5.9 
+4.1 
+5.7 
+5.7 
+3.6 
+5.4 
+4.3 
+5.3 
+2.6 
+5.3 
+1.3 
+
+14.3 
+12.5 
+10.9 
+6.8 
+6.7 
+6.5 
+5.9 
+5.2 
+5.1 
+5.0 
+4.8 
+4.5 
+4.5 
+4.2 
+4.2 
+4.0 
+3.8 
+3.6 
+3.6 
+3.6 
+3.6 
+3.6 
+3.5 
+3.5 
+3.5 
+3.4 
+3.4 
+3.4 
+3.4 
+3.3 
+3.1 
+3.1 
+3.0 
+3.0 
+2.9 
+2.9 
+2.9 
+2.9 
+2.8 
+2.7 
+2.7 
+2.7 
+2.7 
+2.6 
+2.6 
+2.6 
+
+Microarray  Data  Analysis  of  Perturbed  Pathways    219
+
+Supplementary  Table  S1.  Continued
+
+KEGG  Pathway  Description
+
+#  of 
+
+genes  in 
+pathway
+
+#  of 
+genes 
+
+linked  to 
+GPL570 
+Probes
+
+p＜0.05
+#  of  Over 
+
+p＜0.01
+#  of  Over 
+
+Expressed  Genes
+
+Expressed  Genes
+
+Lobular 
+Carci-
+noma
+
+Ductal 
+Carci-
+noma
+
+Lobular 
+Carci-
+noma
+
+Ductal 
+Carci-
+noma
+
+P1
+
+P2
+
+P3
+
+Long-term  depression
+Parkinson's  disease
+Glycosphingolipid  biosynthesis  -  ganglioseries
+Glycolysis  /  Gluconeogenesis
+Methionine  metabolism
+Amyotrophic  lateral  sclerosis  (ALS)
+Glioma
+Metabolism  of  xenobiotics  by  cytochrome  P450
+TGF-beta  signaling  pathway
+Valine,  leucine  and  isoleucine  degradation
+N-Glycan  biosynthesis
+Prostate  cancer
+Glycosylphosphatidylinositol(GPI)-anchor  biosyn-
+
+thesis
+
+Epithelial  cell  signaling  in  Helicobacter  pylori  in-
+
+fection
+
+Mismatch  repair
+Melanoma
+Pantothenate  and  CoA  biosynthesis
+B  cell  receptor  signaling  pathway
+mTOR  signaling  pathway
+Inositol  phosphate  metabolism
+Galactose  metabolism
+Phenylalanine  metabolism
+Non-small  cell  lung  cancer
+Hedgehog  signaling  pathway
+Urea  cycle  and  metabolism  of  amino  groups
+Hematopoietic  cell  lineage
+Leukocyte  transendothelial  migration
+Thyroid  cancer
+Small  cell  lung  cancer
+Aminosugars  metabolism
+Purine  metabolism
+Wnt  signaling  pathway
+Antigen  processing  and  presentation
+Vibrio  cholerae  infection
+Olfactory  transduction
+MAPK  signaling  pathway
+Retinol  metabolism
+Glutamate  metabolism
+Gap  junction
+Huntington's  disease
+Axon  guidance
+Bile  acid  biosynthesis
+Drug  metabolism  -  cytochrome  P450
+p53  signaling  pathway
+Renal  cell  carcinoma
+Natural  killer  cell  mediated  cytotoxicity
+Complement  and  coagulation  cascades
+Long-term  potentiation
+
+78
+20
+21
+62
+21
+21
+65
+70
+90
+44
+45
+91
+23
+
+69
+
+23
+71
+24
+73
+51
+51
+26
+26
+54
+57
+28
+87
+116
+29
+87
+29
+147
+149
+88
+59
+383
+269
+65
+31
+96
+32
+128
+33
+72
+69
+69
+141
+69
+70
+
+78
+20
+20
+61
+21
+21
+65
+65
+87
+44
+44
+91
+23
+
+69
+
+23
+71
+24
+73
+50
+51
+26
+26
+54
+55
+28
+86
+115
+29
+87
+29
+146
+146
+88
+59
+118
+268
+60
+31
+94
+32
+128
+33
+67
+68
+69
+138
+69
+70
+
+4
+0
+1
+3
+1
+0
+8
+1
+9
+1
+2
+13
+1
+
+7
+
+1
+8
+0
+4
+6
+7
+2
+0
+7
+2
+1
+6
+9
+3
+10
+2
+10
+7
+7
+4
+3
+15
+4
+4
+5
+1
+10
+1
+1
+9
+6
+10
+3
+1
+
+10
+5
+4
+9
+3
+2
+9
+5
+10
+3
+2
+13
+1
+
+9
+
+2
+13
+3
+16
+6
+5
+3
+2
+8
+9
+1
+16
+13
+6
+16
+2
+20
+14
+11
+10
+13
+37
+4
+2
+13
+1
+18
+2
+6
+16
+8
+18
+6
+10
+
+2
+0
+0
+0
+0
+0
+2
+0
+1
+1
+1
+2
+1
+
+2
+
+0
+2
+0
+1
+1
+0
+0
+0
+1
+0
+1
+0
+2
+1
+0
+0
+1
+1
+0
+1
+0
+4
+1
+1
+2
+1
+1
+0
+0
+0
+1
+1
+0
+1
+
+2
+1
+1
+3
+1
+1
+1
+3
+3
+1
+1
+2
+0
+
+1
+
+1
+1
+1
+2
+1
+2
+1
+1
+1
+2
+0
+3
+2
+0
+3
+1
+4
+4
+3
+1
+4
+5
+1
+0
+1
+0
+3
+1
+2
+2
+1
+3
+2
+1
+
+2.6 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+3.1 
+0.0 
+1.1 
+2.3 
+2.3 
+2.2 
+4.3 
+
+2.9 
+
+0.0 
+2.8 
+0.0 
+1.4 
+2.0 
+0.0 
+0.0 
+0.0 
+1.9 
+0.0 
+3.6 
+0.0 
+1.7 
+3.4 
+0.0 
+0.0 
+0.7 
+0.7 
+0.0 
+1.7 
+0.0 
+1.5 
+1.7 
+3.2 
+2.1 
+3.1 
+0.8 
+0.0 
+0.0 
+0.0 
+1.4 
+0.7 
+0.0 
+1.4 
+
+2.6 
+5.0 
+5.0 
+4.9 
+4.8 
+4.8 
+1.5 
+4.6 
+3.4 
+2.3 
+2.3 
+2.2 
+0.0 
+
+1.4 
+
+4.3 
+1.4 
+4.2 
+2.7 
+2.0 
+3.9 
+3.8 
+3.8 
+1.9 
+3.6 
+0.0 
+3.5 
+1.7 
+0.0 
+3.4 
+3.4 
+2.7 
+2.7 
+3.4 
+1.7 
+3.4 
+1.9 
+1.7 
+0.0 
+1.1 
+0.0 
+2.3 
+3.0 
+3.0 
+2.9 
+1.4 
+2.2 
+2.9 
+1.4 
+
+2.6 
+2.5 
+2.5 
+2.5 
+2.4 
+2.4 
+2.3 
+2.3 
+2.3 
+2.3 
+2.3 
+2.2 
+2.2 
+
+2.2 
+
+2.2 
+2.1 
+2.1 
+2.1 
+2.0 
+2.0 
+1.9 
+1.9 
+1.9 
+1.8 
+1.8 
+1.7 
+1.7 
+1.7 
+1.7 
+1.7 
+1.7 
+1.7 
+1.7 
+1.7 
+1.7 
+1.7 
+1.7 
+1.6 
+1.6 
+1.6 
+1.6 
+1.5 
+1.5 
+1.5 
+1.4 
+1.4 
+1.4 
+1.4 
+
+220    Genomics  &  Informatics    Vol.  6(4)  210-222,  December  2008
+
+Supplementary  Table  S1.  Continued
+
+KEGG  Pathway  Description
+
+Base  excision  repair
+Primary  immunodeficiency
+Arginine  and  proline  metabolism
+Regulation  of  actin  cytoskeleton
+DNA  replication
+Pancreatic  cancer
+
+Folate  biosynthesis
+Neurodegenerative  Diseases
+Phosphatidylinositol  signaling  system
+Pyruvate  metabolism
+Colorectal  cancer
+Type  II  diabetes  mellitus
+Nucleotide  excision  repair
+ErbB  signaling  pathway
+Apoptosis
+Notch  signaling  pathway
+Taste  transduction
+Histidine  metabolism
+Endometrial  cancer
+Basal  cell  carcinoma
+Acute  myeloid  leukemia
+Tyrosine  metabolism
+Neuroactive  ligand-receptor  interaction
+Oxidative  phosphorylation
+Tight  junction
+PPAR  signaling  pathway
+Cytokine-cytokine  receptor  interaction
+Insulin  signaling  pathway
+Adherens  junction
+Chronic  myeloid  leukemia
+Jak-STAT  signaling  pathway
+Calcium  signaling  pathway
+Melanogenesis
+Ubiquitin  mediated  proteolysis
+Adipocytokine  signaling  pathway
+Starch  and  sucrose  metabolism
+Pathogenic  Escherichia  coli  infection  -  EHEC
+Pathogenic  Escherichia  coli  infection  -  EPEC
+Biosynthesis  of  steroids
+O-Glycan  biosynthesis
+Heparan  sulfate  biosynthesis
+Sphingolipid  metabolism
+Terpenoid  biosynthesis
+Glycine,  serine  and  threonine  metabolism
+Tryptophan  metabolism
+Fatty  acid  metabolism
+Alanine  and  aspartate  metabolism
+Lysine  degradation
+Glutathione  metabolism
+Glycosaminoglycan  degradation
+
+#  of 
+
+genes  in 
+pathway
+
+#  of 
+genes 
+
+linked  to 
+GPL570 
+Probes
+
+p＜0.05
+#  of  Over 
+
+p＜0.01
+#  of  Over 
+
+Expressed  Genes
+
+Expressed  Genes
+
+Lobular 
+Carci-
+noma
+
+Ductal 
+Carci-
+noma
+
+Lobular 
+Carci-
+noma
+
+Ductal 
+Carci-
+noma
+
+P1
+
+P2
+
+P3
+
+35
+35
+35
+219
+36
+73
+
+39
+39
+80
+42
+85
+44
+43
+87
+89
+46
+53
+50
+52
+55
+58
+58
+303
+129
+135
+69
+279
+139
+75
+76
+155
+176
+102
+136
+72
+79
+51
+51
+24
+31
+20
+39
+6
+42
+58
+46
+33
+52
+50
+17
+
+35
+35
+35
+216
+36
+73
+
+38
+39
+80
+42
+85
+43
+43
+87
+88
+46
+46
+50
+52
+54
+58
+58
+302
+125
+134
+68
+273
+138
+75
+76
+155
+176
+101
+133
+72
+75
+49
+49
+24
+31
+19
+38
+6
+42
+58
+46
+33
+52
+47
+17
+
+1
+2
+3
+19
+2
+8
+
+3
+0
+7
+1
+9
+2
+1
+5
+6
+3
+2
+0
+6
+1
+6
+3
+9
+8
+5
+7
+17
+6
+2
+7
+15
+9
+5
+8
+5
+3
+0
+0
+0
+3
+2
+3
+0
+1
+0
+3
+1
+1
+1
+0
+
+7
+6
+2
+28
+5
+12
+
+4
+3
+7
+4
+7
+8
+5
+7
+12
+3
+8
+4
+5
+5
+8
+3
+39
+23
+14
+4
+35
+12
+6
+12
+22
+23
+9
+24
+10
+7
+6
+6
+5
+5
+5
+5
+5
+4
+4
+3
+3
+3
+3
+3
+
+0
+0
+0
+3
+0
+2
+
+1
+0
+0
+0
+2
+0
+0
+2
+0
+1
+0
+0
+1
+0
+1
+0
+1
+1
+1
+0
+1
+2
+0
+1
+1
+1
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+1
+1
+1
+3
+1
+0
+
+0
+1
+2
+1
+0
+1
+1
+0
+2
+0
+1
+1
+0
+1
+0
+1
+4
+1
+1
+1
+3
+0
+1
+0
+1
+1
+0
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+0.0 
+0.0 
+0.0 
+1.4 
+0.0 
+2.7 
+
+2.6 
+0.0 
+0.0 
+0.0 
+2.4 
+0.0 
+0.0 
+2.3 
+0.0 
+2.2 
+0.0 
+0.0 
+1.9 
+0.0 
+1.7 
+0.0 
+0.3 
+0.8 
+0.7 
+0.0 
+0.4 
+1.4 
+0.0 
+1.3 
+0.6 
+0.6 
+1.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+
+2.9 
+2.9 
+2.9 
+1.4 
+2.8 
+0.0 
+
+0.0 
+2.6 
+2.5 
+2.4 
+0.0 
+2.3 
+2.3 
+0.0 
+2.3 
+0.0 
+2.2 
+2.0 
+0.0 
+1.9 
+0.0 
+1.7 
+1.3 
+0.8 
+0.7 
+1.5 
+1.1 
+0.0 
+1.3 
+0.0 
+0.6 
+0.6 
+0.0 
+0.8 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+
+1.4 
+1.4 
+1.4 
+1.4 
+1.4 
+1.4 
+
+1.3 
+1.3 
+1.3 
+1.2 
+1.2 
+1.2 
+1.2 
+1.1 
+1.1 
+1.1 
+1.1 
+1.0 
+1.0 
+0.9 
+0.9 
+0.9 
+0.8 
+0.8 
+0.7 
+0.7 
+0.7 
+0.7 
+0.7 
+0.7 
+0.6 
+0.6 
+0.5 
+0.4 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+
+Supplementary  Table  S1.  Continued
+
+KEGG  Pathway  Description
+
+Benzoate  degradation  via  CoA  ligation
+Butanoate  metabolism
+Carbon  fixation
+Atrazine  degradation
+Porphyrin  and  chlorophyll  metabolism
+Aminoacyl-tRNA  biosynthesis
+Glycan  structures  -  degradation
+Biosynthesis  of  unsaturated  fatty  acids
+Homologous  recombination
+Regulation  of  autophagy
+Pentose  phosphate  pathway
+Androgen  and  estrogen  metabolism
+gamma-Hexachlorocyclohexane  degradation
+Glycerolipid  metabolism
+Alkaloid  biosynthesis  II
+Drug  metabolism  -  other  enzymes
+RNA  polymerase
+Proteasome
+Non-homologous  end-joining
+Alzheimer's  disease
+Dentatorubropallidoluysian  atrophy  (DRPLA)
+Citrate  cycle  (TCA  cycle)
+Synthesis  and  degradation  of  ketone  bodies
+C21-Steroid  hormone  metabolism
+Lysine  biosynthesis
+beta-Alanine  metabolism
+Selenoamino  acid  metabolism
+1-  and  2-Methylnaphthalene  degradation
+Glyoxylate  and  dicarboxylate  metabolism
+3-Chloroacrylic  acid  degradation
+Limonene  and  pinene  degradation
+Caprolactam  degradation
+SNARE  interactions  in  vesicular  transport
+Asthma
+Inositol  metabolism
+Pentose  and  glucuronate  interconversions
+Ascorbate  and  aldarate  metabolism
+Fatty  acid  biosynthesis
+Fatty  acid  elongation  in  mitochondria
+Ubiquinone  biosynthesis
+Caffeine  metabolism
+Geraniol  degradation
+Bisphenol  A  degradation
+Fluorobenzoate  degradation
+Phenylalanine,  tyrosine  and  tryptophan  biosyn-
+
+thesis
+
+Novobiocin  biosynthesis
+Taurine  and  hypotaurine  metabolism
+Aminophosphonate  metabolism
+Cyanoamino  acid  metabolism
+
+Microarray  Data  Analysis  of  Perturbed  Pathways    221
+
+#  of 
+
+genes  in 
+pathway
+
+#  of 
+genes 
+
+linked  to 
+GPL570 
+Probes
+
+p＜0.05
+#  of  Over 
+
+p＜0.01
+#  of  Over 
+
+Expressed  Genes
+
+Expressed  Genes
+
+Lobular 
+Carci-
+noma
+
+Ductal 
+Carci-
+noma
+
+Lobular 
+Carci-
+noma
+
+Ductal 
+Carci-
+noma
+
+P1
+
+P2
+
+P3
+
+23
+36
+24
+9
+41
+39
+30
+23
+28
+34
+26
+55
+18
+51
+20
+52
+25
+35
+14
+28
+15
+28
+9
+11
+5
+24
+32
+19
+15
+14
+24
+7
+38
+30
+2
+25
+9
+6
+10
+15
+7
+11
+5
+1
+9
+
+3
+10
+17
+9
+
+23
+36
+24
+9
+37
+39
+30
+23
+28
+33
+26
+52
+18
+50
+20
+49
+25
+35
+13
+28
+15
+27
+9
+11
+5
+24
+32
+19
+15
+14
+24
+7
+38
+30
+2
+22
+9
+6
+10
+13
+7
+11
+5
+1
+9
+
+3
+10
+17
+9
+
+0
+0
+0
+0
+0
+4
+0
+2
+0
+2
+0
+1
+0
+4
+0
+0
+2
+1
+0
+1
+1
+1
+0
+0
+0
+0
+1
+1
+2
+1
+0
+0
+1
+1
+0
+0
+0
+0
+0
+1
+0
+0
+0
+0
+0
+
+0
+0
+0
+0
+
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+0
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+0
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+0
+0
+0
+
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+
+0.0 
+0.0 
+0.0 
+0.0 
+
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+
+0.0 
+0.0 
+0.0 
+0.0 
+
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+
+0.0 
+0.0 
+0.0 
+0.0 
+
+222    Genomics  &  Informatics    Vol.  6(4)  210-222,  December  2008
+
+Supplementary  Table  S1.  Continued
+
+KEGG  Pathway  Description
+
+D-Glutamine  and  D-glutamate  metabolism
+D-Arginine  and  D-ornithine  metabolism
+N-Glycan  degradation
+Nucleotide  sugars  metabolism
+Streptomycin  biosynthesis
+Peptidoglycan  biosynthesis
+Tetrachloroethene  degradation
+1,4-Dichlorobenzene  degradation
+Styrene  degradation
+C5-Branched  dibasic  acid  metabolism
+Methane  metabolism
+Thiamine  metabolism
+Vitamin  B6  metabolism
+Biotin  metabolism
+Lipoic  acid  metabolism
+Monoterpenoid  biosynthesis
+Phenylpropanoid  biosynthesis
+Alkaloid  biosynthesis  I
+Circadian  rhythm
+
+#  of 
+
+genes  in 
+pathway
+
+#  of 
+genes 
+
+linked  to 
+GPL570 
+Probes
+
+p＜0.05
+#  of  Over 
+
+p＜0.01
+#  of  Over 
+
+Expressed  Genes
+
+Expressed  Genes
+
+Lobular 
+Carci-
+noma
+
+Ductal 
+Carci-
+noma
+
+Lobular 
+Carci-
+noma
+
+Ductal 
+Carci-
+noma
+
+P1
+
+P2
+
+P3
+
+4
+1
+16
+6
+10
+5
+3
+1
+3
+2
+7
+8
+5
+4
+2
+2
+4
+5
+13
+
+4
+1
+16
+6
+10
+5
+3
+1
+3
+2
+7
+8
+5
+4
+2
+2
+4
+5
+13
+
+1
+0
+0
+3
+1
+0
+0
+0
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+Mean:
+
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+
+0.9 
+
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+
+2.1 
+
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+0.0 
+
+1.5 
+
+

@@ -1,0 +1,750 @@
+Genomics  &  Informatics   Vol. 5(4) 188-193, December 2007
+
+FESD II: A Revised Functional Element SNP Database
+of Human Ethnicities
+
+Hyun Ju Kim1, Il Hyun Kim1, Ki Hoon Shin1, Young-Kyu 
+Park1, Hyojin Kang2 and Young Joo Kim1*
+
+1Korea Research Institute of Bioscience and Biotechnology, 
+#111  Gwahagno,  Yuseong-gu,  Daejeon,  305-806,  Korea, 
+2Department of Bio and Brain, KAIST, Daejeon 305-701, Korea
+7)
+
+Abstract
+The  Functional  Element  SNPs  Database  (FESD) 
+categorizes functional elements in human genic regions 
+and provides a set of single nucleotide polymorphisms 
+(SNPs) located within each area. Users may select a set 
+of SNPs in specific functional elements with haplotype 
+information and obtain flanking sequences for genotyping. 
+Our  previous  version  of  FESD  has  been  improved  in 
+several ways. We regenerated all the data in FESD II from 
+recently updated source data such as HapMap, UCSC 
+GoldenPath, dbSNP, OMIM, and TRANSFAC®. Users can 
+obtain information about tagSNPs and simulate LD blocks 
+for each gene from four ethnicities in the HapMap project 
+on the fly. FESD II employs a Java/JSP web interface for 
+better platform portability and higher speed than PHP in 
+the previous version. As a result, FESD II provides its users 
+with more powerful information about functional element 
+SNPs of human ethnicities.
+
+Availability: FESD II is freely available from http://sysbio. 
+kribb.re.kr:8080/fesd/.
+Contact: yjkim8@kribb.re.kr
+Keywords: SNP, tagSNP, haplotype, functional elements, 
+LD block, hapMap
+
+Introduction
+Extensive studies are currently being conducted to find 
+associations of disease susceptibility with a particular form 
+of genetic variation, namely, single nucleotide polymorphisms 
+(SNPs), as well as with other types of common genetic 
+variations,  including  microsatellites  and  copy  number 
+
+*Corresponding author: E-mail yjkim8@kribb.re.kr
+Tel +82-42-879-8118, Fax +82-42-879-81192-354-1063
+Accepted 3 December 2007
+
+variants (Stranger, Forrest et al. 2007). Even though SNPs 
+are  less  polymorphic  and  thus  less  informative  than 
+microsatellite markers, SNPs are abundant (more than 12 
+million in humans), more stably inherited, and exist in 
+functioning regions such as exons. Thus, investigation of 
+the genome for SNPs may be an effective way to elucidate 
+the causes of complex phenotypes and diseases in humans.
+The database of SNPs (dbSNP, http://www.ncbi.nlm. 
+nih.gov/projects/SNP/), a repository for single-base nucleotide 
+substitutions and short deletion and insertion polymorphisms 
+(Sherry, Ward et al. 2001), contains over 12 million human 
+SNPs and an additional 22 million from a variety of other 
+organisms, with 14 million of those added over the past 
+year (Wheeler, Barrett et al. 2007).
+
+As the number of SNPs deposited in dbSNP has been 
+increasing  exponentially,  many  researchers  who  are 
+interested in complex genetic diseases are focusing on 
+candidate gene approaches using gene-based functional 
+element SNPs and haplotypes, which are collections of 
+SNPs  located  throughout  the  functional  regions  of 
+candidate genes (Ring and Kroetz 2002; Jung, Park et al. 
+2004). Linkage disequilibrium (LD), which refers to the 
+nonrandom  association  of  alleles  at  different  loci  in 
+haplotypes, plays a central role in genome-wide association 
+studies  for  identifying  genetic  variation  with  different 
+phenotypes  (Zhang,  Qin  et  al.  2004).  A  tagSNP  is  a 
+representative SNP in a region of the genome with high LD. 
+Researchers can use tagSNPs to discover genes responsible 
+for certain disorders. Most genome-wide association studies 
+currently underway will not be well powered for rare causal 
+SNPs. For such studies, we can impute unobserved HapMap 
+SNPs with tag SNPs (Marchini, Howie et al. 2007), reducing 
+the time and labor spent choosing tagSNPs instead of all the 
+variations in a sequence.
+
+Most SNP genotyping methods currently in use begin 
+with a PCR amplification step and need PCR primers 
+(Nothnagel, Furst et al. 2002). In high-throughput SNP 
+genotyping machines, the primers often include not only 
+PCR primers but also extension primers (Wise, Paris et 
+al. 2003). For the design of PCR primers, researchers need 
+to  prepare  flanking  sequences  of  their  target  SNPs. 
+Although the dbSNP database provides flanking sequences 
+for  each  refSNP,  the  length  of  flanking  sequences  is 
+variable and is often not long enough to design primers. 
+There may be many different methods to obtain the flanking 
+sequence, such as using the UCSC genome browser or by 
+
+NCBI  blast  search.  However,  these  methods  require 
+multiple steps and do not support multiple queries (Kent, 
+Sugnet et al. 2002; Karolchik, Hinrichs et al. 2004).
+
+We developed and reported the Functional Element 
+SNPs Database (FESD), which categorizes functional 
+elements in human genic regions and provides a set of 
+SNPs located within each area (Kang, Choi et al. 2005). 
+In the FESD, human genic regions were divided into 10 
+different  functional  elements:  promoter  regions,  CpG 
+islands, 5’-untranslated regions (UTRs), translation start 
+sites, splice sites, coding exons, introns, translation stop 
+sites,  polyadenylation  signals  (PASes),  and  3’-UTRs. 
+Subsequently, all known SNPs were assigned to each 
+functional  element  at  its  respective  position.  With  the 
+FESD web interface, users can select a set of SNPs in 
+specific functional elements and obtain flanking sequences 
+for further genotyping experiments.
+
+In this study, we have revised and updated the previous 
+version of FESD by incorporating the International HapMap 
+Project data with 270 samples. Users can obtain not only 
+updated  functional  element  SNPs  but  also  haplotype 
+information with tagSNPs. FESD II will serve as a much 
+more versatile tool that aids users in finding mutations that 
+contribute to common and polygenic diseases.
+
+Updated Functional Element SNPs Database 
+II (FESD II)
+FESD categorizes functional elements in human genic 
+regions and provides a set of SNPs located within each 
+functional element as well as flanking sequences required 
+for  genotyping  experiments  (Kang,  Choi  et  al.  2005). 
+Through the FESD web interface, users can identify the 
+functional position of SNPs and select a set of SNPs for 
+their haplotype-based study. 
+
+FESD  II  was  improved  in  many  aspects.  First,  we 
+regenerated all data in FESD II from recently updated 
+source data such as HapMap, UCSC GoldenPath, dbSNP, 
+OMIM, and TRANSFAC®. The reference sequences of the 
+human genome build 36.2 (April 2007) were downloaded 
+from the NCBI database, and functional element sequences 
+were  extracted  from  sequence  boundary  information 
+derived from UCSC database hg 18 version (Karolchik, 
+Baertsch et al. 2003). Among the 16 tracks within Genes 
+and Gene Prediction Tracks in the UCSC database, the 
+RefSeq Gene track was produced from mRNA sequence 
+data (Maglott, Ostell et al. 2005). We used the 25,313 
+refSeq IDs in the refGene track. In total, 11,811,594 SNPs 
+from the dbSNP database build 127 were positioned with 
+the flat file downloaded from the NCBI ftp site (ftp://ftp.ncbi.nih. 
+gov/snp/human/). In particular, the matrix data of transcription 
+
+FESDII: A Functional Element Human SNP Database 189
+
+factor estimation were updated from TRANSFAC® professional 
+ver. 7.4.1 to ver. 11.1.
+
+Second, the dbSNP data were included, as were the 
+International HapMap Project phase I and phase II data 
+with 270 samples (Nigerian Yoruba African, Han Chinese, 
+Northern and Western European, and Japanese populations), 
+allowing users to gain information about LD blocks and 
+tagSNPs from each population. The LD block of each gene 
+is simulated at on time in FESD II, helping users obtain 
+haplotype information in order to select a set of SNPs in 
+specific functional elements and to have tagSNPs with 
+certain coverages. The LD blocks were generated by the 
+Haploview program (Barrett, Fry et al. 2005). Moreover, 
+the tagSNPs of each gene from these four populations 
+were  also  provided.  We  adopted  algorithms  from  the 
+Tagger program (de Bakker, Yelensky et al. 2005) to select 
+and evaluate tagSNPs.
+
+Third,  we  transformed  the  computer  program  into 
+Java/JSP, which supports better platform portability and 
+higher speeds than did PHP in the previous version.
+
+The human genome has two different regions―genic 
+and intergenic. The genic region can be divided into 10 
+different  functional  elements;  promoter  regions,  CpG 
+islands, 5'-untranslated regions (UTRs), translation start 
+sites, splice sites, coding exons, introns, translation stop 
+sites, polyadenylation signal sites (PASes), and 3'UTRs. 
+Promoter  regions  were  estimated  in  the  2-kb  region 
+upstream of the start codon using a transcription factor 
+matrix, and CpG islands found in the promoter regions were 
+reported. Detailed information on the 10 functional regions 
+can be gleaned from our previous paper (Kang, Choi et al. 
+2005); the 10 functional regions are depicted in the Fig. 1.
+SNPs whose locations are known were assigned to the 
+corresponding functional element. To estimate the promoter 
+region, we used the Match program (TRANSFAC Professional 
+11.1), which is a weight matrix-based tool for searching 
+putative transcription factor binding sites in DNA sequences 
+(Kel, Gossling et al. 2003). The SNPflank database consists 
+of the complete genome sequence from RefSeq genome 
+contigs and the positional information of refSNPs from the 
+dbSNP database (Benson, Karsch-Mizrachi et al. 2004). 
+Both were downloaded from the NCBI ftp site, parsed with 
+
+Fig. 1. Categorization of functional elements in human genes. 
+Functional elements are divided into 10 different functional regions:
+promoter regions, CpG islands, 5'-untranslated regions (UTRs), 
+translation start sites, splice sites, coding exons, introns, translation
+stop sites, polyadenylation signal sites (PASes) ,and 3'UTRs.
+
+190 Genomics & Informatics   Vol. 5(4) 188-193, December 2007
+
+(A)
+
+(B)
+
+(C)
+
+(D)
+
+Fig. 2. (A) Web interface of FESD II. Users can search genes by gene name, mRNA accession #, protein accession #, LocusLink ID, 
+OMIM ID, chromosome position, clinical disorder, clinical synopsis, cytogenetic band position, and transcription factor name. (B) List 
+of mRNAs selected using BRCA1 as an example. (C) RefGene information of a given mRNA along with each functional element SNPs, 
+their LD blocks, and tagSNPs. (D) Refined SNP information. One can obtain further information with the flanking sequence tool.
+
+Perl scripts, and then imported into a MySQL relational 
+database.
+
+FESD II provides capabilities in searching for genes in 
+several ways: gene  name, mRNA  accession number, 
+protein accession number, LocusLink ID, OMIM ID, position 
+on chromosome, clinical disorder, clinical synopsis, cytogenetic 
+
+band position, and transcription factor name. Fig. 2 shows 
+the main page of FESD II (Fig. 2 - A) and the steps taken 
+to search for detailed information on SNPs, using BRCA1 
+as an example (Fig. 2 - B). The result shows the refGene 
+information of 11 BRCA1 mRNAs, each with functional 
+element SNPs (Fig. 2 - C). The LD blocks of four ethnicities 
+
+FESDII: A Functional Element Human SNP Database 191
+
+Fig. 3. Example of LD blocks simulated in FESD II for the BRCA1 gene. One can change the width and height of the
+picture for better resolution. Four LD blocks of four ethnic groups are available. CEU: 60 unrelated European-descent
+individuals (from 30 parent-parent-offspring trios) from Utah. CHB: 45 Han Chinese individuals from Beijing. JPT: 45
+Japanese individuals from Tokyo. YRI: 60 unrelated individuals (from 30 trios) from Ibadan, Nigeria.
+
+Table 1. Distribution of human SNPs throughout functional elements
+
+Promoter
+CpG
+5’-UTR
+Start Codon
+Splice Site
+Coding Exon
+Intron
+Stop Codon
+PAS
+3’-UTR
+
+Mean density
+(SNPs per kb)
+
+4.253
+4.389
+4.464
+1.330
+2.345
+4.111
+3.944
+1.962
+1.969
+5.048
+
+Mean spacing
+(bps per SNP)
+
+235.138
+227.850
+224.029
+751.871
+426.485
+243.244
+253.572
+509.658
+507.957
+198.085
+
+SNP count
+
+(SNPs)
+79,706
+32,153
+23,088
+101
+2,279
+174,494
+5,599,449
+149
+141
+131,507
+
+Total length
+
+(bps)
+18,741,942
+7,326,046
+5,172,392
+75,939
+971,960
+42,444,545
+1,419,864,483
+75,939
+71,622
+26,049,588
+
+in HapMap data and tagSNPs are also shown. If one checks 
+the functional elements and clicks ‘refine SNPs set,’ one can 
+obtain additional SNP information such as allele, chromosomal 
+position, functional class, and links to other databases (Fig. 
+2 - D). If one clicks the LD block image, pictured in Fig. 2 
+- D, the LD block window pops up (Fig. 3). In this pop-up 
+window, one can see the four LD blocks of each population 
+
+from the International HapMap Project data. For better 
+resolution, the width and height of the picture are adjustable
+
+Statistics
+The genic region contains 5,952,641 SNPs (48.5%), while 
+
+192 Genomics & Informatics   Vol. 5(4) 188-193, December 2007
+
+Table 2. Density of SNPs in genic regions by chromosome
+
+(SNPs per kb)
+
+Chr1
+Chr2
+Chr3
+Chr4
+Chr5
+Chr6
+Chr7
+Chr8
+Chr9
+Chr10
+Chr11
+Chr12
+Chr13
+Chr14
+Chr15
+Chr16
+Chr17
+Chr18
+Chr19
+Chr20
+Chr21
+Chr22
+ChrX
+ChrY
+Average
+
+Promoter CpG
+4.411
+4.083
+3.790
+4.279
+4.668
+5.110
+4.350
+4.516
+4.387
+5.071
+4.975
+4.236
+4.270
+4.404
+4.464
+4.352
+3.891
+4.410
+4.262
+4.914
+4.813
+5.269
+2.438
+1.220
+4.274
+
+4.264
+3.787
+3.911
+4.167
+4.078
+5.119
+4.493
+4.201
+4.392
+4.440
+4.678
+4.145
+4.316
+4.260
+4.010
+4.370
+4.159
+4.357
+4.712
+5.930
+5.096
+6.197
+2.579
+0.839
+4.271
+
+5’ UTR
+4.835
+3.883
+4.348
+4.266
+4.460
+5.239
+4.678
+4.791
+4.159
+5.317
+4.782
+4.049
+4.511
+4.362
+3.647
+4.295
+4.202
+4.231
+4.815
+5.066
+3.981
+5.588
+3.016
+1.235
+4.323
+
+Start
+0.905
+0.643
+2.763
+0.381
+1.514
+2.113
+1.147
+0.389
+1.418
+3.581
+1.288
+1.327
+1.792
+0.425
+0.447
+3.591
+1.404
+0
+1.220
+0.433
+0
+1.712
+1.122
+0
+1.234
+
+Splice
+2.303
+1.532
+2.035
+1.842
+1.777
+2.707
+2.409
+2.369
+2.208
+2.194
+2.567
+1.957
+2.029
+1.480
+1.488
+2.437
+2.532
+2.277
+2.551
+8.996
+2.234
+4.006
+2.281
+0
+2.425
+
+Exon
+4.308
+3.484
+3.687
+3.602
+3.851
+5.175
+4.178
+4.132
+4.003
+4.245
+4.471
+3.650
+3.653
+3.863
+3.635
+4.477
+4.123
+3.923
+4.633
+5.540
+3.991
+5.271
+2.841
+1.401
+4.006
+
+Intron
+3.943
+3.606
+3.739
+3.984
+3.699
+4.154
+4.139
+4.019
+4.303
+4.100
+4.104
+3.902
+4.070
+3.728
+3.866
+4.460
+3.757
+4.079
+4.261
+5.245
+5.162
+5.113
+2.606
+1.156
+3.966
+
+Stop
+2.199
+1.286
+1.507
+2.283
+3.330
+2.905
+0.574
+0.778
+1.418
+1.302
+2.361
+2.919
+2.688
+0
+2.681
+1.959
+2.107
+0.983
+3.254
+5.202
+1.955
+0
+0.842
+0
+1.856
+
+PAS
+2.659
+2.994
+2.096
+2.190
+1.117
+2.928
+1.253
+1.174
+1.160
+1.550
+3.623
+2.693
+1.032
+0
+1.462
+0.678
+0.969
+2.778
+0.600
+4.781
+2.283
+0
+1.440
+0
+1.728
+
+3’UTR
+5.199
+4.708
+4.402
+4.855
+4.622
+5.627
+5.402
+5.166
+5.119
+5.304
+5.086
+4.872
+4.622
+4.578
+4.711
+5.025
+5.302
+4.899
+5.656
+6.763
+5.948
+6.301
+3.661
+1.177
+4.959
+
+the intergenic region contains 5,609,193 (51.5%). While 
+there are slightly more SNPs in the intergenic region, the 
+SNP density of the genic region is higher than that of the 
+intergenic region. Total genome length was calculated to 
+be 3,903,120,360 bp (http://www.ensembl.org). Table 1 
+shows the distribution of SNPs throughout 10 functional 
+elements. Most SNPs in the genic region were distributed 
+in introns (94.1% of total genic SNPs). The sum total of 
+SNPs from 5’ UTR to 3’ UTR was 5,931,208, which is 
+slightly less than the SNP count from the genic region. This 
+slight difference is due to the overlapping physical positions 
+of  promoter  regions  and  CpG  islands.  We  estimated 
+promoters in the 2 kb upstream from the start codon, and 
+searched CpG islands in the estimated promoter regions. 
+Therefore,  the  promoter  region  may  overlap  with  an 
+upstream gene, and for same reason, CpG islands can overlap.
+The density of SNPs in each chromosome is shown in 
+Table 2. In the promoter regions, CpG islands, 3'UTRs, 
+5'UTRs, coding exons, and introns, the average densities 
+of SNPs were relatively higher than in other regions such 
+as translation start sites, splice sites, translation stop sites, 
+and PASes.
+
+Conclusion
+We have revised and updated our previous FESD in three 
+
+ways. First, we have regenerated all the source data with 
+recently updated databases. FESD II provides up-to-date 
+information  on  functional  element  SNPs.  Second,  we 
+simulated the LD blocks of each gene independently for 
+the four ethnicities, based on International HapMap data 
+(http://www.hapmap.org/). The LD blocks of each gene 
+can be simulated at on time, and users can confirm the 
+ethnic variation of SNP haplotypes with the data. Third, we 
+ported the FESD from PHP to Java/JSP for higher performance.
+
+Acknowledgments
+
+This research was supported by the Korean HapMap 
+Project and in part by the Cerebrovascular Disease Project 
+of the Ministry of Science & Technology (MOST).
+
+References
+Barrett, J.C., Fry, B., et al. (2005). Haploview: analysis and 
+visualization of LD and haplotype maps. Bioinformatics 
+21(2). 263-265.
+
+Benson, D.A., Karsch-Mizrachi, I., et al. (2004). GenBank: 
+update. Nucleic Acids Res 32(Database issue). D23-D26.
+de Bakker, P.I., Yelensky, R., et al. (2005). Efficiency and 
+power in genetic association studies. Nat Genet. 37(11). 
+1217-1223.
+
+Jung, H.Y., Park, J.S., et al. (2004). HapAnalyzer: Minimum 
+Haplotype  Analysis  System  for  Association  Studies. 
+Genomics &Informatics 2(2). 107-109.
+
+Kang, H.J., Choi, K.O., et al. (2005). FESD: a Functional 
+Element SNPs Database in human. Nucleic Acids Res. 
+33(Database issue). D518- D522.
+
+Karolchik, D., Baertsch, R., et al. (2003). The UCSC Genome 
+
+Browser Database. Nucleic Acids Res. 31(1). 51-54.
+
+Karolchik, D., Hinrichs, A.S., et al. (2004). The UCSC Table 
+tool.  Nucleic  Acids  Res. 
+
+Browser  data  retrieval 
+32(Database issue). D493-D496.
+
+Kel, A.E., Gossling, E., et al. (2003). MATCH: A tool for 
+searching  transcription  factor  binding  sites  in  DNA 
+sequences. Nucleic Acids Res. 31(13). 3576-3579.
+
+Kent, W.J., Sugnet, C.W., et al. (2002). The human genome 
+
+browser at UCSC. Genome Res. 12(6). 996-1006.
+
+Maglott,  D.,  Ostell,  J.,  et  al.  (2005).  Entrez  Gene: 
+gene-centered information at NCBI. Nucleic Acids Res. 
+33(Database issue). D54-D58.
+
+Marchini, J., Howie, B., et al. (2007). A new multipoint method 
+for genome-wide association studies by imputation of 
+genotypes. Nat Genet. 39(7). 906-913.
+
+Nothnagel, M., Furst, R., et al. (2002). Entropy as a measure 
+
+FESDII: A Functional Element Human SNP Database 193
+
+for  linkage  disequilibrium  over  multilocus  haplotype 
+blocks. Hum Hered. 54(4). 186-198.
+
+Ring, H.Z., and Kroetz, D.L. (2002). Candidate gene approach 
+for pharmacogenetic studies. Pharmacogenomics 3(1). 
+47-56.
+
+Sherry, S.T., Ward, M.H., et al. (2001). dbSNP: the NCBI 
+database of genetic variation. Nucleic Acids Res. 29(1). 
+308-311.
+
+Stranger, B.E., Forrest, M.S., et al. (2007). Relative impact 
+of  nucleotide  and  copy  number  variation  on  gene 
+expression phenotypes. Science 315(5813). 848-853.
+
+Wheeler, D.L., Barrett, T., et al. (2007). Database resources 
+of  the  National  Center  for  Biotechnology  Information. 
+Nucleic Acids Res. 35(Database issue). D5-D12.
+
+Wise, C.A., Paris, M., et al. (2003). A standard protocol for 
+single nucleotide primer extension in the human genome 
+using  matrix-assisted 
+laser  desorption/ionization 
+time-of-flight mass spectrometry. Rapid Commun Mass 
+Spectrom. 17(11). 1195-1202.
+
+Zhang, K., Qin, Z.S., et al. (2004). Haplotype block partitioning 
+and tag SNP selection using genotype data and their 
+applications to association studies. Genome Res. 14(5). 
+908-916.
+
+

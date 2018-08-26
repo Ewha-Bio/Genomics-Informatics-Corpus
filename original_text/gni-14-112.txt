@@ -1,0 +1,1778 @@
+G&I   Genomics & Informatics
+
+ORIGINAL ARTICLE
+
+eISSN 2234-0742
+Genomics Inform 2016;14(3):112-124
+http://dx.doi.org/10.5808/GI.2016.14.3.112
+
+In Silico Study of miRNA Based Gene Regulation, 
+
+Involved in Solid Cancer, by the Assistance of 
+
+Argonaute Protein
+
+Surya Narayan Rath1*, Debasrita Das1, V Badireenath Konkimalla2, Sukanta Kumar Pradhan1
+
+1BIF Centre, Department of Bioinformatics, Orissa University of Agriculture & Technology, Bhubaneswar 751003, India,
+
+2School of Biological Sciences, National Institute of Science Education and Research, Bhubaneswar 751005, India
+
+Solid tumor is generally observed in tissues of epithelial or endothelial cells of lung, breast, prostate, pancreases, colorectal, 
+stomach, and bladder, where several genes transcription is regulated by the microRNAs (miRNAs). Argonaute (AGO) protein 
+is  a  family  of  protein  which  assists  in  miRNAs  to  bind  with  mRNAs  of  the  target  genes.  Hence,  study  of  the  binding 
+mechanism between AGO protein and miRNAs, and also with miRNAs-mRNAs duplex is crucial for understanding the RNA 
+silencing mechanism. In the current work, 64 genes and 23 miRNAs have been selected from literatures, whose deregulation 
+is well established in seven types of solid cancer like lung, breast, prostate, pancreases, colorectal, stomach, and bladder 
+cancer. In silico study reveals, miRNAs namely, miR-106a, miR-21, and miR-29b-2 have a strong binding affinity towards 
+PTEN, TGFBR2, and VEGFA genes, respectively, suggested as important factors in RNA silencing mechanism. Furthermore, 
+interaction  between  AGO  protein  (PDB  ID-3F73,  chain  A)  with  selected  miRNAs  and  with  miRNAs-mRNAs  duplex  were 
+studied computationally to understand their binding at molecular level. The residual interaction and hydrogen bonding are 
+inspected  in  Discovery  Studio  3.5  suites.  The  current  investigation  throws  light  on  understanding  miRNAs  based  gene 
+silencing mechanism in solid cancer.
+
+Keywords: Argonaute, in silico, microRNAs, mRNA, solid cancer
+
+Introduction
+
+Cancer  has  a  complex  pathophysiology  unlike  other 
+diseases.  The  development  of  cancer  is  attributed  to  a 
+number  of  predisposing  factors  like  familial  and  genetic 
+factors, racial and geographic factors and various epidemio-
+logical factors like smoking, use of tobacco, diet, and certain 
+type of infection.  Majority of the cancers occur in  ageing 
+population [1], however there is a changing trend towards 
+younger  population  in  recent  years.  The  uncontrolled 
+division of cancer cells generally spreads to the other part of 
+body  through  the  blood  and  lymphatic  systems.  In  this 
+context, solid cancer which is an abnormal mass of tissue 
+that  usually  does  not  contain  cysts  or  liquid  area  can  be 
+either benign or malignant in nature. Such solid cancers are 
+observed in tissues of epithelial or endothelial cells of lung, 
+
+breast, prostate, pancreatic, colorectal, stomach, and bladder. 
+Management  of  cancer  is  a  multimodality  approach  and 
+includes surgery, radiotherapy, chemotherapy and targeted 
+therapy with certain limitations of each approach. Research 
+is  going  across  the  globe  for  the  management  of  cancer. 
+Recently microRNAs (miRNAs) have drawn attention of the 
+researchers to discover new insights into the treatment of 
+cancer.  These  miRNAs  are  highly  conserved  non-coding 
+single stranded RNAs (∼18 to 22 bp) that target mRNA at 
+3' un-translated region of protein coding genes and act as 
+natural  inhibitor.  These  miRNAs  participate  in  several 
+biological processes such as cell differentiation, proliferation, 
+metabolism,  and  apoptosis  and  are  also  involved  in  the 
+regulation of gene expression [2]. However, in development 
+of pathologies like cancer, deregulation of miRNAs expression 
+has  been  identified  as  potential  area  to  be  studied.  The 
+miRNAs have special signature and variation from normal 
+
+Received June 13, 2016; Revised August 2, 2016; Accepted August 9, 2016
+*Corresponding author: Tel: +91-06742-565760, Fax: +91-06742-565760, E-mail: snrbioinfo@gmail.com
+Copyright © 2016 by the Korea Genome Organization
+CC It is identical to the Creative Commons Attribution Non-Commercial License (http://creativecommons.org/licenses/by-nc/4.0/).
+
+Genomics  &  Informatics  Vol.  14,  No.  3,  2016
+
+cells [3]. Hence, use of specific miRNAs as biomarker may be 
+applied  for  cancer  diagnosis  and  treatment.  Since  the 
+expression of tumor suppressor genes and oncogenes are 
+influenced by the miRNAs, provides scope to study their 
+association  in  cancer  [3].  Collating  data  for  miRNAs 
+signatures associated with solid tumors, it was reported that 
+more  than  50%  of  miRNAs  genes  are  located  in  cancer 
+
+associated  genomic  regions  or  in  fragile  sites,  suggesting 
+that miRNAs play  a crucial  role in the pathogenesis of a 
+limited range of human cancers than previously expected 
+[4]. Considering their influence on the cancer cell phenotype, 
+some miRNAs are considered to be oncogenic, and others to 
+be tumor-suppressive [5]. Few miRNAs are well characterized 
+in cancer association such as miR-21, miR-17-5p, miR-191, 
+
+Table  1.  The  17  miRNAs  and  45  target  genes  involved  in  regulation  of  seven  types  of  solid  cancers  are  reported 
+
+miRNA
+
+Cancer
+
+Target  gene
+
+Oncogene
+
+Expression Tumor  suppressor  gene
+
+Expression
+
+Reference
+
+miR-21
+
+miR-17-5p
+
+miR-191
+miR-29b-2
+
+miR-223
+
+miR-199a-1
+
+miR-126
+
+miR-31
+
+miR-146a
+
+miR-155
+
+miR-181b-1
+
+miR-20a
+
+miR-107
+miR-32
+
+mir-214
+miR-106a
+
+miR-128b
+
+-
+-
+
+CDC25Aa
+RECKa,  BCL2a
+PCAFa
+Absent
+
+SOX4a,  TIMP3a
+MMP2a
+MMP2a,  DNMT3Ba
+DNMT3Ba,  VEGFAa,  MMP2a
+
+Lung
+Breast
+Colorectal
+Bladder
+Prostate
+Colorectal
+Pancreatic MUC17a
+Colorectal
+Lung
+Breast
+Prostate
+Colorectal MMP2a
+MMP2a
+Stomach
+IFNGa,  MMP2a
+Bladder
+FOXO1a,  IGF-1Ra
+Colorectal
+NFIAa
+Pancreatic
+Absent
+Stomach
+HIF1αa
+Lung
+Pancreatic
+Absent
+VEGFAa,  CRKa,  SLC7A5a
+Lung
+Absent
+Colorectal
+CRKa
+Stomach
+ADAM9a
+Bladder
+Absent
+Lung
+EZH2a
+Prostate
+ROCK1a
+Prostate
+IRAK1a,  NFKBa,  MTA2a
+Pancreatic
+CASP3a,  TP53INP1a,  CASP317a
+Lung
+FOXO3a
+Breast
+BCL2a
+Breast
+TIMP3a
+Colorectal
+Stomach
+Absent
+Absent
+Colorectal
+ABL2a
+Pancreatic
+Absent
+Pancreatic
+BCL2L11a
+Prostate
+Colorectal
+Absent
+Absent
+Pancreatic
+E2F1a
+Colorectal
+Absent
+Pancreatic
+VEGFa,  CRKa,  SLC7A5a
+Lung
+
+-
+-
+
+Down
+Up
+Up
+-
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+Up
+-
+Up
+-
+
+Down
+
+-
+Up
+Up
+-
+Up
+Up
+Down
+Down
+Up
+Up
+Up
+-
+-
+Up
+-
+Up
+-
+-
+Up
+-
+
+Down
+
+PDCD4a
+PTENa
+PDCD4a, TGFBR2a
+Absent
+Absent
+PTENa
+Absent
+Absent
+Absent
+Absent
+Absent
+Absent
+Absent
+Absent
+Absent
+Absent
+FBXW7a
+Absent
+SMAD4a
+EGFRa
+IRS-1a
+Absent
+Absent
+LATS2a, PPP2R2Aa
+Absent
+Absent
+EGFRa
+SOCS1a, PTENa
+SOCS1a
+Absent
+Absent
+TIMP3a
+PTENa
+Absent
+CDK6a
+Absent
+PTENa
+ING4a
+PTENa,  RB1a
+TGFBR2a
+EGFRa
+
+Down
+Down
+Down
+
+-
+-
+
+Down
+
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+Down
+
+Down
+Down
+Down
+
+-
+-
+
+Down
+
+-
+-
+
+Down
+Down
+Up
+-
+-
+
+Down
+Down
+
+-
+
+Down
+
+-
+
+Down
+Down
+Up
+Down
+Down
+
+[6]
+[7]
+[8]
+[7]
+[9]
+[10]
+[11]
+[12]
+[13]
+[14]
+[15]
+[16]
+[17]
+[14]
+[18]
+[19]
+[20]
+[21]
+[22]
+[23]
+[24]
+[25]
+[26]
+[27]
+[28]
+[29]
+[30]
+[31]
+[32]
+[33]
+[33]
+[34]
+[35]
+[30]
+[36]
+[37]
+[38]
+[39]
+[40]
+[41]
+[17]
+
+miRNA,  microRNA.
+aThe  genes  are  on  the  basis  of  their  expression  criteria.
+
+www.genominfo.org
+
+113
+
+SN  Rath, et al.  Molecular  Interaction  of  miRNAs  and  Target  Genes
+
+miR-29b-2,  miR-223,  miR-128b,  miR-199a-1,  miR-24-1, 
+miR-24-2,  miR-146,  miR-155,  miR-181b-1,  miR-20a, 
+miR-107,  miR-32,  miR-92-2,  miR-214,  miR-30c,  miR-25, 
+miR-221, miR-106a, miR-126, and miR-31 (Supplementary 
+Table 1) that are involved in either up regulation or down 
+regulation of many genes [42-58]. Till date various resear-
+chers have explored the unusual expression of miRNAs, and 
+its prognostic significance in various human malignancies. 
+Hence,  to  study  the  relationship  between  miRNAs  and 
+cancer, it is important to examine the expression profile of 
+miRNAs and their target genes in different cancer types. As 
+a case study, the unusual expression of miRNA-21 has been 
+conformed in various cancers such as lung, breast, prostate, 
+colorectal,  pancreatic,  bladder,  and  stomach  cancer,  and 
+interestingly  the  oncogenic  like  function  of  miRNA-21  is 
+mediated  through  the  expression  of  its  target  genes  like 
+PDCD4,  PTEN,  and  TGFBR2  which  are  generally  tumor 
+suppressor genes in nature [59]. Though miRNAs control 
+the  gene  expression  to  some  extent  during  translation 
+process but the translational suppression mechanism is still 
+controversial,  for  example  some  miRNAs  down-regulate 
+while others up-regulate the gene expression. Hence, study 
+of interaction mechanism between miRNAs and their target 
+
+genes is essential. In the process of miRNAs mediated gene 
+regulation, the Argonaute (AGO) class of proteins play a si-
+gnificant role in the hybrid formation between miRNA-mRNA 
+[60, 61]. Despite of several researches, controlling this abno-
+rmal  cell  proliferation  selectively  in  different  cancer  by 
+miRNAs as natural inhibitor is still a major challenge. In the 
+present study, attempts have been made to develop a strategy 
+for identification and selection of suitable miRNAs, their 
+target genes associated in solid tumor, and as well as to study 
+the role of AGO protein in their interaction at molecular level 
+using computational tools and techniques. 
+
+Methods
+Screening of miRNAs and genes 
+
+Extensive  literature  search  and  exploration  of  online 
+databases were conducted to understand miRNAs mediated 
+regulation  of  solid  cancer  associated  target  genes  using 
+miRCancer  (http://mircancer.ecu.edu/)  and  miRDisease 
+(http://mir2disease.org).  miRNAs  and  target  genes  were 
+screened  by  following  two  criteria:  (1)  only  up  regulated 
+oncogenes or down regulated tumor suppressor genes were 
+selected and (2) the screening was performed by selecting 
+
+Table  2.  Twenty-three  target  genes  and  their  involvement  in  different  biological  function  are  reported  from  UniProt  (http://www. 
+uniprot.org/)  web  server
+
+No.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+
+Gene
+TGFBR2a
+VEGFAa
+PTENa
+IFNG
+CDK6
+IGF-1R
+TP53INP1
+MMP2
+ADAM9
+RB1
+FBXW7
+EGFR
+SMAD4
+CDC25A
+DNMT3B
+ABL2
+ROCK1
+CRK
+PPP2R2A
+MTA2
+TIMP3
+RECK
+SLC7A5
+
+miRNA
+
+Function
+
+Angiogenesis,  apoptosis,  cell  cycle, 
+
+cell  proliferation,  other  function
+
+Apoptosis,  cell  cycle,  cell  proliferation, 
+
+other  function
+
+Apoptosis,  cell  cycle,  other  function
+
+Angiogenesis,  other  function
+
+Apoptosis,  cell  cycle
+Apoptosis,  other  function
+Cell  proliferation,  other  function
+
+Cell  proliferation
+Other  function
+
+miR-21,  miR-106a
+miR-29b-2,  miR-126
+miR-106a,  miR-20a,  miR-17-5p,  miR-32,  miR-155,  miR-21
+miR-29b-2
+miR-107
+miR-223
+miR-155
+miR-29b-2
+miR-126
+miR-106a
+miR-223
+miR-146a,  miR-128b
+miR-199a-1
+miR-21
+miR-29b-2
+miR-20a
+miR-146a
+miR-126
+miR-31
+miR-146a
+miR-181b-1
+miR-21
+miR-126
+
+miRNA,  microRNA.
+aThree  genes  have  maximum  involvement  in  different  biological  activity.
+
+114
+
+www.genominfo.org
+
+oncogenes and tumor suppressor genes as target genes when 
+both  of  them  are  either  up  regulated  or  down  regulated. 
+Further, minimum free energy (MFE) score based binding 
+affinity  between  miRNAs  and  their  target  genes  were 
+explored  and  inspected  using  miRTarbase  web  server 
+(http://mirtarbase.mbc.nctu.edu.tw/).  Furthermore,  the 
+involvement of target genes in different biological function 
+was  inspected  using  UniProt  (http://www.uniprot.org/) 
+web server and plotted using Venn (http://bioinformatics. 
+psb.ugent.be/webtools/Venn/) diagram.
+
+Prediction of structural model of miRNA-mRNA 
+complexes
+
+To verify the folding affinity between selected miRNAs 
+and their target genes, secondary structures were predicted 
+using RNAfold web server (http://rna.tbi.univie.ac.at/cgi-bin/ 
+RNAfold.cgi). The resulted dot bracketed structures of duplex 
+were  used  for  prediction  of  their  tertiary  structure  using 
+RNA COMPOSER (http://rnacomposer.cs.put poznan.pl/). 
+
+Structure extraction of AGO protein
+
+The  three-dimensional  structure  of  AGO  protein  was 
+retrieved  from  Protein  Data  Bank  (PDB  ID:  3F73).  The 
+structure preparation and correction of AGO protein were 
+performed using Discovery Studio 3.5 suite (http://accelrys. 
+com/products/discovery-studio/visualizatation-download.
+php).
+
+Molecular docking between miRNA-mRNA and AGO 
+protein
+
+Docking between three dimensional structure of protein 
+
+Fig.  1. The 23 target genes and their involvement in different biological
+functions like angiogenesis, apoptosis, cell cycle, cell proliferation,
+and  others  are  plotted  using  Venn  diagram  (http://bioinformatics.
+psb.ugent.be/webtools/Venn/). The numbers denoted in plot indicate
+the  number  of  target  genes  involvement  in  each  of  the  different 
+biological  function.
+
+Genomics  &  Informatics  Vol.  14,  No.  3,  2016
+
+and ligand, may be a biomolecule like miRNA or a gene is an 
+efficient  computational  method  to  inspect  the  molecular 
+interaction  [61].  Docking  were  performed  between  AGO 
+protein and miRNA-mRNA duplexes (miR-106 and PTEN; 
+miR-21  and  TGFBR2;  and  miR-29b-2  and  VEGFA)  using 
+PatchDock web server (http://bioinfo3d.cs.tau.ac.il/PatchDock 
+/),algorithm ranked the docked complexes on the basis of hi-
+ghest geometrical shape complementary scores. The molecular 
+interaction was studied using Discovery Studio 3.5 suite. 
+
+Table  3.  MFE score  based binding  affinity  between  15  miRNAs 
+and  23  target  genes  associated  in  seven  types  of  solid  cancer
+
+No. Gene
+
+Cancer
+
+miRNA
+
+1 PTENa
+
+Colorectal
+Colorectal
+Colorectal
+Colorectal
+Lung
+Breast
+
+2 TGFBR2a Colorectal
+Pancreatic
+Prostate
+Lung
+
+3 VEGFAa
+
+4 CDC25A Colorectal
+5 RECK
+6 MMP2 Lung, breast, colorectal,
+
+Bladder
+
+prostate,  stomach, 
+bladder
+
+7 DNMT3B Breast,  prostate
+8 IFNG Bladder
+9 IGF-1R Colorectal
+10 FBXW7 Stomach
+11 SMAD4 Pancreatic
+12 CRK
+Lung
+13 SLC7A5 Lung
+14 ADAM9 Bladder
+15 PPP2R2A Lung
+16 ROCK1 Prostate
+17 MTA2
+18 EGFR
+
+Pancreatic
+Pancreatic
+Lung
+19 TP53INP1 Lung
+20 TIMP3 Colorectal,  stomach
+21 ABL2
+22 CDK6
+23 RB1
+
+Pancreatic
+Pancreatic
+Colorectal
+
+miR-106a
+miR-20a
+miR-17-5p
+miR-32
+miR-155
+miR-21
+miR-21
+miR-106a
+miR-29b-2
+miR-126
+miR-21
+miR-21
+miR-29b-2
+
+miR-29b-2
+miR-29b-2
+miR-223
+miR-223
+miR-199a-1
+miR-126
+miR-126
+miR-126
+miR-31
+miR-146a
+miR-146a
+miR-146a
+miR-128b
+miR-155
+miR-181b-1
+miR-20a
+miR-107
+miR-106a
+
+MFE 
+score 
+
+(kcal/mol)
+
+–14.3
+–13
+–12.9
+–12
+–10.7
+–9.41
+–16.2
+–15.1
+–15
+–11.5
+–10.2
+–16.1
+–11.3
+
+–12.6
+–16.7
+–11
+–12.5
+–13.2
+–18.1
+–16.3
+–13.8
+–17.9
+–9.3
+–14.7
+–19.8
+–17.2
+–13.4
+–14.7
+–20.4
+–19.2
+–13.7
+
+MFE,  minimum  free  energy;  miRNA,  microRNA.
+aThree  target  genes  namely  PTEN,  TGFBR2,  and  VEGFA  are 
+observed with high binding affinity towards miR-106a, miR-21, and 
+miR-29b-2,  respectively.
+
+www.genominfo.org
+
+115
+
+SN  Rath, et al.  Molecular  Interaction  of  miRNAs  and  Target  Genes
+
+Results
+Screening of miRNAs and genes associated with 
+solid tumor
+
+From the literature, 23 miRNAs were found to be involved 
+in  seven  solid  tumors  namely;  lung,  breast,  colorectal, 
+pancreatic,  prostate,  stomach,  and  bladder  [62].  Again 
+through exploration of online databases 64 different target 
+genes  (oncogenes  and  tumor  suppressor  genes)  were 
+observed  to  be  regulated  by  these  23  miRNAs  (Supp-
+lementary Table 1). Again out of these seventeen miRNAs 
+
+are suspected to be effectively involved in controlling the 
+expression pattern of 45 target genes associated in seven 
+solid tumors (Table 1) [6-41]. Further, binding affinity was 
+explored using miRTarbase web server. Fifteen miRNAs and 
+23 target genes were selected as per the availability of MFE 
+score  (Supplementary  Table  2)  and  subjected  to  further 
+study.  The  involvement  of  these  23  genes  in  different 
+biological  functions  are  explored  and  inspected  from 
+UniProt  web  server  (http://www.uniprot.org/).  It  was 
+observed  only  PTEN,  TGFBR2,  and  VEGFA  genes  mostly 
+regulating  angiogenesis,  apoptosis,  cell  cycle,  cell  proli-
+
+Fig. 2. The sequence similarity between 23 selected genes (A) and 15 miRNAs (B) inspected and deciphered. The sequence conservation
+in  binding  pattern  highlighted  in  red  box.  miRNA,  microRNA.
+
+Table  4.  Secondary  folding  pattern  of  miRNA-mRNA  duplexes  along  with  their  predicted  binding  energy  (RNAfold)  and  MFE  scores
+(miRTarbase) 
+
+No.
+
+Gene
+
+miRNA
+
+Dot-bracket  image
+
+1 PTEN
+
+miR-106a
+
+(((((((((((..((((..........))))..)))..))))))))
+
+Secondary  structure  of
+miRNA-mRNA  duplex
+
+Binding  energy
+
+(kcal/mol)
+
+–15.40
+
+2 TGFBR2 miR-21
+
+(((((((((((....(((((((....))))))).))).))))))))
+
+3 VEGFA miR-29b-2
+
+..((((.((((..((((((....))))))....)))).))))..
+
+miRNA,  microRNA;  MFE,  minimum  free  energy.
+
+116
+
+www.genominfo.org
+
+–13.50
+–11.10
+
+MFE  score
+(kcal/mol)
+
+–14.3
+
+–16.2
+–15
+
+Genomics  &  Informatics  Vol.  14,  No.  3,  2016
+
+Fig.  3. Three dimensional binding modes of miR-106a and mRNA of PTEN gene (A), miR-21 and mRNA of TGFBR2 gene (B), and miR-29b-2
+and  mRNA  of  VEGFA  gene  (C)  are  deciphered,  respectively.
+
+Table  5.  Docking  scores  between  miRNA  and  AGO  protein
+
+miRNA  and  AGO   
+(PDB  ID:3F73,  chain  A)
+
+miR-106a–AGO
+miR-21–AGO
+miR-29b-2–AGO
+
+Score
+
+Area
+
+16,618
+16,678
+19,222
+
+2,039.00
+2,275.40
+2,942.20
+
+ACE
+
+–455.23
+–374.62
+–555.08
+
+Score indicates the geometric shape complementary score and ACE 
+score  generated  for  each  miRNA  and  AGO  complex. 
+miRNA, microRNA; AGO, argonaute; ACE, atomic contact energy.
+
+feration,  and  other  biological  functions  (Table  2,  Fig.  1). 
+Further, the conservation in binding pattern among selected 
+miRNAs and mRNAs (Table 3) were studied through sequence 
+similarity algorithm using Clustal Omega (http://www.ebi. 
+ac.uk/Tools/msa/clustalo/) web server. The study revealed 
+for  the  existence  of  quite  less  portion  of  conservation  at 
+sequence  level  among  chosen  23  mRNAs  and  also  in  15 
+miRNAs (Fig. 2), is not sufficient to throw light on binding 
+patterns.  Therefore,  the  binding  affinity  was  evaluated 
+between mRNA and miRNA at secondary structural level. 
+Good MFE score suggested, the target genes PTEN, TGFBR2, 
+and VEGFA are having a strong affinity towards miR-106a, 
+miR-21, and miR-29b-2 (Table 3). Hence those genes and 
+miRNAs  were  taken  into  consideration  to  study  their 
+interaction at molecular level. 
+
+Study of binding affinity between miRNA-mRNA 
+duplex
+
+Duplex sequences between miR-106 and PTEN, miR-21 
+and TGFBR2, miR-29b-2 and VEGFA were extracted from 
+miRTarbase web server and prediction of secondary folding 
+pattern was performed in RNA fold. The secondary folding 
+patterns along with their binding energy value are reported 
+(Table 4). The predicted binding energy suggested for a high 
+affinity among selected miRNA-mRNA duplexes. Predicted 
+three  dimensional  models  [63]  of  the  duplex  structures 
+between miR-106 and PTEN, miR-21 and TGFBR2, miR-29b-2 
+and VEGFA also supported for strong molecular interaction 
+between them.
+
+Structure preparation of AGO protein
+
+The  three-dimensional  crystallized  structure  of  AGO 
+protein, with 685 amino acid residues was extracted from 
+Protein Data bank (PDB ID: 3F73). The structure of AGO 
+protein contains guide DNA and target RNA duplexes. All 
+water  molecules  and  ligands  were  removed  from  the 
+structure. As, the AGO protein is a homo dimer, out of two 
+chains, only chain ‘A’ of AGO protein was considered and 
+refined before  docking.  The  necessary  correction in bond 
+order  and  bond  length  of  all  atoms  in  the  structure  was 
+performed  using  prepare  protein  and  clean  geometry 
+protocol of Discovery Studio 3.5.
+
+www.genominfo.org
+
+117
+
+SN  Rath, et al.  Molecular  Interaction  of  miRNAs  and  Target  Genes
+
+Study of molecular interaction between miRNAs 
+and AGO protein
+
+The AGO protein is a key player in the formation of the 
+RNA-induced  silencing  complex,  a  major  component  of 
+
+RNA  interference.  The  three  dimensional  structures  of 
+miRNA-mRNA duplexes were prepared using RNA COM-
+POSER web server (Fig. 3). The first round of docking was 
+performed between the miRNAs and AGO (PDB ID: 3F73, 
+chain A) protein to inspect the binding affinity between the 
+
+Table  6.  Amino  acid  residues  of  Argonaute  protein  participating  in  the  interaction  with  miR-106a,  miR-21,  and  miR-29b-2  within  a
+distance  of  3.5  Å
+
+miRNA
+
+miR-106a
+
+miR-21
+
+miR-29b-2
+
+Hydrophobic  interactionsa
+
+With  aromatic  ringsb
+
+Hydrogen  bondingc
+
+Amino  acid  residues
+
+LEU  132,  ALA  133,  VAL  152d,  LEU 
+153d,  ALA  170d,  ILE  173d,  LEU  267d, 
+LEU  279e,  ALA  479d,  VAL  620d,
+VAL  663d,  VAL  666,  ILE  671
+ILE  173d,  VAL  264,  LEU  267d,  LEU 
+279e,  ALA  354,  ALA  414d,  ILE  434, 
+ALA  644,  ALA  648d, 
+VAL  685
+VAL  152d,  LEU  153d,  ALA  170d,  LEU 
+279e, ALA  414d, ALA  479d, LEU  596, 
+VAL  620d,  ALA  648d,  LEU  652,  ALA 
+659,  LEU  662, 
+VAL  663d
+
+TYR  135d,  TYR  171d,  TRP 
+415e,  PHE  487
+
+SER  107,  TYR  135,  LEU  153,  PRO  169,  TYR 
+171,  GLU  416,  PHE  487,  ARG  548d,  ARG 
+574d,  ASP  598d,  ARG  615e,  LYS  664d
+
+TYR  135d,  TYR  171d,  TRP 
+415e,  TYR  642d,  PHE  647d, 
+PHE  649d
+
+TRP  156,  TRP  415e,  TYR 
+642d,  PHE  647d,  PHE  649d
+
+ARG  172,  ARG  192,  THR 201,  LEU  279,  ARG 
+350, ALA  354, GLN  355, PRO 412d, MET 413, 
+TRP  415,  ARG 418, ASN 436, ARG  615e, ALA 
+644,  PHE  649d,  ARG  661d,  ARG  668
+ARG 13, LYS 101,  ARG  114,  VAL  152,  ASP  159, 
+ARG 286,  PRO  412d,  ALA  414, ASP  478, ARG 
+548d,  ARG  574d,  LYS  575,
+ARG 580,  GLU 597,  ASP  598d, ARG 611, ARG 
+615e,  ALA  648, PHE  649d, ARG  651, HIS  657, 
+ASP  660,  ARG  661d,  LYS  664d
+
+miRNA,  microRNA.
+aAmino  acid residues involved  in  hydrophobic interactions;  bAmino acid  residues  with  aromatic rings;  cAmino acid residues participating 
+in  hydrogen  bonding;  dThe  amino  acid  residues  of  Argonaute  protein  commonly  participated  in  more  than  one  miRNA  interaction;  eThe 
+amino  acid  residues  of  Argonaute  protein  commonly  participated  in  case  of  all  miRNA  interaction.
+
+Fig.  4.  Amino  acid  residues  of  Argonaute  protein  participating  in  interaction  with  miR-106a  (A),  miR-21  (B),  and  miR-29b-2  (C)  within
+a  distance  of  3.5  Å  are  deciphered,  respectively.
+
+118
+
+www.genominfo.org
+
+complexes. Out of 10 different poses resulted for docking 
+complexes  in  Patch  Dock  server,  the  pose  with  highest 
+geometrical shape complementary score [64] is considered 
+as the best docked complex. The resulted geometrical shape 
+complementary score and atomic contact energy scores are 
+reported  (Table  5),  implicated  a  strong  binding  affinity 
+between the miRNAs and AGO protein. The binding affinity 
+between the AGO protein and miRNAs (miR-106a, miR-21, 
+and miR-29b-2) is established through the observation of 
+amino acids (miR-106a: LEU 132, ALA 133, VAL 152, LEU 
+153, ALA 170, ILE 173, LEU 267, LEU 279, ALA 479,VAL 
+620, VAL 663, VAL 666, and ILE 671; miR-21: ILE 173, VAL 
+264, LEU 267, LEU 279, ALA 354, ALA 414, ILE 434, ALA 
+644, ALA 648, and VAL 685; miR-29b-2: VAL 152, LEU 153, 
+ALA 170, LEU 279, ALA 414, ALA 479, LEU 596, VAL 620, 
+ALA 648, LEU 652, ALA 659, LEU 662, and VAL 663) which 
+are strongly hydrophobic in nature and also amino acids with 
+aromatic rings (miR-106a: TYR 135, TYR 171, TRP415, and 
+PHE 487; miR-21: TYR 135, TYR 171, TRP 415, TYR 642, 
+PHE 647, and PHE 649; miR-29b-2: TRP 156, TRP 415, TYR 
+642, PHE 647, and PHE649) within a distance of 3.5Å (Table 
+6, Fig. 4). The presence of hydrogen bonding pattern during 
+interaction (Table 7, Fig. 5) also supported the fact of AGO 
+protein driven miRNA based gene regulation.
+
+Study of molecular interaction between AGO 
+protein and miRNA-mRNA duplex
+
+The second round docking was performed between AGO 
+protein and miRNA-mRNA duplexes (miR-106 and PTEN; 
+miR-21 and TGFBR2; and miR-29b-2 and VEGFA) separately 
+in PatchDock web server, and scores are reported (Table 8). 
+Amino acids which are strong hydrophobic in nature and 
+amino  acids  with  aromatic  rings  which  are  relatively 
+hydrophobic generally contribute a lot towards the stability 
+of binding during molecular interaction between two macro 
+molecules.  Hence  the  molecular  interaction  between 
+miRNA-mRNA duplexes and AGO protein was studied by 
+inspecting close amino acid residues of AGO protein within 
+a distant of 3.5 Å. Strong hydrophobic amino acids of AGO 
+like VAL 152, LEU 153, VAL 264, LEU 265, LEU 267, LEU 
+277, ALA 278, LEU 279, ALA 414, ILE 434, ALA 479, VAL 
+663, and VAL 685 in miR-106a and PTEN duplex; LEU 45, 
+LEU 46, ALA 47, VAL 49, ALA 50, ALA 80, ILE 173, LEU 
+265, LEU 267, LEU 277, ALA 278, LEU 279, LEU 281, ALA 
+479, ALA 644, ALA 648, LEU 652, and VAL 663 in miR-21 
+and TGFBR2 duplex; and ALA 80, LEU 132, VAL 152, LEU 
+153, ALA 170, ILE 173, VAL 264, ALA 479, VAL 606, ALA 
+644, ALA 648, VAL 663, and VAL 685 in miR-29b-2 and 
+VEGFA  duplex  are  observed  within  a  distant  of  3.5  Å. 
+Similarly, amino acids like TYR 43, TRP 415, PHE 487, and 
+TYR 642 in miR-106a and PTEN duplex; TYR 43, TRP 202, 
+
+Genomics  &  Informatics  Vol.  14,  No.  3,  2016
+
+TRP 415, TYR 642, PHE 647, and PHE 649 in miR-21 and 
+TGFBR2 duplex; and TYR 43, TYR 86, TYR 135, TRP 415, 
+TYR 171, TYR 642, PHE 647, and PHE 649 in miR-29b-2 and 
+
+Table  7.  Amino acid residues of Argonaute  protein  participating
+in  hydrogen  bonding  with  miRNAs  within  a  distance  of  2.5  Å
+
+miRNA
+
+Residues
+
+Atom
+
+Distance
+
+miR-106a
+
+miR-21
+
+miR-29b-2
+
+LEU  153
+PRO  169
+TYR  171
+GLU  416
+
+PHE  487
+
+ARG  574
+ARG  615
+
+ARG  172
+THR  201
+LEU  279
+ALA  354
+GLN355
+PRO  412
+MET  413
+TRP  415
+ARG  418
+ASN  436
+ARG  615
+ALA  644
+ARG  661
+
+ARG  668
+LYS  101
+ARG  114
+ASP  159
+PRO  412
+ALA  414
+ASP  478
+LYS  575
+ARG  580
+
+GLU  597
+ASP  598
+ARG  615
+
+ALA  648
+
+ASP  660
+ARG  661
+
+O…H22  (G28)
+O…H21  (G30)
+O…HO2’  (G30)
+O…H21  (G46)
+O…H22  (G46)
+O…H21  (G37)
+O…H22  (G37)
+NH2…O4’  (A26)
+NH1…O2  (U32)
+NH2…NO2  (C31)
+NH2…N3  (C31)
+NH2…OP1  (U43)
+OG1…OP1  (U44)
+O…HO2’  (A40)
+N…OP2  (C28)
+N…O5’  (G27)
+A…H3  (U32)
+N…O2  (C33)
+N…O2  (C33)
+NE…O2’  (A34)
+OD1…H42  (C33)
+NE…OP1  (A40)
+O…HO2’  (A36)
+NH1…OP2  (A36)
+NH2…OP1  (A36)
+NH2…O5’  (A36)
+NH2…OP1  (G35)
+O…H3  (U22)
+NH2…O2’(C25)
+N…P(U22)
+O…HO3’  (U44)
+O…H22  (G42)
+OD2…HO2’  (A35)
+O…H62  (A29)
+NE…O2  (C28)
+NH2…O2  (C28)
+N…OP1  (A23)
+N…OP1  (A23)
+NE…N3  (A29)
+NE…N1  (A29)
+NE…N3  (A29)
+NE…N7  (A29)
+NH1…N7  (A29)
+NH2…N7  (A29)
+N…O4  (U32)
+O…H1  (G33)
+O…HO2’  (A35)
+N…O3’  (A35)
+
+2.34
+2.35
+0.91
+2.49
+2.31
+1.59
+2.16
+2.39
+1.95
+2.49
+1.85
+2.46
+2.04
+2.23
+2.26
+2.39
+1.17
+2.15
+2.04
+1.60
+1.85
+2.48
+1.40
+1.35
+1.41
+2.19
+2.40
+1.38
+1.70
+2.24
+2.45
+1.96
+2.11
+1.42
+2.19
+1.72
+1.67
+2.25
+2.25
+2.25
+2.25
+1.71
+1.44
+1.38
+2.18
+2.27
+1.81
+2.18
+
+miRNA,  microRNA.
+
+www.genominfo.org
+
+119
+
+SN  Rath, et al.  Molecular  Interaction  of  miRNAs  and  Target  Genes
+
+Fig. 5. Amino acid residues of Argonaute protein participating in hydrogen bonding interaction with miR-106a (A), miR-21 (B), and miR-29b-2
+(C)  within  a  distance  of  2.5  Å  are  deciphered,  respectively.
+
+Table  8.  Docking  scores  between  miRNAs-mRNA  duplex  and 
+AGO  protein 
+
+miRNA-mRNA  and  AGO 
+(PDB  ID:3F73,  chain  A)
+
+Score
+
+Area
+
+miR-106a_PTEN-AGO
+miR-21_TGFBR2-AGO
+miR-29b-2_VEGFA-AGO
+
+19,722
+20,036
+24,310
+
+3,519.90
+4,132.60
+3,927.40
+
+ACE
+
+–408.36
+–863.02
+–70.34
+
+Score indicates the geometric shape complementary score and ACE 
+means  atomic  contact  energy  score  generated  for  each  receptor 
+and  ligand  complex.
+miRNA, microRNA; AGO, argonaute; ACE, atomic contact energy.
+
+VEGFA  duplex,  with  aromatic  ring  are  also  found  as 
+participating  in  interaction  within  the  binding  pocket  of 
+AGO protein around distance of 3.5 Å (Table 9, Fig. 6). 
+
+Discussion
+
+The  current  study  focused  on  in  silico  identification  of 
+genes  and  their  regulation  mediated  through  miRNAs, 
+involved  in  seven  types  of  solid  tumors  of  colorectal, 
+pancreatic,  breast,  stomach,  lung,  prostate,  and  bladder. 
+miRNAs have a crucial role in gene silencing mechanism 
+observed through the altered expression of certain miRNA 
+molecules  in  case  of  neurodegenerative  diseases  such  as 
+
+Alzheimer  and  Parkinson  suggesting  that  the  association 
+between mRNA-miRNA-AGO, therefore not cancer specific 
+[16,  65].  The  association  between  mRNA-miRNA-AGO 
+pattern has been reported [16, 65, 66] in RNA based gene 
+silencing mechanism and their association at atomic level 
+has already been studied in case of leukemia [25]. In this 
+context,  molecular  association  between  AGO  protein, 
+miRNAs  and  mRNAs  of  target  genes  were  studied  and 
+analyzed in case of seven types of solid tumor. Sixty-four 
+genes and  23  miRNAs  were collected  from the literature 
+(Supplementary  Table  1),  out  of  which  45  genes  and 
+seventeen  miRNAs  were  selected  on  the  basis  of  their 
+expression pattern (Table 1). The affinity in binding modes 
+between 15 miRNAs and 23 genes was verified, basing on 
+the  availability  of  MFE  scores  in  miRTarbase  web  server 
+(Supplementary  Table  2).  Further,  different  biological 
+activities  of  selected  genes  were  studied  using  UniProt 
+database (http://www.uniprot.org/) to screen out important 
+genes and their contribution towards seven types of solid 
+tumors.  The  observation  suggested  three  genes  namely, 
+PTEN,  TGFBR2,  and  VEGFA  were  involved  in  different 
+biological activities like angiogenesis, apoptosis, cell cycle, 
+and cell proliferation, are the major contributing factor in 
+oncogenesis (Table 2). However, quite less sequence con-
+servation was observed within the binding site of 23 target 
+
+120
+
+www.genominfo.org
+
+Genomics  &  Informatics  Vol.  14,  No.  3,  2016
+
+Table  9. Amino  acid residues  of Argonaute protein  participating during interaction  with miRNA  and mRNA duplex within a  distance
+of  3.5  Å
+
+miRNA-mRNA  duplex
+
+miR-106a  and  PTEN
+
+miR-21  and  TGFBR2
+
+miR-29b-2  and  VEGFA
+
+Amino  acid  residues
+
+Hydrophobic  interactionsa
+
+With  aromatic  ringsb
+
+VAL  152c,  LEU  153c,  VAL  264c,  LEU  265c,  LEU  267c,  LEU 
+277c,  ALA  278c,  LEU  279c,  ALA  414,  ILE  434,  ALA  479c, 
+VAL  663d,  VAL  685c
+LEU  45,  LEU  46,  ALA  47,  VAL  49,  ALA  50,  ALA  80c,  ILE 
+173c, LEU  265c,  LEU 267c,  LEU  277c, ALA  278c,  LEU 279c, 
+LEU  281,  ALA  479c,  ALA  644c,  ALA  648c,  LEU  652,  VAL 
+663d
+ALA  80c, LEU 132,  VAL 152c, LEU  153c,  ALA  170, ILE  173,
+VAL  264c,  ALA  479,  VAL  606,  ALA  644c,  ALA  648c,  VAL 
+663d,  VAL  685c
+
+TYR  43d,  TRP  415d,  PHE  487,  TYR  642d
+
+TYR  43d,  TRP  202,  TRP  415d,  TYR  642d, 
+PHE  647c,  PHE  649c
+
+TYR  43d, TYR 86,  TYR  135, TRP 415d,  TYR 
+171,  TYR  642d,  PHE  647c,  PHE  649c
+
+miRNA,  microRNA.
+aAmino acid residues involved in hydrophobic interactions;  bAmino acid residues with aromatic rings;  cThe amino acid residues of Argonaute 
+protein commonly participated in more than one miRNA-mRNA duplex interaction;  dThe amino acid residues of Argonaute protein commonly 
+participated  in  case  of  all  miRNA-mRNA  duplex  interaction.
+
+Fig.  6.  Amino  acid  residues  of  Argonaute  protein  participating  in  interaction  with  miR-106a  and  mRNA  of PTEN  gene  (A),  miR-21  and
+mRNA  of  TGFBR2  gene  (B),  and  miR-29b-2  and  mRNA  of  VEGFA  gene  (C)  within  a  distance  of  3.5  Å  are  deciphered,  respectively.
+
+genes  (Fig.  2A).  But,  quite  well  sequence  similarity  was 
+observed between miR-106a, miR-17-5p, and miR-20a (Fig. 
+2B) suggesting for possibility of regulation of PTEN gene 
+through these three miRNAs (Table 3), associated in causing 
+
+colorectal cancer. Again, a strong and energetically binding 
+affinity  was  proved  through  good  MFE  scores  –14.3 
+(kcal/mol), –16.2 (kcal/mol), and –15 (kcal/mol) for PTEN 
+and  miR-106a;  TGFBR2  and  miR-21;  and  VEGFA  and 
+
+www.genominfo.org
+
+121
+
+SN  Rath, et al.  Molecular  Interaction  of  miRNAs  and  Target  Genes
+
+miR-29b-2, respectively, suggested for appropriate miRNAs 
+selection for PTEN, TGFBR2, and VEGFA genes (Table 3), 
+supported  by  the  predicted  binding  energy  scores  for 
+miRNA-mRNA duplex structures (Table 4). Furthermore, to 
+study the molecular basis of AGO protein driven miRNAs 
+namely, miR-106a, miR-21, and miR-29b-2 having highest 
+binding  affinity  towards  their  regulating  genes  namely, 
+PTEN,  TGFBR2,  and  VEGFA  respectively,  the  molecular 
+docking study was carried out. Generally, presence of amino 
+acids  with  aliphatic  group  namely,  alanine  (ALA),  valine 
+(VAL),  leucine  (LEU),  and  isoleucine  (ILE),  are  strongly 
+hydrophobic in nature provides stability during molecular 
+interaction between macro molecules, whereas amino acids 
+namely, phenylalanine (PHE), tyrosine (TYR), tryptophan 
+(TRP), are relatively hydrophobic in nature, but the presence 
+of aromatic ring like structure provides a steadiness towards 
+binding stability within the structural moiety of a protein. 
+The observation of amino acids (miR-106a: LEU 132, ALA 
+133, VAL 152, LEU 153, ALA 170, ILE 173, LEU 267, LEU 
+279, ALA 479,VAL 620, VAL 663, VAL 666, and ILE 671; 
+miR-21: ILE 173, VAL 264, LEU 267, LEU 279, ALA 354, 
+ALA  414,  ILE  434,  ALA  644,  ALA  648,  and  VAL  685; 
+miR-29b-2: VAL 152, LEU 153, ALA 170, LEU 279, ALA 
+414, ALA 479, LEU 596, VAL 620, ALA 648, LEU 652, ALA 
+659, LEU 662, and VAL 663) which are strongly hydrophobic 
+in nature and amino acids with aromatic rings (miR-106a: 
+TYR 135, TYR 171, TRP 415, and PHE 487; miR-21: TYR 
+135, TYR 171, TRP 415, TYR 642, PHE 647, and PHE 649; 
+miR-29b-2:  TRP  156,  TRP  415,  TYR  642,  PHE  647,  and 
+PHE649) during interaction within a distance of 3.5Å (Table 
+6, Fig. 4) recognized a strong molecular interaction between 
+AGO protein and miR-106a, miR-21, and miR-29b-2. Again, 
+weak  interaction  like  hydrogen  bonding  has  a  major 
+contribution to facilitate the stability of molecules during 
+interaction at atomic level. Here, the amino acids like, LEU 
+153, PRO 169, TYR 171, GLU 416, PHE 487, ARG 574, and 
+ARG 615; ARG 172, THR 201, LEU 279, ALA 354, GLN355, 
+PRO 412, MET 413, TRP 415, ARG 418, ASN 436, ARG 615, 
+ALA 644, ARG 661, and ARG 668; LYS 101, ARG 114, ASP 
+159, PRO 412, ALA 414, ASP 478, LYS 575, ARG 580, ARG 
+580, GLU 597, ASP 598, ARG 615, ALA 648, ASP 660, and 
+ARG 661 are participated in hydrogen bonding interaction 
+with miR-106a, miR-21, and miR-29b-2 respectively in the 
+structural moiety of AGO protein within a distance of 2.5Å 
+(Table  7,  Fig.  5),  strongly  supports  for  binding  stability 
+during assistance of AGO protein for miRNA based gene 
+regulation. Furthermore, presence of commonly participating 
+strong hydrophobic amino acids namely, VAL 663 and amino 
+acid with aromatic rings namely, TYR 43, TRP 415, and TYR 
+642  during  molecular  interaction  of  AGO  protein  with 
+miR-106a and PTEN, miR-21 and TGFBR2, and miR-29b-2 
+
+and VEGFA duplex within a distance of 3.5Å (Table 9, Fig. 6). 
+Although,  the  evidence  at  molecular  association  between 
+mRNA-miRNA-AGO pattern have already been established 
+computationally  [16,  61]  the  current  investigation  reco-
+mmending  for  AGO  protein  assistance  in  regulation  of 
+PTEN, TGFBR2, and VEGFA genes by miR-106a, miR-21, and 
+miR-29b-2, respectively, associated in seven types of solid 
+tumor.  This  report  would  be  helpful  in  understanding 
+miRNA-based gene silencing mechanisms in seven types of 
+solid cancer like colorectal cancer, pancreatic cancer, breast 
+cancer,  stomach  cancer,  lung  cancer,  prostate  cancer,  and 
+bladder cancer. Furthermore, extensive computational study 
+may be carried out for better understanding the mechanism 
+of  miRNAs  based  gene  regulation  in  solid  cancer.  This 
+methodology  would  further  help  us  to  design  suitable 
+miRNAs  against  respective  genes  rationally,  only  after 
+validation through laboratory experiments.
+
+Supplementary materials
+
+Supplementary data including two tables can be found 
+with this article online at http://www.genominfo.org/src/sm/ 
+gni-14-112-s001.pdf
+
+Acknowledgments 
+
+Authors  are  thankful  to  Department  of  Biotechnology; 
+Govetment of India for providing BIF Centre facility to carry 
+out the current research work. Also authors are grateful to 
+the authorities of Department of Bioinformatics, Centre for 
+Post Graduate studies, Orissa University of agriculture & 
+Technology, Bhubaneswar, Odisha, India for their constant 
+encouragement and allowing for accomplishing the research 
+work.
+
+References
+
+1. Alison RM. Encyclopedia of Life Sciences: Cancer. London: Nature 
+
+Publishing Group, 2001.
+
+2. Lee  YS,  Dutta  A.  MicroRNAs  in  cancer.  Annu  Rev  Pathol 
+
+2009;4:199-227.
+
+3. Grammatikakis I, Gorospe M, Abdelmohsen K. Modulation of 
+cancer traits by tumor suppressor microRNAs. Int J Mol Sci 
+2013;14:1822-1842.
+
+4. Zhang B, Pan X, Cobb GP, Anderson TA. microRNAs as onco-
+5. Esquela-Kerscher A, Slack FJ. Oncomirs–microRNAs with a 
+
+genes and tumor suppressors. Dev Biol 2007;302:1-12.
+
+role in cancer. Nat Rev Cancer 2006;6:259-269.
+
+6. Lu Z, Liu M, Stribinskis V, Klinge CM, Ramos KS, Colburn 
+NH, et al. MicroRNA-21 promotes cell transformation by tar-
+geting the programmed cell death 4 gene. Oncogene 2008;27: 
+4373-4379.
+
+7. Xu  LF,  Wu  ZP,  Chen  Y,  Zhu  QS,  Hamidi  S,  Navab  R. 
+
+122
+
+www.genominfo.org
+
+MicroRNA-21 (miR-21) regulates cellular proliferation, in-
+vasion, migration, and apoptosis by targeting PTEN, RECK 
+and  Bcl-2  in  lung  squamous  carcinoma,  Gejiu  City,  China. 
+PLoS One 2014;9:e103698.
+
+8. Wang P, Zou F, Zhang X, Li H, Dulak A, Tomko RJ Jr, et al. 
+microRNA-21 negatively regulates Cdc25A and cell cycle pro-
+gression in colon cancer cells. Cancer Res 2009;69:8157-8165.
+9. Gong AY, Eischeid AN, Xiao J, Zhao J, Chen D, Wang ZY, et al. 
+miR-17-5p targets the p300/CBP-associated factor and modu-
+lates  androgen  receptor  transcriptional  activity  in  cultured 
+prostate cancer cells. BMC Cancer 2012;12:492.
+
+10. Fang  L,  Li  H,  Wang  L,  Hu  J,  Jin  T,  Wang  J,  et  al.  Micro-
+RNA-17-5p promotes chemotherapeutic drug resistance and 
+tumour metastasis of colorectal cancer by repressing PTEN 
+expression. Oncotarget 2014;5:2974-2987.
+
+11. Yamada  N,  Kitamoto  S,  Yokoyama  S,  Hamada  T,  Goto  M, 
+Tsutsumida H, et al. Epigenetic regulation of mucin genes in 
+human cancers. Clin Epigenetics 2011;2:85-96. 
+
+12. Nagpal N, Kulshreshtha R. miR-191: an emerging player in 
+
+disease biology. Front Genet 2014;5:99.
+
+13. Wang  H,  Guan  X,  Tu  Y,  Zheng  S,  Long  J,  Li  S,  et  al. 
+MicroRNA-29b attenuates non-small cell lung cancer meta-
+stasis by targeting matrix metalloproteinase 2 and PTEN. J 
+Exp Clin Cancer Res 2015;34:59.
+
+14. Liu H, Wang B, Lin J, Zhao L. microRNA-29b: an emerging 
+player in human cancer. Asian Pac J Cancer Prev 2014;15:9059-9064.
+15. Ru  P,  Steele  R,  Newhall  P,  Phillips  NJ,  Toth  K,  Ray  RB. 
+miRNA-29b suppresses prostate cancer metastasis by regu-
+lating epithelial-mesenchymal transition signaling. Mol Cancer 
+Ther 2012;11:1166-1173.
+
+16. Wang  Y,  Li  Y,  Ma  Z,  Yang  W,  Ai  C.  Mechanism  of  micro-
+RNA-target interaction: molecular dynamics simulations and 
+thermodynamics analysis. PLoS Comput Biol 2010;6:e1000866. 
+17. Gong J, Li J, Wang Y, Liu C, Jia H, Jiang C, et al. Characteriza-
+tion of microRNA-29 family expression and investigation of 
+their  mechanistic  roles  in  gastric  cancer.  Carcinogenesis 
+2014;35:497-506.
+
+18. Wu LH, Cai QQ, Dong YW, Wang R, He BM, Qi B, et al. Decoy 
+oligonucleotide rescues IGF1R expression from microRNA-223 
+suppression. PLoS One 2013;8:e82167.
+
+19. Schickel R, Boyerinas B, Park SM, Peter ME. MicroRNAs: key 
+players in the immune system, differentiation, tumorigenesis 
+and cell death. Oncogene 2008;27:5959-5974. 
+
+20. Yin Y, Li J, Chen S, Zhou T, Si J. MicroRNAs as diagnostic bio-
+markers in gastric cancer. Int J Mol Sci 2012;13:12544-12555.
+21. Ding G, Huang G, Liu HD, Liang HX, Ni YF, Ding ZH, et al. 
+MiR-199a  suppresses  the  hypoxia-induced  proliferation  of 
+non-small cell lung cancer cells through targeting HIF1α. Mol 
+Cell Biochem 2013;384:173-180.
+
+22. Zhang Y, Fan KJ, Sun Q, Chen AZ, Shen WL, Zhao ZH, et al. 
+Functional screening for miRNAs targeting Smad4 identified 
+miR-199a as a negative regulator of TGF-β signalling pathway. 
+Nucleic Acids Res 2012;40:9286-9297. 
+
+23. Zhu X, Li H, Long L, Hui L, Chen H, Wang X, et al. miR-126 en-
+hances the sensitivity of non-small cell lung cancer cells to an-
+ticancer agents by targeting vascular endothelial growth factor 
+A. Acta Biochim Biophys Sin (Shanghai) 2012;44:519-526.
+
+Genomics  &  Informatics  Vol.  14,  No.  3,  2016
+
+24. Zhou  Y,  Feng  X,  Liu  YL,  Ye  SC,  Wang  H,  Tan  WK,  et  al. 
+Down-regulation of miR-126 is associated with colorectal can-
+cer  cells  proliferation,  migration  and  invasion  by  targeting 
+IRS-1 via the AKT and ERK1/2 signaling pathways. PLoS One 
+2013;8:e81203.
+
+25. Liao YL, Tsai KW, Lin WC. miRNAs in gastric cancer. Rijeka: 
+
+INTECH Open Access Publisher, 2011. 
+
+26. Jia  AY,  Castillo-Martin  M,  Bonal  DM,  Sánchez-Carbayo  M, 
+Silva JM, Cordon-Cardo C. MicroRNA-126 inhibits invasion 
+in  bladder  cancer  via  regulation  of  ADAM9.  Br  J  Cancer 
+2014;110:2945-2954.
+
+27. Liu X, Sempere LF, Ouyang H, Memoli VA, Andrew AS, Luo Y, 
+et al. MicroRNA-31 functions as an oncogenic microRNA in 
+mouse and human lung cancer cells by repressing specific tu-
+mor suppressors. J Clin Invest 2010;120:1298-1309.
+
+28. Zhang Q, Padi SK, Tindall DJ, Guo B. Polycomb protein EZH2 
+suppresses apoptosis by silencing the proapoptotic miR-31. 
+Cell Death Dis 2014;5:e1486.
+
+29. Lin SL, Chiang A, Chang D, Ying SY. Loss of miR-146a function 
+in hormone-refractory prostate cancer. RNA 2008;14:417-424.
+30. Labbaye C, Testa U. The emerging role of miR-146A in the 
+control  of  hematopoiesis,  immune  function  and  cancer.  J 
+Hematol Oncol 2012;5:13.
+
+31. Zhang CM, Zhao J, Deng HY. MiR-155 promotes proliferation 
+of human breast cancer MCF-7 cells through targeting tumor 
+protein 53-induced nuclear protein 1. J Biomed Sci 2013;20:79.
+32. Liu J, Huang W, Yang H, Luo Y. Expression and function of 
+miR-155  in  breast  cancer.  Biotechnol  Biotechnol  Equip  2015; 
+29:840-843. 
+
+33. Mansueto  G,  Forzati  F,  Ferraro  A,  Pallante  P,  Bianco  M, 
+Esposito F, et al. Identification of a new pathway for tumor pro-
+gression: microRNA-181b up-regulation and CBX7 down-re-
+gulation by HMGA1 protein. Genes Cancer 2010;1:210-224.
+
+34. Iliopoulos  D,  Jaeger  SA,  Hirsch  HA,  Bulyk  ML,  Struhl  K. 
+STAT3 activation of miR-21 and miR-181b-1 via PTEN and 
+CYLD are part of the epigenetic switch linking inflammation 
+to cancer. Mol Cell 2010;39:493-506.
+
+35. Aslam  MI,  Patel  M,  Singh  B,  Jameson  JS,  Pringle  JH. 
+MicroRNA manipulation in colorectal cancer cells: from labo-
+ratory to clinical application. J Transl Med 2012;10:128.
+
+36. Lee KH, Lotterman C, Karikari C, Omura N, Feldmann G, 
+Habbe N, et al. Epigenetic silencing of microRNA miR-107 
+regulates cyclin-dependent kinase 6 expression in pancreatic 
+cancer. Pancreatology 2009;9:293-301. 
+
+37. Ambs S, Prueitt RL, Yi M, Hudson RS, Howe TM, Petrocca F, 
+et al. Genomic profiling of microRNA and messenger RNA re-
+veals deregulated microRNA expression in prostate cancer. 
+Cancer Res 2008;68:6162-6170. 
+
+38. Wu W, Yang J, Feng X, Wang H, Ye S, Yang P, et al. Micro-
+RNA-32 (miR-32) regulates phosphatase and tensin homo-
+logue (PTEN) expression and promotes growth, migration, 
+and  invasion  in  colorectal  carcinoma  cells.  Mol  Cancer 
+2013;12:30.
+
+39. Zhang  XJ,  Ye  H,  Zeng  CW,  He  B,  Zhang  H,  Chen  YQ. 
+Dysregulation of miR-15a and miR-214 in human pancreatic 
+cancer. J Hematol Oncol 2010;3:46.
+
+40. Azrak SS, Ginel-Picardo A, Drosten M, Barbacid M, Santos E. 
+
+www.genominfo.org
+
+123
+
+SN  Rath, et al.  Molecular  Interaction  of  miRNAs  and  Target  Genes
+
+Reversible, interrelated mRNA and miRNA expression pat-
+terns in the transcriptome of Rasless fibroblasts: functional 
+and mechanistic implications. BMC Genomics 2013;14:731.
+
+41. Feng B, Dong TT, Wang LL, Zhou HM, Zhao HC, Dong F, et al. 
+Colorectal  cancer  migration  and  invasion  initiated  by 
+microRNA-106a. PLoS One 2012;7:e43452. 
+
+42. Li XM, Wang AM, Zhang J, Yi H. Down-regulation of miR-126 
+expression in colorectal cancer and its clinical significance. 
+Med Oncol 2011;28:1054-1057.
+
+43. Yu J, Ohuchida K, Mizumoto K, Fujita H, Nakata K, Tanaka M. 
+MicroRNA miR-17-5p is overexpressed in pancreatic cancer, 
+associated with a poor prognosis, and involved in cancer cell 
+proliferation and invasion. Cancer Biol Ther 2010;10:748-757.
+44. Wu W, Yang P, Feng X, Wang H, Qiu Y, Tian T, et al. The rela-
+tionship between and clinical significance of microRNA-32 
+and phosphatase and tensin homologue expression in color-
+ectal cancer. Genes Chromosomes Cancer 2013;52:1133-1140.
+
+45. Qin S, Zhu Y, Ai F, Li Y, Bai B, Yao W, et al. MicroRNA-191 cor-
+relates with poor prognosis of colorectal carcinoma and plays 
+multiple roles by targeting tissue inhibitor of metalloprotease 
+3. Neoplasma 2014;61:27-34.
+
+46. Volinia S, Calin GA, Liu CG, Ambs S, Cimmino A, Petrocca F, 
+et al. A microRNA expression signature of human solid tu-
+mors defines cancer gene targets. Proc Natl  Acad Sci U  S A 
+2006;103:2257-2261.
+
+47. Schaefer  A,  Jung  M,  Mollenkopf  HJ,  Wagner  I,  Stephan  C, 
+Jentzmik F, et al. Diagnostic and prognostic implications of 
+microRNA  profiling  in  prostate  carcinoma.  Int  J  Cancer 
+2010;126:1166-1176.
+
+48. Baffa R, Fassan M, Volinia S, O'Hara B, Liu CG, Palazzo JP, et al. 
+MicroRNA expression profiling of human metastatic cancers 
+identifies cancer gene targets. J Pathol 2009;219:214-221.
+
+49. Bhaumik D, Scott GK, Schokrpur S, Patil CK, Campisi J, Benz 
+CC. Expression of microRNA-146 suppresses NF-kappaB ac-
+tivity with reduction of metastatic potential in breast cancer 
+cells. Oncogene 2008;27:5643-5647.
+
+50. Zhu  N,  Zhang  D,  Xie  H,  Zhou  Z,  Chen  H,  Hu  T,  et  al. 
+Endothelial-specific  intron-derived  miR-126  is  down-regu-
+lated in human breast cancer and targets both VEGFA and 
+PIK3R2. Mol Cell Biochem 2011;351:157-164.
+
+51. Liu K, Li G, Fan C, Diao Y, Wu B, Li J. Increased expression of 
+microRNA-221 in gastric cancer and its clinical significance. J 
+Int Med Res 2012;40:467-474.
+
+52. Li X, Zhang Y, Zhang H, Liu X, Gong T, Li M, et al. miRNA-223 
+promotes gastric cancer invasion and metastasis by targeting 
+tumor suppressor EPB41L3. Mol Cancer Res 2011;9:824-833.
+
+53. Li ZW, Yang YM, Du LT, Dong Z, Wang LL, Zhang X, et al. 
+Overexpression of miR-223 correlates with tumor metastasis 
+and poor prognosis  in patients with  colorectal  cancer.  Med 
+Oncol 2014;31:256.
+
+54. Yabushita S, Fukamachi K, Tanaka H, Sumida K, Deguchi Y, 
+Sukata T, et al. Circulating microRNAs in serum of human 
+K-ras  oncogene  transgenic  rats  with  pancreatic  ductal 
+adenocarcinomas. Pancreas 2012;41:1013-1018.
+
+55. Wang Y, Yu Y, Tsuyada A, Ren X, Wu X, Stubblefield K, et al. 
+Transforming growth factor-β regulates the sphere-initiating 
+stem cell-like feature in breast cancer through miRNA-181 
+and ATM. Oncogene 2011;30:1470-1480.
+
+56. Li Y, Vandenboom TG 2nd, Wang Z, Kong D, Ali S, Philip PA, 
+et al. miR-146a suppresses invasion of pancreatic cancer cells. 
+Cancer Res 2010;70:1486-1495.
+
+57. Sun Q, Zhao X, Liu X, Wang Y, Huang J, Jiang B, et al. miR-146a 
+functions as a tumor suppressor in prostate cancer by target-
+ing Rac1. Prostate 2014;74:1613-1621.
+
+58. Li BS, Zuo QF, Zhao YL, Xiao B, Zhuang Y, Mao XH, et al. 
+MicroRNA-25  promotes  gastric  cancer  migration,  invasion 
+and proliferation by directly targeting transducer of ERBB2, 1 
+and correlates with poor survival. Oncogene 2015;34:2556-2565.
+59. Hamano  R,  Ishii  H,  Miyata  H,  Doki  Y,  Mori  M.  Role  of 
+microRNAs in solid tumors. J Nucleic Acids Investig 2011;2:e2.
+60. Hutvagner G, Simard MJ. Argonaute proteins: key players in 
+
+RNA silencing. Nat Rev Mol Cell Biol 2008;9:22-32.
+
+61. Das  RP,  Konkimalla  VB,  Rath  SN,  Hansa  J,  Jagdeb  M. 
+Elucidation  of  the  molecular  interaction  between  miRNAs 
+and the HOXA9 gene, involved in acute myeloid leukemia, by 
+the assistance of Argonaute protein through a computational 
+approach. Genomics Inform 2015;13:45-52.
+
+62. Mascellani N, Tagliavini L, Gamberoni G, Rossi S, Marchesini 
+J, Taccioli C, et al. Using miRNA expression data for the study 
+of human cancer. Minerva Biotecnol 2008;20:23-30.
+
+63. Popenda M, Szachniuk M, Antczak M, Purzycka KJ, Lukasiak 
+P, Bartol N, et al. Automated 3D structure composition for 
+large RNAs. Nucleic Acids Res 2012;40:e112.
+
+64. Schneidman-Duhovny D, Inbar Y, Nussinov R, Wolfson HJ. 
+PatchDock and SymmDock: servers for rigid and symmetric 
+docking. Nucleic Acids Res 2005;33:W363-W367. 
+
+65. Junn  E,  Mouradian  MM.  MicroRNAs  in  neurodegenerative 
+diseases  and  their  therapeutic  potential.  Pharmacol  Ther 
+2012;133:142-150.
+
+66. Chi SW, Zang JB, Mele A, Darnell RB. Argonaute HITS-CLIP 
+decodes  microRNA-mRNA  interaction  maps.  Nature  2009; 
+460:479-486.
+
+124
+
+www.genominfo.org
+
+

@@ -1,0 +1,257 @@
+Genomics  &  Informatics    Vol.  6(4)  223-226,  December  2008
+
+Computational  Approach  for  the  Analysis  of  Post-PKS 
+Glycosylation  Step
+
+Ki-Bong  Kim1*  and  Kiejung  Park2
+
+1Department  of  Bioinformatics  Engineering,  Sangmyung 
+University,  Cheonan  330-720,  Korea,  2SmallSoft  Co., 
+Deajeon  305-728,  Korea
+
+Abstract
+
+We  introduce  a  computational  approach  for  analysis  of 
+glycosylation  in  Post-PKS  tailoring  steps.  It  is  a  compu-
+tational  method  to  predict  the  deoxysugar  biosynthesis 
+unit  pathway  and  the  substrate  specificity  of  glycosyl-
+transferases  involved  in  the  glycosylation  of  polyketides. 
+In  this  work,  a  directed  and  weighted  graph  is  in-
+troduced  to  represent  and  predict  the  deoxysugar  bio-
+synthesis  unit  pathway.  In  addition,  a  homology  based 
+gene  clustering  method  is  used  to  predict  the  substrate 
+specificity  of  glycosyltransferases.  It  is  useful  for  the  ra-
+tional  design  of  polyketide  natural  products,  which  leads 
+to  in silico  drug  discovery.
+
+Availability:  The  trial  version  of  this  system  is  available 
+via  WWW  at  http://sm.hacklib.com/.
+
+Keywords:  glycosylation,  post-PKS  tailoring  step,  glyco-
+syltransferase,  deoxysugar  biosynthesis  unit  pathway
+
+Introduction
+
+The  progress  of  microbial  genetics  in  recent  years  has 
+greatly  enhanced  our  ability  to  understand  and  thereby 
+rationally  alter  the  biosynthesis  of  various  biologically 
+important  natural  products,  especially  polyketides  (Ya-
+dav et al.,  2003).  Polyketides  are  a  large  family  of  natu-
+ral  products  with  diverse  chemical  structures  and  a 
+broad  range  of  pharmacological  effects,  including  anti-
+bacterial,  antifungal,  antiparasitic,  anticancer  and  im-
+munosuppressive  activities  (Staunton  and  Weissman, 
+2001).  These  secondary  metabolites  have  been  charac-
+terized  in  a  wide  range  of  organisms.  Polyketide  biosyn-
+thesis  resembles  fatty  acid  assembly  and  is  catalyzed 
+by  a  collection  of  enzyme  activities  called  polyketide 
+synthases  (PKSs)  (Hopwood  and  Sherman,  1990).  The 
+
+*Corresponding  author:  E-mail  kbkim@smu.ac.kr
+Tel  +82-41-550-5377,  Fax  +82-41-550-5184
+Accepted  15  October  2008
+
+structural  variety  of  polyketides  is  given  by  the  options 
+in  choice  of  starter/extending  units,  number  of  con-
+densations,  and  degree  of  subsequent  reductive  cycles, 
+all  of  which  being  conferred  by  polyketide  synthase  and 
+closely  related  enzymes.  Many  of  these  compounds  and 
+their  semi-synthetic  derivatives  are  used  today  in  the 
+clinic. 
+    The  area  of  biosynthetic  engineering  of  the  enzymes 
+(i.e.  PKSs)  involved  in  polyketide  biosynthesis  has  ad-
+vanced  recently  to  obtain  various  compounds  of  polyke-
+tide  origin  (Tae et al.,  2007).  The  biosynthesis  of  a  typi-
+cal  polyketide  can  be  divided  into  three  separate  steps, 
+including  (i)  the  choice  of  starter  unit,  (ii)  the  choice  of 
+extender  units  and  the  degree  of  beta-keto  group  re-
+duction,  and  (iii)  the  post-PKS  tailoring  of  the  basic  pol-
+yketide  backbone.  The  tailoring  steps  catalyzed  mainly 
+by  oxidoreductases  and  group  transferases  are  crucial 
+for  the  addition  of  important  functional  groups  to  poly-
+ketide  skeletons  and  are  key  to  the  structural  diversity 
+and  biological  activity  of  this  class  of  natural  products 
+(Rix  et al.,  2002). 
+    Among  group  transfer  reactions,  glycosyltransfer  ones 
+are  perhaps 
+important  biotransformation. 
+Glycosyltransferases  are  responsible  for  the  attachment 
+of  sugar  moieties,  often  deoxysugars,  which  add  im-
+portant  features  to  the  shape  and  the  stereo-electronic 
+properties  of  a  molecule  and  often  play  an  essential  role 
+in  the  biological  activity  of  many  natural  product  drugs 
+(Rix et al.,  2002).  Thus,  glycosyltransferases  are  and  will 
+become  more  and  more  important  tools  for  combinato-
+rial  biosynthetic  approaches.  In  this  respect,  our  study 
+focuses  on  developing  the  computational  tools  for  the 
+substrate  prediction  of  a  given  glycosyltransferase  (GT) 
+and  the  prediction  of  deoxysuguar  biosynthesis  unit 
+pathway.  The  deoxysugar  is  synthesized  by  diverse  bio-
+synthetic  enzymes  and  functions  as  a  substrate  of  GTs.
+
+the  most 
+
+Features  and  Results
+
+Our  computational  system  developed  in  this  work  has 
+3-tier  architecture  which  is  composed  of  a  client,  an  ap-
+plication  server,  and  a  back-end  database  server  (Fig. 
+1).  The  application  server  consists  of  major  three  mod-
+ules  -  pathway  analysis  module,  GT  analysis  module 
+and  back-office  module.  The  pathway  analysis  module 
+is 
+(Sugar  Biosynthesis  Pathway 
+Database)  search  and  sugar  biosynthesis  unit  pathway 
+prediction  and  drawing.  The  main  procedure  of  pathway 
+
+in  SBPD 
+
+involved 
+
+224    Genomics  &  Informatics    Vol.  6(4)  223-226,  December  2008
+
+Fig.  1.  The  system  frame  with  3-tier  client-server  archi-
+tecture.  It  has three  essential components -  a  client, an 
+application  server,  and  a  back-end  database  server.
+
+Fig.  2.  The  main  procedure  of  the  prediction  and  draw-
+ing  of  sugar  biosynthesis  unit  pathways.
+
+ 
+
+Fig.  3.  An  exemplary  pathway  maps  for  sugar  biosynthesis  unit.  The  drawing  engine  in  pathway  analysis  module 
+provides  not  only  an  integrated  pathway  map  (a)  but  also  all  possible  component  paths  (b).
+
+prediction  and  drawing  can  be  described  as  follows 
+(Fig.  2):  (A)  Given  an  enzyme  as  a  start  node  and  a  list 
+of  enzymes  as  input  data,  the  case  extraction  engine 
+calculates  all  possible  combinatorial  routes  of  input 
+enzymes.  (B)  The  graph  route  maker  generates  node 
+(i.e.  sugar)  and  edge  (i.e.  enzyme)  data  after  applying 
+
+the  route  information  in  the  SPDB.  (C)  Finally,  the  draw-
+ing  engine  generates  graph  data  objects  from  graph 
+route  data  and  draws  the  pathway  maps  (Fig.  3).  A  di-
+rected  and  weighted  graph  theory  is  employed  to  repre-
+sent  and  predict  all  possible  biosynthesis  unit  pathways 
+with  a  given  enzyme  set. 
+
+Computational  Approach  for  the  Analysis  of  Post-PKS  Glycosylation  Step    225
+
+Fig.  4.  The  schemata  of  GTDB  and  SBPD  (a).  The  GTDB  consists  of  four  tables,  each  of  which  contains  the  in-
+formation  extracted  from  CAZY,  GenBank,  PDB  and  UniProt  respectively  (b).  The  SBPD  has  three  tables  that  are 
+Enzyme,  Relation  and  Sugar.
+
+    The  GT  analysis  module  undertakes  GTDB  (Glycosyl 
+Transferase  Database)  search  and  GT-encoding  gene 
+clustering  and  mapping.  We  used  BLAST  program 
+(Altschul  et al.,  1990)  to  cluster  and  map  GT-encoding 
+genes  on  the  input  genomic  sequence,  where  GTDB  is 
+used  as  a  target  database  of  BLAST  program.  The  third 
+part  is  back-office  module  that  is  in  charge  of  user  au-
+thentication,  SBPD  management  and  GTDB  manage-
+ment.  Using  this  module,  system  manager  can  access, 
+update  and  manage  the  back-end  databases  with  ease 
+and  security.
+    The  back-end  databases  consist  of  SBPD  and  GTDB 
+that  are  implemented  as  a  relational  database  using 
+MySQL  database  management  system.  The  SBPD  data-
+base  is  specifically  designed  for  the  sugar  biosynthesis 
+related  to  post-PKS  tailoring  step  and  has  three  main 
+tables  -  Enzyme,  Relation,  and  Sugar  (Fig.  4).  The  in-
+formation  in  SBPD  is  collected  from  two  different  sour-
+ces:  experimental  data  produced  in  our  joint  laboratory 
+and  reviewed  publications.  Using  back-office  module, 
+system  manager  and  authenticated  users  can  also  add 
+new  data  to  this  database.  The  GTDB  database  is  com-
+posed  of  four  tables  (i.e.  gt,  genbank,  pdb3d,  and  uni-
+prot)  (Fig.  4)  and  the  information  in  this  database  is 
+mainly  collected  from  CAZY  system  (http://www.caz-
+y.org)  by  means  of  parsing  and  reengineering.  The 
+CAZY  database  describes  the  families  of  structurally-re-
+lated  catalytic  and  carbohydrate-binding  modules  (or 
+functional  domains)  of  enzymes  that  degrade,  modify,  or 
+create  glycosidic  bonds.  It  features  five  classes  of  en-
+zymes  -  glycoside  hydrolases  (GH),  glycosyl  trans-
+
+ferases  (GT),  polysaccharide  lyases  (PL),  carbohydrate 
+esterases 
+(CE),  and  carbohydrate  binding  modules 
+(CBM).
+
+Discussion
+
+Polyketides  are  the  components  of  a  vast  variety  of  mi-
+crobial  and  plant  secondary  metabolites,  including  bio-
+logically  active  compounds  such  as  antibiotics.  As  men-
+tioned  above,  the  structural  variety  of  polyketides  is  giv-
+en  by  the  options  in  choice  of  starter/extending  units, 
+number  of  condensations,  and  degree  of  subsequent  re-
+ductive  cycles,  all  of  which  being  conferred  by  PKS  and 
+closely  related  enzymes.  In  addition,  subsequent  post- 
+PKS  tailoring  steps  provide  the  final  product  with  further 
+structural  variations.  In  this  context,  we  developed  the 
+computational  system  for  the  analysis  of  post-PKS  gly-
+cosylation  step.
+    Our  system  carries  the  prediction  and  drawing  of  de-
+oxysugar  biosynthesis  unit  pathway,  SBPD  and  GTDB 
+searches,  GT-encoding  gene  clustering,  and  back-office 
+management.  The  deduced  sugar  biosynthesis  unit 
+pathway  can  allow  us  to  determine  and  design  the  ap-
+propriate  sugar  that  can  be  a  substrate  for  glycosyl-
+transferases  and  be  employed  in  the  glycosylation  of 
+polyketides.  The  practical  use  of  analysis  result  can  pro-
+vide  researchers  with  the  opportunity  to  conduct  meta-
+bolic  engineering  of  deoxysugar  genes  in  collaboration 
+with  experimental  work.  The  GT-encoding  gene  cluster-
+ing  and  mapping  may  give  clue  to  glycosyltransferase 
+genes,  each  of  which  can  be  assigned  to  a  specific  GT 
+
+226    Genomics  &  Informatics    Vol.  6(4)  223-226,  December  2008
+
+reaction  in  biosynthesis.  They  usually  possess  regional 
+and  mechanistic  specificities:  α-(1,3)-glycosylation  for 
+UrdGT1c;  β-(1,4)-glycosylation  for  UrdGT1b.  A  series  of 
+their  chimeric  GT  genes  can  be  constructed,  and  ex-
+pressed  in  a  mutants  lacking  corresponding  glycosyl-
+transfer  activity  to  find  the  region  determining  the  sub-
+strate  specificities.  Metabolic  engineering  to  the  region, 
+including  DNA  shuffling,  gives  rise  to  the  novel  GT  spe-
+cificities  leading  to  unnatural  derivatives.  Our  system 
+may  be  useful  for  experiment  researchers  to  rationally 
+design  a  novel  polyketide  and  derivatives  with  biological 
+activities. 
+
+Acknowledgements
+
+This  work  was  supported  by  MOCIE  grants  from  Intelli-
+gence  Bioinformatics  and  Application  Center,  KRIBB 
+and  also  financially  supported  by  MEST  and  KOTEF 
+through  Human  Resource  Training  Project.
+
+References
+
+Altschul,  S.F.,  Gish,  W.,  Miller,  W.,  Myers,  E.W.,  and 
+Lipman,  D.J.  (1990).  Basic  local  alignment  search  tool. J. 
+Mol. Biol.  213,  403-410.
+
+Hopwood,  D.A.,  and  Sherman,  D.H.  (1990).  Molecular  ge-
+netics  of  polyketides  and  its  comparison  with  Fatty  acid 
+biosynthesis.  Annu. Rev. Genet.  24,  37-66. 
+
+Carbohydrate  Active  Enzymes  database  site.  http://www. 
+
+cazy.org.
+
+Rix,  U.,  Fischer,  C.,  Remsing,  L.,  and  Rohr,  J.  (2002). 
+Modification  of  post-PKS  tailoring  steps  through  combi-
+natorial  biosynthesis.  Nat. Prod. Rep.  19,  542-580.
+
+Staunton,  J.,  and  Weissman,  K.  (2001).  Polyketide  biosyn-
+thesis:  a  millennium  review. Nat. Prod. Rep.  18,  380-416. 
+Yadav,  G.,  Gokhale,  R.S.,  and  Mohanty,  D.  (2003).  Compu-
+tational  Approach  for  prediction  of  Domain  Organization 
+and  Substrate  Specificity  of  Modular  Polyketide  Syn-
+thases.  J. Mol. Biol.  328,  335-363.
+
+

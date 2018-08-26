@@ -1,0 +1,4025 @@
+A R T IC L E
+
+Genomics  &  Informatics
+Vol.  10(1)  58-64,  March  2012
+
+http://dx.doi.org/10.5808/GI.2012.10.1.58
+pISSN 1598-866X eISSN 2234-0742
+
+Comparative  Evaluation  of  Intron  Prediction  Methods  and 
+Detection  of  Plant  Genome  Annotation  Using  Intron  Length 
+Distributions
+
+Long  Yang1  and  Hwan-Gue  Cho2*
+
+1Tobacco  Laboratory,  Shandong  Agricultural  University, 
+2Graphics  Application 
+Shandong  271-018,  China, 
+Laboratory,  Department  of  Computer  Science  and 
+Engineering,  Pusan  National  University,  Busan  609-735, 
+Korea
+
+Abstract
+
+Intron  prediction  is  an  important  problem  of  the  con-
+stantly  updated  genome  annotation.  Using  two  model 
+plant  (rice  and Arabidopsis)  genomes,  we  compared  two 
+well-known  intron  prediction  tools:  the  Blast-Like  Align-
+ment  Tool  (BLAT)  and  Sim4cc.  The  results  showed  that 
+each  of  the  tools  had  its  own  advantages  and  disadvan-
+tages.  BLAT  predicted  more  than  99%  introns  of  whole 
+genomic  introns  with  a  small  number  of  false-positive 
+introns.  Sim4cc  was  successful  at  finding  the  correct  in-
+trons  with  a  false-negative  rate  of  1.02%  to  4.85%,  and 
+it  needed  a  longer  run  time  than  BLAT.  Further,  we 
+evaluated  the  intron  information  of  10  complete  plant 
+genomes.  As  non-coding  sequences,  intron  lengths  are 
+not  limited  by  a  triplet  codon  frame;  so,  intron  lengths 
+have  three  phases:  a  multiple  of  three  bases  (3n),  a 
+multiple  of  three  bases  plus  one  (3n  +  1),  and  a  multiple 
+of  three  bases  plus  two  (3n  +  2).  It  was  widely  accepted 
+that  the  percentages  of  the  3n,  3n  +  1,  and  3n  +  2  in-
+trons  were  quite  similar  in  genomes.  Our  studies  showed 
+that  80%  (8/10)  of  species  were  similar  in  terms  of  the 
+number  of  three  phases.  The  percentages  of  3n  introns 
+in  Ostreococcus lucimarinus  was  excessive  (47.7%), 
+while  in  Ostreococcus tauri,  it  was  deficient  (29.1%). 
+This  discrepancy  could  have  been  the  result  of  errors  in 
+intron  prediction.  It  is  suggested  that  a  three-phase 
+evaluation  is  a  fast  and  effective  method  of  detecting  in-
+tron  annotation  problems.
+
+Keywords:  intron  length  distributions,  intron  prediction, 
+plant,  three  phases
+
+*Corresponding  author:  E-mail:  hgcho@pusan.ac.kr
+Tel  +82-51-510-2871,  Fax  +82-51-582-5009
+Received  2  February  2012,  Revised  15  February  2012, 
+Accepted  17  February  2012
+
+Introduction
+
+With  more  and  more  species’  genomes  completely  se-
+quenced,  noncoding  sequences  have  become  a  focus  of 
+researchers’  attention,  especially  for  the  study  of  introns. 
+In  order  to  facilitate  further  research,  a  number  of  intron 
+databases  have  been  developed  (Table  1).  The  number 
+of  plant  intron  databases  is  much  smaller  than  that  in 
+mammals  and  only  in  several  model  plants  (such  as 
+Arabidopsis  and  rice).  Using  known  genome  sequences 
+and  coding  sequences  (expressed  sequence  tags  [ESTs] 
+or  cDNA),  introns  can  be  detected  by  aligning  coding 
+sequences  with  genome  sequences.  Many  tools  were 
+developed  to  detect  introns  in  eukaryotes  (Table  2) 
+[1-16].  These  tools  used  different  algorithms  and  com-
+puter  languages  (such  as  Java,  C++,  and  Python)  to 
+predict  introns. 
+    Therefore,  the  question  is:  there  are  many  intron  data-
+bases,  algorithms,  and  detection  methods  for  the  study 
+of  eukaryotes,  but  which  among  them  are  the  most  suit-
+able  for  the  detection  of  plant  introns?  Among  these 
+tools,  the  Blast-Like  Alignment  Tool  (BLAT)  and  Sim4cc 
+are  the  most  commonly  used  tools.  BLAT  applies  in  ge-
+nomewide  alignment  [11].  Sim4cc  is  a  tool  for  aligning 
+cDNA  and  genomic  sequences  between  species  at  vari-
+ous  evolutionary  distances  [2].  Rice  and Arabidopsis,  as 
+monocotyledonous  and  dicotyledonous  model  plants,  are 
+widespread  with  regard  to  in-depth  research.  Their  ge-
+nome  sequences  have  been  annotated  in  detail,  includ-
+ing  their  gene  sequences,  complementary  DNA  (cDNA) 
+sequences, coding DNA sequence (CDS) sequences, exon 
+sequences,  intron  sequences,  and  intergene  sequences. 
+Therefore,  it  is  possible  to  use  this  model  plant  infor-
+mation  to  test  these  intron  prediction  tools.
+    Genome  annotation  is  a  difficult  and  accurate  project- 
+even  the  best-annotated  or  most  carefully  studied  ge-
+nomes  are  continually  re-released;  e.g.,  release  7  of  the 
+Rice  Genome  Annotation  Project  was  available  on  Octo-
+ber  31,  2011  (http://rice.plantbiology.msu.edu/).  But,  de-
+termining  the  accuracy  and  detecting  the  inherent  errors 
+of  the  genome  annotation  is  a  problem.  Since  introns  are 
+removed  from  protein-coding  transcripts,  intron  lengths 
+are  not  expected  to  respect  coding  frames  across  the 
+genome  [17].  Using  intron  length  distributions,  Roy  and 
+Penny  [18]  point  out  a  rapid  and  simple  method  for  de-
+
+Comparative  Evaluation  Plant  Intron  Prediction  Methods 59
+
+.
+s
+t
+e
+h
+w
+/
+k
+u
+
+.
+
+.
+c
+a
+.
+c
+r
+s
+b
+b
+d
+e
+t
+s
+m
+a
+h
+t
+o
+r
+.
+4
+w
+w
+w
+
+/
+/
+:
+p
+t
+t
+h
+
+e
+c
+n
+e
+u
+q
+e
+s
+ 
+t
+p
+i
+r
+c
+s
+n
+a
+r
+t
+
+ 
+t
+a
+e
+h
+w
+
+i
+
+l
+
+ 
+d
+o
+p
+a
+x
+e
+h
+ 
+f
+o
+ 
+e
+t
+a
+m
+
+i
+t
+s
+e
+ 
+t
+s
+e
+b
+ 
+e
+d
+v
+o
+r
+p
+ 
+o
+t
+
+i
+
+ 
+l
+o
+o
+t
+A
+
+i
+
+/
+d
+s
+s
+g
+/
+n
+c
+.
+u
+d
+e
+.
+u
+h
+w
+.
+a
+n
+r
+.
+
+w
+w
+w
+
+/
+/
+:
+p
+t
+t
+h
+
+i
+
+B
+D
+c
+P
+S
+A
+/
+t
+i
+.
+r
+u
+p
+s
+a
+c
+.
+w
+w
+w
+
+/
+/
+:
+p
+t
+t
+h
+
+.
+/
+
+.
+
+m
+o
+D
+x
+E
+/
+4
+5
+1
+6
+1
+0
+7
+1
+6
+6
+/
+/
+:
+p
+t
+t
+h
+
+.
+
+.
+
+i
+
+l
+
+s
+s
+y
+a
+n
+a
+ 
+g
+n
+c
+
+i
+
+i
+l
+
+p
+s
+ 
+e
+v
+i
+t
+a
+n
+r
+e
+t
+l
+a
+ 
+r
+o
+f
+
+ 
+e
+c
+r
+u
+o
+s
+e
+r
+
+ 
+e
+s
+a
+b
+a
+t
+a
+d
+A
+
+e
+s
+a
+b
+a
+t
+a
+d
+ 
+e
+r
+u
+t
+c
+u
+r
+t
+s
+ 
+d
+n
+a
+ 
+e
+c
+n
+e
+u
+q
+e
+s
+ 
+n
+o
+r
+t
+n
+
+i
+
+ 
+I
+
+ 
+p
+u
+o
+r
+G
+
+i
+
+ 
+s
+m
+s
+n
+a
+g
+r
+o
+ 
+c
+i
+t
+o
+y
+r
+a
+k
+u
+e
+ 
+n
+e
+v
+e
+S
+
+sis
+p
+o
+bid
+Ara
+
+c
+i
+t
+o
+y
+r
+a
+k
+u
+E
+
+n
+a
+m
+u
+H
+
+t
+a
+e
+h
+W
+
+e
+t
+i
+s
+b
+e
+W
+
+e
+t
+o
+N
+
+s
+e
+s
+a
+b
+a
+t
+a
+d
+ 
+n
+o
+r
+t
+n
+
+i
+
+ 
+f
+o
+ 
+t
+s
+L
+ 
+.
+1
+
+i
+
+i
+
+s
+e
+c
+e
+p
+S
+
+ 
+
+l
+
+e
+b
+a
+T
+
+2
+P
+A
+S
+A
+/
+u
+d
+e
+.
+a
+c
+u
+
+l
+
+.
+s
+c
+i
+t
+a
+m
+r
+o
+f
+n
+o
+b
+w
+w
+w
+
+.
+
+i
+
+i
+
+I
+
+.
+
+P
+S
+A
+/
+g
+r
+o
+b
+d
+g
+t
+n
+a
+p
+w
+w
+w
+
+.
+
+l
+
+/
+/
+:
+p
+t
+t
+h
+
+/
+/
+:
+p
+t
+t
+h
+
+i
+
+s
+e
+c
+e
+p
+s
+ 
+l
+a
+m
+n
+a
+ 
+5
+1
+ 
+n
+
+i
+
+i
+
+ 
+g
+n
+c
+
+i
+
+i
+l
+
+i
+
+p
+s
+ 
+e
+v
+i
+t
+a
+n
+r
+e
+t
+l
+a
+ 
+f
+o
+ 
+s
+c
+m
+o
+n
+e
+g
+ 
+e
+v
+i
+t
+a
+r
+a
+p
+m
+o
+c
+ 
+d
+n
+a
+ 
+s
+s
+y
+a
+n
+A
+
+l
+
+i
+
+s
+t
+n
+a
+p
+ 
+n
+
+l
+
+i
+
+ 
+g
+n
+c
+
+i
+
+i
+l
+
+i
+
+l
+
+p
+s
+ 
+e
+v
+i
+t
+a
+n
+r
+e
+t
+l
+a
+ 
+f
+o
+ 
+s
+s
+y
+a
+n
+a
+ 
+e
+v
+i
+t
+a
+r
+a
+p
+m
+o
+c
+ 
+e
+d
+w
+e
+m
+o
+n
+e
+G
+
+i
+
+i
+
+i
+
+i
+
+/
+d
+e
+/
+o
+f
+n
+o
+b
+/
+u
+d
+e
+.
+o
+h
+o
+u
+d
+e
+m
+w
+w
+w
+
+.
+
+i
+
+/
+/
+:
+p
+t
+t
+h
+
+ 
+e
+s
+a
+b
+a
+t
+a
+D
+
+ 
+n
+o
+r
+t
+n
+I
+-
+n
+o
+x
+E
+ 
+e
+h
+t
+
+ 
+n
+
+i
+
+ 
+s
+e
+c
+n
+a
+v
+d
+A
+
+d
+s
+a
+/
+k
+u
+
+.
+c
+a
+.
+i
+
+b
+e
+.
+w
+w
+w
+
+/
+/
+:
+p
+t
+t
+h
+
+g
+n
+c
+
+i
+
+i
+l
+
+p
+s
+ 
+e
+v
+i
+t
+a
+n
+r
+e
+t
+l
+a
+ 
+n
+o
+ 
+e
+c
+r
+u
+o
+s
+e
+r
+
+ 
+s
+c
+i
+t
+a
+m
+r
+o
+f
+n
+o
+b
+A
+
+i
+
+i
+
+sis
+p
+o
+bid
+Ara
+
+ 
+d
+n
+a
+ 
+e
+c
+R
+
+i
+
+n
+a
+
+i
+l
+
+a
+m
+m
+a
+M
+
+c
+i
+t
+o
+y
+r
+a
+k
+u
+E
+
+l
+
+i
+
+a
+m
+n
+a
+ 
+5
+1
+
+l
+
+ 
+s
+s
+e
+n
+o
+r
+t
+n
+i
+/
+r
+e
+t
+s
+e
+w
+/
+g
+s
+.
+
+u
+d
+e
+.
+
+u
+t
+n
+
+.
+e
+g
+e
+s
+/
+/
+:
+p
+t
+t
+h
+
+d
+s
+a
+/
+k
+u
+
+.
+c
+a
+.
+i
+
+b
+e
+.
+w
+w
+w
+
+/
+/
+:
+p
+t
+t
+h
+
+/
+
+w
+
+t
+.
+
+u
+d
+e
+.
+u
+c
+f
+.
+s
+c
+e
+i
+.
+r
+a
+t
+a
+v
+a
+/
+/
+:
+p
+t
+t
+h
+
+s
+A
+N
+R
+m
+
+ 
+d
+n
+a
+ 
+s
+T
+S
+E
+ 
+e
+a
+c
+s
+ 
+e
+g
+r
+a
+
+l
+
+l
+
+i
+
+ 
+g
+n
+s
+u
+ 
+n
+o
+i
+t
+c
+e
+t
+e
+d
+ 
+t
+n
+e
+v
+e
+ 
+g
+n
+c
+
+i
+
+i
+l
+
+p
+s
+ 
+e
+v
+i
+t
+a
+n
+r
+e
+t
+l
+a
+ 
+e
+d
+w
+-
+e
+m
+o
+n
+e
+g
+ 
+r
+o
+f
+
+i
+
+ 
+e
+s
+a
+b
+a
+t
+a
+d
+A
+
+e
+s
+a
+b
+a
+t
+a
+D
+
+ 
+g
+n
+c
+
+i
+
+i
+l
+
+p
+S
+
+ 
+e
+v
+i
+t
+a
+n
+r
+e
+t
+l
+
+A
+
+ 
+e
+h
+T
+
+s
+e
+m
+o
+n
+e
+g
+ 
+c
+i
+t
+o
+y
+r
+a
+k
+u
+e
+ 
+n
+
+i
+
+ 
+s
+e
+n
+e
+g
+ 
+'
+s
+s
+e
+n
+o
+r
+t
+n
+i
+'
+
+l
+
+ 
+r
+o
+f
+
+ 
+e
+s
+a
+b
+a
+t
+a
+d
+A
+
+n
+a
+
+i
+l
+
+a
+m
+m
+a
+M
+
+c
+i
+t
+o
+y
+r
+a
+k
+u
+E
+
+n
+a
+m
+u
+H
+
+/
+d
+t
+a
+/
+k
+u
+
+.
+c
+a
+.
+i
+
+b
+e
+.
+w
+w
+w
+
+/
+/
+:
+p
+t
+t
+h
+
+l
+
+l
+
+n
+o
+i
+t
+a
+y
+n
+e
+d
+a
+y
+o
+p
+ 
+e
+v
+i
+t
+a
+n
+r
+e
+t
+l
+a
+ 
+d
+n
+a
+ 
+g
+n
+c
+
+i
+
+i
+l
+
+p
+s
+ 
+e
+v
+i
+t
+a
+n
+r
+e
+t
+l
+a
+ 
+h
+t
+o
+b
+ 
+r
+o
+f
+
+ 
+d
+e
+t
+a
+t
+o
+n
+n
+a
+ 
+s
+t
+n
+a
+i
+r
+a
+v
+ 
+n
+r
+e
+t
+t
+a
+p
+ 
+t
+p
+i
+r
+c
+s
+n
+a
+r
+T
+
+e
+s
+u
+o
+m
+d
+n
+a
+ 
+n
+a
+m
+u
+H
+
+P
+A
+S
+A
+/
+u
+d
+e
+.
+a
+c
+u
+
+l
+
+.
+s
+c
+i
+t
+a
+m
+r
+o
+f
+n
+o
+b
+w
+w
+w
+
+.
+
+i
+
+i
+
+/
+/
+:
+p
+t
+t
+h
+
+j
+
+t
+c
+e
+o
+r
+P
+
+ 
+n
+o
+i
+t
+a
+t
+o
+n
+n
+A
+
+ 
+g
+n
+c
+
+i
+
+i
+l
+
+p
+S
+
+ 
+e
+v
+i
+t
+a
+n
+r
+e
+t
+l
+
+A
+
+ 
+e
+h
+T
+
+.
+
+e
+d
+g
+p
+m
+n
+e
+g
+o
+m
+
+.
+
+l
+
+.
+t
+s
+e
+n
+e
+c
+
+i
+l
+
+p
+s
+/
+/
+:
+p
+t
+t
+h
+
+a
+t
+a
+d
+ 
+T
+S
+E
+ 
+n
+o
+ 
+d
+e
+s
+a
+b
+ 
+g
+n
+c
+
+i
+
+i
+l
+
+p
+s
+ 
+e
+v
+i
+t
+a
+n
+r
+e
+t
+l
+a
+ 
+f
+o
+ 
+n
+o
+i
+t
+a
+c
+i
+f
+i
+s
+s
+a
+c
+ 
+d
+n
+a
+ 
+n
+o
+i
+t
+a
+c
+i
+f
+i
+t
+n
+e
+d
+
+l
+
+i
+
+ 
+e
+d
+w
+
+i
+
+ 
+e
+m
+o
+n
+e
+G
+
+i
+
+i
+
+.
+
+c
+b
+n
+g
+i
+r
+o
+/
+/
+:
+p
+t
+t
+h
+
+i
+
+i
+
+s
+e
+n
+e
+g
+ 
+g
+n
+d
+o
+c
+n
+e
+-
+n
+e
+t
+o
+r
+p
+ 
+c
+i
+t
+o
+y
+r
+a
+k
+u
+e
+ 
+f
+o
+ 
+e
+s
+a
+b
+a
+t
+a
+D
+
+c
+i
+t
+o
+y
+r
+a
+k
+u
+E
+
+n
+a
+
+i
+l
+
+a
+m
+m
+a
+M
+
+n
+a
+m
+u
+H
+
+i
+
+s
+n
+o
+r
+t
+n
+2
+p
+u
+o
+r
+g
+/
+a
+c
+.
+y
+r
+a
+g
+a
+c
+u
+p
+
+.
+
+l
+
+f
+.
+
+w
+w
+w
+
+/
+/
+:
+p
+t
+t
+h
+
+s
+n
+o
+r
+t
+n
+i
+/
+t
+i
+.
+e
+t
+s
+e
+i
+r
+t
+.
+b
+e
+g
+c
+i
+.
+
+w
+w
+w
+
+/
+/
+:
+p
+t
+t
+h
+
+s
+n
+o
+r
+t
+n
+
+i
+
+ 
+I
+I
+
+ 
+p
+u
+o
+r
+g
+ 
+e
+
+l
+i
+
+b
+o
+m
+
+ 
+r
+o
+f
+
+ 
+e
+s
+a
+b
+a
+t
+a
+D
+
+c
+i
+t
+o
+y
+r
+a
+k
+u
+e
+ 
+r
+e
+w
+o
+d
+n
+a
+ 
+a
+i
+r
+e
+t
+c
+a
+B
+
+l
+
+s
+c
+i
+t
+s
+i
+t
+a
+t
+s
+ 
+n
+o
+r
+t
+n
+
+i
+
+ 
+r
+o
+f
+
+ 
+e
+t
+i
+s
+-
+b
+e
+w
+
+ 
+
+A
+
+e
+s
+a
+b
+a
+t
+a
+D
+
+ 
+y
+m
+o
+n
+o
+x
+a
+T
+ 
+I
+
+B
+C
+N
+
+.
+/
+e
+d
+n
+
+.
+
+i
+l
+r
+e
+b
+-
+c
+d
+m
+
+i
+
+i
+
+.
+
+.
+f
+n
+o
+b
+d
+e
+s
+a
+e
+/
+/
+:
+p
+t
+t
+h
+
+e
+s
+a
+b
+a
+t
+a
+D
+
+ 
+T
+S
+E
+ 
+d
+e
+c
+
+i
+l
+
+p
+S
+
+l
+
+ 
+y
+e
+v
+i
+t
+a
+n
+r
+e
+t
+l
+
+A
+
+ 
+d
+e
+d
+n
+e
+t
+x
+E
+
+c
+i
+t
+o
+y
+r
+a
+k
+u
+e
+ 
+e
+n
+N
+
+i
+
+m
+t
+h
+
+.
+
+i
+
+n
+a
+m
+/
+a
+t
+a
+d
+n
+o
+r
+t
+n
+i
+/
+0
+3
+5
+r
+m
+
+f
+i
+
+~
+/
+u
+d
+e
+.
+s
+a
+x
+e
+t
+u
+
+.
+c
+c
+.
+t
+n
+w
+
+/
+/
+:
+p
+t
+t
+h
+
+.
+l
+
+i
+
+i
+
+m
+t
+h
+.
+t
+n
+x
+e
+/
+t
+n
+x
+e
+w
+e
+n
+/
+t
+n
+x
+e
+/
+g
+s
+.
+
+i
+
+u
+d
+e
+.
+s
+u
+n
+
+i
+
+.
+
+.
+c
+b
+n
+o
+r
+t
+n
+i
+/
+/
+:
+p
+t
+t
+h
+
+e
+s
+a
+b
+a
+t
+a
+d
+ 
+s
+n
+o
+r
+t
+n
+
+i
+
+ 
+r
+a
+
+l
+l
+
+i
+
+e
+n
+a
+g
+r
+o
+ 
+f
+o
+ 
+s
+c
+m
+o
+n
+e
+g
+ 
+l
+a
+n
+o
+i
+t
+c
+n
+u
+F
+
+e
+s
+a
+b
+a
+t
+a
+d
+ 
+n
+o
+r
+t
+n
+i
+-
+n
+o
+x
+e
+ 
+n
+A
+
+l
+
+.
+
+m
+t
+h
+B
+D
+e
+c
+
+i
+l
+
+l
+
+p
+S
+/
+b
+d
+p
+s
+/
+m
+o
+c
+.
+y
+r
+r
+e
+b
+t
+f
+o
+s
+.
+w
+w
+w
+
+/
+/
+:
+p
+t
+t
+h
+
+s
+e
+t
+i
+s
+ 
+e
+c
+
+i
+l
+
+p
+s
+ 
+n
+a
+
+i
+l
+
+a
+m
+m
+a
+m
+
+i
+
+ 
+l
+a
+c
+n
+o
+n
+a
+c
+-
+n
+o
+n
+ 
+d
+n
+a
+ 
+l
+a
+c
+n
+o
+n
+a
+c
+ 
+f
+o
+ 
+e
+s
+a
+b
+a
+t
+a
+D
+
+i
+
+l
+
+i
+
+.
+
+m
+t
+h
+b
+d
+m
+/
+b
+d
+m
+/
+g
+s
+.
+
+i
+
+i
+
+.
+
+u
+d
+e
+.
+s
+u
+n
+.
+c
+b
+n
+o
+r
+t
+n
+i
+/
+/
+:
+p
+t
+t
+h
+
+s
+e
+n
+e
+g
+ 
+c
+i
+t
+o
+y
+r
+a
+k
+u
+e
+ 
+n
+
+i
+
+ 
+s
+n
+o
+i
+t
+i
+s
+o
+p
+ 
+n
+o
+r
+t
+n
+
+i
+
+i
+
+i
+
+i
+
+ 
+t
+n
+a
+d
+r
+o
+c
+s
+d
+ 
+g
+n
+n
+a
+t
+n
+o
+c
+ 
+e
+s
+a
+b
+a
+t
+a
+d
+ 
+a
+ 
+f
+o
+ 
+n
+o
+i
+t
+a
+r
+e
+n
+e
+G
+
+l
+
+m
+t
+h
+.
+x
+e
+d
+n
+i
+/
+n
+o
+r
+t
+n
+i
+/
+u
+d
+e
+.
+a
+n
+a
+d
+n
+
+i
+
+i
+.
+
+i
+
+.
+
+o
+b
+g
+e
+m
+t
+u
+n
+/
+/
+:
+p
+t
+t
+h
+
+l
+
+i
+
+g
+r
+e
+b
+e
+d
+e
+h
+-
+l
+b
+m
+e
+.
+w
+w
+w
+
+/
+/
+:
+p
+t
+t
+h
+
+l
+
+i
+
+m
+t
+h
+.
+t
+n
+x
+e
+/
+t
+n
+x
+e
+/
+g
+s
+.
+
+i
+
+i
+
+.
+
+u
+d
+e
+.
+s
+u
+n
+.
+c
+b
+n
+o
+r
+t
+n
+i
+/
+/
+:
+p
+t
+t
+h
+
+I
+
+D
+E
+/
+t
+r
+e
+b
+
+l
+i
+
+g
+/
+u
+d
+e
+.
+d
+r
+a
+v
+r
+a
+h
+b
+c
+m
+
+.
+
+/
+/
+:
+p
+t
+t
+h
+
+i
+
+i
+
+s
+e
+n
+e
+g
+ 
+g
+n
+n
+a
+t
+n
+o
+c
+-
+n
+o
+r
+t
+n
+
+i
+
+i
+
+i
+
+ 
+g
+n
+d
+o
+c
+-
+n
+e
+t
+o
+r
+p
+ 
+f
+o
+ 
+e
+s
+a
+b
+a
+t
+a
+d
+ 
+e
+v
+i
+t
+s
+u
+a
+h
+x
+e
+ 
+n
+a
+-
+e
+s
+a
+b
+a
+t
+a
+d
+ 
+n
+o
+r
+t
+n
+i
+-
+n
+o
+x
+e
+ 
+e
+h
+T
+
+l
+
+s
+e
+s
+a
+b
+a
+t
+a
+d
+ 
+n
+o
+i
+t
+u
+o
+v
+e
+ 
+d
+n
+a
+ 
+e
+c
+n
+e
+u
+q
+e
+s
+ 
+n
+o
+r
+t
+n
+
+I
+
+e
+s
+a
+b
+a
+t
+a
+d
+ 
+n
+o
+r
+t
+n
+
+i
+
+ 
+t
+s
+a
+e
+y
+ 
+e
+h
+T
+
+e
+s
+a
+b
+a
+t
+a
+d
+ 
+n
+o
+r
+t
+n
+i
+/
+n
+o
+x
+e
+ 
+n
+A
+
+c
+i
+t
+o
+y
+r
+a
+k
+u
+E
+
+r
+a
+
+l
+l
+
+e
+n
+a
+g
+r
+O
+
+c
+i
+t
+o
+y
+r
+a
+k
+u
+E
+
+n
+a
+
+i
+l
+
+a
+m
+m
+a
+M
+
+c
+i
+t
+o
+y
+r
+a
+k
+u
+E
+
+c
+i
+t
+o
+y
+r
+a
+k
+u
+E
+
+c
+i
+t
+o
+y
+r
+a
+k
+u
+E
+
+ 
+t
+s
+a
+e
+Y
+
+l
+
+i
+
+/
+r
+o
+t
+a
+r
+e
+n
+o
+r
+t
+n
+i
+/
+t
+n
+e
+k
+y
+e
+t
+a
+m
+x
+o
+r
+p
+p
+a
+/
+u
+d
+e
+.
+c
+s
+c
+u
+.
+e
+s
+c
+.
+w
+w
+w
+
+/
+/
+:
+p
+t
+t
+h
+
+l
+
+s
+n
+a
+g
+e
+e
+ 
+s
+i
+t
+i
+d
+b
+a
+h
+r
+o
+n
+e
+a
+C
+
+ 
+n
+
+i
+
+ 
+g
+n
+c
+
+i
+
+i
+l
+
+p
+s
+ 
+e
+v
+i
+t
+a
+n
+r
+e
+t
+l
+a
+ 
+d
+n
+a
+ 
+s
+n
+o
+r
+t
+n
+
+i
+
+l
+
+ 
+g
+n
+i
+r
+o
+p
+x
+e
+ 
+:
+r
+o
+t
+a
+r
+e
+n
+o
+r
+t
+n
+
+i
+
+ 
+e
+h
+T
+
+l
+
+s
+n
+a
+g
+e
+e
+ 
+s
+i
+t
+i
+d
+b
+a
+h
+r
+o
+n
+e
+a
+C
+
+.
+
+g
+a
+t
+
+ 
+e
+c
+n
+e
+u
+q
+e
+s
+ 
+d
+e
+s
+s
+e
+r
+p
+s
+e
+ 
+,
+T
+S
+E
+
+60 Genomics  &  Informatics Vol.  10(1)  58-64,  March  2012
+
+Table  2.  Tools  for  detection  alternative-splicing/introns
+
+Tools  name
+
+Description
+
+FIRMA
+Sim4cc
+Sircah
+Splicy
+
+WhETS
+RRE
+
+ESTMAP
+MapSplice
+HMMSplicer
+
+A  method  for  detection  of  alternative  splicing  from  exon  array  data
+A  cross-species  spliced  alignment  program
+A  tool  for  the  detection  and  visualization  of  alternative  transcripts
+A  web-based  tool  for  the  prediction  of  possible  alternative  splicing  events  from  Affymetrix
+  probeset  data
+A  tool  to  provide  best  estimate  of  hexaploid  wheat  transcript  sequence
+A  tool  for  the  extraction  of  non-coding  regions  surrounding  annotated  genes  from  genomic
+  datasets
+A  system  for  expressed  sequence  tags  mapping  on  genomic  sequences
+Accurate  mapping  of  RNA-seq  reads  for  splice  junction  discovery
+A  tool  for  efficient  and  sensitive  discovery  of  known  and  novel  splice  junctions
+  in  RNA-Seq  data
+
+EUGÈNE'HOM A  generic  similarity-based  gene  finder  using  multiple  homologous  sequences
+
+BLAT
+ASAP
+
+EVOPRINTER
+GenoMiner
+Restauro-G
+Scan  Intron
+
+The  BLAST-like  alignment  tool
+A  novel  method  to  predict  the  exon-intron  structure  of  a  gene  that  is  optimally  compatible
+  to  a  set  of  transcript  sequences
+A  multigenomic  comparative  tool  for  rapid  identification  of  functionally  important  DNA
+A  tool  for  genome-wide  search  of  coding  and  non-coding  conserved  sequence  tags
+A  rapid  genome  re-annotation  system  for  comparative  genomics
+Scan  a  database  of  introns  confirmed  by  cDNA/EST  alignments  for  patterns  at  either  end
+
+BLAT,  Blast-Like  Alignment  Tool. 
+
+Table  3.  Ten  plant  species  genome  sequence  sources
+
+Reference
+
+Purdom  et al.  [1]
+Zhou  et al.  [2]
+Harrington  and  Bork  [3]
+Rambaldi  et al.  [4]
+
+Mitchell  et al.  [5]
+Lazzarato  et al.  [6]
+
+Milanesi  and  Rogozin  [7]
+Wang  et al.  [8]
+Dimon  et al.  [9]
+
+Foissac  et al.  [10]
+Kent  [11]
+Lee  et al.  [12]
+
+Odenwald  et al.  [13]
+
+Castrignanò  et al.  [14]
+
+Tamaki  et al.  [15]
+Kent  and  Zahler  [16]
+
+Species
+
+Version
+
+Source
+
+Reference
+
+Arabidopsis thaliana
+Oryza sativa L.  ssp.  japonica
+Oryza sativa L.  ssp.  indica
+Zea mays 
+Sorghum bicolor
+Cucumis sativus
+Chlamydomonas reinhardtii
+Ostreococcus lucimarinus
+Ostreococcus tauri
+Medicago truncatula
+
+TAIR,  version  10
+Release  7
+28  Oct,  2008
+B73_RefGen_v2 
+Version  1.0
+7  April,  2011
+Version  4.0
+Version  2.0
+Version  2.0
+Mt3.5.1
+
+http://www.arabidopsis.org/
+http://rice.plantbiology.msu.edu/
+http://rice.genomics.org.cn/
+http://www.maizegdb.org/
+http://www.phytozome.net/sorghum.php
+http://cucumber.genomics.org.cn/
+http://genome.jgi-psf.org/Chlre4/
+http://genome.jgi-psf.org/Ost9901_3/
+http://genome.jgi-psf.org/Ostta4
+http://www.medicago.org/
+
+Swarbreck  et al.  [19]
+Goff  et al.  [20]
+Yu  et al.  [21]
+Schnable  et al.  [22]
+Paterson  et al.  [23]
+Han  et al.  [24]
+Merchant  et al.  [25]
+Palenik  et al.  [26]
+Palenik  et al.  [26]
+Young  et al.  [27]
+
+tecting  a  variety  of  possible  systematic  biases  in  gene 
+prediction  or  even  problems  with  genome  assemblies. 
+Roy’s  method  showed  that  a  good  genome  annotation 
+is accepted as roughly equal proportions of intron lengths 
+of  three  phases:  a  multiple  of  three  bases  (3n),  one 
+more  than  a  multiple  of  three  bases  (3n  +  1),  and  two 
+more  (3n  +  2).  Skewed  predicted  intron  length  distribu-
+tions  thus  suggest  systematic  errors  in  intron  prediction. 
+But,  many  plants  with  sequenced  genomes  have  not 
+been  commented  on. 
+    In  this  study,  we  compared  the  advantages  and  dis-
+advantages  of  BLAT  and  Sim4cc  for  model  plants’  in-
+tron  predictions,  and  we  attempted  to  find  a  better  way 
+to  predict  the  intron  information  of  plants.  Based  on 
+Roy’s  method,  we  evaluated  the  intron  information  of  10 
+plant  genomes  and  discuss  a  skew  in  genome  wide  in-
+
+tron  length  distributions  that  indicates  systematic  prob-
+lems  with  intron  predictions.
+
+Methods
+
+Genome  sequences
+
+Ten  plant  genome  sequences  and  transcript  (EST,  CDS, 
+or  cDNA)  sequences  were  downloaded  and  indicated  in 
+Table  3  [19-27].  Table  3  contains  the  name  of  the  10 
+plant  species,  source  websites,  and  genome  sequence 
+versions  used  in  this  study.
+
+Comparative  Evaluation  Plant  Intron  Prediction  Methods 61
+
+Fig.  1.  Flowchart  of  a  com-
+parison  of  BLAT  and  Sim4cc 
+results  in  predicting  introns.  In-
+tron  information,  including  the 
+following  information  of  one  in-
+tron:  gene  name,  intron  num-
+ber,  intron  position  in  the  gene,
+intron  length,  intron  position  in 
+the  genome,  forward-exon  leng-
+th,  backward-exon  length,  and 
+intron  sequences.  BLAT,  Blast- 
+Like  Alignment  Tool.
+
+Comparative  BLAT  and  Sim4cc  analysis
+
+Intron  length  distributions  analysis
+
+Using  cDNA  sequences  and  gene  sequences,  we  sear-
+ched  rice  and  Arabidopsis  introns  by  two  methods 
+-BLAT  and  Sim4cc-  and  then  compared  the  results  with 
+annotated  information. 
+    The  steps  of  this  method  are  as  follows  (Fig.  1):  1) 
+Using  the  gene  sequences  of  BLAT  with  its  own  cDNA 
+sequences,  we  found  intron  information  from  the  BLAT 
+results  by  Perl  script.  2)  We  sliced  gene  sequences  and 
+cDNA  sequences  to  folders  by  Perl  script.  In  these  fold-
+ers,  there  was  one  sequence  per  file,  and  the  gene  name 
+was  the  file  name.  Using  the  same  gene  name  of  the 
+gene  and  cDNA  file,  we  blasted  the  gene  sequences 
+and  cDNA  sequences  using  Sim4cc.  Then,  we  got  intron 
+information  from  the  Sim4cc  results  by  Perl  script.  3) 
+We  compared  the  results  of  the  two  types  of  software 
+(BLAT  and  Sim4cc)  and  then  got  the  annotated  intron 
+information.  4)  We  aligned  intron  sequences  with  their 
+own  gene  sequences  to  develop  detailed  intron  infor-
+mation,  such  as  the  intron  position  in  the  gene,  intron 
+length,  intron  number,  forward-exon  length,  and  back-
+ward-exon  length,  etc.  5)  We  compared  the  results  from 
+the  two  types  of  software  with  the  annotated  informa-
+tion  to  validate  the  methods.
+
+Using  Perl  script,  we  extracted  the  intron  information  of 
+the  10  plant  genomes  from  the  genome  annotation. 
+Then,  we  counted  the  number  and  percentage  of  3n,  3n 
++  1,  and  3n  +  2  of  these  10  plants’  intron  length 
+distributions.
+
+Results  and  Discussion
+
+A  comparison  of  BLAT  and  Sim4cc
+
+As  a  prerequisite,  it  was  assumed  that  the  intron  anno-
+tated  information  was  correct  and  complete.  Then,  the 
+software’s  results  were  compared  with  the  annotated 
+information.  Three  sets  of  results  of  intron  information 
+were  obtained:  two  sets  from  the  software  (BLAT  and 
+Sim4cc)  and  one  set  from  the  annotated  information 
+(Table  4). 
+    Using  BLAT,  we  found  99.35%  and  99.87%  of  the  in-
+trons  of  all  rice  and  Arabidopsis  annotated  introns, 
+respectively.  These  introns  were  almost  all  of  the  introns 
+in  the  genome  -  that  is,  only  0.13%  to  0.65%  of  the  in-
+trons  were  not  found.  In  contrast,  by  using  Sim4cc, 
+95.15%  to  98.98%  of  the  introns  were  found  (1.02%  to 
+
+62 Genomics  &  Informatics Vol.  10(1)  58-64,  March  2012
+
+Table  4.  Compared  BLAT  and  Sim4cc  predicted  intron  information  with  annotated  intron  information
+
+Annotated
+
+BLAT
+
+Sim4cc
+
+Species
+
+Gene  (with  intron) 
+
+Intron
+
+Gene  (with  intron)
+
+Intron 
+
+Gene  (with  intron)
+
+Intron  No. Gene  No.
+
+No.
+
+%
+
+  No.
+
+%
+
+No.
+
+%
+
+No.
+
+%
+
+No.
+
+%
+
+  Rice
+ Arabidopsis
+
+251,812
+175,513
+
+56,797
+41,671
+
+44,796
+30,177
+
+78.87
+72.42
+
+250,178
+175,285
+
+99.35
+99.87
+
+44,370
+30,194
+
+78.12
+72.46
+
+239,590
+173,715
+
+95.15
+98.98
+
+42,577
+29,875
+
+74.96
+71.69
+
+BLAT,  Blast-Like  Alignment  Tool. 
+
+Table  5.  Comparative  comparison  of  BLAT  and  Sim4cc  in  intron  prediction
+
+Tools
+
+BLAT
+Sim4cc
+
+False-positive  (%)
+
+False-negative  (%)
+
+Accuracy  (%)
+
+Operability
+
+Running  time
+
+0.38
+0
+
+0.39
+2.94
+
+  99.62
+100
+
+Easy
+Complex
+
+Fast
+Slow
+
+Note:  In  this  table,  the  data  is  the  average  of  two  model  plants  (Arabidopsis  and  rice).
+BLAT,  Blast-Like  Alignment  Tool. 
+
+4.85%  of  the  introns  were  lost)  of  all  rice  and Arabidop-
+sis annotated  introns.  In  summary,  BLAT  got  more  of 
+the  introns  in  a  genome  than  Sim4cc.  In  light  of  this  re-
+sult,  it  seems  as  though  that  BLAT  produces  better  re-
+sults  than  Sim4cc. 
+    We  found  30,194  rice  genes  with  at  least  one  intron 
+by  BLAT,  but  the  number  was  30,177  according  to  the 
+annotated  information.  Because  the  BLAT  results  were 
+larger  than  the  annotated  results,  the  BLAT  results  must 
+have  predicted  some  new  and  different  genes  with 
+introns.  In  the  BLAT  results,  many  short-length  introns 
+(less  than  50  bp)  were  predicted,  but  in  fact,  these 
+short-length  introns  were  part  of  transcript  sequences 
+and  were  not  real  intron  sequences.  In  contrast,  Sim4cc 
+detected  29,875  genes  with  introns,  and  all  of  these 
+genes  were  contained  in  the  annotation  information.  The 
+predicted  intron  accuracy  rate  of  Sim4cc  was  100%.  On 
+accuracy,  Sim4cc  was  better  than  BLAT.
+    If  Sim4cc  is  used,  the  user  has  to  splice  a  whole  ge-
+nome  file  to  many  files:  one  gene,  one  file.  The  comput-
+ing  process  of  Sim4cc  was  more  complex  than  that  of 
+BLAT,  and  each  time,  Sim4cc  only  calculated  one  cDNA 
+sequence  to  one  gene  sequence;  so,  the  executing  effi-
+ciency  and  speed  are  not  high.  In  comparison,  BLAT 
+was  easier  and  faster  than  Sim4cc. 
+    In  conclusion,  BLAT  and  Sim4cc  can  be  used  to  pre-
+dict  introns,  but  each  of  them  has  its  advantages  and 
+disadvantages.  The  comparative  results  are  summarized 
+in  Table  5.  Sim4cc  was  a  cross-species  spliced  align-
+ment  program.  In  our  study,  Sim4cc  was  used  to  find 
+introns  by  comparing  cDNA  sequences  and  gene  se-
+quences.  The  correct  intron  can  be  obtained  by  com-
+paring  one  cDNA  sequence  with  its  own  gene  sequence. 
+But,  a  lot  of  introns  were  lost  by  Sim4cc.  In  other  words, 
+Sim4cc  was  good  at  detecting  the  correct  intron  but  not 
+
+at  predicting  the  whole  number  of  introns  in  a  genome. 
+In  contrast,  BLAT  can  predict  most  of  the  introns  - 
+nearly  all  of  the  total  introns  in  a  genome.  But,  there 
+were  some  false-positive  predictions  of  introns.  However, 
+the  proportion  of  this  error  was  very  small.  As  a  result, 
+BLAT  will  be  proposed  to  annotate  plant  genome  introns. 
+
+Intron  length  distribution  of  10  plants
+
+According  to  Roy’s  method,  many  predicted  introns  in 
+the  plant  genomes  had  in-frame  stop  codons,  and  the 
+predicted  introns  in  these  genomes  were  equally  as  likely 
+to  be  a  multiple  of  3  bp  (3n)  as  to  contain  a  plus  one 
+(3n  +  1)  or  two  (3n  +  2)  bp.  Here  was  an  example  of 
+from  an  Arabidopsis  thaliana  gene, 
+three  phases 
+AT1G17600.1  (Fig.  2). 
+    By  analyzing  genome  sequence  annotations,  we  got 
+three-phase  intron  distributions  for  10  plant  species 
+(Table  6).  If  the  plant  intron  annotation  is  more  accurate, 
+the  number  of  three  phases  should  be  similar  (one-third 
+each).  For  80%  (8/10)  of  species,  there  were  similar 
+numbers  of  the  three  phases.  It  should  be  noted  that 
+most  of  these  plant  species  annotations  were  the  best 
+annotations  to  date,  but  new  annotations  will  be  con-
+tinually  released  to  correct  errors  and  false-positive 
+results. 
+
+Two-species  3n  intron  skew  analysis
+
+For  all  of  the  10  genomes  (Table  6),  there  were  very 
+similar  numbers  of  3n  +  1  and  3n  +  2  introns,  and  the 
+percentages  of  3n  +  1  and  3n  +  2  introns  were  within 
+0.8%.  In  contrast,  the  number  of  3n  introns  varied  much 
+more  widely,  from  29.1%  to  47.7%.  In  this  study,  two 
+species’  genome  introns  showed  strongly  skewed  per-
+
+Comparative  Evaluation  Plant  Intron  Prediction  Methods 63
+
+Fig.  2.  An  example  of  three  phases  of  intron  from  an Arabidopsis gene,  AT1G17600.1.  Upper/lowercase  sequence  indicates 
+exon/intron  sequence.  Asterisks  indicate  frameshifts  introduced  by  non-3n  introns;  intronic  in-frame  stop  codons  are 
+underlined.  Intron  1  is  a  99-bp  intron  (3n)  with  one  in-frame  stop  codon.  Intron  2  is  a  100-bp  intron  (3n  +  2),  which  has  two
+in-frame  stop  codons  and  thus  does  not  interrupt  the  open  reading  frame.  Intron  3  is  a  74-bp  intron  (3n  +  1)  with  three  stop 
+codons.
+
+Table  6.  Intron  three-phase  distributions  of  10  plant  species 
+
+Species
+
+Intron  No.
+
+Arabidopsis thaliana
+Oryza sativa L.  ssp.  japonica
+Oryza sativa L.  ssp.  indica
+Zea mays 
+Sorghum bicolor
+Cucumis sativus
+Chlamydomonas reinhardtii
+Ostreococcus lucimarinus
+Ostreococcus tauri
+Medicago truncatula
+
+175,513
+251,812
+127,029
+266,772
+115,610
+  90,434
+104,660
+    2,369
+    4,334
+152,466
+
+3n
+
+0.333 
+0.353 
+0.329 
+0.331 
+0.336 
+0.331 
+0.355 
+0.477 
+0.291 
+0.331 
+
+3n  +  1
+
+3n  +  2
+
+Excess  3n
+
+(3n  +  1)  -  (3n  +  2)
+
+0.334 
+0.322 
+0.335 
+0.335 
+0.334 
+0.334 
+0.323 
+0.258 
+0.358 
+0.336 
+
+0.334 
+0.324 
+0.335 
+0.334 
+0.331 
+0.335 
+0.322 
+0.265 
+0.350 
+0.333 
+
+    0.001 
+  -0.030 
+    0.006 
+    0.003 
+  -0.004 
+    0.003 
+  -0.033 
+  -0.215 
+    0.063 
+    0.004 
+
+    0.000 
+  -0.002 
+    0.000 
+    0.001 
+    0.003 
+    0.000 
+    0.001 
+  -0.007 
+    0.008 
+    0.002 
+
+centages,  in  that  the  3n  intron  percentage  was  much 
+lower  or  higher  than  the  expected  value  (one-third).  Such 
+a  skew  suggests  systematic  errors  in  the  intron  predic-
+tion. 
+    The  green  alga Ostreococcus lucimarinus has  one  of 
+the  highest  gene  densities  known  in  eukaryotes,  with 
+many  introns  [28].  There  was  a  striking  excess  of  pre-
+dicted  3n  introns  (47.7%  of  all  predicted  introns,  1,130) 
+compared  to  3n  +  1  (25.8%,  611)  and  3n  +  2  (26.5%, 
+628)  introns.  In  this  case,  many  predicted  3n  introns 
+were  not  true  introns  but  instead  exons. 
+    The  unicellular  green  alga  Ostreococcus tauri is  the 
+world’s  smallest  free-living  eukaryote  known  to  date  [29]. 
+These  predicted  introns  showed  a  deficit  of  3n  introns 
+(29.1%,  1,262),  much  lower  than  3n  +  1  (35.8%,  1,553) 
+and  3n  +  2  (35%,  1,519)  introns.  This  result  is  very  close 
+to  previous  studies  [18].  In  this  case,  3n  introns  may  be 
+mistakenly  regarded  as  coding  sequences,  whereas  a 
+3n  +  1  or  3n  +  2  intron  may  be  inferred  from  the  dis-
+ruption  of  the  coding  frame. 
+
+Concluding  remarks
+
+By  comparing  the  advantages  and  disadvantages  of 
+BLAT  and  Sim4cc  in  intron  prediction,  we  found  that 
+BLAT  is  faster  and  can  predict  more  introns  than  Sim4cc. 
+Through  using  intron  length  distribution  to  detect  in-
+trons’  annotations,  it  is  a  simple  and  fast  method  for 
+detecting  a  variety  of  possible  systematic  biases  in  in-
+tron  prediction  or  even  for  detecting  problems  with  ge-
+nome  assemblies. 
+
+Acknowledgments
+
+This  study  was  funded  by  the  Korea  Science  and  Engi-
+neering  Foundation,  the  National  Natural  Science  Foun-
+dation  of  China  (No.  30900780),  the  China  Postdoctoral 
+Science  Foundation  (No.  20090461260  &  No.  201104647), 
+and the Postdoctoral Foundation of Shandong Agricultural 
+University  (No.  76267).
+
+64 Genomics  &  Informatics Vol.  10(1)  58-64,  March  2012
+
+References
+1. Purdom  E,  Simpson  KM,  Robinson  MD,  Conboy  JG, 
+Lapuk  AV,  Speed  TP.  FIRMA:  a  method  for  detection 
+of  alternative  splicing  from  exon  array  data. Bioinforma-
+tics 2008;24:1707-1714.
+
+2. Zhou  L,  Pertea  M,  Delcher  AL,  Florea  L.  Sim4cc:  a 
+cross-species  spliced  alignment  program. Nucleic Acids 
+Res 2009;37:e80.
+
+3. Harrington  ED,  Bork  P.  Sircah:  a  tool  for  the  detection 
+and  visualization  of  alternative  transcripts. Bioinformatics 
+2008;24:1959-1960.
+
+4. Rambaldi  D,  Felice  B,  Praz  V,  Bucher  P,  Cittaro  D, 
+Guffanti  A.  Splicy:  a  web-based  tool  for  the  prediction 
+of  possible  alternative  splicing  events  from  Affymetrix 
+probeset  data. BMC Bioinformatics 2007;8  Suppl  1:S17.
+5. Mitchell  RA,  Castells-Brooke  N,  Taubert  J,  Verrier  PJ, 
+Leader  DJ,  Rawlings  CJ.  Wheat  Estimated  Transcript 
+Server  (WhETS):  a  tool  to  provide  best  estimate  of  hex-
+aploid  wheat  transcript  sequence.  Nucleic Acids Res 
+2007;35:W148-W151.
+
+6. Lazzarato  F,  Franceschinis  G,  Botta  M,  Cordero  F,  Calo-
+gero  RA.  RRE:  a  tool  for  the  extraction  of  non-coding 
+regions  surrounding  annotated  genes  from  genomic  da-
+tasets.  Bioinformatics 2004;20:2848-2850.
+
+7. Milanesi  L,  Rogozin  IB.  ESTMAP:  a  system  for  expres-
+sed  sequence  tags  mapping  on  genomic  sequences. 
+IEEE Trans Nanobioscience 2003;2:75-78.
+
+8. Wang  K,  Singh  D,  Zeng  Z,  Coleman  SJ,  Huang  Y, 
+Savich  GL,  et  al.  MapSplice:  accurate  mapping  of 
+RNA-seq  reads  for  splice  junction  discovery.  Nucleic 
+Acids Res 2010;38:e178.
+
+9. Dimon  MT,  Sorber  K,  DeRisi  JL.  HMMSplicer:  a  tool  for 
+efficient  and  sensitive  discovery  of  known  and  novel 
+splice  junctions  in  RNA-Seq  data.  PLoS One 2010;5: 
+e13875.
+
+10. Foissac  S,  Bardou  P,  Moisan  A,  Cros  MJ,  Schiex  T. 
+EUGENE'HOM:  A  generic  similarity-based  gene  finder 
+using  multiple  homologous  sequences.  Nucleic Acids 
+Res 2003;31:3742-3745.
+
+11. Kent  WJ.  BLAT:  the  BLAST-like  alignment  tool. Genome 
+
+Res 2002;12:656-664.
+
+12. Lee  C,  Atanelov  L,  Modrek  B,  Xing  Y.  ASAP:  the  Alter-
+
+native  Splicing  Annotation  Project.  Nucleic Acids Res 
+2003;31:101-105.
+
+13. Odenwald  WF,  Rasband  W,  Kuzin  A,  Brody  T. 
+EVOPRINTER,  a  multigenomic  comparative  tool  for  rap-
+id  identification  of  functionally  important  DNA. Proc Natl 
+Acad Sci U S A  2005;102:14700-14705.
+
+14. Castrignanò  T,  De  Meo  PD,  Grillo  G,  Liuni  S,  Mignone 
+
+F,  Talamo  IG, et al.  GenoMiner:  a  tool  for  genome-wide 
+search  of  coding  and  non-coding  conserved  sequence 
+tags.  Bioinformatics 2006;22:497-499.
+
+15. Tamaki  S,  Arakawa  K,  Kono  N,  Tomita  M.  Restauro-G: 
+a  rapid  genome  re-annotation  system  for  comparative 
+
+genomics.  Genomics Proteomics Bioinformatics 2007;5: 
+53-58.
+
+16. Kent  WJ,  Zahler  AM.  The  intronerator:  exploring  introns 
+and  alternative  splicing  in  Caenorhabditis elegans.  Nu-
+cleic Acids Res 2000;28:91-93.
+
+17. Irimia  M,  Roy  SW.  Spliceosomal  introns  as  tools  for  ge-
+
+nomic  and  evolutionary  analysis.  Nucleic  Acids  Res 
+2008;36:1703-1712.
+
+18. Roy  SW,  Penny  D.  Intron  length  distributions  and  gene 
+
+prediction.  Nucleic Acids Res 2007;35:4737-4742.
+
+19. Swarbreck  D,  Wilks  C,  Lamesch  P,  Berardini  TZ,  Garcia- 
+Hernandez  M,  Foerster  H, et al.  The  Arabidopsis  Infor-
+mation  Resource  (TAIR):  gene  structure  and  function 
+annotation.  Nucleic Acids Res 2008;36:D1009-D1014.
+
+20. Goff  SA,  Ricke  D,  Lan  TH,  Presting  G,  Wang  R,  Dunn 
+M,  et al.  A  draft  sequence  of  the  rice  genome  (Oryza 
+sativa L.  ssp.  japonica).  Science  2002;296:92-100.
+
+21. Yu  J,  Hu  S,  Wang  J,  Wong  GK,  Li  S,  Liu  B,  et al.  A 
+draft  sequence  of  the  rice  genome  (Oryza sativa L.  ssp. 
+indica).  Science 2002;296:79-92.
+
+22. Schnable  PS,  Ware  D,  Fulton  RS,  Stein  JC,  Wei  F, 
+Pasternak  S, et al.  The  B73  maize  genome:  complexity, 
+diversity,  and  dynamics.  Science 2009;326:1112-1115.
+
+23. Paterson  AH,  Bowers  JE,  Bruggmann  R,  Dubchak  I, 
+Grimwood  J,  Gundlach  H,  et al.  The  Sorghum bicolor 
+genome  and  the  diversification  of  grasses. Nature 2009; 
+457:551-556.
+
+24. Han  YH,  Zhang  ZH,  Liu  JH,  Lu  JY,  Huang  SW,  Jin 
+WW.  Distribution  of  the  tandem  repeat  sequences  and 
+karyotyping  in  cucumber  (Cucumis sativus L.)  by  fluo-
+rescence  in situ hybridization.  Cytogenet Genome Res 
+2008;122:80-88.
+
+25. Merchant  SS,  Prochnik  SE,  Vallon  O,  Harris  EH, 
+Karpowicz  SJ,  Witman  GB,  et al.  The  Chlamydomonas 
+genome  reveals  the  evolution  of  key  animal  and  plant 
+functions.  Science 2007;318:245-250.
+
+26. Palenik  B,  Grimwood  J,  Aerts  A,  Rouzé  P,  Salamov  A, 
+
+Putnam  N, et al.  The  tiny  eukaryote Ostreococcus  pro-
+vides  genomic  insights  into  the  paradox  of  plankton 
+speciation.  Proc Natl Acad Sci U S A  2007;104:7705- 
+7710.
+
+27. Young  ND,  Cannon  SB,  Sato  S,  Kim  D,  Cook  DR, 
+Town  CD,  et al.  Sequencing  the  genespaces  of  Medi-
+cago  truncatula  and  Lotus  japonicus.  Plant  Physiol 
+2005;137:1174-1181.
+
+28. Lanier  W,  Moustafa  A,  Bhattacharya  D,  Comeron  JM. 
+EST  analysis  of  Ostreococcus lucimarinus,  the  most 
+compact  eukaryotic  genome,  shows  an  excess  of  introns 
+in  highly  expressed  genes.  PLoS One 2008;3:e2171.
+
+29. Derelle  E,  Ferraz  C,  Rombauts  S,  Rouzé  P,  Worden  AZ, 
+
+Robbens  S,  et al.  Genome  analysis  of  the  smallest 
+free-living  eukaryote  Ostreococcus tauri  unveils  many 
+unique  features.  Proc Natl Acad Sci U S A  2006;103: 
+11647-11652.
+
+

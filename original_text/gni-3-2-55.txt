@@ -1,0 +1,843 @@
+Genomics & Informatics  Vol.  3(2) 55-60, June 2005 
+
+Classification of Peroxiredoxin Subfamilies Using Regular 
+Expressions 
+
+Jae Kyung Chon1·2,  Jongkeun ChoP,  Sang Soo 
+Ki!W*  and Whanchul Shin1·2* 
+
+1Department  of  Chemistry,  21nterdisciplinary  Program  in 
+Bioinformatics,  Seoul  National  University,  Seoul  151-742, 
+Korea,  3Department  of  Bioinformatics,  Soongsil 
+University,  Seoul  156-743,  Korea. 
+
+Abstract 
+Peroxiredoxins (Prx's) are a superfamily of peroxidases 
+that  are  ubiquitous  in  all  super-kingdoms.  Previous 
+biochemical and structural studies have suggested that 
+Prx's  could  be  divided  into  five  subfamilies  (1-Cys, 
+Typicai2-Cys, Atypicai2-Gys C-, L-and R- types).  In this 
+work,  we  have  developed  a  set  of  regular  expression 
+patterns describing subfamily-specific spatial constraints 
+of the key catalytic residues. Using these patterns, 1 ,016 
+Prx's available  in  public databases were classified  into 
+the five subfamilies. Our method performed well for most 
+of the types except for Atypical 2 Cys R type. 
+
+Keywords:  peroxiredoxin, regular expression, subfamily 
+classification 
+
+Introduction 
+Reactive oxygen species (ROS), such as the superoxide 
+anion radical (02'-), hydrogen peroxide (H202) and the 
+hydroxyl radical (HO' ), are intermediately formed during 
+the univalent reduction of oxygen to water, and are also 
+produced  during  j3-oxidation  of  fatty  acids  and  upon 
+exposure 
+redox  drugs 
+(Nordberg  and  Arner,  2001 ).  H202  itself  is  not  very 
+reactive,  but  can  be  further  reduced  to  the  extremely 
+reactive  HO' .  ROS  can  cause  molecular  damage  to 
+various cellular components such as lipids, proteins, and 
+nucleic  acids,  leading  to  cell  death,  and  were  thus 
+considered  to  be  highly  toxic  byproducts  of  oxygen 
+metabolism and of no useful  biological significance. To 
+the  damaging  effects  of  ROS,  aerobic 
+minimize 
+
+to  radiation,  metals,  and 
+
+*Corresponding authors:  E-mail sskimb@ssu.ac.kr., 
+Tel +82-2-820-0457,  Fax +82-2-824-4383, 
+E-mail nswcshin@snu.ac.kr, 
+Tel +82-2-880-6656,  Fax +82-2-889-5304 
+Accepted  1 0 May 2005 
+
+in  response 
+
+to 
+
+Peroxiredoxins 
+
+organisms evolved  both  non-enzymatic and  enzymatic 
+antioxidant  defenses 
+(Ahmad,  1995).  Enzymatic 
+defenses include superoxide dismutases which convert 
+0 2'- to H202,  and catalases, gluthathione peroxidases 
+and peroxiredoxins which convert H202 to H20.  Recent 
+findings show that, in addition to its deleterious effects, 
+H202  is  produced  transiently 
+the 
+activation of many cell surface receptors and serves as a 
+ubiquitous 
+intracellular  messenger  at  sub-toxic 
+concentrations (Rhee eta/., 2005). 
+(Prx's)  are  a 
+
+family  of 
+antioxidant  enzymes  which  are  abundant,  in  several 
+isoforms,  in  yeast,  plant,  and  animal  cells and  in  most 
+eubacteria and archaea (Chae  eta/., 1994; Rhee et al., 
+2001;  Hofmann  et al.,  2002).  Prx's  reduce  deleterious 
+H20 2 or alkyl hydroperoxides utilizing the thiol group of a 
+cysteine residue (Wood eta/., 2003b), and in some cases 
+are  involved  in  the  decomposition  of  highly  toxic 
+peroxynitrite  (Bryk  eta/.,  2000).  Some  Prx's  also  play 
+significant roles in receptor signaling as, after completion 
+of  its mission as  an  intracellular messenger,  the timely 
+elimination of H202 is critical (Wood eta/., 2003a; Rhee et 
+a/.,  2005). 
+
+large 
+
+All  Prx's,  belonging  to  the  thioredoxin-fold  super(cid:173)
+
+family, contain a conserved 'peroxidatic' Cys (Cp)  in the 
+N-terminal portion and share the same peroxidatic active 
+-site  structure  (Wood  et al.,  2003b).  The  Cp  residue  is 
+oxidized  by  peroxides  to  a  cysteine  sulfenic  acid  (Cp(cid:173)
+SOH) intermediate. Prx's are classified into either the 2-
+Cys  or  1-Gys  types,  based  on  the  occurrence  of  the 
+'resolving' Cys (CR)  (Rhee eta/., 2001;  Hofmann  eta/., 
+2002).  In 2-Cys Prx's, the Cp-SOH and CR-SH  react and 
+form a disulfide (Cp-8-S-CR).  The stable disulfide form is 
+then  reduced  by  one  of  several  cell-specific  disulfide 
+oxidoreductases  (e.g.,  thioredoxin  (Trx),  tryparedoxin, 
+AhpD, or AhpF), completing the catalytic cycle.  In 1-Cys 
+recycled  via 
+Prx's, 
+oxidoreductases  such  as  Trx and  glutaredoxin.  The 2-
+Cys  Prx's  have  been  subdivided  into  either 'typical'  or 
+'atypical'  types  depending  on  the  location  of  the  CR 
+residue.  In  typical  2-Cys  Prx's, the Cp-SOH  reacts with 
+the  CR  residue  located  in  the  C-terminal  arm  from  the 
+other subunit.  In contrast,  the CR  residue  in  atypical 2-
+Cys  Prx's  resides  within  the  same  subunit.  As  the 
+atypical  2-Cys  Prx's have  been further subdivided  into 
+'L',  'C',  or 'R'  type  subfamilies,  also depending  on  the 
+
+the  sulfenic  acid 
+
+is  directly 
+
+56  Genomics &  Informatics  Vol.  3(2) 55-60, June 2005 
+
+Table 1. Protein family and domain databases used in  he retrieval of Prx's 
+
+Database 
+
+Pfam 
+(Releases 17) 
+PROSITE 
+(Releases 19.2) 
+BLOCKS 
+(Version  14. 1) 
+lnterPro 
+(Releases 1 0) 
+
+Access Number 
+
+Annotation 
+
+Entry number 
+
+PF00578 
+
+PS01265 
+
+IPB00866A 
+
+IPR00866 
+
+TSNAhpC families 
+
+Tpx Family 
+(S-x-D-L-P-F-[AS]-x(2)-[KRQ]-[FWI]-C) 
+
+AhpC-TSA 
+
+Alkyl  hydroperoxide reductase/ 
+Thiol specific antioxidant/ Mal allergen 
+
+Total 
+
+Non-redundant entries 
+
+1023 
+
+38 
+
+834 
+
+1075 
+
+2970 
+1085 
+
+spatial  location  of  the  CR  residue  (Choi  eta/.,  2003), 
+there  are  five  unique  Prx's  subfamilies  in  total.  Sub(cid:173)
+classification  of all  known  Prx's  at this  fine  scale  may 
+provide further insights into the biochemical mechanism 
+and protein evolution of this important protein family. 
+
+Biochemical  functions  of  a  protein  are  typically 
+predicted from  its sequence similarity to those proteins 
+whose  functions  or  3D  structures  have  been  experi(cid:173)
+mentally determined.  The first  line of sequence search 
+method  is  using  the  pair-wise  sequence  similarity 
+algorithms  such  as  BLAST  (Altschul  et a/.,  1997)  and 
+FAST A (Pearson, 1994). Such methods are appropriate 
+for detecting sequences of relatively high homology, but 
+are  not  efficient  in  detecting  distant  members  of  a 
+divergent protein family such as Prx's. The sensitivity of 
+sequence search methods has been improved by profile 
+-or motif-based analysis, which uses information derived 
+from  multiple  sequence  alignments  to  construct  and 
+search for sequence patterns. Unlike pairwise sequence 
+similarity  methods,  the  latter  can  exploit  additional 
+information, such as the position and identity of residues 
+that  are  conserved  throughout  the  family,  as  well  as 
+variable insertion and deletion probabilities. The hidden 
+Markov model  is  one appropriate method to express a 
+profile  or  motif  because  it  provides  a  solid  statistical 
+foundation 
+from  a  multiple 
+sequence  alignment  (Eddy,  1998).  While  profile  and 
+hidden Markov model methods perform appropriately in 
+detecting  homologous  proteins,  these  generally  afford 
+only a very high level of functional classification. Most of 
+the protein  family databases based  on  profile,  motif or 
+domain, such as Pfam (Bateman eta/., 2000), PROSITE 
+(Hofmann eta/., 1999), BLOCKS (Henikoff eta/., 1999), 
+PRINTS (Attwood eta/., 2000) and lnterPRO (Apweiler 
+et a/.,  2000),  have  superfamily of the  Prx's.  But  these 
+databases  do  not  include  the  classification  of  Prx's 
+subfamily.  We  have  classified  Prx's  to  distinguish 
+between  subfamilies  within  a  structurally  and 
+functionally diverse superfamily. This work represents the 
+classification  tool  and  method  focused  on  a  specific 
+
+information 
+
+to  model 
+
+protein superfamily,  Prx's. 
+
+Methods 
+Collecting the sequences of peroxiredoxin family 
+from domain and motif databases 
+Various  protein  superfamily  databases  are  publicly 
+available  in  the  internet.  We  queried  the  following 
+databases with a keyword 'peroxiredoxin': Pfam, PROSITE, 
+lnterPro  and  BLOCKS.  The  resulting  superfamily  had 
+annotations  such  as  TSA  (thiol-specific  antioxidant), 
+AhpC (alkyl hydroperoxide reductase), Tpx (thioredoxin 
+peroxidase)  and  peroxiredoxin.  The  protein  entries 
+belonging  to these  families  were  downloaded  and  the 
+redundant  entries  were  removed.  Summary  of  the 
+collected sequences used in this analysis is provided in 
+Table 1. 
+
+Compilation of the relevant PDB entries 
+We  retrieved  entries  from  PDB  (Berman  eta/.,  2000, 
+release  May  31,  2005)  by  querying  a  keyword 
+"peroxiredoxin",  resulting  25  hits.  From  the  manual 
+inspection  of  the  description  field,  21  structures  were 
+identified as the true members of Prx's family (Table 2). 
+These entries were classified into 4 subfamilies of Prx's, 
+except  Atypical  2  Cys  C  Type  for  which  no  crystal 
+structure has been reported yet. 
+
+Defining regular expression 
+A regular expression  (abbreviated as  regexp,  regex or 
+regxp)  is  a  string  that  describes  or matches  a  set  of 
+strings,  according  to  certain  syntax  rules.  Regular 
+expressions are used by many text editors and utilities to 
+search and manipulate bodies of text based on  certain 
+patterns  (Stubbletine,  2003;  Fridl,  1997).  The  protein 
+motifs can be represented as  regular expressions. And 
+the  structural  properties of  motif can  be formulated  by 
+regular  expression.  The  advantages  of  using  regular 
+expressions  are  1) 
+to 
+
+fairly  concise  and  easy 
+
+Table 2. PDB entries of Prx's 
+
+No 
+
+PDB I D 
+
+Redox state 
+
+Atypical 2 Cys L type 
+
+1 
+2 
+3 
+4 
+
+5 
+6 
+7 
+8 
+
+9 
+10 
+11 
+12 
+13 
+14 
+
+15 
+16 
+17 
+18 
+19 
+20 
+21 
+
+10XH 
+1PSO 
+1098 
+1xvo 
+
+1H40 
+1HD2 
+10c3 
+1URM 
+
+10MV 
+1002 
+1KYG 
+1N8J 
+1E2Y 
+1UUL 
+
+1PRX 
+1NM3 
+1XCC 
+1XIY 
+1X:VW 
+1XXU 
+1VGS 
+
+s-s 
+SH 
+s-s 
+s-s 
+
+Atypical 2 Cys R type 
+
+SH 
+SH 
+s-s 
+SOH 
+
+Typical2 Cys 
+
+so2 
+s-s 
+s-s 
+SH 
+SH 
+SH 
+1 Cys 
+SOH 
+SH 
+SH 
+SO/ 
+SOH 
+SH 
+SH 
+
+Number 
+
+P37901 
+POA4M5 
+057549 
+P66952 
+
+P30044 
+
+P32119 
+063716 
+
+POA251 
+
+09TZX2 
+096763 
+
+P30041 
+P44758 
+07RGR1 
+081BG7 
+P65688 
+P65688 
+09Y9LO 
+
+understand,  2)  well  known  algorithms for  matching,  3) 
+fairly  easy  to  display  and  4)  accepting  insertion  or 
+deletion. 
+
+recognized  as  playing  critical 
+
+There are several key amino acid residues that have 
+the 
+been 
+peroxiredoxin activity.  For example, a Pro (P) is located 
+several  residues  upstream of the peroxidatic Cys  (Cp), 
+while an  Arg  (R)  in C-terminal  neutralizes the negative 
+charge  of  the  intermediate.  Their  importance  is  also 
+
+roles 
+
+in 
+
+Classification of Peroxiredoxin Subfamilie  57 
+
+supported by the strong conservation of sequences and 
+structures  (Choi  et  a/.,  2003).  Prx's  family  can  be 
+classified by the existence and location of resolving Cys 
+(CR)  that form S-S  bond with the peroxidatic Cys (Cp). 
+Sequence patterns of CP and CR were learned from the 
+21  PDB entries. We superposed the protein structures of 
+Prx's family with Deep-Viewer (Guex and Peitsch, 1997) 
+and the subsequent visual inspection located the critical 
+P, CP, Cp and R on sequences. See Fig. 1 for schematic 
+diagram of key residues.  The minimum and  maximum 
+number  of  intervening  amino  acids  residues  were 
+calculated  from  these  sequences  and  converted  into 
+regex  forms.  These  forms  were  further  modified  by 
+allowing potential insertions and deletions. For example, 
+atypical 2 Cys C type of peroxiredoxin could be defined 
+by the pattern "P .{6} CP .{4} CR .{60,90} R".  This regular 
+expression  is translated  as:  (Pro)  - (6  any  residues) 
+(between 60 and 90 of 
+(Cys) 
+(Arg).  Details  of  pattern  used  in 
+any  residues) 
+classification  are provided  in  Table 3.  A  short program 
+for matching the regular expressions with the amino acid 
+sequences  was  written  in  Peri  Verseion  5.8.4  (the 
+source code available upon request). 
+
+(4 any residues) 
+
+(Cys) 
+
+Results 
+Classification using regular expression 
+A set of Prx's family was converted into FAST A format file 
+(a  total  of  1,085  sequences).  Some  sequences  were 
+excluded from the set, based on following criteria: (1) The 
+sequences whose amino acid length was too short (100 
+AA)  or  too  long  (300  AA)  were  removed,  as  Prx's 
+molecular weight typically ranges  between 20 - 30kD. 
+(2)  The  sequences  where  the  pattern  "P.{6}C"  was 
+located within 25 AA from the N-terminus was removed, 
+
+Atypical  2  Cys  C type ---•---~--... - - - - - -... - - - - -
+
+Atypical  2 Cys  L type  ---•-~!)---_..._ ___ ..,..._ ___ _ 
+
+Atypical  2 Cys  R type ---•----411)----------~--•---
+Typical  2 Cys 
+
+1 Cys 
+
+~Proline 
+
+Peroxidatic  Cysteine •  Resolving  Cysteine  •  Arginine 
+
+Fig. 1. Schematic diagram of key catalytic residues and their relative positions in the protein sequences.  Note 
+that the resolving Cys is located toward the N-terminal side of Arg for C and L types of Atypical 2 Cys families, 
+while it is found in the C-terminal side of Arg for Atypical2 Cys R type and Typical2 Cys families. 
+
+58  Genomics &  Informatics  Vol.  3(2) 55-60, June 2005 
+
+Table 3. List of regular expression patterns 
+
+Subfamily 
+
+Atypical  2  Cys  C  type 
+Atypical  2  Cys  L  type 
+Atypical  2  Cys  R  type 
+
+Typical  2  Cys 
+1  Cys 
+
+Pattern (regular expression) (Cp,  CR , R) 
+P  .{6}  Cp  .{4}  CR  .{60,90}  R 
+
+P  .{6}  Cp  .{28,38}  CR  .{60,90}  R 
+P  .{6}  Cp  .{60,90}  R  .{20,25}  CR 
+p  .{6}  Cp  .{60,90}  R  .{40,50}  CR 
+P .[AC]  .{4} Cp .{60,90} R 
+
+they  lost  some 
+
+important  secondary  structure 
+as 
+elements  characteristic to  Prx's.  The  final  set  of  Prx's 
+includes 1 ,016 entries, with which we ran the search for 
+classification  of  Prx's  by  using  the  defined  regular 
+expressions. Since the regex for Atypical 2 Cys L type is 
+inclusive of and less restrictive than that of Typical2 Cys, 
+we gave higher priority to Typical 2 Cys. Classification of 
+1 Cys  is difficult due to the  lack of  resolving  Cys  (CR). 
+Accordingly,  we  assigned  those  without  any  other 
+matches than the basic Prx's pattern to 1 Cys. See Fig. 2 
+
+Entry of Prx's 
+
+From domain/motif 
+
+databases 
+
+structural and functional 
+
+False Prx's 
+
+entries 
+
+Fig. 2.  Flowchart of the classification  based  on  regex patterns 
+matching. 
+
+the 
+
+flowchart  of 
+
+the  analysis.  Summary  of 
+for 
+classification  is  provided  in  Table  4.  The  full  list  of 
+proteins 
+the 
+supplementary web site (http://xray2.snu.ac.kr/Prxl). 
+
+for  each  subfamily 
+
+is  available  at 
+
+Validation of the classification 
+In  order  to  validate  our  classification  result,  we  per(cid:173)
+formed  multiple  sequence  alignments  (MSA)  of  each 
+resulting  cluster.  For  this,  we  used  the  ClustaiW 
+program with default settings (Higgins et at.,  1994). The 
+key  catalytic  residues  (P,  Cp,  CP  and  R)  and  all  the 
+secondary  structure  elements  were  aligned  extremely 
+well.  Compared to the alignment provided by Pfam that 
+included all  potential  Prx's in  a single  MSA output,  our 
+subfamily-specific  MSA  provided  much  improved  and 
+well  defined  alignments  (see  the  supplementary  web 
+site for details), demonstrating the validity of our classifi(cid:173)
+cation scheme.  Some of the sequences matched more 
+than  one 
+regex  patterns.  For  example,  Uniprot 
+accession  096763,  known  as  a  member  of Typical  2 
+Cys on the structural basis (PDB ID 1 UUL ), matched the 
+regex pattern of either Atypical 2 Cys C type or Typical 2 
+Cys.  For  these  ambiguous  sequences,  we  confirmed 
+their  true  membership  by  manual  inspection  of  the 
+subfamily-specific  MSA  output.  For  example,  096763 
+was  well  absorbed  in  the  MSA  of  Typical  2  Cys 
+sequences,  while  it  became  an  outlier  in  the  MSA  of 
+Atypical 2 Cys L type sequences.  In this way,  we were 
+able to  unambiguously confirm the true membership of 
+all the previously ambiguous sequences (Table 5).  The 
+error  rates  of  the  regex-based  classification  were then 
+7/140,  1/142, 7/51, and 1/414 for Atypical2 Cys C,  L,  R 
+and  Typical  2  Cys  types,  respectively.  Our  simple 
+method performed extremely well  for most of the types 
+except  for  Atypical  2  Cys  R type.  It  appears  that  the 
+regex for the latter is subtle and prone to include false 
+positives.  We  may  need  more  key  residues  yet  to  be 
+discovered  based  on  the  reaction  mechanism  of  the 
+enzyme.  It  should  also  be  noted  that  the  multiple 
+sequence alignments  hinted the potential  of even  finer 
+sub-classification. 
+
+Classification of Peroxiredoxin Subfamilie  59 
+
+Table 4.  Results of the classification based on regex pattern matching 
+
+Subfamily 
+
+Regular expression 
+
+Atypical 2 Cys C type (C) 
+
+P .{6} Cp.{4} CR  .{60,90} R 
+
+Atypical 2 Cys L type (L) 
+
+P .{6} Cp  .{28,38} CR .{60,90} R 
+
+Atypical 2 Cys R type (R) 
+
+P .{6} Cp  .{60,90} R .{20,25} CR 
+
+Typical2 Cys (T) 
+
+P .{6} Cp.{60,90} R .{40,50} CR 
+
+1 Cys 
+
+Exclusion of the others 
+
+140 
+
+146 
+
+51 
+
+417 
+
+293 
+
+sequences 
+
+Ltype:  2 
+Rtype:3 
+Ttype  :  8 
+Ctype:  2 
+Rtype:4 
+Ctype:  3 
+Ltype  :  4 
+Ttype  :  8 
+Ctype:  8 
+L type  :  108 
+Rtype:  8 
+
+Table 5.  Results of the validation based on multiple sequence alignments (MSA) 
+
+Subfamily 
+
+Atypical 2 Cys C type 
+
+Atypical 2 Cys L type 
+
+Atypical 2 Cys R type 
+
+Typical2 Cys 
+
+sequences 
+(L type) 
+2 
+(R type) 
+3 
+(Ttype) 
+8 
+
+2 
+4 
+
+(Ctype) 
+(R type) 
+
+(Ctype) 
+3 
+(L type) 
+4 
+(Ttype) 
+8 
+8 
+(C type) 
+108  (L type) 
+8 
+(R type) 
+
+True members 
+
+False positives 
+
+2 
+
+3 
+
+2 
+
+8 
+
+7 (Typical 2 Cys) 
+
+1 (Atypical 2 Cys C type) 
+
+2 (Atypical 2 Cys C type) 
+5 (Typical 2 Cys) 
+
+1 (Atypical2 Cyc C type) 
+
+Discussion 
+Peroxiredoxins  form  such  a divergent family with  over 
+1 ,000  sequences  in  the  public  sequence  databases, 
+occurring  in  from  prokaryotes  to  mammals.  Current 
+protein domain or family databases list them as a single 
+large  family  and  thus  are  not  much  informative  in 
+understanding  detailed  molecular  mechanism  of  this 
+biologically important class of proteins. It should also be 
+noted that these databases except for PROSITE contain 
+contaminations,  that  is,  classifying  some  non-Prx's  as 
+Prx's. For example, Q8RB02, belonging to thioredoxins, 
+do not share the  key catalytic  residues  but  it  shares a 
+noticeable  global  sequence similarity with  some  Prx's. 
+This is not at all surprising considering that Prx's belong 
+to  the  Trx  structural 
+fold,  demonstrating  the  risk 
+associated with profile-based methods, albeit significant 
+advantages.  We  employed  PROSITE-Iike  sequence 
+patterns, which may be too simple to sub-classify such a 
+large and diverse family. We successfully augmented its 
+weakness by meticulous choice of patterns based on the 
+Prx's  reaction  mechanism  as  well  as  their  structural 
+characteristics  and  by  hierarchical  classification  of 
+
+subfamilies.  However,  our method showed some small 
+but  non-negligible  mis-classifications.  Future  improve(cid:173)
+ment may require even more key catalytic residues to be 
+included  in  the  regex  patterns.  Alternatively,  judicious 
+use  of  multiple  sequence  alignments  combined  with 
+profile-based  models  may  be  applied  to  our  pattern(cid:173)
+based  subfamilies.  Besides  improving the  accuracy  of 
+sub-classification,  identifying  even  finer  sub-classes 
+should  be  also  important  as  it  may  shed  light  on 
+understanding  the  detailed  biochemical  mechanism. 
+Accurate classification of a protein family is also critical 
+in  constructing  molecular  phylogeny  and 
+thus 
+understanding evolution of Prx's. 
+
+Acknowledgements 
+
+This work was supported by a grant (CBM2-B512-001-1-
+Q-O) from the Center for Biological Modulators of the 21st 
+Century Frontier R&D  Program, the Ministry of Science 
+and Technology,  Korea.  J.C.  is a recipient of the BK21 
+fellowship. 
+
+60  Genomics & Informatics  Vol. 3(2) 55-60, June 2005 
+
+References 
+Ahmad,  S.  (1995).  Oxidative  stress  and  antioxidant  de(cid:173)
+
+fenses in biology (New York:  Chapman and Hall). 
+
+Altschul,  S.F.,  Madden,  T.L,  Schaffer,  A.A.,  Zhang,  J., 
+Zhang, Z., Miller, W., and Lipman, D.J. (1997). Gapped 
+BLAST and PSI-BLAST: a new generation of protein da(cid:173)
+tabase search programs.  Nucleic Acids Res. 25, 3389 
+3402. 
+
+Apweiler,  R.,  Attwood,  T.K.,  Bairoch,  A.,  Bateman,  A., 
+Birney, E., Biswas, M., Bucher, P., Cerutti, L, Corpet, F., 
+Craning, M.D., Durbin, R.,  Falquet, L, Fleischmann, W., 
+Gouzy, J., Hermjakob, H.,  Hulo, N., Jonassen, 1.,  Kahn, 
+D.,  Kanapin,  A.,  Karavidopoulou,  Y.,  Lopez,  R.,  Marx, 
+B.,  Mulder,  N.J.,  Oinn,  T.M.,  Pagni,  M.,  Servant,  F., 
+Sigrist, C.J., and Zdobnov, E.M. (2000). lnterPro- An in(cid:173)
+tegrated  documentation  resource  for  protein  families, 
+domains and functional  sites.  Bioinformatics 16,  1145 
+1150. 
+
+Attwood,  T.K.,  Craning,  M.D.,  Flower,  D.R.,  Lewis,  A.P., 
+Mabey,  J.E.,  Scordis,  P.,  Selley,  J.N.,  and  Wright,  W. 
+(2000}.  PRINTS-S:  the  database  formerly  known  as 
+PRINTS.  Nucleic Acids Res. 28,225  227. 
+
+Bateman, A., Birney, E., Durbin, R.,  Eddy, S.R., Howe, K.L., 
+
+and Sonnhammer,  E.L (2000). The Pfam protein fami(cid:173)
+lies database. Nucleic Acids Res. 28, 263  266. 
+
+Berman,  H.M., Westbrook, J., Feng, Z.,  Gilliland, G.,  Bhat, 
+T.N.,  Weissig,  H.,  Shindyalov,  I.N.,  and  Bourne,  P.E. 
+(2000). The Protein  Data Bank.  Nucleic Acids Res.  28, 
+235-242. 
+
+Bryk, R., Griffin, P., and Nathan, C. (2000). Peroxynitrite re(cid:173)
+ductase activity of bacterial peroxiredoxins. Nature 407, 
+211  215. 
+
+Chae,  H.Z.,  Robinson,  K.,  Poole,  LB.,  Church,  G.,  Storz, 
+G., and Rhee, S.G. (1994). Dimerization of thiol-specific 
+antioxidant and the essential  role of cysteine 47.  Proc. 
+Nat/.  Acad.  Sci.  USA 91 , 7017  7021. 
+
+Choi, J., Choi, S.,  Choi, J., Cha,  M.K., Kim,  I.H., and Shin, 
+W.  (2003). Crystal structure of Escherichia coli thiol per(cid:173)
+oxidase in the oxidized state: insights into intramolecular 
+disulfide formation  and substrate binding  in  atypical 2-
+Cys peroxiredoxins. J.  Bioi.  Chern.  278, 49478  49486. 
+(1998).  Profile  hidden  Markov  models. 
+
+Eddy,  S.R. 
+
+Bioinformatics 14, 755  763. 
+
+Fridl,  J.E.F. 
+
+(1997).  Mastering 
+
+regular  expressions 
+
+(Sebastopol, CA: O'Reilly Media). 
+
+Guex,  N.  and  Peitsch,  M.G.  (1997).  SWISS-MODEL and 
+the Swiss-PdbViewer: An  environment for comparative 
+protein modeling.  Electrophoresis 18, 2714-2723. 
+
+Henikoff,  S.,  Henikoff,  J.G.,  and  Pietrokovski,  S.  (1999). 
+Blocks+: a non-redundant database of protein alignment 
+blocks derived from multiple compilations.  Bioinformat(cid:173)
+ics 15, 471  479. 
+
+Higgins,  D.,  Thompson,  J.,  Gibson,  T.,  Thompson,  J.D., 
+Higgins,  D.G.,  and  Gibson,  T.J.  (1994).  CLUSTAL W: 
+Improving  the  sensitivity  of  progressive  multiple  se(cid:173)
+quence alignment through sequence weighting, position 
+-specific gap penalties and weight matrix choice. Nucleic 
+Acids Res.  22, 4673-4680. 
+
+Hofmann,  B.,  Hecht,  H.J.,  and  Flohe,  L 
+
+(2002). 
+
+Peroxiredoxins.  Bioi.  Chern. 383,347  364. 
+
+Hofmann,  K.,  Bucher,  P.,  Falquet,  L,  and  Bairoch,  A. 
+(1999).  The  PROSITE  database,  its  status  in  1999. 
+Nucleic Acids Res.  27,215  219. 
+
+Nordberg, J.  and Arner, E. S.  (2001 ).  Reactive oxygen spe(cid:173)
+cies,  antioxidants,  and  the  mammalian  thioredoxin 
+system.  Free.  Radic.  Bioi.  Med.  31,  1287-1312. 
+
+Pearson, W.R. (1994). Using the FAST A program to search 
+protein and DNA sequence databases.  Meth.  Mol.  Bioi. 
+25,365  389. 
+
+Rhee, S.G., Kang, S.W., Jeong, W., Chang, T.-S, Yang, K.(cid:173)
+S., and Woo, H.A. (2005). Intracellular messenger func(cid:173)
+tion  of  hydrogen  peroxide  and 
+peroxiredoxin.  Curr.  Opin.  Cell Bioi.  17,  183  189. 
+
+its  regulation  by 
+
+Rhee, S.G., Kang, S.W., Chang, T.-S., Jeong, W., and Kim, 
+K.  (2001 ).  Peroxiredoxin, a novel family of peroxidases. 
+IUBMB Life 52, 35  41. 
+
+Stubbletine,  T.  (2003).  Regular  expression  pocket  refer(cid:173)
+
+ence (Sebastopol, CA:  O'Reilly Media). 
+
+Wood,  Z.A.,  Poole,  LB.,  and  Karplus,  P.A.  (2003a). 
+Peroxiredoxin evolution and the regulation of hydrogen 
+peroxide signaling.  Science 300, 650  653. 
+
+Wood,  Z.A.,  SchrOder,  E.,  Harris,  J.R.,  and  Poole,  LB. 
+(2003b).  Structure,  mechanism  and  regulation  of 
+peroxiredoxins.  Trends Biochem.  Sci.  28, 32  40. 
+
+

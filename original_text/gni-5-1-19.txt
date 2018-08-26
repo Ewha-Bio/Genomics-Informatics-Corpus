@@ -1,0 +1,879 @@
+Genomics &  lnfonnatics  Vol.  5(1) 19-23, March 2007 
+
+Regression Models for Haplotype-Based Association Studies 
+
+Sohee Oh\ Jlfl1'tyln NaJTi<lr"lg end TaeSlJ1Q Park1•2 
+
+1 Department  of Statistics,  Seoul  National  University,  Seoul 
+151-742,  Korea,  2lnterdsciplinary  Program in  Bioinfamatics, 
+Seool  National  University,  Seoul  151-742,  Korea 
+
+Abstract 
+
+In this paper, we provide an overview of statistical models 
+for haplotype-based association studies, and summarize 
+their features based on the design matrix. We classify the 
+design  matrix into the two types:  direct and indirect  For 
+these tV\oU  kinds  of matrices,  we  present  and  compare 
+characteristics using a simple hypothetical example, and 
+a real  data set The motivation behind this study was to 
+provide practitioners with an improved understanding, to 
+facilitate  the  informed  selection  of  the  appropriate 
+haplotype-based model and to improve the interpretability 
+of the models. 
+
+Key  Wonts.·  Association,  Case-control  Study,  Design 
+Matrix,  Generalized Linear Model, Haplotype 
+
+Introduction 
+
+Several statistical approaches have been developed for 
+the analysis of association of singe nudeotide polymorph isms 
+(SNPs) and disease phenotypes. However, it has been 
+shoiMl that the association tests vvflich  rely on  SNPs may 
+loose power due to linkage disequilibrium (LD) among the 
+tested SN Ps (Epstein and Satten, 2003). To overcome this 
+problem,  alternative  approaches  based  on  haplotypes 
+have been developed. Haplotypes are specific combinations 
+of alleles at several loci on the same chromosome. They 
+can  sometimes  provide  greater  analytical  power  than 
+single-marker analysis  for  genetic association  studies. 
+This is because haplotypes are inherited together in the 
+majority  of  cases,  and 
+linkage 
+disequilibrium infonnation (Akeyand Xiong, 2003; Schaid, 
+2004).  Conversely, haplotype-based statistical analysis 
+has a weakness  since haplotypes are  often  not directly 
+
+incorporate 
+
+they 
+
+*Corresponding author:  E-mail  tspari<@stats.snu.ac.kr 
+Tel  +82-2-880-8924, Fax +82-2-883-6114 
+Accepted  13 Feb  2007 
+
+observable. Hence, haplotypes and their frequencies are 
+inferred by statistical methods such  as the Expectation(cid:173)
+Maximization  (EM)  algorithm  (Dempster  et  a/.,  1977; 
+Excoffier  and  Slatkin,  1995)  or the  Bayesian  method 
+(Stephens eta/., 2001;  Lin  eta/., 2002). 
+
+V\lithin the frameV\oUrk of the generalized linear model 
+(GLM), the haplotype effect on  traits can  be  statistically 
+described and tested.  The model can  be expressed  as 
+E(Y) = t ·1 (X/3),  vvhere  Y denotes the trait,  X represents 
+the haplotypes that are  coded  into the  design matrix, j3 
+denotes the effects of haplotype, and tis a function that 
+generalizes the usual linear regression  such  as logistic 
+regression  in  the  case-control  study.  Several  solutions 
+have  been  proposed  to  account  for  the  haplotype 
+ambiguity  problem  in  the  general  form  of  a  GLM. 
+However, since each method has its ovvn  merits, it is not 
+easy for  researchers  to  choose  the  most  appropriate 
+model  to  use  for  a  given  situation.  Furthermore,  the 
+interpretation  of the  result  is  not  simple  and  may vary 
+from method to method. Confusion and misinterpretation 
+of the results can  often occur. 
+
+In this paper, we review regression models for haplotype 
+based association studies and summarize their features 
+focused on the design matrices. We classify the haplotype 
+design matrices into direct and indirect types, and for these 
+we present and  compare  characteristics  vvith  a simple 
+hypothetical  example.  We then  apply the two  types  of 
+statistical models to a real  data set taken from a genetic 
+study undertaken by the CDC Chronic Fatigue Syndrome 
+Research Group (http://vvvvw.cdc.gov/nciod/ diseases/cfsf). 
+
+Regression models for haplotypes 
+
+In order to apply our statistical analysis, we shall designate 
+Yas a random variable ofthe binary trait representing the 
+disease status vvith  a realization of either 0 or 1 depending 
+on  vvhether the  subject is  a control  or a  genuine case, 
+respectively. Let (h,  h1) be a random variable that denotes 
+the pair of haplotypes for each individual, i=j or i t.j. Let H 
+={h1, h2, ... , hp}be a set ofhaplotypes. Then, the maximum 
+number  of possible  haplotypes  is  2m,  vvhere  m  is  the 
+number of SNPs. 
+
+In  association  studies,  the  main  interest  lies  in 
+estimating the effects of Hon Y. We review the statistical 
+models for the haplotype based association  studies and 
+compare their characteristics vvhile focusing on the design 
+
+20  Genomics &  lnfonnatics  Vol.  5(1) 19-23, March 2007 
+
+matrices and their implications. To explain the differences 
+between  the  design  matrices,  we  consider  a  simple 
+hypothetical example of five individuals. Table 1 shows 
+theirhaplotypes and probabilities. Individuals Y1,  Y3,  and 
+Y4  have  unambiguous haplotypes,  vvhile  the  remaining 
+individuals have ambiguous haplotypes.  We group  the 
+haplotype design  matrices into direct and indirect types. 
+The  direct type uses the  haplotype  probabilities  in  the 
+design  matrix  and  models  E(Y)  directly  in  tenns  of 
+haplotype probabilities,  vvhile the indirect type uses the 
+number of copies of haplotypes. 
+
+Table 1. A simple example of haplotype pairs and  probability 
+
+Individual 
+
+Haplotype pair 
+
+Probability 
+
+1 
+0.2 
+0.8 
+1 
+1 
+0.2 
+0.3 
+0.2 
+0.3 
+
+Table2. Design matrix 
+
+pair 
+
+lnd iv  Haplotype  P rob a 
+id ual 
+y, 
+y, 
+
+OOM 
+h, 
+0 
+
+h, 
+h, 
+1 
+0 
+0.1  0.4  0.4  0.1 
+
+h, 
+0 
+
+0 
+0 
+
+1 
+0.5 
+
+0 
+0.5 
+0.25  0.2  0.25  0.3 
+
+0 
+0 
+
+IOM 
+
+h,  h,  h,  h,  weight 
+2 
+1 
+0 
+0 
+0 
+1 
+1 
+0 
+0 
+
+0  0 
+0 
+1 
+1  0 
+0  0 
+0 
+1 
+0  0 
+0 
+1 
+1  0 
+1  1 
+
+1 
+0.2 
+0.8 
+1 
+1 
+0.2 
+0.3 
+0.2 
+0.3 
+
+0 
+0 
+1 
+2 
+1 
+1 
+0 
+1 
+0 
+
+b ility 
+1 
+0.2 
+0.8 
+1 
+1 
+0.2 
+0.3 
+0.2 
+0.3 
+
+y, 
+y, 
+y, 
+
+(h,,  h,) 
+(h,,  h,) 
+(h2,  h,) 
+(h2,  h2) 
+(h2,  h,) 
+(h,,  h2) 
+(h,,  h,) 
+(h2,  h,) 
+(h,,  h,) 
+
+contributions  of ambiguous  pairs  of haplotypes  in  the 
+design matrix are based on the half of the probabilities of 
+the  haplotype  pairs  that  are  estimated  by  the  EM 
+algorithm  or other  statistical  inference  methods.  DDM 
+relates  the  predictors based  on  haplotype  probabilities 
+with  the trait values.  Zaykin  eta/. (2002) proposed the 
+Haplotype  Trend  Regression  (HTR)  model  using  the 
+direct  design  matrix.  HTR  is  a  regression  model  that 
+relates haplotype probabilities with disease phenotypes. 
+In Table 2we present DDM data using a hypothetical exarrple. 
+
+Direct Design Matrix (DDM) 
+The direct type  of design  matrix relies on  the  estimated 
+haplotype probabilities (proportions).  The  contributions 
+of the haplotypes are weighted using these probabilities, 
+and  unambiguous  pairs  of haplotypes  are  coded  1 for 
+the  homozygous and  0.5 for each  of the  heterozygous 
+haplotypes.  All  other haplotypes  are  coded  as  0.  The 
+
+Indirect Design Matrix (IDM) 
+Consider a model vvhich  is dependent on  the number of 
+copies of haplotypes. The design  matrix consists of the 
+haplotype  counts  and  the  estimated  haplotype  pair 
+probabilities. The indirect design  matrix haplotype pairs 
+are coded as 2forthe homozygous haplotypes, and 1 for 
+each of the heterozygous haplotypes irrespective of the 
+
+Table 3.  Comparison of Methods for Haplotype association based on the  Design Matrix 
+"'" 
+
+Haplotype presentation 
+
+Model  without 
+
+intercept 
+
+Model  with 
+intercept 
+
+Softvvare 
+
+Meaning of Significance for 
+
+haplotype-specific 
+
+Meaning of Significance for 
+
+Global haplotypes 
+
+Meaning of Significance for 
+
+ha  lo 
+
+e·s  ecific 
+
+Meaning of Significance for 
+
+Global haplotypes 
+
+Implemented Program 
+
+Statistic 
+
+Type of Trait 
+
+Likelihood 
+
+Environmental  covariates 
+
+Haplotypes that increase( decrease) the  odds of trait 
+
+AJI  haplotypes have no additive effect on trait 
+
+The odds of trait compare as baseline haplotype 
+
+No  difference in effect compare to baseline haplotype 
+
+DDM 
+
+Model with interce  t 
+
+IDM 
+
+Rpackage ·  gop 
+
+HTR 
+
+Rpackage-
+haplo.stats 
+ha  lo.score 
+
+R package- haplo.stats 
+
+Haplo.glm 
+
+Chaplin 
+
+HPius 
+
+F·statistic 
+
+Permutation 
+
+LR statistic 
+
+(Global) 
+!·statistic 
+
+(haplotype-specific) 
+
+Robust score and  LR 
+
+stati sti c(GI obal) 
+Wald statistic 
+
+(haplotype-specific) 
+
+Exponential family 
+
+Exponential family 
+
+Pros  ective 
+
+No 
+
+Pros  ective 
+
+Yee 
+
+Binomial 
+
+Retros  ective 
+
+No 
+
+Score statistic 
+
+Binomial 
+
+Pros  ective 
+
+Yee 
+
+Missing data all001ed 
+
+Genotypes 
+
+Assumption of HWE 
+
+Population 
+
+Genotype and/or 
+
+Environmental 
+
+covariates 
+Population 
+
+Genotypes 
+
+Genotypes 
+
+Controls 
+
+Controls 
+
+haplotype ambiguity. All otherhaplotypes are coded as 0. 
+The model is fitted by a weighted estimation method using 
+the haplotype pair probability as weight. The model using 
+the indirect design  matrix assumes the additive effect of 
+the haplotypes, and is a special case ofthe weighted GLM. 
+VVe  can also account for dominant or recessive haplotype 
+effects within this framework. This matrix has been used 
+previously  in  association  studies  (Lake  et  a/.,  2003; 
+Epstein and Satten, 2003; Zhao eta/., 2003). In table 2we 
+present IDM  data using a hypothetical example,  and  in 
+Table 3 we summarize the proposed features. 
+
+Matrices  using  the  'two  type'  desig1  can  cause 
+problems during statistical modeling. In  DDM, the sum of 
+haplotypesforone individual is 1, vvhile in  IDM the sum of 
+haplotypes  for  one  raw  is  2.  Since  haplotypes  are 
+reconstructed from genotype data, there are always tV\oU 
+haplotypes. In this case, a multicollinearity problem occurs 
+during model fitting.  Multicollinearity refers to any linear 
+relationship  among  covariates  in  linear models.  In  the 
+presence  of  multicollinearity,  the  estimation  of  model 
+parameters becomes unstable. There are tvvu approaches 
+available to resolve this problem. One approach is to fit the 
+model  vvithout an  intercept. The second  approach  is to 
+exclude one haplotype in  order to reduce the rank of the 
+design  matrix.  The  excluded  haplotype  is  called  the 
+baseline  haplotype.  The  effect  of  other  haplotypes 
+represents  the  relative  risk  compared  to  the  baseline 
+haplotype. The most frequent haplotype is commonly used 
+as  a baseline. 
+
+Firstly,  let us consider the test  based on  the models 
+vvithout an intercept. In this case, we can test the individual 
+f!h  haplotype effect using the null  hypothesis Ho  :{3"  =  o. 
+The significance of this individual haplotype implies that 
+those vvtlo  have this  haplotype have  a higher risk than 
+those vvho  do not have this  haplotype,  vvtlen{3"  >  o.  For 
+risk  can  be 
+the 
+represented by the odds ratios.  In  addition, we can  test 
+the  global  haplotype  effects  using  the  null  hypothesis 
+that  all  elements of {3  are zero,  that  is,  Ho  : f3  =  o vvhich 
+implies no haplotype effects on  the trait. 
+
+regression  model, 
+
+logistic 
+
+this 
+
+Next,  consider  the  test  based  on  the  model  vvhich 
+excludes  a  baseline  haplotype.  We  can 
+test  the 
+individual  relative  haplotype  effect  by testing  the  null 
+hypothesis Ho  : f3t  =  o. The significance of this individual 
+haplotype  implies  that  those  vvho  have  this  haplotype 
+have  a  higher  risk than  those  vvho  have  the  baseline 
+haplotype,  vvflen  {3"  >  o.  In  addition, we can  test for the 
+global  effects  of haplotypes  using  the  null  hypothesis 
+that  all  elements  of {3  are zero.  The significance  of the 
+test  result  implies  that  there  are  some  differences 
+among the effects of the haplotypes on the trait. 
+
+The meaning of the global test for the model without 
+
+Regression Models for Haplotype-Based Association studies  21 
+
+an  intercept is different from that for the model  vvith  an 
+intercept.  Therefore,  the  global  test  results  need to be 
+interpreted carefully.  For the model without an  intercept, 
+the  test  for  the  hypothesis  Ho  : {31  -
+{3"  is 
+equivalent  to  the  global  test  for  the  model  with  an 
+intercept. 
+
+{3,  =· ·· =  fJ1  -
+
+The interpretation  of the test results for each  design 
+matrix is presented in table 3.  It also summarizes the list 
+and the important features oft he software programs that 
+implement  these  models.  These  features  include  test 
+statistics,  trait types,  likelihood,  the handling ability for 
+environmental  covariates  and  missing  observations, 
+and a test for the Hardy-Weinberg equilibrium  (HWE). 
+
+Example 
+In this section, we compare characteristics of two design 
+matrices  and  present  the  interpretation  of  haplotype 
+effects  using a  dataset from  the  CDC Chronic  Fatigue 
+Syndrome  Research  Group  (http://vvvvw.cdc.gov/nciod/ 
+diseases/cfsD. In this example, we used a CFS group as 
+the  case  study (55  subjects)  and  a non-fatigued  group 
+as  the  control  (54  subjects).  We analyzed three  SNPs, 
+rs258750,  rs6188,  and  rs852977  in  the  NR3C1  gene 
+vvhich  are  knovvn 
+to  associate  with  CFS  (Online 
+Mendelian  Inheritance in  Man  (OMIM)).  The estimated 
+haplotype frequencies by the EM algorithm are shovvn in 
+table 4.  We did not consider haplotype 7,  vvhich  has an 
+estimated frequency of zero. 
+
+We fit the logistic regression models, vvith and without 
+an  intercept, using two types of design matrices. Lake et 
+a/.  (2003) mentioned that haplotype frequencies should 
+be  at  least  5%  to  avoid  biased  estimations  of  the 
+regression  parameters.  For this reason, the haplotypes 
+with frequencies below0.05 were pooled together into a 
+rare haplotype group, denoted by h,. Tables 5 shows the 
+results  of the model fit obtained using SAS version  9.1 
+(SAS Institute Inc.,  Cary, NC, USA) with  both  DDM and 
+IDM.  For  models  vvithout  an 
+intercept  using  both 
+matrices, haplotypes 4 and 5 had statistically significant 
+effects at the 5% confidence level, vvhile all other effects 
+were not significant. The global test yielded a significant 
+
+Table 4. Estimated haplctwes md freCJ.lencies in the I\R3C1 gene 
+
+No.  Haplotype 
+
+1 -
+AAG 
+2 
+ACA 
+3 
+4 
+ACG 
+GAA 
+5 
+GAG 
+6 
+GCA 
+7 
+8 
+GCG 
+
+Total 
+
+Frequency 
+0.00979 
+0.02393 
+0.02134 
+0.60094 
+0.17528 
+0.13962 
+
+0 
+
+0.02909 
+
+Frequency 
+0.00743 
+0.02202 
+0.04513 
+0.49098 
+0.25299 
+0. 16200 
+
+0 
+
+0. 01944 
+
+Control  """"""""""""'C;·~~"" 
+Frequency 
+0.01316 
+0.02462 
+
+0 
+
+0 
+
+0.70674 
+0.09592 
+0.12085 
+
+0.03847 
+
+22  Genomics &  lnfonnatics  Vol.  5(1) 19-23, March 2007 
+
+Table 5. Results of model fit 
+1  No  intercept model 
+
+Parameter 
+
+Intercept 
+h4ACG 
+h5 GAA 
+h8 GAG 
+he 
+
+Global hypothesis 
+
+AJI{J=O 
+
+Model  Information Criteria 
+
+(AI C) 
+
+0.6574 
+-1.8147 
+-0.5810 
+0.0377 
+LR statistic :  11.6366 
+df:  4 
+
+0.3004 
+0.7204 
+0.7409 
+0.9679 
+
+147.470 
+
+Results from  1SAS HAPLOTYPE and LOGISTIC 
+ZVVe  used a cut-off value for rare haplotypes of  0 05 
+
+2  Intercept model 
+
+Parameter 
+
+Intercept 
+h4ACG 
+hsGAA 
+ht;GAG 
+
+h{ 
+
+Global hypothesis 
+
+AJI{J=O 
+
+Model  Information Criteria 
+
+(AI C) 
+
+Estimate 
+0.6574 
+
+S.E. 
+
+0.3004 
+
+-2.4721 
+-1.2384 
+-0.6197 
+LR statistic :  11.6274 
+df  :  3 
+
+0.8191 
+0.8616 
+1.0432 
+
+147.470 
+
+Estimate 
+
+S.E. 
+
+p-value 
+
+Estimate 
+
+S.E. 
+
+0.0286 
+0.0118 
+0.4329 
+0.9689 
+
+0.0203 
+
+p-value 
+0.0286 
+
+0.0025 
+0.1506 
+0.5525 
+
+0.0088 
+
+0.3371 
+-0.8797 
+-0.3262 
+-0.0299 
+L R statistic : 11.6519 
+df:  4 
+
+0.1498 
+0.3526 
+0.3641 
+0.4576 
+
+147.454 
+
+Estimate 
+0.6741 
+
+S.E. 
+
+0.2997 
+
+-1.2167 
+-0.6632 
+-0.3670 
+L R statistic : 11.6428 
+df  :  3 
+
+0.4048 
+0.4241 
+0.4931 
+
+147.454 
+
+p-value 
+
+0.0245 
+0.0126 
+0.3703 
+0.9478 
+
+0.0201 
+
+p-value 
+0.0245 
+
+0.0026 
+0.1179 
+0.4568 
+
+0.0087 
+
+result with 4 degrees of freedom (df), implying that there 
+is at least one significant individual haplotype effect. 
+
+For models with  an  intercept, haplotype 4 was  used 
+as  a baseline haplotype and in this case only haplotype 
+5 showed  a significant  result.  The  global  test yielded  a 
+significant result with  3 df,  implying that there is at least 
+one  individual  haplotype  that  showed  a  significantly 
+different effect from the  baseline haplotype 4.  If we  are 
+interested  in  the  effects  of a  specific  haplotype  on  a 
+disease, the models that do not have an  intercept should 
+be  applied.  On  the  other hand,  if we  are  interested  in 
+comparing  the  relative  effects  of a  haplotype  with  the 
+baseline  haplotype,  the  models  that have  an  intercept 
+are recommended. 
+
+Discussion 
+In  this  paper  we  have  discussed  issues  regarding 
+modeling for haplotype association using different design 
+matrices,  and we  have presented the features  of each 
+method  within  the  GLM  framework.  VVe  classified  the 
+haplotype design matrices into a direct type and an  indirect 
+type.  Additionally,  we  considered the  models  with  and 
+vvithout an intercept. The direct type of design matrix uses 
+the haplotype probabilities and models their effect directly, 
+vvhile  the  indirect  type  uses  the  number  of  copies  of 
+haplotypes. VVe  applied these methods to a dataset from 
+
+the CDC's Chronic Fatigue Syndrome Research  Group. 
+The elements ofthe tV\oU  design matrices are different, as 
+are the values ofthe parameter estimate and the standard 
+error.  For the logistic regression  model,  the  parameter 
+estimate can be represented by the odds ratios. As a result, 
+the same haplotype has a different odds ratio according 
+to the choice of design matrices. AIC values are the same 
+for both models vvith  and vvithout an  intercept. LR statistics 
+also have similar values for both models. However, vvhen 
+the intercept is included in the model, the dfofthe global 
+test increases. This increase relates to the power of the 
+test; namely, the power ofthe test is inversely proportional 
+to the numerical value of the degrees of freedom. 
+
+Modeling with DDM relies on the estimated proportions 
+of  the  haplotypes.  However,  this  approach  may  not 
+account for the variation due to the haplotype estimation. 
+It has been reported that this method may produce biased 
+and inefficient estimation of regression parameters vvhen 
+the effect sizes are large or haplotype uncertainty is high 
+(Lin  eta/., 2005). DDM does not allawfor dominant and 
+recessive effects ofhaplotypes, vvhile IDM allows for these 
+genetic models.  However,  it  has  also  been  shovvn  that 
+departure from HVVE can  cause severe biases in modeling 
+with  IDM (Satten  and  Epstein,  2004). 
+
+In  this  paper,  we  have  reviewed  and  compared  the 
+characteristics of commonly used models for haplotype 
+based association studies. VVe have classified the models 
+
+Regression Models for Haplotype-Based Association studies  23 
+
+into DDM and IDM types. Parameter interpretations of the 
+existence of an  intercept were found to be quite different. 
+As  shovvn  in  Table  3,  numerous  software  applications 
+have  been  developed  to  assist  with  haplotype  based 
+association studies. Unfortunately, the output from these 
+programs  is  not  easy  to  interpret.  This  can  cause 
+misinterpretation among users, and lead them to drawthe 
+vvrong  conclusions about the effects of haplotypes. The 
+main  motivation of this study was to provide practioners 
+with  a better insight to help them choose an  appropriate 
+model,  and improve the  interpretability of such  models. 
+OJr  empirical  studies  have  demonstrated  that  the 
+significant  haplotypes  can  differ  from  model  to  model 
+depending on the design matrix. Thus, researchers must 
+choose an  appropriate model according to their analysis 
+purpose and interpret the results accordingly. 
+
+Acknowledgements 
+
+This  work  was  supported  by  the  National  Research 
+Laboratory Program ofthe Korea Science and Engineering 
+Foundation (M1 0500000126). 
+
+References 
+Mey, J. and Xiong,  M. (2001). Haplotypesvs Single marker 
+linkage  disequilibrium tests:  what  do we  gain?  Eur.  J. 
+Hum  Genet.  9,  291-300. 
+
+Dempster,  A.P.,  Laird,  N.M.,  and  Rubin,  D.B.  (1977). 
+Maximum likelihood estimation from incomplete data via 
+the EM  algorithm. J.  R.  stat.  Soc.  39,  1-38. 
+
+Epstein,  M.P. and Satten, G.A. (2003). Inference on Haplotype 
+Effects in Case-Cootrd S:udies Using Unphased Genctype 
+
+Data. Am J.  Hum  Genet. 73,  1316-1329. 
+
+Excoflier,  L.  and  Slatkin,  M.  (1995)  Maximum-likelihood 
+estimation  of  molecular  haplotype  frequencies  in  a 
+diploid pq:~ulation. Mol.  Bioi.  Evol.  12,  921-927. 
+
+Lake,  S.L.,  Lyon,  H.,  Tantisira,  K.,  Silverman,  E.K.,  V\/eiss, 
+S.T.,  Laird,  N.M.,  and  Schaid,  D.J.  (2003).  Estimation 
+and Tests  of Haplotype-Environment  Interaction  when 
+Linkage  Phase Is Ambiguous. Hum Hered.  55,  56-65. 
+Lin,  D.Y.,  Zeng,  D.,  and  Millikan,  R.  (2005).  Maximum 
+
+Likelihood Estimation of Haplotype Effects and Haplotype(cid:173)
+Environment Interactions in Association Studies. Genet. 
+Epiderriol.  29,  299-312. 
+
+Lin,  S.,  Cutler,  D.J.,  Zwick,  M.E.,  and  Chakravarti,  A. 
+(2002).  Haplotype  Inference  in  Random  Population 
+Sarrples.Am J.  Hum  Genet. 71,1129-1137. 
+
+Satten,  G.A.  and  Epstein,  M.  (2004).  Comparison  of 
+Prospective and  Retrospective  Methods for  Haplotype 
+Inference  in  Case-Control  Studies.  Genet.  Epiderniol. 
+27,  192-201. 
+
+Schaid,  D.J. (2004).  Evaluating Associations ofHaplotypes 
+
+With Traits.  Genet.  Epiderniol.  27,  348-364. 
+
+Stephens,  M.,  Smith, N.J.,  and Donnelly,  P.  (2001). A New 
+Statistical  Method  for  Haplotype  Reconstruction  from 
+Population  Data. Am J.  Hum  Genet.  68,  978-989. 
+
+Zaykin,  D.V.,  V\/estfall,  P.H.,  Young,  S.S.,  Karnoub,  M.A., 
+V\lag1er,  M.J., and Ehm,  M.G. (2002). TestingAssociatioo 
+of Statistically  Inferred  Haplotypes  with  Discrete  and 
+Continuoos Traits in  Sarrples of Unrelated Individuals. 
+Hum Hered.  53,  79-91. 
+
+Zhao,  L.P.,  Li,  S.S.,  and Khalid,  N. (2003). A method for the 
+assessment of dsease associatioos with sin!}e-nudectide 
+polymcrphism haplctypes and environmental variables in 
+case-control studies. Am J.  Hum Genet. 72,  1231-1250. 
+
+

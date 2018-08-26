@@ -1,0 +1,170 @@
+Genomics  &  Informatics    Vol.  9(1)  37-38,  March  2011
+
+ManBIF:  a  Program  for  Mining  and  Managing  Biobank  Impact 
+Factor  Data
+
+program  is  required  to  search  for  multiple  biobanks 
+against  multiple  literature  files.
+    We  have  developed  ManBIF,  a  program,  to  search  for 
+Biobank  citation  information  from  PDF  files  in  the  liter-
+ature  to  produce  a  summary  report.
+
+Methods 
+
+System  Structure
+
+ManBIF  is  composed  of  three  modules  for  text  ex-
+traction,  indexing,  and  searching  (Fig.  1).
+    The  first  module  converts  PDF  files  to  text  files  and 
+extracts  the  full  text  for  searching.  The  converted  files 
+
+Fig.  1.  The  system  structure  of  ManBIF.
+
+Ki  Jin  Yu1,  Jungmin  Nam2,  Yun  Her2,  Minseock 
+Chu2,  Hyungseok  Seo2,  Junwoo  Kim2,  Jaepil 
+Jeon2,  Hyekyung  Park2  and  Kiejung  Park1*
+
+1Division  of  Bio-Medical  Informatics,  Center  for  Genome 
+Science,  National  Institute  of  Health,  Cheongwon-gun 
+363-951,  Korea,  and  2Division  of  Korea  BioBank, 
+Center 
+Institute  of 
+Health,  Cheongwon-gun  363-951,  Korea
+
+for  Genome  Science,  National 
+
+Abstract
+
+Biobank  Impact  Factor  (BIF),  which  is  a  very  effective 
+criterion  to  evaluate  the  activity  of  biobanks,  can  be  es-
+timated  by  the  citation  information  of  biobanks  from  sci-
+entific  papers.  We  have  developed  a  program,  ManBIF, 
+to  investigate  the  citation  information  from  PDF  files  in 
+the  literature.  The  program  manages  a  dictionary  for  ex-
+pressions  to  represent  biobanks  and  their  resources, 
+mines  the  citation  information  by  converting  PDF  files  to 
+text  files  and  searching  with  a  dictionary,  and  produces 
+a  statistical  report  file.  It  can  be  used  as  an  important 
+tool  by  biobanks. 
+
+Availability:  ManBIF  and  its  manual  are  available  at 
+http://cgs.cdc.go.kr/manbif
+
+Keywords:  biobank,  Biobank  Impact  Factor  Data
+
+Introduction
+
+Biobanks,  as  repository  organizations,  are  getting  more 
+and  more  important,  not  only  nationwide  but  also 
+worldwide.  As  their  roles  and  functions  are  being  ex-
+panded  to  effectively  maintain  and  distribute  biological 
+resources,  international  cooperation  and  competition  is 
+getting  very  active.
+    BIF  (Biobank  Impact  Factor),  a  comparative  index  of 
+citation  information  of  biobanks  in  scientific  papers,  is 
+used  as  a  major  criterion  of  biobank  activity  (Zika, 
+2010).
+    As  a  biobank  can  be  represented  with  several  names, 
+including  abbreviations  and  a  full  name,  a  dedicated 
+
+*Corresponding  author:  E-mail  kjpark63@gmail.com
+Tel  +82-43-719-8850,  Fax  +82-43-719-8869
+Accepted  7  March  2011
+
+Fig.  2.  Editing  the  ManBIF  biobank  dictionary.
+
+38    Genomics  &  Informatics    Vol.  9(1)  37-38,  March  2011
+
+Fig.  3.  Screenshots  of  ManBIF  search  results  that  show  a  list  of  biobanks  and  their  paper  hits  (a),  a  list  of  all  hit  papers
+stored  in  the  database  (b),  and  a  list  of  hit  papers  for  a  biobank  (c).
+
+are  stored  in  the  ManBIF  database.  The  second  module 
+analyzes  each  full  text  into  tokens  after  removing  un-
+necessary  words,  and  the  tokens  are  indexed  and  stor-
+ed  in  the  database.  The  last  module  searches  the  in-
+dexed  tokens  for  biobank  expressions  in  the  ManBIF  bi-
+obank  dictionary  (Fig.  2),  which  can  be  edited  for  man-
+aging  biobank  name  databases.  The  search  results  of  all 
+hits  against  all  biobanks  are  summarized  into  a  report.
+
+Implementation
+
+library 
+
+functions. 
+
+converted  with 
+
+ManBIF  was  implemented  with  Java,  and  many  libraries 
+and  tools  were  used.  iText  (Lowagie  and  Soares,  2010) 
+was  used  to  treat  and  convert  PDF  files.  The  PDF  files 
+are 
+Lucene 
+(Gospodnetic,  2010)  was  used  as  a  text  search  engine 
+to  support  high-performance  indexing  and  searching.  jxl 
+(GPL,  2009)  was  used  for  generating  Excel  files.  ManBIF 
+can  read  Excel  files  and  produce  search  result  files  in 
+Excel  format.
+    The  search  results  are  summarized  as  a  ‘biobanks  vs 
+paper  hits’  table,  and  more  detailed  results  are  also 
+shown,  including  the  detailed  hit  information  for  each  bi-
+obank  (Fig.  3).
+
+Result  and  Discussion
+
+ManBIF  analyzes  PDF  files  to  search  for  diverse  ex-
+pressions  of  all  biobanks  with  high-performance  index-
+ing  and  a  user-friendly  interface.  The  program  can  be 
+used  practically  for  evaluating  the  activity  of  biobanks  in 
+
+is, 
+
+‘Abstract,’ 
+
+‘Introduction,’ 
+
+a  given  interval.
+    The  program  can  be  improved  for  more  precise  and 
+categorical  searches.  Searching  by  sections  of  papers, 
+‘Methods,’  and 
+that 
+‘Results,’  can  be  more  helpful  to  analyze  precisely. 
+Showing  marked  hit  regions  directly  on  PDF  files  can  be 
+more  powerful  in  confirming  and  analyzing  hit  infor-
+mation.  The  search  feature  for  resource  names  or  IDs 
+related  to  biobanks  could  also  be  implemented  for 
+improvement.  Such  an  evolution  could  make  the  pro-
+gram  an  important  tool  for  biobanks.
+
+Acknowledgments
+
+This  work  was  supported  by  the  Korea  Biobank  Project 
+from 
+for  Disease  Control  and 
+Prevention.
+
+the  Korea  Centers 
+
+References
+
+GNU  General  Public  License  (GPL)  (2009).  Java  Excel  API  - 
+A  Java  API  to  read,  write  and  modify  Excel  spread-
+sheets.  http://www.jexcelapi.org.
+
+Gospodnetic,  O.  and  Hatcher,  E.  (2010).  Lucene  in  Action, 
+
+Second  Edition  (Manning  Publications).
+
+Lowagie,  B.  and  Soares,  P.  (2010).  iText  in  Action,  Second 
+
+Edition  (Manning  Publications).
+
+Zika,  E.,  Paci,  Daniele.,  Schulte  in  den  Bäumen,  T.,  Braun, 
+A.,  RijKers-Defrasne,  S.,  Deschénes,  M.,  Fortier, 
+
+I., 
+Laage-Hellman,  J.,  Scerri,  C.  A.  and  Ibarreta,  D.  (2010) 
+Biobanks  in  Europe:  Prospects  for  Harmonisation  and 
+Networking,  JRC  scientific  and  Technical  Reports.
+
+
