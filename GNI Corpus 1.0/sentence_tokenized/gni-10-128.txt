@@ -1,0 +1,218 @@
+
+=============Title==========
+Characteristics in Molecular Vibrational Frequency Patterns between Agonists and Antagonists of Histamine Receptors.
+=============Cor Author==========
+pISSN1598-866X  eISSN2234-0742Genomics & Informatics 2012;10(2):128-132http://dx.doi.org/10.5808/GI.2012.10.2.128Received April 18, 2012; Revised May 22, 2012; Accepted May 23, 2012* Tel: +82-51-893-3569, Fax: +82-51-797-8569, E-mail: o@biophilos.org
+===========Author==========
+ARTICLEReceived April 18, 2012; Revised May 22, 2012; Accepted May 23, 2012*S. June Oh*
+===========Keywords==========
+
+===========Abstract==========
+
+===========Main Text==========
+
+
+Department of Pharmacology, Inje University College of Medicine, Busan 614-735, KoreaIntroduction
+
+G protein-coupled receptors (GPCRs) are regarded to take up more than one-fourth of marketed human medicines [1, 2].
+
+
+
+Drugs targeting GPCRs account for the majority of the best-selling drugs and about 40%
+
+ of all prescription pharmaceuticals in the marketplace [3].
+
+
+
+Histamine receptors belong to one family of rhodopsin- like class A GPCRs, and four subtypes are named in chronological order as H, H, H, and H.   Histamine exerts its effects through the activation of these four histamine receptors.
+
+
+
+Each type of histamine receptor reacts to subtype- specific ligands into an active or inactive form.
+
+
+
+GPCRs are integral membrane proteins that consist of 7 transmembrane segments connected by 3 intracellular and 3 extracellular loops of variable length.
+
+
+
+The crystal structures of GPCRs with their binding ligands have revealed the features of the ligand binding pockets and extracellular loops [4-6].
+
+
+
+A ligand of GPCR activates the receptor by changing the receptor structure to the active form.
+
+
+
+The biogenic amine histamine [2-(1H-imidazol-5-yl) ethanamine] (Fig.
+
+
+
+1) is produced by decarboxylation of L-histidine and acts as a chemical mediator and neurotransmitter in central and peripheral tissues.
+
+
+
+It acts as an important pharmacological modulator involved in the processes of allergy, inflammation, neurophysiology, and cancer [7-10].
+
+
+
+The molecular understanding of ligand-receptor interactions of GPCR remains unclear and is still the subject of investigations.
+
+
+
+There are several theories explaining the ligand-receptor interaction mechanism, such as shape theory, binding theory, and vibration theory [11, 12].
+
+
+
+The structures of histamine receptor ligands are so variable that we can not easily classify the pharmacological function of the ligand.
+
+
+
+To find any other characteristic in the molecular patterns between agonists and antagonists of histamine receptors, a computational approach to molecular vibration was carried out in an attempt to find a bit of the molecular interaction mechanisms.
+
+
+
+Methods
+
+Dataset
+
+The simplified molecular-input line-entry system (SMILES) and 3-dimensional structure data format (SDF) files of the dataset were downloaded from the PubChem Compound Database in National Center for Biotechnology Information (NCBI) and used in the further analyses.
+
+
+
+All 47 ligand molecules in the dataset, comprising 9 histamine agonists and 38 histamine antagonists, are shown in Table 1.
+
+
+
+Structure comparison of histamine receptor ligands
+
+The molecular similarities between histamine and other 46 chemicals were calculated from SMILES of the chemicals.
+
+
+
+The structural similarity was calculated and represented as the Tanimoto distance of each molecule from histamine.
+
+
+
+The Tanimoto coefficient for pairwise comparison of molecules is the most widely used measure of molecular structural similarity.
+
+
+
+This coefficient is defined as Tc = N/(NNN), with N being the number of common bits, N the unique bits in molecule a, and N the unique bits in molecule b, using a molecular fingerprint [13].
+
+
+
+In this study, the molecular similarity was calculated as the Tanimoto coefficient using the 38-bit set.
+
+
+
+Geometry optimization and calculation of molecular vibrational frequency
+
+In order to calculate molecular vibrational frequency, the structure of a chemical must first be geometrically optimized.
+
+
+
+Since each provided theoretical 3-D conformer SDF is not at an energy minimum and may not represent the lowest energetic form in a vacuum, solvent, or a binding pocket, each SDF file of a ligand molecule underwent conversion to a single low-energy conformation using the general atomic and molecular electronic structure system (GAMESS) program package [14].
+
+
+
+Restricted Hartree-Fock (RHF) calculations using Becke's exchange and Lee-Yang-Parr’s correlation functionals (BLYP) density functional theory (DFT) method with 6-31G basis set were performed to optimize the geometries of the molecules.
+
+
+
+Each result was taken as the representative conformation of the molecule, although the calculation of molecular vibrational frequency has some dependence on conformation.
+
+
+
+Each geometry optimization result was subjected to the calculation step for the vibrational frequency with RUNTYP of HESSIAN in the GAMESS program.
+
+
+
+Hierarchical clustering of the corralled intensity of molecular vibrational frequency (CIMVF)
+
+For the simplified molecular comparison, the calculated vibrational frequencies of a molecule were then sorted in increasing order and taken into the corrals, the step size of which was 5.
+
+
+
+The intensities of each frequency in the same corral were summed up as the representative of the corral in the frequency range of 0-5,000 cm.
+
+
+
+As a final outcome, this potential molecular descriptor of each molecule was displayed in a 1-dimensional vector containing 1,000 elements.
+
+
+
+Finally, the similarity matrix, comprising the descriptors of 47 ligands of histamine receptor, was then subjected to hierarchical clustering in the agglomerative manner.
+
+
+
+In this study, the similarity matrix was finally clustered to make an unrooted tree of 47 vertices.
+
+
+
+The calculations of CIMVF were performed by in-house scripts, written in Python.
+
+
+
+Results and Discussion
+
+The Tanimoto coefficients between histamine and other ligand molecules are shown in Table 2.
+
+
+
+Typically, a Tanimoto coefficient 0.85 is considered highly similar, and a coefficient 0.75 is considered similar for the purpose of clustering molecules that may have similar biological activity profiles [15].
+
+
+
+The highest Tanimoto coefficient among agonists was 0.45 (imetit), and this is not high enough to be considered a molecule that has potential agonist efficacy.
+
+
+
+Moreover, the lowest value of Tanimoto coefficient among agonists was 0.08 (dimaprit and SKF91488) and is also a lower value as an antagonist.
+
+
+
+It seems that there is no related pattern between Tanimoto coefficients and the functional types of molecules in the case of histamine receptor agonists or antagonists.
+
+
+
+To search for a novel characteristic for the classification of histamine receptor ligands, a kind of molecular calculation using agglomerative hierarchical clustering was adopted in this work.
+
+
+
+The result of the hierarchical clustering of the similarity matrix from CIMVF is shown in Fig.
+
+
+
+2.
+
+
+
+As shown in the figure, eight agonists were located nearby (the part in the dotted circle), except impromidine, and all antagonists were clustered close to each other in the radial tree.
+
+
+
+We can tell the regional difference between agonists and antagonists in the tree and also find that the information from the molecular vibrational frequency may play a role in the classification of agonists/antagonists for histamine receptor as a possible molecular descriptor.
+
+
+
+For these methods, clustering with CIMVF shows the more proper result in the case of histamine receptor ligands.
+
+
+
+With a more concentrated study on the relationship between the molecular vibrational frequency and pharmacological function of a ligand, the vibrational spectrum of a molecule may shed light on the field of ligand-receptor interaction mechanisms.
+
+
+
+Acknowledgments
+
+The author would like to express sincere appreciation to Prof.   C.   H.   Choi for the use of his cluster computer and his valuable advice.
+
+
+
+This work was supported by the 2010 Inje University research grant.
+
+
+
+References
+
