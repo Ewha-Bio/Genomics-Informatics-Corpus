@@ -1,0 +1,37 @@
+
+=============Title==========
+.
+=============Cor Author==========
+ARTICLEhttp://dx.doi.org/10.5808/GI.2012.10.1.51Vol. 10(1) 51-57, March 20121112
+===========Author==========
+Genomics & Informaticshttp://dx.doi.org/10.5808/GI.2012.10.1.51Vol. 10(1) 51-57, March 2012pISSN1598-866X eISSN2234-0742*Corresponding author: E-mail hojinc@kaist.ac.krTel +82-42-350-3561, Fax +82-42-350-3510Received 27 January 2012, Revised 8 February 2012, Accepted 13 February 2012An Efficient Approach to Mining Maximal Contiguous Frequent Patterns from Large DNA Sequence DatabasesMd. Rezaul Karim1, Md. Mamunur Rashid1, Byeong-Soo Jeong1 and Ho-Jin Choi2*1Md. Rezaul Karim1, Md. Mamunur Rashid1, Byeong-Soo Jeong1 and Ho-Jin Choi2*1Department of Computer Engineering, College of Electronics and Information, Kyung Hee University, Yongin 446-701, Korea, 2Department of Computer Science, Korea Advanced Institute of Science and Technology, Daejeon 305-701, KoreaAbstractMining interesting patterns from DNA sequences is one of the most challenging tasks in bioinformatics and computational biology. Maximal contiguous frequent patterns are preferable for expressing the function and structure of DNA sequences and hence can capture the common data characteristics among related sequences. Biologists are interested in finding frequent orderly ar-rangements of motifs that are responsible for similar ex-pression of a group of genes. In order to reduce mining time and complexity, however, most existing sequence mining algorithms either focus on finding short DNA se-quences or require explicit specification of sequence lengths in advance. The challenge is to find longer se-quences without specifying sequence lengths in ad-vance. In this paper, we propose an efficient approach to mining maximal contiguous frequent patterns from large DNA sequence datasets. The experimental results show that our proposed approach is memory-efficient and mines maximal contiguous frequent patterns within a reasonable time.Keywords: DNA sequence, maximal contiguous frequent pattern, pattern mining, suffix treeIntroductionMining patterns from DNA sequences refers to the task of discovering sequences that are similar or identical between different genomic locations or different geno-mes. How to efficiently discover long frequent con-tiguous sequences poses a great challenge for existing sequential pattern mining algorithms. The problem of finding the maximal contiguous frequent pattern is im-portant in bioinformatics and has been used for predict-ing biological functions held in genomic sequences [1-4]. In the beginning, the problem of finding common subsequences from sequences of more than 2 was studied [1, 2]; then, many tried to solve more general sequential pattern mining problems.  A typical a priori algorithm, such as Generalized Sequential Pattern algorithm (GSP) [5, 6], adopts a mul-tiple- pass, generation-and-test approach. In one pass, all single items (1-sequences) are counted. From the fre-quent items, a set of candidate 2-sequences are formed, and another pass is made to identify their frequency. The frequent 2-sequences are used to gen-erate the candidate 3-sequences, and this process is re-peated until no more frequent sequences are found. Normally, a hash tree-based search is employed for effi-cient support counting. Finally, non-maximal frequent sequences are removed. Based on this idea, a more ef-ficient algorithm, called PrefixSpan [7], has been pro-posed, which examines only the prefix subsequences and projects only their corresponding postfix sub-sequences into the projected database (PDB). In each PDB, contiguous sequences are grown by exploring lo-cal length-1 frequent sequences. A memory-based pseudo-projection technique is developed to reduce the cost of projection and speed up processing. When min-ing long frequent concatenated sequences, however, this method becomes inefficient in terms of time and space. Therefore, it is impractical to apply PrefixSpan to mine long contiguous sequences, like biological datasets.  Pan et al. [8] proposed to use a variable length span-ning tree to mine maximal concatenated frequent sub- sequences and developed algorithms, called Macos-FSpan and MacosVSpan, based on the PrefixSpan approach. MacosVSpan is efficient for mining long con-catenated frequent sub-sequences, whereas Macos-FSpan has some limitations, because it constructs length-4 fixed length candidate sequences first and re-cursively mines length-5, length-6 candidate sequences, etc. This is very time consuming, because in a practical DNA sequence database, a sub-sequence may occur multiple times in the same sequence. Another problem is that both MacosVSpan and MacosFSpan use the pointer-offset pair to represent the suffixes inside the in-memory pseudo PDB, which is not enough to repre-sent the huge number of suffixes in a physical PDB.
+===========Keywords==========
+
+===========Abstract==========
+
+===========Main Text==========
+52Genomics & InformaticsTable .
+
+Concepts and definitions53Fig. . 
+
+Maximal contiguous frequent suffix tree algorithm54Genomics & InformaticsTable .
+
+Table .
+
+Fig. .
+
+An illustrative example55Table .
+
+Fig. .
+
+MCFS algorithm on extra large DNA sequence database56Genomics & InformaticsFig. .
+
+Fig. .
+
+Fig. .
+
+Fig. .
+
+57Fig. . 
+
+Acknowledgments
