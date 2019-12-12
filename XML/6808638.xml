@@ -1,0 +1,753 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">31610626</article-id>
+      <article-id pub-id-type="pmc">6808638</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2019.17.3.e30</article-id>
+      <article-id pub-id-type="publisher-id">gi-2019-17-3-e30</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Communication</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Deep learning for stage prediction in neuroblastoma using gene expression data</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">http://orcid.org/0000-0003-0203-6069</contrib-id>
+          <name>
+            <surname>Park</surname>
+            <given-names>Aron</given-names>
+          </name>
+          <xref ref-type="aff" rid="af1-gi-2019-17-3-e30">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">http://orcid.org/0000-0002-0966-7915</contrib-id>
+          <name>
+            <surname>Nam</surname>
+            <given-names>Seungyoon</given-names>
+          </name>
+          <xref ref-type="aff" rid="af1-gi-2019-17-3-e30">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="af2-gi-2019-17-3-e30">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="aff" rid="af3-gi-2019-17-3-e30">
+            <sup>3</sup>
+          </xref>
+          <xref ref-type="aff" rid="af4-gi-2019-17-3-e30">
+            <sup>4</sup>
+          </xref>
+          <xref ref-type="corresp" rid="c1-gi-2019-17-3-e30">
+            <sup>*</sup>
+          </xref>
+        </contrib>
+        <aff id="af1-gi-2019-17-3-e30">
+<label>1</label>Department of Health Sciences and Technology, Gachon Advanced Institute for Health Sciences and Technology, Gachon University, Incheon 21565, <country>Korea</country></aff>
+        <aff id="af2-gi-2019-17-3-e30">
+<label>2</label>Department of Genome Medicine and Science, College of Medicine, Gachon University, Incheon 21565, <country>Korea</country></aff>
+        <aff id="af3-gi-2019-17-3-e30">
+<label>3</label>Department of Life Sciences, Gachon University, Seongnam 13120, <country>Korea</country></aff>
+        <aff id="af4-gi-2019-17-3-e30">
+<label>4</label>Gachon Institute of Genome Medicine and Science, Gachon University Gil Medical Center, Incheon 21565, <country>Korea</country></aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="c1-gi-2019-17-3-e30"><label>*</label>Corresponding author: E-mail: <email>nams@gachon.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="collection">
+        <month>9</month>
+        <year>2019</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>27</day>
+        <month>9</month>
+        <year>2019</year>
+      </pub-date>
+      <volume>17</volume>
+      <issue>3</issue>
+      <elocation-id>e30</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>29</day>
+          <month>8</month>
+          <year>2019</year>
+        </date>
+        <date date-type="accepted">
+          <day>10</day>
+          <month>9</month>
+          <year>2019</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>(c) 2019, Korea Genome Organization</copyright-statement>
+        <copyright-year>2019</copyright-year>
+        <license>
+          <license-p>(CC) This is an open-access article distributed under the terms of the Creative Commons Attribution license(<ext-link ext-link-type="uri" xlink:href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</ext-link>), which permits unrestricted use, distribution, and
+reproduction in any medium, provided the original work is properly cited.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Neuroblastoma is a major cause of cancer death in early childhood, and its timely and correct diagnosis is critical. Gene expression datasets have recently been considered as a powerful tool for cancer diagnosis and subtype classification. However, no attempts have yet been made to apply deep learning using gene expression to neuroblastoma classification, although deep learning has been applied to cancer diagnosis using image data. Taking the International Neuroblastoma Staging System stages as multiple classes, we designed a deep neural network using the gene expression patterns and stages of neuroblastoma patients. Despite a small patient population (n = 280), stage 1 and 4 patients were well distinguished. If it is possible to replicate this approach in a larger population, deep learning could play an important role in neuroblastoma staging.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>deep learning</kwd>
+        <kwd>gene expression</kwd>
+        <kwd>neuroblastoma</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>In addition to careful analyses of clinical symptoms, numerous diagnostic methods have been used to diagnose cancer [<xref rid="b1-gi-2019-17-3-e30" ref-type="bibr">1</xref>]. In particular, cancer is currently staged using various visual methods, such as radiography, computed tomography, bone scans, and positron emission tomography scans [<xref rid="b1-gi-2019-17-3-e30" ref-type="bibr">1</xref>].</p>
+      <p>With the increasing amount of available data from visual images over recent years, numerous diagnostic techniques for cancer have been developed through machine learning methods such as convolutional neural networks (CNNs) [<xref rid="b2-gi-2019-17-3-e30" ref-type="bibr">2</xref>,<xref rid="b3-gi-2019-17-3-e30" ref-type="bibr">3</xref>]. Moreover, methods for improving the performance of CNNs are being studied, and many models with effective architectures for classifying images have been developed [<xref rid="b4-gi-2019-17-3-e30" ref-type="bibr">4</xref>]. In recent years, categorical classification models that predict cancer stages or types of cancer have been constructed on the basis of image data [<xref rid="b4-gi-2019-17-3-e30" ref-type="bibr">4</xref>,<xref rid="b5-gi-2019-17-3-e30" ref-type="bibr">5</xref>].</p>
+      <p>In addition to image data, basic classifications, such as a diagnosis of cancerous versus healthy tissue, can be performed through gene expression data, and models have been developed using traditional machine learning methods. However, AI-based deep neural networks (DNNs) can be developed using classification models with data matrices of continuous values such as expression data. Unlike image data, genomic data can be used as a proxy for the early diagnosis of cancer, meaning that models based on gene expression data can also be useful for identifying or predicting the diagnosis or progression of cancer and for providing timely and appropriate cancer treatment [<xref rid="b6-gi-2019-17-3-e30" ref-type="bibr">6</xref>].</p>
+      <p>However, to construct a DNN model, a sufficient dataset is required [<xref rid="b7-gi-2019-17-3-e30" ref-type="bibr">7</xref>]. Although data can be obtained individually, it is possible to secure a sufficiently large dataset to build a model through the Gene Expression Omnibus (GEO) [<xref rid="b8-gi-2019-17-3-e30" ref-type="bibr">8</xref>] and The Cancer Genome Atlas (TCGA) [<xref rid="b9-gi-2019-17-3-e30" ref-type="bibr">9</xref>].</p>
+      <p>In addition to furnishing genomic data, these sources also provide data indicating patients&#x2019; medical status, allowing us to examine the correlations between clinical variables and specific genomic data of interest [<xref rid="b8-gi-2019-17-3-e30" ref-type="bibr">8</xref>,<xref rid="b9-gi-2019-17-3-e30" ref-type="bibr">9</xref>].</p>
+      <p>Neuroblastoma is an extracranial solid tumor that most commonly occurs in childhood [<xref rid="b10-gi-2019-17-3-e30" ref-type="bibr">10</xref>,<xref rid="b11-gi-2019-17-3-e30" ref-type="bibr">11</xref>]. The specific traits of neuroblastoma include its early age of onset, a tendency for spontaneous regression of the tumor in infancy, and the high frequency of metastatic disease at diagnosis [<xref rid="b10-gi-2019-17-3-e30" ref-type="bibr">10</xref>].</p>
+      <p>Neuroblastoma is staged using the International Neuroblastoma Staging System (INSS) [<xref rid="b12-gi-2019-17-3-e30" ref-type="bibr">12</xref>]. This system classifies tumors in terms of their appearance upon an analysis of surgical biopsy findings, but this staging system alone cannot help doctors to determine a plan for neuroblastoma treatment, since it is dependent upon surgical biopsy findings and its results are obtained post-surgery [<xref rid="b12-gi-2019-17-3-e30" ref-type="bibr">12</xref>,<xref rid="b13-gi-2019-17-3-e30" ref-type="bibr">13</xref>].</p>
+      <p>However, as increasing amounts of data on neuroblastoma have become available, and suitable genomic data can be obtained from public databases (e.g., GEO and TCGA), it is now possible to explore whether a correlation exists between INSS stages and genomic traits such as the mutation profile or gene expression data [<xref rid="b14-gi-2019-17-3-e30" ref-type="bibr">14</xref>].</p>
+      <p>In this study, in order to identify such correlations, we developed a simple DNN model using a data set of neuroblastoma patients including gene expression data and clinical data (i.e., INSS stages). We investigated whether our DNN model with gene expression data could classify the INSS stages.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>Dataset and data handling</title>
+        <p>As a public neuroblastoma dataset, we downloaded accession GSE85047 [<xref rid="b15-gi-2019-17-3-e30" ref-type="bibr">15</xref>] from the GEO database (<ext-link ext-link-type="uri" xlink:href="https://www.ncbi.nlm.nih.gov/geo/">https://www.ncbi.nlm.nih.gov/geo/</ext-link>). GSE85047 contains 280 samples of neuroblastoma clinical data and the data matrix includes INSS stage and expression array data. An expression array was performed using an Affymetrix Human Exon 1.0 ST Array (Affymetrix, Santa Clara, CA, USA) (<xref rid="f1-gi-2019-17-3-e30" ref-type="fig">Fig. 1</xref>). The INSS stages (1, 2, 3, 4, and 4S) were considered as classes.</p>
+        <p>In order to convert the array ID into the HUGO gene symbol, we used the GPL5175 probe-gene symbol mapping annotation file. Next, we edited the matrix containing only INSS stage and gene expression array data for data feeding into the DNN architecture. The data matrix was 280 patients by 13,091 gene symbols. We split this data matrix into a training set and test set at a ratio of 8:2, using scikit-learn train_test_split (<xref rid="f1-gi-2019-17-3-e30" ref-type="fig">Fig. 1</xref>).</p>
+      </sec>
+      <sec>
+        <title>Model construction and validation</title>
+        <p>To construct our DNN model, we utilized TensorFlow 1.13.1 as our machine learning library with Python 3.6.0 [<xref rid="b16-gi-2019-17-3-e30" ref-type="bibr">16</xref>].</p>
+        <p>We chose tf.contrib.learn.DNNClassifier for model construction. For the hyperparameters of our model, we set the dropout rate at 0.15, we chose the Adam optimizer, and we fixed the learning rate at 1e-5. The activation function was leaky_relu and the number of layers was 4. The numbers of neurons of the layers were 512, 256, 128, and 16, respectively (<xref rid="f2-gi-2019-17-3-e30" ref-type="fig">Fig. 2</xref>). When we constructed our model under these hyperparameter settings, we set the number of learning steps as 5,000. An Nvidia Titan RTX 24GB was used for the GPU.</p>
+        <p>In order to obtain measurements for the performance of our model, accuracy was calculated using the predicted values from the training set and the test set; then, receiver operating characteristic curves and the area under the curve (AUC) were obtained by the roc-curve function in the scikit-learn package.</p>
+      </sec>
+    </sec>
+    <sec sec-type="results">
+      <title>Results</title>
+      <p>After 5,000 iterations with the training set, the accuracy was calculated from each training set and test set, with values of 100% and 55.56%, respectively.</p>
+      <p>In the training set, the macro-average AUC, micro-average AUC, and all the AUC values for one-versus-rest (OVR) decisions were all 1 (<xref rid="f3-gi-2019-17-3-e30" ref-type="fig">Fig. 3A</xref>). In the test set, we observed a macro-average AUC of 0.71, and a micro-average AUC of 0.77 for five-class classification and prediction using our model. The OVR AUCs for stages (equivalently, classes) 1, 2, 3, 4 and 4S were 0.8, 0.66, 0.59, 0.85, and 0.58, respectively (<xref rid="f3-gi-2019-17-3-e30" ref-type="fig">Fig. 3B</xref>). Overall, we observed that our model predicted stage 1 and 4 patients well.</p>
+    </sec>
+    <sec sec-type="discussion">
+      <title>Discussion</title>
+      <p>From these results, we could distinguish stages 1 and 4 in neuroblastoma patients. Considering the poor prediction of the other stages in the test set, it is likely that overfitting occurred for stages 2, 3, and 4S. Alternatively, there may be no distinguishable genes between stages 2, 3, and 4S in terms of gene expression.</p>
+      <p>Our study was performed using data from a relatively small number of patients (280 cases). Increasing the number of patients to the order of 103 or 104 would be appropriate, since successful DNN construction requires several thousand labeled cases in biological problems [<xref rid="b7-gi-2019-17-3-e30" ref-type="bibr">7</xref>,<xref rid="b17-gi-2019-17-3-e30" ref-type="bibr">17</xref>].</p>
+    </sec>
+  </body>
+  <back>
+    <fn-group>
+      <fn fn-type="participating-researchers">
+        <p>
+          <bold>Authors&#x2019; Contribution</bold>
+        </p>
+        <p>Conceptualization: SN. Data curation: AP. Formal analysis: AP. Funding acquisition: SN. Methodology: AP. Writing &#x2013; original draft: AP. Writing &#x2013; review &amp; editing: AP, SN.</p>
+      </fn>
+      <fn fn-type="COI-statement">
+        <p>
+          <bold>Conflicts of Interest</bold>
+        </p>
+        <p>No potential conflict of interest relevant to this article was reported.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <p>This research was supported by Basic Science Research Program, through the National Research Foundation of Korea (NRF), funded by the Ministry of Education (NRF-2016R1D1A1B03933145 to SN).</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="b1-gi-2019-17-3-e30">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fass</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Imaging and cancer: a review</article-title>
+          <source>Mol Oncol</source>
+          <year>2008</year>
+          <volume>2</volume>
+          <fpage>115</fpage>
+          <lpage>152</lpage>
+          <pub-id pub-id-type="pmid">19383333</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b2-gi-2019-17-3-e30">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Asri</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Mousannif</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Moatassime</surname>
+              <given-names>HA</given-names>
+            </name>
+            <name>
+              <surname>Noel</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Using machine learning algorithms for breast cancer risk prediction and diagnosis</article-title>
+          <source>Proc Comput Sci</source>
+          <year>2016</year>
+          <volume>83</volume>
+          <fpage>1064</fpage>
+          <lpage>1069</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b3-gi-2019-17-3-e30">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Agrawal</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Agrawal</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Neural network techniques for cancer prediction: a survey</article-title>
+          <source>Proc Comput Sci</source>
+          <year>2015</year>
+          <volume>60</volume>
+          <fpage>769</fpage>
+          <lpage>774</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b4-gi-2019-17-3-e30">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jakimovski</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Davcev</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Using double convolution neural network for lung cancer stage detection</article-title>
+          <source>Appl Sci</source>
+          <year>2019</year>
+          <volume>9</volume>
+          <fpage>427</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b5-gi-2019-17-3-e30">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Levine</surname>
+              <given-names>AB</given-names>
+            </name>
+            <name>
+              <surname>Schlosser</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Grewal</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Coope</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>SJM</given-names>
+            </name>
+            <name>
+              <surname>Yip</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Rise of the machines: advances in deep learning for cancer diagnosis</article-title>
+          <source>Trends Cancer</source>
+          <year>2019</year>
+          <volume>5</volume>
+          <fpage>157</fpage>
+          <lpage>169</lpage>
+          <pub-id pub-id-type="pmid">30898263</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b6-gi-2019-17-3-e30">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kourou</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Exarchos</surname>
+              <given-names>TP</given-names>
+            </name>
+            <name>
+              <surname>Exarchos</surname>
+              <given-names>KP</given-names>
+            </name>
+            <name>
+              <surname>Karamouzis</surname>
+              <given-names>MV</given-names>
+            </name>
+            <name>
+              <surname>Fotiadis</surname>
+              <given-names>DI</given-names>
+            </name>
+          </person-group>
+          <article-title>Machine learning applications in cancer prognosis and prediction</article-title>
+          <source>Comput Struct Biotechnol J</source>
+          <year>2015</year>
+          <volume>13</volume>
+          <fpage>8</fpage>
+          <lpage>17</lpage>
+          <pub-id pub-id-type="pmid">25750696</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b7-gi-2019-17-3-e30">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zou</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Huss</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Abid</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Mohammadi</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Torkamani</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Telenti</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>A primer on deep learning in genomics</article-title>
+          <source>Nat Genet</source>
+          <year>2019</year>
+          <volume>51</volume>
+          <fpage>12</fpage>
+          <lpage>18</lpage>
+          <pub-id pub-id-type="pmid">30478442</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b8-gi-2019-17-3-e30">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barrett</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Wilhite</surname>
+              <given-names>SE</given-names>
+            </name>
+            <name>
+              <surname>Ledoux</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Evangelista</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>IF</given-names>
+            </name>
+            <name>
+              <surname>Tomashevsky</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>NCBI GEO: archive for functional genomics data sets: update</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2013</year>
+          <volume>41</volume>
+          <fpage>D991</fpage>
+          <lpage>D995</lpage>
+          <pub-id pub-id-type="pmid">23193258</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b9-gi-2019-17-3-e30">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tomczak</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Czerwinska</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Wiznerowicz</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>The Cancer Genome Atlas (TCGA): an immeasurable source of knowledge</article-title>
+          <source>Contemp Oncol (Pozn)</source>
+          <year>2015</year>
+          <volume>19</volume>
+          <fpage>A68</fpage>
+          <lpage>A77</lpage>
+          <pub-id pub-id-type="pmid">25691825</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b10-gi-2019-17-3-e30">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Matthay</surname>
+              <given-names>KK</given-names>
+            </name>
+            <name>
+              <surname>Maris</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Schleiermacher</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Nakagawara</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Mackall</surname>
+              <given-names>CL</given-names>
+            </name>
+            <name>
+              <surname>Diller</surname>
+              <given-names>L</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Neuroblastoma</article-title>
+          <source>Nat Rev Dis Primers</source>
+          <year>2016</year>
+          <volume>2</volume>
+          <fpage>16078</fpage>
+          <pub-id pub-id-type="pmid">27830764</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b11-gi-2019-17-3-e30">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nakagawara</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Izumi</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Muramori</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Inada</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Nishi</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuroblastoma</article-title>
+          <source>Jpn J Clin Oncol</source>
+          <year>2018</year>
+          <volume>48</volume>
+          <fpage>214</fpage>
+          <lpage>241</lpage>
+          <pub-id pub-id-type="pmid">29378002</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b12-gi-2019-17-3-e30">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Salazar</surname>
+              <given-names>BM</given-names>
+            </name>
+            <name>
+              <surname>Balczewski</surname>
+              <given-names>EA</given-names>
+            </name>
+            <name>
+              <surname>Ung</surname>
+              <given-names>CY</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuroblastoma, a paradigm for big data science in pediatric oncology</article-title>
+          <source>Int J Mol Sci</source>
+          <year>2016</year>
+          <volume>18</volume>
+          <fpage>E37</fpage>
+          <pub-id pub-id-type="pmid">28035989</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b13-gi-2019-17-3-e30">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brisse</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>McCarville</surname>
+              <given-names>MB</given-names>
+            </name>
+            <name>
+              <surname>Granata</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Krug</surname>
+              <given-names>KB</given-names>
+            </name>
+            <name>
+              <surname>Wootton-Gorges</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Kanegawa</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Guidelines for imaging and staging of neuroblastic tumors: consensus report from the International Neuroblastoma Risk Group Project</article-title>
+          <source>Radiology</source>
+          <year>2011</year>
+          <volume>261</volume>
+          <fpage>243</fpage>
+          <lpage>257</lpage>
+          <pub-id pub-id-type="pmid">21586679</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b14-gi-2019-17-3-e30">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pugh</surname>
+              <given-names>TJ</given-names>
+            </name>
+            <name>
+              <surname>Morozova</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Attiyeh</surname>
+              <given-names>EF</given-names>
+            </name>
+            <name>
+              <surname>Asgharzadeh</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Auclair</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The genetic landscape of high-risk neuroblastoma</article-title>
+          <source>Nat Genet</source>
+          <year>2013</year>
+          <volume>45</volume>
+          <fpage>279</fpage>
+          <lpage>284</lpage>
+          <pub-id pub-id-type="pmid">23334666</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b15-gi-2019-17-3-e30">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rajbhandari</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Lopez</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Capdevila</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Salvatori</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Rodriguez-Barrueco</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Cross-cohort analysis identifies a TEAD4-MYCN positive feedback loop as the core regulatory element of high-risk neuroblastoma</article-title>
+          <source>Cancer Discov</source>
+          <year>2018</year>
+          <volume>8</volume>
+          <fpage>582</fpage>
+          <lpage>599</lpage>
+          <pub-id pub-id-type="pmid">29510988</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b16-gi-2019-17-3-e30">
+        <label>16</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abadi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Barham</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Davis</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Dean</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>TensorFlow: a system for large-scale machine learning</article-title>
+          <conf-name>Proceedings of the 12th USENIX Symposium on Operating Systems Design and Implementation (ODSI &#x2019;16)</conf-name>
+          <conf-date>2016 Nov 2-4</conf-date>
+          <conf-loc>Savannah, GA, USA. Berkeley</conf-loc>
+          <conf-sponsor>The Advanced Computing Systems Association</conf-sponsor>
+          <year>2016</year>
+          <fpage>265</fpage>
+          <lpage>283</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b17-gi-2019-17-3-e30">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kautz</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Eskofier</surname>
+              <given-names>BM</given-names>
+            </name>
+            <name>
+              <surname>Pasluosta</surname>
+              <given-names>CF</given-names>
+            </name>
+          </person-group>
+          <article-title>Generic performance measure for multiclass-classifiers</article-title>
+          <source>Pattern Recognit</source>
+          <year>2017</year>
+          <volume>68</volume>
+          <fpage>111</fpage>
+          <lpage>125</lpage>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="f1-gi-2019-17-3-e30" orientation="portrait" position="float">
+      <label>Fig. 1.</label>
+      <caption>
+        <p>Overview of our model. Our model utilized a simple deep neural network architecture with GSE85047 gene expression data. The classes are the International Neuroblastoma Staging System stage of each patient from GSE85047. False positive rate (FPR), it is the calculated number of predicted false positives divided by the total number of negatives in the test set.; true positive rate (TPR), it is obtained as the number of predicted true positives divided by the total number of positives in the test set.</p>
+      </caption>
+      <graphic xlink:href="gi-2019-17-3-e30f1"/>
+    </fig>
+    <fig id="f2-gi-2019-17-3-e30" orientation="portrait" position="float">
+      <label>Fig. 2.</label>
+      <caption>
+        <p>Deep neural network architecture of our model.</p>
+      </caption>
+      <graphic xlink:href="gi-2019-17-3-e30f2"/>
+    </fig>
+    <fig id="f3-gi-2019-17-3-e30" orientation="portrait" position="float">
+      <label>Fig. 3.</label>
+      <caption>
+        <p>Model performance. (A) Receiver operating characteristic (ROC) curves and the area under the ROCs (AUROCs) of micro-, macro-, and one-versus-rest (OVR) decisions obtained from the training set. (B) The ROC curves and the AUROCs of micro-, macro-, and OVR decisions obtained from the test set.</p>
+      </caption>
+      <graphic xlink:href="gi-2019-17-3-e30f3"/>
+    </fig>
+  </floats-group>
+</article>
+</pmc-articleset>

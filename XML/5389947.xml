@@ -1,0 +1,1165 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">28416948</article-id>
+      <article-id pub-id-type="pmc">5389947</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2017.15.1.38</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Original Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Comparative Analysis of Predicted Gene Expression among Crenarchaeal Genomes</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Das</surname>
+            <given-names>Shibsankar</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Chottopadhyay</surname>
+            <given-names>Brajadulal</given-names>
+          </name>
+          <xref ref-type="aff" rid="A2">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sahoo</surname>
+            <given-names>Satyabrata</given-names>
+          </name>
+          <xref ref-type="aff" rid="A3">3</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="A1"><label>1</label>Department of Mathematics, Uluberia College, Uluberia 711315, India.</aff>
+      <aff id="A2"><label>2</label>Department of Physics, Jadavpur University, Kolkata 700032, India.</aff>
+      <aff id="A3"><label>3</label>Dhruba Chand Halder College, South 24 Parganas 743372, India.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +91-33-26610332, Fax: +91-33-26610240, <email>ssdas80@gmail.com</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>3</month>
+        <year>2017</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>29</day>
+        <month>3</month>
+        <year>2017</year>
+      </pub-date>
+      <volume>15</volume>
+      <issue>1</issue>
+      <fpage>38</fpage>
+      <lpage>47</lpage>
+      <history>
+        <date date-type="received">
+          <day>16</day>
+          <month>8</month>
+          <year>2016</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>28</day>
+          <month>11</month>
+          <year>2016</year>
+        </date>
+        <date date-type="accepted">
+          <day>26</day>
+          <month>1</month>
+          <year>2017</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2017 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2017</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Research into new methods for identifying highly expressed genes in anonymous genome sequences has been going on for more than 15 years. We presented here an alternative approach based on modified score of relative codon usage bias to identify highly expressed genes in crenarchaeal genomes. The proposed algorithm relies exclusively on sequence features for identifying the highly expressed genes. In this study, a comparative analysis of predicted highly expressed genes in five crenarchaeal genomes was performed using the score of Modified Relative Codon Bias Strength (MRCBS) as a numerical estimator of gene expression level. We found a systematic strong correlation between Codon Adaptation Index and MRCBS. Additionally, MRCBS correlated well with other expression measures. Our study indicates that MRCBS can consistently capture the highly expressed genes.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>Archaea</kwd>
+        <kwd>Codon Adaptation Index</kwd>
+        <kwd>codon bias index</kwd>
+        <kwd>codon usage</kwd>
+        <kwd>GC content</kwd>
+        <kwd>gene expression</kwd>
+        <kwd>predicted highly expressed genes</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>The expression of functional product of a gene is a foundation of modern biotechnology. Sixty-one codons to translate 20 amino acids and three codons to stop translation are employed in the genetic code. These codons are deciphered in the ribosome by complementary tRNAs that are attached with the proper amino acids [<xref rid="B1" ref-type="bibr">1</xref>]. The degeneracy of the genetic code enables same protein to be translated by many alternate nucleotide sequences. The frequency of different codons varies significantly between different organisms, and also between highly and lowly expressed genes in the same organism. There is a continuing speculation regarding the factors which influence these codon preferences. Attempts have been made to explain the codon distributions in protein coding genes as well as the variations in codon usages as mutation-selection stability among different synonymous codons in each organism [<xref rid="B2" ref-type="bibr">2</xref><xref rid="B3" ref-type="bibr">3</xref>]. Researchers have assumed that codon bias which tends to diminish the diversity of isoacceptor tRNAs may decrease the metabolic load [<xref rid="B4" ref-type="bibr">4</xref><xref rid="B5" ref-type="bibr">5</xref>]. Whatever may be the reason behind codon usage bias, it has gradually developed the idea that codon bias can have a thoughtful influence on the expression of genes. The equilibrium between mutation and natural selection on translational efficiency is supposed to cause of codon bias [<xref rid="B6" ref-type="bibr">6</xref><xref rid="B7" ref-type="bibr">7</xref>] and stronger relative codon usage bias (RCB) in highly expressed genes than lowly expressed genes is anticipated due to the natural selection [<xref rid="B8" ref-type="bibr">8</xref>]. The recent technical advances e.g., cDNA microarray, Serial Analysis of Gene Expression (SAGE), etc. are large-scale, high-throughput experimental methods which need material and information processing systems to match. Furthermore, a massive investment of time and resources put an obstacle before the investigators. Thus, to identify the highly expressed genes in vast majority of organisms, researchers were looked beyond the direct experimental methods. So, predicting gene expression level using computational approaches rather than experimental is more interesting because it evades expensive and laborious experiment.</p>
+      <p>It is observed that highly expressed genes will preferably choose an optimal subset of codons identified by the most abundant tRNA and highly expressed genes are often depicted by strong codon usage bias [<xref rid="B9" ref-type="bibr">9</xref><xref rid="B10" ref-type="bibr">10</xref><xref rid="B11" ref-type="bibr">11</xref><xref rid="B12" ref-type="bibr">12</xref><xref rid="B13" ref-type="bibr">13</xref><xref rid="B14" ref-type="bibr">14</xref><xref rid="B15" ref-type="bibr">15</xref><xref rid="B16" ref-type="bibr">16</xref>]. Based on this hypothesis, a variety of gene expression measures like Codon Adaptation Index (CAI) [<xref rid="B17" ref-type="bibr">17</xref>], Relative Codon Adaptation (RCA) [<xref rid="B18" ref-type="bibr">18</xref>], Relative Codon Bias Strength (RCBS) [<xref rid="B19" ref-type="bibr">19</xref><xref rid="B20" ref-type="bibr">20</xref><xref rid="B21" ref-type="bibr">21</xref>] which compute codon usage bias in genes are currently in use, and hence provide numerical indices to predict the expression levels of genes. Calculation of CAI score depends on the knowledge of codon bias of highly expressed genes. However, the determination of set of highly expressed gene is major problem to calculate CAI and CAI is also relatively noisy in the short region to capture local codon bias pattern [<xref rid="B22" ref-type="bibr">22</xref><xref rid="B23" ref-type="bibr">23</xref>]. Although the determination of set of highly expressed gene is not required for calculating score of RCBS, but RCBS has partial dependence on gene length (for genes having length &lt; 300 <italic>aa</italic>) [<xref rid="B18" ref-type="bibr">18</xref>]. Like CAI, RCA also depends on the knowledge of codon bias of highly expressed genes and it also depends on the size of the reference set because relative frequency is used to calculate relative adaptation of the codons [<xref rid="B24" ref-type="bibr">24</xref><xref rid="B25" ref-type="bibr">25</xref>]. In order to overcome the problems of partial dependence on gene length and determination of selective highly expressed genes as a reference set, we proposed here an alternative model (Modified Relative Codon Bias Strength [MRCBS]) to predict the expression levels of genes from their codon compositions. It has no length dependence on the gene size and uses codon usage of ribosomal protein (RP) genes which are believed to be highly expressed genes [<xref rid="B11" ref-type="bibr">11</xref><xref rid="B12" ref-type="bibr">12</xref>] as a reference set for our calculation. To measure the predictive performance of the methodology, we compared the performances of several commonly used measures in this work.</p>
+      <p>Here, we investigated the gene expression and the variation in patterns of synonymous codon usage across the crenarchaeal genomes. Crenarchaeota is one of the four phyla of Archaea and includes both cold-dwelling and hyperthermophilic prokaryotes. The cold-dwelling Crenarchaeota have been recognized only as community samples of 16S ribosomal RNA from the marine environments. The hyperthermophilic species of Crenarchaeota, some of which have the ability to grow at up to 113&#x2103;, have been isolated from geothermally heated soils, waters containing elemental sulfur and sulfides, or hydrothermal vents [<xref rid="B26" ref-type="bibr">26</xref>]. At higher temperatures, bioleaching rates of thermophilic organisms surpass their low temperature microbial counterparts and subsequently significant research interest grows to use of these organisms for biomining applications [<xref rid="B27" ref-type="bibr">27</xref>]. Cold-dwelling organisms survives extremely low temperature and uses antifreeze proteins (AFP) for their development and existence in subzero environments. AFPs can be applied in the field of aquaculture, agriculture, cryopreservation, cryosurgery, and food storage [<xref rid="B28" ref-type="bibr">28</xref><xref rid="B29" ref-type="bibr">29</xref>]. Metabolically, Crenarchaeota which are quite diverse and varying from chemoorganotrophs to chemolithoautotrophs, include anaerobes, facultative anaerobes or aerobes, and many of them employ sulfur in some way for energy metabolism [<xref rid="B30" ref-type="bibr">30</xref>]. Numerous species use carbon dioxide as only carbon source to produce organic matter, and procure energy by the oxidation of inorganic substances like sulfur and hydrogen, and reduction of sulfur or nitrate. Some species develop on organic substrates by aerobic or anaerobic respiration or by fermentation. The most remarkable property of the Crenarchaeota is their survival in the environment involving extremes of acidity and temperature.</p>
+      <p>These uncommon features of Crenarchaeota have fascinated the research interest of evolutionary biologists and biotechnology companies. The environment when first life emerged on the early Earth can be thought similar to the extreme conditions of the environment under which Crenarchaeota reside currently. This information proposes that first forms of life on earth may be similar to Crenarchaeota. Also, extreme resistance to heat and acid of cellular enzymes make Crenarchaeota very appealing to use in industry and research. Thus gene expression of crenarchaeal genomes is expected to make important contributions in several areas.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <p>The whole genomes along with gene annotations were retrieved from NCBI GenBank. All sequences marked as coding sequences were considered, including those annotated as hypothetical and those predicted by computational methods only. In this study, we measured the expression pattern and codon usage of five crenarchaeal genomes namely, <italic>Aeropyrumpernix</italic> K1 (GenBank accession No. NC_000854), <italic>Hyperthermus butylicus</italic> DSM 5456 (GenBank accession No. NC_008818), <italic>Pyrobaculum aerophilum</italic> IM2 (GenBank accession No. NC_003364), <italic>Sulfolobus solfataricus</italic> P2 (GenBank accession No. NC_002754), and <italic>Sulfolobus tokodaii</italic> 7 (GenBank accession No. NC_003106). In the following sections, we have briefly described the different expression level predictors CAI, RCBS, RCA, GC3, and Impact Codon and developed an alternative approach using the score of MRCBS.</p>
+      <sec>
+        <title>Codon Adaptation Index (CAI)</title>
+        <p>The CAI [<xref rid="B17" ref-type="bibr">17</xref>] measures the deviation of a given protein coding gene sequence with respect to a reference set of genes. It defines translationally optimal codons as those appear frequently in highly expressed genes. The CAI model assigns a parameter, termed &#x2018;relative adaptiveness&#x2019; to each of the 61 codons (stop codons excluded). Relative adaptiveness (<italic>w<sub>i</sub></italic>) is obtained by normalizing the frequency of each synonymous codons by the frequency of the most frequent codon. So, relative adaptiveness for most frequent codon is 1 and other codon is less than 1. The CAI of a gene is simply the geometric average of the relative adaptiveness of all codons in a gene sequence, <disp-formula><alternatives><mml:math id="m1"><mml:mstyle scriptlevel="+1"><mml:mi>C</mml:mi><mml:mi>A</mml:mi><mml:mi>I</mml:mi><mml:mo>=</mml:mo><mml:msup><mml:mrow><mml:mfenced separators="|"><mml:mrow><mml:mrow><mml:munderover><mml:mo stretchy="false">&#x220F;</mml:mo><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>N</mml:mi></mml:mrow></mml:munderover><mml:mrow><mml:msub><mml:mrow><mml:mi>w</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mrow></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mfrac><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>N</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:msup></mml:mstyle></mml:math><graphic xlink:href="gni-15-38-e001.jpg" position="float" orientation="portrait"/></alternatives></disp-formula> and <disp-formula><alternatives><mml:math id="m2"><mml:mstyle scriptlevel="+1"><mml:msub><mml:mrow><mml:mi>w</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msub><mml:mi mathvariant="normal">=</mml:mi><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>a</mml:mi><mml:mi>a</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi><mml:mi>a</mml:mi><mml:mi>x</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mfrac><mml:mo>,</mml:mo></mml:mstyle></mml:math><graphic xlink:href="gni-15-38-e002.jpg" position="float" orientation="portrait"/></alternatives></disp-formula> where <italic>f<sub>i</sub></italic> is the frequency of codon <italic>i</italic>, and <italic>f<sub>aa,max</sub></italic> is the maximum frequency of the codon most often used for encoding amino acid <italic>aa</italic> in a set of highly expressed genes of the particular genome. N is the number of codons in the gene. CAI ranges from 0 to 1. The higher are the CAI values, the genes are more likely to be highly expressed.</p>
+      </sec>
+      <sec>
+        <title>Relative Codon Bias Strength (RCBS)</title>
+        <p>The expression measure of a gene, RCBS [<xref rid="B19" ref-type="bibr">19</xref><xref rid="B20" ref-type="bibr">20</xref><xref rid="B21" ref-type="bibr">21</xref>] is given by <disp-formula><alternatives><mml:math id="m3"><mml:mstyle scriptlevel="+1"><mml:mi>R</mml:mi><mml:mi>C</mml:mi><mml:mi>B</mml:mi><mml:mi>S</mml:mi><mml:mo>=</mml:mo><mml:msup><mml:mrow><mml:mfenced separators="|"><mml:mrow><mml:mrow><mml:munderover><mml:mo stretchy="false">&#x220F;</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>L</mml:mi></mml:mrow></mml:munderover><mml:mrow><mml:mo>(</mml:mo><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:msubsup><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mi>y</mml:mi><mml:mi>z</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msubsup></mml:mrow></mml:mrow></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mn>1</mml:mn><mml:mo>/</mml:mo><mml:mi>L</mml:mi></mml:mrow></mml:msup><mml:mo>-</mml:mo><mml:mn>1</mml:mn></mml:mstyle></mml:math><graphic xlink:href="gni-15-38-e003.jpg" position="float" orientation="portrait"/></alternatives></disp-formula> and <disp-formula><alternatives><mml:math id="m4"><mml:mstyle scriptlevel="+1"><mml:msup><mml:mrow><mml:msub><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mi>y</mml:mi><mml:mi>z</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mi>y</mml:mi><mml:mi>z</mml:mi></mml:mrow></mml:msub><mml:mo>-</mml:mo><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>x</mml:mi><mml:mo>)</mml:mo><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>y</mml:mi><mml:mo>)</mml:mo><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>z</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>x</mml:mi><mml:mo>)</mml:mo><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>y</mml:mi><mml:mo>)</mml:mo><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>z</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:mfrac><mml:mo>,</mml:mo></mml:mstyle></mml:math><graphic xlink:href="gni-15-38-e004.jpg" position="float" orientation="portrait"/></alternatives></disp-formula> where <inline-formula><alternatives><mml:math id="m5"><mml:mstyle scriptlevel="+1"><mml:msubsup><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mi>y</mml:mi><mml:mi>z</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msubsup></mml:mstyle></mml:math><inline-graphic xlink:href="gni-15-38-i004.jpg"/></alternatives></inline-formula> is the RCB of i<sup>th</sup> codon of a gene, <italic>f<sub>xyz</sub></italic> is the normalized codon frequency for the codon <italic>xyz</italic> and <italic>f<sub>n</sub></italic>(<italic>m</italic>) is the normalized frequency of base <italic>m</italic> at codon position n in a gene. L is the number of codons in the gene.</p>
+      </sec>
+      <sec>
+        <title>Relative Codon Adaptation (RCA)</title>
+        <p>Fox and Erill [<xref rid="B18" ref-type="bibr">18</xref>] proposed RCA that measures codon bias of a gene based on a set of highly expressed genes. RCA makes use of a given reference set to compute observed and expected codon frequencies. Relative adaptation for individual codon <italic>xyz</italic> is defined as <disp-formula><alternatives><mml:math id="m6"><mml:mstyle scriptlevel="+1"><mml:msub><mml:mrow><mml:mi>R</mml:mi><mml:mi>C</mml:mi><mml:mi>A</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mi>y</mml:mi><mml:mi>z</mml:mi></mml:mrow></mml:msub><mml:mfenced separators="|"><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mi>y</mml:mi><mml:mi>z</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>x</mml:mi><mml:mo>)</mml:mo><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>y</mml:mi><mml:mo>)</mml:mo><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>z</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:mfrac></mml:mstyle></mml:math><graphic xlink:href="gni-15-38-e005.jpg" position="float" orientation="portrait"/></alternatives></disp-formula> Using this, RCA for entire gene is computed as <disp-formula><alternatives><mml:math id="m7"><mml:mstyle scriptlevel="+1"><mml:mi>R</mml:mi><mml:mi>C</mml:mi><mml:mi>A</mml:mi><mml:mo>=</mml:mo><mml:msup><mml:mrow><mml:mfenced separators="|"><mml:mrow><mml:mrow><mml:munderover><mml:mo stretchy="false">&#x220F;</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>L</mml:mi></mml:mrow></mml:munderover><mml:mrow><mml:msub><mml:mrow><mml:mi>R</mml:mi><mml:mi>C</mml:mi><mml:mi>A</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mi>y</mml:mi><mml:mi>z</mml:mi></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>i</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mfrac><mml:mrow><mml:mn>l</mml:mn></mml:mrow><mml:mrow><mml:mi>L</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:msup><mml:mo>,</mml:mo></mml:mstyle></mml:math><graphic xlink:href="gni-15-38-e006.jpg" position="float" orientation="portrait"/></alternatives></disp-formula> where <italic>f<sub>xyz</sub></italic> is the observed relative frequency of codon <italic>xyz</italic> in any reference gene set, <italic>f<sub>i</sub></italic>(<italic>m</italic>) is the observed relative frequency of base <italic>m</italic> at codon position <italic>i</italic> in the same reference set and <italic>L</italic> is the length of the query sequence.</p>
+      </sec>
+      <sec>
+        <title>GC<sub>3</sub></title>
+        <p>Highly expressed gene uses a set of optimal codons. These codons are biased to pyrimidines (i.e., C and T) ending at the third position. Shields [<xref rid="B31" ref-type="bibr">31</xref>] found that GC contents at silent sites were often correlated with gene expression. The base composition at silent sites measures the GC content at the third position of synonymous codons (GC<sub>3</sub>s) and can be used as an index of codon bias. It is the frequency of G or C nucleotides present at the third position of codons except non-degenerate codons (i.e., Met, Trp, and stop codons) <disp-formula><alternatives><mml:math id="m8"><mml:mstyle scriptlevel="+1"><mml:msub><mml:mrow><mml:mi mathvariant="normal">G</mml:mi><mml:mi mathvariant="normal">C</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mrow><mml:munder><mml:mo stretchy="false">&#x2211;</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mi>N</mml:mi><mml:mi>N</mml:mi><mml:mi>S</mml:mi><mml:mo>)</mml:mo><mml:mo>&#x2208;</mml:mo><mml:mi>C</mml:mi></mml:mrow></mml:munder><mml:mrow><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>N</mml:mi><mml:mi>N</mml:mi><mml:mi>S</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mrow></mml:mrow><mml:mrow><mml:mrow><mml:munder><mml:mo stretchy="false">&#x2211;</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mi>N</mml:mi><mml:mi>N</mml:mi><mml:mi>N</mml:mi><mml:mo>)</mml:mo><mml:mo>&#x2208;</mml:mo><mml:mi>C</mml:mi></mml:mrow></mml:munder><mml:mrow><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>N</mml:mi><mml:mi>N</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mrow></mml:mrow></mml:mfrac><mml:mo>,</mml:mo></mml:mstyle></mml:math><graphic xlink:href="gni-15-38-e007.jpg" position="float" orientation="portrait"/></alternatives></disp-formula> where <italic>N</italic> = any base, <italic>S</italic> = G or C. and <italic>f<sub>xyz</sub></italic> is the observed frequency of codon <italic>xyz</italic>.</p>
+      </sec>
+      <sec>
+        <title>Impact Codon</title>
+        <p>Das et al. [<xref rid="B32" ref-type="bibr">32</xref>] quantified the degree of codon bias by assigning an impact score (<italic>d<sub>xyz</sub><sup>i</sup></italic>) to each codon of a gene sequence, since it considers codon usage as well as the base compositional bias. Impact score is defined as <disp-formula><alternatives><mml:math id="m9"><mml:mstyle scriptlevel="+1"><mml:msup><mml:mrow><mml:msub><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mi>y</mml:mi><mml:mi>z</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mi>y</mml:mi><mml:mi>z</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>x</mml:mi><mml:mo>)</mml:mo><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>y</mml:mi><mml:mo>)</mml:mo><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>z</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:mfrac><mml:mo>,</mml:mo></mml:mstyle></mml:math><graphic xlink:href="gni-15-38-e008.jpg" position="float" orientation="portrait"/></alternatives></disp-formula> where <italic>f<sub>xyz</sub></italic> is the normalized codon frequency for the codon <italic>xyz</italic> and <italic>f<sub>n</sub></italic>(<italic>m</italic>) is the normalized frequency of base <italic>m</italic> at codon position n in a gene. If X&#x304; and &#xB5; denote the sample mean and population mean of the impact score for a particular codon respectively; and &#x3C3; the population standard deviation, then z score of a test statistics is given by <disp-formula><alternatives><mml:math id="m10"><mml:mstyle scriptlevel="+1"><mml:mi mathvariant="normal">z</mml:mi><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>X</mml:mi></mml:mrow><mml:mo>-</mml:mo></mml:mover><mml:mo>-</mml:mo><mml:mi>&#xB5;</mml:mi></mml:mrow><mml:mrow><mml:mi>&#x3C3;</mml:mi><mml:mo>/</mml:mo><mml:msqrt><mml:mi>N</mml:mi></mml:msqrt></mml:mrow></mml:mfrac><mml:mo>,</mml:mo></mml:mstyle></mml:math><graphic xlink:href="gni-15-38-e009.jpg" position="float" orientation="portrait"/></alternatives></disp-formula> where <italic>N</italic> is the total no of codons. The impact codons are then identified, based on the level of significance from the <italic>z</italic> score of test statistic. The scores of the impact codons differ markedly from the results expected in the absence of codon bias and it seems reasonable to assume that RCB in the highly expressed genes is strongly influenced by the presence of impact codons.</p>
+      </sec>
+      <sec>
+        <title>Modified Relative Codon Bias Strength (MRCBS)</title>
+        <p>The codon composition of genes fundamentally affects the protein translation. Our approach in estimating gene expression level is related to codon usage bias of a gene with respect to biased nucleotide composition at the three codon sites. Let <italic>f<sub>xyz</sub></italic> be the observed normalized codon frequency for the codon triplet (<italic>x,y,z</italic>) in a particular reference set of gene and <italic>f<sub>n</sub></italic>(<italic>m</italic>) is the relative observed frequency of base <italic>m</italic> at codon position <italic>n</italic> in the same reference set. Then, the RCB of a codon triplet (<italic>x,y,z</italic>) is defined as the ratio of observed frequency of a codon to the expected frequency under the hypothesis of random codon usage where the base compositions are biased at three sites as that in the reference set under study.</p>
+        <p>Thus the expression measure of MRCBS [<xref rid="B24" ref-type="bibr">24</xref><xref rid="B25" ref-type="bibr">25</xref>] of a gene is defined as <disp-formula><alternatives><mml:math id="m11"><mml:mstyle scriptlevel="+1"><mml:mi>M</mml:mi><mml:mi>R</mml:mi><mml:mi>C</mml:mi><mml:mi>B</mml:mi><mml:mi>S</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:munderover><mml:mo stretchy="false">&#x220F;</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>N</mml:mi></mml:mrow></mml:munderover><mml:mrow><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mrow><mml:mi>M</mml:mi><mml:mi>R</mml:mi><mml:mi>C</mml:mi><mml:mi>B</mml:mi><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mi>y</mml:mi><mml:mi>z</mml:mi></mml:mrow></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mn>1</mml:mn><mml:mo>/</mml:mo><mml:mi>N</mml:mi></mml:mrow></mml:msup><mml:mo>,</mml:mo></mml:mrow></mml:mrow></mml:mstyle></mml:math><graphic xlink:href="gni-15-38-e010.jpg" position="float" orientation="portrait"/></alternatives></disp-formula> where
+<disp-formula><alternatives><mml:math id="m12"><mml:mstyle scriptlevel="+1"><mml:msub><mml:mrow><mml:mi>M</mml:mi><mml:mi>R</mml:mi><mml:mi>C</mml:mi><mml:mi>B</mml:mi><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mi>y</mml:mi><mml:mi>z</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>R</mml:mi><mml:mi>C</mml:mi><mml:mi>B</mml:mi><mml:mi>S</mml:mi><mml:mfenced separators="|"><mml:mrow><mml:mi>x</mml:mi><mml:mi>y</mml:mi><mml:mi>z</mml:mi></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>R</mml:mi><mml:mi>C</mml:mi><mml:mi>B</mml:mi><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>a</mml:mi><mml:mi>a</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi><mml:mi>a</mml:mi><mml:mi>x</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mfrac><mml:mo>,</mml:mo><mml:mi>R</mml:mi><mml:mi>C</mml:mi><mml:mi>B</mml:mi><mml:mi>S</mml:mi><mml:mfenced separators="|"><mml:mrow><mml:mi>x</mml:mi><mml:mi>y</mml:mi><mml:mi>z</mml:mi></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mi>y</mml:mi><mml:mi>z</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>x</mml:mi><mml:mo>)</mml:mo><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>y</mml:mi><mml:mo>)</mml:mo><mml:msub><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mo>(</mml:mo><mml:mi>z</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:mfrac><mml:mo>,</mml:mo></mml:mstyle></mml:math><graphic xlink:href="gni-15-38-e011.jpg" position="float" orientation="portrait"/></alternatives></disp-formula> RCBS<sub><italic>aa</italic>,max</sub> is the maximum RCBS of codon encoding same amino acid <italic>aa</italic> in the same reference set, and <italic>N</italic> is the length in codons of the query sequence. MRCBS<sub><italic>xyz</italic></sub> is independent of the size of the reference set as it is the ratio of the RCBS of the codon <italic>xyz</italic> to the maximum of RCBS of codon encoding same amino acid. The value of MRCBS lies between 0 and 1.</p>
+        <p>In this study, the criteria MRCBS &gt; <italic>T</italic> (threshold score) was taken as a benchmark for identifying the highly expressed genes and methodology used to calculate threshold score as described in Sahoo and Das [<xref rid="B25" ref-type="bibr">25</xref>]. Due to evolving codon assignments as well as codon usage patterns as the adaptive response of genomes, threshold score for identifying highly expressed genes varies from genome to genome. For calculating threshold score (<italic>T</italic>), we defined a parameterization set to evaluate how well CAI value correlates actual expression level predicted by MRCBS. First, we calculated the CAI of the all genes by taking all RP (&gt; 80 <italic>aa</italic>) genes as predicted highly expressed genes (PHE) genes and called this as an evaluation set. Then taking an arbitrary threshold score <italic>T</italic> of MRCBS we differentiated highly expressed genes from lowly expressed genes. The highly expressed genes with expression level (MRCBS) greater than <italic>T</italic> define parameterization set. We calculated the CAI parameters taking parameterization set as reference set. With the parameters in hand, CAI values for all the genes in the data set were computed. In order to evaluate how well the MRCBS predicts expression level, we measured the correlation between CAI values of the data set and evaluation set as merit of the method. We iterated the procedure by changing the expression level threshold <italic>T</italic> and repeating the subsequent steps until we arrived at an optimal merit of the method. Thus, we obtained the optimal threshold value of MRCBS of the whole genome expression data.</p>
+        <p>In this work, the expression level predictors CAI, RCA, and MRCBS have been computed by comparing its codon usage bias with the profile of universally functional genes, such as the RP genes, which are commonly referred as a reference set. The PHE are then characterized on the basis of the strength of the codon usage bias derived from the algorithms as described above and a gene is identified as PHE gene provided its MRCBS exceeds threshold value. To this end, we computed Pearson r correlation coefficients between different codon usage bias indices.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Results and Discussion</title>
+      <p>We analyzed PHE genes in crenarchaeal genomes with respect to MRCBS. We calculated the expression pattern and codon usage in <italic>Aeropyrumpernix</italic> K1, <italic>Hyperthermus butylicus</italic> DSM 5456, <italic>Pyrobaculum aerophilum</italic> IM2, <italic>Sulfolobus solfataricus</italic> P2, and <italic>Sulfolobus tokodaii</italic> 7. Threshold scores used to classify highly expressed genes in our approach in <italic>Aeropyrumpernix</italic> K1, <italic>Hyperthermus butylicus</italic> DSM 5456, <italic>Pyrobaculum aerophilum</italic> IM2, <italic>Sulfolobus solfataricus</italic> P2, and <italic>Sulfolobus tokodaii</italic> 7 were turned out to be 0.75, 0.68, 0.76, 0.80, and 0.83, respectively. GC content of <italic>Aeropyrumpernix</italic> K1, <italic>Hyperthermus butylicus</italic> DSM 5456, <italic>Pyrobaculum aerophilum</italic> IM2, <italic>Sulfolobus solfataricus</italic> P2, and <italic>Sulfolobus tokodaii</italic> 7 are 56.31%, 53.74%, 51.36%, 35.79%, and 32.79%, respectively. This variation of GC content may be regarded as the main reason of codon usage variances between different species of Crenarchaeota. <xref ref-type="table" rid="T1">Table 1</xref> displays the statistics of PHE genes, GC content and the maximum value of MRCBS for each of the crenarchaeal genomes used in the study. It was observed that percentage of PHE genes in <italic>Escherichia coli</italic> was 9% to 10% [<xref rid="B9" ref-type="bibr">9</xref><xref rid="B15" ref-type="bibr">15</xref>] and percentage of PHE genes in <italic>Synechocystis</italic> was about 10% [<xref rid="B11" ref-type="bibr">11</xref>], whereas the percentage of PHE genes in crenarchaeal genomes varied from 11.53% to 33.38% and were independent of GC content or optimal growth temperature of these unicellular organisms. It indicates that the percentage of PHE genes in Crenarchaeota is higher than in bacteria. The correlation between growth temperature and genomic GC content has not established by most of the studies [<xref rid="B33" ref-type="bibr">33</xref><xref rid="B34" ref-type="bibr">34</xref>] and in general, the variation in GC content is mostly elucidated by subtle but persistent mutation biases [<xref rid="B35" ref-type="bibr">35</xref><xref rid="B36" ref-type="bibr">36</xref>].</p>
+      <p>It is familiar that highly expressed genes show stronger codon usage bias than the genes expressed at lower levels. In agreement with previous other reports [<xref rid="B9" ref-type="bibr">9</xref><xref rid="B10" ref-type="bibr">10</xref><xref rid="B11" ref-type="bibr">11</xref>], we observed that PHE genes of crenarchaeal species included RP genes, translational/transcription genes, chaperon or degradation genes and many stress and energy metabolism genes. However, all RP genes of crenarchaeal genomes do not incorporate the PHE gene class. The percentage of RP genes in crenarchaeal genomes varies from 47% to 87.88% whereas almost all RP genes in <italic>E. coli</italic> and yeast fall in PHE class of genes [<xref rid="B19" ref-type="bibr">19</xref><xref rid="B20" ref-type="bibr">20</xref>]. It is remarkable that 99.21% RP genes in yeast genome were PHE [<xref rid="B20" ref-type="bibr">20</xref>]. However, an average of 65.56% RP genes in crenarchaeal genomes were found to be PHE, indicating that many RP genes of crenarchaeal genomes were of reduced predicted expression level in contrast to <italic>E. coli</italic> and yeast. Crenarchaeota generally live in extreme environmental conditions that are likely to affect the expression level of the respective gene responsible for its habitat, energy sources and lifestyle. The highest predicted expression levels of top 10 genes for five crenarchaeal genomes are shown in <xref ref-type="table" rid="T2">Table 2</xref>. It is worth noticing that these genes are separated into different functional categories. Annotation of these PHE genes was done by Secondary (JCVI) Annotation (<ext-link ext-link-type="uri" xlink:href="http://cmr.jcvi.org/tigr-scripts/CMR/GenomePage.cgi">http://cmr.jcvi.org/tigr-scripts/CMR/GenomePage.cgi</ext-link>).</p>
+      <p>As it can be seen from the <xref ref-type="table" rid="T2">Table 2</xref>, the PHE genes are variably represented among crenarchaeal genomes. We observed that genes belonging to the class of translation, ribosomal structure and biogenesis were generally highly expressed. In the top 10 highly expressed genes among five crenarchaeal genomes, 28 RP genes (56%) were found to be highly expressed (shown in <xref ref-type="table" rid="T2">Table 2</xref>). The RNA polymerase subunits RpoA1, RpoA2, RpoB, RpoE1, RpoE2, RpoH, RpoK, RpoL, and RPoN as with bacterial genomes were found to be predominantly PHE in many crenarchaeal genomes. Several noticeable genes, e.g., Ths, PCNA, P0, Cdc48, and Pfd which are absent from bacterial genomes, but exist in eukaryotes, were found to be highly expressed in many crenarchaeal genomes. A number of genes which include ribonucleotide reductase, the DNA polymerase sliding clamp and members of the FAD synthetase family, exhibit cell cycle-dependent expression in crenarchaeal genomes. It should be noticed that these genes are usually existed by multiple copies in the genome. Among other PHE genes, Rieske iron-sulfur protein and ferredoxin have important functions in these organisms. Besides, we identified a number of PHE genes which play important role in signal transduction mechanism, amino acid transport and metabolism, secondary metabolites biosynthesis and catabolism, cell wall/membrane/envelop biogenesis, inorganic ion transport and metabolism, coenzyme transport and metabolism, carbohydrate transport and metabolism, intercellular trafficking, and energy production and conversion.</p>
+      <p>However, a portion of genes categorized as hypothetical genes may be obtained among the PHE genes in most crenarchaeal genomes. <xref ref-type="table" rid="T2">Table 2</xref> displays the general statistics of hypothetical or poorly characterized PHE genes found in several crenarchaeal genomes. Goodacre et al. [<xref rid="B37" ref-type="bibr">37</xref>] showed that 238 out of 355 essential proteins in 16 model bacterial species comprised proteins in domains of unknown function (DUFs), and most of them characterized single-domain proteins which clearly established the biological importance of DUFs. It suggests that experimental research should emphasis on conserved and essential DUFs for functional analysis. So, PHE hypothetical genes may be interesting candidates for experimental categorizations to find additional key features of the crenarchaeal cell cycle. The temporal and spatial grouping of these genes for chromosome replication, genome segregation, and cell division processes are little categorized in Crenarchaeota than in bacteria and eukaryotes. A comprehensive study of these putative/hypothetical PHE genes should produce a more comprehensive image of the replication and division machineries, and regulatory features of the cell cycle.</p>
+      <sec>
+        <title>Impact Codons</title>
+        <p>Most amino acids can be specified by more than one codon. Nevertheless, in highly expressed genes, only a subset of potential codons is used (<xref ref-type="table" rid="T3">Table 3</xref>). There were no impact codons coding His in the presently studied crenarchaeal genomes. The impact codons in crenarchaeal genomes was found to be mostly used in coding Phe, Leu, Tyr, Glu, Ser, Ala, Trp, Pro, Arg, and Gly. Besides His, no impact codons coding Asp and Cys were found in crenarchaeal genomes. The data set investigated here revealed a strong bias of the usage of favored codons in highly expressed genes but lowly expressed gene displayed small amount of synonymous codon usage bias. It is hypothesized that codon translated using an abundant tRNA expedite translation efficiency and this translation selection gives birth of codon usage bias. Frequencies of different codons were noticed to differ between genes in the same genome and between genomes. Using 61 codons and three non-sense codons, almost all organisms have prepared the same codon assignments for each amino acid, but the favored use of individual codons differs to a great extent among genes. The overall nucleotide composition of the genome governed by codon usage pattern is hypothesized to commence selective forces acting on highly expressed genes to expedite translation efficiency. There were no impact codons coding Met, Val, Gln, and Asn in <italic>Hyperthermus butylicus</italic> DSM 5456 and <italic>Pyrobaculum aerophilum</italic> IM2.</p>
+        <p>It was observed that the set of preferred (impact) codons in crenarchaeal genomes coding for Leu, Tyr, Lys, Glu, Arg, and Trp were ctt and ctc, tat and tac, aag, gag, aga and agg, and tgg, respectively. For mesophiles, atg and tcg were the preferential codons coding for Met and Ser while aag is the preferential codon coding for Lys in (hyper)thermophiles. It is important to notice that the distinguished preferred (impact) codons coding Arg and Ile separate mesophiles (cgc and atc) from (hyper)thermophiles (aga/agg and ata). There were no impact codons coding for Asp and Cys in crenarchaeal genomes. We observed that all favored (impact) codons were not GC rich in crenarchaeal genomes. So, GC3 could not accurately measure the bias in codon usage. It is generally acknowledged that bias in synonymous codon usage is influenced by the cellular amount of isoacceptor tRNA genes. In this study, we have noticed that all tRNA genes corresponding to impact codons have not been identified by tRNAscanSE and many tRNAs decode two or more codons, which indicates that impact codons may possibly influence translational efficiency. As the optimal set of favored codons is used in highly expressed genes, this observation could have significant role in improvement of tRNA finding algorithm.</p>
+      </sec>
+      <sec>
+        <title>Correlations among different codon bias indices</title>
+        <p>In this study, we compared the performances of several commonly used measures underlying gene expression. The outlines of gene expression of the crenarchaeal genomes were governed by calculating CAI, RCA, RCBS, and MRCBS. Currently, CAI has become widely accepted method for theoretically recognizing highly expressed genes from codon usage in various organisms. The CAI scores were calculated by taking all RP (&gt;80aa) genes as PHE genes which are commonly referred as reference set. RCA frequencies were computed using the identical reference set as used in the calculation of CAI. The results (<xref ref-type="fig" rid="F1">Fig. 1</xref>) indicate that there is a strong correlation between RCA and CAI while the correlation of RCBS with CAI is significantly smaller. The novel method of quantitatively calculating gene expressivity by MRCBS was then compared with CAI and correlation between them was found to be surprisingly good. These correlation coefficients can be used to express the strength of the existing prediction methods. It can be seen that MRCBS consistently yields better correlation than other. We also observed a clear correlation between CAI and GC<sub>3</sub>, but surprisingly, there was strong negative correlation between GC<sub>3</sub> and CAI in some species which cannot be explained.</p>
+        <p>In order to validate our results with the experimental data [<xref rid="B38" ref-type="bibr">38</xref>], we collected proteomics and microarray data and compared the proteomic and microarray results with our predicted values of expression level. <xref ref-type="fig" rid="F2">Fig. 2</xref> plotted the relative abundances of mRNA and protein levels of the genes of <italic>S. solfataricus</italic> grown on yeast extract and tryptone (YT) compared to glucose (G) against CAI, RCBS, RCA, and MRCBS. The correlation coefficient between transcriptomics and MRCBS was found to be &#x2212;0.31 whereas that with CAI, RCA, and RCBS were 0.04, &#x2212;0.17, and &#x2212;0.26, respectively and correlation coefficient between proteomics and MRCBS was &#x2212;0.44 whereas that with CAI, RCA, and RCBS were &#x2212;0.18, &#x2212;0.34, and 0.05, respectively. Even though these results are not good, but the results recommend that a quantitative estimate of expression level by MRCBS accomplishes better performance than other existing computational methods.</p>
+        <p>We demonstrated that MRCBS could be a useful tool for predicting highly expressed genes. The basic concept validating our method was to compare the result of different gene expression measures with a universal measure, the CAI values of the genes. This methodology is accepted as CAI is widely assumed to be universal method and highly correlated with different measures of codon bias used in the literature [<xref rid="B13" ref-type="bibr">13</xref>]. Predicting gene expression levels in different crenarchaeal genomes using MRCBS is to make this index a better choice of measuring codon bias than others. CAI hypothesized that background nucleotide composition was uniform and this hypothesis was not always true. RCA uses codon bias of highly expressed genes of a given reference set like other reference set based measures (e.g., CAI) but the difference between RCA and CAI is that RCA uses the patterns of mutational bias observed in the given reference set. For any given reference set, MRCBS first computes the codon bias as the deviation of the observed codon frequency from the expected codon frequency based on its positional base frequencies and ratio between the RCB of that codon and the largest RCB among its synonymous codons is defined as the relative adaptiveness of that codon. Thus, MRCBS takes explicitly into account the mutational bias in the calculation of codon bias and will be more powerful and precise estimator of gene expression.</p>
+        <p>To measure the predictive performance of MRCBS, we compared the performances of several commonly used measures in different crenarchaeal genomes. Our results demonstrated that MRCBS well correlated with CAI than other codon bias measures in all crenarchaeal genomes. Since experimental methods are expensive and laborious, results of gene expression by computational methods might be used as reference data for validating and better understanding experimental data. For example, findings of PHE gene with low level expression from proteomic or microarray data could suggest the probable contribution of degradation in regulating expression levels of that gene [<xref rid="B8" ref-type="bibr">8</xref>]. Although most of the PHE genes are essential genes responsible for the habitat, energy sources and life style of different species of Crenarchaeota, the results are also predicted a number of genes in DUF as PHE genes. Combined study of computational and experimental approach of these genes will enrich our knowledge of metabolism.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gustafsson</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Govindarajan</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Minshull</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Codon bias and heterologous protein expression</article-title>
+          <source>Trends Biotechnol</source>
+          <year>2004</year>
+          <volume>22</volume>
+          <fpage>346</fpage>
+          <lpage>353</lpage>
+          <pub-id pub-id-type="pmid">15245907</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kurland</surname>
+              <given-names>CG</given-names>
+            </name>
+          </person-group>
+          <article-title>Major codon preference: theme and variations</article-title>
+          <source>Biochem Soc Trans</source>
+          <year>1993</year>
+          <volume>21</volume>
+          <fpage>841</fpage>
+          <lpage>846</lpage>
+          <pub-id pub-id-type="pmid">8132078</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sharp</surname>
+              <given-names>PM</given-names>
+            </name>
+            <name>
+              <surname>Lloyd</surname>
+              <given-names>AT</given-names>
+            </name>
+          </person-group>
+          <article-title>Regional base composition variation along yeast chromosome III: evolution of chromosome primary structure</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>1993</year>
+          <volume>21</volume>
+          <fpage>179</fpage>
+          <lpage>183</lpage>
+          <pub-id pub-id-type="pmid">8441625</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Akashi</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Synonymous codon usage in Drosophila melanogaster: natural selection and translational accuracy</article-title>
+          <source>Genetics</source>
+          <year>1994</year>
+          <volume>136</volume>
+          <fpage>927</fpage>
+          <lpage>935</lpage>
+          <pub-id pub-id-type="pmid">8005445</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Baker</surname>
+              <given-names>SF</given-names>
+            </name>
+            <name>
+              <surname>Nogales</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Mart&#xED;nez-Sobrido</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Downregulating viral gene expression: codon usage bias manipulation for the generation of novel influenza A virus vaccines</article-title>
+          <source>Future Virol</source>
+          <year>2015</year>
+          <volume>10</volume>
+          <fpage>715</fpage>
+          <lpage>730</lpage>
+          <pub-id pub-id-type="pmid">26213563</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Akashi</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Inferring weak selection from patterns of polymorphism and divergence at &#x201C;silent&#x201D; sites in Drosophila DNA</article-title>
+          <source>Genetics</source>
+          <year>1995</year>
+          <volume>139</volume>
+          <fpage>1067</fpage>
+          <lpage>1076</lpage>
+          <pub-id pub-id-type="pmid">7713409</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hartl</surname>
+              <given-names>DL</given-names>
+            </name>
+            <name>
+              <surname>Moriyama</surname>
+              <given-names>EN</given-names>
+            </name>
+            <name>
+              <surname>Sawyer</surname>
+              <given-names>SA</given-names>
+            </name>
+          </person-group>
+          <article-title>Selection intensity for codon bias</article-title>
+          <source>Genetics</source>
+          <year>1994</year>
+          <volume>138</volume>
+          <fpage>227</fpage>
+          <lpage>234</lpage>
+          <pub-id pub-id-type="pmid">8001789</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wu</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Culley</surname>
+              <given-names>DE</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>W</given-names>
+            </name>
+          </person-group>
+          <article-title>Predicted highly expressed genes in the genomes of <italic>Streptomyces coelicolor</italic> and <italic>Streptomyces avermitilis</italic> and the implications for their metabolism</article-title>
+          <source>Microbiology</source>
+          <year>2005</year>
+          <volume>151</volume>
+          <issue>Pt 7</issue>
+          <fpage>2175</fpage>
+          <lpage>2187</lpage>
+          <pub-id pub-id-type="pmid">16000708</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ikemura</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Correlation between the abundance of <italic>Escherichia coli</italic> transfer RNAs and the occurrence of the respective codons in its protein genes: a proposal for a synonymous codon choice that is optimal for the <italic>E. coli</italic> translational system</article-title>
+          <source>J Mol Biol</source>
+          <year>1981</year>
+          <volume>151</volume>
+          <fpage>389</fpage>
+          <lpage>409</lpage>
+          <pub-id pub-id-type="pmid">6175758</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ikemura</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Codon usage and tRNA content in unicellular and multicellular organisms</article-title>
+          <source>Mol Biol Evol</source>
+          <year>1985</year>
+          <volume>2</volume>
+          <fpage>13</fpage>
+          <lpage>34</lpage>
+          <pub-id pub-id-type="pmid">3916708</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Karlin</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Mr&#xE1;zek</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Predicted highly expressed genes of diverse prokaryotic genomes</article-title>
+          <source>J Bacteriol</source>
+          <year>2000</year>
+          <volume>182</volume>
+          <fpage>5238</fpage>
+          <lpage>5250</lpage>
+          <pub-id pub-id-type="pmid">10960111</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Karlin</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Mr&#xE1;zek</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Ma</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Brocchieri</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Predicted highly expressed genes in archaeal genomes</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2005</year>
+          <volume>102</volume>
+          <fpage>7303</fpage>
+          <lpage>7308</lpage>
+          <pub-id pub-id-type="pmid">15883368</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carbone</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>K&#xE9;p&#xE8;s</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Zinovyev</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Codon bias signatures, organization of microorganisms in codon space, and lifestyle</article-title>
+          <source>Mol Biol Evol</source>
+          <year>2005</year>
+          <volume>22</volume>
+          <fpage>547</fpage>
+          <lpage>561</lpage>
+          <pub-id pub-id-type="pmid">15537809</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kurland</surname>
+              <given-names>CG</given-names>
+            </name>
+          </person-group>
+          <article-title>Codon bias and gene expression</article-title>
+          <source>FEBS Lett</source>
+          <year>1991</year>
+          <volume>285</volume>
+          <fpage>165</fpage>
+          <lpage>169</lpage>
+          <pub-id pub-id-type="pmid">1855585</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Supek</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Vlahovicek</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparison of codon usage measures and their applicability in prediction of microbial gene expressivity</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2005</year>
+          <volume>6</volume>
+          <fpage>182</fpage>
+          <pub-id pub-id-type="pmid">16029499</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Supek</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Vlahovi&#x10D;ek</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>Correction: comparison of codon usage measures and their applicability in prediction of microbial gene expressivity</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2010</year>
+          <volume>11</volume>
+          <fpage>463</fpage>
+        </element-citation>
+      </ref>
+      <ref id="B17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sharp</surname>
+              <given-names>PM</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>WH</given-names>
+            </name>
+          </person-group>
+          <article-title>The Codon Adaptation Index: a measure of directional synonymous codon usage bias, and its potential applications</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>1987</year>
+          <volume>15</volume>
+          <fpage>1281</fpage>
+          <lpage>1295</lpage>
+          <pub-id pub-id-type="pmid">3547335</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fox</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Erill</surname>
+              <given-names>I</given-names>
+            </name>
+          </person-group>
+          <article-title>Relative codon adaptation: a generic codon bias index for prediction of gene expression</article-title>
+          <source>DNA Res</source>
+          <year>2010</year>
+          <volume>17</volume>
+          <fpage>185</fpage>
+          <lpage>196</lpage>
+          <pub-id pub-id-type="pmid">20453079</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B19">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roymondal</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Das</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Sahoo</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Predicting gene expression level from relative codon usage bias: an application to <italic>Escherichia coli</italic> genome</article-title>
+          <source>DNA Res</source>
+          <year>2009</year>
+          <volume>16</volume>
+          <fpage>13</fpage>
+          <lpage>30</lpage>
+          <pub-id pub-id-type="pmid">19131380</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Das</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Roymondal</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Sahoo</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Analyzing gene expression from relative codon usage bias in Yeast genome: a statistical significance and biological relevance</article-title>
+          <source>Gene</source>
+          <year>2009</year>
+          <volume>443</volume>
+          <fpage>121</fpage>
+          <lpage>131</lpage>
+          <pub-id pub-id-type="pmid">19410638</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Das</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Roymondal</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Chottopadhyay</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Sahoo</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Gene expression profile of the cynobacterium synechocystis genome</article-title>
+          <source>Gene</source>
+          <year>2012</year>
+          <volume>497</volume>
+          <fpage>344</fpage>
+          <lpage>352</lpage>
+          <pub-id pub-id-type="pmid">22310391</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Weon</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kang</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Relative codon adaptation index, a sensitive measure of codon usage bias</article-title>
+          <source>Evol Bioinform Online</source>
+          <year>2010</year>
+          <volume>6</volume>
+          <fpage>47</fpage>
+          <lpage>55</lpage>
+          <pub-id pub-id-type="pmid">20535230</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hockenberry</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Sirer</surname>
+              <given-names>MI</given-names>
+            </name>
+            <name>
+              <surname>Amaral</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Jewett</surname>
+              <given-names>MC</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantifying position-dependent codon usage bias</article-title>
+          <source>Mol Biol Evol</source>
+          <year>2014</year>
+          <volume>31</volume>
+          <fpage>1880</fpage>
+          <lpage>1893</lpage>
+          <pub-id pub-id-type="pmid">24710515</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B24">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sahoo</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Das</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Analyzing gene expression and codon usage bias in diverse genomes using a variety of models</article-title>
+          <source>Curr Bioinform</source>
+          <year>2014</year>
+          <volume>9</volume>
+          <fpage>102</fpage>
+          <lpage>112</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sahoo</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Das</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Analyzing gene expression and codon usage bias in <italic>Metallosphaera sedula</italic></article-title>
+          <source>J Bioinform Intell Control</source>
+          <year>2014</year>
+          <volume>3</volume>
+          <fpage>72</fpage>
+          <lpage>80</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B26">
+        <label>26</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Amils</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Crenarchaeota</chapter-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Amils</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Gargaud</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Cernicharo Quintanilla</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Cleaves</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>Irvine</surname>
+              <given-names>WM</given-names>
+            </name>
+            <name>
+              <surname>Pinti</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <source>Encyclopedia of Astrobiology</source>
+          <publisher-loc>Berlin</publisher-loc>
+          <publisher-name>Springer-Verlag</publisher-name>
+          <year>2011</year>
+          <fpage>390</fpage>
+        </element-citation>
+      </ref>
+      <ref id="B27">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Donati</surname>
+              <given-names>ER</given-names>
+            </name>
+            <name>
+              <surname>Castro</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Urbieta</surname>
+              <given-names>MS</given-names>
+            </name>
+          </person-group>
+          <article-title>Thermophilic microorganisms in biomining</article-title>
+          <source>World J Microbiol Biotechnol</source>
+          <year>2016</year>
+          <volume>32</volume>
+          <fpage>179</fpage>
+          <pub-id pub-id-type="pmid">27628339</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B28">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lillford</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Holt</surname>
+              <given-names>CB</given-names>
+            </name>
+          </person-group>
+          <article-title><italic>In vitro</italic> uses of biological cryoprotectants</article-title>
+          <source>Philos Trans R Soc Lond B Biol Sci</source>
+          <year>2002</year>
+          <volume>357</volume>
+          <fpage>945</fpage>
+          <lpage>951</lpage>
+          <pub-id pub-id-type="pmid">12171658</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B29">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rubinsky</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Arav</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Fletcher</surname>
+              <given-names>GL</given-names>
+            </name>
+          </person-group>
+          <article-title>Hypothermic protection: a fundamental property of &#x201C;antifreeze&#x201D; proteins</article-title>
+          <source>Biochem Biophys Res Commun</source>
+          <year>1991</year>
+          <volume>180</volume>
+          <fpage>566</fpage>
+          <lpage>571</lpage>
+          <pub-id pub-id-type="pmid">1953726</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B30">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barns</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Delwiche</surname>
+              <given-names>CF</given-names>
+            </name>
+            <name>
+              <surname>Palmer</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Pace</surname>
+              <given-names>NR</given-names>
+            </name>
+          </person-group>
+          <article-title>Perspectives on archaeal diversity, thermophily and monophyly from environmental rRNA sequences</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>1996</year>
+          <volume>93</volume>
+          <fpage>9188</fpage>
+          <lpage>9193</lpage>
+          <pub-id pub-id-type="pmid">8799176</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B31">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shields</surname>
+              <given-names>DC</given-names>
+            </name>
+          </person-group>
+          <article-title>Switches in species-specific codon preferences: the influence of mutation biases</article-title>
+          <source>J Mol Evol</source>
+          <year>1990</year>
+          <volume>31</volume>
+          <fpage>71</fpage>
+          <lpage>80</lpage>
+          <pub-id pub-id-type="pmid">2120452</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B32">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Das</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Chakrabarti</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Ghosh</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Sahoo</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Mallick</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>A new measure to study phylogenetic relations in the brown algal order Ectocarpales: the &#x201C;codon impact parameter&#x201D;</article-title>
+          <source>J Biosci</source>
+          <year>2005</year>
+          <volume>30</volume>
+          <fpage>699</fpage>
+          <lpage>709</lpage>
+          <pub-id pub-id-type="pmid">16388144</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B33">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Galtier</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Lobry</surname>
+              <given-names>JR</given-names>
+            </name>
+          </person-group>
+          <article-title>Relationships between genomic G+C content, RNA secondary structures, and optimal growth temperature in prokaryotes</article-title>
+          <source>J Mol Evol</source>
+          <year>1997</year>
+          <volume>44</volume>
+          <fpage>632</fpage>
+          <lpage>636</lpage>
+          <pub-id pub-id-type="pmid">9169555</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B34">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lynn</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <name>
+              <surname>Singer</surname>
+              <given-names>GA</given-names>
+            </name>
+            <name>
+              <surname>Hickey</surname>
+              <given-names>DA</given-names>
+            </name>
+          </person-group>
+          <article-title>Synonymous codon usage is subject to selection in thermophilic bacteria</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2002</year>
+          <volume>30</volume>
+          <fpage>4272</fpage>
+          <lpage>4277</lpage>
+          <pub-id pub-id-type="pmid">12364606</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B35">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sueoka</surname>
+              <given-names>N</given-names>
+            </name>
+          </person-group>
+          <article-title>On the genetic basis of variation and heterogeneity of DNA base composition</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>1962</year>
+          <volume>48</volume>
+          <fpage>582</fpage>
+          <lpage>592</lpage>
+          <pub-id pub-id-type="pmid">13918161</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B36">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Graham</surname>
+              <given-names>DE</given-names>
+            </name>
+            <name>
+              <surname>Overbeek</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Olsen</surname>
+              <given-names>GJ</given-names>
+            </name>
+            <name>
+              <surname>Woese</surname>
+              <given-names>CR</given-names>
+            </name>
+          </person-group>
+          <article-title>An archaeal genomic signature</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2000</year>
+          <volume>97</volume>
+          <fpage>3304</fpage>
+          <lpage>3308</lpage>
+          <pub-id pub-id-type="pmid">10716711</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B37">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goodacre</surname>
+              <given-names>NF</given-names>
+            </name>
+            <name>
+              <surname>Gerloff</surname>
+              <given-names>DL</given-names>
+            </name>
+            <name>
+              <surname>Uetz</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein domains of unknown function are essential in bacteria</article-title>
+          <source>MBio</source>
+          <year>2013</year>
+          <volume>5</volume>
+          <fpage>e00744</fpage>
+          <lpage>e00713</lpage>
+          <pub-id pub-id-type="pmid">24381303</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B38">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Snijders</surname>
+              <given-names>AP</given-names>
+            </name>
+            <name>
+              <surname>Walther</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Peter</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kinnman</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>de Vos</surname>
+              <given-names>MG</given-names>
+            </name>
+            <name>
+              <surname>van de Werken</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Reconstruction of central carbon metabolism in <italic>Sulfolobus solfataricus</italic> using a two-dimensional gel electrophoresis map, stable isotope labelling and DNA microarray analysis</article-title>
+          <source>Proteomics</source>
+          <year>2006</year>
+          <volume>6</volume>
+          <fpage>1518</fpage>
+          <lpage>1529</lpage>
+          <pub-id pub-id-type="pmid">16447154</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <title>The correlation coefficients between Codon Adaptation Index and different measures of expression are plotted for different organisms. MRCBS, Modified Relative Codon Bias Strength; RCA, Relative Codon Adaptation; RCBS, Relative Codon Bias Strength.</title>
+      </caption>
+      <graphic xlink:href="gni-15-38-g001"/>
+    </fig>
+    <fig id="F2" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <title>Expression measure indices (Codon Adaptation Index [CAI], Relative Codon Adaptation (RCA), Modified Relative Codon Bias Strength [MRCBS], and Relative Codon Bias Strength [RCBS]) plotted against transcriptomics and proteomics of relative abundances of mRNA and protein levels of <italic>Sulfolobus solfataricus</italic>.</title>
+      </caption>
+      <graphic xlink:href="gni-15-38-g002"/>
+    </fig>
+    <table-wrap id="T1" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <title>Some basic information of the presently studied genomes</title>
+      </caption>
+      <graphic xlink:href="gni-15-38-i001"/>
+      <table-wrap-foot>
+        <fn>
+          <p>PHE, predicted highly expressed; MRCBS, Modified Relative Codon Bias Strength.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="T2" orientation="portrait" position="float">
+      <label>Table 2</label>
+      <caption>
+        <title>Top 10 genes with the highest predicted expression levels for each of archaeal genomes</title>
+      </caption>
+      <graphic xlink:href="gni-15-38-i002"/>
+      <table-wrap-foot>
+        <fn>
+          <p>PHE, predicted highly expressed; RP, ribosomal protein; MRCBS, Modified Relative Codon Bias Strength.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="T3" orientation="portrait" position="float">
+      <label>Table 3</label>
+      <caption>
+        <title>List of impact codons in the presently studied genomes</title>
+      </caption>
+      <graphic xlink:href="gni-15-38-i003"/>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

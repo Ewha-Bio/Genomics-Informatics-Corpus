@@ -1,0 +1,2250 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Society of Gastrointestinal Intervention</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">29307144</article-id>
+      <article-id pub-id-type="pmc">5769859</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2017.15.4.170</article-id>
+      <article-id pub-id-type="publisher-id">gi-15-4-170</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Original Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title><italic>HOTAIR</italic> Long Non-coding RNA: Characterizing the Locus Features by the <italic>In Silico</italic> Approaches</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">https://orcid.org/0000-0003-3838-0259</contrib-id>
+          <name>
+            <surname>Hajjari</surname>
+            <given-names>Mohammadreza</given-names>
+          </name>
+          <xref rid="c1-gi-15-4-170" ref-type="corresp">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">https://orcid.org/0000-0002-2068-5436</contrib-id>
+          <name>
+            <surname>Rahnama</surname>
+            <given-names>Saghar</given-names>
+          </name>
+        </contrib>
+        <aff id="af1-gi-15-4-170">Department of Genetics, Shahid Chamran University of Ahvaz, Ahvaz 61336-3337, <country>Iran</country></aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="c1-gi-15-4-170"><label>*</label>Corresponding author: Tel: +98-6133338965, Fax: +98-6133337009, E-mail: <email>Mohamad.hajari@gmail.com</email>, <email>m-hajari@scu.ac.ir</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2017</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>29</day>
+        <month>12</month>
+        <year>2017</year>
+      </pub-date>
+      <volume>15</volume>
+      <issue>4</issue>
+      <fpage>170</fpage>
+      <lpage>177</lpage>
+      <history>
+        <date date-type="received">
+          <day>4</day>
+          <month>8</month>
+          <year>2017</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>4</day>
+          <month>9</month>
+          <year>2017</year>
+        </date>
+        <date date-type="accepted">
+          <day>18</day>
+          <month>9</month>
+          <year>2017</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2017 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2017</copyright-year>
+        <license>
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p><italic>HOTAIR</italic> is an lncRNA that has been known to have an oncogenic role in different cancers. There is limited knowledge of genetic and epigenetic elements and their interactions for the gene encoding <italic>HOTAIR</italic>. Therefore, understanding the molecular mechanism and its regulation remains to be challenging. We used different <italic>in silico</italic> analyses to find genetic and epigenetic elements of <italic>HOTAIR</italic> gene to gain insight into its regulation. We reported different regulatory elements including canonical promoters, transcription start sites, CpGIs as well as epigenetic marks that are potentially involved in the regulation of <italic>HOTAIR</italic> gene expression. We identified repeat sequences and single nucleotide polymorphisms that are located within or next to the CpGIs of <italic>HOTAIR</italic>. Our analyses may help to find potential interactions between genetic and epigenetic elements of <italic>HOTAIR</italic> gene in the human tissues and show opportunities and limitations for researches on <italic>HOTAIR</italic> gene in future studies.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>bioinformatics</kwd>
+        <kwd>CpG Islands</kwd>
+        <kwd>epigenetics</kwd>
+        <kwd>gene expression</kwd>
+        <kwd>
+          <italic>HOTAIR</italic>
+        </kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>It has been estimated that about 1.5% of human genomic DNA can be annotated as protein coding sequences [<xref rid="b1-gi-15-4-170" ref-type="bibr">1</xref>]. So, more than 98% of the human genome does not encode protein [<xref rid="b2-gi-15-4-170" ref-type="bibr">2</xref>, <xref rid="b3-gi-15-4-170" ref-type="bibr">3</xref>]. However, a large proportion of the genome transcribes non-coding RNAs such as miRNAs and long non-coding RNAs (lncRNAs) [<xref rid="b4-gi-15-4-170" ref-type="bibr">4</xref>, <xref rid="b5-gi-15-4-170" ref-type="bibr">5</xref>]. LncRNAs have important roles in different cellular and molecular mechanisms [<xref rid="b6-gi-15-4-170" ref-type="bibr">6</xref>]. These long RNAs regulate the activity and position of epigenetic machinery during cell function and segregation [<xref rid="b7-gi-15-4-170" ref-type="bibr">7</xref>]. In fact, some of the lncRNAs can recruit catalytic activity of chromatin-modifying proteins [<xref rid="b8-gi-15-4-170" ref-type="bibr">8</xref>]. Dysregulation of lncRNAs has been also reported in cancer initiation and progression. However, the molecular mechanism and regulation of these RNAs have been remained to be unknown [<xref rid="b9-gi-15-4-170" ref-type="bibr">9</xref>, <xref rid="b10-gi-15-4-170" ref-type="bibr">10</xref>].</p>
+      <p>Rinn <italic>et al</italic>. [<xref rid="b11-gi-15-4-170" ref-type="bibr">11</xref>] identified <italic>HOTAIR</italic> lncRNA with a 2.2 kb length. <italic>HOTAIR</italic> gene is located in a region between <italic>HOX11</italic> and <italic>HOX12</italic> on chromosome 12q13.3 [<xref rid="b12-gi-15-4-170" ref-type="bibr">12</xref>&#x2013;<xref rid="b16-gi-15-4-170" ref-type="bibr">16</xref>]. <italic>HOTAIR</italic> lncRNA binds to both polycomb repressive complex 2 (PRC2) and lysine specific demethylase 1 (LSD1) complexes, through its 5&#x2032;-3&#x2032; domains and directs them to <italic>HOXD</italic> gene cluster as well as other genes in order to increase gene silencing by coupling the histone H3K27 trimethylation and H3K4 demethylation [<xref rid="b17-gi-15-4-170" ref-type="bibr">17</xref>, <xref rid="b18-gi-15-4-170" ref-type="bibr">18</xref>].</p>
+      <p><italic>HOTAIR</italic> is an oncogene RNA that is known to have potential role in several cancers. Its overexpression is reported in different solid tumors such as breast, gastric, and colorectal tumors [<xref rid="b19-gi-15-4-170" ref-type="bibr">19</xref>, <xref rid="b20-gi-15-4-170" ref-type="bibr">20</xref>]. The oncogenic role of <italic>HOTAIR</italic> is reported in different mechanisms such as cell proliferation, invasion, aggression, and metastasis of the tumor cells as well as inhibition of apoptosis [<xref rid="b3-gi-15-4-170" ref-type="bibr">3</xref>, <xref rid="b21-gi-15-4-170" ref-type="bibr">21</xref>&#x2013;<xref rid="b25-gi-15-4-170" ref-type="bibr">25</xref>]. In spite of different reports on the potential oncogenic role of <italic>HOTAIR</italic>, the molecular regulation of this gene needs to be revealed by more studies.</p>
+      <p>Since the genetic and epigenetic complexities of the <italic>HOTAIR</italic> locus have not been characterized yet, we aimed to provide an integration data to highlight different compositional features of <italic>HOTAIR</italic> gene. The potential model may help to design future studies to reveal the molecular mechanisms of this lncRNA. In this study, we highlighted and described a number of features in <italic>HOTAIR</italic> locus, which may be involved in regulation of this gene. The integrated report is derived from the <italic>in silico</italic> approaches through different databases and software.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <p>Different databases and bioinformatics software were used. Then, the data were reanalyzed and integrated in order to provide a potential model for describing the genetic and epigenetic features of the <italic>HOTAIR</italic> locus. <xref rid="t1-gi-15-4-170" ref-type="table">Table 1</xref> shows list of the <italic>in silico</italic> tools used in this study and the methodology is represented as a flowchart (<xref rid="f1-gi-15-4-170" ref-type="fig">Fig. 1</xref>). In our analyses, the desired sequence was mostly defined as a sequence that spans from 2 kb upstream of annotated transcription start site (TSS) of <italic>HOTAIR</italic> to the end of the gene. The selection was based on the previous studies defining putative promoter regions from &#x2212;2 kb to +1 kb of the TSS [<xref rid="b26-gi-15-4-170" ref-type="bibr">26</xref>]. Some data were analyzed through Encyclopedia of DNA Elements (ENCODE) project cited in University of California, Santa Cruz (UCSC) genome browser. Encode is a genome-wide consortium project with the aim of cataloging all functional elements in the human genome through related experimental conditions. In addition, all of the software was run with default parameters and criteria. The description of each software and database as well as their criteria of the analyses are described in below.</p>
+    </sec>
+    <sec sec-type="results">
+      <title>Results</title>
+      <sec>
+        <title>HOTAIR gene is transcribed into different RNA isoforms by alternative compositional features</title>
+        <p>According to the Ace view database, 11 distinct GT-AG introns are identified in the <italic>HOTAIR</italic> gene. This results in seven different transcripts, six of which are created through alternative splicing (<ext-link ext-link-type="uri" xlink:href="https://www.ncbi.nlm.nih.gov/ieb/research/acembly/">https://www.ncbi.nlm.nih.gov/ieb/research/acembly/</ext-link>). Different variants were found in GENECODE V22 and Ensembl. According to the Refseq, there are three transcript variants for this gene (NR_047518.1, NR_047517.1 and NR_003716.3) (<xref rid="f2-gi-15-4-170" ref-type="fig">Fig. 2</xref>).</p>
+        <p>Since it seems that alternative transcripts of <italic>HOTAIR</italic> are due to alternative promoters, TSSs, alternative polyadenylation sites, and alternative splicing, we tried to find different promoters, TSSs, polyadenylation, and splice sites in the <italic>HOTAIR</italic> gene.</p>
+        <p>We found alternative promoters and polyadenylation sites in the <italic>HOTAIR</italic> locus (<ext-link ext-link-type="uri" xlink:href="https://www.ncbi.nlm.nih.gov/ieb/research/acembly/">https://www.ncbi.nlm.nih.gov/ieb/research/acembly/</ext-link>). According to the Ensembl, there are two active promoters in this gene (<xref rid="f3-gi-15-4-170" ref-type="fig">Fig. 3</xref>). Also, Chromatin state segmentation using Hidden Markov Model (HMM) [<xref rid="b27-gi-15-4-170" ref-type="bibr">27</xref>] identified these two active promoters as well as enhancers in the <italic>HOTAIR</italic> gene in some cell lines. The HMM is a probabilistic model representing probability distributions over sequences of observations. <xref rid="SD1" ref-type="supplementary-material">Supplementary Table 1</xref> which is based on UCSC hg19, shows the positions of the active promoters of <italic>HOTAIR</italic> locus in Ensemble and HMM.</p>
+        <p>Promoter prediction with different tools recognized alternative promoters throughout this gene. Promoter scan program was run with the default promoter cutoff score. This program predicts promoters based on the degree of homologies with eukaryotic RNA pol II promoter sequences (<ext-link ext-link-type="uri" xlink:href="https://www-bimas.cit.nih.gov/molbio/proscan/">https://www-bimas.cit.nih.gov/molbio/proscan/</ext-link>) [<xref rid="b28-gi-15-4-170" ref-type="bibr">28</xref>]. Different TSSs were also found in the <italic>HOTAIR</italic> gene by different programs and software including Eponine, Switchgear, and Promoter 2 [<xref rid="b29-gi-15-4-170" ref-type="bibr">29</xref>]. The Eponine program provides a probabilistic method for detecting TSSs. The Switchgear algorithm uses a scoring metric based largely on existing transcript evidence. Promoter2 takes advantage of a combination of principles that are common to neural networks and genetic algorithms. The positions of found TSSs compared to other features are shown in the <xref rid="SD1" ref-type="supplementary-material">Supplementary Table 1</xref>.</p>
+      </sec>
+      <sec>
+        <title>CpG islands were found to be overlapped with active promoters and DNase I hypersensitivity sites</title>
+        <p>According to the UCSC browser, bona fide CpGIs, Weizmann Evolutionary, and CpG ProD program, there were different CpG Islands (CGIs) in the <italic>HOTAIR</italic> gene. These CpGIs are shown in the <xref rid="f4-gi-15-4-170" ref-type="fig">Fig. 4</xref>. UCSC genome browser identifies CGIs of human genome based on the regions of DNA with average (G+C) content greater than 50%, length greater than 200 bp and a moving average CpG O/E greater than 0.6 [<xref rid="b30-gi-15-4-170" ref-type="bibr">30</xref>, <xref rid="b31-gi-15-4-170" ref-type="bibr">31</xref>]. &#x201C;Bona fide&#x201D; identifies functional CpGIs by linking genetic and epigenetic information [<xref rid="b32-gi-15-4-170" ref-type="bibr">32</xref>]. Weizmann evolutionary (WE) predicts highly conserved CGIs through their classification of evolutionary dynamics (<ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>) [<xref rid="b33-gi-15-4-170" ref-type="bibr">33</xref>]. &#x201C;CpG ProD&#x201D; program identifies CpGIs-overlapping with promoters in the large genomic regions under analysis and shows these CpGIs with length longer than other CpGIs [<xref rid="b34-gi-15-4-170" ref-type="bibr">34</xref>]. Then, we tried to find any overlap between CpGIs and other regulatory elements. Two TSSs (CHR-12-P0397-R1, CHR12-P0397-R2) were found within CpG165 (annotated in UCSC genome browser) and 1437 (derived from bona fide CGIs). The CpGIs were mostly overlapped with the active promoter regions (<xref rid="f3-gi-15-4-170" ref-type="fig">Fig. 3</xref>, <xref rid="SD1" ref-type="supplementary-material">Supplementary Table 1</xref>). We focused on CpG165 and found some regulatory elements which are within or near to this CpG (<xref rid="t2-gi-15-4-170" ref-type="table">Table 2</xref>).</p>
+        <p>In addition, several DNase I hypersensitivity hotspots were found to be overlapped with CpGIs in some cell lines (<xref rid="SD1" ref-type="supplementary-material">Supplementary Table 1</xref>). We found the DNase I hypersensitivity peak clusters of <italic>HOTAIR</italic> gene in 95 cells with score greater than 0.6 by using UCSC genome browser. DNase I hypersensitivity peak cluster 19 is located within CpG1433 and mostly overlaps with CpG18. Also, DNase I hypersensitivity peak cluster 41 is located within CpG1437 and mostly overlaps with CpG165 and partially overlaps with CpG2 (WE) (<xref rid="f3-gi-15-4-170" ref-type="fig">Fig. 3</xref>, <xref rid="SD1" ref-type="supplementary-material">Supplementary Table 1</xref>).</p>
+        <p>Furthermore, we detected specific CpG dinucleotides methylation status within or near the predicted CpGIs in some cell lines by using ENCODE (<xref rid="SD2" ref-type="supplementary-material">Supplementary Table 2</xref>). This track identifies specific CpG dinucleotides methylation status by Infinium human methylation 450 bead array platform and classifies the methylation status into four groups: (1) not available (score = 0), (2) unmethylated (0 &lt; score &#x2264; 200), (3) partially methylated (200 &lt; score &lt; 600), and (4) methylated (score &#x2265; 600) (<ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>).</p>
+      </sec>
+      <sec>
+        <title>CTCF and transcription factor binding sites are overlapped with CpGIs and TSSs</title>
+        <p>GTEx RNA-seq strategy indicates that <italic>HOTAIR</italic> has variable expression in different tissues and its most expression level is in the artery-tibial tissue (data not shown). We found two putative regions for CTCF binding sites in the <italic>HOTAIR</italic> locus by ENCODE with factorbook motifs, one of which is located within CpG1437 (bona fide CpGIs) and mostly overlaps with CpG165 (<xref rid="t2-gi-15-4-170" ref-type="table">Table 2</xref>, <xref rid="f3-gi-15-4-170" ref-type="fig">Fig. 3</xref>). This track determines regions of transcription factor binding sites taken from a comprehensive chip-seq experiments identified by ENCODE and factorbook pool (<ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>). We predicted sequences of motifs and positions of these motifs in the <italic>HOTAIR</italic> locus by using MEME and MAST programs (<xref rid="SD3" ref-type="supplementary-material">Supplementary Table 3</xref>). MEME program searches the motifs from downloaded sequences through using complementary strengths of probabilistic and discrete models (<ext-link ext-link-type="uri" xlink:href="http://MEME-Suite.org/">http://MEME-Suite.org/</ext-link>) [<xref rid="b35-gi-15-4-170" ref-type="bibr">35</xref>, <xref rid="b36-gi-15-4-170" ref-type="bibr">36</xref>]. The program was run with default parameters and normal mode of motif discovery. Mast program searches specific sequences based on predicted motifs by MEME program and exactly matches these sequences with the motifs sequences (<ext-link ext-link-type="uri" xlink:href="http://MEME-Suite.org/">http://MEME-Suite.org/</ext-link>) [<xref rid="b37-gi-15-4-170" ref-type="bibr">37</xref>].</p>
+        <p>We found nine sequences of modules depending on their transcription factor binding sites in the <italic>HOTAIR</italic> locus by PReMode program [<xref rid="b38-gi-15-4-170" ref-type="bibr">38</xref>, <xref rid="b39-gi-15-4-170" ref-type="bibr">39</xref>]. We observed some of these elements overlapped with the predicted CpGIs and TSSs (<xref rid="f3-gi-15-4-170" ref-type="fig">Fig. 3</xref>, <xref rid="SD1" ref-type="supplementary-material">Supplementary Table 1</xref>). In addition, we determined that some of these modules have common transcription factors (data not shown).</p>
+      </sec>
+      <sec>
+        <title>Some polymorphisms such as tandem repeats exist within the regulatory elements</title>
+        <p>Repeat Masker found several repeats sequences overlapped with regulatory elements of the <italic>HOTAIR</italic> locus such as CpGIs (<xref rid="f3-gi-15-4-170" ref-type="fig">Fig. 3</xref>, <xref rid="SD1" ref-type="supplementary-material">Supplementary Table 1</xref>) and motifs (<xref rid="SD3" ref-type="supplementary-material">Supplementary Table 3</xref>). Repeat master investigates query sequences and generates a detailed annotation of available repeats in these sequences and shows dispersed repeats and low complexity DNA sequences (<ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>). In addition, tandem repeat finder, which analyzes simple tandem repeats, predicted one simple tandem repeat (GAGGGAGGGAGCGAGA) within this gene (<xref rid="SD1" ref-type="supplementary-material">Supplementary Table 1</xref>) (<ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>) [<xref rid="b40-gi-15-4-170" ref-type="bibr">40</xref>]. In addition, we found some simple nucleotide polymorphisms within regulatory sequences of <italic>HOTAIR</italic> gene (<xref rid="SD4" ref-type="supplementary-material">Supplementary Table 4</xref>).</p>
+      </sec>
+    </sec>
+    <sec sec-type="discussion">
+      <title>Discussion</title>
+      <p>Studies have shown that aberrant epigenetic modifications including aberrant DNA methylation and histone modification are significantly involved in the dysregulation of genes with their potential roles in cancers [<xref rid="b41-gi-15-4-170" ref-type="bibr">41</xref>]. However, identification of the exact elements of <italic>HOTAIR</italic> as well as their interaction has not been discovered yet. This study was aimed to find and highlight different regulatory elements by data integration. We identified putative regulatory elements that contribute to the regulation of <italic>HOTAIR</italic> expression by <italic>in silico</italic> analyses. Identification of these elements suggests new understanding of <italic>HOTAIR</italic> expression and might help to design future studies on this lncRNA which has oncogenic role in different cancers [<xref rid="b42-gi-15-4-170" ref-type="bibr">42</xref>&#x2013;<xref rid="b45-gi-15-4-170" ref-type="bibr">45</xref>].</p>
+      <p>First, we tried to show different isoforms of <italic>HOTAIR</italic> RNA transcribed through alternative mechanisms. Since a recent study suggested the important role of <italic>HOTAIR</italic> domains in its function [<xref rid="b46-gi-15-4-170" ref-type="bibr">46</xref>], we propose studying the molecular roles of different RNA isoforms in future researches. Then, in order to find alternative and potential features involved in generation of RNA isoforms, we checked the putative TSSs, promoters, and polyadenylation sites. We found different features, which are potentially involved in alternative transcription of <italic>HOTAIR</italic> gene.</p>
+      <p>Considering the potential involvement of methylation beyond CGI-promoters in human cancer, we focused on potential CGIs of <italic>HOTAIR</italic>. According to the fact that function of DNA methylation seems to be varied with context, we tried to find any relation between the CGIs and other compositional features such as TSSs, promoters, enhancers, DNase I hypersensitivity sites, and CTCF binding sites. Alterations in DNA methylation are known to cooperate with genetic elements and to be involved in human carcinogenesis. The results showed different CpGIs in the <italic>HOTAIR</italic> locus and determined their epigenetic status through integration analysis. The methylation status of these CGIs needs to be revealed in future researches. The methylation analysis will be so important because we currently know that most CGIs located in TSSs are not methylated. However, CGI methylation of the TSS is associated with long-term silencing. In addition, CGIs in gene bodies are sometimes methylated in a tissue-specific manner [<xref rid="b47-gi-15-4-170" ref-type="bibr">47</xref>]. It has been reported that methylation of a CTCF-binding site may block the binding of CTCF. Altogether, different CpGIs overlapped with genetic elements seem to have important roles in controlling <italic>HOTAIR</italic>.</p>
+      <p>Some repeat sequences and single nucleotide polymorphisms exist within or next to the predicted CpGIs. We think that repeat number variations may effect on methylation status of regulatory regions of <italic>HOTAIR</italic> gene. Different studies reported some associations between polymorphisms of <italic>HOTAIR</italic> and cancers risks. The examples are the association between rs920778 [<xref rid="b48-gi-15-4-170" ref-type="bibr">48</xref>], rs4759314 [<xref rid="b49-gi-15-4-170" ref-type="bibr">49</xref>], and rs12826786 [<xref rid="b25-gi-15-4-170" ref-type="bibr">25</xref>] and gastric cancer, rs7958904 and colorectal cancer [<xref rid="b50-gi-15-4-170" ref-type="bibr">50</xref>], rs920788 and breast cancer [<xref rid="b51-gi-15-4-170" ref-type="bibr">51</xref>], rs4759314 and rs7958904 in epithelial ovarian cancer [<xref rid="b52-gi-15-4-170" ref-type="bibr">52</xref>]. We found that some SNPs are located within regulatory regions and so may effect on the gene expression. Also, since the repeat sequences of <italic>HOTAIR</italic> gene might contribute to the methylation status of regulatory regions, we highlighted the overlaps between these sequences and the predicted CpGIs.</p>
+      <p>Due to the overlap with active promoter, strong enhancer, CTCF binding site, DNase I hypersensitive sites, SNPs, and repeat sequences, CpG165 seems to be more important compared to other CpGIs for generation of the long RNA isoform. However, according to the <xref rid="f3-gi-15-4-170" ref-type="fig">Fig. 3</xref>, considering the overlap with other structural features, other CpGIs within the gene structure also seems to be involved in gene regulation. This integration model should be checked and validated in future experimental works.</p>
+      <p>Altogether, it seems that alternative transcripts of <italic>HOTAIR</italic> originate from interactions between genetic and epigenetic elements. Our data provide strong evidence based on the databases and <italic>in silico</italic> prediction that specific sequence motifs may potentially be involved in DNA methylation states of various set of CGIs in different tissues including normal and tumors. Our study suggests that the combinatorial binding of specific transcription factors plays a major role in regulation of <italic>HOTAIR</italic> expression. Future work that aims to provide detailed maps of epigenome in normal and diseased states is crucial to our understanding of <italic>HOTAIR</italic> role in cancer pathogenesis.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This study was conducted and supported as a project in Shahid Chamran Universty of Ahvaz.</p>
+    </ack>
+    <fn-group>
+      <fn>
+        <p>
+          <bold>Authors&#x2019; contribution</bold>
+        </p>
+        <p>Conceptualization: MH</p>
+        <p>Formal analysis: SR, MH</p>
+        <p>Methodology: MH</p>
+        <p>Visualization: MH, SR</p>
+        <p>Writing &#x2013; original draft: SR, MH</p>
+        <p>Review and edit: MH</p>
+      </fn>
+    </fn-group>
+    <sec sec-type="supplementary-material">
+      <title>Supplementary materials</title>
+      <p>Supplementary data including four tables can be found with this article online at <ext-link ext-link-type="uri" xlink:href="http://www.genominfo.org/src/sm/gni-15-170-s001.pdf">http://www.genominfo.org/src/sm/gni-15-170-s001.pdf</ext-link>.</p>
+      <supplementary-material content-type="local-data" id="SD1">
+        <caption>
+          <title>Supplementary Table 1.</title>
+          <p>The positions of regulatory sequences in the <italic>HOTAIR</italic> locus</p>
+        </caption>
+        <media mimetype="application" mime-subtype="pdf" xlink:href="gi-15-4-170-suppl1.pdf" orientation="portrait" id="d35e665" position="anchor"/>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="SD2">
+        <caption>
+          <title>Supplementary Table 2.</title>
+          <p>Specific CpG dinucleotides methylation status identified from different cell lines in ENCODE</p>
+        </caption>
+        <media mimetype="application" mime-subtype="pdf" xlink:href="gi-15-4-170-suppl2.pdf" orientation="portrait" id="d35e672" position="anchor"/>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="SD3">
+        <caption>
+          <title>Supplementary Table 3.</title>
+          <p>The motifs sequences identified by MEME and Mast programs in <italic>HOTAIR</italic></p>
+        </caption>
+        <media mimetype="application" mime-subtype="pdf" xlink:href="gi-15-4-170-suppl3.pdf" orientation="portrait" id="d35e681" position="anchor"/>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="SD4">
+        <caption>
+          <title>Supplementary Table 4.</title>
+          <p>Simple nucleotide polymorphisms in <italic>HOTAIR</italic></p>
+        </caption>
+        <media mimetype="application" mime-subtype="pdf" xlink:href="gi-15-4-170-suppl4.pdf" orientation="portrait" id="d35e690" position="anchor"/>
+      </supplementary-material>
+    </sec>
+    <ref-list>
+      <title>References</title>
+      <ref id="b1-gi-15-4-170">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harrow</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Frankish</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Gonzalez</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Tapanari</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Diekhans</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Kokocinski</surname>
+              <given-names>F</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>GENCODE: the reference human genome annotation for The ENCODE Project</article-title>
+          <source>Genome Res</source>
+          <year>2012</year>
+          <volume>22</volume>
+          <fpage>1760</fpage>
+          <lpage>1774</lpage>
+          <pub-id pub-id-type="pmid">22955987</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b2-gi-15-4-170">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kapranov</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Dike</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Nix</surname>
+              <given-names>DA</given-names>
+            </name>
+            <name>
+              <surname>Duttagupta</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Willingham</surname>
+              <given-names>AT</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>RNA maps reveal new RNA classes and a possible function for pervasive transcription</article-title>
+          <source>Science</source>
+          <year>2007</year>
+          <volume>316</volume>
+          <fpage>1484</fpage>
+          <lpage>1488</lpage>
+          <pub-id pub-id-type="pmid">17510325</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b3-gi-15-4-170">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hajjari</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Salavaty</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>HOTAIR: an oncogenic long non-coding RNA in different cancers</article-title>
+          <source>Cancer Biol Med</source>
+          <year>2015</year>
+          <volume>12</volume>
+          <fpage>1</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="pmid">25859406</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b4-gi-15-4-170">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fatica</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Bozzoni</surname>
+              <given-names>I</given-names>
+            </name>
+          </person-group>
+          <article-title>Long non-coding RNAs: new players in cell differentiation and development</article-title>
+          <source>Nat Rev Genet</source>
+          <year>2014</year>
+          <volume>15</volume>
+          <fpage>7</fpage>
+          <lpage>21</lpage>
+          <pub-id pub-id-type="pmid">24296535</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b5-gi-15-4-170">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yu</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>Z</given-names>
+            </name>
+          </person-group>
+          <article-title>Long non-coding RNA <italic>HOTAIR</italic>: a novel oncogene (review)</article-title>
+          <source>Mol Med Rep</source>
+          <year>2015</year>
+          <volume>12</volume>
+          <fpage>5611</fpage>
+          <lpage>5618</lpage>
+          <pub-id pub-id-type="pmid">26238267</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b6-gi-15-4-170">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Khandelwal</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Malhotra</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Jain</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Vasquez</surname>
+              <given-names>KM</given-names>
+            </name>
+            <name>
+              <surname>Jain</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>The emerging role of long non-coding RNA in gallbladder cancer pathogenesis</article-title>
+          <source>Biochimie</source>
+          <year>2017</year>
+          <volume>132</volume>
+          <fpage>152</fpage>
+          <lpage>160</lpage>
+          <pub-id pub-id-type="pmid">27894946</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b7-gi-15-4-170">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rinn</surname>
+              <given-names>JL</given-names>
+            </name>
+          </person-group>
+          <article-title>lncRNAs: linking RNA to chromatin</article-title>
+          <source>Cold Spring Harb Perspect Biol</source>
+          <year>2014</year>
+          <volume>6</volume>
+          <fpage>a018614</fpage>
+          <pub-id pub-id-type="pmid">25085913</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b8-gi-15-4-170">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mercer</surname>
+              <given-names>TR</given-names>
+            </name>
+            <name>
+              <surname>Mattick</surname>
+              <given-names>JS</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure and function of long non-coding RNAs in epigenetic regulation</article-title>
+          <source>Nat Struct Mol Biol</source>
+          <year>2013</year>
+          <volume>20</volume>
+          <fpage>300</fpage>
+          <lpage>307</lpage>
+          <pub-id pub-id-type="pmid">23463315</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b9-gi-15-4-170">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>CH</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Targeting long non-coding RNAs in cancers: progress and prospects</article-title>
+          <source>Int J Biochem Cell Biol</source>
+          <year>2013</year>
+          <volume>45</volume>
+          <fpage>1895</fpage>
+          <lpage>1910</lpage>
+          <pub-id pub-id-type="pmid">23748105</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b10-gi-15-4-170">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ishibashi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Kogo</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Shibata</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Sawada</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Takahashi</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Kurashige</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Clinical significance of the expression of long non-coding RNA <italic>HOTAIR</italic> in primary hepatocellular carcinoma</article-title>
+          <source>Oncol Rep</source>
+          <year>2013</year>
+          <volume>29</volume>
+          <fpage>946</fpage>
+          <lpage>950</lpage>
+          <pub-id pub-id-type="pmid">23292722</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b11-gi-15-4-170">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rinn</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Kertesz</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>JK</given-names>
+            </name>
+            <name>
+              <surname>Squazzo</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Brugmann</surname>
+              <given-names>SA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Functional demarcation of active and silent chromatin domains in human HOX loci by noncoding RNAs</article-title>
+          <source>Cell</source>
+          <year>2007</year>
+          <volume>129</volume>
+          <fpage>1311</fpage>
+          <lpage>1323</lpage>
+          <pub-id pub-id-type="pmid">17604720</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b12-gi-15-4-170">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Loewen</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Zhuo</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Zhuang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Jayawickramarajah</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Shan</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>lincRNA <italic>HOTAIR</italic> as a novel promoter of cancer progression</article-title>
+          <source>J Can Res Updates</source>
+          <year>2014</year>
+          <volume>3</volume>
+          <fpage>134</fpage>
+          <lpage>140</lpage>
+          <pub-id pub-id-type="pmid">25663954</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b13-gi-15-4-170">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bhan</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Mandal</surname>
+              <given-names>SS</given-names>
+            </name>
+          </person-group>
+          <article-title>Estradiol-induced transcriptional regulation of long non-coding RNA, <italic>HOTAIR</italic>
+</article-title>
+          <source>Methods Mol Biol</source>
+          <year>2016</year>
+          <volume>1366</volume>
+          <fpage>395</fpage>
+          <lpage>412</lpage>
+          <pub-id pub-id-type="pmid">26585152</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b14-gi-15-4-170">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>He</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>The sequence, structure and evolutionary features of <italic>HOTAIR</italic> in mammals</article-title>
+          <source>BMC Evol Biol</source>
+          <year>2011</year>
+          <volume>11</volume>
+          <fpage>102</fpage>
+          <pub-id pub-id-type="pmid">21496275</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b15-gi-15-4-170">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Piao</surname>
+              <given-names>HL</given-names>
+            </name>
+            <name>
+              <surname>Ma</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Long non-coding RNA <italic>HOTAIR</italic> in carcinogenesis and metastasis</article-title>
+          <source>Acta Biochim Biophys Sin (Shanghai)</source>
+          <year>2014</year>
+          <volume>46</volume>
+          <fpage>1</fpage>
+          <lpage>5</lpage>
+          <pub-id pub-id-type="pmid">24165275</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b16-gi-15-4-170">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schorderet</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Duboule</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Structural and functional differences in the long non-coding RNA <italic>hotair</italic> in mouse and human</article-title>
+          <source>PLoS Genet</source>
+          <year>2011</year>
+          <volume>7</volume>
+          <fpage>e1002071</fpage>
+          <pub-id pub-id-type="pmid">21637793</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b17-gi-15-4-170">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tsai</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Manor</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Wan</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Mosammaparast</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>JK</given-names>
+            </name>
+            <name>
+              <surname>Lan</surname>
+              <given-names>F</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Long noncoding RNA as modular scaffold of histone modification complexes</article-title>
+          <source>Science</source>
+          <year>2010</year>
+          <volume>329</volume>
+          <fpage>689</fpage>
+          <lpage>693</lpage>
+          <pub-id pub-id-type="pmid">20616235</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b18-gi-15-4-170">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Meredith</surname>
+              <given-names>EK</given-names>
+            </name>
+            <name>
+              <surname>Balas</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Sindy</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Haislop</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>AM</given-names>
+            </name>
+          </person-group>
+          <article-title>An RNA matchmaker protein regulates the activity of the long noncoding RNA <italic>HOTAIR</italic>
+</article-title>
+          <source>RNA</source>
+          <year>2016</year>
+          <volume>22</volume>
+          <fpage>995</fpage>
+          <lpage>1010</lpage>
+          <pub-id pub-id-type="pmid">27146324</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b19-gi-15-4-170">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ma</surname>
+              <given-names>MZ</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>CX</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Weng</surname>
+              <given-names>MZ</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>MD</given-names>
+            </name>
+            <name>
+              <surname>Qin</surname>
+              <given-names>YY</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Long non-coding RNA <italic>HOTAIR</italic>, a c-Myc activated driver of malignancy, negatively regulates miRNA-130a in gallbladder cancer</article-title>
+          <source>Mol Cancer</source>
+          <year>2014</year>
+          <volume>13</volume>
+          <fpage>156</fpage>
+          <pub-id pub-id-type="pmid">24953832</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b20-gi-15-4-170">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Ren</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>F</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Long non-coding RNA <italic>HOTAIR</italic> involvement in cancer</article-title>
+          <source>Tumour Biol</source>
+          <year>2014</year>
+          <volume>35</volume>
+          <fpage>9531</fpage>
+          <lpage>9538</lpage>
+          <pub-id pub-id-type="pmid">25168368</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b21-gi-15-4-170">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Berrondo</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Flax</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kucherov</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Siebert</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Osinski</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Rosenberg</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Expression of the long non-coding RNA <italic>HOTAIR</italic> correlates with disease progression in bladder cancer and is contained in bladder cancer patient urinary exosomes</article-title>
+          <source>PLoS One</source>
+          <year>2016</year>
+          <volume>11</volume>
+          <fpage>e0147236</fpage>
+          <pub-id pub-id-type="pmid">26800519</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b22-gi-15-4-170">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>DW</given-names>
+            </name>
+            <name>
+              <surname>Yim</surname>
+              <given-names>GW</given-names>
+            </name>
+            <name>
+              <surname>Nam</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>SW</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Long non-coding RNA <italic>HOTAIR</italic> is associated with human cervical cancer progression</article-title>
+          <source>Int J Oncol</source>
+          <year>2015</year>
+          <volume>46</volume>
+          <fpage>521</fpage>
+          <lpage>530</lpage>
+          <pub-id pub-id-type="pmid">25405331</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b23-gi-15-4-170">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Su</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Qiu</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Overexpression of long non-coding RNA <italic>HOTAIR</italic> leads to chemoresistance by activating the Wnt/beta-catenin pathway in human ovarian cancer</article-title>
+          <source>Tumour Biol</source>
+          <year>2016</year>
+          <volume>37</volume>
+          <fpage>2057</fpage>
+          <lpage>2065</lpage>
+          <pub-id pub-id-type="pmid">26341496</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b24-gi-15-4-170">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chiyomaru</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Fukuhara</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Saini</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Majid</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Deng</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Shahryari</surname>
+              <given-names>V</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Long non-coding RNA <italic>HOTAIR</italic> is targeted and regulated by miR-141 in human cancer cells</article-title>
+          <source>J Biol Chem</source>
+          <year>2014</year>
+          <volume>289</volume>
+          <fpage>12550</fpage>
+          <lpage>12565</lpage>
+          <pub-id pub-id-type="pmid">24616104</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b25-gi-15-4-170">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Guo</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Dong</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Bai</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Guo</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Shen</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kuang</surname>
+              <given-names>G</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Associations between polymorphisms of <italic>HOTAIR</italic> and risk of gastric cardia adenocarcinoma in a population of north China</article-title>
+          <source>Tumour Biol</source>
+          <year>2015</year>
+          <volume>36</volume>
+          <fpage>2845</fpage>
+          <lpage>2854</lpage>
+          <pub-id pub-id-type="pmid">25476857</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b26-gi-15-4-170">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marino-Ramirez</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Spouge</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Kanga</surname>
+              <given-names>GC</given-names>
+            </name>
+            <name>
+              <surname>Landsman</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Statistical analysis of over-represented words in human promoter sequences</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2004</year>
+          <volume>32</volume>
+          <fpage>949</fpage>
+          <lpage>958</lpage>
+          <pub-id pub-id-type="pmid">14963262</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b27-gi-15-4-170">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pedersen</surname>
+              <given-names>AG</given-names>
+            </name>
+            <name>
+              <surname>Baldi</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Brunak</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Chauvin</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Characterization of prokaryotic and eukaryotic promoters using hidden Markov models</article-title>
+          <source>Proc Int Conf Intell Syst Mol Biol</source>
+          <year>1996</year>
+          <volume>4</volume>
+          <fpage>182</fpage>
+          <lpage>191</lpage>
+          <pub-id pub-id-type="pmid">8877518</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b28-gi-15-4-170">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Prestridge</surname>
+              <given-names>DS</given-names>
+            </name>
+          </person-group>
+          <article-title>Predicting Pol II promoter sequences using transcription factor binding sites</article-title>
+          <source>J Mol Biol</source>
+          <year>1995</year>
+          <volume>249</volume>
+          <fpage>923</fpage>
+          <lpage>932</lpage>
+          <pub-id pub-id-type="pmid">7791218</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b29-gi-15-4-170">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Down</surname>
+              <given-names>TA</given-names>
+            </name>
+            <name>
+              <surname>Hubbard</surname>
+              <given-names>TJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Computational detection and location of transcription start sites in mammalian genomic DNA</article-title>
+          <source>Genome Res</source>
+          <year>2002</year>
+          <volume>12</volume>
+          <fpage>458</fpage>
+          <lpage>461</lpage>
+          <pub-id pub-id-type="pmid">11875034</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b30-gi-15-4-170">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gardiner-Garden</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Frommer</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>CpG islands in vertebrate genomes</article-title>
+          <source>J Mol Biol</source>
+          <year>1987</year>
+          <volume>196</volume>
+          <fpage>261</fpage>
+          <lpage>282</lpage>
+          <pub-id pub-id-type="pmid">3656447</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b31-gi-15-4-170">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boucher</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>King</surname>
+              <given-names>SK</given-names>
+            </name>
+            <name>
+              <surname>Carey</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Krahe</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Winchester</surname>
+              <given-names>CL</given-names>
+            </name>
+            <name>
+              <surname>Rahman</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A novel homeodomain-encoding gene is associated with a large CpG island interrupted by the myotonic dystrophy unstable (CTG)n repeat</article-title>
+          <source>Hum Mol Genet</source>
+          <year>1995</year>
+          <volume>4</volume>
+          <fpage>1919</fpage>
+          <lpage>1925</lpage>
+          <pub-id pub-id-type="pmid">8595416</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b32-gi-15-4-170">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bock</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Walter</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Paulsen</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Lengauer</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>CpG island mapping by epigenome prediction</article-title>
+          <source>PLoS Comput Biol</source>
+          <year>2007</year>
+          <volume>3</volume>
+          <fpage>e110</fpage>
+          <pub-id pub-id-type="pmid">17559301</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b33-gi-15-4-170">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hajjari</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Khoshnevisan</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Lemos</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Characterizing the retinoblastoma 1 locus: putative elements for Rb1 regulation by <italic>in silico</italic> analysis</article-title>
+          <source>Front Genet</source>
+          <year>2014</year>
+          <volume>5</volume>
+          <fpage>2</fpage>
+          <pub-id pub-id-type="pmid">24478791</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b34-gi-15-4-170">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ponger</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Mouchiroud</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>CpGProD: identifying CpG islands associated with transcription start sites in large genomic mammalian sequences</article-title>
+          <source>Bioinformatics</source>
+          <year>2002</year>
+          <volume>18</volume>
+          <fpage>631</fpage>
+          <lpage>633</lpage>
+          <pub-id pub-id-type="pmid">12016061</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b35-gi-15-4-170">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Fan</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>HH</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Buetow</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>MP</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparative sequence analysis of imprinted genes between human and mouse to reveal imprinting signatures</article-title>
+          <source>Genomics</source>
+          <year>2004</year>
+          <volume>83</volume>
+          <fpage>395</fpage>
+          <lpage>401</lpage>
+          <pub-id pub-id-type="pmid">14962665</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b36-gi-15-4-170">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hajjari</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Behmanesh</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Jahani</surname>
+              <given-names>MM</given-names>
+            </name>
+          </person-group>
+          <article-title>
+<italic>In silico</italic> finding of putative cis-acting elements for the tethering of polycomb repressive complex 2 in human genome</article-title>
+          <source>Bioinformation</source>
+          <year>2014</year>
+          <volume>10</volume>
+          <fpage>187</fpage>
+          <lpage>190</lpage>
+          <pub-id pub-id-type="pmid">24966518</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b37-gi-15-4-170">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Janssen</surname>
+              <given-names>CS</given-names>
+            </name>
+            <name>
+              <surname>Phillips</surname>
+              <given-names>RS</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>CM</given-names>
+            </name>
+            <name>
+              <surname>Barrett</surname>
+              <given-names>MP</given-names>
+            </name>
+          </person-group>
+          <article-title>Plasmodium interspersed repeats: the major multigene superfamily of malaria parasites</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2004</year>
+          <volume>32</volume>
+          <fpage>5712</fpage>
+          <lpage>5720</lpage>
+          <pub-id pub-id-type="pmid">15507685</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b38-gi-15-4-170">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jeziorska</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>Jordan</surname>
+              <given-names>KW</given-names>
+            </name>
+            <name>
+              <surname>Vance</surname>
+              <given-names>KW</given-names>
+            </name>
+          </person-group>
+          <article-title>A systems biology approach to understanding cis-regulatory module function</article-title>
+          <source>Semin Cell Dev Biol</source>
+          <year>2009</year>
+          <volume>20</volume>
+          <fpage>856</fpage>
+          <lpage>862</lpage>
+          <pub-id pub-id-type="pmid">19660565</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b39-gi-15-4-170">
+        <label>39</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ferretti</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Poitras</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Bergeron</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Coulombe</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Robert</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Blanchette</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>PReMod: a database of genome-wide mammalian cis-regulatory module predictions</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2007</year>
+          <volume>35</volume>
+          <fpage>D122</fpage>
+          <lpage>D126</lpage>
+          <pub-id pub-id-type="pmid">17148480</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b40-gi-15-4-170">
+        <label>40</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Benson</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>Tandem repeats finder: a program to analyze DNA sequences</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>1999</year>
+          <volume>27</volume>
+          <fpage>573</fpage>
+          <lpage>580</lpage>
+          <pub-id pub-id-type="pmid">9862982</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b41-gi-15-4-170">
+        <label>41</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Suzuki</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Maruyama</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Yamamoto</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Niinuma</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Kai</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Relationship between noncoding RNA dysregulation and epigenetic mechanisms in cancer</article-title>
+          <source>The Long and Short Non-coding RNAs in Cancer Biology</source>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Song</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <publisher-loc>Singapore</publisher-loc>
+          <publisher-name>Springer</publisher-name>
+          <year>2016</year>
+          <fpage>109</fpage>
+          <lpage>135</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b42-gi-15-4-170">
+        <label>42</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Deng</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Jiang</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>An</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Long non-coding RNA <italic>HOTAIR</italic> regulates the proliferation, self-renewal capacity, tumor formation and migration of the cancer stem-like cell (CSC) subpopulation enriched from breast cancer cells</article-title>
+          <source>PLoS One</source>
+          <year>2017</year>
+          <volume>12</volume>
+          <fpage>e0170860</fpage>
+          <pub-id pub-id-type="pmid">28122024</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b43-gi-15-4-170">
+        <label>43</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Jutooru</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Chadalapaka</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Frank</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Burghardt</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>
+<italic>HOTAIR</italic> is a negative prognostic factor and exhibits pro-oncogenic activity in pancreatic cancer</article-title>
+          <source>Oncogene</source>
+          <year>2013</year>
+          <volume>32</volume>
+          <fpage>1616</fpage>
+          <lpage>1625</lpage>
+          <pub-id pub-id-type="pmid">22614017</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b44-gi-15-4-170">
+        <label>44</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nakagawa</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Endo</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Yokoyama</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Abe</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Tamai</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Tanaka</surname>
+              <given-names>N</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Large noncoding RNA <italic>HOTAIR</italic> enhances aggressive biological behavior and is associated with short disease-free survival in human non-small cell lung cancer</article-title>
+          <source>Biochem Biophys Res Commun</source>
+          <year>2013</year>
+          <volume>436</volume>
+          <fpage>319</fpage>
+          <lpage>324</lpage>
+          <pub-id pub-id-type="pmid">23743197</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b45-gi-15-4-170">
+        <label>45</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Borley</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Epigenetic mechanisms and therapeutic targets of chemotherapy resistance in epithelial ovarian cancer</article-title>
+          <source>Ann Med</source>
+          <year>2015</year>
+          <volume>47</volume>
+          <fpage>359</fpage>
+          <lpage>369</lpage>
+          <pub-id pub-id-type="pmid">26158617</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b46-gi-15-4-170">
+        <label>46</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Loewen</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Jayawickramarajah</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zhuo</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Shan</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Functions of lncRNA <italic>HOTAIR</italic> in lung cancer</article-title>
+          <source>J Hematol Oncol</source>
+          <year>2014</year>
+          <volume>7</volume>
+          <fpage>90</fpage>
+          <pub-id pub-id-type="pmid">25491133</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b47-gi-15-4-170">
+        <label>47</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jones</surname>
+              <given-names>PA</given-names>
+            </name>
+          </person-group>
+          <article-title>Functions of DNA methylation: islands, start sites, gene bodies and beyond</article-title>
+          <source>Nat Rev Genet</source>
+          <year>2012</year>
+          <volume>13</volume>
+          <fpage>484</fpage>
+          <lpage>492</lpage>
+          <pub-id pub-id-type="pmid">22641018</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b48-gi-15-4-170">
+        <label>48</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pan</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Ge</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A functional lncRNA <italic>HOTAIR</italic> genetic variant contributes to gastric cancer susceptibility</article-title>
+          <source>Mol Carcinog</source>
+          <year>2016</year>
+          <volume>55</volume>
+          <fpage>90</fpage>
+          <lpage>96</lpage>
+          <pub-id pub-id-type="pmid">25640751</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b49-gi-15-4-170">
+        <label>49</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Du</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Jin</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Ge</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Lu</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The association analysis of lncRNA <italic>HOTAIR</italic> genetic variants and gastric cancer risk in a Chinese population</article-title>
+          <source>Oncotarget</source>
+          <year>2015</year>
+          <volume>6</volume>
+          <fpage>31255</fpage>
+          <lpage>31262</lpage>
+          <pub-id pub-id-type="pmid">26384301</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b50-gi-15-4-170">
+        <label>50</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xue</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Gu</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Ma</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Hua</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Chu</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetic variants in lncRNA <italic>HOTAIR</italic> are associated with risk of colorectal cancer</article-title>
+          <source>Mutagenesis</source>
+          <year>2015</year>
+          <volume>30</volume>
+          <fpage>303</fpage>
+          <lpage>310</lpage>
+          <pub-id pub-id-type="pmid">25432874</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b51-gi-15-4-170">
+        <label>51</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yan</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Cao</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Polymorphisms in lncRNA <italic>HOTAIR</italic> and susceptibility to breast cancer in a Chinese population</article-title>
+          <source>Cancer Epidemiol</source>
+          <year>2015</year>
+          <volume>39</volume>
+          <fpage>978</fpage>
+          <lpage>985</lpage>
+          <pub-id pub-id-type="pmid">26547792</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b52-gi-15-4-170">
+        <label>52</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wu</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Shang</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Shi</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetic variants of lncRNA <italic>HOTAIR</italic> and risk of epithelial ovarian cancer among Chinese women</article-title>
+          <source>Oncotarget</source>
+          <year>2016</year>
+          <volume>7</volume>
+          <fpage>41047</fpage>
+          <lpage>41052</lpage>
+          <pub-id pub-id-type="pmid">27166268</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="f1-gi-15-4-170" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>The flowchart of the methods used in the study. TSS, transcription start site; SNP, single nucleotide polymorphism.</p>
+      </caption>
+      <graphic xlink:href="gi-15-4-170f1"/>
+    </fig>
+    <fig id="f2-gi-15-4-170" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Transcript variants of <italic>HOTAIR</italic> gene derived from the GENCODE, Ensemble and Refseq.</p>
+      </caption>
+      <graphic xlink:href="gi-15-4-170f2"/>
+    </fig>
+    <fig id="f3-gi-15-4-170" orientation="portrait" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Integrated regulatory elements of <italic>HOTAIR</italic> gene structure. The schematic diagram shows a summary of results from different databases and software which are described in the text.</p>
+      </caption>
+      <graphic xlink:href="gi-15-4-170f3"/>
+    </fig>
+    <fig id="f4-gi-15-4-170" orientation="portrait" position="float">
+      <label>Fig. 4</label>
+      <caption>
+        <p>CpG Islands in the <italic>HOTAIR</italic> gene. The data are derived from databases and prediction software. CGI, CpG Island.</p>
+      </caption>
+      <graphic xlink:href="gi-15-4-170f4"/>
+    </fig>
+    <table-wrap id="t1-gi-15-4-170" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Softwares and databases utilized in this article</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th colspan="2" valign="middle" align="center" rowspan="1">Type of analysis</th>
+            <th valign="middle" rowspan="3" align="center" colspan="1">Usage</th>
+            <th valign="middle" rowspan="3" align="center" colspan="1">Software/database</th>
+            <th valign="middle" rowspan="3" align="center" colspan="1">Reference/address</th>
+          </tr>
+          <tr>
+            <th colspan="2" valign="middle" align="center" rowspan="1">
+<hr/></th>
+          </tr>
+          <tr>
+            <th valign="middle" align="center" rowspan="1" colspan="1">Genetic features</th>
+            <th valign="middle" align="center" rowspan="1" colspan="1">Epigenetic features</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="3" valign="top" align="center" colspan="1">O</td>
+            <td rowspan="3" valign="top" align="center" colspan="1">O</td>
+            <td rowspan="3" valign="top" align="left" colspan="1">Finding different transcripts</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Ace view</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="https://www.ncbi.nlm.nih.gov/ieb/research/acembly/">https://www.ncbi.nlm.nih.gov/ieb/research/acembly/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">UCSC</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Ensembl</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://www.ensembl.org">http://www.ensembl.org</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td rowspan="5" valign="top" align="center" colspan="1">O</td>
+            <td rowspan="5" valign="top" align="center" colspan="1">-</td>
+            <td rowspan="5" valign="top" align="left" colspan="1">Promoter detection</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">HMM</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Promoter scan</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="https://www-bimas.cit.nih.gov/molbio/proscan/">https://www-bimas.cit.nih.gov/molbio/proscan/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Promoter 2.0</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://www.cbs.dtu.dk/services/Promoter/">http://www.cbs.dtu.dk/services/Promoter/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Ensembl</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://www.ensembl.org">http://www.ensembl.org</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Ace view</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="https://www.ncbi.nlm.nih.gov/ieb/research/acembly/">https://www.ncbi.nlm.nih.gov/ieb/research/acembly/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td rowspan="2" valign="top" align="center" colspan="1">O</td>
+            <td rowspan="2" valign="top" align="center" colspan="1">-</td>
+            <td rowspan="2" valign="top" align="left" colspan="1">Alternative transcription start sites</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Eponine</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">SwitchGear</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td rowspan="4" valign="top" align="center" colspan="1">O</td>
+            <td rowspan="4" valign="top" align="center" colspan="1">-</td>
+            <td rowspan="4" valign="top" align="left" colspan="1">CpGIs detection</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">UCSC</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Bona fides CGIs</td>
+            <td valign="top" align="left" rowspan="1" colspan="1"><ext-link ext-link-type="uri" xlink:href="http://epigraph.mpi-inf.mpg.dedownloadCpG_islands">http://epigraph.mpi-inf.mpg.dedownloadCpG_islands</ext-link> revisited</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">CpGProD</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://doua.prabi.fr/software/cpgprod">http://doua.prabi.fr/software/cpgprod</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Weizmann evolutionary CGIs</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">O</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">-</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">DNase I hypersensitivity peak clusters</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">UCSC</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">-</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">O</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">CpGIs methylation status</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">ENCODE</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td rowspan="2" valign="top" align="center" colspan="1">O</td>
+            <td rowspan="2" valign="top" align="center" colspan="1">O</td>
+            <td rowspan="2" valign="top" align="left" colspan="1">Gene expression analysis</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Ace view</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="https://www.ncbi.nlm.nih.gov/ieb/research/acembly/">https://www.ncbi.nlm.nih.gov/ieb/research/acembly/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">GTEX RNA-SEQ</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">O</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">O</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Finding CTCF</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">ENCODE</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu">http://genome.ucsc.edu</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td rowspan="2" valign="top" align="center" colspan="1">O</td>
+            <td rowspan="2" valign="top" align="center" colspan="1">-</td>
+            <td rowspan="2" valign="top" align="left" colspan="1">Finding motifs</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">MEME</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://MEME-Suite.org/">http://MEME-Suite.org/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Mast program</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://MEME-Suite.org/">http://MEME-Suite.org/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">O</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">O</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Transcription factor binding sites</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">PreMode</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genomequebec.mcgill.ca/PReMod//">http://genomequebec.mcgill.ca/PReMod//</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">O</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">-</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Detection of enhancers</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">HMM</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td rowspan="2" valign="top" align="center" colspan="1">O</td>
+            <td rowspan="2" valign="top" align="center" colspan="1">-</td>
+            <td rowspan="2" valign="top" align="left" colspan="1">Finding repeated sequences</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Repeat masker</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Tandem repeat by TRF</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">O</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">-</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Single nucleotide polymorphism</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">dbSNP</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">-</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">O</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Detection of histone marks</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">UCSC</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">
+              <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tfn1-gi-15-4-170">
+          <p>UCSC, University of California, Santa Cruz; HMM, Hidden Markov Model; CGI, CpG Island; ENCODE, Encyclopedia of DNA Elements; TRF, tandem repeat finder.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="t2-gi-15-4-170" orientation="portrait" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>The positions of regulatory sequences which are near or within CpG165 of <italic>HOTAIR</italic></p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th valign="middle" align="center" rowspan="1" colspan="1">Position of CpG165</th>
+            <th valign="middle" align="center" rowspan="1" colspan="1">Promoter (active)</th>
+            <th valign="middle" align="center" rowspan="1" colspan="1">Other CpGIs</th>
+            <th valign="middle" align="center" rowspan="1" colspan="1">Tandem repeat (strand+)</th>
+            <th valign="middle" align="center" rowspan="1" colspan="1">CTCF</th>
+            <th valign="middle" align="center" rowspan="1" colspan="1">Strong enhancer</th>
+            <th valign="middle" align="center" rowspan="1" colspan="1">DNase I hypersensitivity</th>
+            <th valign="middle" align="center" rowspan="1" colspan="1">Module and TSSs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">CpG165: 54366816&#x2013;54369103</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">HSMM cells: 54365934&#x2013;54370733</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Bona fide 1437: 54366623&#x2013;54367999</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">(GGCGGA)n: 54367601&#x2013;54367637</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">54366799&#x2013;54367314</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">NHEK cells: 4 strong enhancers: 54365934&#x2013;54367133</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">41: 54366785&#x2013;54367814</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">025610: 54366634&#x2013;54366977</td>
+          </tr>
+          <tr>
+            <td colspan="8" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1">NHEK cells: 54367139&#x2013;54369133</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">CpG2 (WE): 54366684&#x2013;54366909</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">(GGGA)n: 54367731&#x2013;54367801</td>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1">NHEK cells DNase I hotspot: 75095: 54366045&#x2013;54370999</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">025613: 54367707&#x2013;54368584</td>
+          </tr>
+          <tr>
+            <td colspan="8" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1">First active promoter based on ensembl: 54365691&#x2013;54370092</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">CpG1 (CpGProD): 54366456&#x2013;54368740</td>
+            <td valign="top" align="left" rowspan="1" colspan="1"><underline>GAGGGAGGGAGCGAGA</underline>: 54367742&#x2013;54367783</td>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1">TSSs: CHR12-P039 7-R1: 54366912&#x2013;54366912</td>
+          </tr>
+          <tr>
+            <td colspan="8" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1">CpG2.4 (WE): 54368334&#x2013;54368964</td>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1">CHR12-P0397-R2: 54367584&#x2013;54367584</td>
+          </tr>
+          <tr>
+            <td colspan="8" valign="top" align="left" rowspan="1">
+<hr/></td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1">Bona fide 1438: 54368166&#x2013;54369840</td>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tfn2-gi-15-4-170">
+          <p>Positions are based on UCSC hg19.</p>
+        </fn>
+        <fn id="tfn3-gi-15-4-170">
+          <p>TSS, transcription start site; WE, Weizmann evolutionary.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

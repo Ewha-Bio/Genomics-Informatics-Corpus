@@ -1,0 +1,2344 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="review-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">27103885</article-id>
+      <article-id pub-id-type="pmc">4838525</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2016.14.1.2</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Review Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Network-Based Protein Biomarker Discovery Platforms</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Minhyung</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Hwang</surname>
+            <given-names>Daehee</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="A1">Department of New Biology and Center for Plant Aging Research, Institute for Basic Science, Daegu Gyeongbuk Institute of Science and Technology, Daegu 42988, Korea.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +82-54-279-2393, Fax: +82-54-279-8409, <email>dhhwang@postech.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>3</month>
+        <year>2016</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>31</day>
+        <month>3</month>
+        <year>2016</year>
+      </pub-date>
+      <volume>14</volume>
+      <issue>1</issue>
+      <fpage>2</fpage>
+      <lpage>11</lpage>
+      <history>
+        <date date-type="received">
+          <day>25</day>
+          <month>11</month>
+          <year>2015</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>06</day>
+          <month>1</month>
+          <year>2016</year>
+        </date>
+        <date date-type="accepted">
+          <day>07</day>
+          <month>1</month>
+          <year>2016</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2016 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2016</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>The advances in mass spectrometry-based proteomics technologies have enabled the generation of global proteome data from tissue or body fluid samples collected from a broad spectrum of human diseases. Comparative proteomic analysis of global proteome data identifies and prioritizes the proteins showing altered abundances, called differentially expressed proteins (DEPs), in disease samples, compared to control samples. Protein biomarker candidates that can serve as indicators of disease states are then selected as key molecules among these proteins. Recently, it has been addressed that cellular pathways can provide better indications of disease states than individual molecules and also network analysis of the DEPs enables effective identification of cellular pathways altered in disease conditions and key molecules representing the altered cellular pathways. Accordingly, a number of network-based approaches to identify disease-related pathways and representative molecules of such pathways have been developed. In this review, we summarize analytical platforms for network-based protein biomarker discovery and key components in the platforms.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>biomarkers</kwd>
+        <kwd>LC-MS/MS</kwd>
+        <kwd>network analysis</kwd>
+        <kwd>proteomics</kwd>
+      </kwd-group>
+      <funding-group>
+        <award-group>
+          <funding-source country="KR">
+            <institution-wrap>
+              <institution>Institute for Basic Science</institution>
+            </institution-wrap>
+          </funding-source>
+          <award-id>IBS-R013-G1-2015-a00</award-id>
+        </award-group>
+      </funding-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>For a last decade, mass spectrometry (MS)-based proteomic technologies have emerged as a core technology to measure protein expression and the sites with post-translational modifications (PTMs) on large scales. However, MS-based proteome analysis has been possible for only a limited number of proteins and also limited in accurately detecting low abundant proteins and the peptides with low abundant PTMs [<xref rid="B1" ref-type="bibr">1</xref><xref rid="B2" ref-type="bibr">2</xref><xref rid="B3" ref-type="bibr">3</xref><xref rid="B4" ref-type="bibr">4</xref>]. Recent advances in high-resolution peptide separation, comprehensive fractionation, and high performance MS considerably improved the proteome size and depth (increased numbers of proteins and PTM sites measured) and also the accuracy in quantitative information of proteomic data (abundances of proteins and PTM sites) [<xref rid="B5" ref-type="bibr">5</xref>]. Moreover, MS-based proteome analysis required large amounts of samples to measure reliably proteins and PTM sites. To resolve this problem, the methods for serial enrichments of different PTMs from the same sample have been developed to significantly reduce the sample amount required [<xref rid="B6" ref-type="bibr">6</xref>]. These advanced MS-based proteomic technologies have facilitated the generation of proteome and PTM profiles in tissue and body fluid (plasma/serum, urine, ascites, cerebrospinal fluid, synovial fluid, saliva, and tear) samples collected from the patients with a broad spectrum of human diseases.</p>
+      <p>Comparative proteomic analysis of samples from the patients and healthy control subjects is commonly applied to identify protein biomarker candidates [<xref rid="B7" ref-type="bibr">7</xref><xref rid="B8" ref-type="bibr">8</xref><xref rid="B9" ref-type="bibr">9</xref><xref rid="B10" ref-type="bibr">10</xref>]. In this analysis, proteome profiles are first obtained for tissue or body fluid samples collected from the patients with a target disease and also healthy subjects, and the proteins showing altered abundances, called differentially expressed proteins (DEPs), in disease samples, compared to control samples are then identified (discovery phase) [<xref rid="B10" ref-type="bibr">10</xref>]. In the protein biomarker discovery platforms, about hundred DEPs are selected as an initial set of biomarker candidates, and their altered expression are then verified in a small cohort of the patients, which is independent to the patients used in the discovery phase (verification phase) [<xref rid="B5" ref-type="bibr">5</xref>]. However, the number of DEPs is often larger than 100, and how to select the initial set of biomarker candidates is not straightforward, although fold-changes and/or associations of the DEPs with pathophysiological processes in the target disease can be used as the criteria for selection of the initial set of biomarker candidates. Next, for the initial candidates whose disease-related alterations in their abundances were confirmed in the small cohort during the verification phase, their validity as biomarkers is tested in a large cohort of the patients (validation phase) [<xref rid="B5" ref-type="bibr">5</xref>]. Finally, the biomarker candidates whose altered expression was confirmed in the large cohort are selected as the final set of biomarkers.</p>
+      <p>Recently, a number of studies have reported that cellular pathways can serve as better indicators of disease states than individual molecules [<xref rid="B11" ref-type="bibr">11</xref><xref rid="B12" ref-type="bibr">12</xref><xref rid="B13" ref-type="bibr">13</xref><xref rid="B14" ref-type="bibr">14</xref><xref rid="B15" ref-type="bibr">15</xref><xref rid="B16" ref-type="bibr">16</xref><xref rid="B17" ref-type="bibr">17</xref>]. Pathway enrichment analysis provides a list of cellular pathways enriched by the DEPs, and a set of cellular pathways related to pathophysiological processes can be then selected as altered cellular pathways in the target disease. Next, we can focus on a subset of DEPs that are involved in the selected cellular pathways. Furthermore, network analysis for this subset of DEPs enables effective identification of key molecules that represent the selected cellular pathways as protein biomarker candidates. Using this approach, an initial set of biomarker candidates can be selected more effectively than the conventional criteria, such as fold-changes and associations of the DEPs with the target disease. Thus, several network-based approaches to identify disease-related cellular pathways and representative proteins of such pathways have been developed. In this review, we summarize bioinformatics methods for network-based protein biomarker discovery and also key components in these network-based methods.</p>
+    </sec>
+    <sec sec-type="results">
+      <title>Results</title>
+      <sec>
+        <title>Peptide and protein identification</title>
+        <p>After obtaining proteomic data from tissue or body fluid samples using liquid chromatography&#x2013;tandem mass spectrometry (LC-MS/MS) analysis, the tandem mass spectrometry (MS/MS) spectra are first searched against a protein sequence database (e.g., SWISS-Prot or UniProt) to identify the peptide sequences for individual MS/MS spectra (peptide/protein identification) (<xref ref-type="fig" rid="F1">Fig. 1</xref>). The detected proteome size determines the depth to understand disease-related cellular networks based on the proteome data. Thus, a sufficient size of the detected proteome is a prerequisite in effective discovery of protein biomarkers based on disease-related networks. To ensure an adequate proteome size, accurate identification of the peptides for MS/MS spectra is important through database search using the engine, such as Mascot [<xref rid="B18" ref-type="bibr">18</xref>], SEQUEST [<xref rid="B19" ref-type="bibr">19</xref>], MS-GF+ [<xref rid="B20" ref-type="bibr">20</xref>], or Paragon (<xref ref-type="table" rid="T1">Table 1</xref>) [<xref rid="B21" ref-type="bibr">21</xref>]. During the database search, a score is assigned by the search engine to each peptide that can be generated from the sequence database, which reflects the degree of the agreement of the measured MS/MS spectrum to the theoretical spectrum of the peptide. For example, SEQUEST assigns the scores of X-corr, deltaCorr, SPrank, and SP value to the peptide, whereas MS-GF+ assigns &#x2013;log<sub>10</sub>(E-value) to the peptide. For each measured MS/MS spectrum, the peptide with the largest score value is then selected, which defines a peptide-spectrum match (PSM).</p>
+        <p>Next, the statistical significance of the PSMs resulted from the database search is evaluated using a statistical method, such as PeptideProphet [<xref rid="B22" ref-type="bibr">22</xref>] in the Trans-Proteomic Pipeline [<xref rid="B23" ref-type="bibr">23</xref>] or the target-decoy method (<xref ref-type="table" rid="T1">Table 1</xref>) [<xref rid="B24" ref-type="bibr">24</xref>]. For example, for each PSM, PeptideProphet combines the scores (X-corr, deltaCorr, SPrank, and SP value) to an F score, and a mixture of Gaussian and Gamma distributions is fitted to the distribution of F scores for all PSMs. Using the mixture distribution, the probability of a PSM being true (PeptideProphet p-value) is estimated [<xref rid="B25" ref-type="bibr">25</xref>]. Finally, the PSMs with PeptideProphet p-value &gt; 0.95 are selected as the correct PSMs. In the target-decoy method, a reverse sequence database was generated by inversing the reference protein sequence in the database and then included in the database prior to the database search. Using the score values for the PSMs in which the peptide sequence was obtained from the reverse sequence database, false discovery rates (FDRs) for all PSMs are estimated [<xref rid="B24" ref-type="bibr">24</xref>]. Finally, the PSMs with FDR &lt; 0.01 are selected as the correct PSMs.</p>
+        <p>Recent studies have shown that the best coverage of the detected proteome can be obtained by combining the outputs from multiple search engines. For example, Compid enables the integration of Paragon and Mascot (<xref ref-type="table" rid="T1">Table 1</xref>) [<xref rid="B24" ref-type="bibr">24</xref>] by assigning the peptides with higher scores from the two search engines to the MS/MS spectra, which can leads to unreliable false positive rates. Also, MSblender integrates the search scores from the search engines into a probability score for every possible PSM and then estimates FDRs for the PSMs in a reliable manner [<xref rid="B26" ref-type="bibr">26</xref>]. This method identifies more PSMs than any single search engine at the same FDR. After identifying all the PSMs from the database search, a list of the detected proteins are further identified. Using the SEQUEST search outputs, the probability that a protein is correctly identified (ProteinProphet p-value) is calculated by statistically combining the PeptideProphet p-values of the peptides derived from the protein, and the proteins with PeptideProphet p-value &gt; 0.99 are selected as the proteins correctly identified [<xref rid="B22" ref-type="bibr">22</xref>]. In the target decoy method, the proteins with more than two non-redundant peptides with FDR &lt; 0.01 can be considered as the reliable proteins [<xref rid="B27" ref-type="bibr">27</xref>].</p>
+      </sec>
+      <sec>
+        <title>Protein quantitation</title>
+        <p>Several LC-MS/MS approaches provide quantitative information of the peptides identified from the database search (protein quantification) (<xref ref-type="fig" rid="F1">Fig. 1</xref>). First, prior to LC-MS/MS analysis, the peptides can be labeled using the isotopic agents, such as isotope-coded affinity tag (iCAT) [<xref rid="B28" ref-type="bibr">28</xref>], isobaric tag for relative and absolute quantitation (iTRAQ) [<xref rid="B29" ref-type="bibr">29</xref>], or tandem mass tags (TMT) [<xref rid="B30" ref-type="bibr">30</xref>]. For the iCAT data, the abundance of an identified peptide is estimated as the area under the elusion curve of the peptide. On the other hand, for the iTRAQ or TMT data, the peptide abundance is estimated as the intensities of the reporter ions in the MS/MS data [<xref rid="B31" ref-type="bibr">31</xref>]. Second, when no isotope labeling was done, called label-free LC-MS/MS analysis, the peptide abundance is estimated as the area under the elusion curve of the peptide as done for the iCAT data. Next, the relative abundance of an identified peptide is calculated as the ratio of the peptide abundances between patient and control samples. From the iCAT data, the ratios of the heavy and light peptides are calculated as the relative peptide abundance. To estimate the relative abundances of a protein, a list of the peptides derived from the proteins are identified and the relative abundances of these peptides are then combined using a method for protein quantitation, such as the quantification tool in MaxQuant software [<xref rid="B32" ref-type="bibr">32</xref>] or a linear programming method [<xref rid="B33" ref-type="bibr">33</xref>].</p>
+      </sec>
+      <sec>
+        <title>Identification of differentially expressed proteins</title>
+        <p>The biomarkers should reflect the alteration of disease-related pathophysiological processes in the patient samples, compared to controls. Thus, the DEPs between control and patient samples are identified as the biomarker candidates (identification of DEPs) (<xref ref-type="fig" rid="F1">Fig. 1</xref>). A number of statistical methods have been developed for identification of the DEPs, such as t-test [<xref rid="B34" ref-type="bibr">34</xref>] or integrative statistical methods [<xref rid="B35" ref-type="bibr">35</xref><xref rid="B36" ref-type="bibr">36</xref>], with the multiple comparison correction. These methods compare the relative protein abundances between control and patient samples and then estimate the significance (p-value or FDR) of the difference in the relative protein abundances between control and patient samples methods. The proteins with p-value or FDR &lt; 0.01 or 0.05 are then selected as the DEPs. Furthermore, additional constraints are used to select more reliable DEPs. For example, for each DEP, the number of the patients showing the fold-changes larger than a cutoff (1.5- or 2-fold) is counted, and a subset of DEPs with the number of patients larger than a certain percentage (50% of the patients) can be selected as the reliable DEPs [<xref rid="B37" ref-type="bibr">37</xref>]. Using this criterion, we can focus on the DEPs that are likely to show their alterations in the abundance in at least more than half of the patients when they were used as biomarker candidates for newly collected patient samples.</p>
+      </sec>
+      <sec>
+        <title>Functional enrichment analysis</title>
+        <p>The alterations in protein abundances under disease conditions reflect simple clinical symptoms that are commonly observed in many other diseases, such as inflammation or immune responses, or the alterations of the pathophysiological processes specific to the target disease, such as aggregation of toxic proteins in neurodegenerative diseases. Thus, the DEPs that are involved in the disease-related pathophysiological processes can represent more effectively the alterations specific to the target disease (<xref ref-type="fig" rid="F2">Fig. 2</xref>). To effectively understand the pathophysiological processes altered under disease conditions, functional enrichment analysis is often performed for the DEPs using diverse enrichment tools. For example, the enrichment analysis of gene ontology biological processes (GOBPs) or Kyoto Encyclopedia of Genes and Genomes (KEGG) pathways can be applied to the DEPs using DAVID [<xref rid="B38" ref-type="bibr">38</xref>] and PANTHER [<xref rid="B39" ref-type="bibr">39</xref>], and commercial tools, such as MetaCore [<xref rid="B40" ref-type="bibr">40</xref>] and Ingenuity Pathway Analysis (IPA, QIAGEN Redwood City, <ext-link ext-link-type="uri" xlink:href="http://www.qiagen.com/ingenuity">http://www.qiagen.com/ingenuity</ext-link>) (<xref ref-type="table" rid="T1">Table 1</xref>). A list of GOBPs or KEGG pathways with enrichment p-value &lt; 0.05 are selected as the pathophysiological processes or cellular pathways altered under disease conditions. Of these selected GOBPs and KEGG pathways, a subset of the GOBPs related to the target disease is further selected based on the knowledge of the target disease. Finally, a subset of the DEPs that are involved in the selected GOBPs or KEGG pathways related to the target disease can be selected as an initial set of biomarker candidates, considering that these DEPs are likely to be specifically associated with the target disease.</p>
+        <p>No enrichment analysis mentioned above consider quantitatively the differences in fold-changes of the DEPs, but consider equivalently the DEPs that were selected using a fixed cutoff (p-value and/or fold-changes). To remedy this problem, several functional class scoring methods have been developed, such as gene set enrichment analysis (GSEA) (<xref ref-type="table" rid="T1">Table 1</xref>, <xref ref-type="fig" rid="F2">Fig. 2</xref>) [<xref rid="B41" ref-type="bibr">41</xref>]. In the GSEA, all D-changes, and the enrichment of functional modules defined in the database, such as the molecular signatures database (MSigDB) (<xref ref-type="table" rid="T1">Table 1</xref>), by the top or bottom of the ranked protein list is statistically evaluated. Several alternative module-level statistics to the conventional GSEA have been also used, including Kolmogorov-Smirnov statistic and the maxmean statistic [<xref rid="B42" ref-type="bibr">42</xref>]. Moreover, as an alternative enrichment analysis, several pathway topology approaches have been developed, such as signaling pathway impact analysis (SPIA) [<xref rid="B43" ref-type="bibr">43</xref>] and network perturbation amplitude (NPA) (<xref ref-type="table" rid="T1">Table 1</xref>, <xref ref-type="fig" rid="F2">Fig. 2</xref>) [<xref rid="B26" ref-type="bibr">26</xref>]. These approaches consider whether the proteins involved in functional modules defined by GOBP or GSEA database (MSigDB) interact with each other in cellular networks. In the SPIA, a conventional overrepresentation measure, as in GOBP enrichment analysis and a topology measure of the pathway are combined to identify functional modules in which the DEPs are significantly connected. In the NPA, the upper and lower tiers are defined as cellular pathways (e.g., mitogen-activated protein kinase pathway activation) and target genes/proteins regulated by the pathways in the upper tier, respectively, and positive and negative causal relationships are defined by the links between the upper and lower tiers. Then, NPA evaluates the causal relationships by quantitatively summarizing whether the expression changes of the downstream nodes are consistent with pathway activation, inactivation, or no change. These analyses provide a list of functional modules significantly altered under disease conditions. Similar to the case of the GOBP enrichment analysis, a subset of function modules related to the target disease can be identified, and a subset of DEPs involved in the identified functional modules can be selected as an initial set of biomarker candidates.</p>
+      </sec>
+      <sec>
+        <title>Network modeling and analysis</title>
+        <p>Functional molecules or cellular networks altered under disease conditions interact closely with each other to form a disease-perturbed cellular network. The network model enables identification of hub-like molecules that can serve as core indicators of the activities of cellular processes described in the network model. Thus, it is important to understand the disease-perturbed cellular network to identify the core indicators as the biomarker candidates. The core molecules and their associated cellular pathways have been further suggested as therapeutic targets or the biomarker candidates that can be used to evaluate the efficacy of the treatments (e.g., drug efficacy) for the target disease. Hence, the network-based approaches have been employed for protein biomarker discovery.</p>
+        <p>The network-based approaches first reconstruct a disease-perturbed cellular network model describing the interactions of the DEPs or a subset of the DEPs involved in the selected GOBPs related to the target disease using protein-protein (PPIs), protein-DNA (PDIs), and/or protein-metabolite interactions (PMIs) in the following interactome databases (<xref ref-type="table" rid="T1">Table 1</xref>, <xref ref-type="fig" rid="F2">Fig. 2</xref>): (1) PPI databases: human protein reference database (HPRD) [<xref rid="B44" ref-type="bibr">44</xref>], biological general repository for interaction datasets (BioGRID) [<xref rid="B45" ref-type="bibr">45</xref>], biomolecular interaction network database (BIND) [<xref rid="B46" ref-type="bibr">46</xref>], search tool for recurring instances of neighbouring genes (STRING) [<xref rid="B47" ref-type="bibr">47</xref>], and Molecular INTeraction database (MINT) [<xref rid="B48" ref-type="bibr">48</xref>]; (2) PDI databases: EdgeExpressDB (FANTOM4-EEDB) [<xref rid="B49" ref-type="bibr">49</xref>], transcriptional regulatory element database (TRED) [<xref rid="B50" ref-type="bibr">50</xref>], MSigDB [<xref rid="B41" ref-type="bibr">41</xref>], MultiNet [<xref rid="B51" ref-type="bibr">51</xref>], and MetaCore [<xref rid="B40" ref-type="bibr">40</xref>]; and (3) PMI database: KEGG pathway database [<xref rid="B52" ref-type="bibr">52</xref>].</p>
+        <p>Next, the network model are analyzed to identify network modules or clusters each of which includes a set of the nodes densely connected in the network (<xref ref-type="fig" rid="F2">Fig. 2</xref>). For network clustering or modularization, a number of methods, such as jActiveModules [<xref rid="B53" ref-type="bibr">53</xref>], ResponseNet [<xref rid="B54" ref-type="bibr">54</xref>], NetWalker [<xref rid="B55" ref-type="bibr">55</xref>], and clusterMaker [<xref rid="B56" ref-type="bibr">56</xref>], have been developed (<xref ref-type="table" rid="T1">Table 1</xref>). These methods can be categorized into two groups. One group, such as clusterMaker, searches for the node clusters based on the network topology information such that the nodes in the same cluster have dense connections, but sparse connections between the different clusters [<xref rid="B56" ref-type="bibr">56</xref>]. The other group, such as jActiveModules, uses the quantitative fold-changes of the nodes between control and patient samples measured by LC-MS/MS together with the network topology information. In this group, the node clusters are identified such that the nodes in the same clusters are densely connected and also show similar alteration patterns in protein abundance [<xref rid="B53" ref-type="bibr">53</xref>].</p>
+        <p>For functional interpretation of the node clusters resulted from network clustering, functional enrichment analyses mentioned above are then performed for the nodes in each network cluster. Of the node clusters, prior to the enrichment analysis, we can focus on the major network clusters including large numbers of the DEPs. The functional enrichment analysis then provide a subset of the major network clusters whose functions (e.g., GOBPs or KEGG pathways) are associated with the disease-related cellular processes. This subset can be considered as potential determinants of the disease-perturbed cellular network. Finally, the hub-like DEP in each major network cluster is selected as a biomarker candidate that can reflect the perturbation of the disease-related cellular process associated with the network cluster. Mitra et al. [<xref rid="B57" ref-type="bibr">57</xref>] demonstrated the power of the network-based biomarker discovery approach in prediction of metastatic cancers in human breast cancer. They identified network clusters with dysregulated expression using SigArSearch and showed that the network clusters were more accurate in distinguishing metastatic cancers from non-metastatic cancers, compared with individual cancer-gene markers.</p>
+      </sec>
+      <sec>
+        <title>Integrative analysis of proteomic data with other global data</title>
+        <p>Other global data than proteomic data, such as mRNA expression, mutation, DNA methylation, histone modification, can provide complementary information that enables to select reliable biomarker candidates when they are integrated with the proteomic data. The integrative analysis of proteomic data with other types of global datasets can be categorized into two groups (<xref ref-type="fig" rid="F3">Fig. 3</xref>): (1) the molecular level and (2) the network-level integration methods [<xref rid="B58" ref-type="bibr">58</xref>]. The proteome data are contaminated with the noises coming from numerous sources of technical variability during LC-MS/MS experiments and biological variability in patient samples during sample collection and preparation [<xref rid="B59" ref-type="bibr">59</xref><xref rid="B60" ref-type="bibr">60</xref>]. The integration of disparate global datasets reduces the artifacts of the noises in selection of the DEPs by enabling us to focus on the reliable DEPs showing consistent changes between control and patient samples in multiple types of global data [<xref rid="B58" ref-type="bibr">58</xref>].</p>
+        <p>In the molecular level integration method, the DEPs that show consistent alterations in the other global datasets (e.g., mRNA expression data) are searched, assuming that they are more reliable indicators of the perturbation of cellular processes under disease conditions (<xref ref-type="fig" rid="F3">Fig. 3</xref>). Biomarker candidates can be then selected from these reliable DEPs. For example, the DEPs selected from the tissue data can be supported by the consistency in the altered expression of their corresponding mRNAs. Also, the DEPs can be further supported by the consistency in the changes of copy number variations or DNA and/or histone methylations of the corresponding genes. Moreover, the reliability of the DEPs selected from the serum proteome data can be supported by the altered expression of their corresponding mRNAs or proteins in the tissues from the target organ. Hyung et al. [<xref rid="B61" ref-type="bibr">61</xref>] demonstrated the value of the integrative analysis of serum proteome data with mRNA expression and proteome data obtained from the tissues in human breast cancers. They selected the DEPs between the serum samples collected from sensitive and resistant patients to a combinatorial chemotherapy using doxorubicin and docetaxol and then further selected the DEPs with altered expression of the corresponding mRNAs and proteins in the breast tissue samples. During the validation of biomarker candidates, they showed that the DEPs with the consistent alteration in the tissues showed higher accuracy in their validation using western blotting for a validation cohort of independent serum samples.</p>
+        <p>Individual patients can show the variation in altered molecules of a cellular pathway though the same pathway is consistently perturbed under disease conditions. Given the variation, these molecules cannot be selected as DEPs using the conventional statistical methods, thereby leading to the failure to identify biomarkers that reflect the alteration of such cellular pathways. Thus, it has been addressed that cellular pathways can serve as a more reliable indicator of the altered cellular processes under disease conditions, compared to individual molecules [<xref rid="B58" ref-type="bibr">58</xref>]. Different types of molecules (mRNA/proteins, microRNAs, DNA methylations, and metabolites) can represent distinct layers of cellular networks. Thus, a cellular network can be modeled in a multi-layered network where each layer can be delineated by a distinct type of the molecules. For example, transcriptional and microRNA regulatory networks are defined by interactions of transcription factors and microRNAs, respectively, with their target mRNAs. Also, cellular signaling networks are defined by protein-protein interactions (kinase-substrate interactions), while DNA methylation networks are defined by interactions of methyltransferases and demethylases with their target DNAs and mRNAs. The integration of multiple global datasets for different types of molecules enables us to decode the multi-layered cellular networks associated with the target disease. A number of the tools have been developed to understand the subnetworks (network clusters) of the multi-layered networks whose perturbations are collectively indicated by different types of global datasets, including IPA (QIAGEN Redwood City, <ext-link ext-link-type="uri" xlink:href="http://www.qiagen.com/ingenuity">http://www.qiagen.com/ingenuity</ext-link>), HotNet [<xref rid="B62" ref-type="bibr">62</xref>], or SteinerNet (<xref ref-type="table" rid="T1">Table 1</xref>) [<xref rid="B63" ref-type="bibr">63</xref>]. Although these tools can be applied for integration of proteomic data with other types of global data, they have been used mainly for integration of disparate genomic and transcriptomic data. Recently, Shi et al. [<xref rid="B64" ref-type="bibr">64</xref>] developed NetGestalt that can be used for integration of multi-dimensional global datasets including proteomic data. For example, using NegGestalt, Zhu et al. [<xref rid="B65" ref-type="bibr">65</xref>] identified KRAS and AKAP12 subnetworks that can play important roles in pathogenesis of colorectal cancers by integrating proteomic data with mutation, copy number variation, DNA methylation, and mRNA expression data generated from colon tissues and cells. Finally, the hub-like molecules in the subnetworks are selected as key indicators of the alterations of the disease-related processes associated with the subnetworks. For example, Iliopoulos et al. [<xref rid="B66" ref-type="bibr">66</xref>] identified a set of the biomarker candidates by performing the network-based integration of the proteome and microRNA expression data. Also, The Cancer Genome Atlas (TCGA) research network identified the notch signaling pathway as a key molecule representing the pathogenesis of ovarian cancers by integrating somatic mutation, copy number variation, and mRNA expression data using HotNet analysis [<xref rid="B67" ref-type="bibr">67</xref>].</p>
+      </sec>
+    </sec>
+    <sec sec-type="discussion">
+      <title>Discussion</title>
+      <p>In this review, we summarized a battery of bioinformatics analyses for network-based biomarker discovery using LC-MS/MS data. These analyses include peptide/protein identification using database search engines, peptide/protein quantification from MS or MS/MS data, identification of DEPs using statistical methods, functional enrichment analysis of DEPs using diverse enrichment tools, and network modeling and analysis of DEPs, as well as integrative analysis of disparate global datasets with the LC-MS/MS data.</p>
+      <p>Peptide identification using database search has been known as a main challenge. Of the MS/MS spectra measured, about half of them are commonly mapped to peptide sequences. The inclusion of PTMs in database search can map the unidentified MS/MS spectra to peptide sequences. However, the PTM inclusion exponentially increases the search time and thus it would be practically impossible to include the most common five PTMs, phosphorylation, glycosylation, ubiquitination, methylation, and acetylation in database search. Recently, although several search tools, such as MODa [<xref rid="B68" ref-type="bibr">68</xref>], with improved search speeds have been developed, there is still significant needs for efficient search tools that can include the five common PTMs in the search.</p>
+      <p>Moreover, protein quantification has been also one of the challenges in MS-based proteomic analysis. Relative protein abundances are estimated by combining the ratios of abundances of the peptides derived from the protein. The same peptide sequences can be derived from multiple proteins due to the redundancy in their sequences, which can cause the discrepancy in the ratios of the peptides from the same protein between control and patient samples. Also, technical and biological variability can add the discrepancy to the peptide ratios. Because of these sources of the discrepancy in the peptide ratios, it has been difficult to estimate the relative ratios of protein abundances between control and patient samples. Recently, although the optimization-based quantification tools, such as linear programming [<xref rid="B33" ref-type="bibr">33</xref>], have been developed, there have been significant needs for the quantification methods with improved accuracy.</p>
+      <p>Due to the issue with protein quantification, identification of DEPs can be also erroneous when inaccurate ratios of protein abundances exist. Additional criteria, such as the number of patients showing fold-changes larger than a cutoff (e.g., 1.5-fold), are used to reduce the error (false-positives) in identification of DEPs. The error in identification of DEPs can further propagate into functional enrichment analysis and network modeling and analysis for the DEPs. Finally, the integrative analysis of disparate global datasets suffers from different scales of fold-changes and the size of detected molecules in the different types of global datasets. For example, mRNA fold-changes between control and patient samples can be relatively larger than the fold-changes of protein abundances, which may cause the bias toward mRNA fold-changes during the integration of fold-changes of mRNA and protein abundances. Also, differentially expressed microRNAs between control and patient samples are smaller than the DEPs or mRNAs, which can lead to the bias toward the DEPs or mRNAs during the integration. Various integration strategies have been proposed to reduce the intrinsic bias from the differences in the size of disparate global datasets. For example, in these methods, mRNA and protein abundance ratios are first integrated and the data with small sizes are separately integrated to the outputs from the initial integration of mRNA and protein data. However, regarding the scale difference in fold-changes, there have been the needs for the algorithms that can effectively normalize the different scales of fold-changes in different datasets.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by the grant from Institute for Basic Science (IBS-R013-G1-2015-a00) funded by the Korean Ministry of Science, ICT &amp; Future Planning.</p>
+    </ack>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <collab>Biomarkers Definitions Working Gruop</collab>
+          <article-title>Biomarkers and surrogate endpoints: preferred definitions and conceptual framework</article-title>
+          <source>Clin Pharmacol Ther</source>
+          <year>2001</year>
+          <volume>69</volume>
+          <fpage>89</fpage>
+          <lpage>95</lpage>
+          <pub-id pub-id-type="pmid">11240971</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hawkridge</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Muddiman</surname>
+              <given-names>DC</given-names>
+            </name>
+          </person-group>
+          <article-title>Mass spectrometry-based biomarker discovery: toward a global proteome index of individuality</article-title>
+          <source>Annu Rev Anal Chem (Palo Alto Calif)</source>
+          <year>2009</year>
+          <volume>2</volume>
+          <fpage>265</fpage>
+          <lpage>277</lpage>
+          <pub-id pub-id-type="pmid">20636062</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aebersold</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Caprioli</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Druker</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Hartwell</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Perspective: a program to improve protein biomarker discovery for cancer</article-title>
+          <source>J Proteome Res</source>
+          <year>2005</year>
+          <volume>4</volume>
+          <fpage>1104</fpage>
+          <lpage>1109</lpage>
+          <pub-id pub-id-type="pmid">16083259</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Chan</surname>
+              <given-names>DW</given-names>
+            </name>
+          </person-group>
+          <article-title>Proteomic cancer biomarkers from discovery to approval: it's worth the effort</article-title>
+          <source>Expert Rev Proteomics</source>
+          <year>2014</year>
+          <volume>11</volume>
+          <fpage>135</fpage>
+          <lpage>136</lpage>
+          <pub-id pub-id-type="pmid">24646122</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frantzi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Bhat</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Latosinska</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Clinical proteomic biomarkers: relevant issues on study design &amp; technical considerations in biomarker development</article-title>
+          <source>Clin Transl Med</source>
+          <year>2014</year>
+          <volume>3</volume>
+          <fpage>7</fpage>
+          <pub-id pub-id-type="pmid">24679154</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Anderson</surname>
+              <given-names>NL</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>NG</given-names>
+            </name>
+          </person-group>
+          <article-title>The human plasma proteome: history, character, and diagnostic prospects</article-title>
+          <source>Mol Cell Proteomics</source>
+          <year>2002</year>
+          <volume>1</volume>
+          <fpage>845</fpage>
+          <lpage>867</lpage>
+          <pub-id pub-id-type="pmid">12488461</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zubarev</surname>
+              <given-names>RA</given-names>
+            </name>
+          </person-group>
+          <article-title>The challenge of the proteome dynamic range and its implications for in-depth proteomics</article-title>
+          <source>Proteomics</source>
+          <year>2013</year>
+          <volume>13</volume>
+          <fpage>723</fpage>
+          <lpage>726</lpage>
+          <pub-id pub-id-type="pmid">23307342</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Whiteaker</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Paulovich</surname>
+              <given-names>AG</given-names>
+            </name>
+          </person-group>
+          <article-title>The evolving role of mass spectrometry in cancer biomarker discovery</article-title>
+          <source>Cancer Biol Ther</source>
+          <year>2009</year>
+          <volume>8</volume>
+          <fpage>1083</fpage>
+          <lpage>1094</lpage>
+          <pub-id pub-id-type="pmid">19502776</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Feng</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Comparative proteomic profiling of human bile reveals SSP411 as a novel biomarker of cholangiocarcinoma</article-title>
+          <source>PLoS One</source>
+          <year>2012</year>
+          <volume>7</volume>
+          <fpage>e47476</fpage>
+          <pub-id pub-id-type="pmid">23118872</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Ni</surname>
+              <given-names>RZ</given-names>
+            </name>
+            <name>
+              <surname>Xiao</surname>
+              <given-names>MB</given-names>
+            </name>
+            <name>
+              <surname>Guo</surname>
+              <given-names>JG</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>JW</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparative proteomic analysis of differentially expressed proteins in human pancreatic cancer tissue</article-title>
+          <source>Hepatobiliary Pancreat Dis Int</source>
+          <year>2009</year>
+          <volume>8</volume>
+          <fpage>193</fpage>
+          <lpage>200</lpage>
+          <pub-id pub-id-type="pmid">19357035</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Giles</surname>
+              <given-names>RH</given-names>
+            </name>
+            <name>
+              <surname>van Es</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Clevers</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Caught up in a Wnt storm: Wnt signaling in cancer</article-title>
+          <source>Biochim Biophys Acta</source>
+          <year>2003</year>
+          <volume>1653</volume>
+          <fpage>1</fpage>
+          <lpage>24</lpage>
+          <pub-id pub-id-type="pmid">12781368</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Leiserson</surname>
+              <given-names>MD</given-names>
+            </name>
+            <name>
+              <surname>Blokh</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Sharan</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Raphael</surname>
+              <given-names>BJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Simultaneous identification of multiple driver pathways in cancer</article-title>
+          <source>PLoS Comput Biol</source>
+          <year>2013</year>
+          <volume>9</volume>
+          <fpage>e1003054</fpage>
+          <pub-id pub-id-type="pmid">23717195</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moore</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Faris</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Priola</surname>
+              <given-names>SA</given-names>
+            </name>
+          </person-group>
+          <article-title>Proteomics applications in prion biology and structure</article-title>
+          <source>Expert Rev Proteomics</source>
+          <year>2015</year>
+          <volume>12</volume>
+          <fpage>171</fpage>
+          <lpage>184</lpage>
+          <pub-id pub-id-type="pmid">25795148</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aitman</surname>
+              <given-names>TJ</given-names>
+            </name>
+            <name>
+              <surname>Boone</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Churchill</surname>
+              <given-names>GA</given-names>
+            </name>
+            <name>
+              <surname>Hengartner</surname>
+              <given-names>MO</given-names>
+            </name>
+            <name>
+              <surname>Mackay</surname>
+              <given-names>TF</given-names>
+            </name>
+            <name>
+              <surname>Stemple</surname>
+              <given-names>DL</given-names>
+            </name>
+          </person-group>
+          <article-title>The future of model organisms in human disease research</article-title>
+          <source>Nat Rev Genet</source>
+          <year>2011</year>
+          <volume>12</volume>
+          <fpage>575</fpage>
+          <lpage>582</lpage>
+          <pub-id pub-id-type="pmid">21765459</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Baranzini</surname>
+              <given-names>SE</given-names>
+            </name>
+          </person-group>
+          <article-title>The genetics of autoimmune diseases: a networked perspective</article-title>
+          <source>Curr Opin Immunol</source>
+          <year>2009</year>
+          <volume>21</volume>
+          <fpage>596</fpage>
+          <lpage>605</lpage>
+          <pub-id pub-id-type="pmid">19896815</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ding</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Ding</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Ye</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>atBioNet: an integrated network analysis tool for genomics and biomarker discovery</article-title>
+          <source>BMC Genomics</source>
+          <year>2012</year>
+          <volume>13</volume>
+          <fpage>325</fpage>
+          <pub-id pub-id-type="pmid">22817640</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chuang</surname>
+              <given-names>HY</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>YT</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Ideker</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Network-based classification of breast cancer metastasis</article-title>
+          <source>Mol Syst Biol</source>
+          <year>2007</year>
+          <volume>3</volume>
+          <fpage>140</fpage>
+          <pub-id pub-id-type="pmid">17940530</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Baker</surname>
+              <given-names>ES</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Petyuk</surname>
+              <given-names>VA</given-names>
+            </name>
+            <name>
+              <surname>Burnum-Johnson</surname>
+              <given-names>KE</given-names>
+            </name>
+            <name>
+              <surname>Ibrahim</surname>
+              <given-names>YM</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>GA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Mass spectrometry for translational proteomics: progress and clinical implications</article-title>
+          <source>Genome Med</source>
+          <year>2012</year>
+          <volume>4</volume>
+          <fpage>63</fpage>
+          <pub-id pub-id-type="pmid">22943415</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B19">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eng</surname>
+              <given-names>JK</given-names>
+            </name>
+            <name>
+              <surname>McCormack</surname>
+              <given-names>AL</given-names>
+            </name>
+            <name>
+              <surname>Yates</surname>
+              <given-names>JR</given-names>
+            </name>
+          </person-group>
+          <article-title>An approach to correlate tandem mass spectral data of peptides with amino acid sequences in a protein database</article-title>
+          <source>J Am Soc Mass Spectrom</source>
+          <year>1994</year>
+          <volume>5</volume>
+          <fpage>976</fpage>
+          <lpage>989</lpage>
+          <pub-id pub-id-type="pmid">24226387</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Gupta</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Pevzner</surname>
+              <given-names>PA</given-names>
+            </name>
+          </person-group>
+          <article-title>Spectral probabilities and generating functions of tandem mass spectra: a strike against decoy databases</article-title>
+          <source>J Proteome Res</source>
+          <year>2008</year>
+          <volume>7</volume>
+          <fpage>3354</fpage>
+          <lpage>3363</lpage>
+          <pub-id pub-id-type="pmid">18597511</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Polaskova</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Kapur</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Khan</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Molloy</surname>
+              <given-names>MP</given-names>
+            </name>
+            <name>
+              <surname>Baker</surname>
+              <given-names>MS</given-names>
+            </name>
+          </person-group>
+          <article-title>High-abundance protein depletion: comparison of methods for human plasma biomarker discovery</article-title>
+          <source>Electrophoresis</source>
+          <year>2010</year>
+          <volume>31</volume>
+          <fpage>471</fpage>
+          <lpage>482</lpage>
+          <pub-id pub-id-type="pmid">20119956</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nesvizhskii</surname>
+              <given-names>AI</given-names>
+            </name>
+            <name>
+              <surname>Keller</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Kolker</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Aebersold</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>A statistical model for identifying proteins by tandem mass spectrometry</article-title>
+          <source>Anal Chem</source>
+          <year>2003</year>
+          <volume>75</volume>
+          <fpage>4646</fpage>
+          <lpage>4658</lpage>
+          <pub-id pub-id-type="pmid">14632076</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Keller</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Nesvizhskii</surname>
+              <given-names>AI</given-names>
+            </name>
+            <name>
+              <surname>Kolker</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Aebersold</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Empirical statistical model to estimate the accuracy of peptide identifications made by MS/MS and database search</article-title>
+          <source>Anal Chem</source>
+          <year>2002</year>
+          <volume>74</volume>
+          <fpage>5383</fpage>
+          <lpage>5392</lpage>
+          <pub-id pub-id-type="pmid">12403597</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B24">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Elias</surname>
+              <given-names>JE</given-names>
+            </name>
+            <name>
+              <surname>Gygi</surname>
+              <given-names>SP</given-names>
+            </name>
+          </person-group>
+          <article-title>Target-decoy search strategy for increased confidence in large-scale protein identifications by mass spectrometry</article-title>
+          <source>Nat Methods</source>
+          <year>2007</year>
+          <volume>4</volume>
+          <fpage>207</fpage>
+          <lpage>214</lpage>
+          <pub-id pub-id-type="pmid">17327847</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kaji</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Saito</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Yamauchi</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Shinkawa</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Taoka</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Hirabayashi</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Lectin affinity capture, isotope-coded tagging and mass spectrometry to identify N-linked glycoproteins</article-title>
+          <source>Nat Biotechnol</source>
+          <year>2003</year>
+          <volume>21</volume>
+          <fpage>667</fpage>
+          <lpage>672</lpage>
+          <pub-id pub-id-type="pmid">12754521</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B26">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Bennett</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>Huttlin</surname>
+              <given-names>EL</given-names>
+            </name>
+            <name>
+              <surname>Guo</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Possemato</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Systematic and quantitative assessment of the ubiquitin-modified proteome</article-title>
+          <source>Mol Cell</source>
+          <year>2011</year>
+          <volume>44</volume>
+          <fpage>325</fpage>
+          <lpage>340</lpage>
+          <pub-id pub-id-type="pmid">21906983</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B27">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carapito</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Lane</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Benama</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Opsomer</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Mouton-Barbosa</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Garrigues</surname>
+              <given-names>L</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Computational and Mass-Spectrometry-Based Workflow for the Discovery and Validation of Missing Human Proteins: Application to Chromosomes 2 and 14</article-title>
+          <source>J Proteome Res</source>
+          <year>2015</year>
+          <volume>14</volume>
+          <fpage>3621</fpage>
+          <lpage>3634</lpage>
+          <pub-id pub-id-type="pmid">26132440</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B28">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gygi</surname>
+              <given-names>SP</given-names>
+            </name>
+            <name>
+              <surname>Rist</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Gerber</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Turecek</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Gelb</surname>
+              <given-names>MH</given-names>
+            </name>
+            <name>
+              <surname>Aebersold</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantitative analysis of complex protein mixtures using isotope-coded affinity tags</article-title>
+          <source>Nat Biotechnol</source>
+          <year>1999</year>
+          <volume>17</volume>
+          <fpage>994</fpage>
+          <lpage>999</lpage>
+          <pub-id pub-id-type="pmid">10504701</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B29">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ross</surname>
+              <given-names>PL</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>YN</given-names>
+            </name>
+            <name>
+              <surname>Marchese</surname>
+              <given-names>JN</given-names>
+            </name>
+            <name>
+              <surname>Williamson</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Parker</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Hattan</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Multiplexed protein quantitation in Saccharomyces cerevisiae using amine-reactive isobaric tagging reagents</article-title>
+          <source>Mol Cell Proteomics</source>
+          <year>2004</year>
+          <volume>3</volume>
+          <fpage>1154</fpage>
+          <lpage>1169</lpage>
+          <pub-id pub-id-type="pmid">15385600</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B30">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thompson</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Sch&#xE4;fer</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kuhn</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Kienle</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Schwarz</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Schmidt</surname>
+              <given-names>G</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Tandem mass tags: a novel quantification strategy for comparative analysis of complex protein mixtures by MS/MS</article-title>
+          <source>Anal Chem</source>
+          <year>2003</year>
+          <volume>75</volume>
+          <fpage>1895</fpage>
+          <lpage>1904</lpage>
+          <pub-id pub-id-type="pmid">12713048</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B31">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Fonslow</surname>
+              <given-names>BR</given-names>
+            </name>
+            <name>
+              <surname>Shan</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Baek</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Yates</surname>
+              <given-names>JR</given-names>
+              <suffix>3rd</suffix>
+            </name>
+          </person-group>
+          <article-title>Protein analysis by shotgun/bottom-up proteomics</article-title>
+          <source>Chem Rev</source>
+          <year>2013</year>
+          <volume>113</volume>
+          <fpage>2343</fpage>
+          <lpage>2394</lpage>
+          <pub-id pub-id-type="pmid">23438204</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B32">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cox</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Mann</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>MaxQuant enables high peptide identification rates, individualized p.p.b.-range mass accuracies and proteome-wide protein quantification</article-title>
+          <source>Nat Biotechnol</source>
+          <year>2008</year>
+          <volume>26</volume>
+          <fpage>1367</fpage>
+          <lpage>1372</lpage>
+          <pub-id pub-id-type="pmid">19029910</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B33">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dost</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Bandeira</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Shen</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Briggs</surname>
+              <given-names>SP</given-names>
+            </name>
+            <name>
+              <surname>Bafna</surname>
+              <given-names>V</given-names>
+            </name>
+          </person-group>
+          <article-title>Accurate mass spectrometry based protein quantification via shared peptides</article-title>
+          <source>J Comput Biol</source>
+          <year>2012</year>
+          <volume>19</volume>
+          <fpage>337</fpage>
+          <lpage>348</lpage>
+          <pub-id pub-id-type="pmid">22414154</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B34">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barallobre-Barreiro</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Didangelos</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Schoendube</surname>
+              <given-names>FA</given-names>
+            </name>
+            <name>
+              <surname>Drozdov</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Yin</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Fern&#xE1;ndez-Caggiano</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Proteomics analysis of cardiac extracellular matrix remodeling in a porcine model of ischemia/reperfusion injury</article-title>
+          <source>Circulation</source>
+          <year>2012</year>
+          <volume>125</volume>
+          <fpage>789</fpage>
+          <lpage>802</lpage>
+          <pub-id pub-id-type="pmid">22261194</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B35">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hwang</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <name>
+              <surname>Leslie</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>Weston</surname>
+              <given-names>AD</given-names>
+            </name>
+            <name>
+              <surname>Rust</surname>
+              <given-names>AG</given-names>
+            </name>
+            <name>
+              <surname>Ramsey</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A data integration methodology for systems biology: experimental verification</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2005</year>
+          <volume>102</volume>
+          <fpage>17302</fpage>
+          <lpage>17307</lpage>
+          <pub-id pub-id-type="pmid">16301536</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B36">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hwang</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Rust</surname>
+              <given-names>AG</given-names>
+            </name>
+            <name>
+              <surname>Ramsey</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <name>
+              <surname>Leslie</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>Weston</surname>
+              <given-names>AD</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A data integration methodology for systems biology</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2005</year>
+          <volume>102</volume>
+          <fpage>17296</fpage>
+          <lpage>17301</lpage>
+          <pub-id pub-id-type="pmid">16301537</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B37">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tsai</surname>
+              <given-names>CF</given-names>
+            </name>
+            <name>
+              <surname>Hsu</surname>
+              <given-names>CC</given-names>
+            </name>
+            <name>
+              <surname>Hung</surname>
+              <given-names>JN</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>YT</given-names>
+            </name>
+            <name>
+              <surname>Choong</surname>
+              <given-names>WK</given-names>
+            </name>
+            <name>
+              <surname>Zeng</surname>
+              <given-names>MY</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Sequential phosphoproteomic enrichment through complementary metal-directed immobilized metal ion affinity chromatography</article-title>
+          <source>Anal Chem</source>
+          <year>2014</year>
+          <volume>86</volume>
+          <fpage>685</fpage>
+          <lpage>693</lpage>
+          <pub-id pub-id-type="pmid">24313913</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B38">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Huang</surname>
+              <given-names>DW</given-names>
+            </name>
+            <name>
+              <surname>Sherman</surname>
+              <given-names>BT</given-names>
+            </name>
+            <name>
+              <surname>Lempicki</surname>
+              <given-names>RA</given-names>
+            </name>
+          </person-group>
+          <article-title>Systematic and integrative analysis of large gene lists using DAVID bioinformatics resources</article-title>
+          <source>Nat Protoc</source>
+          <year>2009</year>
+          <volume>4</volume>
+          <fpage>44</fpage>
+          <lpage>57</lpage>
+          <pub-id pub-id-type="pmid">19131956</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B39">
+        <label>39</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mi</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Lazareva-Ulitsky</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Loo</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Kejariwal</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Vandergriff</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Rabkin</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The PANTHER database of protein families, subfamilies, functions and pathways</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2005</year>
+          <volume>33</volume>
+          <fpage>D284</fpage>
+          <lpage>D288</lpage>
+          <pub-id pub-id-type="pmid">15608197</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B40">
+        <label>40</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ekins</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Nikolsky</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Bugrim</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Kirillov</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Nikolskaya</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Pathway mapping tools for analysis of high content data</article-title>
+          <source>Methods Mol Biol</source>
+          <year>2007</year>
+          <volume>356</volume>
+          <fpage>319</fpage>
+          <lpage>350</lpage>
+          <pub-id pub-id-type="pmid">16988414</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B41">
+        <label>41</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Subramanian</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Tamayo</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Mootha</surname>
+              <given-names>VK</given-names>
+            </name>
+            <name>
+              <surname>Mukherjee</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Ebert</surname>
+              <given-names>BL</given-names>
+            </name>
+            <name>
+              <surname>Gillette</surname>
+              <given-names>MA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Gene set enrichment analysis: a knowledge-based approach for interpreting genome-wide expression profiles</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2005</year>
+          <volume>102</volume>
+          <fpage>15545</fpage>
+          <lpage>15550</lpage>
+          <pub-id pub-id-type="pmid">16199517</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B42">
+        <label>42</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beck</surname>
+              <given-names>HC</given-names>
+            </name>
+            <name>
+              <surname>Nielsen</surname>
+              <given-names>EC</given-names>
+            </name>
+            <name>
+              <surname>Matthiesen</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Jensen</surname>
+              <given-names>LH</given-names>
+            </name>
+            <name>
+              <surname>Sehested</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Finn</surname>
+              <given-names>P</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Quantitative proteomic analysis of post-translational modifications of human histones</article-title>
+          <source>Mol Cell Proteomics</source>
+          <year>2006</year>
+          <volume>5</volume>
+          <fpage>1314</fpage>
+          <lpage>1325</lpage>
+          <pub-id pub-id-type="pmid">16627869</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B43">
+        <label>43</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xu</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Paige</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Jaffrey</surname>
+              <given-names>SR</given-names>
+            </name>
+          </person-group>
+          <article-title>Global analysis of lysine ubiquitination by ubiquitin remnant immunoaffinity profiling</article-title>
+          <source>Nat Biotechnol</source>
+          <year>2010</year>
+          <volume>28</volume>
+          <fpage>868</fpage>
+          <lpage>873</lpage>
+          <pub-id pub-id-type="pmid">20639865</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B44">
+        <label>44</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Peri</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Navarro</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Kristiansen</surname>
+              <given-names>TZ</given-names>
+            </name>
+            <name>
+              <surname>Amanchy</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Surendranath</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Muthusamy</surname>
+              <given-names>B</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Human protein reference database as a discovery resource for proteomics</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2004</year>
+          <volume>32</volume>
+          <fpage>D497</fpage>
+          <lpage>D501</lpage>
+          <pub-id pub-id-type="pmid">14681466</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B45">
+        <label>45</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stark</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Breitkreutz</surname>
+              <given-names>BJ</given-names>
+            </name>
+            <name>
+              <surname>Reguly</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Boucher</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Breitkreutz</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Tyers</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>BioGRID: a general repository for interaction datasets</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2006</year>
+          <volume>34</volume>
+          <fpage>D535</fpage>
+          <lpage>D539</lpage>
+          <pub-id pub-id-type="pmid">16381927</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B46">
+        <label>46</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bader</surname>
+              <given-names>GD</given-names>
+            </name>
+            <name>
+              <surname>Betel</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Hogue</surname>
+              <given-names>CW</given-names>
+            </name>
+          </person-group>
+          <article-title>BIND: the Biomolecular Interaction Network Database</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2003</year>
+          <volume>31</volume>
+          <fpage>248</fpage>
+          <lpage>250</lpage>
+          <pub-id pub-id-type="pmid">12519993</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B47">
+        <label>47</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Szklarczyk</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Franceschini</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Wyder</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Forslund</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Heller</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Huerta-Cepas</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>STRING v10: protein-protein interaction networks, integrated over the tree of life</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2015</year>
+          <volume>43</volume>
+          <fpage>D447</fpage>
+          <lpage>D452</lpage>
+          <pub-id pub-id-type="pmid">25352553</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B48">
+        <label>48</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chatr-aryamontri</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Ceol</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Palazzi</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Nardelli</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Schneider</surname>
+              <given-names>MV</given-names>
+            </name>
+            <name>
+              <surname>Castagnoli</surname>
+              <given-names>L</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>MINT: the Molecular INTeraction database</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2007</year>
+          <volume>35</volume>
+          <fpage>D572</fpage>
+          <lpage>D574</lpage>
+          <pub-id pub-id-type="pmid">17135203</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B49">
+        <label>49</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Severin</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Waterhouse</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Kawaji</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Lassmann</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>van Nimwegen</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Balwierz</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>FANTOM4 EdgeExpressDB: an integrated database of promoters, genes, microRNAs, expression dynamics and regulatory interactions</article-title>
+          <source>Genome Biol</source>
+          <year>2009</year>
+          <volume>10</volume>
+          <fpage>R39</fpage>
+          <pub-id pub-id-type="pmid">19374773</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B50">
+        <label>50</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jiang</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Xuan</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>MQ</given-names>
+            </name>
+          </person-group>
+          <article-title>TRED: a transcriptional regulatory element database, new entries and other development</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2007</year>
+          <volume>35</volume>
+          <fpage>D137</fpage>
+          <lpage>D140</lpage>
+          <pub-id pub-id-type="pmid">17202159</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B51">
+        <label>51</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Feist</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Hummon</surname>
+              <given-names>AB</given-names>
+            </name>
+          </person-group>
+          <article-title>Proteomic challenges: sample preparation techniques for microgram-quantity protein analysis from biological samples</article-title>
+          <source>Int J Mol Sci</source>
+          <year>2015</year>
+          <volume>16</volume>
+          <fpage>3537</fpage>
+          <lpage>3563</lpage>
+          <pub-id pub-id-type="pmid">25664860</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B52">
+        <label>52</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kanehisa</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Goto</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Sato</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Furumichi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Tanabe</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>KEGG for integration and interpretation of large-scale molecular data sets</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2012</year>
+          <volume>40</volume>
+          <fpage>D109</fpage>
+          <lpage>D114</lpage>
+          <pub-id pub-id-type="pmid">22080510</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B53">
+        <label>53</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ideker</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Ozier</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Schwikowski</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Siegel</surname>
+              <given-names>AF</given-names>
+            </name>
+          </person-group>
+          <article-title>Discovering regulatory and signalling circuits in molecular interaction networks</article-title>
+          <source>Bioinformatics</source>
+          <year>2002</year>
+          <volume>18</volume>
+          <issue>Suppl 1</issue>
+          <fpage>S233</fpage>
+          <lpage>S240</lpage>
+          <pub-id pub-id-type="pmid">12169552</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B54">
+        <label>54</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lan</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Smoly</surname>
+              <given-names>IY</given-names>
+            </name>
+            <name>
+              <surname>Rapaport</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Lindquist</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Fraenkel</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Yeger-Lotem</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <article-title>ResponseNet: revealing signaling and regulatory networks linking genetic and transcriptomic screening data</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2011</year>
+          <volume>39</volume>
+          <fpage>W424</fpage>
+          <lpage>W429</lpage>
+          <pub-id pub-id-type="pmid">21576238</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B55">
+        <label>55</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Komurov</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Dursun</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Erdin</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Ram</surname>
+              <given-names>PT</given-names>
+            </name>
+          </person-group>
+          <article-title>NetWalker: a contextual network analysis tool for functional genomics</article-title>
+          <source>BMC Genomics</source>
+          <year>2012</year>
+          <volume>13</volume>
+          <fpage>282</fpage>
+          <pub-id pub-id-type="pmid">22732065</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B56">
+        <label>56</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Morris</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Apeltsin</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Newman</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Baumbach</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wittkop</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Su</surname>
+              <given-names>G</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>clusterMaker: a multi-algorithm clustering plugin for Cytoscape</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2011</year>
+          <volume>12</volume>
+          <fpage>436</fpage>
+          <pub-id pub-id-type="pmid">22070249</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B57">
+        <label>57</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mitra</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Carvunis</surname>
+              <given-names>AR</given-names>
+            </name>
+            <name>
+              <surname>Ramesh</surname>
+              <given-names>SK</given-names>
+            </name>
+            <name>
+              <surname>Ideker</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Integrative approaches for finding modular structure in biological networks</article-title>
+          <source>Nat Rev Genet</source>
+          <year>2013</year>
+          <volume>14</volume>
+          <fpage>719</fpage>
+          <lpage>732</lpage>
+          <pub-id pub-id-type="pmid">24045689</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B58">
+        <label>58</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zuo</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Man</surname>
+              <given-names>YG</given-names>
+            </name>
+            <name>
+              <surname>Avital</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Stojadinovic</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Pathway and network approaches for identification of cancer signature markers from omics data</article-title>
+          <source>J Cancer</source>
+          <year>2015</year>
+          <volume>6</volume>
+          <fpage>54</fpage>
+          <lpage>65</lpage>
+          <pub-id pub-id-type="pmid">25553089</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B59">
+        <label>59</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Marian</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Ressom</surname>
+              <given-names>HW</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of aberrant pathways and network activities from high-throughput data</article-title>
+          <source>Brief Bioinform</source>
+          <year>2012</year>
+          <volume>13</volume>
+          <fpage>406</fpage>
+          <lpage>419</lpage>
+          <pub-id pub-id-type="pmid">22287794</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B60">
+        <label>60</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oishi</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Kumar</surname>
+              <given-names>MR</given-names>
+            </name>
+            <name>
+              <surname>Roessler</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Ji</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Forgues</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Budhu</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Transcriptomic profiling reveals hepatic stem-like gene signatures and interplay of miR-200c and epithelial-mesenchymal transition in intrahepatic cholangiocarcinoma</article-title>
+          <source>Hepatology</source>
+          <year>2012</year>
+          <volume>56</volume>
+          <fpage>1792</fpage>
+          <lpage>1803</lpage>
+          <pub-id pub-id-type="pmid">22707408</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B61">
+        <label>61</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hyung</surname>
+              <given-names>SW</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>MY</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Shin</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Jung</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>JM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A serum protein profile predictive of the resistance to neoadjuvant chemotherapy in advanced breast cancers</article-title>
+          <source>Mol Cell Proteomics</source>
+          <year>2011</year>
+          <volume>10</volume>
+          <fpage>M111.011023</fpage>
+          <pub-id pub-id-type="pmid">21799047</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B62">
+        <label>62</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vandin</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Upfal</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Raphael</surname>
+              <given-names>BJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Algorithms for detecting significantly mutated pathways in cancer</article-title>
+          <source>J Comput Biol</source>
+          <year>2011</year>
+          <volume>18</volume>
+          <fpage>507</fpage>
+          <lpage>522</lpage>
+          <pub-id pub-id-type="pmid">21385051</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B63">
+        <label>63</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Huang</surname>
+              <given-names>SS</given-names>
+            </name>
+            <name>
+              <surname>Fraenkel</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <article-title>Integrating proteomic, transcriptional, and interactome data reveals hidden components of signaling and regulatory networks</article-title>
+          <source>Sci Signal</source>
+          <year>2009</year>
+          <volume>2</volume>
+          <fpage>ra40</fpage>
+          <pub-id pub-id-type="pmid">19638617</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B64">
+        <label>64</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shi</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>NetGestalt: integrating multidimensional omics data over biological networks</article-title>
+          <source>Nat Methods</source>
+          <year>2013</year>
+          <volume>10</volume>
+          <fpage>597</fpage>
+          <lpage>598</lpage>
+          <pub-id pub-id-type="pmid">23807191</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B65">
+        <label>65</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Shi</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Empowering biologists with multi-omics data: colorectal cancer as a paradigm</article-title>
+          <source>Bioinformatics</source>
+          <year>2015</year>
+          <volume>31</volume>
+          <fpage>1436</fpage>
+          <lpage>1443</lpage>
+          <pub-id pub-id-type="pmid">25527095</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B66">
+        <label>66</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Iliopoulos</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Malizos</surname>
+              <given-names>KN</given-names>
+            </name>
+            <name>
+              <surname>Oikonomou</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Tsezou</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Integrative microRNA and proteomic approaches identify novel osteoarthritis genes and their collaborative metabolic and inflammatory networks</article-title>
+          <source>PLoS One</source>
+          <year>2008</year>
+          <volume>3</volume>
+          <fpage>e3740</fpage>
+          <pub-id pub-id-type="pmid">19011694</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B67">
+        <label>67</label>
+        <element-citation publication-type="journal">
+          <collab>Cancer Genome Atlas Research Network</collab>
+          <article-title>Integrated genomic analyses of ovarian carcinoma</article-title>
+          <source>Nature</source>
+          <year>2011</year>
+          <volume>474</volume>
+          <fpage>609</fpage>
+          <lpage>615</lpage>
+          <pub-id pub-id-type="pmid">21720365</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B68">
+        <label>68</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Na</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Bandeira</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Paek</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <article-title>Fast multi-blind modification search through tandem mass spectrometry</article-title>
+          <source>Mol Cell Proteomics</source>
+          <year>2012</year>
+          <volume>11</volume>
+          <fpage>M111.010199</fpage>
+          <pub-id pub-id-type="pmid">22186716</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <title>Basic data analysis pipeline for liquid chromatography&#x2013;tandem mass spectrometry (LC-MS/MS) data. This pipeline includes peptide/protein identification, peptide/protein quantification, and identification of differentially expressed proteins (DEPs). Each of bioinformatics analyses in the pipeline is schematically shown together with the concepts and the tools. PSMs, peptide-spectrum matches; FDRs, false discovery rates; iCAT, isotope-coded affinity tag; iTRAQ, isobaric tag for relative and absolute quantitation; TMT, tandem mass tags.</title>
+      </caption>
+      <graphic xlink:href="gni-14-2-g001"/>
+    </fig>
+    <fig id="F2" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <title>Schematics for functional enrichment and network analyses of differentially expressed proteins (DEPs). Three types of functional enrichment analyses are shown. The output from gene set enrichment analysis (GSEA) is displayed as an example. Also, an example of network model is shown, which includes functional modules 1-3 (cell adhesion, vasculature development, and cell death, respectively). Node colors in the network model represent up- (red) and down-regulation (green), the color gradient denotes log<sub>2</sub>-fold-changes of the proteins, and gray lines represent the connections between the nodes. GOBPs, gene ontology biological processes; KEGG, Kyoto Encyclopedia of Genes and Genomes; TGF, tumor growth factor.</title>
+      </caption>
+      <graphic xlink:href="gni-14-2-g002"/>
+    </fig>
+    <fig id="F3" orientation="portrait" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <title>Integrative analysis of proteomic data with other types of global data. The concepts for molecular level (A) and network based integration (B) are shown. In the top panel, two example cases (one for tissue data and the other for serum data) are illustrated, and also one example case for integrative analysis of three types of global datasets (proteomic, mRNA expression, and DNA/histone methylation data) is shown. In the bottom panel, network based integration of four types of global data using differentially expressed molecules from them are schematically displayed. DEPs, differentially expressed proteins; IGF, insulin-like growth factor; LC-MS/MS, liquid chromatography&#x2013;tandem mass spectrometry.</title>
+      </caption>
+      <graphic xlink:href="gni-14-2-g003"/>
+    </fig>
+    <table-wrap id="T1" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <title>Resources for network-based protein biomarker discovery</title>
+      </caption>
+      <graphic xlink:href="gni-14-2-i001"/>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

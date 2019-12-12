@@ -1,0 +1,996 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Society of Gastrointestinal Intervention</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">29307142</article-id>
+      <article-id pub-id-type="pmc">5769863</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2017.15.4.156</article-id>
+      <article-id pub-id-type="publisher-id">gi-15-4-156</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Original Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Classification of Genes Based on Age-Related Differential Expression in Breast Cancer</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">https://orcid.org/0000-0001-7142-9072</contrib-id>
+          <name>
+            <surname>Lee</surname>
+            <given-names>Gunhee</given-names>
+          </name>
+          <xref ref-type="aff" rid="af1-gi-15-4-156">1</xref>
+          <xref ref-type="aff" rid="af2-gi-15-4-156">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">https://orcid.org/0000-0002-0168-9546</contrib-id>
+          <name>
+            <surname>Lee</surname>
+            <given-names>Minho</given-names>
+          </name>
+          <xref ref-type="aff" rid="af3-gi-15-4-156">3</xref>
+          <xref rid="c1-gi-15-4-156" ref-type="corresp">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="af1-gi-15-4-156">
+<label>1</label>Department of Biological Science, Sangji University, Wonju 26339, <country>Korea</country></aff>
+      <aff id="af2-gi-15-4-156">
+<label>2</label>Department of Biomedicine &amp; Health Sciences, Graduate School, The Catholic University of Korea, Seoul 06591, <country>Korea</country></aff>
+      <aff id="af3-gi-15-4-156">
+<label>3</label>Catholic Precision Medicine Research Center, College of Medicine, The Catholic University of Korea, Seoul 06591, <country>Korea</country></aff>
+      <author-notes>
+        <corresp id="c1-gi-15-4-156"><label>*</label>Corresponding author: Tel: +82-2-2258-7584, Fax: +82-2-596-8969, E-mail: <email>MinhoLee@catholic.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2017</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>29</day>
+        <month>12</month>
+        <year>2017</year>
+      </pub-date>
+      <volume>15</volume>
+      <issue>4</issue>
+      <fpage>156</fpage>
+      <lpage>161</lpage>
+      <history>
+        <date date-type="received">
+          <day>28</day>
+          <month>11</month>
+          <year>2017</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>3</day>
+          <month>12</month>
+          <year>2017</year>
+        </date>
+        <date date-type="accepted">
+          <day>3</day>
+          <month>12</month>
+          <year>2017</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2017 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2017</copyright-year>
+        <license>
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Transcriptome analysis has been widely used to make biomarker panels to diagnose cancers. In breast cancer, the age of the patient has been known to be associated with clinical features. As clinical transcriptome data have accumulated significantly, we classified all human genes based on age-specific differential expression between normal and breast cancer cells using public data. We retrieved the values for gene expression levels in breast cancer and matched normal cells from The Cancer Genome Atlas. We divided genes into two classes by paired t test without considering age in the first classification. We carried out a secondary classification of genes for each class into eight groups, based on the patterns of the p-values, which were calculated for each of the three age groups we defined. Through this two-step classification, gene expression was eventually grouped into 16 classes. We showed that this classification method could be applied to establish a more accurate prediction model to diagnose breast cancer by comparing the performance of prediction models with different combinations of genes. We expect that our scheme of classification could be used for other types of cancer data.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>biomarkers</kwd>
+        <kwd>breast cancer</kwd>
+        <kwd>differentially expressed genes</kwd>
+        <kwd>gene classification</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>Breast cancer is known to one of the leading causes of cancer death among females [<xref rid="b1-gi-15-4-156" ref-type="bibr">1</xref>]. A massive number of research studies on the genomic characterization of breast cancer, particularly the discovery of differentially expressed genes (DEGs), have revealed clinically relevant molecular subtypes [<xref rid="b2-gi-15-4-156" ref-type="bibr">2</xref>], which has increased the accuracy of the prognosis [<xref rid="b3-gi-15-4-156" ref-type="bibr">3</xref>&#x2013;<xref rid="b5-gi-15-4-156" ref-type="bibr">5</xref>] and has resulted in successful targeted therapy [<xref rid="b6-gi-15-4-156" ref-type="bibr">6</xref>, <xref rid="b7-gi-15-4-156" ref-type="bibr">7</xref>]. During recent decades, resources based on high-throughput sequencing technologies, such as The Cancer Genome Atlas (TCGA) [<xref rid="b8-gi-15-4-156" ref-type="bibr">8</xref>] and International Cancer Genome Consortium (ICGC) [<xref rid="b9-gi-15-4-156" ref-type="bibr">9</xref>], have facilitated more accurate detection of DEGs and cancer driver genes. The identification of DEGs is prominent, in that it leads to more accurate subtyping and more precise treatment for various types of cancers.</p>
+      <p>In transcriptome analysis based on microarray [<xref rid="b10-gi-15-4-156" ref-type="bibr">10</xref>] or RNA sequencing [<xref rid="b11-gi-15-4-156" ref-type="bibr">11</xref>] by next-generation sequencing, DEGs are usually identified by statistical tests, such as t test, nonparametric test, and Bayesian models [<xref rid="b12-gi-15-4-156" ref-type="bibr">12</xref>]. Subsequent analysis of pathways and functional enrichment tests for DEGs are performed to increase the understanding of molecular mechanisms [<xref rid="b13-gi-15-4-156" ref-type="bibr">13</xref>].</p>
+      <p>In the case of breast cancer, it is well known that molecular subtype and patient age are strongly associated with clinical features, such as survival rate. Fredholm <italic>et al</italic>. [<xref rid="b14-gi-15-4-156" ref-type="bibr">14</xref>] reported that the 5-year survival rate was lowest in the of 25&#x2013;34-year-old age group and decreased with increasing age. Likewise, Gnerlich <italic>et al</italic>. [<xref rid="b15-gi-15-4-156" ref-type="bibr">15</xref>] reported that younger women were more likely to die from breast cancer than older ones, based on the statistics of 243,012 breast cancer patients. Recently, Azim <italic>et al</italic>. [<xref rid="b16-gi-15-4-156" ref-type="bibr">16</xref>] studied genomic aberrations in young and elderly breast cancer patients based on TCGA data. They found that older patients had more somatic mutations and copy number variations (CNVs) and that 11 mutations and two CNVs were independently associated with age at diagnosis.</p>
+      <p>In this work, we aimed to classify human genes based on age-specific differential expression between normal and breast cancer cells. DEGs were identified based on their p-values for differential gene expression between tumor and matched normal cells. DEGs and non-DEGs were then classified based on age-specific differential expression by the three age groups we defined. To show an application of the classification, we compared the accuracy of prediction models that distinguish normal and tumor cells, constructed by support vector machine (SVM) using various combinations of genes by class. The performance of SVM was measured by the average area under the receiver operating characteristics curve value after 1,000 times bootstrap.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <p>All gene expression values in this work were gathered from TCGA. Eligible patients had complete clinical data and a gene expression dataset of breast cancer cells and matched normal cells. Eventually, we retrieved the gene expression values of tumor and matched normal cells of 96 patients. The distribution of their ages is shown in <xref rid="f1-gi-15-4-156" ref-type="fig">Fig. 1</xref>. The values for gene expression level that we used were generated by the Illumina Hi-Seq platform (Illumina, Inc., San Diego, CA, USA) and normalized by root square error methods [<xref rid="b17-gi-15-4-156" ref-type="bibr">17</xref>]. All subsequent statistical analyses were carried out using R, version 3.2.3. SVM classifiers were constructed using the e1071 package of R, and a simple linear kernel was used. Functional enrichment analysis of gene classes was performed in ToppGene Suite [<xref rid="b18-gi-15-4-156" ref-type="bibr">18</xref>].</p>
+      <p>Young patients were defined as &#x2264;45 years of age, and elderly patients were defined as those &#x2265;60 years of age (<xref rid="f1-gi-15-4-156" ref-type="fig">Fig. 1</xref>). The rest of the patients were defined as &#x201C;intermediate.&#x201D; The statistical significance of differential expression between tumor and matched normal cells was determined by paired t test, based on a p-value threshold of 8.48 &#xD7; 10<sup>&#x2212;7</sup>. The threshold value was set based on the Bonferroni correction, because a test was performed for each age group, and three age groups were defined for each of the 19,646 genes.</p>
+    </sec>
+    <sec>
+      <title>Results and Discussion</title>
+      <p>The overall scheme of our classification is depicted in <xref rid="f2-gi-15-4-156" ref-type="fig">Fig. 2</xref>. We first divided genes into two classes (A and B) by paired t test without considering age. A total of 5,962 genes in class A were defined as significant DEGs in breast cancer, and 13,684 in class B were nonsignificant. Ones who want to find biomarkers or driver genes are likely to investigate only genes in class A. However, we classified the genes of each class once again into eight groups, based on the pattern of p-values, which were calculated separately for every age group (secondary classification in <xref rid="f2-gi-15-4-156" ref-type="fig">Fig. 2</xref>). After a second round of classification, the genes were eventually divided into 16 classes (A1&#x2013;B8) (<xref rid="SD1" ref-type="supplementary-material">Supplementary Table 1</xref>). The numbers of genes of the classes are shown in <xref rid="t1-gi-15-4-156" ref-type="table">Table 1</xref>.</p>
+      <p>It was easily observed that there was no gene classified as class B1. Probably, this was because the significance of genes in class B was already tested in the primary classification step, and no genes showed significance over all age groups. The 377 genes in class A1 exhibited differential expression for every age group and all samples. These genes are the most powerful DEGs between normal and breast cancer cells. Genes of class 2, which did not have significantly different expression in any age group, accounted for the majority in both classes A and B. Indeed, classes 1 and 2 did not have any age-specific significance. Thus, we focused on the genes of classes 3&#x2013;8, which showed age-specific differential expression (<xref rid="f3-gi-15-4-156" ref-type="fig">Fig. 3</xref>).</p>
+      <p>Functional enrichment analysis for each class was performed, but we could not find any relevant or intriguing biological implications or pathways related to breast cancer. Hence, we decided to provide the results of the analysis as raw data (<xref rid="SD2" ref-type="supplementary-material">Supplementary Table 2</xref>) rather than trying an unfeasible deduction.</p>
+      <p>To show an example of how the classification can be applied, we constructed prediction models that aimed to distinguish normal and breast cancer cells, using the expression values of various combinations of genes. We defined two types of combinations comprising gene lists. For type I combinations, genes were chosen evenly from each class. By contrast, genes were chosen randomly for type II combinations without considering gene class. For example, if we make a list composed of three genes from classes 3, 4, and 5, the type I combination should consist of a gene from class 3, another from class 4, and the other one from class 5, but a type II combination could be composed of any genes randomly chosen from the pool of the three classes.</p>
+      <p>We compared the accuracies of the SVM of type I and II combinations for three subsets each for classes A and B (<xref rid="t2-gi-15-4-156" ref-type="table">Table 2</xref>). The performance of type I was significantly better than that of type II, except in two cases (classes 6&#x2013;8 in both classes A and B), the genes of which were significantly differentially expressed in the two age groups.</p>
+      <p>These results highlight the value of gene classification based on our method. Based on the first classification, 13,684 genes in class B were probably considered genes that cannot distinguish normal and breast cancer cells. However, by adapting one more classification step based on age-specific differential expression, we identified 171 age-specific DEGs in classes B3&#x2013;B8. Despite the underestimated value of the classes, we showed that a balanced selection of genes from these classes could be applied as biomarkers, identifying breast cancer from normal cells. For example, genes that are known to be high-penetrance breast cancer susceptibility genes, such as <italic>TP53, STK11</italic>, and <italic>CDH11</italic>, and moderate-penetrance genes, such as <italic>RAD50, RAD51C, RAD51D, NBS1</italic>, and <italic>FANCM</italic>, were classified in class B2 [<xref rid="b19-gi-15-4-156" ref-type="bibr">19</xref>]. In addition to proposing the possibility of genes in class B as biomarkers, even for class A, we exhibited that our method of selecting biomarker genes based on secondary classification could be useful in making a combination of biomarker genes for a more accurate prediction by using different classes complementarily.</p>
+      <p>In summary, we retrieved a gene expression dataset of breast cancer and matched normal cells from TCGA and then classified the genes into 16 classes by two-step classification. This classification could be applied to generate a more accurate prediction model for identifying cancer. Furthermore, we expect that our scheme of classification could be used for other types of cancer data.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by the National Research Foundation of Korea (NRF), funded by the Ministry of Science and ICT (NRF-2017R1C1B2008617, NRF-2017M3A9B6061511, and NRF-2017M3C9A604761) and KREONET (Korea Research Environment Open NETwork) which is managed and operated by KISTI (Korea Institute of Science and Technology Information). GL was supported by a Sangji University scholarship for research assistants.</p>
+    </ack>
+    <fn-group>
+      <fn>
+        <p>
+          <bold>Authors&#x2019; contribution</bold>
+        </p>
+        <p>Conceptualization: ML</p>
+        <p>Data curation: GL</p>
+        <p>Formal analysis: GL, ML</p>
+        <p>Funding acquisition: ML</p>
+        <p>Methodology: GL</p>
+        <p>Writing &#x2013; original draft: GL, ML</p>
+        <p>Writing &#x2013; review &amp; editing: ML</p>
+      </fn>
+    </fn-group>
+    <sec sec-type="supplementary-material">
+      <title>Supplementary materials</title>
+      <p>Supplementary data including two tables can be found with this article online at <ext-link ext-link-type="uri" xlink:href="http://www.genominfo.org/src/sm/gni-15-156-s001.pdf">http://www.genominfo.org/src/sm/gni-15-156-s001.pdf</ext-link>.</p>
+      <supplementary-material content-type="local-data" id="SD1">
+        <caption>
+          <title>Supplementary Table 1.</title>
+          <p>Functional enrichment analysis for each class by ToppGene</p>
+        </caption>
+        <media mimetype="application" mime-subtype="pdf" xlink:href="gi-15-4-156-suppl1.pdf" orientation="portrait" id="d35e327" position="anchor"/>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="SD2">
+        <caption>
+          <title>Supplementary Table 2.</title>
+          <p>List of 1,338 potential inhibitors of AP endonuclease 1 by pharmacophore screening and molecular docking</p>
+        </caption>
+        <media mimetype="application" mime-subtype="pdf" xlink:href="gi-15-4-156-suppl2.pdf" orientation="portrait" id="d35e334" position="anchor"/>
+      </supplementary-material>
+    </sec>
+    <ref-list>
+      <title>References</title>
+      <ref id="b1-gi-15-4-156">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Torre</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Bray</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Siegel</surname>
+              <given-names>RL</given-names>
+            </name>
+            <name>
+              <surname>Ferlay</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Lortet-Tieulent</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Jemal</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Global cancer statistics, 2012</article-title>
+          <source>CA Cancer J Clin</source>
+          <year>2015</year>
+          <volume>65</volume>
+          <fpage>87</fpage>
+          <lpage>108</lpage>
+          <pub-id pub-id-type="pmid">25651787</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b2-gi-15-4-156">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Perou</surname>
+              <given-names>CM</given-names>
+            </name>
+            <name>
+              <surname>S&#xF8;rlie</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Eisen</surname>
+              <given-names>MB</given-names>
+            </name>
+            <name>
+              <surname>van de Rijn</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Jeffrey</surname>
+              <given-names>SS</given-names>
+            </name>
+            <name>
+              <surname>Rees</surname>
+              <given-names>CA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Molecular portraits of human breast tumours</article-title>
+          <source>Nature</source>
+          <year>2000</year>
+          <volume>406</volume>
+          <fpage>747</fpage>
+          <lpage>752</lpage>
+          <pub-id pub-id-type="pmid">10963602</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b3-gi-15-4-156">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rouzier</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Perou</surname>
+              <given-names>CM</given-names>
+            </name>
+            <name>
+              <surname>Symmans</surname>
+              <given-names>WF</given-names>
+            </name>
+            <name>
+              <surname>Ibrahim</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Cristofanilli</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Breast cancer molecular subtypes respond differently to preoperative chemotherapy</article-title>
+          <source>Clin Cancer Res</source>
+          <year>2005</year>
+          <volume>11</volume>
+          <fpage>5678</fpage>
+          <lpage>5685</lpage>
+          <pub-id pub-id-type="pmid">16115903</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b4-gi-15-4-156">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Parker</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Mullins</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Cheang</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Leung</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Voduc</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Vickery</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Supervised risk predictor of breast cancer based on intrinsic subtypes</article-title>
+          <source>J Clin Oncol</source>
+          <year>2009</year>
+          <volume>27</volume>
+          <fpage>1160</fpage>
+          <lpage>1167</lpage>
+          <pub-id pub-id-type="pmid">19204204</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b5-gi-15-4-156">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carey</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Dees</surname>
+              <given-names>EC</given-names>
+            </name>
+            <name>
+              <surname>Sawyer</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Gatti</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Moore</surname>
+              <given-names>DT</given-names>
+            </name>
+            <name>
+              <surname>Collichio</surname>
+              <given-names>F</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The triple negative paradox: primary tumor chemosensitivity of breast cancer subtypes</article-title>
+          <source>Clin Cancer Res</source>
+          <year>2007</year>
+          <volume>13</volume>
+          <fpage>2329</fpage>
+          <lpage>2334</lpage>
+          <pub-id pub-id-type="pmid">17438091</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b6-gi-15-4-156">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nahta</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Hung</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Hortobagyi</surname>
+              <given-names>GN</given-names>
+            </name>
+            <name>
+              <surname>Esteva</surname>
+              <given-names>FJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Mechanisms of disease: understanding resistance to HER2-targeted therapy in human breast cancer</article-title>
+          <source>Nat Clin Pract Oncol</source>
+          <year>2006</year>
+          <volume>3</volume>
+          <fpage>269</fpage>
+          <lpage>280</lpage>
+          <pub-id pub-id-type="pmid">16683005</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b7-gi-15-4-156">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lehmann</surname>
+              <given-names>BD</given-names>
+            </name>
+            <name>
+              <surname>Bauer</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Sanders</surname>
+              <given-names>ME</given-names>
+            </name>
+            <name>
+              <surname>Chakravarthy</surname>
+              <given-names>AB</given-names>
+            </name>
+            <name>
+              <surname>Shyr</surname>
+              <given-names>Y</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Identification of human triple-negative breast cancer subtypes and preclinical models for selection of targeted therapies</article-title>
+          <source>J Clin Invest</source>
+          <year>2011</year>
+          <volume>121</volume>
+          <fpage>2750</fpage>
+          <lpage>2767</lpage>
+          <pub-id pub-id-type="pmid">21633166</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b8-gi-15-4-156">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <collab>Cancer Genome Atlas Research Network</collab>
+          <person-group person-group-type="author">
+            <name>
+              <surname>Weinstein</surname>
+              <given-names>JN</given-names>
+            </name>
+            <name>
+              <surname>Collisson</surname>
+              <given-names>EA</given-names>
+            </name>
+            <name>
+              <surname>Mills</surname>
+              <given-names>GB</given-names>
+            </name>
+            <name>
+              <surname>Shaw</surname>
+              <given-names>KR</given-names>
+            </name>
+            <name>
+              <surname>Ozenberger</surname>
+              <given-names>BA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The Cancer Genome Atlas Pan-Cancer analysis project</article-title>
+          <source>Nat Genet</source>
+          <year>2013</year>
+          <volume>45</volume>
+          <fpage>1113</fpage>
+          <lpage>1120</lpage>
+          <pub-id pub-id-type="pmid">24071849</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b9-gi-15-4-156">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <collab>International Cancer Genome Consortium</collab>
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hudson</surname>
+              <given-names>TJ</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Artez</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Barker</surname>
+              <given-names>AD</given-names>
+            </name>
+            <name>
+              <surname>Bell</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>International network of cancer genome projects</article-title>
+          <source>Nature</source>
+          <year>2010</year>
+          <volume>464</volume>
+          <fpage>993</fpage>
+          <lpage>998</lpage>
+          <pub-id pub-id-type="pmid">20393554</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b10-gi-15-4-156">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brown</surname>
+              <given-names>PO</given-names>
+            </name>
+            <name>
+              <surname>Botstein</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Exploring the new world of the genome with DNA microarrays</article-title>
+          <source>Nat Genet</source>
+          <year>1999</year>
+          <volume>21</volume>
+          <issue>1 Suppl</issue>
+          <fpage>33</fpage>
+          <lpage>37</lpage>
+          <pub-id pub-id-type="pmid">9915498</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b11-gi-15-4-156">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Morin</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Bainbridge</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Fejes</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Hirst</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Krzywinski</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Pugh</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Profiling the HeLa S3 transcriptome using randomly primed cDNA and massively parallel short-read sequencing</article-title>
+          <source>Biotechniques</source>
+          <year>2008</year>
+          <volume>45</volume>
+          <fpage>81</fpage>
+          <lpage>94</lpage>
+          <pub-id pub-id-type="pmid">18611170</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b12-gi-15-4-156">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Efron</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Tibshirani</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Empirical bayes methods and false discovery rates for microarrays</article-title>
+          <source>Genet Epidemiol</source>
+          <year>2002</year>
+          <volume>23</volume>
+          <fpage>70</fpage>
+          <lpage>86</lpage>
+          <pub-id pub-id-type="pmid">12112249</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b13-gi-15-4-156">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Draghici</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Khatri</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Martins</surname>
+              <given-names>RP</given-names>
+            </name>
+            <name>
+              <surname>Ostermeier</surname>
+              <given-names>GC</given-names>
+            </name>
+            <name>
+              <surname>Krawetz</surname>
+              <given-names>SA</given-names>
+            </name>
+          </person-group>
+          <article-title>Global functional profiling of gene expression</article-title>
+          <source>Genomics</source>
+          <year>2003</year>
+          <volume>81</volume>
+          <fpage>98</fpage>
+          <lpage>104</lpage>
+          <pub-id pub-id-type="pmid">12620386</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b14-gi-15-4-156">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fredholm</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Eaker</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Frisell</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Holmberg</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Fredriksson</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Lindman</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Breast cancer in young women: poor survival despite intensive treatment</article-title>
+          <source>PLoS One</source>
+          <year>2009</year>
+          <volume>4</volume>
+          <elocation-id>e7695</elocation-id>
+          <pub-id pub-id-type="pmid">19907646</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b15-gi-15-4-156">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gnerlich</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Deshpande</surname>
+              <given-names>AD</given-names>
+            </name>
+            <name>
+              <surname>Jeffe</surname>
+              <given-names>DB</given-names>
+            </name>
+            <name>
+              <surname>Sweet</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Margenthaler</surname>
+              <given-names>JA</given-names>
+            </name>
+          </person-group>
+          <article-title>Elevated breast cancer mortality in women younger than age 40 years compared with older women is attributed to poorer survival in early-stage disease</article-title>
+          <source>J Am Coll Surg</source>
+          <year>2009</year>
+          <volume>208</volume>
+          <fpage>341</fpage>
+          <lpage>347</lpage>
+          <pub-id pub-id-type="pmid">19317994</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b16-gi-15-4-156">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Azim</surname>
+              <given-names>HA</given-names>
+              <suffix>Jr</suffix>
+            </name>
+            <name>
+              <surname>Nguyen</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Broh&#xE9;e</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Zoppoli</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Sotiriou</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Genomic aberrations in young and elderly breast cancer patients</article-title>
+          <source>BMC Med</source>
+          <year>2015</year>
+          <volume>13</volume>
+          <fpage>266</fpage>
+          <pub-id pub-id-type="pmid">26467651</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b17-gi-15-4-156">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <collab>Cancer Genome Atlas Network</collab>
+          </person-group>
+          <article-title>Comprehensive molecular portraits of human breast tumours</article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>490</volume>
+          <fpage>61</fpage>
+          <lpage>70</lpage>
+          <pub-id pub-id-type="pmid">23000897</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b18-gi-15-4-156">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Bardes</surname>
+              <given-names>EE</given-names>
+            </name>
+            <name>
+              <surname>Aronow</surname>
+              <given-names>BJ</given-names>
+            </name>
+            <name>
+              <surname>Jegga</surname>
+              <given-names>AG</given-names>
+            </name>
+          </person-group>
+          <article-title>ToppGene Suite for gene list enrichment analysis and candidate gene prioritization</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2009</year>
+          <volume>37</volume>
+          <fpage>W305</fpage>
+          <lpage>W311</lpage>
+          <pub-id pub-id-type="pmid">19465376</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b19-gi-15-4-156">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Economopoulou</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Dimitriadis</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Psyrri</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Beyond BRCA: new hereditary breast cancer susceptibility genes</article-title>
+          <source>Cancer Treat Rev</source>
+          <year>2015</year>
+          <volume>41</volume>
+          <fpage>1</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="pmid">25467110</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="f1-gi-15-4-156" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Distribution of age of breast cancer patients analyzed in this work.</p>
+      </caption>
+      <graphic xlink:href="gi-15-4-156f1"/>
+    </fig>
+    <fig id="f2-gi-15-4-156" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Schematic view of overall procedures of the two-step classification.</p>
+      </caption>
+      <graphic xlink:href="gi-15-4-156f2"/>
+    </fig>
+    <fig id="f3-gi-15-4-156" orientation="portrait" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Patterns of significance of age-specific differential expression of class A (A) and class B (B).</p>
+      </caption>
+      <graphic xlink:href="gi-15-4-156f3"/>
+    </fig>
+    <table-wrap id="t1-gi-15-4-156" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Definition of classification of genes based on age-specific significance and the corresponding number of genes</p>
+      </caption>
+      <table frame="hsides" rules="rows">
+        <thead>
+          <tr>
+            <th valign="middle" rowspan="2" align="center" colspan="1">Secondary class</th>
+            <th valign="middle" rowspan="2" align="center" colspan="1">Young</th>
+            <th valign="middle" rowspan="2" align="center" colspan="1">Intermediate</th>
+            <th valign="middle" rowspan="2" align="center" colspan="1">Older</th>
+            <th colspan="2" valign="middle" align="center" rowspan="1">Primary class</th>
+          </tr>
+          <tr>
+            <th valign="middle" align="center" rowspan="1" colspan="1">A</th>
+            <th valign="middle" align="center" rowspan="1" colspan="1">B</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">1</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Significant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Significant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Significant</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">377</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">0</td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">2</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Nonsignificant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Nonsignificant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Nonsignificant</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">4,495</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">13,548</td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">3</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Nonsignificant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Nonsignificant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Significant</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">781</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">69</td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">4</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Nonsignificant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Significant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Nonsignificant</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">56</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">29</td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">5</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Significant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Nonsignificant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Nonsignificant</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">44</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">18</td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">6</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Significant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Significant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Nonsignificant</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">28</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">9</td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">7</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Significant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Nonsignificant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Nonsignificant</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">71</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">8</td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">8</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Nonsignificant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Significant</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Significant</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">110</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">3</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tfn1-gi-15-4-156">
+          <p>Significances were defined based on the p-value of paired t test.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="t2-gi-15-4-156" orientation="portrait" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>Comparison of performance of SVM models of different combinations of genes to distinguish breast cancer and normal cells</p>
+      </caption>
+      <table frame="hsides" rules="rows">
+        <thead>
+          <tr>
+            <th valign="middle" align="center" rowspan="1" colspan="1">Input genes (N)</th>
+            <th valign="middle" align="center" rowspan="1" colspan="1">Sampling pool</th>
+            <th valign="middle" align="center" rowspan="1" colspan="1">Type I (one gene per class)</th>
+            <th valign="middle" align="center" rowspan="1" colspan="1">Type II (n random genes from the pool)</th>
+            <th valign="middle" align="center" rowspan="1" colspan="1">p-value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">3</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">Classes A3&#x2013;A5</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">0.9351</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">0.9215</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">4.732e-16</td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">3</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">Classes A6&#x2013;A8</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">0.9660</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">0.9662</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">0.8391</td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">6</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">Classes A3&#x2013;A8</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">0.9842</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">0.9743</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">2.2e-16</td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">3</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">Classes B3&#x2013;B5</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">0.8701</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">0.8522</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">1.441e-15</td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">3</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">Classes B6&#x2013;B8</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">0.9269</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">0.9392</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">0.4868</td>
+          </tr>
+          <tr>
+            <td valign="top" align="center" rowspan="1" colspan="1">6</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">Classes B3&#x2013;B8</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">0.9386</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">0.9227</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">6.984e-09</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tfn2-gi-15-4-156">
+          <p>N input genes were sampled from each sampling pool by adopting two types of combinations (types I and II).</p>
+        </fn>
+        <fn id="tfn3-gi-15-4-156">
+          <p>SVM, support vector machine.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

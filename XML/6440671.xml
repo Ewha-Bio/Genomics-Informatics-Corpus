@@ -1,0 +1,324 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">30602099</article-id>
+      <article-id pub-id-type="pmc">6440671</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2018.16.4.e38</article-id>
+      <article-id pub-id-type="publisher-id">gi-2018-16-4-e38</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Application Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>HisCoM-GGI: Software for Hierarchical Structural Component Analysis of Gene-Gene Interactions</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">http://orcid.org/0000-0002-4266-5911</contrib-id>
+          <name>
+            <surname>Choi</surname>
+            <given-names>Sungkyoung</given-names>
+          </name>
+          <xref ref-type="aff" rid="af1-gi-2018-16-4-e38">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">http://orcid.org/0000-0003-3458-1440</contrib-id>
+          <name>
+            <surname>Lee</surname>
+            <given-names>Sungyoung</given-names>
+          </name>
+          <xref ref-type="aff" rid="af2-gi-2018-16-4-e38">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">http://orcid.org/0000-0002-8294-590X</contrib-id>
+          <name>
+            <surname>Park</surname>
+            <given-names>Taesung</given-names>
+          </name>
+          <xref ref-type="aff" rid="af3-gi-2018-16-4-e38">3</xref>
+          <xref ref-type="aff" rid="af4-gi-2018-16-4-e38">4</xref>
+          <xref rid="c1-gi-2018-16-4-e38" ref-type="corresp">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="af1-gi-2018-16-4-e38">
+<label>1</label>Department of Pharmacology, Yonsei University College of Medicine, Seoul 03722, 
+<country>Korea</country></aff>
+      <aff id="af2-gi-2018-16-4-e38">
+<label>2</label>Center for Precision Medicine, Seoul National University Hospital, Seoul 03080, 
+<country>Korea</country></aff>
+      <aff id="af3-gi-2018-16-4-e38">
+<label>3</label>Department of Statistics, Seoul National University, Seoul 08826, 
+<country>Korea</country></aff>
+      <aff id="af4-gi-2018-16-4-e38">
+<label>4</label>Interdisciplinary Program in Bioinformatics, Seoul National University, Seoul 08826, 
+<country>Korea</country></aff>
+      <author-notes>
+        <corresp id="c1-gi-2018-16-4-e38"><label>*</label>Corresponding author: Tel: +82-2-880-8924, Fax: +82-2-888-6693, E-mail: <email>tspark@stats.snu.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2018</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>28</day>
+        <month>12</month>
+        <year>2018</year>
+      </pub-date>
+      <volume>16</volume>
+      <issue>4</issue>
+      <elocation-id>e38</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>11</day>
+          <month>12</month>
+          <year>2018</year>
+        </date>
+        <date date-type="accepted">
+          <day>18</day>
+          <month>12</month>
+          <year>2018</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2018 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2018</copyright-year>
+        <license>
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Gene-gene interaction (GGI) analysis is known to play an important role in explaining missing heritability. Many previous studies have already proposed software to analyze GGI, but most methods focus on a binary phenotype in a case-control design. In this study, we developed &#x201C;Hierarchical structural CoMponent analysis of Gene-Gene Interactions&#x201D; (HisCoM-GGI) software for GGI analysis with a continuous phenotype. The HisCoM-GGI method considers hierarchical structural relationships between genes and single nucleotide polymorphisms (SNPs), enabling both gene-level and SNP-level interaction analysis in a single model. Furthermore, this software accepts various types of genomic data and supports data management and multithreading to improve the efficiency of genome-wide association study data analysis. We expect that HisCoM-GGI software will provide advanced accessibility to researchers in genetic interaction studies and a more effective way to understand biological mechanisms of complex diseases.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>gene-gene interactions</kwd>
+        <kwd>generalized structured component analysis</kwd>
+        <kwd>genome-wide association study</kwd>
+        <kwd>ridge regression</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>In the past decade, genome-wide association studies (GWASs) have successfully identified genetic variants associated with human traits and complex diseases. However, traditional GWASs have several issues and limitations that do not completely explain the heritability of complex human diseases or related traits&#x2014;so-called missing heritability [<xref rid="b1-gi-2018-16-4-e38" ref-type="bibr">1</xref>]. To address these issues, various approaches have been proposed, such as rare variant association analysis, genetic interactions, and epistasis [<xref rid="b1-gi-2018-16-4-e38" ref-type="bibr">1</xref>]. Among possible explanations for missing heritability, there has been growing consideration of gene-gene interaction (GGI) analysis for common genetic variants in terms of statistical approaches and analysis software. Although most research models focus on the case-control study design, there are not many software programs that can analyze a continuous phenotype. Furthermore, GGI analysis has several advantages in terms of statistical power, computing performance, and biological interpretation over single nucleotide polymorphism (SNP)&#x2012;SNP interaction (SSI) analysis, but there is not much analysis software to analyze it.</p>
+      <p>In this study, we developed software for &#x201C;Hierarchical Structural Component Analysis of Gene-Gene Interactions&#x201D; (HisCoM-GGI) [<xref rid="b2-gi-2018-16-4-e38" ref-type="bibr">2</xref>] that can analyze both GGI and SSI analyses for a continuous phenotype. The basic framework of the HisCoM-GGI software was &#x201C;Workbench for Integrated Superfast Association study with Related Data&#x201D; (WISARD) [<xref rid="b3-gi-2018-16-4-e38" ref-type="bibr">3</xref>], which accepts various types of input formats and provides quality control or data management options that can be used to filter out individuals or genetic variants. In addition, the WISARD program supports multithreading to improve the efficiency of the analysis. By using the advantages of WISARD, HisCoM-GGI software includes all of the functions for GGI analysis on a genomewide scale, such as input format support, data preprocessing, and multithreading.</p>
+      <sec>
+        <title>Implementation</title>
+        <p>The workflow of the HisCoM-GGI software is shown in <xref rid="f1-gi-2018-16-4-e38" ref-type="fig">Fig. 1</xref>. The HisCoM-GGI method is based on the Generalized Structured Component Analysis (GSCA) method [<xref rid="b4-gi-2018-16-4-e38" ref-type="bibr">4</xref>]. GSCA is a component-based approach to structural equation modeling. The latent variables of GSCA are defined as components and are estimated by the weighted sums of the observed variables. The HisCoM-GGI method has been proposed for genetic interaction analysis by constructing a hierarchical model that consists of SNP-level and gene-level summaries. Therefore, the HisCoM-GGI method provides the results of SSI and GGI in a single model. The HisCoM-GGI software was implemented in C++ and was developed using programs for Linux and Windows.</p>
+        <sec>
+          <title>Input file</title>
+          <p>The HisCoM-GGI software takes three inputs: (1) a genomic dataset in PLINK or variant calling format format, (2) trait information on the covariates and phenotypes, and (3) a set file that consists of two columns for gene name and SNP ID (rsID), respectively. Furthermore, users can optionally specify a gene-gene pair list to analyze.</p>
+        </sec>
+        <sec>
+          <title>Output file</title>
+          <p>The HisCoM-GGI program generates the following files: (1) a &#x2018;[prefix].gesca.latent.res&#x2019; file that contains p-values of gene-level interactions and (2) a &#x2018;[prefix].gesca.manifest. res&#x2019; file that contains p-values of SNP-level interactions.</p>
+        </sec>
+        <sec>
+          <title>Visualization of results</title>
+          <p>We provide the circos plots for the results of GGI and SSI using R script at the following website: <ext-link ext-link-type="uri" xlink:href="http://statgen.snu.ac.kr/software/hiscom-ggi/?page_id=10">http://statgen.snu.ac.kr/software/hiscom-ggi/?page_id=10</ext-link>. The visualized results of the HisCoM-GGI software are shown in <xref rid="f2-gi-2018-16-4-e38" ref-type="fig">Fig. 2</xref>.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions">
+      <title>Conclusion</title>
+      <p>In this paper, we introduce the HisCoM-GGI software program, which provides a statistical test of identifying gene-level and SNP-level interactions for continuous phenotypes. We conclude that HisCoM-GGI software may be a valuable tool for the identification of genetic interactions, allowing us to better understand biological mechanisms of complex human diseases or related traits. The software is freely available with a tutorial dataset through the website <ext-link ext-link-type="uri" xlink:href="http://statgen.snu.ac.kr/software/hiscom-ggi">http://statgen.snu.ac.kr/software/hiscom-ggi</ext-link>.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by the following grants: Korean Health Technology R&amp;D Project, Ministry of Health &amp; Welfare, Republic of Korea (HI16C2037, HI15C2165).</p>
+    </ack>
+    <fn-group>
+      <fn id="fn1-gi-2018-16-4-e38">
+        <p><bold>Availability:</bold> This software and the accompanying tutorial are available at <ext-link ext-link-type="uri" xlink:href="http://statgen.snu.ac.kr/software/hiscom-ggi">http://statgen.snu.ac.kr/software/hiscom-ggi</ext-link>.</p>
+      </fn>
+      <fn id="fn2-gi-2018-16-4-e38">
+        <p>
+          <bold>Authors&#x2019; contribution</bold>
+        </p>
+        <p>Conceptualization: SC, TP</p>
+        <p>Formal analysis: SC, SL</p>
+        <p>Funding acquisition: TP</p>
+        <p>Methodology: SC, SL, TP</p>
+        <p>Writing &#x2013; original draft: SC, TP</p>
+        <p>Writing &#x2013; review &amp; editing: SC, TP</p>
+      </fn>
+      <fn id="fn3-gi-2018-16-4-e38" fn-type="COI-statement">
+        <p>
+          <bold>Conflicts of Interest</bold>
+        </p>
+        <p>No potential conflicts of interest relevant to this article was reported.</p>
+      </fn>
+    </fn-group>
+    <ref-list>
+      <title>References</title>
+      <ref id="b1-gi-2018-16-4-e38">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Manolio</surname>
+              <given-names>TA</given-names>
+            </name>
+            <name>
+              <surname>Collins</surname>
+              <given-names>FS</given-names>
+            </name>
+            <name>
+              <surname>Cox</surname>
+              <given-names>NJ</given-names>
+            </name>
+            <name>
+              <surname>Goldstein</surname>
+              <given-names>DB</given-names>
+            </name>
+            <name>
+              <surname>Hindorff</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Hunter</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Finding the missing heritability of complex diseases</article-title>
+          <source>Nature</source>
+          <year>2009</year>
+          <volume>461</volume>
+          <fpage>747</fpage>
+          <lpage>753</lpage>
+          <pub-id pub-id-type="pmid">19812666</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b2-gi-2018-16-4-e38">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Choi</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Hwang</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>HisCoM-GGI: Hierarchical structural component analysis of gene-gene interactions</article-title>
+          <source>J Bioinform Comput Biol</source>
+          <year>2018</year>
+          <volume>16</volume>
+          <fpage>1840026</fpage>
+          <pub-id pub-id-type="pmid">30567476</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b3-gi-2018-16-4-e38">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Choi</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Qiao</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Cho</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Silverman</surname>
+              <given-names>EK</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>WISARD: workbench for integrated superfast association studies for related datasets</article-title>
+          <source>BMC Med Genomics</source>
+          <year>2018</year>
+          <volume>11</volume>
+          <issue>Suppl 2</issue>
+          <fpage>39</fpage>
+          <pub-id pub-id-type="pmid">29697360</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b4-gi-2018-16-4-e38">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hwang</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Takane</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Generalized structured component analysis</article-title>
+          <source>Psychometrika</source>
+          <year>2004</year>
+          <volume>69</volume>
+          <fpage>81</fpage>
+          <lpage>99</lpage>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="f1-gi-2018-16-4-e38" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Workflow of the HisCoM-GGI program. BED, binary PED; VCF, variant calling format; QC, quality check.</p>
+      </caption>
+      <graphic xlink:href="gi-2018-16-4-e38f1"/>
+    </fig>
+    <fig id="f2-gi-2018-16-4-e38" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Circos plots for the results of gene-level (A) and single nucleotide polymorphism (SNP)&#x2012;level interactions (B).</p>
+      </caption>
+      <graphic xlink:href="gi-2018-16-4-e38f2"/>
+    </fig>
+  </floats-group>
+</article>
+</pmc-articleset>

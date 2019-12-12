@@ -1,0 +1,397 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">23613684</article-id>
+      <article-id pub-id-type="pmc">3630387</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2013.11.1.55</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Application Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>siMacro: A Fast and Easy Data Processing Tool for Cell-Based Genomewide siRNA Screens</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Singh</surname>
+            <given-names>Nitin Kumar</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Seo</surname>
+            <given-names>Bo Yeun</given-names>
+          </name>
+          <xref ref-type="aff" rid="A2">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Vidyasagar</surname>
+            <given-names>Mathukumalli</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>White</surname>
+            <given-names>Michael A.</given-names>
+          </name>
+          <xref ref-type="aff" rid="A2">2</xref>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Hyun Seok</given-names>
+          </name>
+          <xref ref-type="aff" rid="A2">2</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="A1"><label>1</label>Department of Bioengineering, University of Texas at Dallas, Richardson, TX 75080, USA.</aff>
+      <aff id="A2"><label>2</label>Department of Cell Biology, University of Texas Southwestern Medical Center, Dallas, TX 75390, USA.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +1-214-633-2005, Fax: +1-214-648-5814, <email>Hyun.Kim@UTsouthwestern.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>3</month>
+        <year>2013</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>31</day>
+        <month>3</month>
+        <year>2013</year>
+      </pub-date>
+      <volume>11</volume>
+      <issue>1</issue>
+      <fpage>55</fpage>
+      <lpage>57</lpage>
+      <history>
+        <date date-type="received">
+          <day>05</day>
+          <month>12</month>
+          <year>2012</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>10</day>
+          <month>1</month>
+          <year>2013</year>
+        </date>
+        <date date-type="accepted">
+          <day>18</day>
+          <month>1</month>
+          <year>2013</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2013 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2013</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">http://creativecommons.org/licenses/by-nc/3.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Growing numbers of studies employ cell line-based systematic short interfering RNA (siRNA) screens to study gene functions and to identify drug targets. As multiple sources of variations that are unique to siRNA screens exist, there is a growing demand for a computational tool that generates normalized values and standardized scores. However, only a few tools have been available so far with limited usability. Here, we present siMacro, a fast and easy-to-use Microsoft Office Excel-based tool with a graphic user interface, designed to process single-condition or two-condition synthetic screen datasets. siMacro normalizes position and batch effects, censors outlier samples, and calculates Z-scores and robust Z-scores, with a spreadsheet output of &gt;120,000 samples in under 1 minute.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>high-throughput screening assays</kwd>
+        <kwd>RNA interference</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>Human tissue-derived cell lines have served as an effective platform for understanding the molecular biology of diseases and increasingly for drug discovery [<xref ref-type="bibr" rid="B1">1</xref>, <xref ref-type="bibr" rid="B2">2</xref>]. For wholesale analysis of gene sets or chemical compound files, cell line-based high-throughput screening is typically performed on a well-to-well basis in high-density microtiter plates. From this, significant changes in cellular phenotype by each perturbation in a given library compared to mock controls or other samples are identified. Examples of perturbations include synthetic small molecules, natural products, cDNA expression libraries, and, of primary focus here, genomewide collections of short interfering RNAs (siRNAs). It is a truism that cell-based screens are highly vulnerable to environmental variations. In particular, siRNA screens involve multiple processing steps employing automatic or semiautomatic liquid-handling equipment carried out over many days. Each step introduces position-specific variables and distinct operational failures. This, combined with unavoidable batch effects from cell cultures and reagent efficacy, can introduce asymmetric phenotypic variation that is independent of the perturbations of interest. Accounting for and correcting this variation is well recognized as an essential component of successful high-throughput screening.</p>
+      <p>Statistical methods to process whole-genome siRNA screen data have been reported by others [<xref ref-type="bibr" rid="B3">3</xref>, <xref ref-type="bibr" rid="B4">4</xref>], but limited open-source tools are currently available [<xref ref-type="bibr" rid="B3">3</xref>, <xref ref-type="bibr" rid="B5">5</xref>, <xref ref-type="bibr" rid="B6">6</xref>]. Moreover, as most available open-source tools are written in R/bioconductor [<xref ref-type="bibr" rid="B3">3</xref>, <xref ref-type="bibr" rid="B6">6</xref>], modifications that require screen-specific command lines are challenging without prior experience in script programming. Very recently, a web-based tool (web cellHTS2) and its standalone package [<xref ref-type="bibr" rid="B5">5</xref>] have been published. However, they either run on a remote server or require other specialized preinstalled software.</p>
+      <p>Here, we present siMacro, a GUI-based simple tool for processing cell-based high-throughput screening datasets. siMacro has been implemented in Visual Basic for Applications (VBA) and packaged as a Microsoft Office Excel add-in. It allows one-step, fast, and easy suppression of outlier values; normalization; and standardization of a complete raw dataset from a genomewide siRNA screen in an intuitive spreadsheet format. The tool processes the data points associated with a 2-condition genomewide screen with biological triplicates on a standard laptop computer in less than 1 minute.</p>
+    </sec>
+    <sec>
+      <title>Methods and Implementation</title>
+      <sec>
+        <title>Procedure of data processing</title>
+        <sec>
+          <title>Prerequisite</title>
+          <p>We assume the screen was done in 96- or 384-well plates and passed the standard quality control metric (by Z or Z' factor, for example). siMacro is robust against sporadic bad wells from triplicate experiments but will not censor an entire plate compromised by massive failure, such as broad contamination. We also assume siRNAs in the library plate are randomly distributed, which is generally true for most commercially available genomewide siRNA libraries. siMacro currently supports 1- or 2-condition screens.</p>
+        </sec>
+        <sec>
+          <title>Input data</title>
+          <p>siMacro requires all the individual plate readouts be put into an Excel spreadsheet with the field headers: day or cell batch, plate name, well name, and raw data columns per siRNA or a pool (<xref ref-type="fig" rid="F1">Fig. 1C</xref>). siMacro allows only numerical data field values except for manually censored "bad" wells masked by 'NA.'</p>
+        </sec>
+        <sec>
+          <title>Normalization</title>
+          <p>Most popular normalization protocols employ either on-plate control-based or sample-based methods. Although there is no golden rule for this, we prefer the latter for most siRNA screens, as 1) cell-based siRNA screening is vulnerable to within-plate variation, such as an edge effect and column/row effects that are not corrected by on-board controls [<xref ref-type="bibr" rid="B4">4</xref>], and 2) because siRNA hits are often rare within a given test plate, the majority of samples proxies the mock control. Therefore, siMacro currently only supports normalization by samples at the resolution of a plate, row, and column. Depending on the cellular phenotype and experimental design, the optimal choice of resolution varies and can therefore be specified by the screener. If row or column effects are trivial or there are more than 10-30 hits per 96-well plate, a user can choose plate median normalization (default). As many liquid dispensers move row-wise, a row effect is very common in the siRNA screens. If the hits/plate is less than 10 per 96-well plate and accompanied by a significant row effect, row-median normalization is a better choice.</p>
+        </sec>
+        <sec>
+          <title>Censoring bad wells</title>
+          <p>Sporadic bad wells are often manually censored one by one, which is inefficient and error-prone in large-scale screens. If the experiment is done in triplicate or more, bad wells can be detected automatically by the inflated coefficient of variation (CV) among the replicates. siMacro identifies bad wells by applying a user-defined cutoff to the CV among normalized values from a replicate. The default is 1%, meaning 1% of the total genes with the highest CV will have a masked outlier well. This significantly reduces false positives but can also overcorrect. Therefore, siMacro reports flags for all genes with censored wells to aid user decisions with regard to exclusion from downstream analysis.</p>
+        </sec>
+        <sec>
+          <title>Standardization and hit scoring</title>
+          <p>A unified scoring scheme is employed that accounts for batch effects from multiday experiments. Under the assumption of normality, the Z-score, which indicates how many standard deviations an observation is away from the mean, is an intuitive scoring metric. However, it is sensitive to biological outliers (hits) in the data pool, resulting in deflated scores. An alternative is to use the robust Z-score, which is a measure of the median absolute deviation from the median. siMacro calculates the Z-score and the robust Z-score from the user-provided unit of experiment: e.g., the day, cell batch, or plate. siMacro takes the mean of log2-transformed normalized values from replicates for the calculation. For a 2-condition synthetic phenotype screen, the log2 ratio between the 2 conditions is used per siRNA to calculate the Z and the robust Z-scores for a synthetic effect. siMacro returns output, including individual and mean normalized values, Z-score, robust Z-score, and flags, for the censored bad wells directly onto the Excel data sheet as additional columns (<xref ref-type="fig" rid="F1">Fig. 1D</xref>).</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec>
+      <title>Implementation</title>
+      <p>The original source written in R is implemented in VBA and packaged as an Excel add-in. Since ease of use is the main objective of the plug-in, it provides simple GUI and depends only on Excel. As Excel is widely utilized and familiar to most biologists, siMacro provides an immediate option for dataset processing together with Excel-based data visualization tools. siMacro runs on Microsoft Office Excel 2007 or later for the Windows OS or Excel 2011 for the Mac OS. On a standard laptop computer with a Pentium dual-core 1.73 GHz processor and 1 GB memory, the operating time is under 60 seconds to process a triplicate 2-condition genomewide data set.</p>
+    </sec>
+    <sec>
+      <title>Example of Application</title>
+      <p>As a test set, the direct lethality dataset from 21,125 sets of siRNA oligos in a non-small cell lung cancer line, H1155 [<xref ref-type="bibr" rid="B7">7</xref>], was used. From raw data for cell viability (<xref ref-type="fig" rid="F1">Fig. 1A</xref>), it was evident that there was a row effect and day-to-day variation in transfection efficiency as well as sporadic technical outliers due to contamination (e.g., T1Raw of siCATSPER in <xref ref-type="fig" rid="F1">Fig. 1C</xref>). With the default 1% highest CV filter and row-median normalization, siMacro censored, normalized, and standardized the dataset (<xref ref-type="fig" rid="F1">Fig. 1B and 1D</xref>). siMacro has been developed for but is not limited to cell-based genomewide siRNA screens.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>We thank Angelique Whitehurst for the dataset and Hannah Chung for comments. This work was supported by grants from the National Institutes of Health (CA71443 and CA129451), the Welch Foundation (I-1414), and the Cancer Prevention Research Institute of Texas (CPRIT).</p>
+    </ack>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sharma</surname>
+              <given-names>SV</given-names>
+            </name>
+            <name>
+              <surname>Haber</surname>
+              <given-names>DA</given-names>
+            </name>
+            <name>
+              <surname>Settleman</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Cell line-based platforms to evaluate the therapeutic efficacy of candidate anticancer agents</article-title>
+          <source>Nat Rev Cancer</source>
+          <year>2010</year>
+          <volume>10</volume>
+          <fpage>241</fpage>
+          <lpage>253</lpage>
+          <pub-id pub-id-type="pmid">20300105</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gazdar</surname>
+              <given-names>AF</given-names>
+            </name>
+            <name>
+              <surname>Girard</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Lockwood</surname>
+              <given-names>WW</given-names>
+            </name>
+            <name>
+              <surname>Lam</surname>
+              <given-names>WL</given-names>
+            </name>
+            <name>
+              <surname>Minna</surname>
+              <given-names>JD</given-names>
+            </name>
+          </person-group>
+          <article-title>Lung cancer cell lines as tools for biomedical discovery and research</article-title>
+          <source>J Natl Cancer Inst</source>
+          <year>2010</year>
+          <volume>102</volume>
+          <fpage>1310</fpage>
+          <lpage>1321</lpage>
+          <pub-id pub-id-type="pmid">20679594</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boutros</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Br&#xE1;s</surname>
+              <given-names>LP</given-names>
+            </name>
+            <name>
+              <surname>Huber</surname>
+              <given-names>W</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of cell-based RNAi screens</article-title>
+          <source>Genome Biol</source>
+          <year>2006</year>
+          <volume>7</volume>
+          <fpage>R66</fpage>
+          <pub-id pub-id-type="pmid">16869968</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Birmingham</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Selfors</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Forster</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Wrobel</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Kennedy</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Shanks</surname>
+              <given-names>E</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Statistical methods for analysis of high-throughput RNA interference screens</article-title>
+          <source>Nat Methods</source>
+          <year>2009</year>
+          <volume>6</volume>
+          <fpage>569</fpage>
+          <lpage>575</lpage>
+          <pub-id pub-id-type="pmid">19644458</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pelz</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Gilsdorf</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Boutros</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>web cellHTS2: a web-application for the analysis of high-throughput screening data</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2010</year>
+          <volume>11</volume>
+          <fpage>185</fpage>
+          <pub-id pub-id-type="pmid">20385013</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rieber</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Knapp</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Eils</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Kaderali</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>RNAither, an automated pipeline for the statistical analysis of high-throughput RNAi screens</article-title>
+          <source>Bioinformatics</source>
+          <year>2009</year>
+          <volume>25</volume>
+          <fpage>678</fpage>
+          <lpage>679</lpage>
+          <pub-id pub-id-type="pmid">19168909</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Whitehurst</surname>
+              <given-names>AW</given-names>
+            </name>
+            <name>
+              <surname>Bodemann</surname>
+              <given-names>BO</given-names>
+            </name>
+            <name>
+              <surname>Cardenas</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Ferguson</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Girard</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Peyton</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Synthetic lethal screen identification of chemosensitizer loci in cancer cells</article-title>
+          <source>Nature</source>
+          <year>2007</year>
+          <volume>446</volume>
+          <fpage>815</fpage>
+          <lpage>819</lpage>
+          <pub-id pub-id-type="pmid">17429401</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Data processing example of siMacro. One of 3 measures of cell viability against siRNAs targeting 21,115 genes in a non-small cell lung cancer line, H1155 [<xref ref-type="bibr" rid="B7">7</xref>], is plotted before data processing (A) and after processing by siMacro (B). Screen capture of the part of an input spread sheet (C) and siMacro ouput (D) are presented.</p>
+      </caption>
+      <graphic xlink:href="gni-11-55-g001"/>
+    </fig>
+  </floats-group>
+</article>
+</pmc-articleset>

@@ -1,0 +1,1207 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25705161</article-id>
+      <article-id pub-id-type="pmc">4330257</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2014.12.4.216</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Original Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Relevance Epistasis Network of Gastritis for Intra-chromosomes in the Korea Associated Resource (KARE) Cohort Study</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Jeong</surname>
+            <given-names>Hyun-hwan</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Sohn</surname>
+            <given-names>Kyung-Ah</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="A1">Department of Information and Computer Engineering, Ajou University, Suwon 443-749, Korea.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +82-31-219-2434, Fax: +82-31-219-1607, <email>kasohn@ajou.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2014</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>31</day>
+        <month>12</month>
+        <year>2014</year>
+      </pub-date>
+      <volume>12</volume>
+      <issue>4</issue>
+      <fpage>216</fpage>
+      <lpage>224</lpage>
+      <history>
+        <date date-type="received">
+          <day>08</day>
+          <month>7</month>
+          <year>2014</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>15</day>
+          <month>10</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>11</day>
+          <month>11</month>
+          <year>2014</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2014 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2014</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">http://creativecommons.org/licenses/by-nc/3.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Gastritis is a common but a serious disease with a potential risk of developing carcinoma. <italic>Helicobacter pylori</italic> infection is reported as the most common cause of gastritis, but other genetic and genomic factors exist, especially single-nucleotide polymorphisms (SNPs). Association studies between SNPs and gastritis disease are important, but results on epistatic interactions from multiple SNPs are rarely found in previous genome-wide association (GWA) studies. In this study, we performed computational GWA case-control studies for gastritis in Korea Associated Resource (KARE) data. By transforming the resulting SNP epistasis network into a gene-gene epistasis network, we also identified potential gene-gene interaction factors that affect the susceptibility to gastritis.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>gastritis</kwd>
+        <kwd>genome-wide association study</kwd>
+        <kwd>KARE</kwd>
+        <kwd>mutual information</kwd>
+        <kwd>relevance network</kwd>
+        <kwd>single-nucleotide polymorphism</kwd>
+      </kwd-group>
+      <funding-group>
+        <award-group>
+          <funding-source country="KR">Korea Centers for Disease Control and Prevention, Republic of Korea</funding-source>
+          <award-id>4845-301</award-id>
+          <award-id>4851-302</award-id>
+          <award-id>4851-307</award-id>
+        </award-group>
+        <award-group>
+          <funding-source country="KR">National Research Foundation of Korea</funding-source>
+          <award-id>2010-0028631</award-id>
+        </award-group>
+      </funding-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>Gastritis is a common disease in Korea. There is a report that 9.9% of Koreans have gastritis [<xref rid="B1" ref-type="bibr">1</xref>]. Gastritis is associated with the potential risk of developing gastric cancer or peptic ulcer disease [<xref rid="B2" ref-type="bibr">2</xref>]. A common cause of gastritis is <italic>Helicobacter pylori</italic> infection [<xref rid="B3" ref-type="bibr">3</xref>]. However, in addition to the cause, other genetic and genomic factors have been examined for gastritis. Human leukocyte antigen class II allele is an important risk factor for chronic atrophic gastritis and gastric carcinoma in Koreans [<xref rid="B4" ref-type="bibr">4</xref>]. Moreover, many studies have reported that single-nucleotide polymorphisms (SNPs), including rs1143627 in interleukin-1 beta (<italic>IL1B</italic>), rs4073 in interleukin 8 (<italic>IL8</italic>), rs4986790 in Toll-like receptor 4 (<italic>TLR4</italic>), and rs16260 in cadherin-1 (<italic>CDH1</italic>), are associated with susceptibility to gastric diseases, especially gastric cancer [<xref rid="B5" ref-type="bibr">5</xref>, <xref rid="B6" ref-type="bibr">6</xref>, <xref rid="B7" ref-type="bibr">7</xref>, <xref rid="B8" ref-type="bibr">8</xref>].</p>
+      <p>The results from SNP studies show the importance of research for the association between SNP and disease, based on the association and functional relationship between gastritis and gastric carcinoma [<xref rid="B9" ref-type="bibr">9</xref>]. In other words, a casual SNP in one disease may be a genetic factor for another disease. However, previous studies only targeted the effect from each single variation; results have been rarely obtained for high-order genetic interactions in gastritis from genome-wide association (GWA) studies to date.</p>
+      <p>In this study, we performed a GWA case-control study for gastritis using SNP genotype data of the Korea Associated Resource (KARE) project [<xref rid="B10" ref-type="bibr">10</xref>]. Our study was focused on detecting significant epistatic SNP-SNP interactions and the resulting gene-gene interactions that are putative causal factors in gastritis. A validation and functional analysis of the result was performed on the obtained relevance gene-gene epistasis network.</p>
+      <p>Our network construction method is based on the previous relevance network approach [<xref rid="B11" ref-type="bibr">11</xref>]. To measure the strength of the association between a pair of SNPs and gastritis, we used the mutual information that has shown to be effective in detecting epistasis in case-control GWA studies [<xref rid="B12" ref-type="bibr">12</xref>, <xref rid="B13" ref-type="bibr">13</xref>]. An efficient permutation scheme was adopted to extract significant interaction pairs, and we also approximated the p-values by exploiting the relationship between the mutual information value and the &#x3C7;<sup>2</sup> value [<xref rid="B14" ref-type="bibr">14</xref>]. We further transformed this SNP network into a relevant gene-gene epistasis network to validate the biological significance of our findings. A functional analysis was performed on the gene-gene network, and the topological properties of the network were also investigated.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>Pre-processing for KARE data</title>
+        <p>The KARE genotype data we used in the study initially consisted of 352,228 SNPs and 8,842 samples after the screening by genotype calling and quality control performed [<xref rid="B10" ref-type="bibr">10</xref>]. We performed the following additional stages of pre-processing. First, we selected case-control samples based on the survey of the disease history of the patients, which was carried out in the KARE project. In the first stage, we collected 1,885 patients who self-reported that they had gastritis in the past as cases. We also found 4,117 individuals who self-reported that they had no history of having gastritis or any other diseases. Among those patients, we randomly selected 1,885 individuals as controls to avoid bias in the study.</p>
+        <p>After the selection of case-control patients, we filtered out SNPs that corresponded to the following conditions: minor allele frequency &lt;0.01 in each group [<xref rid="B15" ref-type="bibr">15</xref>], pairwise linkage disequilibrium r<sup>2</sup> &gt; 0.8 [<xref rid="B16" ref-type="bibr">16</xref>], and SNPs in the X chromosome. PLINK [<xref rid="B17" ref-type="bibr">17</xref>] was used for the calculation of these values. The resulting dataset consisted of 185,426 SNPs and 3,770 samples for the case-control study.</p>
+      </sec>
+      <sec>
+        <title>Mutual information</title>
+        <p>We used mutual information measures to assess the strength of the association between a pair of SNPs and the disease status of gastritis. Mutual information has been widely used to measure dependence or independence between two random variables [<xref rid="B11" ref-type="bibr">11</xref>, <xref rid="B12" ref-type="bibr">12</xref>, <xref rid="B18" ref-type="bibr">18</xref>, <xref rid="B19" ref-type="bibr">19</xref>]. It is a non-parametric measure and is able to detect both linear and non-linear associations [<xref rid="B14" ref-type="bibr">14</xref>]. This measure is based on Shannon's entropy, H(X) = &#x3A3;<sub>x&#x2208;X</sub> - <italic>p</italic>(<italic>x</italic>)log(<italic>p</italic>(<italic>x</italic>)), which shows the uncertainty of the random variable X. Mutual information I(X;Y) between random variables X and Y is defined by the composition of entropy as follows: <disp-formula>I(X;Y) = <italic>H</italic>(<italic>X</italic>) + <italic>H</italic>(<italic>Y</italic>) - <italic>H</italic>(<italic>X</italic>,<italic>Y</italic>).</disp-formula></p>
+        <p><italic>H</italic>(<italic>X</italic>), <italic>H</italic>(<italic>Y</italic>) denote entropies for the random variables X, Y, and <italic>H</italic>(<italic>X</italic>,<italic>Y</italic>) denotes the joint entropy of the two random variables as follows: <disp-formula>H(X,Y)=&#x3A3;<sub>x&#x2208;X</sub>&#x3A3;<sub>y&#x2208;Y</sub> - <italic>p</italic>(<italic>x</italic>,<italic>y</italic>)log(<italic>p</italic>(<italic>x</italic>,<italic>y</italic>)).</disp-formula></p>
+        <p>A high mutual information value indicates a strong association between two random variables. The measure can also be extended to assess the strength of association between a pair of SNPs and a phenotype. The extended version of mutual information is as follows: <disp-formula><italic>I</italic>(<italic>X</italic><sub>1</sub>,<italic>X</italic><sub>2</sub>;<italic>Y</italic>) = <italic>H</italic>(<italic>X</italic><sub>1</sub>,<italic>X</italic><sub>2</sub>) + <italic>H</italic>(<italic>Y</italic>) - <italic>H</italic>(<italic>X</italic><sub>1</sub>,<italic>X</italic><sub>2</sub>,<italic>Y</italic>),</disp-formula> where <italic>X</italic><sub>1</sub> and <italic>X</italic><sub>2</sub> are random variables for two SNPs, and <italic>Y</italic> denotes random variables for the disease. In our recent work [<xref rid="B12" ref-type="bibr">12</xref>], we have shown that this measure could identify high-order epistatic interactions both with and without marginal effects by using simulation models, such as in Culverhouse et al.'s [<xref rid="B20" ref-type="bibr">20</xref>] and Velez et al.'s studies [<xref rid="B21" ref-type="bibr">21</xref>].</p>
+        <p>As the genotype and disease status are represented as discrete values, it is more convenient to consider the random variables as a partition of the combination of the genotypes and disease status. Then, the entropy of a random variable <italic>X</italic> can be represented in terms of the partition as follows: <disp-formula><graphic xlink:href="gni-12-216-e001.jpg" position="float" orientation="portrait"/></disp-formula></p>
+        <p>where <italic>X</italic> = {<italic>A</italic><sub>1</sub>, <italic>A</italic><sub>2</sub>,&#x2026;, <italic>A</italic><sub>n</sub>} is a partition on the set of samples <italic>S</italic> = {<italic>A</italic><sub>1</sub>&#x222A;<italic>A</italic><sub>2</sub>&#x222A;&#x2026;&#x222A;<italic>A</italic><sub>n</sub>}, and no intersections exist between elements in the partition. The joint entropy of two random variables for the partition of <italic>S</italic>, <italic>X</italic> = {<italic>A</italic><sub>1</sub>, <italic>A</italic><sub>2</sub>,&#x2026;, <italic>A</italic><sub>n</sub>} and <italic>Y</italic> = {B<sub>1</sub>, B<sub>2</sub>,&#x2026;, B<sub>m</sub>} is defined as follows: <disp-formula><graphic xlink:href="gni-12-216-e002.jpg" position="float" orientation="portrait"/></disp-formula></p>
+        <p>The entropy also can be extended to the joint entropy of multiple random variables (e.g., 3 or 4 SNPs) naturally.</p>
+      </sec>
+      <sec>
+        <title>Extraction of statistically significant epistatic interactions</title>
+        <p>As mentioned above, mutual information is a non-parametric measure, and the distribution of values from the population is unknown; therefore, it is difficult to show the statistical significance of values calculated by this measure. Rather than doing the computationally too-expensive permutation tests for every pair of SNPs, which causes severe multiple testing issues when applied to GWA studies, we adopted the alternative permutation scheme proposed [<xref rid="B11" ref-type="bibr">11</xref>]. First, we replicated 30 permutations for disease status in case-control samples. For every possible pair of given SNPs, we calculated mutual information of SNPs with the permutated disease status labels and obtained the average value from 30 replications. &#x3B8; denotes the maximum value of the averages. If a mutual information value between SNPs and the phenotype from real data is higher than &#x3B8;, then we consider that the pair of SNPs shows a more significant association with gastritis than a random association.</p>
+        <p>To further assess the statistical significance of the identified SNP pairs, we approximated the p-values of the SNP pairs by exploiting the following relationship between &#x3C7;<sup>2</sup> value and mutual information [<xref rid="B14" ref-type="bibr">14</xref>]: <disp-formula>&#x3C7;<sup>2</sup> ~ <italic>2Nln2</italic>&#xB7;<italic>I</italic>(<italic>X</italic><sub>1</sub>,<italic>X</italic><sub>2</sub>;<italic>Y</italic>),</disp-formula> where N denotes the number of patients in the study.</p>
+      </sec>
+      <sec>
+        <title>Relevance network construction and assessment of significance</title>
+        <p>Network analysis is a powerful tool to understand biological systems. Given the significant epistatic interactions between SNP pairs and disease status detected by the permutation scheme, we constructed SNP-SNP epistatic interaction networks, where SNP represents the node and the significant interaction between SNP pairs represents the edge. However, it is difficult to assess the biological significance of the interaction networks directly because of the lack of interaction databases for SNPs.</p>
+        <p>To overcome this limitation, we directly mapped these networks into a gene-gene relevance network.</p>
+        <p><xref ref-type="fig" rid="F1">Fig. 1</xref> represents a brief scheme of how to map the network. Suppose that some SNPs map directly to genes A and B, and there are at least two SNPs that have significant interactions for disease status. If one SNP maps to gene A and another SNP maps to gene B, then we consider that genes A and B have a unidirectional edge. The weight of the edge is defined by number of the interacting SNP pairs. For example, in <xref ref-type="fig" rid="F1">Fig. 1</xref>, there are four SNP interactions between gene A and gene B. Thus, we consider that gene A and gene B have an edge, the weight of which is 4 in the gene-gene network. Finally, the top 5% edges having the largest edge weights are used in the biological validation and topological investigation.</p>
+        <p>We constructed a gene-gene network for each chromosome showing intra-chromosome interactions. We measured the network topologies of each network using Cytoscape [<xref rid="B22" ref-type="bibr">22</xref>] and also ran a gene ontology (GO) enrichment analysis for sets of genes in the network. We used DAVID [<xref rid="B23" ref-type="bibr">23</xref>] to validate the biological significance of the networks.</p>
+        <p><xref ref-type="fig" rid="F2">Fig. 2</xref> illustrates the overall analysis scheme used in this study.</p>
+      </sec>
+    </sec>
+    <sec sec-type="results">
+      <title>Results</title>
+      <sec>
+        <title>Statistically significant epistatic interactions in each
+chromosome</title>
+        <p>We ran the permutation method for each individual chromosome separately. As a result, we obtained SNP pairs that were non-randomly associated with the status of gastritis for the given patients.</p>
+        <p><xref ref-type="fig" rid="F3">Fig. 3</xref> shows the number of such SNP pairs for each chromosome. We found that there were approximately 2%-4% associated pairs among all possible pairs in the chromosomes.</p>
+        <p>We then calculated the p-value for each SNP pair by using the approximation scheme [<xref rid="B14" ref-type="bibr">14</xref>] and under Bonferroni correction [<xref rid="B24" ref-type="bibr">24</xref>]. <xref ref-type="table" rid="T1">Table 1</xref> shows the number of statistically significant SNP pairs within each chromosome. Significant SNP pairs and p-values are listed in <xref ref-type="supplementary-material" rid="S1">Supplementary Table 1</xref>. In total, 293 SNP pairs showed statistical significance in the study. Chromosomes 9 and 15 had many significant pairs, but many of those pairs included SNPs with marginal effects (rs169730 in chromosome 9, rs493971 in chromosome 15). There were few significant SNP pairs within the chromosomes, and these pairs were not found in previous studies of gastric disease; therefore, further investigation of the pairs is needed to assess their biological significance.</p>
+      </sec>
+      <sec>
+        <title>Network topologies</title>
+        <p><xref ref-type="table" rid="T2">Table 2</xref> summarizes the results of the network topology measures (number of nodes and edges, clustering coefficient, and network centralization) for the gene-gene interaction network for each chromosome. The table shows that all chromosomes showed similar properties: the number of edges is 10-30-fold higher than the number of nodes, and the measurements reveal high clustering coefficients and network centralization.</p>
+        <p>Additionally, every network from each chromosome consisted of only one component.</p>
+        <p><xref ref-type="fig" rid="F4">Figs. 4</xref> and <xref ref-type="fig" rid="F5">5</xref> present the structure of networks showing the highest values for the measures, especially the clustering coefficient and network centralization.</p>
+        <p>In the real world, many biological networks show high average clustering coefficients [<xref rid="B25" ref-type="bibr">25</xref>]. The network in chromosome 18 showed the highest clustering coefficient, and we found some hub genes in the network that were reported to be associated with gastric disease. For example, Uchino et al. [<xref rid="B26" ref-type="bibr">26</xref>] reported frequent loss of heterozygosity at the deleted in colorectal carcinoma (<italic>DCC</italic>) locus in gastric cancer.</p>
+        <p>Higher network centralization values show that hub genes highly affect the network [<xref rid="B27" ref-type="bibr">27</xref>]. In other words, if the hubs are removed, then the network may divide into several components. The network in chromosome 20 showed the highest value for the centralization measure. In the network receptor-type tyrosine-protein phosphatase T (<italic>PTPRT</italic>), one of the hub genes was reported to be one of 15 genes in CpG islands showing significant differential methylation in gastric carcinoma [<xref rid="B28" ref-type="bibr">28</xref>].</p>
+        <p>From the results, we determined that there were many close gene-gene interactions derived from SNP-SNP interactions for gastritis and that if a gene had a high degree in the network, then this gene was connected to other genes with which it had frequent SNP-SNP interactions. We also found this tendency in most chromosomes.</p>
+      </sec>
+      <sec>
+        <title>Enrichment analysis</title>
+        <p>We ran an enrichment analysis of the gene-gene interaction network for GO using DAVID [<xref rid="B23" ref-type="bibr">23</xref>].</p>
+        <p><xref ref-type="table" rid="T3">Table 3</xref> summarizes the significantly enriched terms from DAVID. Every term that was annotated in the table was significant under a false discovery rate (FDR)-based correction (p &lt; 0.05 after adjustment).</p>
+        <p>Chromosome 19 had the most enriched terms among chromosomes, and these terms were related to regulation (biological process) and binding (molecular function).</p>
+        <p><xref ref-type="fig" rid="F6">Fig. 6</xref> presents the internal structure of the sub-network for transcription (GO:0006350) in chromosome 19. This network has many zinc finger (ZNF) family genes. Taniuchi et al. [<xref rid="B29" ref-type="bibr">29</xref>] reported that zinc-binding protein-89 (ZBP-89), which is related to the ZNF gene family and is a Kr&#xFC;ppel-type zinc finger protein, is overexpressed in gastric cancer patients.</p>
+        <p>Additionally, interleukin-1 receptor activity (GO:0004908) was significantly enriched in chromosome 2.</p>
+        <p><xref ref-type="fig" rid="F7">Fig. 7</xref> presents the internal structure of the gene-gene relevance network for the GO terms. As mentioned in the introduction, interleukin family genes and intra-SNPs were reported [<xref rid="B5" ref-type="bibr">5</xref>, <xref rid="B7" ref-type="bibr">7</xref>]; therefore, these genes and SNPs are associated with the susceptibility to gastric cancer. Genes that were enriched in the GO terms were not connected in the relevance gene-gene network; still, these genes had few SNP-SNP interactions with every other gene (weight equal or less than 11).</p>
+        <p>We also ran an enrichment analysis for the Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway [<xref rid="B30" ref-type="bibr">30</xref>], but no terms were significant under FDR-based adjustment.</p>
+      </sec>
+    </sec>
+    <sec sec-type="discussion">
+      <title>Discussion</title>
+      <p>In this study, we applied a simple but powerful method to detect epistatic interactions that distinguish gastritis patients from controls. We found several putative SNP-SNP interactions using the mutual information measure. Additionally, relevance gene-gene interaction networks that are derived from epistatic interactions show high clustering coefficients and centralization.</p>
+      <p>We found that some sub-networks in the recovered network had biological significance for gastric disease from the GO enrichment analysis. However, we did not find these results to have direct associations with gastritis, because gastritis has been less extensively studied than other gastric diseases, such as gastric cancer or ulcer. We expect that future studies on gastritis will be necessary to validate the results from our study.</p>
+      <p>In this study, only intra-chromosome interactions were considered. We expect that if we extend the method to inter-chromosomal analyses, this could increase the chances of finding novel sub-networks that are enriched in pathways for gastritis. However, this extension will impose a computational burden and increase the type I error; therefore, the development of a more flexible framework is needed to resolve this issue.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by grants from the Korea Centers for Disease Control and Prevention, Republic of Korea (4845-301, 4851-302, 4851-307), and a National Research Foundation of Korea (NRF) grant, funded by the Korean government (MSIP) (No. 2010-0028631).</p>
+    </ack>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Park</surname>
+              <given-names>KS</given-names>
+            </name>
+          </person-group>
+          <article-title>How much amount of socioeconomic loss is caused by digestive diseases?</article-title>
+          <source>Korean J Gastroenterol</source>
+          <year>2011</year>
+          <volume>58</volume>
+          <fpage>297</fpage>
+          <lpage>299</lpage>
+          <pub-id pub-id-type="pmid">22299172</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Corvalan</surname>
+              <given-names>AH</given-names>
+            </name>
+            <name>
+              <surname>Carrasco</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Saavedra</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <chapter-title>The genetic and epigenetic bases of gastritis</chapter-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Mozsik</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <source>Current Topics in Gastritis</source>
+          <publisher-loc>Rijeka</publisher-loc>
+          <publisher-name>InTech</publisher-name>
+          <year>2013</year>
+          <fpage>79</fpage>
+          <lpage>95</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marshall</surname>
+              <given-names>BJ</given-names>
+            </name>
+            <name>
+              <surname>Warren</surname>
+              <given-names>JR</given-names>
+            </name>
+          </person-group>
+          <article-title>Unidentified curved bacilli in the stomach of patients with gastritis and peptic ulceration</article-title>
+          <source>Lancet</source>
+          <year>1984</year>
+          <volume>1</volume>
+          <fpage>1311</fpage>
+          <lpage>1315</lpage>
+          <pub-id pub-id-type="pmid">6145023</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>HW</given-names>
+            </name>
+            <name>
+              <surname>Hahm</surname>
+              <given-names>KB</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Ju</surname>
+              <given-names>YS</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>KM</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>KW</given-names>
+            </name>
+          </person-group>
+          <article-title>Association of the human leukocyte antigen class II alleles with chronic atrophic gastritis and gastric carcinoma in Koreans</article-title>
+          <source>J Dig Dis</source>
+          <year>2009</year>
+          <volume>10</volume>
+          <fpage>265</fpage>
+          <lpage>271</lpage>
+          <pub-id pub-id-type="pmid">19906105</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yuzhalin</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>The role of interleukin DNA polymorphisms in gastric cancer</article-title>
+          <source>Hum Immunol</source>
+          <year>2011</year>
+          <volume>72</volume>
+          <fpage>1128</fpage>
+          <lpage>1136</lpage>
+          <pub-id pub-id-type="pmid">21871937</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zendehdel</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Bahmanyar</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>McCarthy</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Nyren</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Andersson</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Ye</surname>
+              <given-names>W</given-names>
+            </name>
+          </person-group>
+          <article-title>Genetic polymorphisms of glutathione S-transferase genes <italic>GSTP1</italic>, <italic>GSTM1</italic>, and <italic>GSTT1</italic> and risk of esophageal and gastric cardia cancers</article-title>
+          <source>Cancer Causes Control</source>
+          <year>2009</year>
+          <volume>20</volume>
+          <fpage>2031</fpage>
+          <lpage>2038</lpage>
+          <pub-id pub-id-type="pmid">19618282</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xue</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>A meta-analysis of interleukin-8 -251 promoter polymorphism associated with gastric cancer risk</article-title>
+          <source>PLoS One</source>
+          <year>2012</year>
+          <volume>7</volume>
+          <fpage>e28083</fpage>
+          <pub-id pub-id-type="pmid">22279522</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>de Oliveira</surname>
+              <given-names>JG</given-names>
+            </name>
+            <name>
+              <surname>Silva</surname>
+              <given-names>AE</given-names>
+            </name>
+          </person-group>
+          <article-title>Polymorphisms of the TLR2 and TLR4 genes are associated with risk of gastric cancer in a Brazilian population</article-title>
+          <source>World J Gastroenterol</source>
+          <year>2012</year>
+          <volume>18</volume>
+          <fpage>1235</fpage>
+          <lpage>1242</lpage>
+          <pub-id pub-id-type="pmid">22468087</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Coussens</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Werb</surname>
+              <given-names>Z</given-names>
+            </name>
+          </person-group>
+          <article-title>Inflammation and cancer</article-title>
+          <source>Nature</source>
+          <year>2002</year>
+          <volume>420</volume>
+          <fpage>860</fpage>
+          <lpage>867</lpage>
+          <pub-id pub-id-type="pmid">12490959</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cho</surname>
+              <given-names>YS</given-names>
+            </name>
+            <name>
+              <surname>Go</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>YJ</given-names>
+            </name>
+            <name>
+              <surname>Heo</surname>
+              <given-names>JY</given-names>
+            </name>
+            <name>
+              <surname>Oh</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Ban</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A large-scale genome-wide association study of Asian populations uncovers genetic factors influencing eight quantitative traits</article-title>
+          <source>Nat Genet</source>
+          <year>2009</year>
+          <volume>41</volume>
+          <fpage>527</fpage>
+          <lpage>534</lpage>
+          <pub-id pub-id-type="pmid">19396169</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Butte</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Kohane</surname>
+              <given-names>IS</given-names>
+            </name>
+          </person-group>
+          <article-title>Mutual information relevance networks: functional genomic clustering using pairwise entropy measurements</article-title>
+          <source>Pac Symp Biocomput</source>
+          <year>2000</year>
+          <fpage>418</fpage>
+          <lpage>429</lpage>
+          <pub-id pub-id-type="pmid">10902190</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Leem</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Jeong</surname>
+              <given-names>HH</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wee</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Sohn</surname>
+              <given-names>KA</given-names>
+            </name>
+          </person-group>
+          <article-title>Fast detection of high-order epistatic interactions in genome-wide association studies using information theoretic measure</article-title>
+          <source>Comput Biol Chem</source>
+          <year>2014</year>
+          <volume>50</volume>
+          <fpage>19</fpage>
+          <lpage>28</lpage>
+          <pub-id pub-id-type="pmid">24581733</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hu</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Sinnott-Armstrong</surname>
+              <given-names>NA</given-names>
+            </name>
+            <name>
+              <surname>Kiralis</surname>
+              <given-names>JW</given-names>
+            </name>
+            <name>
+              <surname>Andrew</surname>
+              <given-names>AS</given-names>
+            </name>
+            <name>
+              <surname>Karagas</surname>
+              <given-names>MR</given-names>
+            </name>
+            <name>
+              <surname>Moore</surname>
+              <given-names>JH</given-names>
+            </name>
+          </person-group>
+          <article-title>Characterizing genetic interactions in human disease association studies using statistical epistasis networks</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2011</year>
+          <volume>12</volume>
+          <fpage>364</fpage>
+          <pub-id pub-id-type="pmid">21910885</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goebel</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Dawy</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Hagenauer</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Mueller</surname>
+              <given-names>JC</given-names>
+            </name>
+          </person-group>
+          <source>An approximation to the distribution of finite sample size mutual information estimates</source>
+          <conf-name>2005 IEEE International Conference on Communications</conf-name>
+          <conf-date>2005 May 16-20</conf-date>
+          <conf-loc>Seoul</conf-loc>
+          <publisher-loc>Seoul</publisher-loc>
+          <publisher-name>ICC 2005</publisher-name>
+          <year>2005</year>
+          <fpage>1102</fpage>
+          <lpage>1106</lpage>
+          <comment>Vol. 2</comment>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hong</surname>
+              <given-names>KW</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>SS</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Genome-wide association study of orthostatic hypotension and supine-standing blood pressure changes in two korean populations</article-title>
+          <source>Genomics Inform</source>
+          <year>2013</year>
+          <volume>11</volume>
+          <fpage>129</fpage>
+          <lpage>134</lpage>
+          <pub-id pub-id-type="pmid">24124408</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lim</surname>
+              <given-names>JE</given-names>
+            </name>
+            <name>
+              <surname>Oh</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Allelic frequencies of 20 visible phenotype variants in the korean population</article-title>
+          <source>Genomics Inform</source>
+          <year>2013</year>
+          <volume>11</volume>
+          <fpage>93</fpage>
+          <lpage>96</lpage>
+          <pub-id pub-id-type="pmid">23843775</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Purcell</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Neale</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Todd-Brown</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Ferreira</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Bender</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>PLINK: a tool set for whole-genome association and population-based linkage analyses</article-title>
+          <source>Am J Hum Genet</source>
+          <year>2007</year>
+          <volume>81</volume>
+          <fpage>559</fpage>
+          <lpage>575</lpage>
+          <pub-id pub-id-type="pmid">17701901</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liang</surname>
+              <given-names>KC</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>X</given-names>
+            </name>
+          </person-group>
+          <article-title>Gene regulatory network reconstruction using conditional mutual information</article-title>
+          <source>EURASIP J Bioinform Syst Biol</source>
+          <year>2008</year>
+          <fpage>253894</fpage>
+          <pub-id pub-id-type="pmid">18584050</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B19">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Margolin</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>Nemenman</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Basso</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Wiggins</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Stolovitzky</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Dalla Favera</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>ARACNE: an algorithm for the reconstruction of gene regulatory networks in a mammalian cellular context</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2006</year>
+          <volume>7</volume>
+          <issue>Suppl 1</issue>
+          <fpage>S7</fpage>
+          <pub-id pub-id-type="pmid">16723010</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Culverhouse</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Suarez</surname>
+              <given-names>BK</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Reich</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>A perspective on epistasis: limits of models displaying no main effect</article-title>
+          <source>Am J Hum Genet</source>
+          <year>2002</year>
+          <volume>70</volume>
+          <fpage>461</fpage>
+          <lpage>471</lpage>
+          <pub-id pub-id-type="pmid">11791213</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Velez</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>BC</given-names>
+            </name>
+            <name>
+              <surname>Motsinger</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>Bush</surname>
+              <given-names>WS</given-names>
+            </name>
+            <name>
+              <surname>Ritchie</surname>
+              <given-names>MD</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>SM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A balanced accuracy function for epistasis modeling in imbalanced datasets using multifactor dimensionality reduction</article-title>
+          <source>Genet Epidemiol</source>
+          <year>2007</year>
+          <volume>31</volume>
+          <fpage>306</fpage>
+          <lpage>315</lpage>
+          <pub-id pub-id-type="pmid">17323372</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cline</surname>
+              <given-names>MS</given-names>
+            </name>
+            <name>
+              <surname>Smoot</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Cerami</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Kuchinsky</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Landys</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Workman</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Integration of biological networks and gene expression data using Cytoscape</article-title>
+          <source>Nat Protoc</source>
+          <year>2007</year>
+          <volume>2</volume>
+          <fpage>2366</fpage>
+          <lpage>2382</lpage>
+          <pub-id pub-id-type="pmid">17947979</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Huang</surname>
+              <given-names>DW</given-names>
+            </name>
+            <name>
+              <surname>Sherman</surname>
+              <given-names>BT</given-names>
+            </name>
+            <name>
+              <surname>Lempicki</surname>
+              <given-names>RA</given-names>
+            </name>
+          </person-group>
+          <article-title>Systematic and integrative analysis of large gene lists using DAVID bioinformatics resources</article-title>
+          <source>Nat Protoc</source>
+          <year>2009</year>
+          <volume>4</volume>
+          <fpage>44</fpage>
+          <lpage>57</lpage>
+          <pub-id pub-id-type="pmid">19131956</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B24">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hochberg</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>A sharper Bonferroni procedure for multiple tests of significance</article-title>
+          <source>Biometrika</source>
+          <year>1988</year>
+          <volume>75</volume>
+          <fpage>800</fpage>
+          <lpage>802</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pavlopoulos</surname>
+              <given-names>GA</given-names>
+            </name>
+            <name>
+              <surname>Secrier</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Moschopoulos</surname>
+              <given-names>CN</given-names>
+            </name>
+            <name>
+              <surname>Soldatos</surname>
+              <given-names>TG</given-names>
+            </name>
+            <name>
+              <surname>Kossida</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Aerts</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Using graph theory to analyze biological networks</article-title>
+          <source>BioData Min</source>
+          <year>2011</year>
+          <volume>4</volume>
+          <fpage>10</fpage>
+          <pub-id pub-id-type="pmid">21527005</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B26">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Uchino</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Tsuda</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Noguchi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Yokota</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Terada</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Saito</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Frequent loss of heterozygosity at the DCC locus in gastric cancer</article-title>
+          <source>Cancer Res</source>
+          <year>1992</year>
+          <volume>52</volume>
+          <fpage>3099</fpage>
+          <lpage>3102</lpage>
+          <pub-id pub-id-type="pmid">1591722</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B27">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sun</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>Z</given-names>
+            </name>
+          </person-group>
+          <article-title>A comparative study of cancer proteins in the human protein-protein interaction network</article-title>
+          <source>BMC Genomics</source>
+          <year>2010</year>
+          <volume>11</volume>
+          <issue>Suppl 3</issue>
+          <fpage>S5</fpage>
+        </element-citation>
+      </ref>
+      <ref id="B28">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liu</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Gao</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Pei</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Gu</surname>
+              <given-names>L</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Large-scale characterization of DNA methylation changes in human gastric carcinomas with and without metastasis</article-title>
+          <source>Clin Cancer Res</source>
+          <year>2014</year>
+          <volume>20</volume>
+          <fpage>4598</fpage>
+          <lpage>4612</lpage>
+          <pub-id pub-id-type="pmid">25009298</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B29">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taniuchi</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Mortensen</surname>
+              <given-names>ER</given-names>
+            </name>
+            <name>
+              <surname>Ferguson</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Greenson</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Merchant</surname>
+              <given-names>JL</given-names>
+            </name>
+          </person-group>
+          <article-title>Overexpression of ZBP-89, a zinc finger DNA binding protein, in gastric cancer</article-title>
+          <source>Biochem Biophys Res Commun</source>
+          <year>1997</year>
+          <volume>233</volume>
+          <fpage>154</fpage>
+          <lpage>160</lpage>
+          <pub-id pub-id-type="pmid">9144414</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B30">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kanehisa</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Goto</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Sato</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Kawashima</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Furumichi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Tanabe</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Data, information, knowledge and principle: back to metabolism in KEGG</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2014</year>
+          <volume>42</volume>
+          <fpage>D199</fpage>
+          <lpage>D205</lpage>
+          <pub-id pub-id-type="pmid">24214961</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <sec sec-type="supplementary-material">
+      <title>Supplementary material</title>
+      <p>Supplementary data including one table can be found with
+this article online at <ext-link ext-link-type="uri" xlink:href="http://www.genominfo.org/src/sm/gni-12-216-s001.pdf">http://www.genominfo.org/src/sm/gni-12-216-s001.pdf</ext-link>.</p>
+      <supplementary-material content-type="local-data" id="S1">
+        <caption>
+          <title>Supplementary Table 1</title>
+          <p>List of significant SNP pairs and their p-values</p>
+        </caption>
+        <media mimetype="application" mime-subtype="pdf" xlink:href="gni-12-216-s001.pdf" orientation="portrait" id="d35e1855" position="anchor"/>
+      </supplementary-material>
+    </sec>
+  </back>
+  <floats-group>
+    <fig id="F1" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Scheme for mapping the SNP-SNP interaction network onto the gene-gene epistasis network. SNP, single-nucleotide polymorphism.</p>
+      </caption>
+      <graphic xlink:href="gni-12-216-g001"/>
+    </fig>
+    <fig id="F2" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Illustration of the network construction method. GO, gene ontology; M.I., mutual information; SNP, single-nucleotide polymorphism.</p>
+      </caption>
+      <graphic xlink:href="gni-12-216-g002"/>
+    </fig>
+    <fig id="F3" orientation="portrait" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Number of significant single-nucleotide polymorphism pairs for each chromosome.</p>
+      </caption>
+      <graphic xlink:href="gni-12-216-g003"/>
+    </fig>
+    <fig id="F4" orientation="portrait" position="float">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Graphical visualization of the gene-gene interaction network in chromosome 18, which shows the highest clustering coefficient (0.848). Red edges represents frequent SNPSNP interactions between two genes (&gt;100). SNP, single-nucleotide polymorphism.</p>
+      </caption>
+      <graphic xlink:href="gni-12-216-g004"/>
+    </fig>
+    <fig id="F5" orientation="portrait" position="float">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Graphical visualization of gene-gene interaction network in chromosome 20, which shows the highest network centralization (0.953). Red edges represent frequent SNPSNP interactions between two genes (&gt;100). SNP, single-nucleotide polymorphism.</p>
+      </caption>
+      <graphic xlink:href="gni-12-216-g005"/>
+    </fig>
+    <fig id="F6" orientation="portrait" position="float">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Graphical visualization of the internal structure of the sub-network, which consists of genes related to transcription (GO:0006350). Red edges represent frequent SNP-SNP interactions between two genes (&gt;100). GO, gene ontology; SNP, single-nucleotide polymorphism.</p>
+      </caption>
+      <graphic xlink:href="gni-12-216-g006"/>
+    </fig>
+    <fig id="F7" orientation="portrait" position="float">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Graphical visualization of the internal structure of the sub-network, which consists of genes related to interleukin-1 receptor activity (GO:0004908). Red edges represent frequent SNP-SNP interactions between two genes (&gt;10). GO, gene ontology; SNP, single-nucleotide polymorphism.</p>
+      </caption>
+      <graphic xlink:href="gni-12-216-g007"/>
+    </fig>
+    <table-wrap id="T1" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Number of significant SNP pairs in each chromosome</p>
+      </caption>
+      <graphic xlink:href="gni-12-216-i001"/>
+      <table-wrap-foot>
+        <fn>
+          <p>SNP, single-nucleotide polymorphism.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="T2" orientation="portrait" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>Network topologies for gene-gene interaction networks for each chromosome</p>
+      </caption>
+      <graphic xlink:href="gni-12-216-i002"/>
+    </table-wrap>
+    <table-wrap id="T3" orientation="portrait" position="float">
+      <label>Table 3</label>
+      <caption>
+        <p>Significantly enriched GO terms for each chromosome</p>
+      </caption>
+      <graphic xlink:href="gni-12-216-i003"/>
+      <table-wrap-foot>
+        <fn>
+          <p>GO, gene ontology; FDR, false discovery rate.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

@@ -1,0 +1,393 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26865847</article-id>
+      <article-id pub-id-type="pmc">4742326</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2015.13.4.152</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Application Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Building the Frequency Profile of the Core Promoter Element Patterns in the Three ChromHMM Promoter States at 200bp Intervals: A Statistical Perspective</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lent</surname>
+            <given-names>Heather</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+          <xref ref-type="aff" rid="A2">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lee</surname>
+            <given-names>Kyung-Eun</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Park</surname>
+            <given-names>Hyun-Seok</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="A1"><label>1</label>Bioinformatics Laboratory, School of Engineering, Ewha Womans University, Seoul 03760, Korea.</aff>
+      <aff id="A2"><label>2</label>Human Language Technology Program, Department of Linguistics, University of Arizona, Tucson, AZ 85721, USA.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +82-2-3277-2831, Fax: +82-2-3277-2306, <email>neo@ewha.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>31</day>
+        <month>12</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>13</volume>
+      <issue>4</issue>
+      <fpage>152</fpage>
+      <lpage>155</lpage>
+      <history>
+        <date date-type="received">
+          <day>31</day>
+          <month>7</month>
+          <year>2015</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>09</day>
+          <month>11</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>29</day>
+          <month>11</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2015 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Recently, the Encyclopedia of DNA Elements (ENCODE) Analysis Working Group converted data from ChIP-seq analyses from the Broad Histone track into 15 corresponding chromatic maps that label sequences with different kinds of histone modifications in promoter regions. Here, we publish a frequency profile of the three ChromHMM promoter states, at 200-bp intervals, with particular reference to the existence of sequence patterns of promoter elements, GC-richness, and transcription starting sites. Through detailed and diligent analysis of promoter regions, researchers will be able to uncover new and significant information about transcription initiation and gene function.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>chromatin state</kwd>
+        <kwd>epigenetics</kwd>
+        <kwd>epigenomics</kwd>
+        <kwd>genetic promoter regions</kwd>
+      </kwd-group>
+      <funding-group>
+        <award-group>
+          <funding-source country="KR">
+            <institution-wrap>
+              <institution>Small and Medium Business Administration</institution>
+              <institution-id institution-id-type="CrossRef">http://dx.doi.org/10.13039/501100003663</institution-id>
+            </institution-wrap>
+          </funding-source>
+          <award-id>2-2014-2443-001-1</award-id>
+        </award-group>
+      </funding-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>Both eukaryotic and prokaryotic cells contain important gene-regulating elements, located within promoter regions [<xref rid="B1" ref-type="bibr">1</xref><xref rid="B2" ref-type="bibr">2</xref>]. It is known that promoter sequences possess special signatures to distinguish them from the rest of the genome sequences. A few core promoter elements have been detected, of which the most common elements are the CpG island, TATA box, initiator (Inr), downstream promoter element (DPE), and TFIIB recognition element (BRE) [<xref rid="B2" ref-type="bibr">2</xref>], but these promoter elements may not be universal.</p>
+      <p>Recently, a group from the Encyclopedia of DNA Elements (ENCODE) project published chromatic maps to mark histone modifications within nine cells of different types from the human genome, drawn from the results from chromatin immunoprecipitation sequencing (ChIP-seq) analyses of these same cells [<xref rid="B1" ref-type="bibr">1</xref><xref rid="B2" ref-type="bibr">2</xref>]. From each of these nine cells, Ernst et al. [<xref rid="B3" ref-type="bibr">3</xref><xref rid="B4" ref-type="bibr">4</xref>] published 15 chromatin states of the human genome. Among them, the first three states represent promoter regions: state 1 (Active_Promoter), state 2 (Weak_Promoter), and state 3 (Poised_Promoter). The information gained from the exploration of promoter elements and transcription starting sites will enable researchers to produce more accurate promoter prediction algorithms, which in turn will yield deeper insight into the process of transcription initiation and gene functions.</p>
+      <p>Here, we publish frequency profiles of the ChromHMM promoter states of the human genome, at 200bp intervals, paying particular attention to the existence of promoter elements, such as CpG islands, TATA boxes, Inr, DPE, and recognition elements from the transcription factors that bind with polymerase II (BRE) (signal features), together with transcription starting sites, in terms of size, overlapping patterns, and locations.</p>
+    </sec>
+    <sec sec-type="results">
+      <title>Results</title>
+      <p>Ernst et al. [<xref rid="B4" ref-type="bibr">4</xref>] applied unsupervised learning methods to convert the Broad Histone track's results from ChIP-seq analyses into specific points that indicate promoter regions on chromatin maps for 15 chromatin elements within the genome. These 15 chromatin states were chosen because of their rich biological content, as well their well-established presence in previous research [<xref rid="B4" ref-type="bibr">4</xref>]. The resulting files are hosted by the ENCODE Analysis Data Hub, which is available for public download under the ENCODE Data Release Policy (<ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/ENCODE/downloads.html">http://genome.ucsc.edu/ENCODE/downloads.html</ext-link>). We downloaded the BED files for the chromatin signal tracks of the nine ENCODE cell types. Within them, chromatin states 1, 2, and 3 represent Active, Weak, and Posed Promoters, respectively, which differ only in regard to the levels of expression in various biological assays. These states were defined, based purely on 9 chromatin marks, and their input controls across 9 cell types.</p>
+      <p>Depending upon the cell type, slight variances were found, as seen in <xref ref-type="table" rid="T1">Table 1</xref>. For example, the gm12878 cell line has an active promoter consisting of 14,674 blocks and occupies 0.80% of the whole genome, whereas k562 has 14,951 blocks and occupies 0.68% of the whole genome, for chromatin state 1. To overcome this slight variance in cell lines, we divided the promoter regions uniformly at 200-bp resolution, regardless of the 9 cell line block boundaries.</p>
+      <p><xref ref-type="fig" rid="F1">Fig. 1</xref> shows our Java code, which relies on Java's Oracle interface (Oracle Database 12c Standard Edition) and implements regular expressions, based on predefined classes from the java.util.regex package, in order to pattern-match different promoter elements, such as CpG islands, TATA boxs, Inr, DPE, and BRE, for each 200-bp window. The code also builds upon formal grammar rules based on the structural properties seen in promoter sequences, though these patterns usually apply only to the core promoters [<xref rid="B5" ref-type="bibr">5</xref><xref rid="B6" ref-type="bibr">6</xref>]. Our Java code produces an output profile consisting of the 18 required fields as follows (<xref ref-type="fig" rid="F2">Fig. 2</xref>).</p>
+      <p>The first three fields are: the name of the chromosome, the starting position of the feature in the chromosome, and the ending position. The next four fields represent the frequencies of the 4 promoter elements. For example, <xref ref-type="fig" rid="F2">Fig. 2</xref> shows that the nucleotide sequences starting from 28337 to 23537 (200 bp) in chromosome 1 contains 1 occurrence of a TATA box, 6 occurrences of Inr, 0 occurrences of BRE, and 6 occurrences of DPE. The next 9 fields indicate the ChromHMM annotation of 9 cell lines (K562, GM12878, H1HESC, HEPG2, HMEC, HSMM, HUVEC, NHEK, and NHLF). The last two fields indicate the existence of DataBase of Human Transcription Start Sites (dbTSS) data [<xref rid="B7" ref-type="bibr">7</xref><xref rid="B8" ref-type="bibr">8</xref>], and the GC ratio, respectively, where the hg19promoter file for dbTSS data was used for indexing (<ext-link ext-link-type="ftp" xlink:href="ftp://ftp.hgc.jp/pub/hgc/db/dbtss/dbtss_ver8/Sanger_data/">ftp://ftp.hgc.jp/pub/hgc/db/dbtss/dbtss_ver8/Sanger_data/</ext-link>).</p>
+      <p><xref ref-type="table" rid="T2">Table 2</xref> shows the summary of our promoter frequency profile. The data show significants difference from the known statistical factors of core promoters. It is due to the fact that we divided the regions into 200 bp lengths whereas the core promoter elements are known to exist typically within 50 bp (base pairs) upstream to 50 bp downstream of the TSS [<xref rid="B2" ref-type="bibr">2</xref>], and that we are including the Poised_Promoter state of the ChromHMM.</p>
+      <p>From the ChromHMM human promoter blocks, the results of our statistical survey on 176,579 units show that DPE sequences have the highest frequency among the four chosen motifs in promoter elements, appearing in about 97.1% of the ChromHMM promoter regions, meanwhile Inr is seen in 92% of promoter regions, and BRE is seen in only 17.3% of the promoters (It is known that Inr usually occurs only about half of the human promoters [<xref rid="B3" ref-type="bibr">3</xref>]). TATA boxes are found in 52.2% of the ChromHMM promoter blocks. Some contextual patterns have been recognized for certain promoter elements. For example, we can expect to find BREs within GC-rich areas, meanwhile areas with TATA boxes are typically GC-poor.</p>
+      <p>In total, there are 9,435 ChromHMM promoter blocks in the dbTSS locations (approximately 5.34%). The number of 200-bp blocks that contain all four promoter elements was 176,579. Among them, only 9,436 of the blocks contain dbTSS data [<xref rid="B7" ref-type="bibr">7</xref><xref rid="B8" ref-type="bibr">8</xref>]. Some of the blocks showed distinct associations with dbTSS data. For example, the promoter blocks that do not contain any of the promoter elements tend to have a higher GC ratio (0.68) where a dbTSS location exists.</p>
+    </sec>
+    <sec sec-type="conclusions">
+      <title>Conclusion</title>
+      <p>One of the strengths of our work versus previous studies is that we profiled the core elements separately, based on the three classes of promoter states (Active_Promoter, Weak_Promoter, and Poised_Promoter of the ChromHMM). A more detailed analysis of frequency profiles in regard to these three states is beyond the scope of this paper. However, the complete frequency profiles and Java code are published through GitHub (<ext-link ext-link-type="uri" xlink:href="https://github.com/KyungEunLee/motif">https://github.com/KyungEunLee/motif</ext-link>). We believe that the frequency profiles presented of the three promoter states can be helpful for bioinformaticians to gain a deeper understanding of the characteristics of the various promoter regions and to improve upon old methods of core promoter analysis algorithms for their specific research needs.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by the Small &amp; Medium Business Corporation (project number : 2-2014-2443-001-1) of Korea.</p>
+    </ack>
+    <fn-group>
+      <fn fn-type="other">
+        <p><bold>Availability:</bold>
+<ext-link ext-link-type="uri" xlink:href="https://github.com/KyungEunLee/motif">https://github.com/KyungEunLee/motif</ext-link></p>
+      </fn>
+    </fn-group>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <collab>ENCODE Project Consortium</collab>
+          <article-title>The ENCODE (ENCyclopedia Of DNA Elements) Project</article-title>
+          <source>Science</source>
+          <year>2004</year>
+          <volume>306</volume>
+          <fpage>636</fpage>
+          <lpage>640</lpage>
+          <pub-id pub-id-type="pmid">15499007</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <collab>ENCODE Project Consortium</collab>
+          <article-title>An integrated encyclopedia of DNA elements in the human genome</article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>489</volume>
+          <fpage>57</fpage>
+          <lpage>74</lpage>
+          <pub-id pub-id-type="pmid">22955616</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ernst</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kellis</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Discovery and characterization of chromatin states for systematic annotation of the human genome</article-title>
+          <source>Nat Biotechnol</source>
+          <year>2010</year>
+          <volume>28</volume>
+          <fpage>817</fpage>
+          <lpage>825</lpage>
+          <pub-id pub-id-type="pmid">20657582</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ernst</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kheradpour</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Mikkelsen</surname>
+              <given-names>TS</given-names>
+            </name>
+            <name>
+              <surname>Shoresh</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Ward</surname>
+              <given-names>LD</given-names>
+            </name>
+            <name>
+              <surname>Epstein</surname>
+              <given-names>CB</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Mapping and analysis of chromatin state dynamics in nine human cell types</article-title>
+          <source>Nature</source>
+          <year>2011</year>
+          <volume>473</volume>
+          <fpage>43</fpage>
+          <lpage>49</lpage>
+          <pub-id pub-id-type="pmid">21441907</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Park</surname>
+              <given-names>HS</given-names>
+            </name>
+            <name>
+              <surname>Galbadrakh</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>YM</given-names>
+            </name>
+          </person-group>
+          <article-title>Recent progresses in the linguistic modeling of biological sequences based on formal language theory</article-title>
+          <source>Genomics Inform</source>
+          <year>2011</year>
+          <volume>9</volume>
+          <fpage>5</fpage>
+          <lpage>11</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Datta</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Mukhopadhyay</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>A composite method based on formal grammar and DNA structural features in detecting human polymerase II promoter region</article-title>
+          <source>PLoS One</source>
+          <year>2013</year>
+          <volume>8</volume>
+          <fpage>e54843</fpage>
+          <pub-id pub-id-type="pmid">23437045</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yamashita</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Sugano</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Suzuki</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Nakai</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>DBTSS: DataBase of transcriptional start sites progress report in 2012</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2012</year>
+          <volume>40</volume>
+          <fpage>D150</fpage>
+          <lpage>D154</lpage>
+          <pub-id pub-id-type="pmid">22086958</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yamashita</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Sathira</surname>
+              <given-names>NP</given-names>
+            </name>
+            <name>
+              <surname>Kanai</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Tanimoto</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Arauchi</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Tanaka</surname>
+              <given-names>Y</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-wide characterization of transcriptional start sites in humans by integrative transcriptome analysis</article-title>
+          <source>Genome Res</source>
+          <year>2011</year>
+          <volume>21</volume>
+          <fpage>775</fpage>
+          <lpage>789</lpage>
+          <pub-id pub-id-type="pmid">21372179</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <title>Java code to recognize regular expressions of different promoter elements: TATA-box, Initiator, TFIIB recognition element, and downstream promoter element.</title>
+      </caption>
+      <graphic xlink:href="gni-13-152-g001"/>
+    </fig>
+    <fig id="F2" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <title>An output profile format consisting of the 18 required fields. INI, initiator; BRE, TFIIB recognition element; DPE, downstream promoter element; TSS, transcription start site.</title>
+      </caption>
+      <graphic xlink:href="gni-13-152-g002"/>
+    </fig>
+    <table-wrap id="T1" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <title>Relative coverage of the ChromHMM promoter states in the GM12878 and K562 cell lines</title>
+      </caption>
+      <graphic xlink:href="gni-13-152-i001"/>
+    </table-wrap>
+    <table-wrap id="T2" orientation="portrait" position="float">
+      <label>Table 2</label>
+      <caption>
+        <title>Summary of the promoter frequency profile</title>
+      </caption>
+      <graphic xlink:href="gni-13-152-i002"/>
+      <table-wrap-foot>
+        <fn>
+          <p>TSS, transcription start site; Inr, initiator; BRE, TFIIB recognition element; DPE, downstream promoter element.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

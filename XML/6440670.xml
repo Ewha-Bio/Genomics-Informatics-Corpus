@@ -1,0 +1,546 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">30602091</article-id>
+      <article-id pub-id-type="pmc">6440670</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2018.16.4.e30</article-id>
+      <article-id pub-id-type="publisher-id">gi-2018-16-4-e30</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Original Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Storing Digital Information in Long-Read DNA</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">http://orcid.org/0000-0001-5165-2744</contrib-id>
+          <name>
+            <surname>Ahn</surname>
+            <given-names>TaeJin</given-names>
+          </name>
+          <xref rid="c1-gi-2018-16-4-e30" ref-type="corresp">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">http://orcid.org/0000-0002-2521-676X</contrib-id>
+          <name>
+            <surname>Ban</surname>
+            <given-names>Hamin</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">http://orcid.org/0000-0003-2788-5702</contrib-id>
+          <name>
+            <surname>Park</surname>
+            <given-names>Hyunsoo</given-names>
+          </name>
+        </contrib>
+        <aff id="af1-gi-2018-16-4-e30">Department of Life Science, Handong Global University, Pohang 37554, 
+<country>Korea</country></aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="c1-gi-2018-16-4-e30"><label>*</label>Corresponding author: Tel: +82-54-260-1306, Fax: +82-54-260-1340, E-mail: <email>taejin.ahn@handong.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2018</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>28</day>
+        <month>12</month>
+        <year>2018</year>
+      </pub-date>
+      <volume>16</volume>
+      <issue>4</issue>
+      <elocation-id>e30</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>30</day>
+          <month>11</month>
+          <year>2018</year>
+        </date>
+        <date date-type="accepted">
+          <day>20</day>
+          <month>12</month>
+          <year>2018</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2018 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2018</copyright-year>
+        <license>
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>There is urgent need for effective and cost-efficient data storage, as the worldwide requirement for data storage is rapidly growing. DNA has introduced a new tool for storing digital information. Recent studies have successfully stored digital information, such as text and gif animation. Previous studies tackled technical hurdles due to errors from DNA synthesis and sequencing. Studies also have focused on a strategy that makes use of 100&#x2012;150-bp read sizes in both synthesis and sequencing. In this paper, we a suggest novel data encoding/decoding scheme that makes use of long-read DNA (~1,000 bp). This enables accurate recovery of stored digital information with a smaller number of reads than the previous approach. Also, this approach reduces sequencing time.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>DNA</kwd>
+        <kwd>information</kwd>
+        <kwd>information storage and retrieval</kwd>
+        <kwd>nanopore sequencing</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>DNA is an excellent medium for archiving data [<xref rid="b1-gi-2018-16-4-e30" ref-type="bibr">1</xref>]. Recent efforts have illustrated the potential for information storage in DNA. Martin Luther King&#x2019;s &#x2018;I Have a Dream&#x2019; speech and Shakespeare's sonnets have been recorded in DNA [<xref rid="b2-gi-2018-16-4-e30" ref-type="bibr">2</xref>]. CRISPR-CAS technology has been introduced to store digital information, including digital movies [<xref rid="b3-gi-2018-16-4-e30" ref-type="bibr">3</xref>]. Recent approaches enable polymerase chain reaction (PCR)&#x2012;based random access of stored information with 200 MB of digital data [<xref rid="b4-gi-2018-16-4-e30" ref-type="bibr">4</xref>].</p>
+      <p>The principle of recent approaches is top synthesize specific sequences of DNA molecules and sequence them for writing and reading the digital data, respectively. However, both DNA synthesis and sequencing are highly error-prone. Various types of sequence alterations can be found, such as insertions, deletions, and substitutions, at rates of &#x223C;0.01 errors/base [<xref rid="b5-gi-2018-16-4-e30" ref-type="bibr">5</xref>]. Prior works have shown that a proper encoding scheme is necessary to recover the data under this noisy condition. Thus, existing approaches rely on a high degree of sequencing redundancy (i.e., having many copies of DNA molecules for each sequence and deep sequencing coverage).</p>
+      <p>Here, we present a new coding scheme for using long-read DNA sequences. Our approach explicitly reduces sequencing redundancy, requiring fewer resources and, in turn, fewer physical copies of any given DNA molecule to recover the stored data. In addition, using long-read DNA in conjunction with nano-pore sequencing technology shortens the sequencing time necessary to recover the information [<xref rid="b6-gi-2018-16-4-e30" ref-type="bibr">6</xref>].</p>
+      <p>Our new coding scheme suggests a novel DNA fragment structure for long-read DNA data storage. The structure contains DNA sequences representing a data block, random linker, header, footer, and restriction sites. Because of the design, which contains restriction sites, each DNA fragment will serve as a unit that can be further ligated sequentially to form a longer DNA read. A longer DNA read can store a larger amount of digital information within a single molecule. To validate our scheme, we also provide practical assays to generate longer DNA molecules.</p>
+      <p>To investigate the challenges using long-read DNA for digital data storage, we encoded the first phrase of &#x201C;Hun Min Jung Um&#x201D; (118 characters). The entire information is stored in one long-read DNA sequence (1,872 bp). The read length is longer than previous approaches (150 bp). Our new encoding scheme reduces the sequencing depth required for data recovery (previous approach, 1,308; ours, 15) and sequencing time (previous approach, 3&#x2012;4 days; ours, days to 3&#x2012;4 h).</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>Storing binary information in a long-read DNA molecule</title>
+        <p>Binary data are encoded by two types of DNA fragments, each representing 0 or 1. Each fragment type will serve as a molecular unit to represent 0 or 1. A longer fragment that is composed of 0 or 1 DNA fragments can be synthesized and ligated to store more digital data in a single copy of a DNA molecule. Nanopore sequencing enables one to generate a long-read DNA sequence. <xref rid="f1-gi-2018-16-4-e30" ref-type="fig">Fig. 1</xref> depicts a schematic diagram of the writing/recording strategy of this study.</p>
+      </sec>
+      <sec>
+        <title>DNA fragment unit for storage of binary information</title>
+        <p>In our scheme, 1 and 0 will be recorded in a specific sequence that we call the &#x201C;signal,&#x201D; flanked by random sequences that we call &#x201C;noise,&#x201D; in <xref rid="f2-gi-2018-16-4-e30" ref-type="fig">Fig. 2</xref>. The DNA sequence located in the signal part, &#x201C;TATT&#x201D; or &#x201C;ACCC,&#x201D; determines whether the DNA fragment represents 1 or 0. The noise region consists of a random linker that has a dissimilar sequence to the signal sequences providing space between signals. The noise region also contributes to DNA synthesis, reducing repeats.</p>
+        <p>Digital information will be recorded in a DNA molecule that consists of restriction sites, a data block, and sequences to represent the start and end of the data block (<xref rid="f3-gi-2018-16-4-e30" ref-type="fig">Fig. 3</xref>). The data block contains a series of noise and signal units synthesized, as it depends on the digital data to store. DNA molecules can be further ligated to form a longer DNA molecule to store more digital data in a single copy of a DNA molecule.</p>
+      </sec>
+      <sec>
+        <title>Synthesis of DNA fragments</title>
+        <p>The length of the synthesized DNA is 780 to 880 bp, depending on the data block size. GC contents were adjusted to 50% to 54%, and plasmids were synthesized in pBHA. DNA synthesis was conducted by a company, Bioneer, that guaranteed delivery in 20 working days.</p>
+      </sec>
+      <sec>
+        <title>Ligation of DNA fragments in an ordered manner</title>
+        <p>Using a DNA fragment with a restriction site, a data block is to be further ligated in an ordered manner to form a longer DNA fragment. In our study, two DNA fragments with sizes of about 800&#x2012;1,000 bp will be cut with restriction enzymes to form a common ligation site. <italic>Spe</italic>I and <italic>Xbar</italic>I are used for the first and second fragments, respectively. <xref rid="f4-gi-2018-16-4-e30" ref-type="fig">Fig. 4</xref> describes this step, and the details of the restriction and ligation conditions follow.</p>
+      </sec>
+      <sec>
+        <title>Amplifying DNA fragments using PCR</title>
+        <p>We designed a vector primer for the DNA fragment amplification. We used EmeraldAmp PCR Master Mix (cat. no. RR300A; Takara Bio, Tokyo, Japan), where the condition was one cycle at 95&#xB0;C for 5 min; followed by 30 cycles of 30 s at 95&#xB0;C, 30 s at 60&#xB0;C, and 72&#xB0;C for 1 min/kbp; and one cycle for 10 min at 72&#xB0;C for definite extension. The PCR product was purified using an AccuPrep PCR/Gel DNA Purification Kit (cat. no. K-3037-CFG; Bioneer, Daejeon, Korea).</p>
+      </sec>
+      <sec>
+        <title>Restriction and ligation</title>
+        <p>3A assembly-associated enzymes were used: <italic>Xba</italic>1 (cat. no. R013S; Enzynomics, Daejeon, Korea) for the cut of the first restriction site and <italic>Spe</italic>1 (cat. no. R011S; Enzynomics) for the second. The cohesive DNA strand was ligated with AccuPower Ligation PreMix (cat. no. K-7103; Bioneer). The two DNA fragments were mixed at a 1:1 ratio and incubated ON at 4&#xB0;C.</p>
+      </sec>
+      <sec>
+        <title>Extracting target DNA fragment</title>
+        <p>To separate between the ligated strand and non-ligated strand, we selectively amplified the ligation product using PCR. Electrophoresis and subsequent gel purification were conducted to yield the ligated strand.</p>
+      </sec>
+      <sec>
+        <title>Sequencing</title>
+        <p>Sequencing was performed using Oxford Nanopore NNGS equipment (Oxford Nanopore Technologies, Oxford, UK). First, we enriched the sample to meet the recommended concentration (1 &#x3BC;g of DNA or more). Second, we prepared a sequencing library with the LSK_108 kit from Oxford Nanopore. Third, we loaded the library into the single flow cell attached to the MinION equipment. We conducted the QC procedure to confirm if there were more than 8,000 active nanopores. We ran 2 h for sequencing, and about 10,000 reads were obtained for each sequencing run.</p>
+      </sec>
+      <sec>
+        <title>Filtering data and restoring binary information</title>
+        <p>We used two methods for restoring binary information. First, we used &#x201C;Canu&#x201D; software, which is a <italic>de novo</italic> assembler based on Linux [<xref rid="b7-gi-2018-16-4-e30" ref-type="bibr">7</xref>]. The consensus sequence of <italic>de novo assembly</italic> is used to further detect &#x201C;start,&#x201D; &#x201C;end,&#x201D; 0, and 1 signals. We searched the signal sequence by allowing a 1-bp mismatch in the signal location.</p>
+      </sec>
+    </sec>
+    <sec sec-type="results">
+      <title>Results</title>
+      <sec>
+        <title>Long-read DNA preparation for digital data storage</title>
+        <p>To determine if our restriction and ligation conditions, we firstly optimized assay conditions with shorter fragments 490 bp, then further applied established conditions to form longer fragment with size of 1,895 bp. We confirmed the ligation product with gel electrophoresis, showing that both products were formed at the proper position of the molecular weight information (<xref rid="f5-gi-2018-16-4-e30" ref-type="fig">Fig. 5</xref>).</p>
+      </sec>
+      <sec>
+        <title>Sanger sequencing</title>
+        <p>The short DNA fragment with a size of 490 bp was sequenced to confirm that our restriction and ligation assay did not distort the DNA sequence of our design scheme. The result showed 100% identity, which shows that the &#x201C;start&#x201D; and &#x201C;end&#x201D; random linker sequences and signal sequences for &#x201C;0&#x201D; and &#x201C;1&#x201D; were all well conserved after the assays for fragment preparation (<xref rid="f6-gi-2018-16-4-e30" ref-type="fig">Fig. 6</xref>).</p>
+      </sec>
+      <sec>
+        <title>Nanopore sequencing</title>
+        <p>The DNA fragment storing digital information with a size of 1,854 bp, which is a longer length than the commercially available Sanger sequencing limit, was sequenced by Oxford nanopore sequencing method. The total number of reads obtained was 104,795. Out of 104,795 reads obtained, 675 reads were identical to the expected size of 1,854 bp. A total of 16,773 reads were found within 50 bp of the expected size (<xref rid="f7-gi-2018-16-4-e30" ref-type="fig">Fig. 7</xref>). There were also reads with lengths of 1,100 bp. Those reads were possibly from unligated product during the DNA fragment preparation process.</p>
+        <p>Sampling of thousand reads their length is between 1,754 and 1,904 were assembled by &#x201C;Canu&#x201D; method to retrieve a consensus sequence. The consensus sequence showed 100% identity to the designed sequence that stored digital data. This means that digital information can be restored directly from the consensus sequence without any further sequence data treatment. However, sampling a fewer number of reads reduces the identity of the designed sequence.</p>
+        <p>We also considered 672 reads with the same length as the designed sequence. From these reads, we were able to successfully identify &#x201C;start,&#x201D; &#x201C;end,&#x201D; and &#x201C;data block&#x201D; sequences. The data block of the reads was aligned, minimizing Hamming distance. Voting of the aligned reads for a signal of &#x201C;0&#x201D; and &#x201C;1&#x201D; yielded the digital information intended to be stored. This shows that it is capable of reading digital information written in the long-read DNA by our method.</p>
+        <p>Our approach tolerates the low accuracy of nano-pore sequencing, which is capable of reading a long-read-length DNA up to 10 kb. Prior work on data storage in DNA molecules has been focused on using Illumina sequencing (Illumina, San Diego, CA, USA), which supports a shorter read length (&#x223C;150 bp) but provides high accuracy. Thus, our scheme is the first trial to enable writing DNA in longer fragments. Depending on the choice of sequencing technology, there are gains and losses. A comparison with prior work shows that our data storing scheme requires more base pairs to store 1 byte than other technology. However our method requires significantly less sequencing time to recover digital information (<xref rid="t1-gi-2018-16-4-e30" ref-type="table">Table 1</xref>).</p>
+      </sec>
+    </sec>
+    <sec sec-type="discussion">
+      <title>Discussion</title>
+      <p>The need for data storage is rapidly and continuously growing. DNA data storage has the potential to eventually replace magnetic tape, the most commercially available storage for archiving.</p>
+      <p>We have proposed a new method for reading digital information into a DNA fragment. The method is different to prior work, which synthesized novel DNA sequences, depending on the digital data to be scored. Our approach is more scalable than prior methods, in that we can reuse pre-synthesized DNA for the data block (&#x201C;0&#x201D; and &#x201C;1&#x201D; signal sequences), which means there is no need to wait for de novo synthesis of DNA.</p>
+      <p>Using nano-pore sequencing with long reads has an advantage in the amount of times required to restore digital information from DNA molecules. Our current achievements show 3&#x2012;4 h for sequencing, which is much faster than prior works that made use of next-generation sequencing. As sequencing can be conducted in a parallel manner, our approach has more potential in restoring large amounts of data in a sort time.</p>
+      <p>We hope these advances may contribute to viable, large-scale DNA-based data storage.</p>
+    </sec>
+  </body>
+  <back>
+    <fn-group>
+      <fn id="fn1-gi-2018-16-4-e30" fn-type="COI-statement">
+        <p>
+          <bold>Conflicts of Interest</bold>
+        </p>
+        <p>No potential conflicts of interest relevant to this article was reported.</p>
+      </fn>
+      <fn id="fn2-gi-2018-16-4-e30">
+        <p>
+          <bold>Authors&#x2019; contribution</bold>
+        </p>
+        <p>Conceptualization: TJA</p>
+        <p>Formal analysis: TJA</p>
+        <p>Funding acquisition: TJA</p>
+        <p>Methodology: HB, HP</p>
+        <p>Writing &#x2013; original draft: TJA</p>
+        <p>Writing &#x2013; review &amp; editing: HB, HP</p>
+      </fn>
+    </fn-group>
+    <ref-list>
+      <title>References</title>
+      <ref id="b1-gi-2018-16-4-e30">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Extance</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>How DNA could store all the world&#x2019;s data</article-title>
+          <source>Nature</source>
+          <year>2016</year>
+          <volume>537</volume>
+          <fpage>22</fpage>
+          <lpage>24</lpage>
+          <pub-id pub-id-type="pmid">27582204</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b2-gi-2018-16-4-e30">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goldman</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Bertone</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Dessimoz</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>LeProust</surname>
+              <given-names>EM</given-names>
+            </name>
+            <name>
+              <surname>Sipos</surname>
+              <given-names>B</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Towards practical, high-capacity, low-maintenance information storage in synthesized DNA</article-title>
+          <source>Nature</source>
+          <year>2013</year>
+          <volume>494</volume>
+          <fpage>77</fpage>
+          <lpage>80</lpage>
+          <pub-id pub-id-type="pmid">23354052</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b3-gi-2018-16-4-e30">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shipman</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Nivala</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Macklis</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Church</surname>
+              <given-names>GM</given-names>
+            </name>
+          </person-group>
+          <article-title>CRISPR-Cas encoding of a digital movie into the genomes of a population of living bacteria</article-title>
+          <source>Nature</source>
+          <year>2017</year>
+          <volume>547</volume>
+          <fpage>345</fpage>
+          <lpage>349</lpage>
+          <pub-id pub-id-type="pmid">28700573</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b4-gi-2018-16-4-e30">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Organick</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Ang</surname>
+              <given-names>SD</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>YJ</given-names>
+            </name>
+            <name>
+              <surname>Lopez</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Yekhanin</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Makarychev</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Random access in large-scale DNA data storage</article-title>
+          <source>Nat Biotechnol</source>
+          <year>2018</year>
+          <volume>36</volume>
+          <fpage>242</fpage>
+          <lpage>248</lpage>
+          <pub-id pub-id-type="pmid">29457795</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b5-gi-2018-16-4-e30">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pfeiffer</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Gr&#xF6;ber</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Blank</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Handler</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Beyer</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Schultze</surname>
+              <given-names>JL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Systematic evaluation of error rates and causes in short samples in next-generation sequencing</article-title>
+          <source>Sci Rep</source>
+          <year>2018</year>
+          <volume>8</volume>
+          <fpage>10950</fpage>
+          <pub-id pub-id-type="pmid">30026539</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b6-gi-2018-16-4-e30">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Menegon</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Cantaloni</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Rodriguez-Prieto</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Centomo</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Abdelfattah</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Rossato</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>On site DNA barcoding by nanopore sequencing</article-title>
+          <source>PLoS One</source>
+          <year>2017</year>
+          <volume>12</volume>
+          <fpage>e0184741</fpage>
+          <pub-id pub-id-type="pmid">28977016</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b7-gi-2018-16-4-e30">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Koren</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Walenz</surname>
+              <given-names>BP</given-names>
+            </name>
+            <name>
+              <surname>Berlin</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Bergman</surname>
+              <given-names>NH</given-names>
+            </name>
+            <name>
+              <surname>Phillippy</surname>
+              <given-names>AM</given-names>
+            </name>
+          </person-group>
+          <article-title>Canu: scalable and accurate long-read assembly via adaptive k-mer weighting and repeat separation</article-title>
+          <source>Genome Res</source>
+          <year>2017</year>
+          <volume>27</volume>
+          <fpage>722</fpage>
+          <lpage>736</lpage>
+          <pub-id pub-id-type="pmid">28298431</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="f1-gi-2018-16-4-e30" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Schematic diagram for writing/reading digital information in long-read DNA. (A) A unit DNA fragment storing digital information of &#x2018;0&#x2019; or &#x2018;1&#x2019; can synthesized and ligated. (B) DNA fragment storing digital information encoded by a series of unit DNA fragments can be read by nanopore sequencer.</p>
+      </caption>
+      <graphic xlink:href="gi-2018-16-4-e30f1"/>
+    </fig>
+    <fig id="f2-gi-2018-16-4-e30" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>DNA sequence design for storing digital information of 0 and 1. DNA fragment with a size of 16 bp will serve as a unit. To store digital information, units can be ligated or synthesized in the order of the digital information to store.</p>
+      </caption>
+      <graphic xlink:href="gi-2018-16-4-e30f2"/>
+    </fig>
+    <fig id="f3-gi-2018-16-4-e30" orientation="portrait" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Long-read DNA structure to store digital data. Short DNA fragments (size, 16 bp) that represent 0 or 1 will be located in a data block in a sequential order to represent digital information. &#x2019;Start&#x2019; and &#x2019;End&#x2019; are DNA sequences that mark the start and end of the data block, respectively. Flanking restriction sites are introduced for further ligation of long-read DNA to another.</p>
+      </caption>
+      <graphic xlink:href="gi-2018-16-4-e30f3"/>
+    </fig>
+    <fig id="f4-gi-2018-16-4-e30" orientation="portrait" position="float">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Long-read DNA can be further ligated to store digital information in a sequential order. PCR, polymerase chain reaction.</p>
+      </caption>
+      <graphic xlink:href="gi-2018-16-4-e30f4"/>
+    </fig>
+    <fig id="f5-gi-2018-16-4-e30" orientation="portrait" position="float">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Confirmatory assay scheme for data storage. Two DNA molecules carrying digital information are ligated to form a longer DNA. (A) Expected size: start (35 bp) + end (35 bp) + information (54 bp) + random linker site (6 bp) = total 292 bp + 198 bp (TA cloning) = 490 bp. (B) Start signal (51 bp) + first DNA fragment (817 bp) + end signal (51 bp) + start signal (51 bp) + second DNA fragment (785 bp) + end (51 bp) + vector sequence (39 bp) = 1,845 bp.</p>
+      </caption>
+      <graphic xlink:href="gi-2018-16-4-e30f5"/>
+    </fig>
+    <fig id="f6-gi-2018-16-4-e30" orientation="portrait" position="float">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Validation of ligation assay by Sanger sequencing. Two DNA fragments carrying &#x2019;10&#x2019; and &#x2019;01&#x2019; information are ligated in an intended order. Our encoding scheme is marked with colors (green, start and end; blue, 0; gray, 1; and red, ligation site).</p>
+      </caption>
+      <graphic xlink:href="gi-2018-16-4-e30f6"/>
+    </fig>
+    <fig id="f7-gi-2018-16-4-e30" orientation="portrait" position="float">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Read length distribution of nanopore sequencing. Most reads are found with a size of 1,854 bp.</p>
+      </caption>
+      <graphic xlink:href="gi-2018-16-4-e30f7"/>
+    </fig>
+    <table-wrap id="t1-gi-2018-16-4-e30" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Comparison with prior work</p>
+      </caption>
+      <table frame="hsides" rules="rows">
+        <thead>
+          <tr>
+            <th valign="top" align="left" rowspan="1" colspan="1"/>
+            <th valign="top" align="center" rowspan="1" colspan="1">Goldman <italic>et al</italic>. [<xref rid="b2-gi-2018-16-4-e30" ref-type="bibr">2</xref>]</th>
+            <th valign="top" align="center" rowspan="1" colspan="1">This work</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">DNA read length for information storing (bp)</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">150</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">1,854</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Byte per base pair including primers</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">0.075</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">0.008</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Base pair required for storing 1 byte</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">13</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">128</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">No. of DNA molecules to recover 1 byte</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">1,308</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">700</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Sequencing platform</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">Illumina</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">Nanopore</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Sequencing time</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">3&#x2013;4 days</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">3&#x2013;4 h</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tfn1-gi-2018-16-4-e30">
+          <p>Prior work used the Illumina platform encoding digital information in a short DNA read. Using a long read with our encoding scheme requires fewer copies of a DNA molecule than using a short read.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

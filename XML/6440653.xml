@@ -1,0 +1,455 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="other">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">30602101</article-id>
+      <article-id pub-id-type="pmc">6440653</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2018.16.4.e40</article-id>
+      <article-id pub-id-type="publisher-id">gi-2018-16-4-e40</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Opinion</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Opinion: Strategy of Semi-Automatically Annotating a Full-Text Corpus of <italic>Genomics &amp; Informatics</italic></article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">http://orcid.org/0000-0002-1237-8831</contrib-id>
+          <name>
+            <surname>Park</surname>
+            <given-names>Hyun-Seok</given-names>
+          </name>
+          <xref ref-type="aff" rid="af1-gi-2018-16-4-e40">1</xref>
+          <xref ref-type="aff" rid="af2-gi-2018-16-4-e40">2</xref>
+          <xref rid="c1-gi-2018-16-4-e40" ref-type="corresp">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="af1-gi-2018-16-4-e40">
+<label>1</label>Bioinformatics Laboratory, ELTEC College of Engineering, Ewha Womans University, Seoul 03760, 
+<country>Korea</country></aff>
+      <aff id="af2-gi-2018-16-4-e40">
+<label>2</label>Center for Convergence Research of Advanced Technologies, Ewha Womans University, Seoul 03760, 
+<country>Korea</country></aff>
+      <author-notes>
+        <corresp id="c1-gi-2018-16-4-e40"><label>*</label>Corresponding author: Tel: +82-2-3277-3513, Fax: +82-2-3277-2306, E-mail: <email>neo@ewha.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2018</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>28</day>
+        <month>12</month>
+        <year>2018</year>
+      </pub-date>
+      <volume>16</volume>
+      <issue>4</issue>
+      <elocation-id>e40</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>13</day>
+          <month>12</month>
+          <year>2018</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>20</day>
+          <month>12</month>
+          <year>2018</year>
+        </date>
+        <date date-type="accepted">
+          <day>20</day>
+          <month>12</month>
+          <year>2018</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2018 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2018</copyright-year>
+        <license>
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>There is a communal need for an annotated corpus consisting of the full texts of biomedical journal articles. In response to community needs, a prototype version of the full-text corpus of <italic>Genomics &amp; Informatics</italic>, called GNI version 1.0, has recently been published, with 499 annotated full-text articles available as a corpus resource. However, GNI needs to be updated, as the texts were shallow-parsed and annotated with several existing parsers. I list issues associated with upgrading annotations and give an opinion on the methodology for developing the next version of the GNI corpus, based on a semi-automatic strategy for more linguistically rich corpus annotation.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>biomedical text mining</kwd>
+        <kwd>corpus</kwd>
+        <kwd>text analytics</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="other">
+      <title>The Current Status of GNI Corpus 1.0</title>
+      <p><italic>Genomics &amp; Informatics</italic> (NLM title abbreviation: <italic>Genomics Inform</italic>) is the official journal of the Korea Genome Organization. A prototype version of the full-text corpus of <italic>Genomics &amp; Informatics</italic>, called GNI version 1.0, has been recently archived in the GitHub repository [<xref rid="b1-gi-2018-16-4-e40" ref-type="bibr">1</xref>, <xref rid="b2-gi-2018-16-4-e40" ref-type="bibr">2</xref>]. As of July 2018, 499 Part-of-Speech (POS)-tagged full-text articles are available as a corpus resource. Although there has been valuable work done on annotating abstracts, there are differences between abstracts and full-text articles from a natural language processing (NLP) perspective [<xref rid="b3-gi-2018-16-4-e40" ref-type="bibr">3</xref>].</p>
+      <p>Now that a prototype GNI corpus has been constructed, we can obtain basic descriptive statistics, which are statistics that do not seek to test for significance. The most basic statistical measure is a frequency count: a simple tallying of the number of instances of something that occurs in a corpus.</p>
+      <p>The plot in <xref rid="f1-gi-2018-16-4-e40" ref-type="fig">Fig. 1</xref> was based on a conditional frequency distribution of exemplary keywords&#x2014;<italic>algorithm</italic>, <italic>alignment</italic>, <italic>cancer</italic>, <italic>epigenetics</italic>, <italic>expression</italic>, <italic>genome</italic>, and <italic>patient</italic>&#x2014;where the counts being plotted are the number of times the word occurred in each of the randomly chosen articles from <italic>Genomics &amp; Informatics</italic>.</p>
+    </sec>
+    <sec sec-type="other">
+      <title>Beyond Descriptive Statistics</title>
+      <p>To better understand the data arising from <italic>Genomics &amp; Informatics</italic>, annotated corpora are a critical component of biomedical NLP research. Such systems must be trained on sets of examples with known outputs, such that annotated corpora provide the training data vital to the construction of modern NLP systems.</p>
+      <p><xref rid="f2-gi-2018-16-4-e40" ref-type="fig">Fig. 2</xref> shows a parsing tree of an exemplary sentence extracted from the GNI corpus &#x201C;comparative genomic hybridization analyses have identified many recurrent candidate loci of DNA copy number changes in liver cancer.&#x201D; [<xref rid="b4-gi-2018-16-4-e40" ref-type="bibr">4</xref>]. However, to obtain a deeper level of linguistic information, such as this, and to fully utilize the GNI corpus, accuracy of the annotations is vital. We estimate that the accuracy of POS tagging in the current version of GNI corpus is 96.8%, as we only utilized existing shallow parsers [<xref rid="b5-gi-2018-16-4-e40" ref-type="bibr">5</xref>], without manual checking. These parsers are only used to perform superficial syntactic analysis. The problem of text segmentation is also non-trivial, where text segmentation is the process of dividing written text into meaningful units, such as words and sentences. At this moment, approximately 96.1% of the sentences are correctly segmented. This is mainly due to the heavy use of website addresses, float numbers, abbreviations, hyphenated words, figure and table numbers, and gene names in the journal articles.</p>
+      <p>Other issues with tagging accuracy involve optical character recognition (OCR) errors and ungrammaticality. Some of the articles published before 2007 were in image format, such that conversion of images into machine-encoded text was necessary. However, OCR recognition errors were unavoidable, and the noise induced by these errors presented thorny issues to downstream standard text analysis pipelines, including tokenization, sentence boundary detection, and POS tagging, that attempted to make use of such data. Furthermore, a small number of the articles in earlier volumes contain text that is mildly ungrammatical [<xref rid="b6-gi-2018-16-4-e40" ref-type="bibr">6</xref>]&#x2014;i.e., text that is well formed yet contains the grammatical errors that are routinely produced by both native and non-native speakers of a language.</p>
+      <p>Currently, we are annotating our corpus with information about ungrammaticality as follows: words or phrases are marked as ungrammatical (indicated in square brackets) if the phrase needs to be repaired; the original sentence is retained in the corpus, but the input to the parsers does not include ungrammatical parts. Incomplete coverage and incorrect analyses should be addressed through customized preprocessing software tools, after which the process undergoes several cycles of parsing and checking.</p>
+      <p>Eventually, the automatically annotated corpus needs to be consistently updated by trained human annotators. However, manual corpus annotation is time-consuming and prone to inconsistencies. Our method should be designed to build and improve the annotated corpus, with a diminishing amount of manual-checking.</p>
+      <p>Thus, customized preprocessing software tools should be developed and upgraded in two separate stages: preparation and analysis of the transcripts for the software tools and a checking and update loop to enhance the tools. I suggest that several rounds of hackathon conferences be organized, hopefully, by Korea Genome Organization or other bioNLP communities. In doing so, customized annotation tools should be developed by fully adopting the methodologies described in recent studies on artificial neural network for NLP [<xref rid="b7-gi-2018-16-4-e40" ref-type="bibr">7</xref>&#x2013;<xref rid="b11-gi-2018-16-4-e40" ref-type="bibr">11</xref>].</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by Ewha Womans University (1-2018-0698-001-1).</p>
+    </ack>
+    <fn-group>
+      <fn id="fn1-gi-2018-16-4-e40" fn-type="COI-statement">
+        <p>
+          <bold>Conflicts of Interest</bold>
+        </p>
+        <p>No potential conflicts of interest relevant to this article was reported.</p>
+      </fn>
+    </fn-group>
+    <ref-list>
+      <title>References</title>
+      <ref id="b1-gi-2018-16-4-e40">
+        <label>1</label>
+        <element-citation publication-type="book">
+          <source>Genomics and Informatics archives</source>
+          <publisher-loc>Seoul</publisher-loc>
+          <publisher-name>Korea Genome Organization</publisher-name>
+          <year>2018</year>
+          <date-in-citation>Accessed 2018 Jul 29</date-in-citation>
+          <comment>Available from: <ext-link ext-link-type="uri" xlink:href="https://genominfo.org/articles/archive.php">https://genominfo.org/articles/archive.php</ext-link></comment>
+        </element-citation>
+      </ref>
+      <ref id="b2-gi-2018-16-4-e40">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oh</surname>
+              <given-names>SY</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Nam</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>HS</given-names>
+            </name>
+          </person-group>
+          <article-title>GNI Corpus version 1.0: annotated full-text corpus of Genomics &amp; Informatics to support biomedical information extraction</article-title>
+          <source>Genomics Inform</source>
+          <year>2018</year>
+          <volume>16</volume>
+          <fpage>75</fpage>
+          <lpage>77</lpage>
+          <pub-id pub-id-type="pmid">30309207</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b3-gi-2018-16-4-e40">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Westergaard</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>St&#xE6;rfeldt</surname>
+              <given-names>HH</given-names>
+            </name>
+            <name>
+              <surname>T&#xF8;nsberg</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Jensen</surname>
+              <given-names>LJ</given-names>
+            </name>
+            <name>
+              <surname>Brunak</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>A comprehensive and quantitative comparison of text-mining in 15 million full-text articles versus their corresponding abstracts</article-title>
+          <source>PLoS Comput Biol</source>
+          <year>2018</year>
+          <volume>14</volume>
+          <fpage>e1005962</fpage>
+          <pub-id pub-id-type="pmid">29447159</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b4-gi-2018-16-4-e40">
+        <label>4</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ian</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Wilfrid</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <source>Mathematical logic</source>
+          <volume>3</volume>
+          <publisher-name>Oxford</publisher-name>
+          <publisher-name>Oxford University Press</publisher-name>
+          <year>2007</year>
+        </element-citation>
+      </ref>
+      <ref id="b5-gi-2018-16-4-e40">
+        <label>5</label>
+        <element-citation publication-type="book">
+          <source>POS Tagging (State of the art)</source>
+          <publisher-loc>Stroudsburg</publisher-loc>
+          <publisher-name>Wiki of the Association for Computational Linguistics</publisher-name>
+          <year>2016</year>
+          <date-in-citation>Accessed 2018 Jul 29</date-in-citation>
+          <comment>Available from: <ext-link ext-link-type="uri" xlink:href="https://aclweb.org/aclwiki/POS_Tagging_(State_of_the_art)">https://aclweb.org/aclwiki/POS_Tagging_(State_of_the_art)</ext-link></comment>
+        </element-citation>
+      </ref>
+      <ref id="b6-gi-2018-16-4-e40">
+        <label>6</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Foster</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wagner</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>van Genabith</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Adapting a WSJ-trained parser to grammatically noisy text</article-title>
+          <conf-name>Proceedings of the 46th Annual Meeting of the Association for Computational Linguistics on Human Language Technologies: Short Papers</conf-name>
+          <conf-date>2008 Jun 16&#x2013;17</conf-date>
+          <conf-loc>Columbus, OH, USA</conf-loc>
+          <publisher-loc>Stroudsburg</publisher-loc>
+          <publisher-name>Association for Computational Linguistics</publisher-name>
+          <year>2008</year>
+        </element-citation>
+      </ref>
+      <ref id="b7-gi-2018-16-4-e40">
+        <label>7</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mikolov</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Sutskever</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Corrado</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Dean</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Distributed representations of words and phrases and their compositionality</article-title>
+          <source>Advances in Neural Information Processing Systems 26</source>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Burges</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Bottou</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Welling</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Ghahramani</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Weinberger</surname>
+              <given-names>KQ</given-names>
+            </name>
+          </person-group>
+          <publisher-loc>Red Hook</publisher-loc>
+          <publisher-name>Curran Associates Inc</publisher-name>
+          <year>2013</year>
+          <fpage>3113</fpage>
+          <lpage>3119</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b8-gi-2018-16-4-e40">
+        <label>8</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lample</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Ballesteros</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Subramanian</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kawakami</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Dyer</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <source>Neural architectures for named entity recognition</source>
+          <publisher-loc>Ithaca</publisher-loc>
+          <publisher-name>arXiv, Cornell University</publisher-name>
+          <year>2016</year>
+          <date-in-citation>Accessed 2018 Jul 29</date-in-citation>
+          <comment>Available from: <ext-link ext-link-type="uri" xlink:href="https://arxiv.org/abs/1603.01360">https://arxiv.org/abs/1603.01360</ext-link></comment>
+        </element-citation>
+      </ref>
+      <ref id="b9-gi-2018-16-4-e40">
+        <label>9</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Qian</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Soong</surname>
+              <given-names>FK</given-names>
+            </name>
+            <name>
+              <surname>He</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <source>Part-of-speech tagging with bidirectional long short-term memory recurrent neural network</source>
+          <publisher-loc>Ithaca</publisher-loc>
+          <publisher-name>arXiv, Cornell University</publisher-name>
+          <year>2015</year>
+          <date-in-citation>Accessed 2018 Jul 29</date-in-citation>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="https://arxiv.org/abs/1510.06168">https://arxiv.org/abs/1510.06168</ext-link>
+          </comment>
+        </element-citation>
+      </ref>
+      <ref id="b10-gi-2018-16-4-e40">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sharma</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Chaudhary</surname>
+              <given-names>DR</given-names>
+            </name>
+          </person-group>
+          <article-title>Character recognition using neural network</article-title>
+          <source>Int J Eng Trends and Technol</source>
+          <year>2013</year>
+          <volume>4</volume>
+          <fpage>662</fpage>
+          <lpage>667</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b11-gi-2018-16-4-e40">
+        <label>11</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Garaas</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Xiao</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Pomplun</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <source>Personalized spell checking using neural networks</source>
+          <publisher-loc>Boston</publisher-loc>
+          <publisher-name>University of Massachusetts Boston</publisher-name>
+          <year>2007</year>
+          <date-in-citation>Accessed 2018 Jul 29</date-in-citation>
+          <comment>Available from: <ext-link ext-link-type="uri" xlink:href="https://www.cs.umb.edu/~marc/pubs/garaas_xiao_pomplun_HCII2007.pdf">https://www.cs.umb.edu/~marc/pubs/garaas_xiao_pomplun_HCII2007.pdf</ext-link></comment>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="f1-gi-2018-16-4-e40" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>The number of times the word has occurred in randomly chosen articles from <italic>Genomics &amp; Informatics</italic>.</p>
+      </caption>
+      <graphic xlink:href="gi-2018-16-4-e40f1"/>
+    </fig>
+    <fig id="f2-gi-2018-16-4-e40" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>A parsing tree for an exemplary sentence from the dataset &#x201C;comparative genomic hybridization (CGH) analyses have identified many recurrent candidate loci of DNA copy number changes in liver cancer.&#x201D; The nodes in capital letters represent a part of speech for each word in the sentence (e.g., N for noun, V for verb, Adj for adjective).</p>
+      </caption>
+      <graphic xlink:href="gi-2018-16-4-e40f2"/>
+    </fig>
+  </floats-group>
+</article>
+</pmc-articleset>

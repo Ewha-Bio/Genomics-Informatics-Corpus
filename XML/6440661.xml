@@ -1,0 +1,1928 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="review-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">30602078</article-id>
+      <article-id pub-id-type="pmc">6440661</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2018.16.4.e17</article-id>
+      <article-id pub-id-type="publisher-id">gi-2018-16-4-e17</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Review Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Single-Cell Sequencing in Cancer: Recent Applications to Immunogenomics and Multi-omics Tools</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">https://orcid.org/0000-0003-2052-3418</contrib-id>
+          <name>
+            <surname>Sierant</surname>
+            <given-names>Michael C.</given-names>
+          </name>
+          <xref ref-type="aff" rid="af1-gi-2018-16-4-e17">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">http://orcid.org/0000-0002-8614-0973</contrib-id>
+          <name>
+            <surname>Choi</surname>
+            <given-names>Jungmin</given-names>
+          </name>
+          <xref ref-type="aff" rid="af1-gi-2018-16-4-e17">1</xref>
+          <xref ref-type="aff" rid="af2-gi-2018-16-4-e17">2</xref>
+          <xref rid="c1-gi-2018-16-4-e17" ref-type="corresp">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="af1-gi-2018-16-4-e17">
+<label>1</label>Department of Genetics, Yale University School of Medicine, New Haven, CT 06520, 
+<country>USA</country></aff>
+      <aff id="af2-gi-2018-16-4-e17">
+<label>2</label>Laboratory of Human Genetics and Genomics, The Rockefeller University, New York, NY 10065, 
+<country>USA</country></aff>
+      <author-notes>
+        <corresp id="c1-gi-2018-16-4-e17"><label>*</label>Corresponding author: Tel: +1-212-327-7466, Fax: +1-212-327-8090, E-mail: <email>jungmin.choi@rockefeller.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2018</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>28</day>
+        <month>12</month>
+        <year>2018</year>
+      </pub-date>
+      <volume>16</volume>
+      <issue>4</issue>
+      <elocation-id>e17</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>13</day>
+          <month>12</month>
+          <year>2018</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>21</day>
+          <month>12</month>
+          <year>2018</year>
+        </date>
+        <date date-type="accepted">
+          <day>21</day>
+          <month>12</month>
+          <year>2018</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2018 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2018</copyright-year>
+        <license>
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Tumor heterogeneity, the cellular mosaic of multiple lineages arising from the process of clonal evolution, has continued to thwart multi-omics analyses using traditional bulk sequencing methods. The application of single-cell sequencing, in concert with existing genomics methods, has enabled high-resolution interrogation of the genome, transcriptome, epigenome, and proteome. Applied to cancers, these single-cell multi-omics methods bypass previous limitations on data resolution and have enabled a more nuanced understanding of the evolutionary dynamics of tumor progression, immune evasion, metastasis, and treatment resistance. This review details the growing number of novel single-cell multi-omics methods applied to tumors and further discusses recent discoveries emerging from these approaches, especially in regard to immunotherapy.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>computational biology</kwd>
+        <kwd>epigenomics</kwd>
+        <kwd>genetic heterogeneity</kwd>
+        <kwd>immunotherapy</kwd>
+        <kwd>neoplasms</kwd>
+        <kwd>single-cell analysis</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>The advent of genomic medicine has bolstered the appreciation of heterogeneity between and, especially, within tumors. This cellular heterogeneity plays a major role in tumor progression and sensitivity to anti-tumor therapies [<xref rid="b1-gi-2018-16-4-e17" ref-type="bibr">1</xref>, <xref rid="b2-gi-2018-16-4-e17" ref-type="bibr">2</xref>], thereby posing a significant challenge to personalized cancer therapy. With continuing advances in high-throughput single-cell sequencing technology [<xref rid="b3-gi-2018-16-4-e17" ref-type="bibr">3</xref>, <xref rid="b4-gi-2018-16-4-e17" ref-type="bibr">4</xref>], we are now able to interrogate at high resolution the genomic features of both the malignant cells and the immune cells residing within the tumor microenvironment [<xref rid="b5-gi-2018-16-4-e17" ref-type="bibr">5</xref>&#x2013;<xref rid="b7-gi-2018-16-4-e17" ref-type="bibr">7</xref>] to better understand what promotes evasion from growth suppression and cell death signals. Given the extremely heterogenous nature of tumors and the equally diverse immune repertoire in a population, single-cell sequencing provides information that bulk sequencing cannot, such as intratumoral heterogeneity [<xref rid="b8-gi-2018-16-4-e17" ref-type="bibr">8</xref>, <xref rid="b9-gi-2018-16-4-e17" ref-type="bibr">9</xref>], clonal evolution [<xref rid="b4-gi-2018-16-4-e17" ref-type="bibr">4</xref>, <xref rid="b10-gi-2018-16-4-e17" ref-type="bibr">10</xref>, <xref rid="b11-gi-2018-16-4-e17" ref-type="bibr">11</xref>], tumor microenvironment remodeling status [<xref rid="b7-gi-2018-16-4-e17" ref-type="bibr">7</xref>, <xref rid="b12-gi-2018-16-4-e17" ref-type="bibr">12</xref>], and development of cancer therapy resistance [<xref rid="b13-gi-2018-16-4-e17" ref-type="bibr">13</xref>]. This information will be invaluable in the effort to predict targetable mechanisms of resistance to cancer immunotherapy, a revolutionary cancer treatment that harnesses the immune system to battle a wide range of tumor types including melanoma, renal cell carcinoma, and non-small cell lung cancer [<xref rid="b14-gi-2018-16-4-e17" ref-type="bibr">14</xref>]. Understanding tumor heterogeneity via single-cell sequencing has implications for the identification of biomarkers for cancer and could help uncover approaches to delay or reverse acquired resistance.</p>
+      <p>Multi-omics is an umbrella term to describe multi-dimensional analytical methods that integrate high-throughput biomolecule data from multiple sources, such as the genome (via whole genome sequencing), transcriptome (via RNA-Seq), proteome (via liquid chromatography with tandem mass spectrometry), interactome (via genome-wide chromosome conformation capture [Hi-C]), epigenome (via chromatin immunoprecipitation sequencing [ChIP-Seq], Bisulfite-Seq, or assay for transposase-accessible chromatin using sequencing [ATAC-Seq]), and metabolome (via mass spectrometry [MS]) [<xref rid="b15-gi-2018-16-4-e17" ref-type="bibr">15</xref>]. Integration of multiple biomolecular datasets is particularly relevant to the investigation of factors driving tumorigenesis and metastasis since malignancy can arise from the concomitant effects of mild perturbations within interlinked homeostatic networks that may individually go unnoticed [<xref rid="b16-gi-2018-16-4-e17" ref-type="bibr">16</xref>]. With the advent of single-cell sequencing approaches, multi-omics methods can be applied to better understand the complex interactions and connections in cell state and phenotype in the cancer ecosystem and explore cellular heterogeneity that often confounds biomolecular variation from multi-omics approaches in bulk [<xref rid="b17-gi-2018-16-4-e17" ref-type="bibr">17</xref>].</p>
+      <p>This review presents the perspectives of single-cell genomic analysis in cancer immunology, the potential pitfalls of different single-cell analysis technology, and the therapeutic opportunity for cancer treatment as the hallmarks of precision medicine in the future.</p>
+    </sec>
+    <sec sec-type="other">
+      <title>The Evolving Role of Single-Cell Genomic Analysis in Cancer Immunotherapy</title>
+      <p>A tumor is a complex ecosystem containing an extensive admixture of different cell types, states, and fates. Tumors begin as a single cell but, during the process of tumor progression, accumulate somatic mutations and diversify to form distinct lineages and subclonal populations. This intratumor heterogeneity, and the clonal evolution that results, plays a critical role in many processes such as immune evasion, angiogenesis, and metastasis. This heterogeneity poses a major challenge for genomic analysis by conventional bulk sequencing which typically measures the average signal from an ensemble of cells and is thus a confounding factor in clinical diagnosis and therapeutic treatment of patients.</p>
+      <p>Understanding genomic alterations at single-cell resolution allows the accurate identification of clonal lineages that favored proliferation despite treatment. To date, most single-cell DNA sequencing (scDNA-Seq) studies of cancer have focused on intratumor heterogeneity and clonal evolution in primary tumors. One of the first studies to use scDNA-Seq to examine aneuploidy evolution in individual cells from triple-negative breast cancer patients found punctuated copy number evolution that was followed by stable clonal expansion [<xref rid="b18-gi-2018-16-4-e17" ref-type="bibr">18</xref>]. More recently, a study investigated the genomic evolution of single cells in triple-negative breast cancer patients who were treated with chemotherapy and found two distinct subclonal populations that were undergoing extinction and persistence [<xref rid="b19-gi-2018-16-4-e17" ref-type="bibr">19</xref>].</p>
+      <p>Among the many single-cell sequencing approaches, single-cell RNA sequencing (scRNA-Seq) has been the most widely used technique and has been demonstrated to be both accurate and scalable. As a result, scRNA-Seq has already had a great impact on improving our fundamental understanding of intratumor heterogeneity [<xref rid="b8-gi-2018-16-4-e17" ref-type="bibr">8</xref>, <xref rid="b9-gi-2018-16-4-e17" ref-type="bibr">9</xref>, <xref rid="b20-gi-2018-16-4-e17" ref-type="bibr">20</xref>, <xref rid="b21-gi-2018-16-4-e17" ref-type="bibr">21</xref>], clonal evolution [<xref rid="b10-gi-2018-16-4-e17" ref-type="bibr">10</xref>, <xref rid="b19-gi-2018-16-4-e17" ref-type="bibr">19</xref>, <xref rid="b21-gi-2018-16-4-e17" ref-type="bibr">21</xref>], and metastatic dissemination [<xref rid="b21-gi-2018-16-4-e17" ref-type="bibr">21</xref>] in tumors. Previously, application of scRNA-Seq was limited to the interrogation of features on tumor-associated factors, including tumoral somatic mutation burden, neoantigen load, and PD-L1 expression. Recently, however, scRNA-Seq has been used to interrogate immune-related factors in both tumor cells and microenvironment. In a series of studies, scRNA-Seq was used in combination with tumor spatial heterogeneity analysis to profile the mechanisms of cancer-associated immunosuppression on tumor-infiltrating T-cell dysfunction [<xref rid="b22-gi-2018-16-4-e17" ref-type="bibr">22</xref>, <xref rid="b23-gi-2018-16-4-e17" ref-type="bibr">23</xref>], immunosuppressive tumoral T cells [<xref rid="b23-gi-2018-16-4-e17" ref-type="bibr">23</xref>], and macrophages [<xref rid="b24-gi-2018-16-4-e17" ref-type="bibr">24</xref>]. An analysis of melanomas via scRNA-Seq revealed spatial and functional heterogeneity in both the tumor and T cells and further demonstrated the range of T-cell activation, clonal expansion, and exhaustion programs within the tumor [<xref rid="b6-gi-2018-16-4-e17" ref-type="bibr">6</xref>]. Another study used scRNA-Seq to determine the immune landscape of melanoma patients treated with checkpoint inhibitors and identified two major cell states. One state was similar to that of stem-cell-like memory CD8 T cells and was predominantly found in tumors that responded to treatment, whereas the other state was similar to dysfunctional or exhausted T cells and was commonly seen in resistant tumors [<xref rid="b25-gi-2018-16-4-e17" ref-type="bibr">25</xref>]. In a further study, scRNA-Seq was applied to map out a high-resolution landscape of immunotherapyresistant melanoma and subsequently discovered a gene expression program that correlated with reduced tumor infiltrating T cells. This study provided a potential approach to predict resistance to immunotherapy before treatment begins, thereby providing a potential target as a means to delay or counter resistance [<xref rid="b26-gi-2018-16-4-e17" ref-type="bibr">26</xref>].</p>
+      <p>The discrepancy between mRNA and protein abundance has been frequently reported and even more discordant in the heterogenous tissue of a tumor. Although proteomic studies provide accurate information on the final layer of intratumoral heterogeneity, single-cell proteomics has proven to be more challenging than other single-cell genomic sequencing methods since there is currently no approach to amplify the initial amount of protein. Instead, efforts have been focused on developing methods to more sensitively detect small amounts of protein. Single-cell mass-cytometry (also known as CyTOF) was introduced to tackle this issue with the use of antibody conjugation in combination with MS in order to determine functional properties of cells. In a recent study, this single-cell proteomic method was applied to characterize the functional states of immune cells in melanoma patients before and after anti&#x2013;PD-1 immunotherapy and found that the frequency of CD14<sup>+</sup> CD16<sup>&#x2212;</sup> HLA-DR<sup>hi</sup> monocytes in peripheral blood mononuclear cells could be used as a biomarker to discriminate responders from nonresponders [<xref rid="b27-gi-2018-16-4-e17" ref-type="bibr">27</xref>].</p>
+    </sec>
+    <sec sec-type="other">
+      <title>Complementation of Single-Cell Genomic Sequencing Analysis with Multi-omic Approaches</title>
+      <p>Epigenetics links the genome with its functional phenotypes by regulating gene expression without modification of the DNA sequence itself and is an essential player in cancer progression. The recent development of single-cell epigenomics methods has allowed us to begin addressing significant cell-to-cell variability within tumor populations by profiling methylation, chromatin status, and chromosome organization. Single-cell epigenetic sequencing has primarily been applied in combination with other single-cell genomics to discover new connections between genomic features and cell function, fate, and identity with the ultimate goal of understanding the process and mechanism for tumor progression at each level of genomic regulation.</p>
+      <p>In one study, single-cell bisulfite sequencing (scBS-Seq) with concurrent scRNA-Seq on a hepatocellular carcinoma was used to detect differential methylation heterogeneity within two subpopulations. Interestingly, when scBS-Seq was combined with scDNA-seq on the same tumor, a similar pattern of clustered copy number variants (CNVs) was found [<xref rid="b28-gi-2018-16-4-e17" ref-type="bibr">28</xref>].</p>
+      <p>Studying single-cell genomic architecture serves as a useful resource to understand the state of the chromatin accessibility and long-range regulatory interactions that could reveal the relationship between topological structure and phenotype in cancer progression. Single-cell combinatorial indexed Hi-C has provided insight into cell regulatory heterogeneity via higher-order chromatin differences and subsequently was used to link karyotypic and cell-cycle state differences [<xref rid="b40-gi-2018-16-4-e17" ref-type="bibr">40</xref>]. In addition, single-cell ATAC-Seq and ChIP-Seq were used to measure the genome-wide landscape of chromatin accessibility at cis-regulatory elements and determine which trans-acting factors might drive functional chromatin states at a single cell resolution [<xref rid="b41-gi-2018-16-4-e17" ref-type="bibr">41</xref>]. Further, a single-cell combinatorial indexing-based method (sciCAR) to jointly profile chromatin accessibility and gene expression was used to successfully link cis-regulatory sites to their target genes [<xref rid="b42-gi-2018-16-4-e17" ref-type="bibr">42</xref>]. A recent study used single-cell CyTOF combined with scRNA-Seq to analyze tumor cells, adjacent normal tissue, and blood from early lung adenocarcinoma to propose that tumor-infiltrating myeloid cells likely compromise anti-tumor immunity [<xref rid="b43-gi-2018-16-4-e17" ref-type="bibr">43</xref>]. In another study, concurrent scRNA-Seq and CyTOF were used to reveal significant remodeling of the lymphoid and myeloid intratumoral compartment during immune checkpoint therapy [<xref rid="b44-gi-2018-16-4-e17" ref-type="bibr">44</xref>].</p>
+      <p>Computational methodologies for profiling multi-omics datasets have grown in popularity and sophistication in recent years (<xref rid="t1-gi-2018-16-4-e17" ref-type="table">Table 1</xref>). Recently, two groups independently developed methods to simultaneously analyze cellular protein markers and transcriptome in single cells; REAP-Seq (RNA expression and protein sequencing) demonstrated successful subclustering of natural killer cells [<xref rid="b34-gi-2018-16-4-e17" ref-type="bibr">34</xref>] and CITE-Seq (cellular indexing of transcriptomes and epitopes by sequencing) improved characterization of immune cell phenotypes [<xref rid="b35-gi-2018-16-4-e17" ref-type="bibr">35</xref>], respectively. Adding another layer of data, the triple-omics single-cell assay scTrio-Seq (single-cell triple omics sequencing) is able to combine and analyze genomic copy number variation, DNA methylation, and gene expression from single cells and was used to identify two heterogeneous subpopulations with distinct malignant potentials in hepanocellular carcinomas [<xref rid="b28-gi-2018-16-4-e17" ref-type="bibr">28</xref>]. Alternatively, scCOOL-Seq (single-cell chromatin overall omic-scale landscape sequencing) profiles chromatin state, DNA methylation, and CNVs simultaneously and subsequently revealed a difference in DNA methylation between paternal and maternal alleles, although overall accessibility was similar [<xref rid="b36-gi-2018-16-4-e17" ref-type="bibr">36</xref>]. Lastly, scNMT-Seq (single-cell nucleosome, methylation and transcription sequencing) analyzes nucleosome occupancy, DNA methylation, and mRNA transcription jointly and, remarkably, discovered distinct dynamics in the coupling of all three molecular layers at developmentally relevant regions during differentiation of embryonic stem cells [<xref rid="b37-gi-2018-16-4-e17" ref-type="bibr">37</xref>].</p>
+      <p>Although these single-cell multi-omics approaches have proven extraordinarily fruitful in uncovering the intricacies of cellular heterogeneity in tumors, it has not been without limitations. Uneven genome coverage due to stochastic over or under amplification, strong bias toward amplification of high %GC, low mappability rates (~20% to 30%), restricted capture rates (~40%), and high levels of polymerase chain reaction duplicates continue to challenge the efficacy of these method; however, advances in single-cell methods and computational analyses have begun to overcome these issues by imputing missing information [<xref rid="b45-gi-2018-16-4-e17" ref-type="bibr">45</xref>, <xref rid="b46-gi-2018-16-4-e17" ref-type="bibr">46</xref>]. Although these single-cell experiments have provided tantalizing evidence, further functional validation to confirm these results are necessary.</p>
+    </sec>
+    <sec sec-type="conclusions">
+      <title>Conclusion</title>
+      <p>Single-cell sequencing technologies already have led to many discoveries in the field of cancer immunology and proven it can provide further insight into our understanding of intratumor heterogeneity, immunoediting, and immunogenicity that are difficult to resolve from bulk sequencing. Nevertheless, many dynamic tumor processes remain poorly understood. With the continual advances in single-cell methods at an ever more affordable cost, the repertoire of new data across additional tumor types and at unprecedented sample size will aid in capturing individual cell states at the transcriptional, regulatory, and translational layers. In combination with functional work, these mechanistic insights can be used to identify prognostic biomarkers, monitor circulating tumor cells, map rare cell population, estimate and stratify tumor and tumor microenvironment heterogeneity, and, finally, be used to identify therapy resistance mechanisms. Ultimately, these approaches will guide the way to detection of single-cell signatures in cancer, precisely manipulate immunity with therapy and vaccination to overcome immune suppression, revitalize immune surveillance, and stabilize or hopefully revert the tumor phenotype in cancer patients.</p>
+    </sec>
+  </body>
+  <back>
+    <fn-group>
+      <fn id="fn1-gi-2018-16-4-e17">
+        <p>
+          <bold>Authors&#x2019; contribution</bold>
+        </p>
+        <p>Conceptualization: JC</p>
+        <p>Writing &#x2013; original draft: MCS, JC</p>
+        <p>Writing &#x2013; review &amp; editing: MCS, JC</p>
+      </fn>
+      <fn id="fn2-gi-2018-16-4-e17" fn-type="COI-statement">
+        <p>
+          <bold>Conflicts of Interest</bold>
+        </p>
+        <p>No potential conflicts of interest relevant to this article was reported.</p>
+      </fn>
+    </fn-group>
+    <ref-list>
+      <title>References</title>
+      <ref id="b1-gi-2018-16-4-e17">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bhang</surname>
+              <given-names>HE</given-names>
+            </name>
+            <name>
+              <surname>Ruddy</surname>
+              <given-names>DA</given-names>
+            </name>
+            <name>
+              <surname>Krishnamurthy Radhakrishna</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Caushi</surname>
+              <given-names>JX</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Hims</surname>
+              <given-names>MM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Studying clonal dynamics in response to cancer therapy using high-complexity barcoding</article-title>
+          <source>Nat Med</source>
+          <year>2015</year>
+          <volume>21</volume>
+          <fpage>440</fpage>
+          <lpage>448</lpage>
+          <pub-id pub-id-type="pmid">25849130</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b2-gi-2018-16-4-e17">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Russo</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Siravegna</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Blaszkowsky</surname>
+              <given-names>LS</given-names>
+            </name>
+            <name>
+              <surname>Corti</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Crisafulli</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Ahronian</surname>
+              <given-names>LG</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Tumor heterogeneity and lesion-specific response to targeted therapy in colorectal cancer</article-title>
+          <source>Cancer Discov</source>
+          <year>2016</year>
+          <volume>6</volume>
+          <fpage>147</fpage>
+          <lpage>153</lpage>
+          <pub-id pub-id-type="pmid">26644315</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b3-gi-2018-16-4-e17">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tang</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Barbacioru</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Nordman</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>N</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>mRNA-Seq whole-transcriptome analysis of a single cell</article-title>
+          <source>Nat Methods</source>
+          <year>2009</year>
+          <volume>6</volume>
+          <fpage>377</fpage>
+          <lpage>382</lpage>
+          <pub-id pub-id-type="pmid">19349980</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b4-gi-2018-16-4-e17">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Navin</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Kendall</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Troge</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Andrews</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Rodgers</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>McIndoo</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Tumour evolution inferred by single-cell sequencing</article-title>
+          <source>Nature</source>
+          <year>2011</year>
+          <volume>472</volume>
+          <fpage>90</fpage>
+          <lpage>94</lpage>
+          <pub-id pub-id-type="pmid">21399628</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b5-gi-2018-16-4-e17">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Puram</surname>
+              <given-names>SV</given-names>
+            </name>
+            <name>
+              <surname>Tirosh</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Parikh</surname>
+              <given-names>AS</given-names>
+            </name>
+            <name>
+              <surname>Patel</surname>
+              <given-names>AP</given-names>
+            </name>
+            <name>
+              <surname>Yizhak</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Gillespie</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Single-cell transcriptomic analysis of primary and metastatic tumor ecosystems in head and neck cancer</article-title>
+          <source>Cell</source>
+          <year>2017</year>
+          <volume>171</volume>
+          <fpage>1611</fpage>
+          <lpage>1624.e24</lpage>
+          <pub-id pub-id-type="pmid">29198524</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b6-gi-2018-16-4-e17">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tirosh</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Izar</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Prakadan</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Wadsworth</surname>
+              <given-names>MH</given-names>
+              <suffix>2nd</suffix>
+            </name>
+            <name>
+              <surname>Treacy</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Trombetta</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Dissecting the multicellular ecosystem of metastatic melanoma by single-cell RNA-seq</article-title>
+          <source>Science</source>
+          <year>2016</year>
+          <volume>352</volume>
+          <fpage>189</fpage>
+          <lpage>196</lpage>
+          <pub-id pub-id-type="pmid">27124452</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b7-gi-2018-16-4-e17">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Venteicher</surname>
+              <given-names>AS</given-names>
+            </name>
+            <name>
+              <surname>Tirosh</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Hebert</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Yizhak</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Neftel</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Filbin</surname>
+              <given-names>MG</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Decoupling genetics, lineages, and microenvironment in IDH-mutant gliomas by single-cell RNA-seq</article-title>
+          <source>Science</source>
+          <year>2017</year>
+          <volume>355</volume>
+          <fpage>eaai8478</fpage>
+          <pub-id pub-id-type="pmid">28360267</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b8-gi-2018-16-4-e17">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dalerba</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Kalisky</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Sahoo</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Rajendran</surname>
+              <given-names>PS</given-names>
+            </name>
+            <name>
+              <surname>Rothenberg</surname>
+              <given-names>ME</given-names>
+            </name>
+            <name>
+              <surname>Leyrat</surname>
+              <given-names>AA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Single-cell dissection of transcriptional heterogeneity in human colon tumors</article-title>
+          <source>Nat Biotechnol</source>
+          <year>2011</year>
+          <volume>29</volume>
+          <fpage>1120</fpage>
+          <lpage>1127</lpage>
+          <pub-id pub-id-type="pmid">22081019</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b9-gi-2018-16-4-e17">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Patel</surname>
+              <given-names>AP</given-names>
+            </name>
+            <name>
+              <surname>Tirosh</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Trombetta</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <name>
+              <surname>Shalek</surname>
+              <given-names>AK</given-names>
+            </name>
+            <name>
+              <surname>Gillespie</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Wakimoto</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Single-cell RNA-seq highlights intratumoral heterogeneity in primary glioblastoma</article-title>
+          <source>Science</source>
+          <year>2014</year>
+          <volume>344</volume>
+          <fpage>1396</fpage>
+          <lpage>1401</lpage>
+          <pub-id pub-id-type="pmid">24925914</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b10-gi-2018-16-4-e17">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Corces</surname>
+              <given-names>MR</given-names>
+            </name>
+            <name>
+              <surname>Buenrostro</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Greenside</surname>
+              <given-names>PG</given-names>
+            </name>
+            <name>
+              <surname>Chan</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Koenig</surname>
+              <given-names>JL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Lineage-specific and single-cell chromatin accessibility charts human hematopoiesis and leukemia evolution</article-title>
+          <source>Nat Genet</source>
+          <year>2016</year>
+          <volume>48</volume>
+          <fpage>1193</fpage>
+          <lpage>1203</lpage>
+          <pub-id pub-id-type="pmid">27526324</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b11-gi-2018-16-4-e17">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hou</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Tao</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>X</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Single-cell exome sequencing and monoclonal evolution of a JAK2-negative myeloproliferative neoplasm</article-title>
+          <source>Cell</source>
+          <year>2012</year>
+          <volume>148</volume>
+          <fpage>873</fpage>
+          <lpage>885</lpage>
+          <pub-id pub-id-type="pmid">22385957</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b12-gi-2018-16-4-e17">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Azizi</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Carr</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Plitas</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Cornish</surname>
+              <given-names>AE</given-names>
+            </name>
+            <name>
+              <surname>Konopacki</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Prabhakaran</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Single-cell map of diverse immune phenotypes in the breast tumor microenvironment</article-title>
+          <source>Cell</source>
+          <year>2018</year>
+          <volume>174</volume>
+          <fpage>1293</fpage>
+          <lpage>1308.e36</lpage>
+          <pub-id pub-id-type="pmid">29961579</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b13-gi-2018-16-4-e17">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Miyamoto</surname>
+              <given-names>DT</given-names>
+            </name>
+            <name>
+              <surname>Zheng</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Wittner</surname>
+              <given-names>BS</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>RJ</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Broderick</surname>
+              <given-names>KT</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>RNA-Seq of single prostate CTCs implicates non-canonical Wnt signaling in antiandrogen resistance</article-title>
+          <source>Science</source>
+          <year>2015</year>
+          <volume>349</volume>
+          <fpage>1351</fpage>
+          <lpage>1356</lpage>
+          <pub-id pub-id-type="pmid">26383955</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b14-gi-2018-16-4-e17">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sznol</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Powderly</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>DC</given-names>
+            </name>
+            <name>
+              <surname>Brahmer</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Drake</surname>
+              <given-names>CG</given-names>
+            </name>
+            <name>
+              <surname>McDermott</surname>
+              <given-names>DF</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Safety and antitumor activity of biweekly MDX-1106 (Anti-PD-1, BMS-936558/ONO-4538) in patients with advanced refractory malignancies</article-title>
+          <source>J Clin Oncol</source>
+          <year>2010</year>
+          <volume>28</volume>
+          <issue>15 Suppl</issue>
+          <fpage>2506</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b15-gi-2018-16-4-e17">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hasin</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Seldin</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Lusis</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Multi-omics approaches to disease</article-title>
+          <source>Genome Biol</source>
+          <year>2017</year>
+          <volume>18</volume>
+          <fpage>83</fpage>
+          <pub-id pub-id-type="pmid">28476144</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b16-gi-2018-16-4-e17">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chakraborty</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Hosen</surname>
+              <given-names>MI</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Shekhar</surname>
+              <given-names>HU</given-names>
+            </name>
+          </person-group>
+          <article-title>Onco-multi-OMICS approach: a new frontier in cancer research</article-title>
+          <source>Biomed Res Int</source>
+          <year>2018</year>
+          <volume>2018</volume>
+          <comment>9836256</comment>
+        </element-citation>
+      </ref>
+      <ref id="b17-gi-2018-16-4-e17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bock</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Farlik</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Sheffield</surname>
+              <given-names>NC</given-names>
+            </name>
+          </person-group>
+          <article-title>Multi-omics of single cells: strategies and applications</article-title>
+          <source>Trends Biotechnol</source>
+          <year>2016</year>
+          <volume>34</volume>
+          <fpage>605</fpage>
+          <lpage>608</lpage>
+          <pub-id pub-id-type="pmid">27212022</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b18-gi-2018-16-4-e17">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gao</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Davis</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>McDonald</surname>
+              <given-names>TO</given-names>
+            </name>
+            <name>
+              <surname>Sei</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Shi</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Punctuated copy number evolution and clonal stasis in triple-negative breast cancer</article-title>
+          <source>Nat Genet</source>
+          <year>2016</year>
+          <volume>48</volume>
+          <fpage>1119</fpage>
+          <lpage>1130</lpage>
+          <pub-id pub-id-type="pmid">27526321</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b19-gi-2018-16-4-e17">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Gao</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Sei</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Brandt</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Hartman</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Hatschek</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Chemoresistance evolution in triple-negative breast cancer delineated by single-cell sequencing</article-title>
+          <source>Cell</source>
+          <year>2018</year>
+          <volume>173</volume>
+          <fpage>879</fpage>
+          <lpage>893.e13</lpage>
+          <pub-id pub-id-type="pmid">29681456</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b20-gi-2018-16-4-e17">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bernard</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Semaan</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>San Lucas</surname>
+              <given-names>FA</given-names>
+            </name>
+            <name>
+              <surname>Mulu</surname>
+              <given-names>FC</given-names>
+            </name>
+            <name>
+              <surname>Stephens</surname>
+              <given-names>BM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Single cell transcriptomics of pancreatic cancer precursors demonstrates epithelial and micro-environmental heterogeneity as an early event in neoplastic progression</article-title>
+          <source>Clin Cancer Res</source>
+          <year>2018</year>
+          <month>11</month>
+          <day>1</day>
+          <comment>[Epub]. </comment>
+          <pub-id pub-id-type="doi">10.1158/1078-0432.CCR-18-1955</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b21-gi-2018-16-4-e17">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Karaayvaz</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Cristea</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Gillespie</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Patel</surname>
+              <given-names>AP</given-names>
+            </name>
+            <name>
+              <surname>Mylvaganam</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Luo</surname>
+              <given-names>CC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Unravelling subclonal heterogeneity and aggressive disease states in TNBC through single-cell RNA-seq</article-title>
+          <source>Nat Commun</source>
+          <year>2018</year>
+          <volume>9</volume>
+          <fpage>3588</fpage>
+          <pub-id pub-id-type="pmid">30181541</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b22-gi-2018-16-4-e17">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Singer</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Cong</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Marjanovic</surname>
+              <given-names>ND</given-names>
+            </name>
+            <name>
+              <surname>Kowalczyk</surname>
+              <given-names>MS</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A distinct gene module for dysfunction uncoupled from activation in tumor-infiltrating <italic>T cells</italic></article-title>
+          <source>Cell</source>
+          <year>2017</year>
+          <volume>171</volume>
+          <fpage>1221</fpage>
+          <lpage>1223</lpage>
+          <pub-id pub-id-type="pmid">29149608</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b23-gi-2018-16-4-e17">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zheng</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Zheng</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Yoo</surname>
+              <given-names>JK</given-names>
+            </name>
+            <name>
+              <surname>Guo</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Guo</surname>
+              <given-names>X</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Landscape of infiltrating T cells in liver cancer revealed by single-cell sequencing</article-title>
+          <source>Cell</source>
+          <year>2017</year>
+          <volume>169</volume>
+          <fpage>1342</fpage>
+          <lpage>1356.e16</lpage>
+          <pub-id pub-id-type="pmid">28622514</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b24-gi-2018-16-4-e17">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zong</surname>
+              <given-names>CC</given-names>
+            </name>
+          </person-group>
+          <article-title>Single-cell RNA-seq study determines the ontogeny of macrophages in glioblastomas</article-title>
+          <source>Genome Biol</source>
+          <year>2017</year>
+          <volume>18</volume>
+          <fpage>235</fpage>
+          <pub-id pub-id-type="pmid">29262851</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b25-gi-2018-16-4-e17">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sade-Feldman</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Yizhak</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Bjorgaard</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Ray</surname>
+              <given-names>JP</given-names>
+            </name>
+            <name>
+              <surname>de Boer</surname>
+              <given-names>CG</given-names>
+            </name>
+            <name>
+              <surname>Jenkins</surname>
+              <given-names>RW</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Defining T cell states associated with response to checkpoint immunotherapy in melanoma</article-title>
+          <source>Cell</source>
+          <year>2018</year>
+          <volume>175</volume>
+          <fpage>998</fpage>
+          <lpage>1013.e20</lpage>
+          <pub-id pub-id-type="pmid">30388456</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b26-gi-2018-16-4-e17">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jerby-Arnon</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Shah</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Cuoco</surname>
+              <given-names>MS</given-names>
+            </name>
+            <name>
+              <surname>Rodman</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Su</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Melms</surname>
+              <given-names>JC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A cancer cell program promotes T cell exclusion and resistance to checkpoint blockade</article-title>
+          <source>Cell</source>
+          <year>2018</year>
+          <volume>175</volume>
+          <fpage>984</fpage>
+          <lpage>997.e24</lpage>
+          <pub-id pub-id-type="pmid">30388455</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b27-gi-2018-16-4-e17">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krieg</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Nowicka</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Guglietta</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Schindler</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Hartmann</surname>
+              <given-names>FJ</given-names>
+            </name>
+            <name>
+              <surname>Weber</surname>
+              <given-names>LM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>High-dimensional single-cell analysis predicts response to anti-PD-1 immunotherapy</article-title>
+          <source>Nat Med</source>
+          <year>2018</year>
+          <volume>24</volume>
+          <fpage>144</fpage>
+          <lpage>153</lpage>
+          <pub-id pub-id-type="pmid">29309059</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b28-gi-2018-16-4-e17">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hou</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Guo</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Cao</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>P</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Single-cell triple omics sequencing reveals genetic, epigenetic, and transcriptomic heterogeneity in hepatocellular carcinomas</article-title>
+          <source>Cell Res</source>
+          <year>2016</year>
+          <volume>26</volume>
+          <fpage>304</fpage>
+          <lpage>319</lpage>
+          <pub-id pub-id-type="pmid">26902283</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b29-gi-2018-16-4-e17">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Macaulay</surname>
+              <given-names>IC</given-names>
+            </name>
+            <name>
+              <surname>Haerty</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Kumar</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>YI</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>TX</given-names>
+            </name>
+            <name>
+              <surname>Teng</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>G&amp;T-seq: parallel sequencing of single-cell genomes and transcriptomes</article-title>
+          <source>Nat Methods</source>
+          <year>2015</year>
+          <volume>12</volume>
+          <fpage>519</fpage>
+          <lpage>522</lpage>
+          <pub-id pub-id-type="pmid">25915121</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b30-gi-2018-16-4-e17">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dey</surname>
+              <given-names>SS</given-names>
+            </name>
+            <name>
+              <surname>Kester</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Spanjaard</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Bienko</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>van Oudenaarden</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Integrated genome and transcriptome sequencing of the same cell</article-title>
+          <source>Nat Biotechnol</source>
+          <year>2015</year>
+          <volume>33</volume>
+          <fpage>285</fpage>
+          <lpage>289</lpage>
+          <pub-id pub-id-type="pmid">25599178</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b31-gi-2018-16-4-e17">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>An</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Du</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Xue</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Simultaneous profiling of transcriptome and DNA methylome from a single cell</article-title>
+          <source>Genome Biol</source>
+          <year>2016</year>
+          <volume>17</volume>
+          <fpage>88</fpage>
+          <pub-id pub-id-type="pmid">27150361</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b32-gi-2018-16-4-e17">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Angermueller</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Clark</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>Macaulay</surname>
+              <given-names>IC</given-names>
+            </name>
+            <name>
+              <surname>Teng</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>TX</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Parallel single-cell sequencing links transcriptional and epigenetic heterogeneity</article-title>
+          <source>Nat Methods</source>
+          <year>2016</year>
+          <volume>13</volume>
+          <fpage>229</fpage>
+          <lpage>232</lpage>
+          <pub-id pub-id-type="pmid">26752769</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b33-gi-2018-16-4-e17">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Darmanis</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Gallant</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Marinescu</surname>
+              <given-names>VD</given-names>
+            </name>
+            <name>
+              <surname>Niklasson</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Segerman</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Flamourakis</surname>
+              <given-names>G</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Simultaneous multiplexed measurement of RNA and proteins in single cells</article-title>
+          <source>Cell Rep</source>
+          <year>2016</year>
+          <volume>14</volume>
+          <fpage>380</fpage>
+          <lpage>389</lpage>
+          <pub-id pub-id-type="pmid">26748716</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b34-gi-2018-16-4-e17">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Peterson</surname>
+              <given-names>VM</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>KX</given-names>
+            </name>
+            <name>
+              <surname>Kumar</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Wong</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>DC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Multiplexed quantification of proteins and transcripts in single cells</article-title>
+          <source>Nat Biotechnol</source>
+          <year>2017</year>
+          <volume>35</volume>
+          <fpage>936</fpage>
+          <lpage>939</lpage>
+          <pub-id pub-id-type="pmid">28854175</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b35-gi-2018-16-4-e17">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stoeckius</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Hafemeister</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Stephenson</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Houck-Loomis</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Chattopadhyay</surname>
+              <given-names>PK</given-names>
+            </name>
+            <name>
+              <surname>Swerdlow</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Simultaneous epitope and transcriptome measurement in single cells</article-title>
+          <source>Nat Methods</source>
+          <year>2017</year>
+          <volume>14</volume>
+          <fpage>865</fpage>
+          <lpage>868</lpage>
+          <pub-id pub-id-type="pmid">28759029</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b36-gi-2018-16-4-e17">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Guo</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>P</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Single-cell multi-omics sequencing of mouse early embryos and embryonic stem cells</article-title>
+          <source>Cell Res</source>
+          <year>2017</year>
+          <volume>27</volume>
+          <fpage>967</fpage>
+          <lpage>988</lpage>
+          <pub-id pub-id-type="pmid">28621329</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b37-gi-2018-16-4-e17">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Clark</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Argelaguet</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Kapourani</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>Stubbs</surname>
+              <given-names>TM</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>Alda-Catalinas</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>scNMT-seq enables joint profiling of chromatin accessibility DNA methylation and transcription in single cells</article-title>
+          <source>Nat Commun</source>
+          <year>2018</year>
+          <volume>9</volume>
+          <fpage>781</fpage>
+          <pub-id pub-id-type="pmid">29472610</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b38-gi-2018-16-4-e17">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pott</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Simultaneous measurement of chromatin accessibility, DNA methylation, and nucleosome phasing in single cells</article-title>
+          <source>Elife</source>
+          <year>2017</year>
+          <volume>6</volume>
+          <fpage>e23203</fpage>
+          <pub-id pub-id-type="pmid">28653622</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b39-gi-2018-16-4-e17">
+        <label>39</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Han</surname>
+              <given-names>KY</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>KT</given-names>
+            </name>
+            <name>
+              <surname>Joung</surname>
+              <given-names>JG</given-names>
+            </name>
+            <name>
+              <surname>Son</surname>
+              <given-names>DS</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>YJ</given-names>
+            </name>
+            <name>
+              <surname>Jo</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>SIDR: simultaneous isolation and parallel sequencing of genomic DNA and total RNA from single cells</article-title>
+          <source>Genome Res</source>
+          <year>2018</year>
+          <volume>28</volume>
+          <fpage>75</fpage>
+          <lpage>87</lpage>
+          <pub-id pub-id-type="pmid">29208629</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b40-gi-2018-16-4-e17">
+        <label>40</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ramani</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Deng</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Qiu</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Gunderson</surname>
+              <given-names>KL</given-names>
+            </name>
+            <name>
+              <surname>Steemers</surname>
+              <given-names>FJ</given-names>
+            </name>
+            <name>
+              <surname>Disteche</surname>
+              <given-names>CM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Massively multiplex single-cell Hi-C</article-title>
+          <source>Nat Methods</source>
+          <year>2017</year>
+          <volume>14</volume>
+          <fpage>263</fpage>
+          <lpage>266</lpage>
+          <pub-id pub-id-type="pmid">28135255</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b41-gi-2018-16-4-e17">
+        <label>41</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buenrostro</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Litzenburger</surname>
+              <given-names>UM</given-names>
+            </name>
+            <name>
+              <surname>Ruff</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Gonzales</surname>
+              <given-names>ML</given-names>
+            </name>
+            <name>
+              <surname>Snyder</surname>
+              <given-names>MP</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Single-cell chromatin accessibility reveals principles of regulatory variation</article-title>
+          <source>Nature</source>
+          <year>2015</year>
+          <volume>523</volume>
+          <fpage>486</fpage>
+          <lpage>490</lpage>
+          <pub-id pub-id-type="pmid">26083756</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b42-gi-2018-16-4-e17">
+        <label>42</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cao</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Cusanovich</surname>
+              <given-names>DA</given-names>
+            </name>
+            <name>
+              <surname>Ramani</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Aghamirzaie</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Pliner</surname>
+              <given-names>HA</given-names>
+            </name>
+            <name>
+              <surname>Hill</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Joint profiling of chromatin accessibility and gene expression in thousands of single cells</article-title>
+          <source>Science</source>
+          <year>2018</year>
+          <volume>361</volume>
+          <fpage>1380</fpage>
+          <lpage>1385</lpage>
+          <pub-id pub-id-type="pmid">30166440</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b43-gi-2018-16-4-e17">
+        <label>43</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lavin</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Kobayashi</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Leader</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Amir</surname>
+              <given-names>ED</given-names>
+            </name>
+            <name>
+              <surname>Elefant</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Bigenwald</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Innate immune landscape in early lung adenocarcinoma by paired single-cell analyses</article-title>
+          <source>Cell</source>
+          <year>2017</year>
+          <volume>169</volume>
+          <fpage>750</fpage>
+          <lpage>765.e17</lpage>
+          <pub-id pub-id-type="pmid">28475900</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b44-gi-2018-16-4-e17">
+        <label>44</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gubin</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Esaulova</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Ward</surname>
+              <given-names>JP</given-names>
+            </name>
+            <name>
+              <surname>Malkova</surname>
+              <given-names>ON</given-names>
+            </name>
+            <name>
+              <surname>Runci</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Wong</surname>
+              <given-names>P</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>High-dimensional analysis delineates myeloid and lymphoid compartment remodeling during successful immune-checkpoint cancer therapy</article-title>
+          <source>Cell</source>
+          <year>2018</year>
+          <volume>175</volume>
+          <fpage>1443</fpage>
+          <pub-id pub-id-type="pmid">30445041</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b45-gi-2018-16-4-e17">
+        <label>45</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>X</given-names>
+            </name>
+          </person-group>
+          <article-title>VIPER: variability-preserving imputation for accurate gene expression recovery in single-cell RNA sequencing studies</article-title>
+          <source>Genome Biol</source>
+          <year>2018</year>
+          <volume>19</volume>
+          <fpage>196</fpage>
+          <pub-id pub-id-type="pmid">30419955</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b46-gi-2018-16-4-e17">
+        <label>46</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>WV</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>JJ</given-names>
+            </name>
+          </person-group>
+          <article-title>An accurate and robust imputation method scImpute for single-cell RNA-seq data</article-title>
+          <source>Nat Commun</source>
+          <year>2018</year>
+          <volume>9</volume>
+          <fpage>997</fpage>
+          <pub-id pub-id-type="pmid">29520097</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <table-wrap id="t1-gi-2018-16-4-e17" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Multi-omics methods</p>
+      </caption>
+      <table frame="hsides" rules="rows">
+        <thead>
+          <tr>
+            <th valign="bottom" align="center" rowspan="1" colspan="1">Multi-omics methods</th>
+            <th valign="bottom" align="center" rowspan="1" colspan="1">Measurement</th>
+            <th valign="bottom" align="center" rowspan="1" colspan="1">Results/Goals</th>
+            <th valign="bottom" align="center" rowspan="1" colspan="1">Reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">G&amp;T-Seq</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Genomic DNA, mRNA transcriptome</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Understanding the difference between the transcriptional consequences of chromosomal aneuploidies and interchromosomal fusions</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">[<xref rid="b29-gi-2018-16-4-e17" ref-type="bibr">29</xref>]</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">DR-Seq</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Genomic DNA, mRNA transcriptome</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">The role of copy number variations in variability in gene expression among individual cells.</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">[<xref rid="b30-gi-2018-16-4-e17" ref-type="bibr">30</xref>]</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">scMT-Seq</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">DNA methylome, mRNA transcriptome</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Identification of transcriptome and methylome heterogeneity among single cells but the majority of the expression variance is not explained by proximal promoter methylation, with the exception of genes that do not contain CpG islands.</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">[<xref rid="b31-gi-2018-16-4-e17" ref-type="bibr">31</xref>]</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">scM&amp;T-Seq</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">DNA methylome, mRNA transcriptome</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Identification of previously unrecognized associations between heterogeneously methylated distal regulatory elements and transcription of key pluripotency genes</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">[<xref rid="b32-gi-2018-16-4-e17" ref-type="bibr">32</xref>]</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">scTrio-Seq</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">DNA methylome, CNV, mRNA transcriptome</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Identification of two subpopulations within these cells based on CNVs, DNA methylome, or transcriptome of individual cells</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">[<xref rid="b28-gi-2018-16-4-e17" ref-type="bibr">28</xref>]</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Simultaneous multiplexed profiling of RNA and protein</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Multiplexed protein and RNA</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Identification of significant heterogeneity in responses to treatment at levels of RNA and protein and overall poor correlation between protein and RNA at the level of single cells</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">[<xref rid="b33-gi-2018-16-4-e17" ref-type="bibr">33</xref>]</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">single-cell COOL-Seq</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Chromatin state, DNA methylation, and CNV</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Single-cell and parental allele-specific analysis of the genome-scale chromatin state and DNA methylation dynamics at single-base resolution in early mouse embryos</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">[<xref rid="b36-gi-2018-16-4-e17" ref-type="bibr">36</xref>]</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">CITE-Seq</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Protein and mRNA transcriptome</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">integration of cellular protein and transcriptome measurements into an efficient, single-cell readout</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">[<xref rid="b35-gi-2018-16-4-e17" ref-type="bibr">35</xref>]</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">REAP-Seq</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Protein and mRNA transcriptome</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Assessment of the costimulatory effects of a CD27 agonist on human CD8<sup>&#xFF0B;</sup>and to identify and characterize an unknown cell type</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">[<xref rid="b34-gi-2018-16-4-e17" ref-type="bibr">34</xref>]</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">scNOMe-Seq</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">DNA methylome and chromatin state</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Detection of footprints of CTCF binding events and to estimate the average nucleosome phasing distances</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">[<xref rid="b38-gi-2018-16-4-e17" ref-type="bibr">38</xref>]</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">scNMT-Seq</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Nucleosome status, DNA methylome and mRNA transcriptome</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Identification of links between all three molecular layers and revealing dynamic coupling between epigenomic layers during differentiation</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">[<xref rid="b37-gi-2018-16-4-e17" ref-type="bibr">37</xref>]</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">SIDR-Seq</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Genomic DNA, mRNA transcriptome</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Identification of genetic heterogeneity and phenotypic information inferred from gene expression patterns at the single-cell level</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">[<xref rid="b39-gi-2018-16-4-e17" ref-type="bibr">39</xref>]</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">sciCAR</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Chromatin state and mRNA transcriptome</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Reconstruction of the chromatin accessibility profiles of cell types defined by RNA profiles, and link cis-regulatory sites to their target genes on the basis of the covariance of chromatin accessibility and transcription</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">[<xref rid="b31-gi-2018-16-4-e17" ref-type="bibr">31</xref>]</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tfn1-gi-2018-16-4-e17">
+          <p>G&amp;T-Seq, genome and transcriptome sequencing; CNV, copy number variant; COOL-Seq, single-cell chromatin overall omic-scale landscape sequencing; CITE-Seq, cellular indexing of transcriptomes and epitopes by sequencing; REAP-Seq, RNA expression and protein sequencing; scNMT-Seq, single-cell nucleosome, methylation and transcription sequencing.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

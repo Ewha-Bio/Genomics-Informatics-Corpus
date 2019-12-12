@@ -1,0 +1,695 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25031571</article-id>
+      <article-id pub-id-type="pmc">4099352</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2014.12.2.76</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Application Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>SFannotation: A Simple and Fast Protein Function Annotation System</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Yu</surname>
+            <given-names>Dong Su</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Byung Kwon</given-names>
+          </name>
+          <xref ref-type="aff" rid="A2">2</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="A1"><label>1</label>Korean BioInformation Center (KOBIC), Korea Research Institute of Bioscience and Biotechnology (KRIBB), Daejeon 305-806, Korea.</aff>
+      <aff id="A2"><label>2</label>BioNano Health Guard Research Center, Korea Research Institute of Bioscience and Biotechnology (KRIBB), Daejeon 305-806, Korea.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +82-42-879-8521, Fax: +82-42-879-8519, <email>axxa76@kribb.re.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>6</month>
+        <year>2014</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>30</day>
+        <month>6</month>
+        <year>2014</year>
+      </pub-date>
+      <volume>12</volume>
+      <issue>2</issue>
+      <fpage>76</fpage>
+      <lpage>78</lpage>
+      <history>
+        <date date-type="received">
+          <day>09</day>
+          <month>5</month>
+          <year>2014</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>21</day>
+          <month>5</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>23</day>
+          <month>5</month>
+          <year>2014</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2014 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2014</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">http://creativecommons.org/licenses/by-nc/3.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Owing to the generation of vast amounts of sequencing data by using cost-effective, high-throughput sequencing technologies with improved computational approaches, many putative proteins have been discovered after assembly and structural annotation. Putative proteins are typically annotated using a functional annotation system that uses extant databases, but the expansive size of these databases often causes a bottleneck for rapid functional annotation. We developed SFannotation, a simple and fast functional annotation system that rapidly annotates putative proteins against four extant databases, Swiss-Prot, TIGRFAMs, Pfam, and the non-redundant sequence database, by using a best-hit approach with BLASTP and HMMSEARCH.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>bioinformatics</kwd>
+        <kwd>gene product</kwd>
+        <kwd>protein annotation</kwd>
+      </kwd-group>
+      <funding-group>
+        <award-group>
+          <funding-source country="KR">Ministry of Science ICT and Future Planning</funding-source>
+          <award-id>NRF-2010-0029345</award-id>
+          <award-id>NRF-2011-0019745</award-id>
+        </award-group>
+      </funding-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>Functional annotation of putative proteins is a fundamental and essential practice in the postgenomics era [<xref rid="B1" ref-type="bibr">1</xref>]; it allows us to analyze genomic and genetic features, such as physiological activity and metabolism, as well as to discover medically and industrially relevant enzymes. Since large numbers of putative proteins were discovered from a vast amount of sequencing data generated using high-throughput sequencing technologies, including those of the next and third generation, many automated functional annotation systems have contributed greatly to the annotation of them with minimal manual effort [<xref rid="B2" ref-type="bibr">2</xref>]. However, their runtime performance of functional annotation against large extant databases often causes a bottleneck, and especially, standalone tools, such as AutoFACT [<xref rid="B3" ref-type="bibr">3</xref>] and BLANNOTOR [<xref rid="B4" ref-type="bibr">4</xref>], demand high-performance hardware resources for fast annotation from users.</p>
+      <p>From the user's perspective, a web-based annotation server system would be a useful tool to bypass the demands of high-performance computer resources, and besides, they offer user-friendly interfaces. The RAST server system is particularly popular and can be used to rapidly annotate many microbial proteins against a specially curated subsystem database [<xref rid="B5" ref-type="bibr">5</xref>]. Web server systems, however, may be undesirable because of critical obstacles, such as the limitation of usable server resources, a long waiting time by many queries, a low-bandwidth network or unstable traffic flow associated with the upload of query data and download of outputs, and data security problems. Thus, some users prefer standalone systems to web-based systems in spite of the demand for high-performance resources. Although standalone and web-based systems have good and bad points, slow runtime performance in themselves cannot be avoided because of the exponential increase in database sizes, without controlling some aspect of the annotation workflow.</p>
+      <p>We developed SFannotation, which rapidly annotates putative proteins by using single or bidirectional best-hit approach with sequence-based methods-BLASTP [<xref rid="B6" ref-type="bibr">6</xref>] and HMMSEARCH [<xref rid="B7" ref-type="bibr">7</xref>]-against big extant databases: Swiss-Prot [<xref rid="B8" ref-type="bibr">8</xref>], TIGRFAMs [<xref rid="B9" ref-type="bibr">9</xref>], Pfam [<xref rid="B10" ref-type="bibr">10</xref>], and the non-redundant sequence database (NR) of NCBI [<xref rid="B11" ref-type="bibr">11</xref>]. As best-hit approaches, especially bidirectional best-hit [<xref rid="B12" ref-type="bibr">12</xref>], have been widely utilized in searching reliable homologous protein sequences, such as orthologs, as well as functional annotation systems [<xref rid="B13" ref-type="bibr">13</xref>,<xref rid="B14" ref-type="bibr">14</xref>,<xref rid="B15" ref-type="bibr">15</xref>,<xref rid="B16" ref-type="bibr">16</xref>], SFannotation can reliably annotate putative proteins. Remarkably, SFannotation can rapidly annotate proteins against large extant databases by our hierarchical workflow.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods and Results</title>
+      <p>Before annotating putative proteins against Swiss-Prot, TIGRFAMs, Pfam, and the NR database, SFannotation filters out all proteins described in the databases by terms, such as "unknown," "hypothetical," "unclassified," "uncharacterized," "putative," "predicted," and "conserved" (<xref ref-type="fig" rid="F1">Fig. 1A</xref>), because some putative proteins may be misannotated by their inclusion. Then, using BLASTP and HMMSEARCH, SFannotation searches homologous proteins and domains in each refined database using a default threshold (&#x2264;10<sup>-5</sup> E-value) and selects the highest-scoring homolog to annotate putative proteins as the best-hit approach, such as single best hit and bidirectional best hit [<xref rid="B12" ref-type="bibr">12</xref>, <xref rid="B16" ref-type="bibr">16</xref>].</p>
+      <p>Putative proteins are hierarchically annotated using the following database priority: Swiss-Prot &#x2192; TIGRFAMs &#x2192; Pfam &#x2192; NR, which is ordered according to their reliability (<xref ref-type="fig" rid="F1">Fig. 1B</xref>). Once annotated, the putative proteins are no longer queried using homology searches against the other databases. For example, if a putative protein is annotated against Swiss-Prot, it is excluded from annotation against the other databases, while the remaining unannotated putative proteins continue to be annotated against the other databases. Therefore, the runtime performance can be reduced, because the number of unannotated putative proteins gradually decreases (<xref ref-type="fig" rid="F2">Fig. 2</xref>).</p>
+    </sec>
+    <sec>
+      <title>Implementation</title>
+      <p>SFannotation is written in Perl and bash shell and is implemented on a Linux/Unix system on which BLASTP and HMMSEARCH are able to function. SFannotation automatically annotates putative proteins with downloading of all four databases, as well as BLASTP and HMMSEARCH. SFannotation is implemented by a command line on the Linux/Unix system: "perl SFannotation --download --fasta &lt;input fasta file&gt; --speedup" (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 1</xref>).</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>We thank the members of the Korean BioInformation Center (KOBIC). This project was supported by a grant from "KRIBB Research Initiative Program" and the Korean Ministry of Science, ICT &amp; Future Planning (MSIP) under grant numbers NRF-2010-0029345 and NRF-2011-0019745.</p>
+    </ack>
+    <fn-group>
+      <fn fn-type="other">
+        <p><bold>Availability:</bold> SFannotation system is available at <ext-link ext-link-type="uri" xlink:href="https://code.google.com/p/axxa76/wiki/SFannotation">https://code.google.com/p/axxa76/wiki/SFannotation</ext-link>.</p>
+      </fn>
+    </fn-group>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beckloff</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Starkenburg</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Freitas</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Chain</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>Bacterial genome annotation</article-title>
+          <source>Methods Mol Biol</source>
+          <year>2012</year>
+          <volume>881</volume>
+          <fpage>471</fpage>
+          <lpage>503</lpage>
+          <pub-id pub-id-type="pmid">22639223</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Radivojac</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Clark</surname>
+              <given-names>WT</given-names>
+            </name>
+            <name>
+              <surname>Oron</surname>
+              <given-names>TR</given-names>
+            </name>
+            <name>
+              <surname>Schnoes</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Wittkop</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Sokolov</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A large-scale evaluation of computational protein function prediction</article-title>
+          <source>Nat Methods</source>
+          <year>2013</year>
+          <volume>10</volume>
+          <fpage>221</fpage>
+          <lpage>227</lpage>
+          <pub-id pub-id-type="pmid">23353650</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Koski</surname>
+              <given-names>LB</given-names>
+            </name>
+            <name>
+              <surname>Gray</surname>
+              <given-names>MW</given-names>
+            </name>
+            <name>
+              <surname>Lang</surname>
+              <given-names>BF</given-names>
+            </name>
+            <name>
+              <surname>Burger</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>AutoFACT: an automatic functional annotation and classification tool</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2005</year>
+          <volume>6</volume>
+          <fpage>151</fpage>
+          <pub-id pub-id-type="pmid">15960857</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kankainen</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Ojala</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Holm</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>BLANNOTATOR: enhanced homology-based function prediction of bacterial proteins</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2012</year>
+          <volume>13</volume>
+          <fpage>33</fpage>
+          <pub-id pub-id-type="pmid">22335941</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Overbeek</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Olson</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Pusch</surname>
+              <given-names>GD</given-names>
+            </name>
+            <name>
+              <surname>Olsen</surname>
+              <given-names>GJ</given-names>
+            </name>
+            <name>
+              <surname>Davis</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <name>
+              <surname>Disz</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The SEED and the Rapid Annotation of microbial genomes using Subsystems Technology (RAST)</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2014</year>
+          <volume>42</volume>
+          <fpage>D206</fpage>
+          <lpage>D214</lpage>
+          <pub-id pub-id-type="pmid">24293654</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Camacho</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Coulouris</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Avagyan</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Ma</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Papadopoulos</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Bealer</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>BLAST+: architecture and applications</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2009</year>
+          <volume>10</volume>
+          <fpage>421</fpage>
+          <pub-id pub-id-type="pmid">20003500</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Finn</surname>
+              <given-names>RD</given-names>
+            </name>
+            <name>
+              <surname>Clements</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Eddy</surname>
+              <given-names>SR</given-names>
+            </name>
+          </person-group>
+          <article-title>HMMER web server: interactive sequence similarity searching</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2011</year>
+          <volume>39</volume>
+          <fpage>W29</fpage>
+          <lpage>W37</lpage>
+          <pub-id pub-id-type="pmid">21593126</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kiefer</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Arnold</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Kunzli</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Bordoli</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Schwede</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>The SWISS-MODEL Repository and associated resources</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2009</year>
+          <volume>37</volume>
+          <fpage>D387</fpage>
+          <lpage>D392</lpage>
+          <pub-id pub-id-type="pmid">18931379</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Haft</surname>
+              <given-names>DH</given-names>
+            </name>
+            <name>
+              <surname>Selengut</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Richter</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Harkins</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Basu</surname>
+              <given-names>MK</given-names>
+            </name>
+            <name>
+              <surname>Beck</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <article-title>TIGRFAMs and Genome Properties in 2013</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2013</year>
+          <volume>41</volume>
+          <fpage>D387</fpage>
+          <lpage>D395</lpage>
+          <pub-id pub-id-type="pmid">23197656</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Punta</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Coggill</surname>
+              <given-names>PC</given-names>
+            </name>
+            <name>
+              <surname>Eberhardt</surname>
+              <given-names>RY</given-names>
+            </name>
+            <name>
+              <surname>Mistry</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Tate</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Boursnell</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The Pfam protein families database</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2012</year>
+          <volume>40</volume>
+          <fpage>D290</fpage>
+          <lpage>D301</lpage>
+          <pub-id pub-id-type="pmid">22127870</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Johnson</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Zaretskaya</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Raytselis</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Merezhuk</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>McGinnis</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Madden</surname>
+              <given-names>TL</given-names>
+            </name>
+          </person-group>
+          <article-title>NCBI BLAST: a better web interface</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2008</year>
+          <volume>36</volume>
+          <fpage>W5</fpage>
+          <lpage>W9</lpage>
+          <pub-id pub-id-type="pmid">18440982</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Overbeek</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Fonstein</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>D'Souza</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Pusch</surname>
+              <given-names>GD</given-names>
+            </name>
+            <name>
+              <surname>Maltsev</surname>
+              <given-names>N</given-names>
+            </name>
+          </person-group>
+          <article-title>The use of gene clusters to infer functional coupling</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>1999</year>
+          <volume>96</volume>
+          <fpage>2896</fpage>
+          <lpage>2901</lpage>
+          <pub-id pub-id-type="pmid">10077608</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Stoeckert</surname>
+              <given-names>CJ</given-names>
+              <suffix>Jr</suffix>
+            </name>
+            <name>
+              <surname>Roos</surname>
+              <given-names>DS</given-names>
+            </name>
+          </person-group>
+          <article-title>OrthoMCL: identification of ortholog groups for eukaryotic genomes</article-title>
+          <source>Genome Res</source>
+          <year>2003</year>
+          <volume>13</volume>
+          <fpage>2178</fpage>
+          <lpage>2189</lpage>
+          <pub-id pub-id-type="pmid">12952885</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ostlund</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Schmitt</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Forslund</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>K&#xF6;stler</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Messina</surname>
+              <given-names>DN</given-names>
+            </name>
+            <name>
+              <surname>Roopra</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>InParanoid 7: new algorithms and tools for eukaryotic orthology analysis</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2010</year>
+          <volume>38</volume>
+          <fpage>D196</fpage>
+          <lpage>D203</lpage>
+          <pub-id pub-id-type="pmid">19892828</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Richardson</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>Watson</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>The automatic annotation of bacterial genomes</article-title>
+          <source>Brief Bioinform</source>
+          <year>2013</year>
+          <volume>14</volume>
+          <fpage>1</fpage>
+          <lpage>12</lpage>
+          <pub-id pub-id-type="pmid">22408191</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moriya</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Itoh</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Okuda</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Yoshizawa</surname>
+              <given-names>AC</given-names>
+            </name>
+            <name>
+              <surname>Kanehisa</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>KAAS: an automatic genome annotation and pathway reconstruction server</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2007</year>
+          <volume>35</volume>
+          <fpage>W182</fpage>
+          <lpage>W185</lpage>
+          <pub-id pub-id-type="pmid">17526522</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <sec sec-type="supplementary-material">
+      <title>Supplementary material</title>
+      <p>Supplementary data including one figure can be found with this article online at <ext-link ext-link-type="uri" xlink:href="http://www.genominfo.org/src/sm/gni-12-76-s001.pdf">http://www.genominfo.org/src/sm/gni-12-76-s001.pdf</ext-link>.</p>
+      <supplementary-material content-type="local-data" id="S1">
+        <caption>
+          <title>Supplementary Fig. 1</title>
+          <p>Snapshot for the various options and execution of SFannotation on Linux.</p>
+        </caption>
+        <media mimetype="application" mime-subtype="pdf" xlink:href="gni-12-76-s001.pdf" orientation="portrait" id="d35e904" position="anchor"/>
+      </supplementary-material>
+    </sec>
+  </back>
+  <floats-group>
+    <fig id="F1" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Database filtration (A) and workflow of the SFannotation annotation system (B). Black arrows represent putative proteins that are annotated by the best-hit approach, and red arrows represent the conversion of unannotated proteins to query putative proteins to search homologs against other databases.</p>
+      </caption>
+      <graphic xlink:href="gni-12-76-g001"/>
+    </fig>
+    <fig id="F2" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Runtime of the SFannotation system (red) and a best-hit approach without the hierarchical SFannotation workflow (black). Randomly selected proteins from <italic>Escherichia coli</italic> MG 1655 (GenBank accession number: U00096) were tested using a 64-bit Linux system (Ubuntu) possessing 20 CPU threads.</p>
+      </caption>
+      <graphic xlink:href="gni-12-76-g002"/>
+    </fig>
+  </floats-group>
+</article>
+</pmc-articleset>

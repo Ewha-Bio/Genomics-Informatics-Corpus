@@ -1,0 +1,643 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">31307128</article-id>
+      <article-id pub-id-type="pmc">6808628</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2019.17.2.e13</article-id>
+      <article-id pub-id-type="publisher-id">gi-2019-17-2-e13</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Application Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Fully connecting the Observational Health Data Science and Informatics (OHDSI) initiative with the world of linked open data</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">https://orcid.org/0000-0001-8499-824X</contrib-id>
+          <name>
+            <surname>Banda</surname>
+            <given-names>Juan M.</given-names>
+          </name>
+          <xref ref-type="aff" rid="af1-gi-2019-17-2-e13"/>
+          <xref ref-type="corresp" rid="c1-gi-2019-17-2-e13">
+            <sup>*</sup>
+          </xref>
+        </contrib>
+        <aff id="af1-gi-2019-17-2-e13">
+Panacea Laboratory, Department of Computer Science, Georgia State University, Atlanta, GA 30303, <country>USA</country></aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="c1-gi-2019-17-2-e13"><label>*</label>Corresponding author: E-mail: <email>jbanda@gsu.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="collection">
+        <month>6</month>
+        <year>2019</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>11</day>
+        <month>6</month>
+        <year>2019</year>
+      </pub-date>
+      <volume>17</volume>
+      <issue>2</issue>
+      <elocation-id>e13</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>13</day>
+          <month>12</month>
+          <year>2018</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>20</day>
+          <month>5</month>
+          <year>2019</year>
+        </date>
+        <date date-type="accepted">
+          <day>20</day>
+          <month>5</month>
+          <year>2019</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>(c) 2019, Korea Genome Organization</copyright-statement>
+        <copyright-year>2019</copyright-year>
+        <license>
+          <license-p>(CC) This is an open-access article distributed under the terms of the Creative Commons Attribution license(<ext-link ext-link-type="uri" xlink:href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</ext-link>), which permits unrestricted use, distribution, and
+reproduction in any medium, provided the original work is properly cited.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>The usage of controlled biomedical vocabularies is the cornerstone that enables seamless interoperability when using a common data model across multiple data sites. The Observational Health Data Science and Informatics (OHDSI) initiative combines over 100 controlled vocabularies into its own. However, the OHDSI vocabulary is limited in the sense that it combines multiple terminologies and does not provide a direct way to link them outside of their own self-contained scope. This issue makes the tasks of enriching feature sets by using external resources extremely difficult. In order to address these shortcomings, we have created a linked data version of the OHDSI vocabulary, connecting it with already established linked resources like bioportal, bio2rdf, etc. with the ultimate purpose of enabling the interoperability of resources previously foreign to the OHDSI universe.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>clinical informatics</kwd>
+        <kwd>common data model</kwd>
+        <kwd>controlled vocabularies</kwd>
+        <kwd>linked open data</kwd>
+        <kwd>RDF</kwd>
+        <kwd>semantic web</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <p><bold>Availability:</bold> The resource described in this article is available in two different ways: fully constructed RDF graph (GRAPHcompressed files), <ext-link ext-link-type="uri" xlink:href="https://github.com/thepanacealab/OHDSI2RDF">https://github.com/thepanacealab/OHDSI2RDF</ext-link>; scripts to generate RDF graph, <ext-link ext-link-type="uri" xlink:href="https://github.com/thepanacealab/OHDSI2RDF">https://github.com/thepanacealab/OHDSI2RDF</ext-link>.</p>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>The Observational Health Data Science and Informatics (OHDSI) is a world-wide initiative, which over the course of five years has managed to bring groups of researchers all over the world together in converting their clinical patient data (electronic health records, claims, clinical registries) into the Observational Medical Outcomes Partnership (OMOP) common data model (CDM). This initiative has built a large set of publicly available tools which allow researchers to standardize the way they build patient cohorts, characterize their data [<xref rid="b1-gi-2019-17-2-e13" ref-type="bibr">1</xref>], perform large scale patient level prediction studies [<xref rid="b2-gi-2019-17-2-e13" ref-type="bibr">2</xref>], and perform electronic phenotyping [<xref rid="b3-gi-2019-17-2-e13" ref-type="bibr">3</xref>]. In just a few years the OHDSI initiative has managed to perform large-scale studies involving over 200 million patients [<xref rid="b4-gi-2019-17-2-e13" ref-type="bibr">4</xref>], answer drug safety questions by analyzing the association of the anticonvulsant levetiracetam with increased risk for angioedema in 10 international databases [<xref rid="b5-gi-2019-17-2-e13" ref-type="bibr">5</xref>], and has characterized the effectiveness of second-line treatment of type 2 diabetes after initial therapy with metformin in over 246 million patients [<xref rid="b6-gi-2019-17-2-e13" ref-type="bibr">6</xref>]. All of these massive studies have been made possible thanks to the use of a CDM and a standardized vocabulary. This strength becomes a weakness as the vocabulary standardizes multiple external vocabularies, ontologies and term sets, such as SNOMED, RxNorm, MeSH, and 90+ others, but it does not provide an easy way to link them to additional resources such as the Unified Medical Language System (UMLS) [<xref rid="b7-gi-2019-17-2-e13" ref-type="bibr">7</xref>] and other linked open data resources like Bio2rdf [<xref rid="b8-gi-2019-17-2-e13" ref-type="bibr">8</xref>] and BioPortal [<xref rid="b9-gi-2019-17-2-e13" ref-type="bibr">9</xref>]. During our time at the Biomedical Link Data Hackathon 5 in Kashiwa, Japan we developed the first attempt to create an RDF version of the OHDSI vocabulary with linkages to UMLS and BioPortal.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <p>In order to link the OHDSI vocabulary with UMLS, we will leverage Ananke [<xref rid="b10-gi-2019-17-2-e13" ref-type="bibr">10</xref>], a resource built for the mapping of UMLS Concept Unique Identifiers (CUIs) into OHDSI concept_id&#x2019;s, which are the unique identifiers assigned to all concepts in the vocabulary. This will allow us to use BioPortals URI&#x2019;s for the CUIs and make the necessary connections when using their SPARQL endpoints for federated queries. All other Python 2.7 code just iterates through the vocabulary concepts, find proper UMLS matches and writes out each entry using a predefined schema. The conversion process assumes the OHDSI vocabulary files are in the same folder, as well as the Ananke mappings. If the researcher does not have a full copy of the OHDSI vocabulary, we provide an already built RDF graph for Vocabulary version v5.0 11-FEB-19.</p>
+    </sec>
+    <sec sec-type="results">
+      <title>Results and Discussion</title>
+      <p>The RDF conversion results in a total of 24 million triples and takes around 15 minutes. Our resource links a total of 861,732 OHDSI concept_id's from SNOMED, 286,256 concept_id's from RxNORM, 109,706 concept_id's from ICD10, and 22,029 concept_id's from ICD9, all linked directly to bioportal. We also include 1,321,986 mappings to UMLS via Ananke [<xref rid="b10-gi-2019-17-2-e13" ref-type="bibr">10</xref>].</p>
+      <p>Our initial goals for this resource were to bring into the OHDSI context semantic enrichment of longitudinal clinical study data, as it has been shown to be quite effective in the past [<xref rid="b11-gi-2019-17-2-e13" ref-type="bibr">11</xref>,<xref rid="b12-gi-2019-17-2-e13" ref-type="bibr">12</xref>]. Our particular practical application of interest is taking advantage of the resource for electronic phenotyping purposes. As authors of the Automated PHenotype Routine for Observational Definition, Identification, Training and Evaluation (APHRODITE) R package [<xref rid="b3-gi-2019-17-2-e13" ref-type="bibr">3</xref>], our goals were as follows.</p>
+      <p>(1) Be able to expand and enrich our feature sets for phenotyping. With one of the main feature spaces of APHRODITE being clinical narratives, these are annotated using the OHDSI vocabulary. Having a linked version of it will allow us to expand any particular feature domain with other linked resources to SNOMEDCT, RxNORM, etc. <xref rid="f1-gi-2019-17-2-e13" ref-type="fig">Fig. 1</xref> shows a sample query were we expand the SNOMED concept for &#x201C;Type 2 diabetes mellitus&#x201D; with all its available parents in BioPortal via a federated query.</p>
+      <p>(2) One of the outputs of APHRODITE, besides a machine learning model for the target phenotype, is a list of relevant features that add interpretability to any model. This list of features covers the most important domains in the OHDSI CDM and vocabulary. We want to be able to produce this list as a linked resource that will allow researchers to enhance their understanding by being able to semantically link them to other resources like the Human Phenotype Ontology [<xref rid="b13-gi-2019-17-2-e13" ref-type="bibr">13</xref>] among others.</p>
+      <p>We believe that such interoperability will enable other researchers to generate enhanced evidence by linking outside of the OHDSI CDM and vocabulary with additional resources available, such as phenotype annotations from PubMed abstracts automatically [<xref rid="b14-gi-2019-17-2-e13" ref-type="bibr">14</xref>], provide extra context for word embeddings models built from clinical narratives [<xref rid="b15-gi-2019-17-2-e13" ref-type="bibr">15</xref>], which in theory can help the embeddings be more specific by providing additional context [<xref rid="b16-gi-2019-17-2-e13" ref-type="bibr">16</xref>], and many additional applications. This resource brings us one step closer to enrich EHR, claims, and registry patient data with the world of linked open data.</p>
+    </sec>
+  </body>
+  <back>
+    <fn-group>
+      <fn fn-type="COI-statement">
+        <p>
+          <bold>Conflicts of Interest</bold>
+        </p>
+        <p>No potential conflict of interest relevant to this article was reported.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <p>We would like to acknowledge DBCLS and ROIS for making our participation in BLAH (Biomedical Linked Annotation Hackathon) possible.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="b1-gi-2019-17-2-e13">
+        <label>1</label>
+        <element-citation publication-type="book">
+          <article-title>Atlas</article-title>
+          <publisher-loc>San Franciso</publisher-loc>
+          <publisher-name>GitHub</publisher-name>
+          <year>2019</year>
+          <comment>Accessed 2019 Apr 2. Available from: <ext-link ext-link-type="uri" xlink:href="https://github.com/OHDSI/Atlas">https://github.com/OHDSI/Atlas</ext-link></comment>
+        </element-citation>
+      </ref>
+      <ref id="b2-gi-2019-17-2-e13">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reps</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Schuemie</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Suchard</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Ryan</surname>
+              <given-names>PB</given-names>
+            </name>
+            <name>
+              <surname>Rijnbeek</surname>
+              <given-names>PR</given-names>
+            </name>
+          </person-group>
+          <article-title>Design and implementation of a standardized framework to generate and evaluate patient-level prediction models using observational healthcare data</article-title>
+          <source>J Am Med Inform Assoc</source>
+          <year>2018</year>
+          <volume>25</volume>
+          <fpage>969</fpage>
+          <lpage>975</lpage>
+          <pub-id pub-id-type="pmid">29718407</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b3-gi-2019-17-2-e13">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Banda</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Halpern</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Sontag</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Shah</surname>
+              <given-names>NH</given-names>
+            </name>
+          </person-group>
+          <article-title>Electronic phenotyping with APHRODITE and the Observational Health Sciences and Informatics (OHDSI) data network</article-title>
+          <source>AMIA Jt Summits Transl Sci Proc</source>
+          <year>2017</year>
+          <volume>2017</volume>
+          <fpage>48</fpage>
+          <lpage>57</lpage>
+          <pub-id pub-id-type="pmid">28815104</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b4-gi-2019-17-2-e13">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hripcsak</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Ryan</surname>
+              <given-names>PB</given-names>
+            </name>
+            <name>
+              <surname>Duke</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Shah</surname>
+              <given-names>NH</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>RW</given-names>
+            </name>
+            <name>
+              <surname>Huser</surname>
+              <given-names>V</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Characterizing treatment pathways at scale using the OHDSI network</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2016</year>
+          <volume>113</volume>
+          <fpage>7329</fpage>
+          <lpage>7336</lpage>
+          <pub-id pub-id-type="pmid">27274072</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b5-gi-2019-17-2-e13">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Duke</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Ryan</surname>
+              <given-names>PB</given-names>
+            </name>
+            <name>
+              <surname>Suchard</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Hripcsak</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Jin</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Reich</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Risk of angioedema associated with levetiracetam compared with phenytoin: findings of the observational health data sciences and informatics research network</article-title>
+          <source>Epilepsia</source>
+          <year>2017</year>
+          <volume>58</volume>
+          <fpage>e101</fpage>
+          <lpage>e106</lpage>
+          <pub-id pub-id-type="pmid">28681416</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b6-gi-2019-17-2-e13">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vashisht</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Jung</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Schuler</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Banda</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>RW</given-names>
+            </name>
+            <name>
+              <surname>Jin</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Association of hemoglobin A1c levels with use of sulfonylureas, dipeptidyl peptidase 4 inhibitors, and thiazolidinediones in patients with type 2 diabetes treated with metformin: analysis from the observational health data sciences and informatics initiative</article-title>
+          <source>JAMA Netw Open</source>
+          <year>2018</year>
+          <volume>1</volume>
+          <elocation-id>e181755</elocation-id>
+          <pub-id pub-id-type="pmid">30646124</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b7-gi-2019-17-2-e13">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bodenreider</surname>
+              <given-names>O</given-names>
+            </name>
+          </person-group>
+          <article-title>The Unified Medical Language System (UMLS): integrating biomedical terminology</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2004</year>
+          <volume>32</volume>
+          <fpage>D267</fpage>
+          <lpage>D270</lpage>
+          <pub-id pub-id-type="pmid">14681409</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b8-gi-2019-17-2-e13">
+        <label>8</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Callahan</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Cruz-Toledo</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Ansell</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Dumontier</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Bio2RDF release 2: improved coverage, interoperability and provenance of life science linked data</chapter-title>
+          <source>The Semantic Web: Semantics and Big Data</source>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Cimiano</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Corcho</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Presutti</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Hollink</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Rodolph</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <conf-date>2013 May 26-30</conf-date>
+          <conf-loc>Montpellier, France. Berlin</conf-loc>
+          <conf-sponsor>Springer</conf-sponsor>
+          <year>2013</year>
+          <fpage>200</fpage>
+          <lpage>212</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b9-gi-2019-17-2-e13">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Salvadores</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Alexander</surname>
+              <given-names>PR</given-names>
+            </name>
+            <name>
+              <surname>Musen</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Noy</surname>
+              <given-names>NF</given-names>
+            </name>
+          </person-group>
+          <article-title>BioPortal as a Dataset of Linked Biomedical Ontologies and Terminologies in RDF</article-title>
+          <source>Semant Web</source>
+          <year>2013</year>
+          <volume>4</volume>
+          <fpage>277</fpage>
+          <lpage>284</lpage>
+          <pub-id pub-id-type="pmid">25214827</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b10-gi-2019-17-2-e13">
+        <label>10</label>
+        <element-citation publication-type="book">
+          <article-title>OHDSIananke</article-title>
+          <publisher-loc>San Franciso</publisher-loc>
+          <publisher-name>GitHub</publisher-name>
+          <year>2019</year>
+          <comment>Accessed 2019 Apr 2. Available from: <ext-link ext-link-type="uri" xlink:href="https://github.com/thepanacealab/OHDSIananke">https://github.com/thepanacealab/OHDSIananke</ext-link></comment>
+        </element-citation>
+      </ref>
+      <ref id="b11-gi-2019-17-2-e13">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Leroux</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Lefort</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Semantic enrichment of longitudinal clinical study data using the CDISC standards and the semantic statistics vocabularies</article-title>
+          <source>J Biomed Semantics</source>
+          <year>2015</year>
+          <volume>6</volume>
+          <fpage>16</fpage>
+          <pub-id pub-id-type="pmid">25973166</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b12-gi-2019-17-2-e13">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Blair</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Nestorov</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Rzhetsky</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantifying the impact and extent of undocumented biomedical synonymy</article-title>
+          <source>PLoS Comput Biol</source>
+          <year>2014</year>
+          <volume>10</volume>
+          <elocation-id>e1003799</elocation-id>
+          <pub-id pub-id-type="pmid">25255227</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b13-gi-2019-17-2-e13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robinson</surname>
+              <given-names>PN</given-names>
+            </name>
+            <name>
+              <surname>K&#xF6;hler</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Bauer</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Seelow</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Horn</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Mundlos</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>The Human Phenotype Ontology: a tool for annotating and analyzing human hereditary disease</article-title>
+          <source>Am J Hum Genet</source>
+          <year>2008</year>
+          <volume>83</volume>
+          <fpage>610</fpage>
+          <lpage>615</lpage>
+          <pub-id pub-id-type="pmid">18950739</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b14-gi-2019-17-2-e13">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Henderson</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Bridges</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Ho</surname>
+              <given-names>JC</given-names>
+            </name>
+            <name>
+              <surname>Wallace</surname>
+              <given-names>BC</given-names>
+            </name>
+            <name>
+              <surname>Ghosh</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>PheKnow-Cloud: A Tool for Evaluating High-Throughput Phenotype Candidates using Online Medical Literature</article-title>
+          <source>AMIA Jt Summits Transl Sci Proc</source>
+          <year>2017</year>
+          <volume>2017</volume>
+          <fpage>149</fpage>
+          <lpage>157</lpage>
+          <pub-id pub-id-type="pmid">28815124</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b15-gi-2019-17-2-e13">
+        <label>15</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ling</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>An</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Hasan</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Fan</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>X</given-names>
+            </name>
+          </person-group>
+          <article-title>Integrating extra knowledge into word embedding models for biomedical NLP tasks</article-title>
+          <conf-name>2017 International Joint Conference on Neural Networks (IJCNN)</conf-name>
+          <conf-date>2017 May 14-19</conf-date>
+          <conf-loc>Anchorage, AK, USA. Hoffman Estates</conf-loc>
+          <conf-sponsor>International Joint Conference on Neural Networks</conf-sponsor>
+          <year>2017</year>
+          <fpage>968</fpage>
+          <lpage>975</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b16-gi-2019-17-2-e13">
+        <label>16</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dubois</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Romano</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Kale</surname>
+              <given-names>DC</given-names>
+            </name>
+            <name>
+              <surname>Shah</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Jung</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>Effective representations of clinical notes</article-title>
+          <publisher-loc>Ithaca</publisher-loc>
+          <publisher-name>arXiv, Cornell University</publisher-name>
+          <year>2017</year>
+          <comment>Accessed 2019 Apr 2. Available from: <ext-link ext-link-type="uri" xlink:href="http://arxiv.org/abs/1705.07025">http://arxiv.org/abs/1705.07025</ext-link></comment>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="f1-gi-2019-17-2-e13" orientation="portrait" position="float">
+      <label>Fig. 1.</label>
+      <caption>
+        <p>Sample federated SPARQL query to retrieve parent elements for a specific SNOMED concept.</p>
+      </caption>
+      <graphic xlink:href="gi-2019-17-2-e13f1"/>
+    </fig>
+  </floats-group>
+</article>
+</pmc-articleset>
