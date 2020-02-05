@@ -1,0 +1,328 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">23346040</article-id>
+      <article-id pub-id-type="pmc">3543928</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2012.10.4.263</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Application Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>QCanvas: An Advanced Tool for Data Clustering and Visualization of Genomics Data</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Nayoung</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Park</surname>
+            <given-names>Herin</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>He</surname>
+            <given-names>Ningning</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lee</surname>
+            <given-names>Hyeon Young</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Yoon</surname>
+            <given-names>Sukjoon</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="A1">Department of Biological Sciences, Sookmyung Women's University, Seoul 140-742, Korea.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +82-2-710-9415, Fax: +82-2-2077-7322, <email>yoonsj@sookmyung.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2012</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>31</day>
+        <month>12</month>
+        <year>2012</year>
+      </pub-date>
+      <volume>10</volume>
+      <issue>4</issue>
+      <fpage>263</fpage>
+      <lpage>265</lpage>
+      <history>
+        <date date-type="received">
+          <day>02</day>
+          <month>11</month>
+          <year>2012</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>15</day>
+          <month>11</month>
+          <year>2012</year>
+        </date>
+        <date date-type="accepted">
+          <day>16</day>
+          <month>11</month>
+          <year>2012</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2012 by The Korea Genome Organization</copyright-statement>
+        <copyright-year>2012</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">http://creativecommons.org/licenses/by-nc/3.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>We developed a user-friendly, interactive program to simultaneously cluster and visualize omics data, such as DNA and protein array profiles. This program provides diverse algorithms for the hierarchical clustering of two-dimensional data. The clustering results can be interactively visualized and optimized on a heatmap. The present tool does not require any prior knowledge of scripting languages to carry out the data clustering and visualization. Furthermore, the heatmaps allow the selective display of data points satisfying user-defined criteria. For example, a clustered heatmap of experimental values can be differentially visualized based on statistical values, such as p-values. Including diverse menu-based display options, QCanvas provides a convenient graphical user interface for pattern analysis and visualization with high-quality graphics.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>data clustering</kwd>
+        <kwd>genomics</kwd>
+        <kwd>heatmap visualization</kwd>
+        <kwd>microarray anlaysis</kwd>
+        <kwd>pattern recognition</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>Genomics and proteomics data are typically analyzed by hierarchical clustering, followed by visualization with heatmaps [<xref ref-type="bibr" rid="B1">1</xref>-<xref ref-type="bibr" rid="B3">3</xref>]. Various algorithms have been implemented in the data clustering procedure [<xref ref-type="bibr" rid="B4">4</xref>]. The visualization of clustered data includes tree-based hierarchical clustering patterns and heatmaps of experimental values [<xref ref-type="bibr" rid="B5">5</xref>]. Simultaneously carrying out clustering and visualization in a single platform provides a convenient tool for choosing an appropriate clustering algorithm and finding patterns in the resulting heatmaps. Previously, bioinformaticists used programmable tools, such as R and Matlab, and commercial data-mining packages to analyze their data. A simple and integrated program will allow experimental scientists to intuitively identify meaningful patterns from a large dataset without requiring knowledge of scripting computer languages or statistical theory.</p>
+      <p>Herein, we introduce a user-friendly tool, QCanvas, which integrates diverse clustering algorithms and an interactive heatmap display interface (<xref ref-type="fig" rid="F1">Fig. 1</xref>). This program directly imports raw experimental data in a matrix format and displays these data in a heatmap. Various clustering methods can be applied to two-dimensional data, with the real-time generation of clustered heatmaps. Furthermore, subsets of heatmap data can be selectively displayed, based on user-defined filters. QCanvas is an easy-to-use and powerful tool for fast data analysis and interpretation by bench scientists. Without any knowledge of scripting languages and without any graphics-editing software, one can generate and customize tree-clustered heatmaps with high-quality graphics.</p>
+    </sec>
+    <sec>
+      <title>QCanvas: Implementation and Functions</title>
+      <sec>
+        <title>Data clustering</title>
+        <p>QCanvas provides a total of eight popular measures for generating the similarity matrix-i.e., Correlation uncenter, Correlation center, Absolute corr-uncenter, Absolute corrcenter, Spearman rank, Kendall's tau, Euclidean distance, and City-block distance. All of these measures have typically been included among the data clustering methods of previous tools [<xref ref-type="bibr" rid="B4">4</xref>]. In QCanvas, the calculation of the similarity matrix is selectively applied to the data for the x-axis and the y-axis independently. Hierarchical clustering is simultaneously carried out based on the established similarity matrices. QCanvas provides diverse algorithms for hierarchical clustering, such as the average method, centroid method, single method, and complete method. QCanvas uses a standard window-based graphical user interface (GUI), providing multiple windows to comparatively visualize patterns of various combinations of similarity matrices and hierarchical clustering methods. This program provides quantitative trees for displaying clustering patterns and similarity measures together.</p>
+      </sec>
+      <sec>
+        <title>Heatmap optimization for pattern recognition</title>
+        <p>QCanvas software recognizes text-based data in a matrix format. For demonstration purposes, a small microarray gene expression dataset is included in the software package and can be downloaded from the website (<ext-link ext-link-type="uri" xlink:href="http://compbio.sookmyung.ac.kr/~qcanvas">http://compbio.sookmyung.ac.kr/~qcanvas</ext-link>). Once the input data are imported into the QCanvas window, a heatmap of the non-clustered data is displayed (<xref ref-type="fig" rid="F2">Fig. 2A</xref>). The user can easily test various data-clustering and tree-building methods on the raw data and interactively select appropriate heatmaps with tree structures (<xref ref-type="fig" rid="F2">Fig. 2B</xref>). The GUI provides various menu-based options to optimize the display of heatmaps, trees, and annotations. The colors, locations, and sizes of the trees and the annotations can be customized in a flexible manner. The scale and color scheme of the heatmaps can also be adjusted in an interactive window. The node colors can be customized for positive, negative, missing, or zero values. The color contrast between nodes can also be interactively adjusted. The overall vertical or horizontal size of a component of a figure can be customized and saved in postscript format for a high-image quality.</p>
+      </sec>
+      <sec>
+        <title>Data filtering for the selection of major markers</title>
+        <p>Heatmaps that are based on data clustering display the overall profiles of the experimental values for the given samples. QCanvas provides a data-filtering option to selectively display data nodes satisfying a given threshold. In the example shown in <xref ref-type="fig" rid="F2">Fig. 2C</xref>, data points with a 2-fold change (increase or decrease) in gene expression are selectively displayed. In many cases, a dataset includes experimental values and statistical confidence levels together. The option for data filtering in QCanvas is useful for analyzing patterns in the experimental data that are statistically significant. One can filter the heatmap profiles using statistical confidence data that are included in a separate file. In the example shown in <xref ref-type="fig" rid="F2">Fig. 2D</xref>, the gene expression data are filtered based on the p-values for the fold-change. QCanvas can import two separate files together for simultaneous data clustering and filtering. The GUI menu for data filtering enables the pattern analysis to be performed easily, without the need for manual data processing or the use of scripting languages.</p>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions">
+      <title>Conclusion</title>
+      <p>This report introduces QCanvas, a program that provides a convenient and powerful interface for the pattern analysis of large-scale omics data. This program enables the user to conduct data clustering, data filtering, and graphics editing simultaneously on an integrated platform. These steps are typically performed on omics data, such as DNA (or protein) microarray data. All essential functionalities were integrated into the user-friendly interface of QCanvas. The simple and intuitive nature of this tool meets the practical needs of research scientists working on omics data who do not have expertise in bioinformatics approaches. The program is freely available with demo data and a step-by-step tutorial through the website (<ext-link ext-link-type="uri" xlink:href="http://compbio.sookmyung.ac.kr/~qcanvas">http://compbio.sookmyung.ac.kr/~qcanvas</ext-link>).</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This research was supported by Sookmyung Women's University Research Grant no. 1-1103-0572.</p>
+    </ack>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>He</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Lu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>Q</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Systematic analysis of genotype-specific drug responses in cancer</article-title>
+          <source>Int J Cancer</source>
+          <year>2012</year>
+          <volume>131</volume>
+          <fpage>2456</fpage>
+          <lpage>2464</lpage>
+          <pub-id pub-id-type="pmid">22422301</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bild</surname>
+              <given-names>AH</given-names>
+            </name>
+            <name>
+              <surname>Yao</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Chang</surname>
+              <given-names>JT</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Potti</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Chasse</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Oncogenic pathway signatures in human cancers as a guide to targeted therapies</article-title>
+          <source>Nature</source>
+          <year>2006</year>
+          <volume>439</volume>
+          <fpage>353</fpage>
+          <lpage>357</lpage>
+          <pub-id pub-id-type="pmid">16273092</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Markert</surname>
+              <given-names>EK</given-names>
+            </name>
+            <name>
+              <surname>Mizuno</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Vazquez</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Levine</surname>
+              <given-names>AJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular classification of prostate cancer using curated expression signatures</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2011</year>
+          <volume>108</volume>
+          <fpage>21276</fpage>
+          <lpage>21281</lpage>
+          <pub-id pub-id-type="pmid">22123976</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eisen</surname>
+              <given-names>MB</given-names>
+            </name>
+            <name>
+              <surname>Spellman</surname>
+              <given-names>PT</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>PO</given-names>
+            </name>
+            <name>
+              <surname>Botstein</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Cluster analysis and display of genome-wide expression patterns</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>1998</year>
+          <volume>95</volume>
+          <fpage>14863</fpage>
+          <lpage>14868</lpage>
+          <pub-id pub-id-type="pmid">9843981</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Saldanha</surname>
+              <given-names>AJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Java Treeview: extensible visualization of microarray data</article-title>
+          <source>Bioinformatics</source>
+          <year>2004</year>
+          <volume>20</volume>
+          <fpage>3246</fpage>
+          <lpage>3248</lpage>
+          <pub-id pub-id-type="pmid">15180930</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Graphical user interface of QCanvas. Data retrieving, processing, and visualization can be carried out through interactive, user-friendly menus. QCanvas provides additional tools for the optimization of size, color, and shape of trees and heatmaps.</p>
+      </caption>
+      <graphic xlink:href="gni-10-263-g001"/>
+    </fig>
+    <fig id="F2" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Illustration of data clustering and filtering by QCanvas. The microarray data for 20 selected genes in five cancer samples were used for this demonstration. Red represents up-regulated gene expression, and green represents down-regulated gene expression. The scale is log<sub>2</sub> (fold-change). (A) Input matrix data are visualized using a heatmap. (B) The clustering of both cancer samples and genes is interactively carried out using the graphical user interface. (C) The selective display of genes with high or low expression in cancer samples (2-fold changes). (D) The selective display of genes with significant changes (p &lt; 0.01).</p>
+      </caption>
+      <graphic xlink:href="gni-10-263-g002"/>
+    </fig>
+  </floats-group>
+</article>
+</pmc-articleset>

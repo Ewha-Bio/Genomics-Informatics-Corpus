@@ -1,0 +1,608 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inf</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inf</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">23105928</article-id>
+      <article-id pub-id-type="pmc">3475482</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2012.10.1.44</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Efficient Mining of Interesting Patterns in Large Biological Sequences</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Rashid</surname>
+            <given-names>Md. Mamunur</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Karim</surname>
+            <given-names>Md. Rezaul</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Jeong</surname>
+            <given-names>Byeong-Soo</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Choi</surname>
+            <given-names>Ho-Jin</given-names>
+          </name>
+          <xref ref-type="aff" rid="A2">2</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="A1"><label>1</label>Department of Computer Engineering, College of Electronics and Information, Kyung Hee University, Yongin 446-701, Korea.</aff>
+      <aff id="A2"><label>2</label>Department of Computer Science, Korea Advanced Institute of Science and Technology, Daejeon 305-701, Korea.</aff>
+      <author-notes>
+        <corresp>Corresponding author: <email>hojinc@kaist.ac.kr</email>, Tel +82-42-350-3561, Fax +82-42-350-3510</corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>3</month>
+        <year>2012</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>31</day>
+        <month>3</month>
+        <year>2012</year>
+      </pub-date>
+      <volume>10</volume>
+      <issue>1</issue>
+      <fpage>44</fpage>
+      <lpage>50</lpage>
+      <history>
+        <date date-type="received">
+          <day>27</day>
+          <month>1</month>
+          <year>2012</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>08</day>
+          <month>2</month>
+          <year>2012</year>
+        </date>
+        <date date-type="accepted">
+          <day>10</day>
+          <month>2</month>
+          <year>2012</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2012 by The Korea Genome Organization</copyright-statement>
+        <copyright-year>2012</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/3.0">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">http://creativecommons.org/licenses/by-nc/3.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Pattern discovery in biological sequences (e.g., DNA sequences) is one of the most challenging tasks in computational biology and bioinformatics. So far, in most approaches, the number of occurrences is a major measure of determining whether a pattern is interesting or not. In computational biology, however, a pattern that is not frequent may still be considered very informative if its actual support frequency exceeds the prior expectation by a large margin. In this paper, we propose a new interesting measure that can provide meaningful biological information. We also propose an efficient index-based method for mining such interesting patterns. Experimental results show that our approach can find interesting patterns within an acceptable computation time.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>DNA sequence</kwd>
+        <kwd>index-based method</kwd>
+        <kwd>information gain</kwd>
+        <kwd>pattern mining</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>Biological sequences, such as DNA sequences, have a great number of contiguous patterns consisting of frequent items. Which patterns are interesting to biologists? Is a pattern that occurs more frequently more interesting? So far, in most approaches, the number of occurrences has been a major measure of determining an interesting pattern. This measure, however, is not enough to discriminate a pattern from the background noise and may induce much time to spend for checking patterns of no biological meaning. Researchers are more interested in contiguous patterns that are statistically significant than those simply occurring frequently. The aim of mining interesting patterns is to analyze the important biological functions hidden in the extremely large amounts of genomic sequences. In this work, we aimed to discover surprising contiguous patterns that occur at a frequency higher than their expected frequencies. To find such surprising patterns with confidence, we chose to use a more suitable measure, <italic>information</italic> [<xref ref-type="bibr" rid="B1">1</xref>], which is widely studied and used in the field of communication. In information theory, if a pattern is expected to occur frequently based on some prior knowledge or by chance, then an occurrence of that pattern carries less information. Thus, we can use information to test the surprise of an occurrence of a pattern. The <italic>information gain</italic> is introduced to denote the accumulated information of a pattern in a DNA sequence and is used to exhibit the degree of surprise of the pattern.</p>
+      <p>Many works for sequential pattern mining take an a priori approach, such as Agrawal and Srikant [<xref ref-type="bibr" rid="B2">2</xref>], who used <italic>downward closure property</italic> to prune infrequent patterns, which says that if a pattern is infrequent, all of its superpatterns must be infrequent. It suffers from the level-wise difficulty for candidate generation-and-test and needs several database scans for sequential pattern mining. A typical Apriori-like approach such as Generalized Sequential Patterns (GSP) [<xref ref-type="bibr" rid="B3">3</xref>] is a good example of this category. An efficient algorithm, PrefixSpan [<xref ref-type="bibr" rid="B4">4</xref>], has been proposed, representing projection-based sequential pattern mining. This approach examines only the prefix subsequences and projects only their corresponding postfix subsequences into the databases. Sequential patterns are grown by exploring length-1 frequent patterns in each projected database. Using the projected database, however, every expansion of sequential patterns needs a recursive process, which is not effective for DNA sequence mining. The problem of finding the frequent maximal contiguous pattern from sequences more than two has been introduced in [<xref ref-type="bibr" rid="B5">5</xref>-<xref ref-type="bibr" rid="B8">8</xref>]. In addition, Yang et al. [<xref ref-type="bibr" rid="B9">9</xref>] have proposed an interesting technique to find periodic patterns in a sequence of events. Lu et al. [<xref ref-type="bibr" rid="B10">10</xref>] have proposed a pattern discovery algorithm that can identify over-represented patterns inside DNA sequences by introducing a new measurement system.</p>
+      <p>Another efficient algorithm, MacosVSpan [<xref ref-type="bibr" rid="B11">11</xref>], has been proposed, which gets the maximal subsequence of each data item by fixed-length spanning and finally looks for frequent maximal contiguous patterns using a suffix tree. Although this approach reduces recursive execution for expanding sequence patterns, it also suffers from the problem of producing and using projected databases. For long data sequences, the projected database grows much faster in comparison with the original database. Kang et al. [<xref ref-type="bibr" rid="B12">12</xref>] have proposed an approach to improve MacosVSpan using a fixed-length spanning tree, where each node maintains the frequency of subsequence overlapping. In this approach, all the candidates are produced first, including frequent and nonfrequent patterns; then, each candidate is scanned through the database to see whether it is frequent or not. This is obviously very time and memory-consuming.</p>
+      <p>Recently, Zerin et al. [<xref ref-type="bibr" rid="B13">13</xref>] proposed a position-based fast method to find contiguous frequent patterns, which needs to scan the database only once to construct the fixed length spanning tree. This approach builds the fixed length spanning tree in the same fashion as Kang et al. [<xref ref-type="bibr" rid="B12">12</xref>] but records the sequence identification (ID) and starting position of the fixed length pattern with the frequency in the leaf node of the tree, showing better results than the previous methods. Rashid et al. [<xref ref-type="bibr" rid="B14">14</xref>] have also proposed an efficient approach to mining significant contiguous frequent patterns from DNA sequences by constructing the fixed length spanning tree and by using a threshold that reduces the number of candidates. In this paper, we further develop this approach by proposing an index-based method, where the sequence ID and the staring position of each sequence are recorded in the leaf node of the tree as a variable length array. If a fixed-length pattern occurs multiple times in a sequence, we put the sequence ID as an index and put the start positions of the fixed length patterns in the variable length array. As a result, this approach significantly reduces memory space more than Zerin et al. [<xref ref-type="bibr" rid="B13">13</xref>].</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>Concepts and definitions</title>
+        <p>Let &#x3A3; = {A, C, G, T} be a set of DNA alphabets, where A, C, G, and T are called DNA characters or bases. A DNA sequence <italic>S</italic> is an ordered list of DNA alphabets. <italic>S</italic> is denoted by &#x3008;<italic>c<sub>1</sub></italic>, <italic>c<sub>2</sub></italic>, ..., <italic>c<sub>l</sub></italic>&#x3009;, where <italic>c<sub>i</sub></italic> &#x2208; &#x3A3; and |<italic>S</italic>| denotes the length of sequence <italic>S</italic>. A sequence with length <italic>n</italic> is called an <italic>n</italic>-sequence. A sequence database <italic>D</italic> is a set of tuples &#x3008;<italic>sid</italic>, <italic>S</italic>&#x3009;, where <italic>sid</italic> is a sequence ID. The sum of the lengths of all sequences in <italic>D</italic> is denoted as |<italic>D</italic>|=|<italic>S<sub>1</sub></italic>|+|<italic>S<sub>2</sub></italic>|...|<italic>S<sub>n</sub></italic>|</p>
+        <sec>
+          <title>Definition 1 (Patter)</title>
+          <p>A <italic>pattern</italic> is a contiguous sub-sequence of DNA sequence <italic>S</italic> drawn from &#x3A3; = {A, C, G, T}. A sequence &#x3B1; = &#x3008;a<sub>1</sub>, a<sub>2</sub>, ..., a<sub>n</sub>&#x3009; is called a contiguous sub-sequence of another sequence &#x3B2; = &#x3008;b<sub>1</sub>, b<sub>2</sub>, ..., b<sub>m</sub>&#x3009;, and &#x3B2; is a contiguous super-sequence of &#x3B1;, denoted as &#x3B1;&#x2286;&#x3B2;, if there exists integers 1 &#x2264; <italic>j<sub>1</sub></italic> &#x2264; <italic>j<sub>2</sub></italic> &#x2264; ... &#x2264; <italic>j<sub>n</sub></italic> &#x2264; m and <italic>j<sub>i+1</sub></italic> = <italic>j<sub>i</sub></italic> + 1 for 1 &#x2264; <italic>i</italic> &#x2264; <italic>n-1</italic> such that a<sub>1</sub> = b<sub>j1</sub>, a<sub>2</sub> = b<sub>j2</sub>, ..., a<sub>n</sub> = b<sub>jn</sub>. We can also say that &#x3B1; is <italic>contained</italic> by &#x3B2;. In our paper, we use the term "(sub)-sequence" to describe "contiguous (sub)-sequence" in brief.</p>
+        </sec>
+        <sec>
+          <title>Definition 2 (Support)</title>
+          <p>Given a pattern <italic>P</italic> and a sequence <italic>S</italic>, the number of occurrences of <italic>P</italic> in <italic>S</italic> is called the <italic>support</italic> of pattern <italic>P</italic> in sequence <italic>S</italic>, denoted as <italic>Sup(P, Si)</italic>. For DNA sequence database <italic>D</italic>, the support of <italic>P</italic> in <italic>D</italic> is defined as <inline-formula><inline-graphic xlink:href="gni-10-44-i002.jpg"/></inline-formula>.</p>
+        </sec>
+        <sec>
+          <title>Definition 3 (Confidence)</title>
+          <p>Given a pattern <italic>P</italic> = <italic>P<sub>1</sub></italic>, <italic>P<sub>2</sub></italic>, ..., <italic>P<sub>q</sub></italic> and a DNA sequence database D, the confidence of <italic>P<sub>1</sub>P<sub>2</sub></italic> with respect to <italic>P<sub>1</sub></italic> is defined as <italic>Conf(P<sub>1</sub>P<sub>2</sub>, P<sub>1</sub>)</italic> = <italic>Sup(P<sub>1</sub>P<sub>2</sub>,D)/Sup(P<sub>1</sub>,D)</italic>.</p>
+          <p>For example, the character "A" occurs 10 times and "AT" occurs 7 times, and in database <italic>D</italic> in <xref ref-type="table" rid="T1">Table 1</xref>, <italic>Conf</italic>(AT,A) = 7/10 = 0.7.</p>
+        </sec>
+        <sec>
+          <title>Definition 4 (Pattern probability)</title>
+          <p>Given a pattern <italic>P</italic> = <italic>P<sub>1</sub></italic>, <italic>P<sub>2</sub></italic>, ..., <italic>P<sub>q</sub></italic> (<italic>P<sub>i</sub></italic> is a DNA alphabet) and a DNA sequence database <italic>D</italic>, the <italic>pattern probability</italic> of <italic>P</italic> in <italic>D</italic> is defined as <inline-formula><inline-graphic xlink:href="gni-10-44-i003.jpg"/></inline-formula>, where <italic>Pr(P<sub>i</sub>, D)</italic> = # of occurrences of an alphabet <italic>P<sub>i</sub></italic>/|<italic>D</italic>|.</p>
+          <p>For example, the <italic>pattern probability</italic> of pattern "ATCG" in <xref ref-type="table" rid="T1">Table 1</xref> is <italic>Pr(ATCG,D)</italic> = <italic>Pr(A,D)</italic> &#xD7; <italic>Pr(T,D)</italic> &#xD7; <italic>Pr(C,D)</italic> &#xD7; <italic>Pr(G,D)</italic> = <italic>(10/55)</italic> &#xD7; <italic>(18/55)</italic> &#xD7; <italic>(12/55)</italic> &#xD7; <italic>(15/55)</italic> = <italic>0.182</italic> &#xD7; <italic>0.372</italic> &#xD7; <italic>0.218</italic> &#xD7; <italic>0.273</italic> = <italic>0.00403</italic>.</p>
+        </sec>
+        <sec>
+          <title>Definition 5 (Information)</title>
+          <p>The information carried by a DNA character or base in DNA sequence database <italic>D</italic> is defined as <italic>I(c)</italic> = -<italic>log</italic><sub>|C|</sub><italic>Pr(c,D)</italic>, where |C| is the number of distinct characters in <italic>D</italic> and <italic>Pr(c)</italic> is the probability of <italic>c</italic> occurs in <italic>D</italic>.</p>
+          <p>For example, the occurrence probability of character A in <xref ref-type="table" rid="T1">Table 1</xref> is <italic>Pr(A,D)</italic> = # of <italic>occurence(A)</italic>/|<italic>D</italic>|. So, the probability of character A is <italic>Pr(A,D)</italic> = <italic>10/55</italic> = <italic>0.182</italic> in our example database. Then, the <italic>information</italic> of character A in <italic>D</italic> is, <italic>I(A)</italic> = -<italic>log</italic><sub>|C|</sub><italic>Pr(A,D)</italic> = -<italic>log<sub>4</sub>(0.182)</italic> = <italic>1.228</italic>.</p>
+        </sec>
+        <sec>
+          <title>Definition 6 (Pattern information)</title>
+          <p>Given a pattern <italic>P</italic> = <italic>P<sub>1</sub></italic>, <italic>P<sub>2</sub></italic>, ..., <italic>P<sub>q</sub></italic> and a DNA sequence database D, the <italic>pattern information</italic> of <italic>P</italic> in <italic>D</italic> is defined as <italic>I(P)</italic> = -<italic>log</italic><sub>|C|</sub><italic>Pr(P,D)</italic> = <italic>I(P<sub>1</sub>)</italic> + <italic>I(P<sub>2</sub>)</italic> +......+ <italic>I(P<sub>q</sub>)</italic>.</p>
+          <p>For example, the <italic>pattern information</italic> of pattern "ATCG" is <italic>I(ATCG,D)</italic> = <italic>I(A,D)</italic> + <italic>I(T,D)</italic> + <italic>I(C,D)</italic> + <italic>I(G,D)</italic> = <italic>1.228</italic> + <italic>0.713</italic> + <italic>1.098</italic> + <italic>0.9365</italic> = <italic>3.9755</italic> in <xref ref-type="table" rid="T1">Table 1</xref>.</p>
+        </sec>
+        <sec>
+          <title>Definition 7 (Information gain)</title>
+          <p>Given a pattern <italic>P</italic> = <italic>P<sub>1</sub></italic>, <italic>P<sub>2</sub></italic>, ..., <italic>P<sub>q</sub></italic> and a DNA sequence database <italic>D</italic>, the <italic>pattern information</italic> gain of <italic>P</italic> in <italic>D</italic> is defined as <italic>IG(P)</italic> = <italic>I(P)</italic> &#xD7; <italic>Support(P)</italic>.</p>
+          <p>For example, the <italic>information gain</italic> of pattern "ATCG" is <italic>IG(ATCG,D)</italic> = <italic>3.9755</italic>
+<sup>*</sup> 5 = <italic>19.8775</italic> in <xref ref-type="table" rid="T1">Table 1</xref>.</p>
+        </sec>
+        <sec>
+          <title>Definition 8 (Finding interesting patterns)</title>
+          <p>Given a sequence database <italic>D</italic> and user-specified <italic>min_conf</italic> and <italic>min_in_gain</italic>, the problem of <italic>finding interesting patterns</italic> is to find the complete set of interesting patterns, such that <italic>IG(P)</italic> and <italic>Conf(P)</italic> are greater than <italic>min_in_gain</italic> and <italic>min_conf</italic> , respectively.</p>
+        </sec>
+      </sec>
+      <sec>
+        <title>Surprising pattern-mining algorithm</title>
+        <p>The method for mining surprising contiguous patterns from a DNA sequence database proceeds as follows. For constructing the fixed length spanning tree, we follow the method suggested by Kang et al. [<xref ref-type="bibr" rid="B12">12</xref>] - that is, read the database sequences and, starting from the first of each sequence, move the position one by one of the fixed length window throughout the sequence (<xref ref-type="fig" rid="F1">Fig. 1</xref>). We put the sequence ID and the starting position in the leaf node of the tree as a variable length array, in addition to the frequency of the pattern moving of the window.</p>
+        <p><xref ref-type="fig" rid="F2">Fig. 2</xref> shows our proposed algorithm. It has two steps. The first step recursively scans the subsequence with the same length as the fixed-length window from the given sequences to construct a fixed-length spanning tree and put the database sequence ID and starting position of the pattern in the leaf node of tree as a one-side open variable length array. At this time, it calculates the character probabilities for A, C, G, and T, respectively. It is straightforward for the calculation of character probabilities for A, C, G, and T. By adding all occurrences of A, C, G, and T and dividing by the total number of characters in the database, it can be obtained easily. After calculating character probabilities, we can calculate character information, pattern information, and pattern information gain by using definition 5, definition 6, and definition 7.</p>
+        <p>The second step generates fixed-length patterns from the constructed spanning tree with satisfying the minimum information gain threshold and minimum confidence threshold, and expands sequences by joining candidates and checking the frequency and starting position of the candidates. At the time of joining the sequences with the same length to generate the candidates of the next length, it checks whether the second candidate starts right to the next position of the first one with the same ID or not. If so, it increases the frequency counter by one. Finally, it checks the minimum information gain and minimum confidence threshold. If the pattern satisfies both thresholds, then it is added to the next-length candidate pattern. This process is recursively followed for all the candidates with the same length to generate the next-length surprising candidates.</p>
+        <p>The spanning tree is shown in <xref ref-type="fig" rid="F3">Fig. 3</xref>, which is constructed based on the database available in <xref ref-type="table" rid="T1">Table 1</xref>. We have constructed a fixed-length spanning tree using the method suggested by Zerin et al. [<xref ref-type="bibr" rid="B13">13</xref>] but put the sequence ID and the staring position in the leaf node of the tree as a variable length array. Once the tree is constructed like <xref ref-type="fig" rid="F3">Fig. 3</xref>, retrieval of the tree can obtain contiguous subsequences with length-4, satisfying the satisfying minimum information gain threshold and minimum confidence threshold. Then, the obtained length-4 surprising contiguous patterns are &#x3008;ATCG&#x3009;, &#x3008;TCGT&#x3009;, &#x3008;TGAT&#x3009;, &#x3008;CGTG&#x3009;, &#x3008;CGTT&#x3009;, &#x3008;CATC&#x3009;, and &#x3008;GTGA&#x3009;, shown in <xref ref-type="fig" rid="F4">Fig. 4</xref>.</p>
+        <p>To generate the length-5 surprising contiguous patterns, we need to join the length-4 surprising patterns; all the items in the first pattern, excluding the first item, should be same as all the items of the second pattern, excluding the last item. The frequency counter of the next length pattern will increase if both of the patterns are present in the same sequence and the second pattern's starting positions are the right next to the position of the first pattern in the same sequence. If the generated patterns satisfy the <italic>min_in_gain</italic> and <italic>min_conf</italic>, we consider the new pattern as a next length surprising candidate. The obtained length-5 surprising patterns are &#x3008;ATCGT&#x3009;, &#x3008;TCGTG&#x3009;, &#x3008;TCGTT&#x3009;, &#x3008;CGTGA&#x3009;, &#x3008;CATCG&#x3009;, and &#x3008;GTGAT&#x3009;. From <xref ref-type="fig" rid="F2">Fig. 2</xref>, we see pattern ATCG starts from the 1st and 11th positions of sequence 10, 2nd and 9th positions of sequence 20, and 2nd position of sequence 30.</p>
+        <p>The pattern TCGT starts from 3rd and 10th positions of sequence 20, 3rd position of sequence 30, and 1st position of sequence 40. As a result, the length-5 candidate ATCGT starts from the 2nd and 9th positions of sequence 20 and the 2nd position of sequence 30. So, the information gain of ATCGT is 14.065, and the confidence of ATCGT with respect to ATCG is 0.6, which satisfy both <italic>min_in_gain</italic> and <italic>min_conf</italic> thresholds.</p>
+        <p>Following the same process, the obtained length-6 surprising patterns are &#x3008;CGTGAT&#x3009;, &#x3008;CATCGT&#x3009;, and &#x3008;TCGTGA&#x3009;, and the obtained length-7 surprising pattern is &#x3008;TCGTGAT&#x3009;. Here, we scan the whole database only once to construct the fixed-length spanning tree and then never scan the database again. On the other hand, using an index-based method and <italic>min_in_gain</italic> and <italic>min_conf</italic> thresholds, our proposed approach consumes less memory and faster execution than Zerin et al. [<xref ref-type="bibr" rid="B13">13</xref>].</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Results and Discussion</title>
+      <p>We compare the performance of the proposed approach with Zerin et al. [<xref ref-type="bibr" rid="B13">13</xref>] for searching contiguous subsequences. For this purpose, we use a randomly generated DNA sequence database and a real DNA sequence database. We first generated a DNA sequence database by means of C++ program that randomly generates the variable length datasets. This database contains 5,000 DNA sequences with lengths from 100 to 1,000. The real DNA sequence database is downloaded from the bio-mirror portal (<ext-link ext-link-type="uri" xlink:href="http://www.bio-mirror.net">http://www.bio-mirror.net</ext-link>), which contains 19,979 DNA sequences, with average sequence length 1,024. All programs are written in Microsoft Visual C++ 6.0 and run with the Windows XP operating system on a Pentium dual core 2.13 GHz CPU with 1 GB main memory.</p>
+      <p>In the first experiment, we compare the memory usage of our approach and Zerin et al. [<xref ref-type="bibr" rid="B13">13</xref>] by varying the sequence length. <xref ref-type="fig" rid="F5">Fig. 5</xref> shows the memory usage according to the sequence length change, where we used our generated database for construction of the spanning tree with a fixed length 7. Here, we used information gain threshold, <italic>min_in_gain</italic> = 35(%) and minimum confidence threshold, <italic>min_conf</italic> = 30(%). From this experiment, we can see that the proposed approach has efficient improvement over Zerin et al. [<xref ref-type="bibr" rid="B13">13</xref>]. When the sequence length becomes longer, it shows better performance in comparison with the existing algorithm.</p>
+      <p>The memory consumption of our proposed approach and [<xref ref-type="bibr" rid="B13">13</xref>] for different values of <italic>min_in_gain</italic> over a real DNA sequence database is shown in <xref ref-type="fig" rid="F6">Fig. 6</xref>. The <italic>x-axis</italic> in the graph indicates the change in <italic>min_in_gain</italic> as a percentage of the data point. A tree with a fixed length-10 was constructed using the aforementioned real datasets, and <italic>min_conf</italic> value 0.35 is taken. <xref ref-type="fig" rid="F6">Fig. 6</xref> indicates that for increasing the value of <italic>min_in_gain</italic> for both approaches, fewer candidates are generated and less memory is required.</p>
+      <p>The second experiment examined mining time performance according to change in sequence length. <xref ref-type="fig" rid="F7">Fig. 7A</xref> shows the mining time of the surprising contiguous patterns, starting from length-4 to length-9, in a randomly generated DNA sequence database, where we used information gain threshold <italic>min_in_gain</italic> = 35% and <italic>min_conf</italic> = 30%. On the other hand, we performed the same experiment with real DNA sequence datasets, where we used the value of <italic>min_in_gain</italic> = 45% and <italic>min_conf</italic> = 40%, which is shown in <xref ref-type="fig" rid="F7">Fig. 7B</xref>. From <xref ref-type="fig" rid="F7">Fig. 7</xref>, we can see that our proposed approach could mine the surprising contiguous patterns within a reasonable computation cost.</p>
+      <p>The third experiment shows the effect of information gain threshold on mining time to find out the surprising contiguous patterns up to length 8. In this experiment, we take <italic>min_conf</italic> 0.3 and 0.4 for the random and real datasets, respectively. <xref ref-type="fig" rid="F8">Fig. 8</xref> indicates that increasing the information gain threshold decreases mining time for both random and real datasets.</p>
+      <p>The fourth experiment studied the impacts of varying minimum confidence from 0.2 to 0.5 for random datasets and 0.25 to 0.55 for real datasets. This time, we take <italic>min_in_gain</italic> 0.3 and 0.4 for random and real datasets, respectively. <xref ref-type="fig" rid="F9">Fig. 9</xref> shows our proposed performance with different values for minimum confidence and illustrates a non-linear effect. The greatest change along the confidence axis is from 0.2 to 0.3 for random datasets and 0.25 to 0.35 real datasets. In most cases, the characters are evenly distributed. This means that the A, C, G, and T occur at almost the same ratio in the dataset as the frequency of each character, which is approximately 25%. So, if the <italic>min_conf</italic> is set to 0.3, most random patterns will be filtered out, and real patterns occurring more frequently than 25% of the time will survive and be extended.</p>
+      <p>To summarize, we have developed an index-based method, where we need to scan the database only once to mine the surprising contiguous patterns in biological data sequences, which are considered very important in bioinformatics and computational biology. Our aim is not to discover the patterns that occur often but rather to find patterns that are surprising by introducing a new threshold information gain. It has been shown by the experimental results that the proposed approach is very efficient in finding interesting patterns within a reasonable computation cost. For future work, we will try to optimize the proposed approach by considering a variety of environments with different parameters and also consider promoting new measurement parameters, which is very feasible for describing the sequences in a biological substance.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by the National Research Foundation (NRF) grant (No. 2011-0018264) of the Ministry of Education, Science and Technology (MEST) of Korea.</p>
+    </ack>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Blahut</surname>
+              <given-names>RE</given-names>
+            </name>
+          </person-group>
+          <source>Principles and Practice of Information Theory</source>
+          <year>1987</year>
+          <publisher-loc>Reading</publisher-loc>
+          <publisher-name>Addison-Wesley Pub. Co.</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Agrawal</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Srikant</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Fast algorithms for mining association rules</article-title>
+          <source>Proceedings of the 20th International Conference on Very Large Data Bases (VLDB'94)</source>
+          <conf-date>1994 Sep 12-15</conf-date>
+          <conf-loc>Santiago de Chile</conf-loc>
+          <fpage>487</fpage>
+          <lpage>499</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Srikant</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Agrawal</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Mining sequential patterns: generalizations and performance improvements</article-title>
+          <source>Proceeding of 5th International Conference on Extending Database Technology (EDBT'96)</source>
+          <conf-date>1996 Mar 25-29</conf-date>
+          <conf-loc>Avignon</conf-loc>
+          <fpage>3</fpage>
+          <lpage>17</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pei</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Han</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Mortazavi-Asl</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Pinto</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Dayal</surname>
+              <given-names>U</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>PrefixSpan: mining sequential patterns efficiently by prefix-projected pattern growth</article-title>
+          <source>Proceeding of IEEE International Conference on Data Engineering (ICDE'01)</source>
+          <conf-date>2001 Apr 2-6</conf-date>
+          <conf-loc>Heidelberg</conf-loc>
+          <fpage>215</fpage>
+          <lpage>224</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chv&#xE1;tal</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Sankoff</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Longest common subsequences of two random sequences</article-title>
+          <source>J Appl Probab</source>
+          <year>1995</year>
+          <volume>12</volume>
+          <fpage>306</fpage>
+          <lpage>315</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Farach</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimal suffix tree construction with large alphabets</article-title>
+          <source>Proceedings of IEEE Symposium on Foundations of Computer Science (FOCS'97)</source>
+          <conf-date>1997 Oct 20-22</conf-date>
+          <conf-loc>Miami Beach, FL</conf-loc>
+          <fpage>137</fpage>
+          <lpage>143</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hirschberg</surname>
+              <given-names>DS</given-names>
+            </name>
+          </person-group>
+          <article-title>Algorithms for the longest common subsequence problem</article-title>
+          <source>J Assoc Comput Mach</source>
+          <year>1977</year>
+          <volume>24</volume>
+          <fpage>664</fpage>
+          <lpage>675</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McCreight</surname>
+              <given-names>EM</given-names>
+            </name>
+          </person-group>
+          <article-title>A space-economical suffix tree construction algorithm</article-title>
+          <source>J Assoc Comput Mach</source>
+          <year>1976</year>
+          <volume>23</volume>
+          <fpage>262</fpage>
+          <lpage>272</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>PS</given-names>
+            </name>
+          </person-group>
+          <article-title>InfoMiner: Mining Surprising Periodic patterns</article-title>
+          <source>Proceeding of the 7th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD'01)</source>
+          <conf-date>2001 Aug 26-29</conf-date>
+          <conf-loc>San Francisco, CA</conf-loc>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Lu</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Fotouhi</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Liang</surname>
+              <given-names>LR</given-names>
+            </name>
+          </person-group>
+          <article-title>PDC: pattern discovery with confidence in DNA sequences</article-title>
+          <source>Proceeding of the 2nd IASTED International Conference on Advances in Computer Science and Technology (ACST'06)</source>
+          <conf-date>2006 Jan 23-25</conf-date>
+          <conf-loc>Puerto Vallarta</conf-loc>
+          <fpage>345</fpage>
+          <lpage>350</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pan</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Shi</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>Efficient algorithms for mining maximal frequent concatenate sequences in biological datasets</article-title>
+          <source>Proceeding of 5th International Conference on Computer and Information Technology (CIT'05)</source>
+          <conf-date>2005 Sep 21-23</conf-date>
+          <conf-loc>Shanghai</conf-loc>
+          <fpage>98</fpage>
+          <lpage>104</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kang</surname>
+              <given-names>TH</given-names>
+            </name>
+            <name>
+              <surname>Yoo</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>HY</given-names>
+            </name>
+          </person-group>
+          <article-title>Mining frequent contiguous sequence patterns in biological sequences</article-title>
+          <source>Proceedings of 7th IEEE International Conference on Bioinformatics and Bioengineering (BIBE'08)</source>
+          <conf-date>2008 Oct 8-10</conf-date>
+          <conf-loc>Athens</conf-loc>
+          <fpage>723</fpage>
+          <lpage>728</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zerin</surname>
+              <given-names>SF</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>CF</given-names>
+            </name>
+            <name>
+              <surname>Tanbeer</surname>
+              <given-names>SK</given-names>
+            </name>
+            <name>
+              <surname>Jeong</surname>
+              <given-names>BS</given-names>
+            </name>
+          </person-group>
+          <article-title>A fast indexed-based contiguous sequential pattern mining technique in biological data sequences</article-title>
+          <source>Proceeding of 2nd International Conference on Emerging Databases (EBD'10)</source>
+          <conf-date>2010 Aug 30-31</conf-date>
+          <conf-loc>Jeju</conf-loc>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rashid</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Karim</surname>
+              <given-names>MR</given-names>
+            </name>
+            <name>
+              <surname>Hossain</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Jeong</surname>
+              <given-names>BS</given-names>
+            </name>
+          </person-group>
+          <article-title>An efficient approach for mining significant contiguous frequent patterns in biological sequences</article-title>
+          <source>Proceeding of 3rd International Conference on Emerging Databases (EBD'11)</source>
+          <conf-date>2011 Aug 25-27</conf-date>
+          <conf-loc>Incheon</conf-loc>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Fixed length scanning method.</p>
+      </caption>
+      <graphic xlink:href="gni-10-44-g001"/>
+    </fig>
+    <fig id="F2" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Surprising contiguous pattern mining algorithm.</p>
+      </caption>
+      <graphic xlink:href="gni-10-44-g002"/>
+    </fig>
+    <fig id="F3" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Index-based fixed-length spanning tree.</p>
+      </caption>
+      <graphic xlink:href="gni-10-44-g003"/>
+    </fig>
+    <fig id="F4" position="float">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Mining length-4, length-5, length-6, and length-7 surprising patterns.</p>
+      </caption>
+      <graphic xlink:href="gni-10-44-g004"/>
+    </fig>
+    <fig id="F5" position="float">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Memory usage w.r.t. change of sequence length.</p>
+      </caption>
+      <graphic xlink:href="gni-10-44-g005"/>
+    </fig>
+    <fig id="F6" position="float">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Memory usage w.r.t. change of <italic>min_in_gain</italic>.</p>
+      </caption>
+      <graphic xlink:href="gni-10-44-g006"/>
+    </fig>
+    <fig id="F7" position="float">
+      <label>Fig. 7</label>
+      <caption>
+        <p>(A, B) Impact of pattern length in mining time.</p>
+      </caption>
+      <graphic xlink:href="gni-10-44-g007"/>
+    </fig>
+    <fig id="F8" position="float">
+      <label>Fig. 8</label>
+      <caption>
+        <p>(A, B) Impact of information gain threshold on mining time.</p>
+      </caption>
+      <graphic xlink:href="gni-10-44-g008"/>
+    </fig>
+    <fig id="F9" position="float">
+      <label>Fig. 9</label>
+      <caption>
+        <p>(A, B) Impact of confidence threshold on mining time.</p>
+      </caption>
+      <graphic xlink:href="gni-10-44-g009"/>
+    </fig>
+    <table-wrap id="T1" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Example of a DNA sequence database</p>
+      </caption>
+      <graphic xlink:href="gni-10-44-i001"/>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

@@ -1,0 +1,824 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26523131</article-id>
+      <article-id pub-id-type="pmc">4623444</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2015.13.3.76</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Original Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>The Construction of Regulatory Network for Insulin-Mediated Genes by Integrating Methods Based on Transcription Factor Binding Motifs and Gene Expression Variations</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Jung</surname>
+            <given-names>Hyeim</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+          <xref ref-type="author-notes" rid="FN1">#</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Han</surname>
+            <given-names>Seonggyun</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+          <xref ref-type="author-notes" rid="FN1">#</xref>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Sangsoo</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="A1">Department of Bioinformatics and Life Science, Soongsil University, Seoul 06978, Korea.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +82-2-820-0457, Fax: +82-2-824-4383, <email>sskimb@ssu.ac.kr</email></corresp>
+        <fn id="FN1" fn-type="equal">
+          <p><sup>#</sup>These authors contributed equally to this work.</p>
+        </fn>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>9</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>30</day>
+        <month>9</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>13</volume>
+      <issue>3</issue>
+      <fpage>76</fpage>
+      <lpage>80</lpage>
+      <history>
+        <date date-type="received">
+          <day>31</day>
+          <month>7</month>
+          <year>2015</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>15</day>
+          <month>9</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>21</day>
+          <month>9</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2015 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Type 2 diabetes mellitus is a complex metabolic disorder associated with multiple genetic, developmental and environmental factors. The recent advances in gene expression microarray technologies as well as network-based analysis methodologies provide groundbreaking opportunities to study type 2 diabetes mellitus. In the present study, we used previously published gene expression microarray datasets of human skeletal muscle samples collected from 20 insulin sensitive individuals before and after insulin treatment in order to construct insulin-mediated regulatory network. Based on a motif discovery method implemented by iRegulon, a Cytoscape app, we identified 25 candidate regulons, motifs of which were enriched among the promoters of 478 up-regulated genes and 82 down-regulated genes. We then looked for a hierarchical network of the candidate regulators, in such a way that the conditional combination of their expression changes may explain those of their target genes. Using Genomica, a software tool for regulatory network construction, we obtained a hierarchical network of eight regulons that were used to map insulin downstream signaling network. Taken together, the results illustrate the benefits of combining completely different methods such as motif-based regulatory factor discovery and expression level-based construction of regulatory network of their target genes in understanding insulin induced biological processes and signaling pathways.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>network</kwd>
+        <kwd>regulation</kwd>
+        <kwd>regulator</kwd>
+        <kwd>sequence motif</kwd>
+      </kwd-group>
+      <funding-group>
+        <award-group>
+          <funding-source country="KR">Rural Development Administration</funding-source>
+          <award-id>PJ01167402</award-id>
+        </award-group>
+      </funding-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>Insulin resistance is a condition in which tissues, such as skeletal muscle, liver, and adipocytes, fail to respond to insulin, leading to type 2 diabetes mellitus. Because skeletal muscle is the primary tissue of insulin-mediated glucose uptake [<xref rid="B1" ref-type="bibr">1</xref>], it would be important to study the insulin effects on gene expression in skeletal muscle and to identify the insulin-responsive target genes and regulatory genes.</p>
+      <p>DNA microarray techniques have been widely used in biological research by enabling comprehensive understanding of molecular and systematic mechanism [<xref rid="B2" ref-type="bibr">2</xref><xref rid="B3" ref-type="bibr">3</xref>]. In addition, microarray experiments enable researchers to identify gene sets undergoing a response to a specific stimulus as well as to analyze dynamic response at the level of gene regulatory network [<xref rid="B4" ref-type="bibr">4</xref>]. Especially, microarray experiments could be designed to study downstream effects of a specific stimulus or diverse stimuli on gene expression at the level of genomic scale, not a single genetic one [<xref rid="B5" ref-type="bibr">5</xref>]. Microarray techniques could be a power tool to discover regulatory factors as most of co-expressed genes are co-regulated by the same regulatory factors [<xref rid="B6" ref-type="bibr">6</xref>]. Moreover, because genes co-regulated by the same transcription factor (TF) commonly share binding sites for this TF [<xref rid="B6" ref-type="bibr">6</xref>], it would be worth to detect TF based on motif discovery method.</p>
+      <p>Although diverse motif discovery methods have been proposed and refined [<xref rid="B7" ref-type="bibr">7</xref><xref rid="B8" ref-type="bibr">8</xref><xref rid="B9" ref-type="bibr">9</xref><xref rid="B10" ref-type="bibr">10</xref>], most of them are restricted to using human annotated position weight matrices (PWM). On the other hand, iRegulon, a user-friendly Cytoscape plugin, provides approximately nine thousand PWMs that have been collected from various sources and from different species and enable to make regulatory network by linking them to candidate TF [<xref rid="B11" ref-type="bibr">11</xref>]. The other approach for pathway analysis is Genomica [<xref rid="B12" ref-type="bibr">12</xref>], which yields regulatory modules from gene expression based on probabilistic graphical models and Bayesian networks. It has a benefit in directly mirroring expression of their target genes in a specific condition by comparing expressions between regulators and their target genes [<xref rid="B12" ref-type="bibr">12</xref>]. However, this approach requires looping over all regulators, taking too much time in big data.</p>
+      <p>Here, we tried to construct a regulatory network in order to understand the regulation of insulin-response genes. We identified about 560 genes differentially expressed between before and after treatment in insulin sensitive individuals, and found that those genes act for insulin signaling biological process through Gene Ontology (GO) analysis. Furthermore, we report a reliable regulatory network cont-rolling insulin-mediated genes by integrating motif-based approach using iRegulon and expression-based approach using Genomica; thereby present some benefits for the construction.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>Study samples</title>
+        <p>We downloaded and re-analyzed a previous published mRNA expression microarray data set measured on Affymetrix Human Genome U95A Array (Affymetrix, Santa Clara, CA, USA) from the Gene Expression Omnibus (GEO) database (GSE22309) [<xref rid="B5" ref-type="bibr">5</xref>]. This data was measured in human skeletal muscle cell of human individuals: 20 insulin sensitive, 20 insulin resistant, and 15 diabetic patients for before and after insulin treatment. We used only the insulin sensitive group. Total of 12,626 probes were monitored, and we considered genes which are protein-coding gene.</p>
+      </sec>
+      <sec>
+        <title>Insulin-mediated genes</title>
+        <p>To select differential genes before and after insulin treatment in 20 insulin sensitive individuals, we carried out paired t test and calculated gene expression fold change. Using local commands of R program, we selected insulin-responsive genes which were significantly dysregulated at p-value (paired t test) &lt; 0.01 (corresponding to FDR [<xref rid="B13" ref-type="bibr">13</xref>] &#x2264; 0.05) and fold change &gt; 1.2 (<xref ref-type="fig" rid="F1">Fig. 1</xref>). We looked for enriched GO terms of the insulin responsive genes using DAVID Functional Annotation Tool [<xref rid="B14" ref-type="bibr">14</xref>].</p>
+      </sec>
+      <sec>
+        <title>Search for candidate TFs based on regulatory motif and chromatin immunoprecipitation-sequencing</title>
+        <p>The regulatory factors for insulin-responsive genes were searched using the iRegulon app in Cytoscapev3.2.1. iRegulon detects the TFs and their targets by scanning known TF-binding promoter motifs as well as the predicted motifs discovered from the Encyclopedia of DNA Elements (ENCODE) Project chromatin immunoprecipitation-sequencing data. We set 20-kb upstream for the options "Putative regulatory region," "Motif rankings database," and "Track rankings database." Other options were taken as default. We executed iRegulon and looked for TFs for each down and up regulated genes.</p>
+      </sec>
+      <sec>
+        <title>Construction of regulatory networks based on expression value</title>
+        <p>With TFs searched by iRegulon, we tried to construct regulatory network modules which can explain situation of expressions of target genes based on expression level. This construction was carried out using Genomica [<xref rid="B12" ref-type="bibr">12</xref>], which is an analysis and visualization tool for genomic data. Among functions of Genomica, we used the "Create a Module Network." It identifies regulatory network modules from gene expression data based on probabilistic graphical models and Bayesian networks. The options "Max number of modules" and "Min experiments per context" were set at 4.</p>
+      </sec>
+    </sec>
+    <sec sec-type="results">
+      <title>Results</title>
+      <sec>
+        <title>Insulin-targeted gene set</title>
+        <p>The expression data of 20 insulin sensitive individuals downloaded from GEO (GSE22309) were analyzed to find genes controlled by insulin. In addition, the data contain expression values of transcripts before and after insulin treatment for each sample. Among the total of 12,626 probes, we selected about 9,000 genes which are protein-coding gene. With expression of each gene, we carried out paired t test between before and after insulin treatment and calculated fold change. A total of 560 genes were identified by cutoff using t test p-value (p<sub>adj</sub> &lt; 0.05) and fold change (FC &gt; 1.2) in insulin sensitive group (<xref ref-type="fig" rid="F1">Fig. 1</xref>). Furthermore, we looked for enriched GO terms using DAVID functional annotation tool, and several biological process terms of the GO database were searched (p<sub>adj</sub> &lt; 0.05). As the resulting list of terms is redundant, the lists were prunedmanually (<xref ref-type="table" rid="T1">Table 1</xref>). Most of the terms were compatible with insulin response and overlapped to GO terms which have been known from previous studies [<xref rid="B5" ref-type="bibr">5</xref>].</p>
+      </sec>
+      <sec>
+        <title>TF discovery based on motif using iRegulon</title>
+        <p>We tried to discover the regulatory TFs for the insulin-treated gene set using iRegulon in Cytoscape. For each down- and up-regulated gene set, we predicted 25 TFs of the target genes based on motif in upstream 20 kb of the target genes. As shown in <xref ref-type="fig" rid="F2">Fig. 2</xref>, target genes are linked to multiple TFs. A single TF targeted about 138 genes in average.</p>
+      </sec>
+      <sec>
+        <title>Construction of regulatory network using Genomica</title>
+        <p>We tried to explain the expression variations of target genes with those of TFs identified by iRegulon. Firstly, we checked correlation between expression of YY1, which is a predicted TF by iRegulon and known for an insulin signaling gene, and mean of those of target genes. However, the correlation coefficient is rather low (<xref ref-type="fig" rid="F3">Fig. 3</xref>). This prompted us to construct the TF network module to explain the expression variations of target genes using Genomica (<xref ref-type="fig" rid="F4">Fig. 4</xref>). We found most TFs participated in regulatory network constructed by Genomica have been known to have relationships with insulin from previous studies [<xref rid="B15" ref-type="bibr">15</xref><xref rid="B16" ref-type="bibr">16</xref><xref rid="B17" ref-type="bibr">17</xref><xref rid="B18" ref-type="bibr">18</xref><xref rid="B19" ref-type="bibr">19</xref>]. While iRegulon provides a list of potential regulatory TFs ignorant of their expression conditions, Genomica has the power to filter the list by constructing conditional hierarchical regulatory network where the expression variations of the target genes are explained by the expression conditions of the filtered TFs. We describe a more reliable regulatory network controlling insulin-responsive genes by integrating completely different methods for constructing regulatory network.</p>
+      </sec>
+    </sec>
+    <sec sec-type="discussion">
+      <title>Discussion</title>
+      <p>Most genes have networks of interactions for appropriate biological functions. Furthermore, regulators do not act alone. Describing a combination of regulatory genes is important to more accurately explain their target genes and understand biological functions. In this regard, construction of regulatory networks can give an insight in the biological interpretation of differential gene set between normal and complex diseases. In order to understand insulin-responsive system, we tried to construct regulatory network with microarray mRNA expression data monitored before and after insulin treatment in skeletal muscle of insulin sensitive samples. For the construction of a reliable network, we carried out integration of two different methods, one based on TF-binding motif and the other on expression variations. Firstly, we defined insulin-mediated gene set using threshold of t test p-value and expression fold change, about 560 genes among total of 12,626 genes were identified. GO enrichment analysis indicated that the gene set is enriched with the biological process terms related with insulin signaling pathway. Especially, among those GO terms, "response to hormone stimulus" and "trans membrane receptor protein tyrosine kinase signaling pathway" have well known links directly to the insulin [<xref rid="B8" ref-type="bibr">8</xref>]. To understand regulation of those genes made up of the insulin signaling pathway, 25 TFs were predicted by iRegulon, based on the enrichment of TF-binding motif. iRegulon can infer TFs of target genes, and visualize interactions between TFs and target genes with previously known evidences that what TFs bind to a target gene with sequence information. In this case, expression values of target genes are not considered, and this regulatory network cannot explain how those regulators affect expression variation of target genes. We tried to explain expression variation of target genes with those of TFs identified by iRegulon. However, the expression variation of a TF did not resemble those of target genes. It suggests that expression variations of multiple TFs should be considered collectively to understand those of target genes. With the TFs predicted by iRegulon, we constructed a hierarchical regulatory network among them using Genomica, explaining the expression variation of the target genes. As shown <xref ref-type="fig" rid="F4">Fig. 4</xref>, a combination of multiple TFs instead of a single TF explained the expression variations of target genes. For example, MEF2A which is at the top of the regulatory TF network had the largest influence on the expression variations of the target genes, and YY1, the second highest ranking TF, did not influence as much as MEF2A. However, YY1 affects to increase expression of target genes when MEF2A has low expression value. In fact, MEF2A, YY1, SRF, PDX1, and NFATC4 are known for having relationships with insulin [<xref rid="B15" ref-type="bibr">15</xref><xref rid="B16" ref-type="bibr">16</xref><xref rid="B17" ref-type="bibr">17</xref><xref rid="B18" ref-type="bibr">18</xref><xref rid="B19" ref-type="bibr">19</xref>]. Although expression of downstream TFs in the regulatory network is not perfectly fitted to that of their target genes, the construction based on expression data helps to understand more clearly regulatory network of target genes. Altogether, in this paper, we presented a reliable regulatory network controlling insulin-mediated genes as well as the approach integrating two different methods, iRegulon and Genomica, may allow making a reliable regulatory network.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was carried out with the support of "Cooperative Research Program for Agriculture Science &amp; Technology Development (Project No. PJ01167402)", Rural Development Administration, Republic of Korea.</p>
+    </ack>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cline</surname>
+              <given-names>GW</given-names>
+            </name>
+            <name>
+              <surname>Petersen</surname>
+              <given-names>KF</given-names>
+            </name>
+            <name>
+              <surname>Krssak</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Shen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Hundal</surname>
+              <given-names>RS</given-names>
+            </name>
+            <name>
+              <surname>Trajanoski</surname>
+              <given-names>Z</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Impaired glucose transport as a cause of decreased insulin-stimulated muscle glycogen synthesis in type 2 diabetes</article-title>
+          <source>N Engl J Med</source>
+          <year>1999</year>
+          <volume>341</volume>
+          <fpage>240</fpage>
+          <lpage>246</lpage>
+          <pub-id pub-id-type="pmid">10413736</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pollack</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Perou</surname>
+              <given-names>CM</given-names>
+            </name>
+            <name>
+              <surname>Alizadeh</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>Eisen</surname>
+              <given-names>MB</given-names>
+            </name>
+            <name>
+              <surname>Pergamenschikov</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>CF</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-wide analysis of DNA copy-number changes using cDNA microarrays</article-title>
+          <source>Nat Genet</source>
+          <year>1999</year>
+          <volume>23</volume>
+          <fpage>41</fpage>
+          <lpage>46</lpage>
+          <pub-id pub-id-type="pmid">10471496</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krylov</surname>
+              <given-names>AS</given-names>
+            </name>
+            <name>
+              <surname>Zasedateleva</surname>
+              <given-names>OA</given-names>
+            </name>
+            <name>
+              <surname>Prokopenko</surname>
+              <given-names>DV</given-names>
+            </name>
+            <name>
+              <surname>Rouviere-Yaniv</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Mirzabekov</surname>
+              <given-names>AD</given-names>
+            </name>
+          </person-group>
+          <article-title>Massive parallel analysis of the binding specificity of histone-like protein HU to single- and double-stranded DNA with generic oligodeoxyribonucleotide microchips</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2001</year>
+          <volume>29</volume>
+          <fpage>2654</fpage>
+          <lpage>2660</lpage>
+          <pub-id pub-id-type="pmid">11410675</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mutarelli</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Cicatiello</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Ferraro</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Grober</surname>
+              <given-names>OM</given-names>
+            </name>
+            <name>
+              <surname>Ravo</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Facchiano</surname>
+              <given-names>AM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Time-course analysis of genome-wide gene expression data from hormone-responsive human breast cancer cells</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2008</year>
+          <volume>9</volume>
+          <issue>Suppl 2</issue>
+          <fpage>S12</fpage>
+          <pub-id pub-id-type="pmid">18387200</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wu</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Cui</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Maianu</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Rhees</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Rosinski</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The effect of insulin on expression of genes and biochemical pathways in human skeletal muscle</article-title>
+          <source>Endocrine</source>
+          <year>2007</year>
+          <volume>31</volume>
+          <fpage>5</fpage>
+          <lpage>17</lpage>
+          <pub-id pub-id-type="pmid">17709892</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Do</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Choi</surname>
+              <given-names>DK</given-names>
+            </name>
+          </person-group>
+          <article-title>Clustering approaches to identifying gene expression patterns from DNA microarray data</article-title>
+          <source>Mol Cells</source>
+          <year>2008</year>
+          <volume>25</volume>
+          <fpage>279</fpage>
+          <lpage>288</lpage>
+          <pub-id pub-id-type="pmid">18414008</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frith</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Fu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>JF</given-names>
+            </name>
+            <name>
+              <surname>Hansen</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Weng</surname>
+              <given-names>Z</given-names>
+            </name>
+          </person-group>
+          <article-title>Detection of functional DNA motifs via statistical over-representation</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2004</year>
+          <volume>32</volume>
+          <fpage>1372</fpage>
+          <lpage>1381</lpage>
+          <pub-id pub-id-type="pmid">14988425</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wasserman</surname>
+              <given-names>WW</given-names>
+            </name>
+            <name>
+              <surname>Sandelin</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Applied bioinformatics for the identification of regulatory elements</article-title>
+          <source>Nat Rev Genet</source>
+          <year>2004</year>
+          <volume>5</volume>
+          <fpage>276</fpage>
+          <lpage>287</lpage>
+          <pub-id pub-id-type="pmid">15131651</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aerts</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Computational strategies for the genome-wide identification of cis-regulatory elements and transcriptional targets</article-title>
+          <source>Curr Top Dev Biol</source>
+          <year>2012</year>
+          <volume>98</volume>
+          <fpage>121</fpage>
+          <lpage>145</lpage>
+          <pub-id pub-id-type="pmid">22305161</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bulyk</surname>
+              <given-names>ML</given-names>
+            </name>
+          </person-group>
+          <article-title>Computational prediction of transcription-factor binding site locations</article-title>
+          <source>Genome Biol</source>
+          <year>2003</year>
+          <volume>5</volume>
+          <fpage>201</fpage>
+          <pub-id pub-id-type="pmid">14709165</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Janky</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Verfaillie</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Imrichov&#xE1;</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Van de Sande</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Standaert</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Christiaens</surname>
+              <given-names>V</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>iRegulon: from a gene list to a gene regulatory network using large motif and track collections</article-title>
+          <source>PLoS Comput Biol</source>
+          <year>2014</year>
+          <volume>10</volume>
+          <fpage>e1003731</fpage>
+          <pub-id pub-id-type="pmid">25058159</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Segal</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Shapira</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Regev</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Pe'er</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Botstein</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Koller</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Module networks: identifying regulatory modules and their condition-specific regulators from gene expression data</article-title>
+          <source>Nat Genet</source>
+          <year>2003</year>
+          <volume>34</volume>
+          <fpage>166</fpage>
+          <lpage>176</lpage>
+          <pub-id pub-id-type="pmid">12740579</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Benjamini</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Hochberg</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Controlling the false discovery rate: a practical and powerful approach to multiple testing</article-title>
+          <source>J R Stat Soc Series B Methodol</source>
+          <year>1995</year>
+          <volume>57</volume>
+          <fpage>289</fpage>
+          <lpage>300</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Huang da</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Sherman</surname>
+              <given-names>BT</given-names>
+            </name>
+            <name>
+              <surname>Lempicki</surname>
+              <given-names>RA</given-names>
+            </name>
+          </person-group>
+          <article-title>Systematic and integrative analysis of large gene lists using DAVID bioinformatics resources</article-title>
+          <source>Nat Protoc</source>
+          <year>2009</year>
+          <volume>4</volume>
+          <fpage>44</fpage>
+          <lpage>57</lpage>
+          <pub-id pub-id-type="pmid">19131956</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mora</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Pessin</surname>
+              <given-names>JE</given-names>
+            </name>
+          </person-group>
+          <article-title>The MEF2A isoform is required for striated muscle-specific expression of the insulin-responsive GLUT4 glucose transporter</article-title>
+          <source>J Biol Chem</source>
+          <year>2000</year>
+          <volume>275</volume>
+          <fpage>16323</fpage>
+          <lpage>16328</lpage>
+          <pub-id pub-id-type="pmid">10748204</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Verdeguer</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Blattler</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Cunningham</surname>
+              <given-names>JT</given-names>
+            </name>
+            <name>
+              <surname>Hall</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Chim</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Puigserver</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>Decreased genetic dosage of hepatic Yin Yang 1 causes diabetic-like symptoms</article-title>
+          <source>Mol Endocrinol</source>
+          <year>2014</year>
+          <volume>28</volume>
+          <fpage>308</fpage>
+          <lpage>316</lpage>
+          <pub-id pub-id-type="pmid">24467246</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jin</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Goldfine</surname>
+              <given-names>AB</given-names>
+            </name>
+            <name>
+              <surname>Boes</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Henry</surname>
+              <given-names>RR</given-names>
+            </name>
+            <name>
+              <surname>Ciaraldi</surname>
+              <given-names>TP</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>EY</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Increased SRF transcriptional activity in human and mouse skeletal muscle is a signature of insulin resistance</article-title>
+          <source>J Clin Invest</source>
+          <year>2011</year>
+          <volume>121</volume>
+          <fpage>918</fpage>
+          <lpage>929</lpage>
+          <pub-id pub-id-type="pmid">21393865</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stoffel</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Stein</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Wright</surname>
+              <given-names>CV</given-names>
+            </name>
+            <name>
+              <surname>Espinosa</surname>
+              <given-names>R</given-names>
+              <suffix>3rd</suffix>
+            </name>
+            <name>
+              <surname>Le Beau</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Bell</surname>
+              <given-names>GI</given-names>
+            </name>
+          </person-group>
+          <article-title>Localization of human homeodomain transcription factor insulin promoter factor 1 (IPF1) to chromosome band 13q12.1</article-title>
+          <source>Genomics</source>
+          <year>1995</year>
+          <volume>28</volume>
+          <fpage>125</fpage>
+          <lpage>126</lpage>
+          <pub-id pub-id-type="pmid">7590740</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B19">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>TT</given-names>
+            </name>
+            <name>
+              <surname>Suk</surname>
+              <given-names>HY</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Olabisi</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>RY</given-names>
+            </name>
+            <name>
+              <surname>Durand</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Role of transcription factor NFAT in glucose and insulin homeostasis</article-title>
+          <source>Mol Cell Biol</source>
+          <year>2006</year>
+          <volume>26</volume>
+          <fpage>7372</fpage>
+          <lpage>7387</lpage>
+          <pub-id pub-id-type="pmid">16908540</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <title>The volcano plot showing the transcriptional changes between before and after insulin treatment. The -log<sub>10</sub>(p-value) of paired t test and log<sub>2</sub> gene expression fold changes between before and after the treatment in insulin sensitive individuals were plotted on the x- and y-axis, respectively. The genes colored by cyan are selected using the threshold of t test -log<sub>10</sub>(p-value) and log<sub>2</sub>(FC) of fold change [-log<sub>10</sub>(p-value) &lt; 2 (corresponding to FDR<sup>19</sup> &#x2264; 0.05) and log<sub>2</sub>(FC) &gt; 0.2630344]. FC, fold change.</title>
+      </caption>
+      <graphic xlink:href="gni-13-76-g001"/>
+    </fig>
+    <fig id="F2" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <title>A representative regulatory network using iRegulon in Cytoscape. The node with purple and green represent the up-regulated genes after insulin treatment and their predicted regulators (MEF2A, YY1, and SRF), respectively. Genes linked to two or three regulators may be regulated by those multiple regulators. The target genes for each transcription factor are portrayed by different edge colors.</title>
+      </caption>
+      <graphic xlink:href="gni-13-76-g002"/>
+    </fig>
+    <fig id="F3" orientation="portrait" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <title>The expression variations of a regulator YY1 and its target genes. For each individuals, the expressions of the up-regulated target genes by insulin treatment were averaged and plotted on y-axis, and those of YY1 were plotted on x-axis. The expressions of YY1 do not resemble those of their target genes (correlation coefficient=-0.5878721).</title>
+      </caption>
+      <graphic xlink:href="gni-13-76-g003"/>
+    </fig>
+    <fig id="F4" orientation="portrait" position="float">
+      <label>Fig. 4</label>
+      <caption>
+        <title>The regulatory network, upper section is a dendrogram for regulators' expression and bottom section is a heat map for target genes' expression, generated using Genomica, based on expression profiling. The upper part of the figure represents a dendrogram for a combination of regulators and their expressions for each individual. The lower part shows a heat map for the expression profiling of up-regulated target genes by insulin treatment (row and column indicate genes and individuals, respectively).</title>
+      </caption>
+      <graphic xlink:href="gni-13-76-g004"/>
+    </fig>
+    <table-wrap id="T1" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>The enriched GO terms of insulin-responsive genes</p>
+      </caption>
+      <graphic xlink:href="gni-13-76-i001"/>
+      <table-wrap-foot>
+        <fn>
+          <p>GO, Gene Ontology.</p>
+          <p><sup>a</sup>The biological process terms of GO database.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

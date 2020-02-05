@@ -1,0 +1,360 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">23346041</article-id>
+      <article-id pub-id-type="pmc">3543929</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2012.10.4.266</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Application Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Developing JSequitur to Study the Hierarchical Structure of Biological Sequences in a Grammatical Inference Framework of String Compression Algorithms</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Galbadrakh</surname>
+            <given-names>Bulgan</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lee</surname>
+            <given-names>Kyung-Eun</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Park</surname>
+            <given-names>Hyun-Seok</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="A1">Department of Computer Science, Ewha Womans University, Seoul 120-750, Korea.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +82-2-3277-2831, Fax: +82-2-3277-2306, <email>neo@ewha.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2012</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>31</day>
+        <month>12</month>
+        <year>2012</year>
+      </pub-date>
+      <volume>10</volume>
+      <issue>4</issue>
+      <fpage>266</fpage>
+      <lpage>270</lpage>
+      <history>
+        <date date-type="received">
+          <day>01</day>
+          <month>11</month>
+          <year>2012</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>14</day>
+          <month>11</month>
+          <year>2012</year>
+        </date>
+        <date date-type="accepted">
+          <day>16</day>
+          <month>11</month>
+          <year>2012</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2012 by The Korea Genome Organization</copyright-statement>
+        <copyright-year>2012</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">http://creativecommons.org/licenses/by-nc/3.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Grammatical inference methods are expected to find grammatical structures hidden in biological sequences. One hopes that studies of grammar serve as an appropriate tool for theory formation. Thus, we have developed JSequitur for automatically generating the grammatical structure of biological sequences in an inference framework of string compression algorithms. Our original motivation was to find any grammatical traits of several cancer genes that can be detected by string compression algorithms. Through this research, we could not find any meaningful unique traits of the cancer genes yet, but we could observe some interesting traits in regards to the relationship among gene length, similarity of sequences, the patterns of the generated grammar, and compression rate.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>context-free grammar</kwd>
+        <kwd>formal language theory</kwd>
+        <kwd>natural language processing</kwd>
+        <kwd>stochastic modeling</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>In formal language theory a language is simply a set of strings of characters drawn from some alphabet, where the alphabet (terminal) is a set of symbols. When we consider biological sequences simply as a language in the context of formal language theory (treating DNA, RNA, or protein sequences just as strings of alphabets of four nucleotides or 20 amino acids), a grammatical inference method based on formal language theory can be applied [<xref ref-type="bibr" rid="B1">1</xref>-<xref ref-type="bibr" rid="B3">3</xref>].</p>
+      <p>Nevill-Manning and Witten [<xref ref-type="bibr" rid="B4">4</xref>] pioneered the attempt to produce the context-free grammarof biological sequences in an automatic way. This task can be formalized as the problem of finding the smallest context-free grammar by recursively replacing the repeats by a new symbol. The algorithm builds a hierarchy of phrases by forming a new rule out of existing pairs of symbols, including non-terminal symbols.</p>
+      <p>For example, if we consider the string "atattattatt," the simplest way to represent the string by context-free grammar is the following:</p>
+      <p>
+<list list-type="simple"><list-item><p>&lt;Grammar 0&gt;</p></list-item><list-item><p>S &#x2192; atattattatt</p></list-item></list>
+</p>
+      <p>The most frequently occurring sequence in the string is "at," which occurs four times. Thus, introducing a new nonterminal symbol, 'A,' and creating a new rule for this yields the following modified grammar:</p>
+      <p>
+<list list-type="simple"><list-item><p>&lt;Grammar 1&gt;</p></list-item><list-item><p>S &#x2192; AAtAtAt</p></list-item><list-item><p>A &#x2192; at,</p></list-item></list>
+</p>
+      <p>where the grammar consists of a start symbol (i.e., S), two terminal symbols (i.e., a, t) represented by lowercase letters, two non-terminal symbols (i.e., S, A) represented by uppercase letters, and two production rules (i.e., S &#x2192; AAtAtAt, A &#x2192; at) with a left- and a right-hand side consisting of a sequence of these symbols.</p>
+      <p>Repeatedly replacing the frequently occurring patterns "At," again to a new nonterminal symbol, B, gives the following modified grammar:</p>
+      <p>
+<list list-type="simple"><list-item><p>&lt;Grammar 2&gt;</p></list-item><list-item><p>S &#x2192; ABBB</p></list-item><list-item><p>A &#x2192; at</p></list-item><list-item><p>B&#x2192; At,</p></list-item></list>
+</p>
+      <p>where the grammar consists of a start symbol (i.e., S), two terminal symbols (i.e., a, t), three non-terminal symbols (i.e., S, A, B), and three production rules (i.e., S &#x2192; ABBB, A &#x2192; at, B &#x2192; At).</p>
+      <p>By applying the three production rules by replacing an occurrence of the nonterminals on the left-hand side of the production rule with those that appear on the right-hand side, the string "atattattatt" can be derived from the non-terminal S by constantly applying a series of derivations: S &#x2192; ABBB &#x2192; atBBB &#x2192; atAtBB &#x2192; atattBB &#x2192; atattAtB &#x2192; atattattB &#x2192; atattattAt &#x2192; atattattatt.</p>
+      <p>Based on this concept, grammar-based compression algorithms have shown some success for various applications [<xref ref-type="bibr" rid="B4">4</xref>-<xref ref-type="bibr" rid="B7">7</xref>]. Especially, grammar can capture distant repetitions occurring far apart, which was a limitation of sliding window approaches. However, grammar-based compression algorithms at this moment do not show the best performance for compression itself [<xref ref-type="bibr" rid="B6">6</xref>]. Thus, our motivation of this study is not to develop a new algorithm or find the most efficient way to compress biological sequences for storage purposes. Our sole purpose of developing a new tool is to investigate any grammatical traits of biological sequences, based on formal language theory.</p>
+    </sec>
+    <sec>
+      <title>Implementation</title>
+      <p>We have developed a slightly modified version of Sequitur [<xref ref-type="bibr" rid="B4">4</xref>] called JSequitur for automatically creating hierarchical structures of sequences [<xref ref-type="bibr" rid="B8">8</xref>], as in <xref ref-type="fig" rid="F1">Fig. 1</xref>. Our main contribution is to improve Sequitur to work better in a graphic user interface (GUI) environment, as our main interest was in studying the generated grammar, rather than enhancing the compression rate itself. JSequitur is implemented in Java and organized into six classes, as in <xref ref-type="fig" rid="F2">Fig. 2</xref>: Sequitur, Symbol, Guard, Terminal, Nonterminal, and Rule. Sequitur class is called first and connects with all of the other classes. Symbol class is the connecter class, which streams sequences of input to the system. Rule class accesses Terminal and NonTerminal classes in order to create rules. Guard class, which is based on digram uniqueness, is responsible for rule confirmation.</p>
+      <p>Thus, our string compression algorithm operates by reading in a new symbol and processing it by appending it to the top-level string and then examining the last symbols of that string; it then applies zero or more of the following transformations until none applies anywhere in the grammar; it then repeats the cycle by reading in a new symbol.</p>
+      <p>The following production rules, which have been created automatically, are an exemplary output of applying JSequitur to the partial sequence of the <italic>TERT</italic> gene (175 bp, "gcccccgggtgtccctgtcacgtgcagggtgagtgaggcgcggtccccgggtgtc cctgtcacgtgcagggtgagtgaggcgcggtccccgggtgtccctgtcacgtgcag ggtgagtgaggcgcggtcccc"):</p>
+      <p>
+<list list-type="simple"><list-item><p>R0 &#x2192; g R1 R2 R3 R4 R5 R6 R7 R6 R8 R5 R9 R1 R3 R4 R10 R11 g a R4 a R12 R13 R14 R7 R15 R8 R16 R10 R14 c</p></list-item><list-item><p>R1 &#x2192; c c</p></list-item><list-item><p>R2 &#x2192; R1 c</p></list-item><list-item><p>R3 &#x2192; R11 R17 R2 R18</p></list-item><list-item><p>R4 &#x2192; R17 g</p></list-item><list-item><p>R5 &#x2192; R16 R13 R19</p></list-item><list-item><p>R6 &#x2192; t R2</p></list-item><list-item><p>R7 &#x2192; R19 R4</p></list-item><list-item><p>R8 &#x2192; R18 R4</p></list-item><list-item><p>R9 &#x2192; t R1</p></list-item><list-item><p>R10 &#x2192; a a</p></list-item><list-item><p>R11 &#x2192; R12 R17</p></list-item><list-item><p>R12 &#x2192; g g</p></list-item><list-item><p>R13 &#x2192; c g</p></list-item><list-item><p>R14 &#x2192; R19 R15</p></list-item><list-item><p>R15 &#x2192; R9 c</p></list-item><list-item><p>R16 &#x2192; R10 R11 g a R4 a R12</p></list-item><list-item><p>R17 &#x2192; g t</p></list-item><list-item><p>R18 &#x2192; t R17 R10 c</p></list-item><list-item><p>R19 &#x2192; R13 g,</p></list-item></list>
+</p>
+      <p>where the grammar consists of a start symbol (i.e., R0), four terminal symbols (i.e., a, t, g, c), 20 non-terminal symbols (i.e., R0-R19), and 20 production rules for each nonterminal. In summary, the partial sequence of 175 bp of the <italic>TERT</italic> gene could be compressed to 37 symbols with 20 rules.</p>
+      <p>For testing purposes, 104 cancerous genes from 6 cancer types (bladder, breast, endometrial, leukemia, lung, and melanoma) were initially chosen, and JSequitur was applied. <xref ref-type="table" rid="T1">Table 1</xref> shows the result of applying one of the string compression algorithms of JSequitur to these genes.</p>
+      <p>The rule column in <xref ref-type="table" rid="T1">Table 1</xref> shows the number of generated rules from the context-free grammar, while the ratio column shows the ratios of the compressed sequences vs. the original sequences.</p>
+      <p><xref ref-type="fig" rid="F3">Fig. 3</xref> is a sorted diagram in the order of the length of the original sequence. In this specific case, it shows that the length of the original sequence influences the compression rate of the target sequence, even though there are many other factors that influence compression rate. For example, compression rate can also be influenced by the algorithm itself, depending on whether we replace the longest pattern first or the most frequently occurring pattern first.</p>
+      <p>We also compared some mouse genes to find any homologous traits in regards to compression rate and hierarchical structure of the grammar. For example, we compared human <italic>MUC1</italic> (<italic>Homo sapiens</italic>, 5,279 bp) with mouse <italic>MUC1</italic> (<italic>Mus musculus</italic>, 5,614 bp), and the compression rates for these two sequences were 0.180 and 0.195, respectively. For the <italic>ARHA</italic> genes, the compression rate for human <italic>ARHA</italic> (68,833 bp) was 0.140, whereas that for mouse <italic>ARHA</italic> (41,255 bp) was 0.157. Thus, the distance on the evolutionary tree can be measured by compression algorithms, to a certain extent.</p>
+    </sec>
+    <sec>
+      <title>Conclusion and Future Direction</title>
+      <p>We have developed a GUI-based JSequitur, based on string compression algorithms, to examine grammatical traits of biological sequences. On top of compression capacity, a string compression algorithm is appealing for studying biological sequences, because it can give insights into the structure of these sequences. Precisely constructed models for linguistic structure can play a vital role in the process of discovery itself.</p>
+      <p>We also applied JSequitur to analyze 104 cancer genes for testing purposes only. Even though there are some interesting results in regards to the relationship among gene length, similarity of sequences, the patterns of the generated grammar, and compression rate, our test samples were too small to conclude anything. Thus, our result should be regarded as preliminary for future research. We should consider various factors other than grammatical structures and compression rates.</p>
+      <p>As our main purpose of developing the tool was to examine any grammatical traits of biological sequences, the graphical user interface was important for a semiautomatic screening process. However, we still need to implement various features to compare gene structures to summarize statistics in regards to grammatical structures and to combine evolutionary trees. Hopefully, these features will be implemented in the next version of JSequitur. We also hope to enhance the algorithm more elaborately to handle reversal, translocation, and shuffling.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sakakibara</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Grammatical inference in bioinformatics</article-title>
+          <source>IEEE Trans Pattern Anal Mach Intell</source>
+          <year>2005</year>
+          <volume>27</volume>
+          <fpage>1051</fpage>
+          <lpage>1062</lpage>
+          <pub-id pub-id-type="pmid">16013753</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Coste</surname>
+              <given-names>F</given-names>
+            </name>
+          </person-group>
+          <article-title>Modelling biological sequences by grammatical inference</article-title>
+          <source>ICGI 2010 Tutorial Day</source>
+          <year>2010</year>
+          <date-in-citation>Accessed 2012 Nov 1</date-in-citation>
+          <publisher-loc>Valencia</publisher-loc>
+          <publisher-name>International Conference on Grammatical Inference</publisher-name>
+          <comment>Available from: <ext-link ext-link-type="uri" xlink:href="http://www.irisa.fr/symbiose/people/fcoste/pub/biblio_tutoICGI2010_coste.pdf">http://www.irisa.fr/symbiose/people/fcoste/pub/biblio_tutoICGI2010_coste.pdf</ext-link></comment>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Park</surname>
+              <given-names>HS</given-names>
+            </name>
+            <name>
+              <surname>Galbadrakh</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>YM</given-names>
+            </name>
+          </person-group>
+          <article-title>Recent progresses in the linguistic modeling of biological sequences based on formal language theory</article-title>
+          <source>Genomics Inform</source>
+          <year>2011</year>
+          <volume>9</volume>
+          <fpage>5</fpage>
+          <lpage>11</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nevill-Manning</surname>
+              <given-names>CG</given-names>
+            </name>
+            <name>
+              <surname>Witten</surname>
+              <given-names>IH</given-names>
+            </name>
+          </person-group>
+          <article-title>Compression and explanation using hierarchical grammars</article-title>
+          <source>Comput J</source>
+          <year>1997</year>
+          <volume>40</volume>
+          <fpage>103</fpage>
+          <lpage>116</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="confproc">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lanctot</surname>
+              <given-names>JK</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <article-title>Estimating DNA sequence entropy</article-title>
+          <source>Proceedings of the 11th ACM-SIAM Symposium on Discrete Algorithms</source>
+          <year>2000</year>
+          <conf-date>2000 Jan 9-11</conf-date>
+          <conf-loc>San Franciscon, CA</conf-loc>
+          <publisher-loc>Philadelphia</publisher-loc>
+          <publisher-name>Society for Industrial and Applied Mathematics</publisher-name>
+          <fpage>409</fpage>
+          <lpage>418</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cherniavsky</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Ladner</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Grammar-based compression of DNA sequences. UW CSE Technical Report (TR2007-05-02)</article-title>
+          <source>DIMACS Working Group on the Burrows-Wheeler Transfrom</source>
+          <year>2004</year>
+          <month>8</month>
+          <day>19-20</day>
+          <publisher-loc>Piscataway, NJ</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carrascosa</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Coste</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Gall&#xE9;</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Infante-Lopez</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>Searching for smallest grammars on large sequences and application to DNA</article-title>
+          <source>J Discrete Algorithms</source>
+          <year>2012</year>
+          <volume>11</volume>
+          <fpage>62</fpage>
+          <lpage>72</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Galbadrakh</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <source>Identifying hierarchical structure in biological sequences based on context-free grammars</source>
+          <year>2011</year>
+          <publisher-loc>Seoul</publisher-loc>
+          <publisher-name>Ewha Womans University</publisher-name>
+          <comment>M.S. Thesis</comment>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>User interface of JSequitur program.</p>
+      </caption>
+      <graphic xlink:href="gni-10-266-g001"/>
+    </fig>
+    <fig id="F2" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>JSequitur class diagram.</p>
+      </caption>
+      <graphic xlink:href="gni-10-266-g002"/>
+    </fig>
+    <fig id="F3" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Compression rates in relation to gene length.</p>
+      </caption>
+      <graphic xlink:href="gni-10-266-g003"/>
+    </fig>
+    <table-wrap id="T1" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>One hundred four genes and their compression rates</p>
+      </caption>
+      <graphic xlink:href="gni-10-266-i001"/>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

@@ -1,0 +1,1407 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">28416946</article-id>
+      <article-id pub-id-type="pmc">5389944</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2017.15.1.19</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Original Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Use of Graph Database for the Integration of Heterogeneous Biological Data</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Yoon</surname>
+            <given-names>Byoung-Ha</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+          <xref ref-type="aff" rid="A2">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Seon-Kyu</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Seon-Young</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+          <xref ref-type="aff" rid="A2">2</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="A1"><label>1</label>Personalized Genomic Medicine Research Center, Korea Research Institute of Bioscience and Biotechnology (KRIBB), Daejeon 34141, Korea.</aff>
+      <aff id="A2"><label>2</label>Department of Functional Genomics, University of Science and Technology (UST), Daejeon 34113, Korea.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +82-42-879-8116, Fax: +82-42-879-8119, <email>kimsy@kribb.re.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>3</month>
+        <year>2017</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>29</day>
+        <month>3</month>
+        <year>2017</year>
+      </pub-date>
+      <volume>15</volume>
+      <issue>1</issue>
+      <fpage>19</fpage>
+      <lpage>27</lpage>
+      <history>
+        <date date-type="received">
+          <day>29</day>
+          <month>11</month>
+          <year>2016</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>02</day>
+          <month>2</month>
+          <year>2017</year>
+        </date>
+        <date date-type="accepted">
+          <day>02</day>
+          <month>2</month>
+          <year>2017</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2017 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2017</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Understanding complex relationships among heterogeneous biological data is one of the fundamental goals in biology. In most cases, diverse biological data are stored in relational databases, such as MySQL and Oracle, which store data in multiple tables and then infer relationships by multiple-join statements. Recently, a new type of database, called the graph-based database, was developed to natively represent various kinds of complex relationships, and it is widely used among computer science communities and IT industries. Here, we demonstrate the feasibility of using a graph-based database for complex biological relationships by comparing the performance between MySQL and Neo4j, one of the most widely used graph databases. We collected various biological data (protein-protein interaction, drug-target, gene-disease, etc.) from several existing sources, removed duplicate and redundant data, and finally constructed a graph database containing 114,550 nodes and 82,674,321 relationships. When we tested the query execution performance of MySQL versus Neo4j, we found that Neo4j outperformed MySQL in all cases. While Neo4j exhibited a very fast response for various queries, MySQL exhibited latent or unfinished responses for complex queries with multiple-join statements. These results show that using graph-based databases, such as Neo4j, is an efficient way to store complex biological relationships. Moreover, querying a graph database in diverse ways has the potential to reveal novel relationships among heterogeneous biological data.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>biological network</kwd>
+        <kwd>data mining</kwd>
+        <kwd>graph database</kwd>
+        <kwd>heterogeneous biological data</kwd>
+        <kwd>Neo4j</kwd>
+        <kwd>query performance</kwd>
+      </kwd-group>
+      <funding-group>
+        <award-group>
+          <funding-source country="KR">
+            <institution-wrap>
+              <institution>National Research Foundation of Korea</institution>
+              <institution-id institution-id-type="CrossRef">http://dx.doi.org/10.13039/501100003725</institution-id>
+            </institution-wrap>
+          </funding-source>
+          <award-id>NRF-2012M3A9D1054670</award-id>
+          <award-id>NRF-2014M3C9A3068554</award-id>
+        </award-group>
+      </funding-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>The rapid development of experimental and analytical techniques has provided various kinds of information on biological components (cell, tissue, disease, gene, protein, drug response, and pathway, etc.) and their functions. Although information on individual biological components has important meaning, biological characteristics result mainly from complex interactions among various biological components [<xref rid="B1" ref-type="bibr">1</xref><xref rid="B2" ref-type="bibr">2</xref><xref rid="B3" ref-type="bibr">3</xref><xref rid="B4" ref-type="bibr">4</xref><xref rid="B5" ref-type="bibr">5</xref><xref rid="B6" ref-type="bibr">6</xref>]. So, one of the fundamental aims in biology is to understand complex relationships among heterogeneous biological data that contribute to the functions of a living cell. However, finding these interactions among heterogeneous biological data is very difficult due to the complex relationships between them. For example, many disorders are caused by multiple genetic variants, which may affect pleiotropic genes, and are influenced by various environmental factors.</p>
+      <p>To overcome this hurdle, various approaches have been developed to reveal the fundamental mechanisms that control dynamic cell organization by analyzing biological networks [<xref rid="B7" ref-type="bibr">7</xref><xref rid="B8" ref-type="bibr">8</xref><xref rid="B9" ref-type="bibr">9</xref>]. However, for efficient biological network analyses, traditional relational database systems, such as MySQL and Oracle, may be limited, because traditional relational databases store data in multiple tables and then infer relationships by applying multiple-join statements. Although biological network data can be stored in a traditional relational database, join queries, which connect tables linked by various relationships, become too computationally expensive and complex to design as more complex join operations are performed [<xref rid="B10" ref-type="bibr">10</xref>].</p>
+      <p>A graph database is a database that uses a graph structure. This database uses nodes (biological entities) and edges (relationships) to represent and store data. Each node represents an entity (such as a biological entity), and each edge represents a connection or relationship between two nodes. The key concept of this system is a graph structure (organized by nodes and edges) for connections among the stored data. The graph database is more expressive and significantly simpler than traditional relational databases and other NoSQL databases and is very useful for situations with heavily interconnected data [<xref rid="B11" ref-type="bibr">11</xref>]. Especially, the graph database is specialized to represent all of the relationships among large-scale data and is useful for managing deeply linked data. Nowadays, graph databases are widely used in many fields, including computer science and social and technological network analyses.</p>
+      <p>In the biological community, several researchers have begun to adopt the graph database for biological network analyses. For example, Lysenko et al. [<xref rid="B10" ref-type="bibr">10</xref>] showed that the graph database can effectively store and represent disease networks and is a suitable structure to establish for various hypotheses. Henkel et al. [<xref rid="B12" ref-type="bibr">12</xref>] showed that the graph database is a useful tool for effectively storing heterogeneous data and establishing various models. Mullen et al. [<xref rid="B13" ref-type="bibr">13</xref>] showed that the graph database can find novel usage (that is, drug repositioning) through the traversing of various relationships between a gene and disease. Balaur et al. [<xref rid="B14" ref-type="bibr">14</xref>] showed that the graph database is effective in investigating correlation between genetic and epigenetic factors in genetic and epigenetic data of colon cancer.</p>
+      <p>In this work, we set up a graph database and tested its performance in storing and retrieving heterogeneous and complex biological networks. We used Neo4j (<ext-link ext-link-type="uri" xlink:href="http://neo4j.com/">http://neo4j.com/</ext-link>), one of the most frequently used graph databases, and compared its performance with MySQL (<ext-link ext-link-type="uri" xlink:href="https://www.mysql.com/">https://www.mysql.com/</ext-link>) in diverse situations. We found that Neo4j is superior to MySQL in querying complex relationships among heterogeneous data.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>Selection of graph database engine</title>
+        <p>Among the many graph databases available, we chose Neo4j, an open-source graph database based on Java, for our primary graph database, owing to several advantages. Its major advantages include (1) the use of a graph model of relationships for intuitive information searches; (2) stability by providing full ACID (Access, Create, Insert, Delete) transaction; (3) flexible extension above billions of nodes, relationships, and properties; (4) use of Java, which is easy to maintain and is applicable to diverse operating systems (OSs); and (5) easy-to-use API based on the REST interface and Java API [<xref rid="B15" ref-type="bibr">15</xref>].</p>
+      </sec>
+      <sec>
+        <title>Hardware setup and optimization of the Neo4j graph DB</title>
+        <p>We set up a high-performance computer server (80 CPUs and 1 TB RAM) for the graph database to support the storage and analysis of billions of different biological networks and relationships. Also, we optimized the server by performance tuning of the installed Neo4j (<xref ref-type="table" rid="T1">Table 1</xref>) following the Neo4j operations manual [<xref rid="B16" ref-type="bibr">16</xref>]. The performance tuning included the following three steps (<xref ref-type="fig" rid="F1">Fig. 1</xref>).</p>
+        <sec>
+          <title>Memory configuration</title>
+          <p>The performance of Neo4j for a data search depends on the available memory to hold the entire graph database [<xref rid="B17" ref-type="bibr">17</xref>]. If less memory is used than what the constructed graph database requires, a swap between the memory and hard disk should occur, but frequent swaps between memory and hard disk inevitably slow down the search speed. Thus, large memory is needed and should also be set up for Neo4j for full usage of the system memory. The memory configuration includes three steps: (1) OS memory sizing, (2) page cache memory sizing, and (3) heap memory sizing.</p>
+        </sec>
+        <sec>
+          <title>OS memory sizing</title>
+          <p>The OS memory size is as follows:</p>
+          <p>OS memory = 1 GB + (Size of graph.db/index) + (Size of graph.db/schema).</p>
+          <p>Thus, we allocated 768 GB of memory to page cache memory and heap memory according to the DB file size. According to the Neo4j document:</p>
+          <p>Actual OS allocation = Available RAM &#x2212; (Page cache + Heap size).</p>
+          <p>We allocated 100 GB for system memory and the rest to page cache and heap size.</p>
+        </sec>
+        <sec>
+          <title>Page cache sizing</title>
+          <p>Page cache is used when accessing Neo4j data stored on a hard disk. When the size of the entire data is larger than the page cache memory, a swap occurs, frequently resulting in high disk access cost and reduced performance. A basic option is to allocate 4 GB of memory based on the size of the graph DB data directory size (NEO4J_HOME/data/graph.db/neostore.\<sup>*</sup>.db). However, as our current data are larger than 10 GB, we resized the dbms.memory.pagecache.size parameter to above 200 GB.</p>
+        </sec>
+        <sec>
+          <title>Heap sizing</title>
+          <p>Based on Java, Neo4j can use more memory as heap memory in a Java Virtual Machine (JVM) is increased. Because more heap memory increases the performance greatly, we allocated 300 GB of memory to heap sizing. Thus, we set the dbms.memory.heap.initial_size parameter from 8 GB to 300 GB and the dbms.memory.heap.max_size parameter from 8 GB to 300 GB.</p>
+        </sec>
+        <sec>
+          <title>Disk access configuration</title>
+          <p>Logical transaction logs can occur in system and data recovery after an unexpected system shutdown. They are also used for backup at online status. These transaction log files are renewed when their size exceeds a pre-defined size (default 25 MB). Because these processes also affect system performance, we optimized the parameters. The open file limit of most LINUX servers is 1,024. However, because Neo4j stores data as numerous index files, it frequently accesses many files. Thus, we changed the open file limit to 400,000.</p>
+        </sec>
+      </sec>
+      <sec>
+        <title>Hardware setup and optimization of the MySQL DB</title>
+        <p>We optimized the server through performance tuning of the installed MySQL following the MySQL operations manual. The performance tuning included the following two steps: (1) storage engine and (2) parameters of the MySQL environment.</p>
+        <sec>
+          <title>Storage engine</title>
+          <p>MySQL has a variety of storage engines, each with its own characteristics. We chose InnoDB among them. MyISAM, a simple and fast feature, was a strong candidate, but MyISAM does not guarantee data integrity. In addition, table locking occurs frequently when more than 5 million data are processed in the indexed state, thereby deteriorating the retrieval performance. Although InnoDB is slightly slower than MyISAM, InnoDB guarantees data integrity by supporting transactions. InnoDB loads indexes and data into memory for retrieval processing, so allocating more memory improves performance.</p>
+        </sec>
+        <sec>
+          <title>Parameters of MySQL server</title>
+          <sec>
+            <title>Optimization of Disk I/O</title>
+            <p>Disk searching is a huge performance bottleneck. This problem becomes more apparent when the amount of data becomes too large to effectively cache it. To overcome this problem, use disks with low seek times. Table data are cached in the InnoDB buffer pool, and we optimized the innodb_buffer_pool_size parameter from default to 800 Gb (50% to 75% of system memory). To optimize the maximum size of internal in-memory temporary tables, we set the tmp_table_size and max_heap_table_size parameter from default to 64 Gb. To avoid degradation in the performance of InnoDB, use direct I/O for InnoDB-related files (innodb_flush_method = O_DIRECT). To optimize the log file I/O, we set the innodb_log_file_size parameter from default to 120 Gb (15% of innodb_b uffer_pool_size).</p>
+          </sec>
+          <sec>
+            <title>Optimization of memory use</title>
+            <p>MySQL allocates buffers and cache to improve the performance of database operations. The default setting is designed to start the MySQL server on a virtual machine with approximately 512 MB of RAM. So, we improved the performance of MySQL by optimizing the values of certain cache- and buffer-related system variables. To optimize the size of the buffer used for index blocks, we set the key_buffer_size parameter from default to 250 Gb (25% of system memory). The table_open_cache parameter is the number of open tables for all threads. We set this parameter from default to 524,288 (maximum allowed value). The join_buffer_size and sort_buffer_size parameters were set from default to 4 Gb. The read_buffer_size, max_heap_table_size, and thread cache parameters were set from default to the maximum allowed value.</p>
+          </sec>
+        </sec>
+      </sec>
+      <sec>
+        <title>Collection of diverse information for graph DB</title>
+        <p>We collected diverse biological network information (genetic variation-gene, protein-protein, drug-gene, drug-disease, gene-disease, transcription factor-target genes) from the web and classified them into five layers (<xref ref-type="table" rid="T2">Tables 2</xref> and <xref ref-type="table" rid="T3">3</xref>).</p>
+      </sec>
+      <sec>
+        <title>Data processing and modeling</title>
+        <p>After data collection, we first classified each data into nodes (i.e., gene, protein, disease, drug, etc.) and relationships (i.e., gene-disease, disease-drug, or SNP-gene) and removed redundant and ambiguous nodes and relationships (<xref ref-type="fig" rid="F2">Fig. 2</xref>). Then, we integrated and expanded all nodes and relationships (<xref ref-type="fig" rid="F3">Fig. 3</xref>). Next, we created data models for each type of node and relationship (<xref ref-type="fig" rid="F4">Figs. 4</xref> and <xref ref-type="fig" rid="F5">5</xref>).</p>
+      </sec>
+    </sec>
+    <sec sec-type="results">
+      <title>Results</title>
+      <sec>
+        <title>Comparison of Neo4j after optimization</title>
+        <p>We tested how the optimization of the Neo4j system improved its performance. We compared two servers: optimized versus non-optimized servers. The non-optimized servers had default settings for OS memory and environment. The optimized server had several modified settings in (1) page cache sizing, (2) OS memory, (3) heap memory of the JVM, and (4) the number of open file limits.</p>
+        <p>We performed the same query on each server to compare the query performance of non-optimized and optimized servers. We measured the time to return results by performing a query to retrieve all data that traverse the relationships among genes, drugs, and diseases that increased the expression of the <italic>BRCA1</italic> gene (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 1</xref>). When the two servers were queried using the same search term, the optimized server returned results in 138 ms, while the non-optimized server returned results in 316 ms for the same query (<xref ref-type="fig" rid="F6">Fig. 6</xref>).</p>
+      </sec>
+      <sec>
+        <title>Comparison of search speed between two databases</title>
+        <p>Traditionally, most biological data have been stored in relational database systems. While relational database systems are useful for hierarchical and structural storage and search of various data, they may be less well suited for the storage and search of data with heavy relationships. While relational database systems can use multiple &#x2018;joins&#x2019; to infer relationships among different tables, multiple-join operations lead to significant execution times for a query. When we compared MySQL, one of the most famous relational database systems, with Neo4j for the same kinds of data, we found that Neo4j outperformed MySQL in all tested cases. We performed a query in MySQL and Neo4j to retrieve all data belonging to a particular gene-related path in a gene, disease, and drug relationship through a 3-layer search. For the same task, we performed a MySQL query to search for the relationship between proteins that are homologous to a particular protein in a gene, protein, drug, and pathway relationship and the various nodes that traverse that protein (<xref ref-type="supplementary-material" rid="S2">Supplementary Fig. 2</xref>). When the two databases (MySQL and Neo4j) were queried using the same search term, Neo4j took 2.128 s, while MySQL took 58.325 sec for a 3-layer search. For the 4-layer search, Neo4j took 20.128 s, while MySQL was unable to return a result (<xref ref-type="fig" rid="F7">Fig. 7</xref>).</p>
+      </sec>
+      <sec>
+        <title>Examples of graph database usage</title>
+        <p>The graph database provides a flexible search for complex relationships, as well as a fast search for relationships among multiple nodes. We show here two examples of using a graph database. The first is a search for the shortest paths traversing various relationships among connected nodes. For example, exploring the relationship between biological entities that are involved in two biological mechanisms can identify new potential targets for disease treatment and provide better insights into drug administration. The first example is a graph that identifies the shortest path among protein interactions or homologous proteins within three levels of the protein subsets associated with a nuclear receptor (<xref ref-type="fig" rid="F8">Fig. 8A</xref>). It can be seen that the two distinct subsets of proteins belong to a common pathway.</p>
+        <p>The second example includes flexible extensions and searches of the constructed graph database. When adding a new relationship in the constructed graph database, it is possible to flexibly define and add the relationship, regardless of the structure of the existing graph database. <xref ref-type="fig" rid="F8">Fig. 8B</xref> shows an example of adding a result of a new genetic analysis to the existing graph database and using it for a search. The added information can be easily defined and added without restrictions from the existing graph database structure. In this example, the added information is a node, named &#x2018;classifier,&#x2019; which is related to the existing graph database. In contrast, the relational database system is quite inflexible in adding new types of information, because it sometimes requires the redesign of existing tables.</p>
+      </sec>
+    </sec>
+    <sec sec-type="discussion">
+      <title>Discussion</title>
+      <p>Most biological databases have used relational database systems for data storage, retrieval, and searches. The relational database system is a useful system for the storage of well-structured data with pre-defined columns. However, even though it is termed relational, the relational database system does not store relationships among heterogeneous data by themselves. Rather, it infers relationships among different data during a query by using the &#x2018;join&#x2019; operation. Thus, paradoxically, the relational database system itself is not relational and is inefficient in the storage and retrieval of diverse relationships among data. As more and more biological data accumulate, it is becoming evident that the relational database system is limited in dealing with multitudes of complex networks and relationships among various kinds of biological data.</p>
+      <p>To overcome the current limits of the relational database system in dealing with complex biological networks and relationships, we employed and tested the graph database system, one of the NoSQL databases that are actively being developed to deal with various kinds of large data. We used Neo4j, one of the most actively developed, open-source graph databases with property graph models. We first optimized various parameters of a graph database server for maximum performance, as suggested by the Neo4j community, and achieved more than 40% improvement in performance. During the optimization, we found that Neo4j creates many index files for the storage of many relationships and depends heavily on system memory to read and write those index files. Thus, as the size of data increases and as more complex queries are executed, the performance of a graph database depends more on memory than the CPU. Thus, to achieve better performance from a given hardware system, the system memory should first be optimized.</p>
+      <p>When we compared the performance of Neo4j with MySQL for several queries on diverse relationships, we found that Neo4j always outperformed MySQL in terms of execution time-the more complex the relationships that were queried, the larger the difference in time between the two systems. For very complex relationships-for example, tens of millions of relationships or relationships with more than five steps (or five join operations)-MySQL was unable to finish the query. In this regard, we found that for the study of complex relationships among heterogeneous biological data, the graph database is more promising than the relational database system.</p>
+      <p>In real life, various kinds of graph databases have changed our lives in many ways. Facebook, LinkedIn, and online airplane booking service companies are examples of companies that utilize graph databases extensively. In the field of biological research, the graph database also has enough potential to find various unknown novel relationships among various heterogeneous biological data.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by grants from the genomics (NRF-2012M3A9D1054670 and NRF-2014M3C9A3068554) programs of the National Research Foundation of Korea, which is funded by the Ministry of Science, ICT, and Future Planning and the KRIBB Research Initiative.</p>
+    </ack>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hartwell</surname>
+              <given-names>LH</given-names>
+            </name>
+            <name>
+              <surname>Hopfield</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <name>
+              <surname>Leibler</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Murray</surname>
+              <given-names>AW</given-names>
+            </name>
+          </person-group>
+          <article-title>From molecular to modular cell biology</article-title>
+          <source>Nature</source>
+          <year>1999</year>
+          <volume>402</volume>
+          <issue>6761</issue>
+          <supplement>Suppl</supplement>
+          <fpage>C47</fpage>
+          <lpage>C52</lpage>
+          <pub-id pub-id-type="pmid">10591225</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kitano</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Computational systems biology</article-title>
+          <source>Nature</source>
+          <year>2002</year>
+          <volume>420</volume>
+          <fpage>206</fpage>
+          <lpage>210</lpage>
+          <pub-id pub-id-type="pmid">12432404</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Koonin</surname>
+              <given-names>EV</given-names>
+            </name>
+            <name>
+              <surname>Wolf</surname>
+              <given-names>YI</given-names>
+            </name>
+            <name>
+              <surname>Karev</surname>
+              <given-names>GP</given-names>
+            </name>
+          </person-group>
+          <article-title>The structure of the protein universe and genome evolution</article-title>
+          <source>Nature</source>
+          <year>2002</year>
+          <volume>420</volume>
+          <fpage>218</fpage>
+          <lpage>223</lpage>
+          <pub-id pub-id-type="pmid">12432406</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Alon</surname>
+              <given-names>U</given-names>
+            </name>
+          </person-group>
+          <article-title>Biological networks: the tinkerer as an engineer</article-title>
+          <source>Science</source>
+          <year>2003</year>
+          <volume>301</volume>
+          <fpage>1866</fpage>
+          <lpage>1867</lpage>
+          <pub-id pub-id-type="pmid">14512615</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bray</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular networks: the top-down view</article-title>
+          <source>Science</source>
+          <year>2003</year>
+          <volume>301</volume>
+          <fpage>1864</fpage>
+          <lpage>1865</lpage>
+          <pub-id pub-id-type="pmid">14512614</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barab&#xE1;si</surname>
+              <given-names>AL</given-names>
+            </name>
+            <name>
+              <surname>Oltvai</surname>
+              <given-names>ZN</given-names>
+            </name>
+          </person-group>
+          <article-title>Network biology: understanding the cell's functional organization</article-title>
+          <source>Nat Rev Genet</source>
+          <year>2004</year>
+          <volume>5</volume>
+          <fpage>101</fpage>
+          <lpage>113</lpage>
+          <pub-id pub-id-type="pmid">14735121</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>PX</given-names>
+            </name>
+          </person-group>
+          <article-title>Mining functional modules in heterogeneous biological networks using multiplex PageRank approach</article-title>
+          <source>Front Plant Sci</source>
+          <year>2016</year>
+          <volume>7</volume>
+          <fpage>903</fpage>
+          <pub-id pub-id-type="pmid">27446133</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pavlopoulos</surname>
+              <given-names>GA</given-names>
+            </name>
+            <name>
+              <surname>Secrier</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Moschopoulos</surname>
+              <given-names>CN</given-names>
+            </name>
+            <name>
+              <surname>Soldatos</surname>
+              <given-names>TG</given-names>
+            </name>
+            <name>
+              <surname>Kossida</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Aerts</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Using graph theory to analyze biological networks</article-title>
+          <source>BioData Min</source>
+          <year>2011</year>
+          <volume>4</volume>
+          <fpage>10</fpage>
+          <pub-id pub-id-type="pmid">21527005</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sharan</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Ideker</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Modeling cellular machinery through biological network comparison</article-title>
+          <source>Nat Biotechnol</source>
+          <year>2006</year>
+          <volume>24</volume>
+          <fpage>427</fpage>
+          <lpage>433</lpage>
+          <pub-id pub-id-type="pmid">16601728</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lysenko</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Roznov&#x103;&#x163;</surname>
+              <given-names>IA</given-names>
+            </name>
+            <name>
+              <surname>Saqi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Mazein</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Rawlings</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Auffray</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Representing and querying disease networks using graph databases</article-title>
+          <source>BioData Min</source>
+          <year>2016</year>
+          <volume>9</volume>
+          <fpage>23</fpage>
+          <pub-id pub-id-type="pmid">27462371</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Angles</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Gutierrez</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Survey of graph database models</article-title>
+          <source>ACM Comput Surv</source>
+          <year>2008</year>
+          <volume>40</volume>
+          <fpage>1</fpage>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Henkel</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Wolkenhauer</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Waltemath</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Combining computational models, semantic annotations and simulation experiments in a graph database</article-title>
+          <source>Database (Oxford)</source>
+          <year>2015</year>
+          <volume>2015</volume>
+          <fpage>bau130</fpage>
+          <pub-id pub-id-type="pmid">25754863</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mullen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Cockell</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Woollard</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Wipat</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>An integrated data driven approach to drug repositioning using gene-disease associations</article-title>
+          <source>PLoS One</source>
+          <year>2016</year>
+          <volume>11</volume>
+          <fpage>e0155811</fpage>
+          <pub-id pub-id-type="pmid">27196054</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Balaur</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Saqi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Barat</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Lysenko</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Mazein</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Rawlings</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>EpiGeNet: a graph database of interdependencies between genetic and epigenetic events in colorectal cancer</article-title>
+          <source>J Comput Biol</source>
+          <year>2016</year>
+          <month>9</month>
+          <day>14</day>
+          <comment>[Epub]</comment>
+          <pub-id pub-id-type="doi">10.1089/cmb.2016.0095</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <label>15</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robinson</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Webber</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Eifrem</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <source>Graph Databases: New Opportunities for Connected Data</source>
+          <edition>2nd ed</edition>
+          <publisher-loc>Sebastopol</publisher-loc>
+          <publisher-name>O'Reilly Media, Inc.</publisher-name>
+          <year>2015</year>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <label>16</label>
+        <element-citation publication-type="book">
+          <collab>Neo Technology Inc</collab>
+          <source>The Neo4j Operations Manual v3.0, Performance [Internet]</source>
+          <publisher-loc>Baltimore</publisher-loc>
+          <publisher-name>Neo Technology, Inc.</publisher-name>
+          <year>2016</year>
+          <date-in-citation content-type="access-date">cited 2016 Jan 10</date-in-citation>
+          <comment>Available from: <ext-link ext-link-type="uri" xlink:href="https://neo4j.com/docs/operations-manual/current">https://neo4j.com/docs/operations-manual/current</ext-link></comment>
+        </element-citation>
+      </ref>
+      <ref id="B17">
+        <label>17</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Van Bruggen</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <source>Learning Neo4j</source>
+          <publisher-loc>Birmingham</publisher-loc>
+          <publisher-name>Packt Publishing Ltd.</publisher-name>
+          <year>2014</year>
+        </element-citation>
+      </ref>
+      <ref id="B18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bravo</surname>
+              <given-names>&#xC0;</given-names>
+            </name>
+            <name>
+              <surname>Cases</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Queralt-Rosinach</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Sanz</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Furlong</surname>
+              <given-names>LI</given-names>
+            </name>
+          </person-group>
+          <article-title>A knowledge-driven approach to extract disease-related biomarkers from the literature</article-title>
+          <source>Biomed Res Int</source>
+          <year>2014</year>
+          <volume>2014</volume>
+          <fpage>253128</fpage>
+          <pub-id pub-id-type="pmid">24839601</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B19">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stark</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Breitkreutz</surname>
+              <given-names>BJ</given-names>
+            </name>
+            <name>
+              <surname>Reguly</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Boucher</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Breitkreutz</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Tyers</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>BioGRID: a general repository for interaction datasets</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2006</year>
+          <volume>34</volume>
+          <fpage>D535</fpage>
+          <lpage>D539</lpage>
+          <pub-id pub-id-type="pmid">16381927</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Solomon</surname>
+              <given-names>BD</given-names>
+            </name>
+            <name>
+              <surname>Nguyen</surname>
+              <given-names>AD</given-names>
+            </name>
+            <name>
+              <surname>Bear</surname>
+              <given-names>KA</given-names>
+            </name>
+            <name>
+              <surname>Wolfsberg</surname>
+              <given-names>TG</given-names>
+            </name>
+          </person-group>
+          <article-title>Clinical genomic database</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2013</year>
+          <volume>110</volume>
+          <fpage>9851</fpage>
+          <lpage>9855</lpage>
+          <pub-id pub-id-type="pmid">23696674</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gaulton</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Bellis</surname>
+              <given-names>LJ</given-names>
+            </name>
+            <name>
+              <surname>Bento</surname>
+              <given-names>AP</given-names>
+            </name>
+            <name>
+              <surname>Chambers</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Davies</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Hersey</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>ChEMBL: a large-scale bioactivity database for drug discovery</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2012</year>
+          <volume>40</volume>
+          <fpage>D1100</fpage>
+          <lpage>D1107</lpage>
+          <pub-id pub-id-type="pmid">21948594</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mattingly</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Colby</surname>
+              <given-names>GT</given-names>
+            </name>
+            <name>
+              <surname>Forrest</surname>
+              <given-names>JN</given-names>
+            </name>
+            <name>
+              <surname>Boyer</surname>
+              <given-names>JL</given-names>
+            </name>
+          </person-group>
+          <article-title>The Comparative Toxicogenomics Database (CTD)</article-title>
+          <source>Environ Health Perspect</source>
+          <year>2003</year>
+          <volume>111</volume>
+          <fpage>793</fpage>
+          <lpage>795</lpage>
+          <pub-id pub-id-type="pmid">12760826</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liu</surname>
+              <given-names>CC</given-names>
+            </name>
+            <name>
+              <surname>Tseng</surname>
+              <given-names>YT</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>CY</given-names>
+            </name>
+            <name>
+              <surname>Mayzus</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Rzhetsky</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>DiseaseConnect: a comprehensive web server for mechanism-based disease-disease connections</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2014</year>
+          <volume>42</volume>
+          <fpage>W137</fpage>
+          <lpage>W146</lpage>
+          <pub-id pub-id-type="pmid">24895436</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B24">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wishart</surname>
+              <given-names>DS</given-names>
+            </name>
+            <name>
+              <surname>Knox</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Guo</surname>
+              <given-names>AC</given-names>
+            </name>
+            <name>
+              <surname>Shrivastava</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Hassanali</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Stothard</surname>
+              <given-names>P</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>DrugBank: a comprehensive resource for in silico drug discovery and exploration</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2006</year>
+          <volume>34</volume>
+          <fpage>D668</fpage>
+          <lpage>D672</lpage>
+          <pub-id pub-id-type="pmid">16381955</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Welter</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>MacArthur</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Morales</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Burdett</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Hall</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Junkins</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The NHGRI GWAS Catalog, a curated resource of SNP-trait associations</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2014</year>
+          <volume>42</volume>
+          <fpage>D1001</fpage>
+          <lpage>D1006</lpage>
+          <pub-id pub-id-type="pmid">24316577</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B26">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lipscomb</surname>
+              <given-names>CE</given-names>
+            </name>
+          </person-group>
+          <article-title>Medical Subject Headings (MeSH)</article-title>
+          <source>Bull Med Libr Assoc</source>
+          <year>2000</year>
+          <volume>88</volume>
+          <fpage>265</fpage>
+          <lpage>266</lpage>
+          <pub-id pub-id-type="pmid">10928714</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B27">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bult</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Eppig</surname>
+              <given-names>JT</given-names>
+            </name>
+            <name>
+              <surname>Kadin</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Richardson</surname>
+              <given-names>JE</given-names>
+            </name>
+            <name>
+              <surname>Blake</surname>
+              <given-names>JA</given-names>
+            </name>
+          </person-group>
+          <collab>Mouse Genome Database Group</collab>
+          <article-title>The Mouse Genome Database (MGD): mouse biology and model systems</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2008</year>
+          <volume>36</volume>
+          <fpage>D724</fpage>
+          <lpage>D728</lpage>
+          <pub-id pub-id-type="pmid">18158299</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B28">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chatr-aryamontri</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Ceol</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Palazzi</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Nardelli</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Schneider</surname>
+              <given-names>MV</given-names>
+            </name>
+            <name>
+              <surname>Castagnoli</surname>
+              <given-names>L</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>MINT: the Molecular INTeraction database</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2007</year>
+          <volume>35</volume>
+          <fpage>D572</fpage>
+          <lpage>D574</lpage>
+          <pub-id pub-id-type="pmid">17135203</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B29">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Peters</surname>
+              <given-names>LB</given-names>
+            </name>
+            <name>
+              <surname>Bahr</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Bodenreider</surname>
+              <given-names>O</given-names>
+            </name>
+          </person-group>
+          <article-title>Evaluating drug-drug interaction information in NDF-RT and DrugBank</article-title>
+          <source>J Biomed Semantics</source>
+          <year>2015</year>
+          <volume>6</volume>
+          <fpage>19</fpage>
+          <pub-id pub-id-type="pmid">25964850</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B30">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hamosh</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Scott</surname>
+              <given-names>AF</given-names>
+            </name>
+            <name>
+              <surname>Amberger</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Bocchini</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>McKusick</surname>
+              <given-names>VA</given-names>
+            </name>
+          </person-group>
+          <article-title>Online Mendelian Inheritance in Man (OMIM), a knowl-edgebase of human genes and genetic disorders</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2005</year>
+          <volume>33</volume>
+          <fpage>D514</fpage>
+          <lpage>D517</lpage>
+          <pub-id pub-id-type="pmid">15608251</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B31">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schriml</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Arze</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Nadendla</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Chang</surname>
+              <given-names>YW</given-names>
+            </name>
+            <name>
+              <surname>Mazaitis</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Felix</surname>
+              <given-names>V</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Disease Ontology: a backbone for disease semantic integration</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2012</year>
+          <volume>40</volume>
+          <fpage>D940</fpage>
+          <lpage>D946</lpage>
+          <pub-id pub-id-type="pmid">22080554</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B32">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rohde</surname>
+              <given-names>DD</given-names>
+            </name>
+          </person-group>
+          <article-title>The Orphan Drug Act: an engine of innovation? At what cost?</article-title>
+          <source>Food Drug Law J</source>
+          <year>2000</year>
+          <volume>55</volume>
+          <fpage>125</fpage>
+          <lpage>143</lpage>
+          <pub-id pub-id-type="pmid">12322720</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B33">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gottlieb</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Stein</surname>
+              <given-names>GY</given-names>
+            </name>
+            <name>
+              <surname>Ruppin</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Sharan</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>PREDICT: a method for inferring novel drug indications with application to personalized medicine</article-title>
+          <source>Mol Syst Biol</source>
+          <year>2011</year>
+          <volume>7</volume>
+          <fpage>496</fpage>
+          <pub-id pub-id-type="pmid">21654673</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B34">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Twigger</surname>
+              <given-names>SN</given-names>
+            </name>
+            <name>
+              <surname>Shimoyama</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Bromberg</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kwitek</surname>
+              <given-names>AE</given-names>
+            </name>
+            <name>
+              <surname>Jacob</surname>
+              <given-names>HJ</given-names>
+            </name>
+          </person-group>
+          <collab>RGD Team</collab>
+          <article-title>The Rat Genome Database, update 2007: easing the path from disease to data and back again</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2007</year>
+          <volume>35</volume>
+          <fpage>D658</fpage>
+          <lpage>D662</lpage>
+          <pub-id pub-id-type="pmid">17151068</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B35">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krallinger</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Valencia</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Hirschman</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Linking genes to literature: text mining, information extraction, and retrieval applications for biology</article-title>
+          <source>Genome Biol</source>
+          <year>2008</year>
+          <volume>9</volume>
+          <issue>Suppl 2</issue>
+          <fpage>S8</fpage>
+        </element-citation>
+      </ref>
+      <ref id="B36">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kuhn</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Campillos</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Letunic</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Jensen</surname>
+              <given-names>LJ</given-names>
+            </name>
+            <name>
+              <surname>Bork</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>A side effect resource to capture phenotypic effects of drugs</article-title>
+          <source>Mol Syst Biol</source>
+          <year>2010</year>
+          <volume>6</volume>
+          <fpage>343</fpage>
+          <pub-id pub-id-type="pmid">20087340</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B37">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Ji</surname>
+              <given-names>ZL</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>YZ</given-names>
+            </name>
+          </person-group>
+          <article-title>TTD: Therapeutic Target Database</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2002</year>
+          <volume>30</volume>
+          <fpage>412</fpage>
+          <lpage>415</lpage>
+          <pub-id pub-id-type="pmid">11752352</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B38">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <collab>UniProt Consortium</collab>
+          <article-title>Activities at the Universal Protein Resource (UniProt)</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2014</year>
+          <volume>42</volume>
+          <fpage>D191</fpage>
+          <lpage>D198</lpage>
+          <pub-id pub-id-type="pmid">24253303</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <sec sec-type="supplementary-material">
+      <title>Supplementary materials</title>
+      <p>Supplementary data including two figures can be found with this article online at <ext-link ext-link-type="uri" xlink:href="http://www.genominfo.org/src/sm/gni-15-19-s001.pdf">http://www.genominfo.org/src/sm/gni-15-19-s001.pdf</ext-link>.</p>
+      <supplementary-material content-type="local-data" id="S1">
+        <caption>
+          <title>Supplementary Figure 1</title>
+          <p>Cypher query to retrieve the relationships among genes, drugs, and diseases that increased the expression of the BRCA1 gene.</p>
+        </caption>
+        <media mimetype="application" mime-subtype="pdf" xlink:href="gni-15-19-s001.pdf" orientation="portrait" id="d35e1728" position="anchor"/>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="S2">
+        <caption>
+          <title>Supplementary Figure 2</title>
+          <p>Cypher queries and MySQL queries to compare the search speed of Graph database and MySQL database.</p>
+        </caption>
+        <media mimetype="application" mime-subtype="pdf" xlink:href="gni-15-19-s002.pdf" orientation="portrait" id="d35e1735" position="anchor"/>
+      </supplementary-material>
+    </sec>
+  </back>
+  <floats-group>
+    <fig id="F1" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <title>Diagram for optimization of the performance of the Neo4j graph database. Bottom layer: file open limit optimization; Neo4j often produces many small and random reads when querying data. Middle layer: page cache sizing; if all, or at least most, of the graph data files from a hard disk are cached into memory, it will reduce disk access and result in optimal performance. Top layer: heap sizing; it is beneficial to set a large heap space to support various query operations. OS, operating system; JVM, Java Virtual Machine.</title>
+      </caption>
+      <graphic xlink:href="gni-15-19-g001"/>
+    </fig>
+    <fig id="F2" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <title>Preprocessing for data structure modeling of graph database: (1) data set download using CSV or TSV format; (2) standardized representation of each node: gene, protein, disease, etc; (3) integration of node-node (e.g., gene-protein, gene-disease, drug-disease, etc.) associations from multiple data sources; and (4) filtering of unconnected and redundant entities. The final graph database contains 114,550 nodes and 82,674,321 relationships.</title>
+      </caption>
+      <graphic xlink:href="gni-15-19-g002"/>
+    </fig>
+    <fig id="F3" orientation="portrait" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <title>Construction of graph model of biological relationships. Each node represents a biological element, and nodes are connected by various types of relationships. Each node can define various properties. Relationships can be defined by various types, and each relationship has various properties. This allows a detailed search through the property when retrieving nodes and relationships.</title>
+      </caption>
+      <graphic xlink:href="gni-15-19-g003"/>
+    </fig>
+    <fig id="F4" orientation="portrait" position="float">
+      <label>Fig. 4</label>
+      <caption>
+        <title>Schematic of an integrated graph model, showing the node types and the relationship types used in the integrated biological dataset and how nodes interact with one another. GO, gene ontology; SNP, single nucleotide polymorphism; CNV, copy number variant.</title>
+      </caption>
+      <graphic xlink:href="gni-15-19-g004"/>
+    </fig>
+    <fig id="F5" orientation="portrait" position="float">
+      <label>Fig. 5</label>
+      <caption>
+        <title>Procedure for importing integrated relationship data into a graph database. &#x2018; DataManager.java&#x2019; defines the relationship between each raw data to be input and performs preprocessing steps, such as removing duplicates. &#x2018; Parsers.java&#x2019; reads raw data from a text file and stores them in the graph database. &#x2018; Mapping.java&#x2019; classifies nodes and relationships from the parsed raw data. &#x2018; Filter.java&#x2019; removes duplicate or ambiguous nodes and relationships among created nodes and relationships. &#x2018; BuildManager.java&#x2019; structures the filtered nodes and relationships information according to the previously defined graph database model structure. &#x2018; DataStructure. java&#x2019; and &#x2018; Integrate.java&#x2019; build a graph database by allocating nodes and relationships according to the modeled database structure.</title>
+      </caption>
+      <graphic xlink:href="gni-15-19-g005"/>
+    </fig>
+    <fig id="F6" orientation="portrait" position="float">
+      <label>Fig. 6</label>
+      <caption>
+        <title>Comparison of the performance of query execution between optimized and non-optimized servers. Two servers were queried using the same search operation; the optimized server took 138 ms, whereas the non-optimized server took 316 ms.</title>
+      </caption>
+      <graphic xlink:href="gni-15-19-g006"/>
+    </fig>
+    <fig id="F7" orientation="portrait" position="float">
+      <label>Fig. 7</label>
+      <caption>
+        <title>Comparison of the performance of query execution between relational and graph databases. MySQL and Neo4j were compared by searching relationships on 3 and 4 layers. The search for 3 layers is a search for gene-disease-drugs associated with a particular disease. The search for 4 layers is a search for gene-protein-drugpathway associated with a particular protein.</title>
+      </caption>
+      <graphic xlink:href="gni-15-19-g007"/>
+    </fig>
+    <fig id="F8" orientation="portrait" position="float">
+      <label>Fig. 8</label>
+      <caption>
+        <title>Examples of using a graph database to find biologically meaningful information. Comparison of the nodes in the shortest path and the nodes in the other path (A) and flexible extension of the existing graph database with a new type of information (B).</title>
+      </caption>
+      <graphic xlink:href="gni-15-19-g008"/>
+    </fig>
+    <table-wrap id="T1" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <title>List of parameters for optimization [<xref rid="B16" ref-type="bibr">16</xref>]</title>
+      </caption>
+      <graphic xlink:href="gni-15-19-i001"/>
+      <table-wrap-foot>
+        <fn>
+          <p>OS, operating system.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="T2" orientation="portrait" position="float">
+      <label>Table 2</label>
+      <caption>
+        <title>A list of collected public databases for building graph databases</title>
+      </caption>
+      <graphic xlink:href="gni-15-19-i002"/>
+    </table-wrap>
+    <table-wrap id="T3" orientation="portrait" position="float">
+      <label>Table 3</label>
+      <caption>
+        <title>A layer to distinguish the relationships among various biological data</title>
+      </caption>
+      <graphic xlink:href="gni-15-19-i003"/>
+      <table-wrap-foot>
+        <fn>
+          <p>GO, gene ontology.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

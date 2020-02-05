@@ -1,0 +1,837 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">28154511</article-id>
+      <article-id pub-id-type="pmc">5287124</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2016.14.4.196</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Original Article</subject>
+          <subj-group subj-group-type="subheading">
+            <subject>Special Issue: Recent Statistical Challenges in High Dimensional Omics Data</subject>
+          </subj-group>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Effects of Single Nucleotide Polymorphism Marker Density on Haplotype Block Partition</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Sun Ah</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Yoo</surname>
+            <given-names>Yun Joo</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+          <xref ref-type="aff" rid="A2">2</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="A1"><label>1</label>Department of Mathematics Education, Seoul National University, Seoul 08826, Korea.</aff>
+      <aff id="A2"><label>2</label>Interdisciplinary Program in Bioinformatics, Seoul National University, Seoul 08826, Korea.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +82-2-880-7740, Fax: +82-2-889-1747, <email>yyoo@snu.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2016</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>30</day>
+        <month>12</month>
+        <year>2016</year>
+      </pub-date>
+      <volume>14</volume>
+      <issue>4</issue>
+      <fpage>196</fpage>
+      <lpage>204</lpage>
+      <history>
+        <date date-type="received">
+          <day>18</day>
+          <month>9</month>
+          <year>2016</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>03</day>
+          <month>12</month>
+          <year>2016</year>
+        </date>
+        <date date-type="accepted">
+          <day>06</day>
+          <month>12</month>
+          <year>2016</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2016 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2016</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Many researchers have found that one of the most important characteristics of the structure of linkage disequilibrium is that the human genome can be divided into non-overlapping block partitions in which only a small number of haplotypes are observed. The location and distribution of haplotype blocks can be seen as a population property influenced by population genetic events such as selection, mutation, recombination and population structure. In this study, we investigate the effects of the density of markers relative to the full set of all polymorphisms in the region on the results of haplotype partitioning for five popular haplotype block partition methods: three methods in Haploview (confidence interval, four gamete test, and solid spine), MIG++ implemented in PLINK 1.9 and S-MIG++. We used several experimental datasets obtained by sampling subsets of single nucleotide polymorphism (SNP) markers of chromosome 22 region in the 1000 Genomes Project data and also the HapMap phase 3 data to compare the results of haplotype block partitions by five methods. With decreasing sampling ratio down to 20% of the original SNP markers, the total number of haplotype blocks decreases and the length of haplotype blocks increases for all algorithms. When we examined the marker-independence of the haplotype block locations constructed from the datasets of different density, the results using below 50% of the entire SNP markers were very different from the results using the entire SNP markers. We conclude that the haplotype block construction results should be used and interpreted carefully depending on the selection of markers and the purpose of the study.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>1,000 Genomes Project</kwd>
+        <kwd>haplotypes</kwd>
+        <kwd>haplotype block</kwd>
+        <kwd>linkage disequilibrium</kwd>
+      </kwd-group>
+      <funding-group>
+        <award-group>
+          <funding-source country="KR">
+            <institution-wrap>
+              <institution>National Research Foundation of Korea</institution>
+              <institution-id institution-id-type="CrossRef">http://dx.doi.org/10.13039/501100003723</institution-id>
+            </institution-wrap>
+          </funding-source>
+          <award-id>NRF-2015R1A1A3A04001269</award-id>
+          <award-id>NRF-2015R1A2A2A01006885</award-id>
+        </award-group>
+      </funding-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>Linkage disequilibrium (LD) means non-random association of alleles between different loci in a population [<xref rid="B1" ref-type="bibr">1</xref>]. Genetic variants in close proximity tend to be inherited together as a single haplotype and low frequency of recombination between them resulting in association between alleles of these variants in the population data [<xref rid="B1" ref-type="bibr">1</xref><xref rid="B2" ref-type="bibr">2</xref>]. Therefore, information of LD can provide evidences to support a hypothesis about population history and help to reveal genetic etiology [<xref rid="B3" ref-type="bibr">3</xref><xref rid="B4" ref-type="bibr">4</xref>]. Many researchers have studied the structure of LD patterns by observing population data and have found that one of the most obvious characteristics of the structure of LD is that the human genome can be divided into non-overlapping block partitions in which only a small number of haplotypes are observed [<xref rid="B5" ref-type="bibr">5</xref>]. These blocks are called haplotype blocks or LD blocks [<xref rid="B6" ref-type="bibr">6</xref><xref rid="B7" ref-type="bibr">7</xref><xref rid="B8" ref-type="bibr">8</xref><xref rid="B9" ref-type="bibr">9</xref><xref rid="B10" ref-type="bibr">10</xref>]. The variants within a same block tend to be in strong LD with each other whereas the variants across different blocks are mostly in weak LD or in linkage equilibrium [<xref rid="B8" ref-type="bibr">8</xref>].</p>
+      <p>The location and distribution of haplotype blocks can be seen as a population characteristic that is influenced by evolutionary phenomenon such as selection, mutation rate, recombination rate and population structure [<xref rid="B11" ref-type="bibr">11</xref>]. Especially, strong agreement between recombination hotspots and the haplotype block boundaries has been reported through comparisons of the block locations with the experimentally obtained locations of recombination hotpots [<xref rid="B6" ref-type="bibr">6</xref>]. In the other hand, an investigation on haplotype blocks using simulated data revealed that haplotype blocks can be formed without recombination hotspots [<xref rid="B9" ref-type="bibr">9</xref>]. However, their investigation in [<xref rid="B9" ref-type="bibr">9</xref>] used an operational definition for haplotype block in which all the single nucleotide polymorphisms (SNPs) are in strong LD with each other resulting in producing many short length blocks.</p>
+      <p>Several different methods for haplotype block partitioning have been developed and implemented in distributable software. Among them, Haploview carries three different methods for haplotype block partitioning each of which adopts a different operational definition for haplotype blocks: confidence interval (CI) method by Gabriel et al. [<xref rid="B8" ref-type="bibr">8</xref>], four gamete test (FGT) by Wang et al. [<xref rid="B9" ref-type="bibr">9</xref>], and solid spine (SS) method [<xref rid="B10" ref-type="bibr">10</xref>]. More recently, following the haplotype block definition of Gabriel et al. [<xref rid="B8" ref-type="bibr">8</xref>], some computationally efficient algorithms have been also released and these include MIG++ [<xref rid="B12" ref-type="bibr">12</xref>] and S-MIG++ [<xref rid="B13" ref-type="bibr">13</xref>]. MIG++ is also implemented in PLINK 1.9 with additional modification for computational efficiency [<xref rid="B14" ref-type="bibr">14</xref>].</p>
+      <p>Haplotype blocks can be directly obtained from the individual genetic association study data of SNP markers. Also, in many cases, they are identified using reference panel data such as HapMap or 1000 Genomes Project. These databases or study-specific data have different SNP marker sets with different density. If haplotype blocks are related to the biological causes such as recombination hotspots or population history, the location of blocks- the block boundaries&#x2014;should be marker&#x2014;independent and the most accurate estimation of haplotype block locations should be obtained from DNA sequencing data where every polymorphism is identified in the data. Therefore, to apply the haplotype block information obtained from the genotype data of a subset of polymorphisms in that region to the population genetic research or discovery of disease susceptibility variants, the effects of marker density on the haplotype block partition results should be carefully considered.</p>
+      <p>In this paper, we describe how the density of SNP markers affects haplotype blocks partitions by comparing the block partition results obtained from the experimental datasets sampled from the reference panel using several certain sampling ratio conditions. We also investigate how these effects of the marker density work differently for different haplotype block partitioning methods. The haplotype block partition methods we investigate include three methods implemented in Haploview (CI, FGT, and SS) [<xref rid="B10" ref-type="bibr">10</xref>], MIG++ implemented in PLINK version 1.9 [<xref rid="B12" ref-type="bibr">12</xref><xref rid="B14" ref-type="bibr">14</xref>], and S-MIG++ [<xref rid="B13" ref-type="bibr">13</xref>]. For reference panel to construct experimental datasets we use the 1000 Genomes Projects phase 1 release 3 dataset [<xref rid="B15" ref-type="bibr">15</xref>] and HapMap phase III dataset [<xref rid="B16" ref-type="bibr">16</xref>]. From our investigation, we found that low sampling ratio under 50% cannot guarantee marker-independent haplotype partition results for all methods and the haplotype blocks constructed from full density data tend to be divided into small length blocks compared to the results from low density data.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>Haplotype block partition methods</title>
+        <p>We compare the results of five haplotype block partition methods applied to the experimental datasets sampled from the 1000 Genomes Project dataset and the HapMap dataset with various marker density scenarios. The description of each haplotype block partition method follows.</p>
+        <sec>
+          <title>Haploview (CI, FGT, and SS)</title>
+          <p>The haplotype visualization software Haploview [<xref rid="B10" ref-type="bibr">10</xref>] implements three haplotype block partition methods, the CI method by Gabriel et al. [<xref rid="B8" ref-type="bibr">8</xref>], the FGT method by Wang et al. [<xref rid="B9" ref-type="bibr">9</xref>], and SS method [<xref rid="B10" ref-type="bibr">10</xref>].</p>
+          <p>In the CI method, the algorithm first classifies each pair of markers into one of three categories in terms of the LD measure <italic>D</italic>&#x2032; [<xref rid="B3" ref-type="bibr">3</xref><xref rid="B17" ref-type="bibr">17</xref>]: (1) &#x201C;strong LD&#x201D; if the one-sided upper 95% confidence bound of D&#x2032; is &gt;0.98 and the lower bound is &gt;0.7, (2) &#x201C;strong evidence for historical recombination&#x201D; if the upper confidence bound of D&#x2032; is &lt;0.9, (3) &#x201C;non-informative&#x201D; otherwise. The pairs satisfying the conditions (1) and (2) are said to be informative. Once all marker pairs are classified into three categories, a region is defined as a haplotype block if the outer-most marker pair (two markers at the starting and the ending position of the region) is in &#x201C;strong LD&#x201D; and the proportion of the number of &#x201C;strong LD&#x201D; marker pairs over the number of all informative marker pairs in the region is greater than 0.95. To partition a genomic region into an optimal set of haplotype blocks, the CI algorithm adopts a greedy approach: find the longest block region by examining the proportion of &#x201C;strong LD&#x201D; marker pairs over all informative marker pairs located between each candidate outer-most marker pair in the remaining region at each iteration. In this way, the CI algorithm can add blocks which do not overlap with an already taken blocks.</p>
+          <p>The FGT algorithm begins by computing the population frequencies of the four possible two-marker haplotypes for each marker pair. By the FGT criterion, it regards that a recombination event has been occurred between two markers if all four possible two-marker haplotypes are observed with at least 1% frequency. Using this criterion, the algorithm constructs haplotype blocks of consecutive markers that do not show history of any recombination event between them.</p>
+          <p>The SS method defines the region as an LD blocks if the first and last markers in the region are in strong LD (D&#x2032;&gt;0.8) with all intermediate markers in the region. In the LD chart, the square matrix of a pairwise LD measure where the (<italic>i,j</italic>)-element represents the strength of LD between <italic>i</italic><sup>th</sup> and <italic>j</italic><sup>th</sup> markers, the spine of strong LD stretches along the edge of the triangular block pattern.</p>
+        </sec>
+        <sec>
+          <title>MIG++ and S-MIG++</title>
+          <p>There have been several attempts to accelerates the speed and improve memory performance of the CI method in Haploview. Such attempts include MIG++ [<xref rid="B12" ref-type="bibr">12</xref>] and S-MIG++ [<xref rid="B13" ref-type="bibr">13</xref>] both of which can reduce the time/memory complexity by omitting unnecessary computations.</p>
+          <p>The MIG++ saves runtime and memory by omitting the computations of regions which have shown insufficient cases of strong LD. In addition, to improve the runtime/memory of the algorithm, the MIG++ uses a method based on an approximated estimator of the variance of D&#x2032; proposed by Zapata et al. [<xref rid="B18" ref-type="bibr">18</xref>] instead of the likelihood-based method proposed by Wall and Pritchard [<xref rid="B19" ref-type="bibr">19</xref>] used in Haploview [<xref rid="B10" ref-type="bibr">10</xref>]. The MIG++ algorithm is now implemented in PLINK 1.9 [<xref rid="B14" ref-type="bibr">14</xref>], but in PLINK 1.9, the CI of D&#x2032; is estimated based on the maximum likelihood method by Wall and Pritchard [<xref rid="B19" ref-type="bibr">19</xref>] with improved efficiency in estimating diplotype frequencies [<xref rid="B13" ref-type="bibr">13</xref><xref rid="B20" ref-type="bibr">20</xref><xref rid="B21" ref-type="bibr">21</xref>]. In this study, we only obtain the haplotype block partition results of the PLINK-MIG++ implemented in PLINK 1.9 instead of the originally proposed version of MIG++.</p>
+          <p>The S-MIG++ algorithm improves the MIG++ by first sampling small fraction of all SNP pairs to estimate the upper limits of the LD block boundaries and then moving to the refinement step to determine exact haplotype boundaries [<xref rid="B13" ref-type="bibr">13</xref>]. In this way, S-MIG++ could reduce the search space much more than MIG++.</p>
+        </sec>
+      </sec>
+      <sec>
+        <title>Experimental evaluation</title>
+        <p>The experiments have been conducted using the 1000 Genomes phase1 release 3 (1000G) data of East Asian populations (286 individuals from Japanese [JPT], Han Chinese from Beijing [CHB], and Han Chinese form South China [CHS]) [<xref rid="B15" ref-type="bibr">15</xref>] and HapMap phase III (HapMap) dataset of 170 individuals from JPT and CHB populations [<xref rid="B16" ref-type="bibr">16</xref>].</p>
+        <p>We used phased genotype data of 75,582 SNPs with minor allele frequency of 0.05 and without indel polymorphisms in chromosome 22 (chr22: 16,050,612&#x2013;51,243,297) in 1000G dataset, and the phased genotype data of 13,994 SNPs in chromosome 22 (chr22: 16,180,203&#x2013;51,219,006) in HapMap dataset after applying the same pruning criteria as the case of 1000G.</p>
+        <p>To construct experimental subsets of 1000G dataset with different density settings, we randomly selected 80%, 60%, 40%, and 20% of SNPs (resulting in 60,446, 45,349, 30,233, and 15,116 SNPs, respectively) of all SNP markers in the 1000G dataset in successive order by limiting the selection of SNPs within the SNPs already selected by the bigger subsets.</p>
+        <p>We applied the three Haploview methods (CI, FGT, and SS), PLINK-MIG++, and S-MIG++ to the entire 1000G dataset of chromosome 22, the entire HapMap dataset of chromosome 22, and the four datasets constructed from the 1000G dataset with the subsets of SNP markers chosen by the above method (80%, 60%, 40%, and 20% sampling ratio). To obtain results of CI, FGT, and SS, we constructed the moving windows of 1,000 SNPs for every 500 SNPs and run the Haploview program for each window region. When some block boundaries do not agree in the results of overlapped regions in consecutive windows, which occurs usually for the blocks at the boundary of a window, we construct a combined block region of two different block identification results and take it as the final haplotype block.</p>
+        <p>For PLINK-MIG++ and S-MIG++, there was no need to split the markers of the data used in our experiments due to enough capacity for runtime/memory of two programs. Note that in Haploview program, the CI method declares the size-2 blocks and size-3 blocks as haplotype blocks only when they do not span more than 20 kb and 30 kb, respectively. When we obtained the results using PLINKMIG++ and S-MIG++, we did not apply these limits for size-2 and size-3 blocks as the program does not allow this option. For the CI method, we set the option of Haploview to only consider the SNP pairs that are apart less than 500 kb such that the haplotype block size would be less than the limit. We applied the same condition about the distance between two SNPs in a pair to PLINK-MIG++, but not to S-MIG++ as the program does not allow this option. When we applied S-MIG++ program [<xref rid="B13" ref-type="bibr">13</xref>] to the experiments, we set the sampling fraction option of the first step of the algorithm to be 0.01.</p>
+      </sec>
+    </sec>
+    <sec sec-type="results">
+      <title>Results</title>
+      <p>In <xref ref-type="table" rid="T1">Table 1</xref> and <xref ref-type="fig" rid="F1">Fig. 1</xref>, a summary and trend of several characteristics of the haplotype block partition results are presented for five methods applied to each experiment data of 1000G and HapMap datasets. For each method with a sampling ratio setting, we calculated the total number of blocks, the average r<sup>2</sup> values for all pairs of SNPs within a block and the average r<sup>2</sup> values for pairs of which each SNP belongs to consecutive blocks, and the average size of haplotype blocks in terms of the number of SNPs in a block and the base-pair (bp) length of haplotype blocks. When we compared the haplotype block partition results based on 20% of original SNP markers to the results based on all SNPs in the 1000G dataset, the total number of haplotype blocks was reduced to about 40% in the CI, PLINK-MIG++, and S-MIG++ results and to about 30% in the FGT and SS results. Excluding the singleton blocks from the comparison, the amount of reduction was about 40% for all methods. For CI, PLINK-MIG++ and S-MIG++, the average length of the haplotype blocks based on 20% of original SNP markers in 1000G dataset was about 1.8 times of the length of the blocks produced using all SNPs for CI, PLINK-MIG++ and S-MIG++ and about 2.4 times for FGT and SS. With changes of sampling ratio of SNP markers, the average r<sup>2</sup> within a same block remained almost unchanged, but the average r<sup>2</sup> across consecutive blocks increased with the sampling ratio. The average r<sup>2</sup> of S-MIG++ within a block and across consecutive blocks are slightly lower and higher than that of CI and PLINK-MIG++ and the difference in the haplotype block sizes is greater than the two methods even though S-MIG++ uses the same operational definition for LD block, which shows the fractional sampling methods adopted by S-MIG++ for computational efficiency also affects the LD block construction results.</p>
+      <p><xref ref-type="fig" rid="F2">Fig. 2</xref> shows the LD heatmaps of an example region with the markers of haplotype blocks obtained by each method for five 1000G datasets of different sampling ratios and the HapMap dataset. We could observe that the big haplotype block regions that maintain strong LD in substantial proportion of SNP pairs are partitioned into several small blocks when using the entire SNP markers of 1000G dataset due to some breaks in the LD streaks, but with low sampling ratio subsets, many of these breaks disappear resulting in bigger sized haplotype blocks produced. The number of haplotype blocks obtained using the HapMap data was similar to the number of haplotype blocks obtained using 20% of SNPs of the original marker sets of 1000G dataset. However, actual locations of haplotype blocks obtained from two datasets were a little different.</p>
+      <p>In <xref ref-type="fig" rid="F3">Fig. 3</xref>, we plotted the distributions of the length of the haplotype blocks produced from the 1000G datasets with different density levels and the HapMap dataset, for each method. The distribution of the length of haplotype blocks obtained from the HapMap dataset was similar to the one obtained from the 1000G dataset with 20% of the original markers. The frequencies of the haplotype blocks with length less than 30 kb decreases with the reducing density levels, but these frequencies were rather similar for big haplotype blocks in the results by all methods.</p>
+      <p>In <xref ref-type="fig" rid="F4">Fig. 4</xref>, we present the proportions of commonly found haplotype blocks for each experimental dataset compared to the 1000G dataset with all SNP markers for each method. Only 7%&#x2013;10% of the haplotype blocks that are obtained using the entire SNP markers in the 1000G dataset are also observed in the result using 20% of the original SNP markers for CI, PLINK-MIG++, and S-MIG++ based on the 80% overlap criterion for common observation considering all blocks or excluding singleton blocks in the comparison. These proportions are even smaller for FGT and SS, only 3%&#x2013; 6% of haplotype blocks constructed from the entire markers are found when using 20% of original markers. When we compared only the haplotype blocks with sizes greater than 5,000 bp or 10,000 bp, the proportions of commonly found haplotype blocks from the datasets of all SNPs and 20% of SNPs increase to 21%&#x2013;28% for CI, PLINK-MIG++, and S-MIG++ whereas these proportions increase only to 8%&#x2013; 15% for FGT and SS. The effect of the density on the discovery of common haplotype blocks with results of full marker set was more severe in the results of FGT and SS compared to the other methods.</p>
+    </sec>
+    <sec sec-type="discussion">
+      <title>Discussion</title>
+      <p>In this study, we investigated the effect of SNP marker density on haplotype block partition by comparing the haplotype block partition results based on subsets of the entire SNPs in the region. We observed that using only 20% of the original markers, the number of blocks produced by these methods reduces to 30%&#x2013;40% and the average length of the blocks increases to 1.8&#x2013;2.4 times of the results obtained using all SNPs. The effect of the density on the discovery of common haplotype blocks using a subset of the original marker set was almost linear for CI, PLINK-MIG++, and S-MIG++, and even exponential for FGT and SS methods as the density increases.</p>
+      <p>We could observe that the three haplotype block partition methods (CI, PLINK-MIG++, and S-MIG++) based on the definition of haplotype block by Gabriel et al. [<xref rid="B8" ref-type="bibr">8</xref>] tend to preserve more common blocks compared to the other two methods (FGT and SS) with low density marker sets. However, even for CI, PLINK-MIG++, and S-MIG++, the proportions of common blocks preserved with low density marker set decrease to below about 20% using 40% of the original markers when we decide 80% overlap as the common blocks considering only non-singleton blocks. Also, with low density marker sets of 20% or 40% SNPs, more than 75% or 65% haplotype blocks constructed from these low density sets were not found by the results using the entire SNP markers. In summary, the results using the entire SNP marker sets and results using less than half of the marker sets of the same dataset were quite different in all methods investigated in this study.</p>
+      <p>The FGT methods usually produces smaller size haplotype blocks than the other methods, and the SS methods produces bigger size haplotype blocks than the rest of the methods. However, both methods show low rates of finding common haplotype blocks from the dataset with different density levels compared to CI, PLINK-MIG++, and S-MIG++. Both methods define a haplotype block if strong LD is maintained for all SNPs with each other (FGT) or with the first and last SNPs (SS). From the 1000G dataset with the full set of all SNPs, we could observe that some extensive LD regions where the strong LD is shown between some non-consecutive markers which cannot be considered as in the same block region by FGT or SS by their definition the haplotype block. Consequently, these LD regions are split into small regions when using high density SNP markers, but with low density markers, there are more chance to find bigger haplotype block. The most of haplotype block partition methods have been developed using relatively low density such as the HapMap data rather than the whole genome sequencing data such as the 1000 Genomes Project [<xref rid="B10" ref-type="bibr">10</xref>]. The recent methods such as PLINK-MIG++ and S-MIG++ is mere computational improvement of the CI method resulting in similar block partition results as the Haploview-CI algorithm. This study shows that researchers should be very careful when they use the haplotype block construction results from reference panel data for the analysis and interpret genetic analysis using different genotype data with different marker density. Also, there is need for a new method that finds more marker-independent haplotype blocks regardless of the selection of the SNP markers, especially the one that works well for high density SNP markers such as 1000 Genomes Project dataset.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by the National Research Foundation of Korea (NRF) grant NRF-2015R1A1A3A04001269 and NRF-2015R1A2A2A01006885.</p>
+    </ack>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Slatkin</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Linkage disequilibrium: understanding the evolutionary past and mapping the medical future</article-title>
+          <source>Nat Rev Genet</source>
+          <year>2008</year>
+          <volume>9</volume>
+          <fpage>477</fpage>
+          <lpage>485</lpage>
+          <pub-id pub-id-type="pmid">18427557</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reich</surname>
+              <given-names>DE</given-names>
+            </name>
+            <name>
+              <surname>Cargill</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Bolk</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Ireland</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Sabeti</surname>
+              <given-names>PC</given-names>
+            </name>
+            <name>
+              <surname>Richter</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Linkage disequilibrium in the human genome</article-title>
+          <source>Nature</source>
+          <year>2001</year>
+          <volume>411</volume>
+          <fpage>199</fpage>
+          <lpage>204</lpage>
+          <pub-id pub-id-type="pmid">11346797</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Daly</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Rioux</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Schaffner</surname>
+              <given-names>SF</given-names>
+            </name>
+            <name>
+              <surname>Hudson</surname>
+              <given-names>TJ</given-names>
+            </name>
+            <name>
+              <surname>Lander</surname>
+              <given-names>ES</given-names>
+            </name>
+          </person-group>
+          <article-title>High-resolution haplotype structure in the human genome</article-title>
+          <source>Nat Genet</source>
+          <year>2001</year>
+          <volume>29</volume>
+          <fpage>229</fpage>
+          <lpage>232</lpage>
+          <pub-id pub-id-type="pmid">11586305</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sabeti</surname>
+              <given-names>PC</given-names>
+            </name>
+            <name>
+              <surname>Varilly</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Fry</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Lohmueller</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Hostetter</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Cotsapas</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-wide detection and characterization of positive selection in human populations</article-title>
+          <source>Nature</source>
+          <year>2007</year>
+          <volume>449</volume>
+          <fpage>913</fpage>
+          <lpage>918</lpage>
+          <pub-id pub-id-type="pmid">17943131</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Greenspan</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Geiger</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Model-based inference of haplotype block variation</article-title>
+          <source>J Comput Biol</source>
+          <year>2004</year>
+          <volume>11</volume>
+          <fpage>493</fpage>
+          <lpage>504</lpage>
+          <pub-id pub-id-type="pmid">15285904</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jeffreys</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Kauppi</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Neumann</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Intensely punctate meiotic recombination in the class II region of the major histocompatibility complex</article-title>
+          <source>Nat Genet</source>
+          <year>2001</year>
+          <volume>29</volume>
+          <fpage>217</fpage>
+          <lpage>222</lpage>
+          <pub-id pub-id-type="pmid">11586303</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Twells</surname>
+              <given-names>RC</given-names>
+            </name>
+            <name>
+              <surname>Mein</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>Phillips</surname>
+              <given-names>MS</given-names>
+            </name>
+            <name>
+              <surname>Hess</surname>
+              <given-names>JF</given-names>
+            </name>
+            <name>
+              <surname>Veijola</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Gilbey</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Haplotype structure, LD blocks, and uneven recombination within the LRP5 gene</article-title>
+          <source>Genome Res</source>
+          <year>2003</year>
+          <volume>13</volume>
+          <fpage>845</fpage>
+          <lpage>855</lpage>
+          <pub-id pub-id-type="pmid">12727905</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gabriel</surname>
+              <given-names>SB</given-names>
+            </name>
+            <name>
+              <surname>Schaffner</surname>
+              <given-names>SF</given-names>
+            </name>
+            <name>
+              <surname>Nguyen</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Moore</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Roy</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Blumenstiel</surname>
+              <given-names>B</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The structure of haplotype blocks in the human genome</article-title>
+          <source>Science</source>
+          <year>2002</year>
+          <volume>296</volume>
+          <fpage>2225</fpage>
+          <lpage>2229</lpage>
+          <pub-id pub-id-type="pmid">12029063</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Akey</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Chakraborty</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Jin</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Distribution of recombination crossovers and the origin of haplotype blocks: the interplay of population history, recombination, and mutation</article-title>
+          <source>Am J Hum Genet</source>
+          <year>2002</year>
+          <volume>71</volume>
+          <fpage>1227</fpage>
+          <lpage>1234</lpage>
+          <pub-id pub-id-type="pmid">12384857</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barrett</surname>
+              <given-names>JC</given-names>
+            </name>
+            <name>
+              <surname>Fry</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Maller</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Daly</surname>
+              <given-names>MJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Haploview: analysis and visualization of LD and haplotype maps</article-title>
+          <source>Bioinformatics</source>
+          <year>2005</year>
+          <volume>21</volume>
+          <fpage>263</fpage>
+          <lpage>265</lpage>
+          <pub-id pub-id-type="pmid">15297300</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ardlie</surname>
+              <given-names>KG</given-names>
+            </name>
+            <name>
+              <surname>Kruglyak</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Seielstad</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Patterns of linkage disequilibrium in the human genome</article-title>
+          <source>Nat Rev Genet</source>
+          <year>2002</year>
+          <volume>3</volume>
+          <fpage>299</fpage>
+          <lpage>309</lpage>
+          <pub-id pub-id-type="pmid">11967554</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taliun</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Gamper</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Pattaro</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Efficient haplotype block recognition of very long and dense genetic sequences</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2014</year>
+          <volume>15</volume>
+          <fpage>10</fpage>
+          <pub-id pub-id-type="pmid">24423111</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taliun</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Gamper</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Leser</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Pattaro</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Fast sampling-based whole-genome haplotype block recognition</article-title>
+          <source>IEEE/ACM Trans Comput Biol Bioinform</source>
+          <year>2016</year>
+          <volume>13</volume>
+          <fpage>315</fpage>
+          <lpage>325</lpage>
+          <pub-id pub-id-type="pmid">27045830</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chang</surname>
+              <given-names>CC</given-names>
+            </name>
+            <name>
+              <surname>Chow</surname>
+              <given-names>CC</given-names>
+            </name>
+            <name>
+              <surname>Tellier</surname>
+              <given-names>LC</given-names>
+            </name>
+            <name>
+              <surname>Vattikuti</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Purcell</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>JJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Second-generation PLINK: rising to the challenge of larger and richer datasets</article-title>
+          <source>Gigascience</source>
+          <year>2015</year>
+          <volume>4</volume>
+          <fpage>7</fpage>
+          <pub-id pub-id-type="pmid">25722852</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <collab>1000 Genomes Project Consortium</collab>
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abecasis</surname>
+              <given-names>GR</given-names>
+            </name>
+            <name>
+              <surname>Auton</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Brooks</surname>
+              <given-names>LD</given-names>
+            </name>
+            <name>
+              <surname>DePristo</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Durbin</surname>
+              <given-names>RM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>An integrated map of genetic variation from 1,092 human genomes</article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>491</volume>
+          <fpage>56</fpage>
+          <lpage>65</lpage>
+          <pub-id pub-id-type="pmid">23128226</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <collab>International HapMap 3 Consortium</collab>
+          <person-group person-group-type="author">
+            <name>
+              <surname>Altshuler</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>Gibbs</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Peltonen</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Altshuler</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>Gibbs</surname>
+              <given-names>RA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Integrating common and rare genetic variation in diverse human populations</article-title>
+          <source>Nature</source>
+          <year>2010</year>
+          <volume>467</volume>
+          <fpage>52</fpage>
+          <lpage>58</lpage>
+          <pub-id pub-id-type="pmid">20811451</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lewontin</surname>
+              <given-names>RC</given-names>
+            </name>
+          </person-group>
+          <article-title>The interaction of selection and linkage. I. General considerations: heterotic models</article-title>
+          <source>Genetics</source>
+          <year>1964</year>
+          <volume>49</volume>
+          <fpage>49</fpage>
+          <lpage>67</lpage>
+          <pub-id pub-id-type="pmid">17248194</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zapata</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Alvarez</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Carollo</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Approximate variance of the standardized measure of gametic disequilibrium D'</article-title>
+          <source>Am J Hum Genet</source>
+          <year>1997</year>
+          <volume>61</volume>
+          <fpage>771</fpage>
+          <lpage>774</lpage>
+          <pub-id pub-id-type="pmid">9326344</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B19">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wall</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Pritchard</surname>
+              <given-names>JK</given-names>
+            </name>
+          </person-group>
+          <article-title>Assessing the performance of the haplotype block model of linkage disequilibrium</article-title>
+          <source>Am J Hum Genet</source>
+          <year>2003</year>
+          <volume>73</volume>
+          <fpage>502</fpage>
+          <lpage>515</lpage>
+          <pub-id pub-id-type="pmid">12916017</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hill</surname>
+              <given-names>WG</given-names>
+            </name>
+          </person-group>
+          <article-title>Estimation of linkage disequilibrium in randomly mating populations</article-title>
+          <source>Heredity (Edinb)</source>
+          <year>1974</year>
+          <volume>33</volume>
+          <fpage>229</fpage>
+          <lpage>239</lpage>
+          <pub-id pub-id-type="pmid">4531429</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gaunt</surname>
+              <given-names>TR</given-names>
+            </name>
+            <name>
+              <surname>Rodr&#xED;guez</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Day</surname>
+              <given-names>IN</given-names>
+            </name>
+          </person-group>
+          <article-title>Cubic exact solutions for the estimation of pairwise haplotype frequencies: implications for linkage disequilibrium analyses and a web tool 'CubeX'</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2007</year>
+          <volume>8</volume>
+          <fpage>428</fpage>
+          <pub-id pub-id-type="pmid">17980034</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <title>The effect of sampling ratio of the experimental datasets sampled from the 1000G dataset and HapMap dataset on several summary statistics of haplotype blocks obtained by five haplotype block partition methods. SNP, single nucleotide polymorphism; CI, confidence interval; FGT, four gamete test; SS, solid spine.</title>
+      </caption>
+      <graphic xlink:href="gni-14-196-g001"/>
+    </fig>
+    <fig id="F2" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <title>(A&#x2013;F) LD heatmaps and haplotype block partition results of an example region of chromosome 22: 37,908,435&#x2013; 37,972,438 bp. Only non-singleton blocks found by each method are marked in orange colored rectangles. Two blue colored arrows in each of LD heatmaps are pointing the locations of 37,935,945 bp and 37,960,051 bp. LD, linkage disequilibrium; CI, confidence interval; FGT, four gamete test; SS, solid spine.</title>
+      </caption>
+      <graphic xlink:href="gni-14-196-g002"/>
+    </fig>
+    <fig id="F3" orientation="portrait" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <title>Distributions of the length of haplotype block found by S-MIG++, PLINK-MIG++, CI, FGT, and SS obtained using chromosome 22 region of the HapMap dataset and the 1000G dataset with different sampling ratios. CI, confidence interval; FGT, four gamete test; SS, solid spine.</title>
+      </caption>
+      <graphic xlink:href="gni-14-196-g003"/>
+    </fig>
+    <fig id="F4" orientation="portrait" position="float">
+      <label>Fig. 4</label>
+      <caption>
+        <title>The proportion of commonly found haplotype blocks based on the marker subset of 1000G dataset and the HapMap dataset compared to the entire 1000G SNP markers. Two haplotype blocks obtained from each of two datasets are said to be common blocks if <italic>L<sub>o</sub>/L<sub>w</sub></italic> or <italic>L<sub>o</sub>/L<sub>s</sub></italic> is greater than or equal to 0.8 where <italic>L<sub>o</sub></italic> is the length of overlapped region of a pair of haplotype blocks, <italic>L<sub>w</sub></italic> is the length of a block in entire data which overlapping with the block in sampled data, and <italic>L<sub>s</sub></italic> is the length of a block in sampled data which overlapping with the block in entire data. SNP, single nucleotide polymorphism; CI, confidence interval; FGT, four gamete test; SS, solid spine.</title>
+      </caption>
+      <graphic xlink:href="gni-14-196-g004"/>
+    </fig>
+    <table-wrap id="T1" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <title>A summary of haplotype block partition results obtained for chromosome 22 region of experiment datasets of various sampling ratio sampled from the 1000G dataset and the HapMap dataset</title>
+      </caption>
+      <graphic xlink:href="gni-14-196-i001"/>
+      <table-wrap-foot>
+        <fn>
+          <p>SNP, single nucleotide polymorphism; CI, confidence interval; FGT, four gamete test; SS, solid spine.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

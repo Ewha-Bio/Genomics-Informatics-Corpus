@@ -1,0 +1,1362 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">24124409</article-id>
+      <article-id pub-id-type="pmc">3794086</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2013.11.3.135</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Original Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Gene Set Analyses of Genome-Wide Association Studies on 49 Quantitative Traits Measured in a Single Genetic Epidemiology Dataset</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Jihye</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kwon</surname>
+            <given-names>Ji-sun</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Sangsoo</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="A1">Department of Bioinformatics and Life Science, Soongsil University, Seoul 156-743, Korea.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +82-2-820-0457, Fax: +82-2-824-4383, <email>sskmb@ssu.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>9</month>
+        <year>2013</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>30</day>
+        <month>9</month>
+        <year>2013</year>
+      </pub-date>
+      <volume>11</volume>
+      <issue>3</issue>
+      <fpage>135</fpage>
+      <lpage>141</lpage>
+      <history>
+        <date date-type="received">
+          <day>31</day>
+          <month>7</month>
+          <year>2013</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>20</day>
+          <month>8</month>
+          <year>2013</year>
+        </date>
+        <date date-type="accepted">
+          <day>21</day>
+          <month>8</month>
+          <year>2013</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2013 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2013</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">http://creativecommons.org/licenses/by-nc/3.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Gene set analysis is a powerful tool for interpreting a genome-wide association study result and is gaining popularity these days. Comparison of the gene sets obtained for a variety of traits measured from a single genetic epidemiology dataset may give insights into the biological mechanisms underlying these traits. Based on the previously published single nucleotide polymorphism (SNP) genotype data on 8,842 individuals enrolled in the Korea Association Resource project, we performed a series of systematic genome-wide association analyses for 49 quantitative traits of basic epidemiological, anthropometric, or blood chemistry parameters. Each analysis result was subjected to subsequent gene set analyses based on Gene Ontology (GO) terms using gene set analysis software, GSA-SNP, identifying a set of GO terms significantly associated to each trait (p<sub>corr</sub> &lt; 0.05). Pairwise comparison of the traits in terms of the semantic similarity in their GO sets revealed surprising cases where phenotypically uncorrelated traits showed high similarity in terms of biological pathways. For example, the pH level was related to 7 other traits that showed low phenotypic correlations with it. A literature survey implies that these traits may be regulated partly by common pathways that involve neuronal or nerve systems.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>Gene Ontology</kwd>
+        <kwd>gene set analysis</kwd>
+        <kwd>genome-wide association study</kwd>
+        <kwd>quantitative traits</kwd>
+        <kwd>semantic similarity</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>Genome-wide association (GWA) studies are now well established for discovering hypothesis-free genetic loci whose variations are associated with a phenotype [<xref ref-type="bibr" rid="B1">1</xref>-<xref ref-type="bibr" rid="B4">4</xref>]. Downstream analysis of the study result in terms of gene sets is gaining popularity these days, as it facilitates biological interpretation of a GWA result [<xref ref-type="bibr" rid="B5">5</xref>].</p>
+      <p>The Korea Association Resource (KARE) project has collected epidemiological and genotype data from the regional cohorts in Ansung and Ansan, Korea [<xref ref-type="bibr" rid="B6">6</xref>]. A number of GWA studies based on this KARE data have been published so far [<xref ref-type="bibr" rid="B6">6</xref>-<xref ref-type="bibr" rid="B8">8</xref>]. We pursued re-analyses of these studies in terms of gene sets in a systematic way to warrant cross-comparisons of the traits. We mimicked the analysis conditions of the original published GWA works as much as possible, based on the de facto standard program PLINK [<xref ref-type="bibr" rid="B9">9</xref>]. For the gene set analysis, we used GSA-SNP software [<xref ref-type="bibr" rid="B10">10</xref>], an efficient Java-based application that accepts a list of single nucleotide polymorphisms (SNPs) and their association p-values and outputs the gene set p-values after multiple testing correction.</p>
+      <p>We applied this procedure to 49 baseline quantitative traits that were of epidemiological, anthropometric, or blood chemistry parameters. As expected, those traits that are known to share common biological mechanisms and to overlap in their population incidences indeed showed similar profiles of the significantly associated gene sets. To our surprise, some of the traits that were phenotypically uncorrelated in our study population and were seemingly unrelated to each other showed similar profiles of the significantly associated gene sets. Our results may demonstrate a useful strategy of discovering pleiotropy, which refers to a phenomenon of common pathways involved in distinct phenotypes.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>Phenotype and genotype data</title>
+        <p>Details of the KARE study design have been reported [<xref ref-type="bibr" rid="B6">6</xref>]. Briefly, the genotype data were measured for a total of 10,038 residents in both Ansung and Ansan provinces, Korea, using Affymetrix Genome-wide Human SNP Array 5.0 chips (Affymetrix Inc., Santa Clara, CA, USA). After quality control, 352k SNP genotypes for 8,842 samples were used in the subsequent GWA analyses. The epidemiological trait data for these individuals were also received from the KARE project. Among a total of 49 quantitative traits, we took a logarithm of 5 trait values to balance the distribution.</p>
+      </sec>
+      <sec>
+        <title>GWA analyses</title>
+        <p>We used the imputed genotype data that comprised 1.8 million SNP markers [<xref ref-type="bibr" rid="B6">6</xref>]. GWA analyses of these 49 quantitative traits were performed by linear regression under the additive genetic model, as implemented in PLINK.</p>
+      </sec>
+      <sec>
+        <title>Gene set analyses</title>
+        <p>We performed GSA using the Gene Ontology (GO) databases, where only gene sets having 10-200 members (2,476 biological process GO terms) were used. We applied the Z-statistic method, as implemented in GSA-SNP [<xref ref-type="bibr" rid="B10">10</xref>], with the default options. Briefly, those SNPs residing inside or within 20 kb of the boundary of each gene were compiled, and the second best p-value was assigned to the gene. See Kwon et al. [<xref ref-type="bibr" rid="B11">11</xref>] for the rationale of using the second best p-value instead of the best p-value. The gene score was defined as the -log of the p-value assigned to the gene. The Z-statistic was then calculated for each gene set [<xref ref-type="bibr" rid="B10">10</xref>]. The p-values for each gene set were computed under the assumption of a normal distribution of the Z-statistic, followed by multiple testing correction using the false discovery rate method. When the member genes of a gene set overlapped in their genomic loci or were located in tandem within a short block of strong linkage disequilibrium, the p-values assigned to them might have been highly correlated. In such cases, only one of them was included to calculate the gene set score.</p>
+      </sec>
+      <sec>
+        <title>Semantic similarity between GO terms</title>
+        <p>The <italic>R</italic> package GOSemSim was developed to compute semantic similarity among GO terms, sets of GO terms, gene products, and gene clusters. This package contains functions to estimate the semantic similarity of GO terms based on Resnik's, Lin's, Jiang and Conrath's, Rel's, and Wang's methods. Here, we used Wang's method for our analysis. This method determines the semantic similarity of two GO terms based on both the locations of these terms in the GO graph and their relationships with their ancestor terms [<xref ref-type="bibr" rid="B12">12</xref>]. The similarity index between the two GO terms was between 0 (the least similar) and 1 (identical). The similarity between two sets of GO terms was calculated as follows. First, the highest value against all members of the other set was calculated for a given GO term in one of the sets. Then, all of these values were collected and averaged to provide the similarity between the two sets. The significance of the similarity index was inferred, based on the distribution of the indices from 10<sup>6</sup> random samplings.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Results and Discussion</title>
+      <p>Parallel and systematic GWA studies of a number of traits using a single genetic epidemiology dataset give a unique opportunity to explore common biological pathways regulating multiple traits that do not display phenotypic correlations. In this report, we focused on the 49 baseline quantitative trait data that were demographic, anthropometric, or blood chemistry parameters.</p>
+      <p>We surveyed the literature for the published GWA studies, based on the KARE data, and extracted the information on the analysis conditions, such as exclusion of samples and covariates of association regression. For the GWA analyses of all 49 traits, we included area, age, and sex as covariates, and for some of the traits, additional covariates were added, based on the literature information (<xref ref-type="table" rid="T1">Table 1</xref>). The phenotypic relations were also learned from principal component analysis (PCA). For example, the directions pointed by waist and body mass index (BMI) were similar in the PCA plot (<xref ref-type="fig" rid="F1">Fig. 1</xref>); using BMI as one of the covariates for the analysis of waist. On the contrary, we used a literature guide for the analysis of BMI [<xref ref-type="bibr" rid="B13">13</xref>]. GWA analyses for all 49 traits were performed using linear regression, as implemented in PLINK, and the resulting SNP p-values were fed into GSA-SNP for gene set analysis.</p>
+      <p>For each of the 49 traits, we identified biological process GO terms that showed p &lt; 0.05 after multiple testing correction (the lists are available upon request). As GO terms are hierarchically arranged, verbatim matches are not desirable for the comparison of a pair of gene sets. Instead, one should take into consideration the number of nodes in the GO tree that separate a pair of terms. For this, we used so-called semantic similarity, as implemented in the R package GOSemSim. For each pair of traits, we calculated the semantic similarity of the gene sets and plotted it against the correlation coefficient between the trait values (<xref ref-type="fig" rid="F2">Fig. 2</xref>). The pairs showing semantic similarity greater than 0.8 corresponded to traits that had high correlations in the trait values. We also noted many pairs having high semantic similarity, despite low phenotypic correlation.</p>
+      <p>We selected 46 trait pairs that showed a semantic similarity in gene sets greater than an arbitrary cutoff of 0.75 and depicted the interaction network using Cytoscape (<xref ref-type="fig" rid="F3">Fig. 3</xref>). The traits related to blood lipid levels, such as total cholesterol, high density lipoprotein cholesterol, low density lipoprotein cholesterol, and triglycerides (TGs), formed a small network by themselves. As cholesterol and TGs are components of lipoproteins, it is not surprising to observe such a network. Both hip and waist-hip ratio are connected to suprailiac skinfold; they are all related to body fat. The most striking feature is a large network involving 20 traits. In this network, the traits related to blood glucose levels, such as GLU0, GLU60, GLU120, HbA1c, and HOMA, form a subnetwork. In addition, the traits related to either blood pressure or liver damage also formed respective subnetworks, as expected from their high phenotypic correlations.</p>
+      <p>We also noted some hub nodes having many first neighbors. Interestingly, the pH level was connected to 7 other traits, none of which showed high phenotypic correlations with it. We examined the gene sets that were commonly shared between these traits (<xref ref-type="table" rid="T2">Table 2</xref>). Among them, 11 were related to neuron development and function. We surveyed the literature for putative involvement of neuronal or nerve systems in the regulation of those 8 traits (<xref ref-type="table" rid="T3">Table 3</xref>). Although it is presumptive, this may imply that these traits are regulated partly by common pathways that involve the neuronal system.</p>
+      <p>In conclusion, our work may be a useful approach for discovering pleiotropy.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>The genotype and phenotype data were kindly provided by the Korea National Institute of Health, Centers for Disease Control and Prevention, the Republic of Korea.</p>
+      <p>The financial support of this work was made available by the Basic Science Research Program through the National Research Foundation of Korea (NRF), funded by the Ministry of Education, Science, and Technology (NRF-2010-0021811).</p>
+    </ack>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Levy</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Ehret</surname>
+              <given-names>GB</given-names>
+            </name>
+            <name>
+              <surname>Rice</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Verwoert</surname>
+              <given-names>GC</given-names>
+            </name>
+            <name>
+              <surname>Launer</surname>
+              <given-names>LJ</given-names>
+            </name>
+            <name>
+              <surname>Dehghan</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-wide association study of blood pressure and hypertension</article-title>
+          <source>Nat Genet</source>
+          <year>2009</year>
+          <volume>41</volume>
+          <fpage>677</fpage>
+          <lpage>687</lpage>
+          <pub-id pub-id-type="pmid">19430479</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ma</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Runesha</surname>
+              <given-names>HB</given-names>
+            </name>
+            <name>
+              <surname>Tanaka</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Ferrucci</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Bandinelli</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-wide association analysis of total cholesterol and high-density lipoprotein cholesterol levels using the Framingham heart study data</article-title>
+          <source>BMC Med Genet</source>
+          <year>2010</year>
+          <volume>11</volume>
+          <fpage>55</fpage>
+          <pub-id pub-id-type="pmid">20370913</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yamazaki</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Umeno</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Takahashi</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Hirano</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>TA</given-names>
+            </name>
+            <name>
+              <surname>Kumasaka</surname>
+              <given-names>N</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A genome-wide association study identifies 2 susceptibility loci for Crohn's disease in a Japanese population</article-title>
+          <source>Gastroenterology</source>
+          <year>2013</year>
+          <volume>144</volume>
+          <fpage>781</fpage>
+          <lpage>788</lpage>
+          <pub-id pub-id-type="pmid">23266558</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lettre</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>Using height association studies to gain insights into human idiopathic short and syndromic stature phenotypes</article-title>
+          <source>Pediatr Nephrol</source>
+          <year>2013</year>
+          <volume>28</volume>
+          <fpage>557</fpage>
+          <lpage>562</lpage>
+          <pub-id pub-id-type="pmid">22941042</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schaid</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <name>
+              <surname>Sinnwell</surname>
+              <given-names>JP</given-names>
+            </name>
+            <name>
+              <surname>Jenkins</surname>
+              <given-names>GD</given-names>
+            </name>
+            <name>
+              <surname>McDonnell</surname>
+              <given-names>SK</given-names>
+            </name>
+            <name>
+              <surname>Ingle</surname>
+              <given-names>JN</given-names>
+            </name>
+            <name>
+              <surname>Kubo</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Using the gene ontology to scan multilevel gene sets for associations in genome wide association studies</article-title>
+          <source>Genet Epidemiol</source>
+          <year>2012</year>
+          <volume>36</volume>
+          <fpage>3</fpage>
+          <lpage>16</lpage>
+          <pub-id pub-id-type="pmid">22161999</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cho</surname>
+              <given-names>YS</given-names>
+            </name>
+            <name>
+              <surname>Go</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>YJ</given-names>
+            </name>
+            <name>
+              <surname>Heo</surname>
+              <given-names>JY</given-names>
+            </name>
+            <name>
+              <surname>Oh</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Ban</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A large-scale genome-wide association study of Asian populations uncovers genetic factors influencing eight quantitative traits</article-title>
+          <source>Nat Genet</source>
+          <year>2009</year>
+          <volume>41</volume>
+          <fpage>527</fpage>
+          <lpage>534</lpage>
+          <pub-id pub-id-type="pmid">19396169</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>BY</given-names>
+            </name>
+            <name>
+              <surname>Cho</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Shin</surname>
+              <given-names>DH</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Genome-wide association study of copy number variations associated with pulmonary function measures in Korea Associated Resource (KARE) cohorts</article-title>
+          <source>Genomics</source>
+          <year>2011</year>
+          <volume>97</volume>
+          <fpage>101</fpage>
+          <lpage>105</lpage>
+          <pub-id pub-id-type="pmid">21059387</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hong</surname>
+              <given-names>KW</given-names>
+            </name>
+            <name>
+              <surname>Min</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Heo</surname>
+              <given-names>BM</given-names>
+            </name>
+            <name>
+              <surname>Joo</surname>
+              <given-names>SE</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>SS</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Recapitulation of genome-wide association studies on pulse pressure and mean arterial pressure in the Korean population</article-title>
+          <source>J Hum Genet</source>
+          <year>2012</year>
+          <volume>57</volume>
+          <fpage>391</fpage>
+          <lpage>393</lpage>
+          <pub-id pub-id-type="pmid">22475680</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Purcell</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Neale</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Todd-Brown</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Ferreira</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Bender</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>PLINK: a tool set for whole-genome association and population-based linkage analyses</article-title>
+          <source>Am J Hum Genet</source>
+          <year>2007</year>
+          <volume>81</volume>
+          <fpage>559</fpage>
+          <lpage>575</lpage>
+          <pub-id pub-id-type="pmid">17701901</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nam</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>SY</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>GSA-SNP: a general approach for gene set analysis of polymorphisms</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2010</year>
+          <volume>38</volume>
+          <fpage>W749</fpage>
+          <lpage>W754</lpage>
+          <pub-id pub-id-type="pmid">20501604</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kwon</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Nam</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Performance comparison of two gene set analysis methods for genome-wide association study results: GSA-SNP vs i-GSEA4GWAS</article-title>
+          <source>Genomics Inform</source>
+          <year>2012</year>
+          <volume>10</volume>
+          <fpage>123</fpage>
+          <lpage>127</lpage>
+          <pub-id pub-id-type="pmid">23105940</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yu</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Qin</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Bo</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>GOSemSim: an R package for measuring semantic similarity among GO terms and gene products</article-title>
+          <source>Bioinformatics</source>
+          <year>2010</year>
+          <volume>26</volume>
+          <fpage>976</fpage>
+          <lpage>978</lpage>
+          <pub-id pub-id-type="pmid">20179076</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Loos</surname>
+              <given-names>RJ</given-names>
+            </name>
+            <name>
+              <surname>Powell</surname>
+              <given-names>JE</given-names>
+            </name>
+            <name>
+              <surname>Medland</surname>
+              <given-names>SE</given-names>
+            </name>
+            <name>
+              <surname>Speliotes</surname>
+              <given-names>EK</given-names>
+            </name>
+            <name>
+              <surname>Chasman</surname>
+              <given-names>DI</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>FTO genotype is associated with phenotypic variability of body mass index</article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>490</volume>
+          <fpage>267</fpage>
+          <lpage>272</lpage>
+          <pub-id pub-id-type="pmid">22982992</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kiel</surname>
+              <given-names>DP</given-names>
+            </name>
+            <name>
+              <surname>Demissie</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Dupuis</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Lunetta</surname>
+              <given-names>KL</given-names>
+            </name>
+            <name>
+              <surname>Murabito</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Karasik</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Genome-wide association with bone mass and geometry in the Framingham Heart Study</article-title>
+          <source>BMC Med Genet</source>
+          <year>2007</year>
+          <volume>8</volume>
+          <issue>Suppl 1</issue>
+          <fpage>S14</fpage>
+          <pub-id pub-id-type="pmid">17903296</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Namkung</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Application of structural equation models to genome-wide association analysis</article-title>
+          <source>Genomics Inform</source>
+          <year>2010</year>
+          <volume>8</volume>
+          <fpage>150</fpage>
+          <lpage>158</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pyun</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Baik</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Cho</surname>
+              <given-names>NH</given-names>
+            </name>
+            <name>
+              <surname>Koh</surname>
+              <given-names>I</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Interaction effects of lipoprotein lipase polymorphisms with lifestyle on lipid levels in a Korean population: a cross-sectional study</article-title>
+          <source>Genomics Inform</source>
+          <year>2012</year>
+          <volume>10</volume>
+          <fpage>88</fpage>
+          <lpage>98</lpage>
+          <pub-id pub-id-type="pmid">23105935</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Bentley</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Adeyemo</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Shriner</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Doumatey</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-wide association study identifies novel loci association with fasting insulin and insulin resistance in African Americans</article-title>
+          <source>Hum Mol Genet</source>
+          <year>2012</year>
+          <volume>21</volume>
+          <fpage>4530</fpage>
+          <lpage>4536</lpage>
+          <pub-id pub-id-type="pmid">22791750</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ryu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Association of glycosylated hemoglobin with the gene encoding <italic>CDKAL1</italic> in the Korean Association Resource (KARE) study</article-title>
+          <source>Hum Mutat</source>
+          <year>2012</year>
+          <volume>33</volume>
+          <fpage>655</fpage>
+          <lpage>659</lpage>
+          <pub-id pub-id-type="pmid">22290723</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B19">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kong</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Genetic associations with C-reactive protein level and white blood cell count in the KARE study</article-title>
+          <source>Int J Immunogenet</source>
+          <year>2013</year>
+          <volume>40</volume>
+          <fpage>120</fpage>
+          <lpage>125</lpage>
+          <pub-id pub-id-type="pmid">22788528</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kwon</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparison of erythrocyte traits among European, Japanese and Korean</article-title>
+          <source>Genomics Inform</source>
+          <year>2010</year>
+          <volume>8</volume>
+          <fpage>159</fpage>
+          <lpage>163</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ro</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Pyun</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Shin</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Cho</surname>
+              <given-names>NH</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>JY</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Association between arachidonate 5-lipoxygenase-activating protein (<italic>ALOX5AP</italic>) and lung function in a Korean population</article-title>
+          <source>Scand J Immunol</source>
+          <year>2012</year>
+          <volume>76</volume>
+          <fpage>151</fpage>
+          <lpage>157</lpage>
+          <pub-id pub-id-type="pmid">22537113</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Woo</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Genetic association of the gene encoding RPGRIP1L with susceptibility to vascular dementia</article-title>
+          <source>Gene</source>
+          <year>2012</year>
+          <volume>499</volume>
+          <fpage>160</fpage>
+          <lpage>162</lpage>
+          <pub-id pub-id-type="pmid">22425971</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lesch</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Nyhan</surname>
+              <given-names>WL</given-names>
+            </name>
+          </person-group>
+          <article-title>A familial disorder of uric acid metabolism and central nervous system function</article-title>
+          <source>Am J Med</source>
+          <year>1964</year>
+          <volume>36</volume>
+          <fpage>561</fpage>
+          <lpage>570</lpage>
+          <pub-id pub-id-type="pmid">14142409</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B24">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Emanuel</surname>
+              <given-names>DA</given-names>
+            </name>
+            <name>
+              <surname>Fleishman</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Haddy</surname>
+              <given-names>FJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Effect of pH change upon renal vascular resistance and urine flow</article-title>
+          <source>Circ Res</source>
+          <year>1957</year>
+          <volume>5</volume>
+          <fpage>607</fpage>
+          <lpage>611</lpage>
+          <pub-id pub-id-type="pmid">13473056</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sandin</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Chorot</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>Changes in skin, salivary, and urinary pH as indicators of anxiety level in humans</article-title>
+          <source>Psychophysiology</source>
+          <year>1985</year>
+          <volume>22</volume>
+          <fpage>226</fpage>
+          <lpage>230</lpage>
+          <pub-id pub-id-type="pmid">3991850</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B26">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Morrison</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kibble</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Activation of pelvic afferent nerves from the rat bladder during filling</article-title>
+          <source>Scand J Urol Nephrol Suppl</source>
+          <year>1999</year>
+          <volume>201</volume>
+          <fpage>73</fpage>
+          <lpage>75</lpage>
+          <pub-id pub-id-type="pmid">10573780</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B27">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Grassi</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Seravalle</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Colombo</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Bolla</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Cattaneo</surname>
+              <given-names>BM</given-names>
+            </name>
+            <name>
+              <surname>Cavagnini</surname>
+              <given-names>F</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Body weight reduction, sympathetic nerve traffic, and arterial baroreflex in obese normotensive humans</article-title>
+          <source>Circulation</source>
+          <year>1998</year>
+          <volume>97</volume>
+          <fpage>2037</fpage>
+          <lpage>2042</lpage>
+          <pub-id pub-id-type="pmid">9610534</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B28">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Spraul</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Ravussin</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Fontvieille</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Rising</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Larson</surname>
+              <given-names>DE</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>EA</given-names>
+            </name>
+          </person-group>
+          <article-title>Reduced sympathetic nervous activity: a potential mechanism predisposing to body weight gain</article-title>
+          <source>J Clin Invest</source>
+          <year>1993</year>
+          <volume>92</volume>
+          <fpage>1730</fpage>
+          <lpage>1735</lpage>
+          <pub-id pub-id-type="pmid">8408625</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B29">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Judy</surname>
+              <given-names>WV</given-names>
+            </name>
+            <name>
+              <surname>Watanabe</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Henry</surname>
+              <given-names>DP</given-names>
+            </name>
+            <name>
+              <surname>Besch</surname>
+              <given-names>HR</given-names>
+              <suffix>Jr</suffix>
+            </name>
+            <name>
+              <surname>Murphy</surname>
+              <given-names>WR</given-names>
+            </name>
+            <name>
+              <surname>Hockel</surname>
+              <given-names>GM</given-names>
+            </name>
+          </person-group>
+          <article-title>Sympathetic nerve activity: role in regulation of blood pressure in the spontaenously hypertensive rat</article-title>
+          <source>Circ Res</source>
+          <year>1976</year>
+          <volume>38</volume>
+          <issue>6 Suppl 2</issue>
+          <fpage>21</fpage>
+          <lpage>29</lpage>
+          <pub-id pub-id-type="pmid">178466</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B30">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sundl&#xF6;f</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Wallin</surname>
+              <given-names>BG</given-names>
+            </name>
+          </person-group>
+          <article-title>Human muscle nerve sympathetic activity at rest: relationship to blood pressure and age</article-title>
+          <source>J Physiol</source>
+          <year>1978</year>
+          <volume>274</volume>
+          <fpage>621</fpage>
+          <lpage>637</lpage>
+          <pub-id pub-id-type="pmid">625012</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B31">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Walicke</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Varon</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Manthrope</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Purification of a human red blood cell protein supporting the survival of cultured CNS neurons, and its identification as catalase</article-title>
+          <source>J Neurosci</source>
+          <year>1986</year>
+          <volume>6</volume>
+          <fpage>1114</fpage>
+          <lpage>1121</lpage>
+          <pub-id pub-id-type="pmid">3009731</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B32">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Woolf</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Mannion</surname>
+              <given-names>RJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuropathic pain: aetiology, symptoms, mechanisms, and management</article-title>
+          <source>Lancet</source>
+          <year>1999</year>
+          <volume>353</volume>
+          <fpage>1959</fpage>
+          <lpage>1964</lpage>
+          <pub-id pub-id-type="pmid">10371588</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B33">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Woodhull</surname>
+              <given-names>AM</given-names>
+            </name>
+          </person-group>
+          <article-title>Ionic blockage of sodium channels in nerve</article-title>
+          <source>J Gen Physiol</source>
+          <year>1973</year>
+          <volume>61</volume>
+          <fpage>687</fpage>
+          <lpage>708</lpage>
+          <pub-id pub-id-type="pmid">4541078</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B34">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cest&#xE8;le</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Catterall</surname>
+              <given-names>WA</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular mechanisms of neurotoxin action on voltage-gated sodium channels</article-title>
+          <source>Biochimie</source>
+          <year>2000</year>
+          <volume>82</volume>
+          <fpage>883</fpage>
+          <lpage>892</lpage>
+          <pub-id pub-id-type="pmid">11086218</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B35">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Masui</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Mozai</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Kakehi</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional and morphometric study of the liver in motor neuron disease</article-title>
+          <source>J Neurol</source>
+          <year>1985</year>
+          <volume>232</volume>
+          <fpage>15</fpage>
+          <lpage>19</lpage>
+          <pub-id pub-id-type="pmid">3998769</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B36">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shin'oka</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Shum-Tim</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Jonas</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Lidov</surname>
+              <given-names>HG</given-names>
+            </name>
+            <name>
+              <surname>Laussen</surname>
+              <given-names>PC</given-names>
+            </name>
+            <name>
+              <surname>Miura</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Higher hematocrit improves cerebral outcome after deep hypothermic circulatory arrest</article-title>
+          <source>J Thorac Cardiovasc Surg</source>
+          <year>1996</year>
+          <volume>112</volume>
+          <fpage>1610</fpage>
+          <lpage>1620</lpage>
+          <pub-id pub-id-type="pmid">8975853</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B37">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carlson</surname>
+              <given-names>ES</given-names>
+            </name>
+            <name>
+              <surname>Tkac</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Magid</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>O'Connor</surname>
+              <given-names>MB</given-names>
+            </name>
+            <name>
+              <surname>Andrews</surname>
+              <given-names>NC</given-names>
+            </name>
+            <name>
+              <surname>Schallert</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Iron is essential for neuron development and memory function in mouse hippocampus</article-title>
+          <source>J Nutr</source>
+          <year>2009</year>
+          <volume>139</volume>
+          <fpage>672</fpage>
+          <lpage>679</lpage>
+          <pub-id pub-id-type="pmid">19211831</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Principal component analysis of the phenotype values of 49 quantitative traits used in this study. See <xref ref-type="table" rid="T1">Table 1</xref> for the trait abbreviations.</p>
+      </caption>
+      <graphic xlink:href="gni-11-135-g001"/>
+    </fig>
+    <fig id="F2" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Scatter plot of correlation coefficients versus biological process Gene Ontology semantic similarities (GOSemSim) between trait pairs. The red horizontal line marks the GOSemSim value at 0.75.</p>
+      </caption>
+      <graphic xlink:href="gni-11-135-g002"/>
+    </fig>
+    <fig id="F3" orientation="portrait" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Interaction network between traits based on biological process Gene Ontology semantic similarity. Pairs of traits having the semantic similarity greater than 0.75 are connected. On the other hand, the edge color represents the direction of phenotypic correlations (red and green for positive and negative correlations, respectively), and the brightness of the line represents the level of correlation (the brighter the higher correlation, and the darker the lower correlation).</p>
+      </caption>
+      <graphic xlink:href="gni-11-135-g003"/>
+    </fig>
+    <table-wrap id="T1" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>List of the traits used in this work</p>
+      </caption>
+      <graphic xlink:href="gni-11-135-i001"/>
+      <table-wrap-foot>
+        <fn>
+          <p>SOS, speed of sound; HDL, high density lipoprotein cholesterol; OGTT, oral glucose tolerance test; FVC, forced vital capacity; FEV1, forced expiratory volume in one second; AST, aspartate aminotransferase; ALT, alanine aminotransferase.</p>
+          <p><sup>a</sup>The full description of the target trait of the genome-wide association study (GWAS); <sup>b</sup>The abbreviation of the trait; <sup>c</sup>The covariates used in the regression analysis; <sup>d</sup>The original reference that reported the GWAS.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="T2" orientation="portrait" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>The biological Gene Ontology (GO) terms commonly associated with pH and its first neighbor traits in <xref ref-type="fig" rid="F3">Fig. 3</xref> GO category</p>
+      </caption>
+      <graphic xlink:href="gni-11-135-i002"/>
+    </table-wrap>
+    <table-wrap id="T3" orientation="portrait" position="float">
+      <label>Table 3</label>
+      <caption>
+        <p>Literature evidence of neuronal systems regulating pH and its first neighbor traits in <xref ref-type="fig" rid="F3">Fig. 3</xref></p>
+      </caption>
+      <graphic xlink:href="gni-11-135-i003"/>
+      <table-wrap-foot>
+        <fn>
+          <p>CNS, central nervous system; AST, aspartate aminotransferase; ALT, alanine aminotransferase.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

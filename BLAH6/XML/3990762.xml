@@ -1,0 +1,3012 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="review-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">24748856</article-id>
+      <article-id pub-id-type="pmc">3990762</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2014.12.1.2</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Review Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Next-Generation Sequencing and Epigenomics Research: A Hammer in Search of Nails</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sarda</surname>
+            <given-names>Shrutii</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+          <xref ref-type="corresp" rid="FN1">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hannenhalli</surname>
+            <given-names>Sridhar</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+          <xref ref-type="corresp" rid="FN2">**</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="A1">Center for Bioinformatics and Computational Biology, University of Maryland, College Park, MD 20740, USA.</aff>
+      <author-notes>
+        <corresp id="FN1"><sup>*</sup>Corresponding author 1: <email>ssarda@umiacs.umd.edu</email>, Tel: +1-301-405-7444, Fax: +1-301-314-1341</corresp>
+        <corresp id="FN2"><sup>**</sup>Corresponding author 2: <email>Sridhar@umiacs.umd.edu</email>, Tel: +1-301-405-8219, Fax: +1-301-314-1341</corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>3</month>
+        <year>2014</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>31</day>
+        <month>3</month>
+        <year>2014</year>
+      </pub-date>
+      <volume>12</volume>
+      <issue>1</issue>
+      <fpage>2</fpage>
+      <lpage>11</lpage>
+      <history>
+        <date date-type="received">
+          <day>10</day>
+          <month>11</month>
+          <year>2013</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>20</day>
+          <month>11</month>
+          <year>2013</year>
+        </date>
+        <date date-type="accepted">
+          <day>25</day>
+          <month>11</month>
+          <year>2013</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2014 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2014</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">http://creativecommons.org/licenses/by-nc/3.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>After the initial enthusiasm of the human genome project, it became clear that without additional data pertaining to the <italic>epigenome</italic>, i.e., how the genome is marked at specific developmental periods, in different tissues, as well as across individuals and species-the promise of the genome sequencing project in understanding biology cannot be fulfilled. This realization prompted several large-scale efforts to map the epigenome, most notably the Encyclopedia of DNA Elements (ENCODE) project. While there is essentially a single genome in an individual, there are hundreds of epigenomes, corresponding to various types of epigenomic marks at different developmental times and in multiple tissue types. Unprecedented advances in next-generation sequencing (NGS) technologies, by virtue of low cost and high speeds that continue to improve at a rate beyond what is anticipated by Moore's law for computer hardware technologies, have revolutionized molecular biology and genetics research, and have in turn prompted innovative ways to reduce the problem of measuring cellular events involving DNA or RNA into a sequencing problem. In this article, we provide a brief overview of the epigenome, the various types of epigenomic data afforded by NGS, and some of the novel discoveries yielded by the epigenomics projects. We also provide ample references for the reader to get in-depth information on these topics.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>chromatin accessibility</kwd>
+        <kwd>epigenomics</kwd>
+        <kwd>methylation</kwd>
+        <kwd>next-generation sequencing</kwd>
+        <kwd>regulation</kwd>
+      </kwd-group>
+      <funding-group>
+        <award-group>
+          <funding-source country="US">The National Institutes of Health</funding-source>
+          <award-id>R01GM100335</award-id>
+        </award-group>
+      </funding-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>Next-generation sequencing (NGS) has resulted in an exponential growth in data in the past decade, primarily fueled by the general interest of the scientific community in functionally annotating the human genome. The power of high-throughput parallel sequencing was deployed to characterize human genetic variation, in an international effort launched in 2008, called the 1000 Genomes Project, with the hope that such a large-scale endeavor would help in identifying all the underlying genetic differences that lead to disease resistance/susceptibility [<xref rid="B1" ref-type="bibr">1</xref>].</p>
+      <p>In the meantime, based on numerous genome-wide association studies (GWAS), it was realized that 93% of the trait-associated polymorphisms within the human population were located in non-coding regions, potentially within cis-regulatory elements [<xref rid="B2" ref-type="bibr">2</xref>]. In fact, in the mid-1970s, King and Wilson [<xref rid="B3" ref-type="bibr">3</xref>] pointed out the importance of mapping regulatory events and hinted that a small difference in the time/level of activation of a single gene could influence overall systemic development. They estimated the genetic distance between human and chimpanzee to be much smaller than the corresponding genetic distance between the sibling species of Drosophila, thereby underscoring the need to explore regulatory/expression differences at different times as a basis to explain the evolutionary differences at the organismal level [<xref rid="B3" ref-type="bibr">3</xref>].</p>
+    </sec>
+    <sec>
+      <title>Why the Epigenome?</title>
+      <p>A mechanistic understanding of spatio-temporal gene expression in eukaryotes is far from complete. While genetic differences might be expected to explain expression divergence across species and expression variability across individuals of a population, it cannot explain how almost-identical genomes in more than 200 different cell types within an individual organism can drive such varied expression profiles specific to each cell type [<xref rid="B4" ref-type="bibr">4</xref>]. DNA is packaged in a nucleoprotein complex structure called chromatin that is highly dynamic, in that its "states" vary from one cell type to another. Therefore, a possible solution to this conundrum is to analyze these "states" at the genome level, i.e., characterize the landscape of the <italic>epigenome</italic>, which further qualifies and modulates the functional effect of genetic information [<xref rid="B5" ref-type="bibr">5</xref>]. Epigenome, meaning "on or above genomes," refers to such sequence-independent heritable properties of the genome that can modulate the functional output of the genome. While, as described initially, heritability is an important qualifying criterion of an epigenomic mark (most notably, DNA methylation) [<xref rid="B6" ref-type="bibr">6</xref>], currently, the term epigenome is loosely used to encompass a myriad of chemical changes to DNA or histone proteins, chromatin accessibility, small and long (non-coding) RNA localization, and higher-order DNA organization (including nucleosome occupancy and positioning, and 3D chromatin interactions) (<xref ref-type="fig" rid="F1">Fig. 1</xref>) [<xref rid="B7" ref-type="bibr">7</xref>,<xref rid="B8" ref-type="bibr">8</xref>,<xref rid="B9" ref-type="bibr">9</xref>]. The ultimate combined effect of the epigenome is to determine the transcriptome (the set of all transcripts) of a cell precisely. Epigenomic features influence the regulatory program of each gene's expression in several ways: they define the local environment of specific processes by regulating the chromatin architecture, determine access of transcription factors to DNA, as well as serve to keep a "memory" of cell type-specific features facilitating heritability of epigenetic characteristics [<xref rid="B10" ref-type="bibr">10</xref>, <xref rid="B11" ref-type="bibr">11</xref>].</p>
+    </sec>
+    <sec>
+      <title>The Wild West of Epigenetic Marks and the Impact of NGS Techonologies</title>
+      <p>The will of the global scientific community to sequence the human genome spurred advances in sequencing technologies that led to what is now known as NGS. The improvement in cost and speed of sequencing in the last decade has significantly surpassed the analogous improvement in computer technologies as predicted by Moore's law [<xref rid="B12" ref-type="bibr">12</xref>]. Well beyond the initial goal of sequencing complete genomes of several species, NGS is now routinely used as a tool to investigate the diverse array of cellular events involving DNA or RNA, such as the identification of genomic loci bound by a specific protein, the detection of pairs of spatially proximal or interacting chromosomal loci, etc. Broad availability of NGS technologies has led to a paradigm shift in molecular biology research; from probing singular cellular events to an unbiased genome-scale mapping of such events, and has enabled genome-wide elucidation of the epigenomic landscapes in hundreds of cell types, across developmental times, in human, as well as other species [<xref rid="B13" ref-type="bibr">13</xref>].</p>
+      <p>As mentioned earlier, it is the locus-specific "epigenetic code" (a specific signature or combination of several epigenetic modifications) that helps define a cell's expression program and identity [<xref rid="B14" ref-type="bibr">14</xref>], thereby distinguishing it from other cell types. Unlike the largely static genome of an individual, the epigenome is highly variable and dynamic; yet, many of these marks can be passed down a cell's lineage, or from one generation to the next. In this section, we describe several well-studied epigenomic marks and outline what is known about their role in gene expression modulation. We will also outline various NGS-based assays that are used in comprehensively mapping each of the epigenetic marks (<xref ref-type="table" rid="T1">Table 1</xref>) [<xref rid="B15" ref-type="bibr">15</xref>, <xref rid="B16" ref-type="bibr">16</xref>, <xref rid="B17" ref-type="bibr">17</xref>, <xref rid="B18" ref-type="bibr">18</xref>, <xref rid="B19" ref-type="bibr">19</xref>, <xref rid="B20" ref-type="bibr">20</xref>, <xref rid="B21" ref-type="bibr">21</xref>, <xref rid="B22" ref-type="bibr">22</xref>, <xref rid="B23" ref-type="bibr">23</xref>, <xref rid="B24" ref-type="bibr">24</xref>, <xref rid="B25" ref-type="bibr">25</xref>, <xref rid="B26" ref-type="bibr">26</xref>, <xref rid="B27" ref-type="bibr">27</xref>, <xref rid="B28" ref-type="bibr">28</xref>, <xref rid="B29" ref-type="bibr">29</xref>, <xref rid="B30" ref-type="bibr">30</xref>, <xref rid="B31" ref-type="bibr">31</xref>, <xref rid="B32" ref-type="bibr">32</xref>, <xref rid="B33" ref-type="bibr">33</xref>, <xref rid="B34" ref-type="bibr">34</xref>].</p>
+      <sec>
+        <title>DNA methylation</title>
+        <p>One of the more stable and heritable epigenetic marks is DNA methylation. The human genome is highly methylated; approximately 80% of cytosines in CpG dinucleotides are chemically modified at their fifth carbon atom with a methyl group [<xref rid="B35" ref-type="bibr">35</xref>]. Historically, DNA methylation was associated with transcriptional silencing (as evidenced by many promoter-based studies) [<xref rid="B36" ref-type="bibr">36</xref>]. Although genome-scale profiling of this epigenetic mark revealed that in some instances DNA methylation is correlated with transcriptional activation, it is enriched in the gene bodies of active genes [<xref rid="B37" ref-type="bibr">37</xref>]. Thus, the associations between an epigenomic mark and functional output may be location-specific, thereby complicating their functional interpretation.</p>
+        <p>The available assays for identifying methylated CpG dinucleotides in a genome vary in terms of resolution and cost. Restriction enzyme-based assays (e.g., methylation-sensitive restriction enzyme sequencing) involve the digestion of genomic DNA with several methylation-sensitive enzymes [<xref rid="B15" ref-type="bibr">15</xref>], followed by sequencing of digested fragments. Affinity-based enrichment assays, such as methylated DNA immunoprecipitation sequencing and methyl-CpG-binding domain protein sequencing [<xref rid="B16" ref-type="bibr">16</xref>, <xref rid="B17" ref-type="bibr">17</xref>], selectively target methylated fragments (usually up to 100 bp) using an antibody, followed by sequencing of those fragments. Both these methods are low-resolution and essentially qualitative. Chemical modification methods, such as bisulfite sequencing (BS), have higher resolution and provide quantitative estimates of methylation. They exploit the fact that when treated with sodium bisulfite, unmethylated cytosines convert to uracil while methylated cytosines do not. Thus, mapping of sequenced fragments reveals the quantitative estimate of methylation at each CpG locus. The two variations to BS include reduced representation BS and whole-genome bisulfite sequencing, or methylC-seq (whole-genome BS); the former employs restriction enzyme digestion to target certain regions of interest prior to sodium bisulfite treatment [<xref rid="B18" ref-type="bibr">18</xref>], whereas the latter couples the chemical treatment with whole-genome sequencing [<xref rid="B19" ref-type="bibr">19</xref>].</p>
+        <p>Upon the discovery that 5-hydroxymethylcytosine (5-hmC: an intermediate produced during active DNA demethylation) and 5-methylcytosine (5-mC) are both resistant to bisulfite treatment, it became critical to distinguish between the different methyl variants, including 5-formylcytosine and 5-carboxylcytosine. To this end, oxidative bisulfite sequencing (oxBS-seq) was invented as an improvement for methylC-seq to measure single base-pair resolution methylation levels of 5-mC [<xref rid="B20" ref-type="bibr">20</xref>]. This is accomplished by oxidizing 5-hmCs (using potassium perruthenate) before sodium bisulfite treatment, such that they are now sensitive to the subjected chemical conversion to uracil, thus ensuring that the remaining cytosines are all 5-mCs.</p>
+      </sec>
+      <sec>
+        <title>Histone modifications</title>
+        <p>Chromosomal DNA is wrapped around histone octamers, essentially composed of 4 kinds of subunits; <italic>viz</italic>., H2A, H2B, H3, and H4. These proteins are subject to chemical modifications at specific residues of histone tails; some well-studied modifications include phosphorylation, methylation, and ubiquitination [<xref rid="B38" ref-type="bibr">38</xref>]. These modifications are involved in setting the stage for directed transcriptional activation and repression by controlling DNA accessibility or recruitment of other protein complexes. This idea has been extended into the "histone code" hypothesis [<xref rid="B39" ref-type="bibr">39</xref>, <xref rid="B40" ref-type="bibr">40</xref>]-that complex combinations of distinct histone modifications, like H3K27me3 (a mark of repressed regions), H3K4me3 (a mark of gene promoters), and H3K27ac (a mark of transcriptionally active regions), etc. [<xref rid="B41" ref-type="bibr">41</xref>], underlie specific transcriptional programs. This notion has been further extended in more recent works into an 'epigenomic code' to include epigenomic marks other than histone modifications [<xref rid="B42" ref-type="bibr">42</xref>].</p>
+        <p>Chromatin immunoprecipitation (ChIP) of DNA-histone complexes is achieved by cross-linking histones with the DNA, digesting the cross-linked DNA, and then using an antibody specific to the N-tail modification of interest (to any of the &gt;100 post-translational modifications to histone tails and globules [<xref rid="B43" ref-type="bibr">43</xref>]), followed by sequencing of the purified DNA fragments. This method is called chromatin immunoprecipitation sequencing (ChIP-seq) and was primarily used to map the genomic locations of DNA-associated proteins. Due to the relatively large fragment size, the mapped sequence reads thus obtained from ChIP-seq [<xref rid="B21" ref-type="bibr">21</xref>] provide a low-resolution localization map of modified histones in the genome. An alternative strategy, chromatin immunoprecipitation-exonuclease (ChIP-exo), uses exonuclease to digest the precipitated DNA fragment from either end to better resolve the modified loci at base-pair resolution [<xref rid="B22" ref-type="bibr">22</xref>].</p>
+      </sec>
+      <sec>
+        <title>Nucleosome positioning and occupancy</title>
+        <p>The packaging of DNA coiled around histones produces distinct structures called nucleosomes that form repeating units with approximately 147 bp wrapped around each unit, separated by varying lengths of linker DNA. The occupancy and periodic positioning of nucleosomes can control the accessibility of DNA to transcription factors [<xref rid="B23" ref-type="bibr">23</xref>] and DNases, as well as the transcription rate of active gene bodies [<xref rid="B44" ref-type="bibr">44</xref>], and are thus considered an epigenetic mark. Biochemically active regulatory regions are generally depleted of nucleosomes [<xref rid="B45" ref-type="bibr">45</xref>], whereas inactive repeat regions (heterochromatin) have higher affinity to form nucleosome structures [<xref rid="B46" ref-type="bibr">46</xref>].</p>
+        <p>A map of nucleosome occupancy is generated by using micrococcal nuclease (MNase) for digestion of the chromatin [<xref rid="B23" ref-type="bibr">23</xref>], followed by high-throughput sequencing-a technique called MNase-seq. MNase digests all linker DNA but preserves the DNA wound around the nucleosome; when the latter is sequenced and mapped to the reference, a map of the original positioning of nucleosomes is obtained. Due to some inherent biases in MNase affinity (preference to AT-rich regions) and the lack of single base-pair resolution data, attempts were made to develop more precise technologies [<xref rid="B24" ref-type="bibr">24</xref>]. An MNase-independent technique that involves chemically modifying engineered histones to bring about cleavage of DNA wound around histones allows direct mapping of nucleosome centers.</p>
+      </sec>
+      <sec>
+        <title>Chromatin accessibility</title>
+        <p>Epigenetic mechanisms, such as chromatin accessibility, impact transcription factor binding to DNA, transcriptional specificity, and hence, transcriptional regulation. Open and easily accessible regions of DNA within the chromatin are indicative of local territories of transcriptional activity. Measuring "openness" of DNA at different regions genome-wide, based on the DNase hypersensitivity assay, has helped discover several classes of functional elements, like promoters and enhancers [<xref rid="B47" ref-type="bibr">47</xref>]. It has also aided in identifying cell-type specific behaviors by comparison of accessibility profiles [<xref rid="B47" ref-type="bibr">47</xref>].</p>
+        <p>Regions of accessible chromatin are reflective of active regulatory sites. The enzyme DNase I is capable of digesting DNA in nucleosome-depleted regions (i.e., free unwound DNA). Post-digestion sequencing reveals large blocks of DNase hypersensitive sites (DHS) in chromatin (DNase-seq) [<xref rid="B25" ref-type="bibr">25</xref>, <xref rid="B48" ref-type="bibr">48</xref>], which, upon further deep sequencing, can reveal up to 40-bp footprints of protected regions (potentially bound by transcription factors). These smaller regions are called digital genomic footprints (DGF) [<xref rid="B26" ref-type="bibr">26</xref>]. Formaldehyde-assisted isolation of regulatory elements sequencing is another technique that, by deep-sequencing random fragments of the genome post-crosslinking, measures the frequency of shearing at different loci, thus quantifying accessibility at high resolution, because free DNA that is unbound by factors is more susceptible to shearing [<xref rid="B27" ref-type="bibr">27</xref>].</p>
+      </sec>
+      <sec>
+        <title>3D chromatin architecture</title>
+        <p>The array of nucleosomes organized in 30-nm fibers, called chromatin, has diverse functions well beyond mere compaction. Coordinated activity of distal elements is orchestrated by short- and long-range DNA interactions, which is determined by the 3D chromatin structure as well as the local environment of individual genes. For instance, chromatin conformation/looping mediates a promoter's access to its enhancers, thereby determining the transcriptional fate of a gene [<xref rid="B49" ref-type="bibr">49</xref>]. Spatial proximity can be determined by measuring the interaction frequencies of linearly distal fragments by a suite of chromosome conformation capture (3C)-based assays.</p>
+        <p>Chromosomes assume a specific tertiary structure with profound implications for cellular function and fate [<xref rid="B49" ref-type="bibr">49</xref>]. While the overall chromatin structure cannot be directly measured, measuring spatial distances between pairs of genomic loci has become increasingly more efficient with the arrival of 3C technologies [<xref rid="B28" ref-type="bibr">28</xref>]. Treatment with formaldehyde crosslinks spatially proximal DNA loci in cells, and then post-digestion, the resulting fragments are allowed to ligate in a weak solution (cross-linked fragments ligate with higher frequency than random fragments). This frequency is quantitatively assessed by quantitative polymerase chain reaction. Known loci are selected for by using sequence-specific probes that allow assaying specific pairs of regions in so-called one-versus-one mapping. Circular chromosome conformation capture, or 4C, allows whole-genome mapping of all spatial interactions of one specific region of interest (one-vs-all mapping) [<xref rid="B29" ref-type="bibr">29</xref>]. Chromosome conformation capture carbon copy, or 5C, deploys several anchors and primers to ensure targeting of several regions at once to attain higher coverage (many-vs-many) [<xref rid="B30" ref-type="bibr">30</xref>]. Finally, the most recent derivative of 3C, namely Hi-C, permits surveying of the whole genome [<xref rid="B31" ref-type="bibr">31</xref>] in a relatively unbiased fashion for frequencies of spatially interacting pairs of loci in the entire genome without restricting the exploration to selected loci. This was done with reasonably high resolution, where the human genome was partitioned into 100-kb blocks and the spatial interaction between every pair of intra-chromosomal regions was assessed, while interchromosomal interactions have been mapped at 1-Mb resolution [<xref rid="B31" ref-type="bibr">31</xref>].</p>
+        <p>A variation of Hi-C, called chromatin interaction analysis by paired-end tag sequencing (ChIA-PET), involves a ChIP reaction to isolate chromatin interactions involving regions of DNA that bind to a protein of interest [<xref rid="B32" ref-type="bibr">32</xref>]. For example, an antibody targeting RNA polymerase II can be used to precipitate interactions involving a promoter and another interacting region, such as a distal enhancer or other promoters [<xref rid="B50" ref-type="bibr">50</xref>].</p>
+      </sec>
+      <sec>
+        <title>Non-coding RNA localization</title>
+        <p>Specific classes of non-coding RNA-short RNAs (<italic>viz</italic>. micro RNA [miRNA], short interfering RNA [siRNA], and piwi-interacting RNA [piRNA]) and long non-coding RNAs (lncRNA)-regulate gene expression through epigenetic mechanisms, influencing several cellular processes, like X chromosome inactivation [<xref rid="B51" ref-type="bibr">51</xref>], genomic imprinting [<xref rid="B52" ref-type="bibr">52</xref>], and some cellular processes [<xref rid="B53" ref-type="bibr">53</xref>], and cancer [<xref rid="B54" ref-type="bibr">54</xref>]. LncRNAs tether epigenetic complexes capable of methylating DNA and modifying histones to the chromatin, enabling allele- and locus-specific regulation. For example, lncRNA Xist covers the inactive X chromosome and recruits PCR2, a Polycomb complex responsible for trimethylation of H3K27 [<xref rid="B51" ref-type="bibr">51</xref>]. Furthermore, lncRNAs, by virtue of their length, are suited for orchestrating specific regulatory events particular to a target locus [<xref rid="B55" ref-type="bibr">55</xref>].</p>
+        <p>Additionally, miRNA (~22 nucleotides long) have shown to be linked with cancer and can act as either oncogenes or tumor-suppressor genes. They can be involved in establishing DNA methylation and regulating histone modification by interacting with their target mRNA to alter chromatin of the corresponding DNA template [<xref rid="B56" ref-type="bibr">56</xref>]. siRNA, and its interference machinery has also been implicated in the formation of heterochromatin [<xref rid="B57" ref-type="bibr">57</xref>].</p>
+        <p>A catalog of small RNAs has been generated by deep sequencing of total RNA from whole transcriptomes using smRNA-seq technology [<xref rid="B34" ref-type="bibr">34</xref>]. Selection of smRNA can be carried out by sequential ligation of adapters to its unique 5' mono/triphosphate ends, produced as a result of processing the smRNA population in the cell [<xref rid="B58" ref-type="bibr">58</xref>]. On the other hand, lncRNA are poly-adenylated, and much of the challenge in identifying them from whole-genome mRNA-seq data [<xref rid="B33" ref-type="bibr">33</xref>] lies in the computational and analytical domains [<xref rid="B59" ref-type="bibr">59</xref>].</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Epigenome Projects and Consortia</title>
+      <p>Spurred by unprecedented advances in sequencing technologies as well as other assays, and a recognition of the potential of NGS in determining the epigenomic landscape, several research consortia have formed to generate genome-wide maps of human epigenomic marks by sharing resources and publishing standard operating procedures, thereby ensuring best practices and high-quality datasets [<xref rid="B60" ref-type="bibr">60</xref>]. One of the first concerted efforts in this direction was the Encyclopedia of DNA Elements (ENCODE) Project, started in 2003 and funded by the National Human Genome Research Institute at the National Institute of Health (NIH-NHGRI), which involved hundreds of researchers in dozens of labs across the globe. The ENCODE consortium has performed 1,650 epigenomic profiling on 147 cell lines assessing the transcriptome, transcription factor binding for dozens of transcription factors, chromatin topology, histone modifications, DNA methylation, and more (<ext-link ext-link-type="uri" xlink:href="http://www.encodeproject.org">http://www.encodeproject.org</ext-link>) [<xref rid="B13" ref-type="bibr">13</xref>]. Five years after launching ENCODE, the NIH funded a second large-scale mapping project called the Roadmap Epigenomics Program. While ENCODE focused on generating data in cell lines, the Roadmap program focuses on mapping epigenomes of high-priority normal human primary tissue and human embryonic stem cell (ESC)-derived cell types. As of May 2012, the Roadmap includes 61 "complete" epigenomes (of a variety of cell types) (<ext-link ext-link-type="uri" xlink:href="http://www.roadmapepigenomics.org">http://www.roadmapepigenomics.org</ext-link>) [<xref rid="B61" ref-type="bibr">61</xref>]. The data repository can be accessed interactively at Human Epigenome Atlas (<ext-link ext-link-type="uri" xlink:href="http://www.genboree.org/epigenomeatlas/multiGridViewerPublic.rhtml">http://www.genboree.org/epigenomeatlas/multiGridViewerPublic.rhtml</ext-link>), via the Washington University Epigenome Browser (<ext-link ext-link-type="uri" xlink:href="http://www.epigenomegateway.wustl.edu/browser">http://www.epigenomegateway.wustl.edu/browser</ext-link>), as well as the UCSC Genome Browser (<ext-link ext-link-type="uri" xlink:href="http://www.genome.ucsc.edu">http://www.genome.ucsc.edu</ext-link>). Further, the NIH Roadmap is one of the members of an even larger consortium called the International Human Epigenome Consortium (IHEC; <ext-link ext-link-type="uri" xlink:href="http://www.ihec-epigenomes.org">http://www.ihec-epigenomes.org</ext-link>), formed by institutions in 7 countries. To name a few, BLUEPRINT: a European initiative to generate about 100 reference epigenomic maps; the CREST/IHEC team in Japan: to produce reference epigenomes specializing in gastrointestinal epithelial cells, vascular endothelial cells, and cells of reproductive organs; and the Epigenomic Platform Program: a Canadian program to map epigenomic variations in disease cells. Together, these efforts are expected to generate over 1,000 reference human epigenomes. Other epigenome mapping efforts focused on specific disease areas have also been undertaken. These include the Cancer Genome Atlas (TCGA), funded by the NIH in 2006 [<xref rid="B62" ref-type="bibr">62</xref>], which is a part of the International Cancer Genome Consortium (ICGC; <ext-link ext-link-type="uri" xlink:href="http://www.icgc.org">http://www.icgc.org</ext-link>) that was officially put together in 2008.</p>
+    </sec>
+    <sec>
+      <title>What Have We Learned?</title>
+      <p>By providing a rich functional annotation of the genome, the numerous epigenomic datasets have significantly improved our ability to probe the mechanisms of gene regulation as well as shed light on disease processes mediated by perturbation of normal regulatory processes. A collection of 30 scientific reports published with the initial release of the ENCODE data provides a detailed report of the initial integrative analysis of the epigenomics data [<xref rid="B47" ref-type="bibr">47</xref>, <xref rid="B63" ref-type="bibr">63</xref>, <xref rid="B64" ref-type="bibr">64</xref>, <xref rid="B65" ref-type="bibr">65</xref>, <xref rid="B66" ref-type="bibr">66</xref>].</p>
+      <p>At a basic level, the data have revealed epigenomic signatures of a variety of functional elements, thus significantly enriching their annotation. For instance, many non-coding RNAs have been successfully annotated as a result of deciphering an epigenomic code specific to their promoters and gene bodies [<xref rid="B67" ref-type="bibr">67</xref>, <xref rid="B68" ref-type="bibr">68</xref>]. High-throughput profiling of the histone modification HeK4me1 has revealed that it is a characteristic mark of enhancer elements; this, and other correlative marks have enabled the discovery of tens of thousands of cell-specific enhancers [<xref rid="B69" ref-type="bibr">69</xref>, <xref rid="B70" ref-type="bibr">70</xref>] in the human genome, drastically improving our ability to probe the mechanisms of transcriptional regulation. In fact, chromatin signatures specific to promoters, enhancers, and repressed regions, etc., have all been modeled by computational methods like ChromHMM [<xref rid="B42" ref-type="bibr">42</xref>]. Furthermore, by isolating footprints of protected DNA present inside blocks of hypersensitive or nucleosome-depleted DNA, a comprehensive list of potential cis-regulatory binding sites/sequences has been identified, despite the lack of specific antibodies or the knowledge of cell-specific regulators [<xref rid="B2" ref-type="bibr">2</xref>].</p>
+      <p>Availability of epigenomic data has revived predictive modeling of condition-specific gene expression. For example, Dong et al. [<xref rid="B71" ref-type="bibr">71</xref>] generated a 2-step quantitative model that includes genome localization data for 11 histone modifications and 1 histone variant in 7 human cell lines and gene expression data quantified using RNA-seq and cap analysis gene expression (CAGE) in the nuclear and cytosolic compartments of the cell. The Pearson's correlation coefficient between their predicted and measured expression levels in about 78 experiments ranged between 0.6 and 0.9 (median r = 0.83). Natarajan et al. [<xref rid="B72" ref-type="bibr">72</xref>] trained a classifier that associates cell-specific TF sequence motif matches in DHS regions with different expression patterns in 19 diverse cell types, thus predicting cell-type specific expression directly from regulatory elements in open chromatin.</p>
+      <p>Prior to the availability of NGS, details of the spatial structure of chromatin and its correlates, as well as its functional impacts were largely uncharted. Characterization of the spatial proximity of distal genomic elements with 3C-derivative assays has revealed a high rate of widespread promiscuous interactions among enhancers and promoters. For instance, more than 40% of promoters interact with multiple distal sites, and this is likely true for enhancers as well [<xref rid="B73" ref-type="bibr">73</xref>]. The spatial chromatin interaction data have also helped challenge some previously held beliefs that were nevertheless unsupported. For instance, historically, the DNA-binding protein CTCF was known to function, among other things, as an insulator that inhibited the spatial interaction between an enhancer and its target promoter when flanking a CTCF-bound locus. However, recent 5C data showed that almost 60% of all enhancer-promoter interactions happen, despite an intervening CTCF-bound locus [<xref rid="B74" ref-type="bibr">74</xref>]. In fact, there is increasing evidence that CTCF, along with cohesin is involved in coordinating long-range interactions between regulatory elements, and that these events are reflective of cell-type specific transcriptional programs [<xref rid="B75" ref-type="bibr">75</xref>].</p>
+      <p>With the availability of putative genome-wide enhancers along with their cell type-specific activity profile across numerous cell types, it is now possible to investigate an alternate layer of transcriptional regulation represented by a network of distal enhancers that exhibit correlated activities across cell types [<xref rid="B76" ref-type="bibr">76</xref>, <xref rid="B77" ref-type="bibr">77</xref>] and jointly underlie correlated expression of functionally linked genes. Such analysis brings forth an alternative view of transcriptional regulation, where instead of a single gene regulated by one or more regulatory elements, one ought to consider the collective of enhancers and genes, co-localized in nuclear space to achieve coexpression of functionally linked genes [<xref rid="B78" ref-type="bibr">78</xref>, <xref rid="B79" ref-type="bibr">79</xref>].</p>
+      <p>Epigenomic profiling along the developmental time course from ESCs to differentiated cells has shed light on transcriptional regulatory mechanisms during early development. For instance, comparison of the "histone code" between the two developmental timeframes indicates that regions marked by repressive histone marks are generally larger in differentiated cells and that these regions span developmental genes. It was also noted that the same regions are more accessible in ESCs [<xref rid="B80" ref-type="bibr">80</xref>, <xref rid="B81" ref-type="bibr">81</xref>], thus suggesting an epigenome-mediated regulation of developmental gene transcription. Precisely how this is accomplished is yet to be clarified.</p>
+      <p>The epigenomic data and the discovery of significant patterns of epigenomic marks associated with specific functional regions have also helped clarify genotype-phenotype association data. Numerous GWAS have revealed several polymorphic loci associated with various diseases [<xref rid="B82" ref-type="bibr">82</xref>]. However, a mechanistic interpretation of these signals has been hampered by the fact that most of the disease-associated genetic variants reside in non-coding regions with no obvious functional interpretation. By combining epigenomic maps and genetic variants, it was found that these disease-associated variants are enriched within cell type-specific accessible (DHS regions) and active regulatory regions [<xref rid="B2" ref-type="bibr">2</xref>]. Also, an epigenomic model of cardiac enhancers was shown to provide a better causal interpretation of GWAS signals associated with heart-related traits [<xref rid="B83" ref-type="bibr">83</xref>].</p>
+    </sec>
+    <sec>
+      <title>Open Questions and Challenges</title>
+      <p>The slew of epigenetic data has revolutionized our perception of the human genome. Although not all "epigenetically marked" regions of the genome are likely to be functional, it is very likely that a large portion is functional-much more than the 5-10% of the genome that is deemed to evolve under purifying selection [<xref rid="B84" ref-type="bibr">84</xref>, <xref rid="B85" ref-type="bibr">85</xref>]. Analysis of transcriptional and epigenetic data has revealed that almost half of the genome is involved in carrying out specific biochemical functions [<xref rid="B13" ref-type="bibr">13</xref>]. Where these biochemical functions fit in the big picture, and how they are regulated are still open questions.</p>
+      <p>Another fundamental problem is that the causal relationships among various epigenomic events, such as DNA methylation, histone modifications, TF binding, and gene expression, etc., are currently not well understood. Although correlations between these events have been well documented in different contexts, we do not know if one is necessary and/or sufficient to observe another.</p>
+      <p>Before the full potential of NGS in mapping the epigenome can be attained, several technical challenges need to be overcome. For instance, techniques like ChIP-seq, used for profiling transcription factor binding and histone modifications require a large amount of starting material, ranging up to 5 million cells. Collection of such a large population of primary differentiated cells, progenitors, and those from specific developmental stages is inherently hard. Heterogeneity of a cell population is another issue that needs to be resolved. It is challenging to obtain a homogeneous population of cells of a singular type from primary tissues that often contain a heterogeneous population of cell types, and it is this lack of homogeneity that can adversely impact the interpretability and generalizability of the results obtained from analyzing the epigenomic data.</p>
+      <p>Yet, many solutions to tackle the problems above are underway. First, there is the emergence of techniques-like ChIP-nano (nano-scale ChIP), which is a highly sensitive small-scale ChIP-seq protocol with a requirement of &lt;50,000 cells as starting material [<xref rid="B86" ref-type="bibr">86</xref>], and single-molecule real-time sequencing [<xref rid="B87" ref-type="bibr">87</xref>], which aims at alleviating cell-population effects during mapping specific features. Second, methods that are aimed at the targeted knock-out of epigenetic modifiers, like DNA methyltransferases and histone modification enzymes, at predetermined DNA sequences (using transcription activator-like effector nucleases [TALENs]) [<xref rid="B88" ref-type="bibr">88</xref>], can help to better characterize the functional relationships between gene expression and epigenetics, thus providing proof of concept for expression modulation (also called epigenetic editing methods) [<xref rid="B89" ref-type="bibr">89</xref>]. Also, powerful statistical approaches are being developed to integrate data [<xref rid="B42" ref-type="bibr">42</xref>, <xref rid="B90" ref-type="bibr">90</xref>] to resolve some of these fundamental issues. With more epigenomic maps being profiled, and more effective computational approaches being developed, we are inching towards a holistic mechanistic understanding of cellular and organismal processes.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>The authors would like to thank Justin Malin and Leonid Sukharnikov for their useful comments. This work was funded by the National Institutes of Health R01GM100335.</p>
+    </ack>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="book">
+          <collab>U.S. Department of Health and Human Services</collab>
+          <source>NIH News National Institues of Health. International Consortium Announces the 1000 Genomes Project</source>
+          <publisher-loc>Bethesda</publisher-loc>
+          <publisher-name>National Human Genome Research Institutes</publisher-name>
+          <year>2008</year>
+          <date-in-citation content-type="access-date">Accessed 2014 Jan 1</date-in-citation>
+          <comment>Available from: <ext-link ext-link-type="uri" xlink:href="http://www.nih.gov/news/health/jan2008/nhgri-22.htm">http://www.nih.gov/news/health/jan2008/nhgri-22.htm</ext-link></comment>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Maurano</surname>
+              <given-names>MT</given-names>
+            </name>
+            <name>
+              <surname>Humbert</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Rynes</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Thurman</surname>
+              <given-names>RE</given-names>
+            </name>
+            <name>
+              <surname>Haugen</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Systematic localization of common disease-associated variation in regulatory DNA</article-title>
+          <source>Science</source>
+          <year>2012</year>
+          <volume>337</volume>
+          <fpage>1190</fpage>
+          <lpage>1195</lpage>
+          <pub-id pub-id-type="pmid">22955828</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>King</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>AC</given-names>
+            </name>
+          </person-group>
+          <article-title>Evolution at two levels in humans and chimpanzees</article-title>
+          <source>Science</source>
+          <year>1975</year>
+          <volume>188</volume>
+          <fpage>107</fpage>
+          <lpage>116</lpage>
+          <pub-id pub-id-type="pmid">1090005</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Inbar-Feigenberg</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Choufani</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Butcher</surname>
+              <given-names>DT</given-names>
+            </name>
+            <name>
+              <surname>Roifman</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Weksberg</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Basic concepts of epigenetics</article-title>
+          <source>Fertil Steril</source>
+          <year>2013</year>
+          <volume>99</volume>
+          <fpage>607</fpage>
+          <lpage>615</lpage>
+          <pub-id pub-id-type="pmid">23357459</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Baker</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Genomics: Genomes in three dimensions</article-title>
+          <source>Nature</source>
+          <year>2011</year>
+          <volume>470</volume>
+          <fpage>289</fpage>
+          <lpage>294</lpage>
+          <pub-id pub-id-type="pmid">21307943</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ptashne</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Epigenetics: core misconcept</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2013</year>
+          <volume>110</volume>
+          <fpage>7101</fpage>
+          <lpage>7103</lpage>
+          <pub-id pub-id-type="pmid">23584020</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bernstein</surname>
+              <given-names>BE</given-names>
+            </name>
+            <name>
+              <surname>Meissner</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Lander</surname>
+              <given-names>ES</given-names>
+            </name>
+          </person-group>
+          <article-title>The mammalian epigenome</article-title>
+          <source>Cell</source>
+          <year>2007</year>
+          <volume>128</volume>
+          <fpage>669</fpage>
+          <lpage>681</lpage>
+          <pub-id pub-id-type="pmid">17320505</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Berger</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Kouzarides</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Shiekhattar</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Shilatifard</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>An operational definition of epigenetics</article-title>
+          <source>Genes Dev</source>
+          <year>2009</year>
+          <volume>23</volume>
+          <fpage>781</fpage>
+          <lpage>783</lpage>
+          <pub-id pub-id-type="pmid">19339683</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Telese</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Gamliel</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Skowronska-Krawczyk</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Garcia-Bassets</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Rosenfeld</surname>
+              <given-names>MG</given-names>
+            </name>
+          </person-group>
+          <article-title>"Seq-ing" insights into the epigenetics of neuronal gene regulation</article-title>
+          <source>Neuron</source>
+          <year>2013</year>
+          <volume>77</volume>
+          <fpage>606</fpage>
+          <lpage>623</lpage>
+          <pub-id pub-id-type="pmid">23439116</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jaenisch</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Bird</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Epigenetic regulation of gene expression: how the genome integrates intrinsic and environmental signals</article-title>
+          <source>Nat Genet</source>
+          <year>2003</year>
+          <volume>33</volume>
+          <issue>Suppl</issue>
+          <fpage>245</fpage>
+          <lpage>254</lpage>
+          <pub-id pub-id-type="pmid">12610534</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bird</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>DNA methylation patterns and epigenetic memory</article-title>
+          <source>Genes Dev</source>
+          <year>2002</year>
+          <volume>16</volume>
+          <fpage>6</fpage>
+          <lpage>21</lpage>
+          <pub-id pub-id-type="pmid">11782440</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Koboldt</surname>
+              <given-names>DC</given-names>
+            </name>
+            <name>
+              <surname>Steinberg</surname>
+              <given-names>KM</given-names>
+            </name>
+            <name>
+              <surname>Larson</surname>
+              <given-names>DE</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>RK</given-names>
+            </name>
+            <name>
+              <surname>Mardis</surname>
+              <given-names>ER</given-names>
+            </name>
+          </person-group>
+          <article-title>The next-generation sequencing revolution and its impact on genomics</article-title>
+          <source>Cell</source>
+          <year>2013</year>
+          <volume>155</volume>
+          <fpage>27</fpage>
+          <lpage>38</lpage>
+          <pub-id pub-id-type="pmid">24074859</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bernstein</surname>
+              <given-names>BE</given-names>
+            </name>
+            <name>
+              <surname>Birney</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Dunham</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Green</surname>
+              <given-names>ED</given-names>
+            </name>
+            <name>
+              <surname>Gunter</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <collab>ENCODE Project Consortium</collab>
+          <article-title>An integrated encyclopedia of DNA elements in the human genome</article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>489</volume>
+          <fpage>57</fpage>
+          <lpage>74</lpage>
+          <pub-id pub-id-type="pmid">22955616</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Turner</surname>
+              <given-names>BM</given-names>
+            </name>
+          </person-group>
+          <article-title>Defining an epigenetic code</article-title>
+          <source>Nat Cell Biol</source>
+          <year>2007</year>
+          <volume>9</volume>
+          <fpage>2</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="pmid">17199124</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Laird</surname>
+              <given-names>PW</given-names>
+            </name>
+          </person-group>
+          <article-title>Principles and challenges of genomewide DNA methylation analysis</article-title>
+          <source>Nat Rev Genet</source>
+          <year>2010</year>
+          <volume>11</volume>
+          <fpage>191</fpage>
+          <lpage>203</lpage>
+          <pub-id pub-id-type="pmid">20125086</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Down</surname>
+              <given-names>TA</given-names>
+            </name>
+            <name>
+              <surname>Rakyan</surname>
+              <given-names>VK</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <name>
+              <surname>Flicek</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Kulesha</surname>
+              <given-names>E</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A Bayesian deconvolution strategy for immunoprecipitation-based DNA methylome analysis</article-title>
+          <source>Nat Biotechnol</source>
+          <year>2008</year>
+          <volume>26</volume>
+          <fpage>779</fpage>
+          <lpage>785</lpage>
+          <pub-id pub-id-type="pmid">18612301</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Serre</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>BH</given-names>
+            </name>
+            <name>
+              <surname>Ting</surname>
+              <given-names>AH</given-names>
+            </name>
+          </person-group>
+          <article-title>MBD-isolated Genome Sequencing provides a high-throughput and comprehensive survey of DNA methylation in the human genome</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2010</year>
+          <volume>38</volume>
+          <fpage>391</fpage>
+          <lpage>399</lpage>
+          <pub-id pub-id-type="pmid">19906696</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Meissner</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Gnirke</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Bell</surname>
+              <given-names>GW</given-names>
+            </name>
+            <name>
+              <surname>Ramsahoye</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Lander</surname>
+              <given-names>ES</given-names>
+            </name>
+            <name>
+              <surname>Jaenisch</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Reduced representation bisulfite sequencing for comparative high-resolution DNA methylation analysis</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2005</year>
+          <volume>33</volume>
+          <fpage>5868</fpage>
+          <lpage>5877</lpage>
+          <pub-id pub-id-type="pmid">16224102</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B19">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lister</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>O'Malley</surname>
+              <given-names>RC</given-names>
+            </name>
+            <name>
+              <surname>Tonti-Filippini</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Gregory</surname>
+              <given-names>BD</given-names>
+            </name>
+            <name>
+              <surname>Berry</surname>
+              <given-names>CC</given-names>
+            </name>
+            <name>
+              <surname>Millar</surname>
+              <given-names>AH</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Highly integrated single-base resolution maps of the epigenome in Arabidopsis</article-title>
+          <source>Cell</source>
+          <year>2008</year>
+          <volume>133</volume>
+          <fpage>523</fpage>
+          <lpage>536</lpage>
+          <pub-id pub-id-type="pmid">18423832</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Booth</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Branco</surname>
+              <given-names>MR</given-names>
+            </name>
+            <name>
+              <surname>Ficz</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Oxley</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Krueger</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Reik</surname>
+              <given-names>W</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Quantitative sequencing of 5-methylcytosine and 5-hydroxymethylcytosine at single-base resolution</article-title>
+          <source>Science</source>
+          <year>2012</year>
+          <volume>336</volume>
+          <fpage>934</fpage>
+          <lpage>937</lpage>
+          <pub-id pub-id-type="pmid">22539555</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Johnson</surname>
+              <given-names>DS</given-names>
+            </name>
+            <name>
+              <surname>Mortazavi</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Myers</surname>
+              <given-names>RM</given-names>
+            </name>
+            <name>
+              <surname>Wold</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Genome-wide mapping of in vivo protein-DNA interactions</article-title>
+          <source>Science</source>
+          <year>2007</year>
+          <volume>316</volume>
+          <fpage>1497</fpage>
+          <lpage>1502</lpage>
+          <pub-id pub-id-type="pmid">17540862</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rhee</surname>
+              <given-names>HS</given-names>
+            </name>
+            <name>
+              <surname>Pugh</surname>
+              <given-names>BF</given-names>
+            </name>
+          </person-group>
+          <article-title>Comprehensive genome-wide protein-DNA interactions detected at single-nucleotide resolution</article-title>
+          <source>Cell</source>
+          <year>2011</year>
+          <volume>147</volume>
+          <fpage>1408</fpage>
+          <lpage>1419</lpage>
+          <pub-id pub-id-type="pmid">22153082</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bell</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Tiwari</surname>
+              <given-names>VK</given-names>
+            </name>
+            <name>
+              <surname>Thom&#xE4;</surname>
+              <given-names>NH</given-names>
+            </name>
+            <name>
+              <surname>Sch&#xFC;beler</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Determinants and dynamics of genome accessibility</article-title>
+          <source>Nat Rev Genet</source>
+          <year>2011</year>
+          <volume>12</volume>
+          <fpage>554</fpage>
+          <lpage>564</lpage>
+          <pub-id pub-id-type="pmid">21747402</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B24">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brogaard</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Xi</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>JP</given-names>
+            </name>
+            <name>
+              <surname>Widom</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>A map of nucleosome positions in yeast at base-pair resolution</article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>486</volume>
+          <fpage>496</fpage>
+          <lpage>501</lpage>
+          <pub-id pub-id-type="pmid">22722846</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Crawford</surname>
+              <given-names>GE</given-names>
+            </name>
+            <name>
+              <surname>Holt</surname>
+              <given-names>IE</given-names>
+            </name>
+            <name>
+              <surname>Whittle</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Webb</surname>
+              <given-names>BD</given-names>
+            </name>
+            <name>
+              <surname>Tai</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Davis</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-wide mapping of DNase hypersensitive sites using massively parallel signature sequencing (MPSS)</article-title>
+          <source>Genome Res</source>
+          <year>2006</year>
+          <volume>16</volume>
+          <fpage>123</fpage>
+          <lpage>131</lpage>
+          <pub-id pub-id-type="pmid">16344561</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B26">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Neph</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Vierstra</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Stergachis</surname>
+              <given-names>AB</given-names>
+            </name>
+            <name>
+              <surname>Reynolds</surname>
+              <given-names>AP</given-names>
+            </name>
+            <name>
+              <surname>Haugen</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Vernot</surname>
+              <given-names>B</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>An expansive human regulatory lexicon encoded in transcription factor footprints</article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>489</volume>
+          <fpage>83</fpage>
+          <lpage>90</lpage>
+          <pub-id pub-id-type="pmid">22955618</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B27">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Giresi</surname>
+              <given-names>PG</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>McDaniell</surname>
+              <given-names>RM</given-names>
+            </name>
+            <name>
+              <surname>Iyer</surname>
+              <given-names>VR</given-names>
+            </name>
+            <name>
+              <surname>Lieb</surname>
+              <given-names>JD</given-names>
+            </name>
+          </person-group>
+          <article-title>FAIRE (Formaldehyde-Assisted Isolation of Regulatory Elements) isolates active regulatory elements from human chromatin</article-title>
+          <source>Genome Res</source>
+          <year>2007</year>
+          <volume>17</volume>
+          <fpage>877</fpage>
+          <lpage>885</lpage>
+          <pub-id pub-id-type="pmid">17179217</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B28">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dekker</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Rippe</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Dekker</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Kleckner</surname>
+              <given-names>N</given-names>
+            </name>
+          </person-group>
+          <article-title>Capturing chromosome conformation</article-title>
+          <source>Science</source>
+          <year>2002</year>
+          <volume>295</volume>
+          <fpage>1306</fpage>
+          <lpage>1311</lpage>
+          <pub-id pub-id-type="pmid">11847345</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B29">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhao</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Tavoosidana</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Sj&#xF6;linder</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>G&#xF6;nd&#xF6;r</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Mariano</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Circular chromosome conformation capture (4C) uncovers extensive networks of epigenetically regulated intra- and interchromosomal interactions</article-title>
+          <source>Nat Genet</source>
+          <year>2006</year>
+          <volume>38</volume>
+          <fpage>1341</fpage>
+          <lpage>1347</lpage>
+          <pub-id pub-id-type="pmid">17033624</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B30">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dostie</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Richmond</surname>
+              <given-names>TA</given-names>
+            </name>
+            <name>
+              <surname>Arnaout</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Selzer</surname>
+              <given-names>RR</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>WL</given-names>
+            </name>
+            <name>
+              <surname>Honan</surname>
+              <given-names>TA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Chromosome Conformation Capture Carbon Copy (5C): a massively parallel solution for mapping interactions between genomic elements</article-title>
+          <source>Genome Res</source>
+          <year>2006</year>
+          <volume>16</volume>
+          <fpage>1299</fpage>
+          <lpage>1309</lpage>
+          <pub-id pub-id-type="pmid">16954542</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B31">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lieberman-Aiden</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>van Berkum</surname>
+              <given-names>NL</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Imakaev</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Ragoczy</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Telling</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Comprehensive mapping of long-range interactions reveals folding principles of the human genome</article-title>
+          <source>Science</source>
+          <year>2009</year>
+          <volume>326</volume>
+          <fpage>289</fpage>
+          <lpage>293</lpage>
+          <pub-id pub-id-type="pmid">19815776</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B32">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fullwood</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>MH</given-names>
+            </name>
+            <name>
+              <surname>Pan</surname>
+              <given-names>YF</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Mohamed</surname>
+              <given-names>YB</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>An oestrogen-receptor-alpha-bound human chromatin interactome</article-title>
+          <source>Nature</source>
+          <year>2009</year>
+          <volume>462</volume>
+          <fpage>58</fpage>
+          <lpage>64</lpage>
+          <pub-id pub-id-type="pmid">19890323</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B33">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Derrien</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Bussotti</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Tanzer</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Djebali</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Tilgner</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The GENCODE v7 catalog of human long noncoding RNAs: analysis of their gene structure, evolution, and expression</article-title>
+          <source>Genome Res</source>
+          <year>2012</year>
+          <volume>22</volume>
+          <fpage>1775</fpage>
+          <lpage>1789</lpage>
+          <pub-id pub-id-type="pmid">22955988</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B34">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhou</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Small RNA transcriptome investigation based on next-generation sequencing techno logy</article-title>
+          <source>J Genet Genomics</source>
+          <year>2011</year>
+          <volume>38</volume>
+          <fpage>505</fpage>
+          <lpage>513</lpage>
+          <pub-id pub-id-type="pmid">22133681</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B35">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tucker</surname>
+              <given-names>KL</given-names>
+            </name>
+          </person-group>
+          <article-title>Methylated cytosine and the brain: a new base for neuroscience</article-title>
+          <source>Neuron</source>
+          <year>2001</year>
+          <volume>30</volume>
+          <fpage>649</fpage>
+          <lpage>652</lpage>
+          <pub-id pub-id-type="pmid">11430798</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B36">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Newell-Price</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Clark</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>King</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>DNA methylation and silencing of gene expression</article-title>
+          <source>Trends Endocrinol Metab</source>
+          <year>2000</year>
+          <volume>11</volume>
+          <fpage>142</fpage>
+          <lpage>148</lpage>
+          <pub-id pub-id-type="pmid">10754536</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B37">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lister</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Pelizzola</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Dowen</surname>
+              <given-names>RH</given-names>
+            </name>
+            <name>
+              <surname>Hawkins</surname>
+              <given-names>RD</given-names>
+            </name>
+            <name>
+              <surname>Hon</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Tonti-Filippini</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Human DNA methylomes at base resolution show widespread epigenomic differences</article-title>
+          <source>Nature</source>
+          <year>2009</year>
+          <volume>462</volume>
+          <fpage>315</fpage>
+          <lpage>322</lpage>
+          <pub-id pub-id-type="pmid">19829295</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B38">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>B&#xE1;rtov&#xE1;</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Krejc&#xED;</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Harnicarov&#xE1;</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Galiov&#xE1;</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Kozubek</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Histone modifications and nuclear architecture: a review</article-title>
+          <source>J Histochem Cytochem</source>
+          <year>2008</year>
+          <volume>56</volume>
+          <fpage>711</fpage>
+          <lpage>721</lpage>
+          <pub-id pub-id-type="pmid">18474937</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B39">
+        <label>39</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Strahl</surname>
+              <given-names>BD</given-names>
+            </name>
+            <name>
+              <surname>Allis</surname>
+              <given-names>CD</given-names>
+            </name>
+          </person-group>
+          <article-title>The language of covalent histone modifications</article-title>
+          <source>Nature</source>
+          <year>2000</year>
+          <volume>403</volume>
+          <fpage>41</fpage>
+          <lpage>45</lpage>
+          <pub-id pub-id-type="pmid">10638745</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B40">
+        <label>40</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jenuwein</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Allis</surname>
+              <given-names>CD</given-names>
+            </name>
+          </person-group>
+          <article-title>Translating the histone code</article-title>
+          <source>Science</source>
+          <year>2001</year>
+          <volume>293</volume>
+          <fpage>1074</fpage>
+          <lpage>1080</lpage>
+          <pub-id pub-id-type="pmid">11498575</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B41">
+        <label>41</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bannister</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Kouzarides</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Regulation of chromatin by histone modifications</article-title>
+          <source>Cell Res</source>
+          <year>2011</year>
+          <volume>21</volume>
+          <fpage>381</fpage>
+          <lpage>395</lpage>
+          <pub-id pub-id-type="pmid">21321607</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B42">
+        <label>42</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ernst</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kellis</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>ChromHMM: automating chromatin-state discovery and characterization</article-title>
+          <source>Nat Methods</source>
+          <year>2012</year>
+          <volume>9</volume>
+          <fpage>215</fpage>
+          <lpage>216</lpage>
+          <pub-id pub-id-type="pmid">22373907</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B43">
+        <label>43</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tian</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Toli&#x107;</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Moore</surname>
+              <given-names>RJ</given-names>
+            </name>
+            <name>
+              <surname>Hengel</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Robinson</surname>
+              <given-names>EW</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Enhanced top-down characterization of histone post-translational modifications</article-title>
+          <source>Genome Biol</source>
+          <year>2012</year>
+          <volume>13</volume>
+          <fpage>R86</fpage>
+          <pub-id pub-id-type="pmid">23034525</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B44">
+        <label>44</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bintu</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Ishibashi</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Dangkulwanich</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>YY</given-names>
+            </name>
+            <name>
+              <surname>Lubkowska</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Kashlev</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Nucleosomal elements that control the topography of the barrier to transcription</article-title>
+          <source>Cell</source>
+          <year>2012</year>
+          <volume>151</volume>
+          <fpage>738</fpage>
+          <lpage>749</lpage>
+          <pub-id pub-id-type="pmid">23141536</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B45">
+        <label>45</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>CK</given-names>
+            </name>
+            <name>
+              <surname>Shibata</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Rao</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Strahl</surname>
+              <given-names>BD</given-names>
+            </name>
+            <name>
+              <surname>Lieb</surname>
+              <given-names>JD</given-names>
+            </name>
+          </person-group>
+          <article-title>Evidence for nucleosome depletion at active regulatory regions genome-wide</article-title>
+          <source>Nat Genet</source>
+          <year>2004</year>
+          <volume>36</volume>
+          <fpage>900</fpage>
+          <lpage>905</lpage>
+          <pub-id pub-id-type="pmid">15247917</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B46">
+        <label>46</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Trifonov</surname>
+              <given-names>EN</given-names>
+            </name>
+          </person-group>
+          <article-title>Cracking the chromatin code: precise rule of nucleosome positioning</article-title>
+          <source>Phys Life Rev</source>
+          <year>2011</year>
+          <volume>8</volume>
+          <fpage>39</fpage>
+          <lpage>50</lpage>
+          <pub-id pub-id-type="pmid">21295529</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B47">
+        <label>47</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thurman</surname>
+              <given-names>RE</given-names>
+            </name>
+            <name>
+              <surname>Rynes</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Humbert</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Vierstra</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Maurano</surname>
+              <given-names>MT</given-names>
+            </name>
+            <name>
+              <surname>Haugen</surname>
+              <given-names>E</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The accessible chromatin landscape of the human genome</article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>489</volume>
+          <fpage>75</fpage>
+          <lpage>82</lpage>
+          <pub-id pub-id-type="pmid">22955617</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B48">
+        <label>48</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boyle</surname>
+              <given-names>AP</given-names>
+            </name>
+            <name>
+              <surname>Davis</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Shulha</surname>
+              <given-names>HP</given-names>
+            </name>
+            <name>
+              <surname>Meltzer</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Margulies</surname>
+              <given-names>EH</given-names>
+            </name>
+            <name>
+              <surname>Weng</surname>
+              <given-names>Z</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>High-resolution mapping and characterization of open chromatin across the genome</article-title>
+          <source>Cell</source>
+          <year>2008</year>
+          <volume>132</volume>
+          <fpage>311</fpage>
+          <lpage>322</lpage>
+          <pub-id pub-id-type="pmid">18243105</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B49">
+        <label>49</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harmston</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Lenhard</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Chromatin and epigenetic features of long-range gene regulation</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2013</year>
+          <volume>41</volume>
+          <fpage>7185</fpage>
+          <lpage>7199</lpage>
+          <pub-id pub-id-type="pmid">23766291</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B50">
+        <label>50</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>de Wit</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>de Laat</surname>
+              <given-names>W</given-names>
+            </name>
+          </person-group>
+          <article-title>A decade of 3C technologies: insights into nuclear organization</article-title>
+          <source>Genes Dev</source>
+          <year>2012</year>
+          <volume>26</volume>
+          <fpage>11</fpage>
+          <lpage>24</lpage>
+          <pub-id pub-id-type="pmid">22215806</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B51">
+        <label>51</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhao</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>BK</given-names>
+            </name>
+            <name>
+              <surname>Erwin</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>JT</given-names>
+            </name>
+          </person-group>
+          <article-title>Polycomb proteins targeted by a short repeat RNA to the mouse X chromosome</article-title>
+          <source>Science</source>
+          <year>2008</year>
+          <volume>322</volume>
+          <fpage>750</fpage>
+          <lpage>756</lpage>
+          <pub-id pub-id-type="pmid">18974356</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B52">
+        <label>52</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Koerner</surname>
+              <given-names>MV</given-names>
+            </name>
+            <name>
+              <surname>Pauler</surname>
+              <given-names>FM</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Barlow</surname>
+              <given-names>DP</given-names>
+            </name>
+          </person-group>
+          <article-title>The function of non-coding RNAs in genomic imprinting</article-title>
+          <source>Development</source>
+          <year>2009</year>
+          <volume>136</volume>
+          <fpage>1771</fpage>
+          <lpage>1783</lpage>
+          <pub-id pub-id-type="pmid">19429783</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B53">
+        <label>53</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Loewer</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Cabili</surname>
+              <given-names>MN</given-names>
+            </name>
+            <name>
+              <surname>Guttman</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Loh</surname>
+              <given-names>YH</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>IH</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Large intergenic non-coding RNA-RoR modulates reprogramming of human induced pluripotent stem cells</article-title>
+          <source>Nat Genet</source>
+          <year>2010</year>
+          <volume>42</volume>
+          <fpage>1113</fpage>
+          <lpage>1117</lpage>
+          <pub-id pub-id-type="pmid">21057500</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B54">
+        <label>54</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tsai</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Spitale</surname>
+              <given-names>RC</given-names>
+            </name>
+            <name>
+              <surname>Chang</surname>
+              <given-names>HY</given-names>
+            </name>
+          </person-group>
+          <article-title>Long intergenic noncoding RNAs: new links in cancer progression</article-title>
+          <source>Cancer Res</source>
+          <year>2011</year>
+          <volume>71</volume>
+          <fpage>3</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="pmid">21199792</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B55">
+        <label>55</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>JT</given-names>
+            </name>
+          </person-group>
+          <article-title>Epigenetic regulation by long noncoding RNAs</article-title>
+          <source>Science</source>
+          <year>2012</year>
+          <volume>338</volume>
+          <fpage>1435</fpage>
+          <lpage>1439</lpage>
+          <pub-id pub-id-type="pmid">23239728</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B56">
+        <label>56</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bao</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Lye</surname>
+              <given-names>KW</given-names>
+            </name>
+            <name>
+              <surname>Barton</surname>
+              <given-names>MK</given-names>
+            </name>
+          </person-group>
+          <article-title>MicroRNA binding sites in Arabidopsis class III HD-ZIP mRNAs are required for methylation of the template chromosome</article-title>
+          <source>Dev Cell</source>
+          <year>2004</year>
+          <volume>7</volume>
+          <fpage>653</fpage>
+          <lpage>662</lpage>
+          <pub-id pub-id-type="pmid">15525527</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B57">
+        <label>57</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fukagawa</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Nogami</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Yoshikawa</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Ikeno</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Okazaki</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Takami</surname>
+              <given-names>Y</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Dicer is essential for formation of the heterochromatin structure in vertebrate cells</article-title>
+          <source>Nat Cell Biol</source>
+          <year>2004</year>
+          <volume>6</volume>
+          <fpage>784</fpage>
+          <lpage>791</lpage>
+          <pub-id pub-id-type="pmid">15247924</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B58">
+        <label>58</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Havecker</surname>
+              <given-names>ER</given-names>
+            </name>
+          </person-group>
+          <article-title>Detection of small RNAs and microRNAs using deep sequencing technology</article-title>
+          <source>Methods Mol Biol</source>
+          <year>2011</year>
+          <volume>732</volume>
+          <fpage>55</fpage>
+          <lpage>68</lpage>
+          <pub-id pub-id-type="pmid">21431705</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B59">
+        <label>59</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ilott</surname>
+              <given-names>NE</given-names>
+            </name>
+            <name>
+              <surname>Ponting</surname>
+              <given-names>CP</given-names>
+            </name>
+          </person-group>
+          <article-title>Predicting long non-coding RNAs using RNA sequencing</article-title>
+          <source>Methods</source>
+          <year>2013</year>
+          <volume>63</volume>
+          <fpage>50</fpage>
+          <lpage>59</lpage>
+          <pub-id pub-id-type="pmid">23541739</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B60">
+        <label>60</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Landt</surname>
+              <given-names>SG</given-names>
+            </name>
+            <name>
+              <surname>Marinov</surname>
+              <given-names>GK</given-names>
+            </name>
+            <name>
+              <surname>Kundaje</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Kheradpour</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Pauli</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Batzoglou</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>ChIP-seq guidelines and practices of the ENCODE and modENCODE consortia</article-title>
+          <source>Genome Res</source>
+          <year>2012</year>
+          <volume>22</volume>
+          <fpage>1813</fpage>
+          <lpage>1831</lpage>
+          <pub-id pub-id-type="pmid">22955991</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B61">
+        <label>61</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bernstein</surname>
+              <given-names>BE</given-names>
+            </name>
+            <name>
+              <surname>Stamatoyannopoulos</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Costello</surname>
+              <given-names>JF</given-names>
+            </name>
+            <name>
+              <surname>Ren</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Milosavljevic</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Meissner</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The NIH Roadmap Epigenomics Mapping Consortium</article-title>
+          <source>Nat Biotechnol</source>
+          <year>2010</year>
+          <volume>28</volume>
+          <fpage>1045</fpage>
+          <lpage>1048</lpage>
+          <pub-id pub-id-type="pmid">20944595</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B62">
+        <label>62</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Garraway</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Lander</surname>
+              <given-names>ES</given-names>
+            </name>
+          </person-group>
+          <article-title>Lessons from the cancer genome</article-title>
+          <source>Cell</source>
+          <year>2013</year>
+          <volume>153</volume>
+          <fpage>17</fpage>
+          <lpage>37</lpage>
+          <pub-id pub-id-type="pmid">23540688</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B63">
+        <label>63</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zhuang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Iyer</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Whitfield</surname>
+              <given-names>TW</given-names>
+            </name>
+            <name>
+              <surname>Greven</surname>
+              <given-names>MC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Sequence features and chromatin structure around the genomic regions bound by 119 human transcription factors</article-title>
+          <source>Genome Res</source>
+          <year>2012</year>
+          <volume>22</volume>
+          <fpage>1798</fpage>
+          <lpage>1812</lpage>
+          <pub-id pub-id-type="pmid">22955990</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B64">
+        <label>64</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gerstein</surname>
+              <given-names>MB</given-names>
+            </name>
+            <name>
+              <surname>Kundaje</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Hariharan</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Landt</surname>
+              <given-names>SG</given-names>
+            </name>
+            <name>
+              <surname>Yan</surname>
+              <given-names>KK</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Architecture of the human regulatory network derived from ENCODE data</article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>489</volume>
+          <fpage>91</fpage>
+          <lpage>100</lpage>
+          <pub-id pub-id-type="pmid">22955619</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B65">
+        <label>65</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yip</surname>
+              <given-names>KY</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Bhardwaj</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>JB</given-names>
+            </name>
+            <name>
+              <surname>Leng</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kundaje</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Classification of human genomic regions based on experimentally determined binding sites of more than 100 transcription-related factors</article-title>
+          <source>Genome Biol</source>
+          <year>2012</year>
+          <volume>13</volume>
+          <fpage>R48</fpage>
+          <pub-id pub-id-type="pmid">22950945</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B66">
+        <label>66</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vernot</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Stergachis</surname>
+              <given-names>AB</given-names>
+            </name>
+            <name>
+              <surname>Maurano</surname>
+              <given-names>MT</given-names>
+            </name>
+            <name>
+              <surname>Vierstra</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Neph</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Thurman</surname>
+              <given-names>RE</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Personal and population genomics of human regulatory variation</article-title>
+          <source>Genome Res</source>
+          <year>2012</year>
+          <volume>22</volume>
+          <fpage>1689</fpage>
+          <lpage>1697</lpage>
+          <pub-id pub-id-type="pmid">22955981</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B67">
+        <label>67</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Khalil</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Guttman</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Huarte</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Garber</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Raj</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Rivea Morales</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Many human large intergenic noncoding RNAs associate with chromatin-modifying complexes and affect gene expression</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2009</year>
+          <volume>106</volume>
+          <fpage>11667</fpage>
+          <lpage>11672</lpage>
+          <pub-id pub-id-type="pmid">19571010</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B68">
+        <label>68</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Guttman</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Amit</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Garber</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>French</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>MF</given-names>
+            </name>
+            <name>
+              <surname>Feldser</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Chromatin signature reveals over a thousand highly conserved large non-coding RNAs in mammals</article-title>
+          <source>Nature</source>
+          <year>2009</year>
+          <volume>458</volume>
+          <fpage>223</fpage>
+          <lpage>227</lpage>
+          <pub-id pub-id-type="pmid">19182780</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B69">
+        <label>69</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heintzman</surname>
+              <given-names>ND</given-names>
+            </name>
+            <name>
+              <surname>Hon</surname>
+              <given-names>GC</given-names>
+            </name>
+            <name>
+              <surname>Hawkins</surname>
+              <given-names>RD</given-names>
+            </name>
+            <name>
+              <surname>Kheradpour</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Stark</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Harp</surname>
+              <given-names>LF</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Histone modifications at human enhancers reflect global cell-type-specific gene expression</article-title>
+          <source>Nature</source>
+          <year>2009</year>
+          <volume>459</volume>
+          <fpage>108</fpage>
+          <lpage>112</lpage>
+          <pub-id pub-id-type="pmid">19295514</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B70">
+        <label>70</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rajagopal</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Xie</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Wagner</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Stamatoyannopoulos</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>RFECS: a random-forest based algorithm for enhancer identification from chromatin state</article-title>
+          <source>PLoS Comput Biol</source>
+          <year>2013</year>
+          <volume>9</volume>
+          <fpage>e1002968</fpage>
+          <pub-id pub-id-type="pmid">23526891</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B71">
+        <label>71</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dong</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Greven</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Kundaje</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Djebali</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>JB</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Modeling gene expression using chromatin features in various cellular contexts</article-title>
+          <source>Genome Biol</source>
+          <year>2012</year>
+          <volume>13</volume>
+          <fpage>R53</fpage>
+          <pub-id pub-id-type="pmid">22950368</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B72">
+        <label>72</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Natarajan</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Yardimci</surname>
+              <given-names>GG</given-names>
+            </name>
+            <name>
+              <surname>Sheffield</surname>
+              <given-names>NC</given-names>
+            </name>
+            <name>
+              <surname>Crawford</surname>
+              <given-names>GE</given-names>
+            </name>
+            <name>
+              <surname>Ohler</surname>
+              <given-names>U</given-names>
+            </name>
+          </person-group>
+          <article-title>Predicting cell-type-specific gene expression from regions of open chromatin</article-title>
+          <source>Genome Res</source>
+          <year>2012</year>
+          <volume>22</volume>
+          <fpage>1711</fpage>
+          <lpage>1722</lpage>
+          <pub-id pub-id-type="pmid">22955983</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B73">
+        <label>73</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sanyal</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Lajoie</surname>
+              <given-names>BR</given-names>
+            </name>
+            <name>
+              <surname>Jain</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Dekker</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>The long-range interaction landscape of gene promoters</article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>489</volume>
+          <fpage>109</fpage>
+          <lpage>113</lpage>
+          <pub-id pub-id-type="pmid">22955621</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B74">
+        <label>74</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>DeMare</surname>
+              <given-names>LE</given-names>
+            </name>
+            <name>
+              <surname>Leng</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Cotney</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Reilly</surname>
+              <given-names>SK</given-names>
+            </name>
+            <name>
+              <surname>Yin</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Sarro</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The genomic landscape of cohesin-associated chromatin interactions</article-title>
+          <source>Genome Res</source>
+          <year>2013</year>
+          <volume>23</volume>
+          <fpage>1224</fpage>
+          <lpage>1234</lpage>
+          <pub-id pub-id-type="pmid">23704192</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B75">
+        <label>75</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Merkenschlager</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Odom</surname>
+              <given-names>DT</given-names>
+            </name>
+          </person-group>
+          <article-title>CTCF and cohesin: linking gene regulatory elements with their targets</article-title>
+          <source>Cell</source>
+          <year>2013</year>
+          <volume>152</volume>
+          <fpage>1285</fpage>
+          <lpage>1297</lpage>
+          <pub-id pub-id-type="pmid">23498937</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B76">
+        <label>76</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Malin</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Aniba</surname>
+              <given-names>MR</given-names>
+            </name>
+            <name>
+              <surname>Hannenhalli</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Enhancer networks revealed by correlated DNAse hypersensitivity states of enhancers</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2013</year>
+          <volume>41</volume>
+          <fpage>6828</fpage>
+          <lpage>6838</lpage>
+          <pub-id pub-id-type="pmid">23700312</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B77">
+        <label>77</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sheffield</surname>
+              <given-names>NC</given-names>
+            </name>
+            <name>
+              <surname>Thurman</surname>
+              <given-names>RE</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Safi</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Stamatoyannopoulos</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Lenhard</surname>
+              <given-names>B</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Patterns of regulatory activity across diverse human cell types predict tissue identity, transcription factor binding, and long-range interactions</article-title>
+          <source>Genome Res</source>
+          <year>2013</year>
+          <volume>23</volume>
+          <fpage>777</fpage>
+          <lpage>788</lpage>
+          <pub-id pub-id-type="pmid">23482648</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B78">
+        <label>78</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Ruan</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Auerbach</surname>
+              <given-names>RK</given-names>
+            </name>
+            <name>
+              <surname>Sandhu</surname>
+              <given-names>KS</given-names>
+            </name>
+            <name>
+              <surname>Zheng</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>P</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Extensive promoter-centered chromatin interactions provide a topological basis for transcription regulation</article-title>
+          <source>Cell</source>
+          <year>2012</year>
+          <volume>148</volume>
+          <fpage>84</fpage>
+          <lpage>98</lpage>
+          <pub-id pub-id-type="pmid">22265404</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B79">
+        <label>79</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sandhu</surname>
+              <given-names>KS</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Poh</surname>
+              <given-names>HM</given-names>
+            </name>
+            <name>
+              <surname>Quek</surname>
+              <given-names>YL</given-names>
+            </name>
+            <name>
+              <surname>Sia</surname>
+              <given-names>YY</given-names>
+            </name>
+            <name>
+              <surname>Peh</surname>
+              <given-names>SQ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Large-scale functional organization of long-range chromatin interaction networks</article-title>
+          <source>Cell Rep</source>
+          <year>2012</year>
+          <volume>2</volume>
+          <fpage>1207</fpage>
+          <lpage>1219</lpage>
+          <pub-id pub-id-type="pmid">23103170</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B80">
+        <label>80</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Adli</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Zou</surname>
+              <given-names>JY</given-names>
+            </name>
+            <name>
+              <surname>Verstappen</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Coyne</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-wide chromatin state transitions associated with developmental and environmental cues</article-title>
+          <source>Cell</source>
+          <year>2013</year>
+          <volume>152</volume>
+          <fpage>642</fpage>
+          <lpage>654</lpage>
+          <pub-id pub-id-type="pmid">23333102</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B81">
+        <label>81</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stergachis</surname>
+              <given-names>AB</given-names>
+            </name>
+            <name>
+              <surname>Neph</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Reynolds</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Humbert</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Paige</surname>
+              <given-names>SL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Developmental fate and cellular maturity encoded in human regulatory DNA landscapes</article-title>
+          <source>Cell</source>
+          <year>2013</year>
+          <volume>154</volume>
+          <fpage>888</fpage>
+          <lpage>903</lpage>
+          <pub-id pub-id-type="pmid">23953118</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B82">
+        <label>82</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hindorff</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>MacArthur</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Morales</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Junkins</surname>
+              <given-names>HA</given-names>
+            </name>
+            <name>
+              <surname>Hall</surname>
+              <given-names>PN</given-names>
+            </name>
+            <name>
+              <surname>Klemm</surname>
+              <given-names>AK</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <source>A catalog of published genome-wide association studies</source>
+          <publisher-loc>Bethesda</publisher-loc>
+          <publisher-name>National Human Genome Research Institute</publisher-name>
+          <year>2013</year>
+          <date-in-citation content-type="access-date">Accessed 2014 Jan 1</date-in-citation>
+          <comment>Available from: <ext-link ext-link-type="uri" xlink:href="http://www.genome.gov/gwastudies">http://www.genome.gov/gwastudies</ext-link></comment>
+        </element-citation>
+      </ref>
+      <ref id="B83">
+        <label>83</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sahu</surname>
+              <given-names>AD</given-names>
+            </name>
+            <name>
+              <surname>Aniba</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Chang</surname>
+              <given-names>YP</given-names>
+            </name>
+            <name>
+              <surname>Hannenhalli</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Epigenomic model of cardiac enhancers with application to genome wide association studies</article-title>
+          <source>Pac Symp Biocomput</source>
+          <year>2013</year>
+          <fpage>92</fpage>
+          <lpage>102</lpage>
+          <pub-id pub-id-type="pmid">23424115</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B84">
+        <label>84</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ward</surname>
+              <given-names>LD</given-names>
+            </name>
+            <name>
+              <surname>Kellis</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Evidence of abundant purifying selection in humans for recently acquired regulatory functions</article-title>
+          <source>Science</source>
+          <year>2012</year>
+          <volume>337</volume>
+          <fpage>1675</fpage>
+          <lpage>1678</lpage>
+          <pub-id pub-id-type="pmid">22956687</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B85">
+        <label>85</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lindblad-Toh</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Garber</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Zuk</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>MF</given-names>
+            </name>
+            <name>
+              <surname>Parker</surname>
+              <given-names>BJ</given-names>
+            </name>
+            <name>
+              <surname>Washietl</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A high-resolution map of human evolutionary constraint using 29 mammals</article-title>
+          <source>Nature</source>
+          <year>2011</year>
+          <volume>478</volume>
+          <fpage>476</fpage>
+          <lpage>482</lpage>
+          <pub-id pub-id-type="pmid">21993624</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B86">
+        <label>86</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Adli</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Bernstein</surname>
+              <given-names>BE</given-names>
+            </name>
+          </person-group>
+          <article-title>Whole-genome chromatin profiling from limited numbers of cells using nano-ChIP-seq</article-title>
+          <source>Nat Protoc</source>
+          <year>2011</year>
+          <volume>6</volume>
+          <fpage>1656</fpage>
+          <lpage>1668</lpage>
+          <pub-id pub-id-type="pmid">21959244</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B87">
+        <label>87</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roberts</surname>
+              <given-names>RJ</given-names>
+            </name>
+            <name>
+              <surname>Carneiro</surname>
+              <given-names>MO</given-names>
+            </name>
+            <name>
+              <surname>Schatz</surname>
+              <given-names>MC</given-names>
+            </name>
+          </person-group>
+          <article-title>The advantages of SMRT sequencing</article-title>
+          <source>Genome Biol</source>
+          <year>2013</year>
+          <volume>14</volume>
+          <fpage>405</fpage>
+          <pub-id pub-id-type="pmid">23822731</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B88">
+        <label>88</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boch</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>TALEs of genome targeting</article-title>
+          <source>Nat Biotechnol</source>
+          <year>2011</year>
+          <volume>29</volume>
+          <fpage>135</fpage>
+          <lpage>136</lpage>
+          <pub-id pub-id-type="pmid">21301438</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B89">
+        <label>89</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>de Groote</surname>
+              <given-names>ML</given-names>
+            </name>
+            <name>
+              <surname>Verschure</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Rots</surname>
+              <given-names>MG</given-names>
+            </name>
+          </person-group>
+          <article-title>Epigenetic Editing: targeted rewriting of epigenetic marks to modulate expression of selected target genes</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2012</year>
+          <volume>40</volume>
+          <fpage>10596</fpage>
+          <lpage>10613</lpage>
+          <pub-id pub-id-type="pmid">23002135</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B90">
+        <label>90</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ke</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Cortina-Borja</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Silva</surname>
+              <given-names>BC</given-names>
+            </name>
+            <name>
+              <surname>Lowe</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Rakyan</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Balding</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Integrated analysis of genome-wide genetic and epigenetic association data for identification of disease mechanisms</article-title>
+          <source>Epigenetics</source>
+          <year>2013</year>
+          <volume>8</volume>
+          <fpage>1236</fpage>
+          <lpage>1244</lpage>
+          <pub-id pub-id-type="pmid">24071862</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>A schematic depicting the context of several epigenetic marks on chromatin; ranging from DNA methylation, nucleosome positioning patterns affecting the size and distribution of DNase I hypersensitive sites, transcriptional activity at non-coding sites leading to the production of small and long RNA, chemical modifications of histone moieties (e.g., mono-, di- and tri-methylation of the 4th lysine of the H3 subunit), and chromatin folding to form localized structures in 3D nuclear space (anticlockwise). Adapted from Fig. 1 in Telese et al. [<xref rid="B9" ref-type="bibr">9</xref>], Copyright&#xA9;2013, with permission from Elsevier.</p>
+      </caption>
+      <graphic xlink:href="gni-12-2-g001"/>
+    </fig>
+    <table-wrap id="T1" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>A summary of epigenetic marks, their types (wherever applicable), and the NGS-based assays used to map their location and distribution</p>
+      </caption>
+      <graphic xlink:href="gni-12-2-i001"/>
+      <table-wrap-foot>
+        <fn>
+          <p>MRE-seq, methylation-sensitive restriction enzyme sequencing; MeDIP-seq, methylated DNA immunoprecipitation sequencing; MBD-seq, methyl-CpG-binding domain protein sequencing; RRBS, reduced representation bisulfite sequencing; WGBS, whole-genome bisulfite sequencing; oxBS-seq, oxidative bisulfite sequencing; ChIP-seq, chromatin immunoprecipitation sequencing; ChIP-exo, chromatin immunoprecipitation-exonuclease; DGF, digital genomic footprint; FAIRE-seq, formaldehyde-assisted isolation of regulatory elements sequencing; ChIA-PET, chromatin interaction analysis by paired-end tag sequencing.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

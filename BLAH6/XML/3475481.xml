@@ -1,0 +1,2601 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inf</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inf</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">23105925</article-id>
+      <article-id pub-id-type="pmc">3475481</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2012.10.1.23</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Possibility of the Use of Public Microarray Database for Identifying Significant Genes Associated with Oral Squamous Cell Carcinoma</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Ki-Yeol</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Cha</surname>
+            <given-names>In-Ho</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+          <xref ref-type="aff" rid="A2">2</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="A1"><label>1</label>Oral Cancer Research Institute, College of Dentistry, Yonsei University, Seoul 120-752, Korea.</aff>
+      <aff id="A2"><label>2</label>Department of Oral and Maxillofacial Surgery, College of Dentistry, Yonsei University, Seoul 120-752, Korea.</aff>
+      <author-notes>
+        <corresp>Corresponding author: <email>cha8764@yuhs.ac</email>, Tel +82-2-2228-3140, Fax +82-2-392-2959</corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>3</month>
+        <year>2012</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>31</day>
+        <month>3</month>
+        <year>2012</year>
+      </pub-date>
+      <volume>10</volume>
+      <issue>1</issue>
+      <fpage>23</fpage>
+      <lpage>32</lpage>
+      <history>
+        <date date-type="received">
+          <day>01</day>
+          <month>2</month>
+          <year>2012</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>16</day>
+          <month>2</month>
+          <year>2012</year>
+        </date>
+        <date date-type="accepted">
+          <day>18</day>
+          <month>2</month>
+          <year>2012</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2012 by The Korea Genome Organization</copyright-statement>
+        <copyright-year>2012</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/3.0">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">http://creativecommons.org/licenses/by-nc/3.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>There are lots of studies attempting to identify the expression changes in oral squamous cell carcinoma. Most studies include insufficient samples to apply statistical methods for detecting significant gene sets. This study combined two small microarray datasets from a public database and identified significant genes associated with the progress of oral squamous cell carcinoma. There were different expression scales between the two datasets, even though these datasets were generated under the same platforms - Affymetrix U133A gene chips. We discretized gene expressions of the two datasets by adjusting the differences between the datasets for detecting the more reliable information. From the combination of the two datasets, we detected 51 significant genes that were upregulated in oral squamous cell carcinoma. Most of them were published in previous studies as cancer-related genes. From these selected genes, significant genetic pathways associated with expression changes were identified. By combining several datasets from the public database, sufficient samples can be obtained for detecting reliable information. Most of the selected genes were known as cancer-related genes, including oral squamous cell carcinoma. Several unknown genes can be biologically evaluated in further studies.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>combined dataset</kwd>
+        <kwd>genetic pathway</kwd>
+        <kwd>oral squamous cell carcinoma</kwd>
+        <kwd>public microarray database</kwd>
+        <kwd>significant gene</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>Despite recent advances in surgical, radiation, and chemotherapeutic treatment protocols, the prognosis of oral squamous cell carcinoma (OSCC) remains mournful, with an approximate 50% 5-year mortality rate from disease or associated complications [<xref ref-type="bibr" rid="B1">1</xref>]. Therefore, the identification of biological markers is essential to make progress in detecting malignancy at an early stage and developing novel therapies [<xref ref-type="bibr" rid="B2">2</xref>].</p>
+      <p>Microarray datasets that are created for the same research purposes in different laboratories have accumulated rapidly. The results from different datasets are often inconsistent due to the utilization of different platforms, sample preparations, or various technical variations. If we could combine such datasets by adjusting for systematic biases that exist among different datasets derived from different experimental conditions, the power of statistical tests would be improved by the increase in sample size [<xref ref-type="bibr" rid="B3">3</xref>].</p>
+      <p>In OSCC, although lots of microarray-based studies have been conducted to provide insights into gene expression changes, most of these studies have contained insufficient samples for detecting reliable information using statistical analysis [<xref ref-type="bibr" rid="B4">4</xref>, <xref ref-type="bibr" rid="B5">5</xref>]. Therefore, this study attempted to combine several datasets in the public database for detecting significant genes.</p>
+      <p>We used two small microarray datasets of OSCC for this study, which were based on the same platform but had different expression scales. These two datasets were combined after discretization, because a previous study showed that classification could be improved using combined datasets after discretization [<xref ref-type="bibr" rid="B3">3</xref>]. After combining datasets, we used chi-square test for identifying the significant genes. Chi-square test has been used commonly to detect differentially expressed genes after discretization of expression intensities in the microarray experiment.</p>
+      <p>In this study, gene expression ratios of two datasets were transformed with their ranks for each dataset. Next, the transformed datasets were combined, and a nonparametric statistical method was applied to the combined dataset to detect informative genes. Finally, we showed that most of the selected genes were known to be involved in various cancers, including OSCC.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>Dataset</title>
+        <p>Two microarray datasets were used for this study. We acquired these datasets from a public database (Gene Expression Omnibus, GEO). One was the expression dataset of 16 tumors and 4 normal tissues from 16 patients, using Affymetrix U133A gene chips (Affymetrix, Santa Clara, CA, USA). The other microarray dataset consisted of expression profiles of 22 tumors and 5 normal tissues. These two datasets were experimented on under the same platform, Affymetrix U133A. The datasets are summarized in <xref ref-type="table" rid="T1">Table 1</xref>.</p>
+      </sec>
+      <sec>
+        <title>Process for combining datasets</title>
+        <p>For combining datasets, gene expression ratios are rearranged in order of expression ratios by each gene in each dataset, and the ranks are matched with the corresponding experimental group. If the experimental groups are homogenous, the ranks within the same experimental group would be neighboring. The process of discretization of gene expressions is summarized in the following steps [<xref ref-type="bibr" rid="B3">3</xref>]:</p>
+        <p>
+<list list-type="order"><list-item><p>Rank the gene expression ratios within a gene for each dataset.</p></list-item><list-item><p>List in order of the ranks, and assign the order of gene expressions to the corresponding experimental groups.</p></list-item><list-item><p>Summarize the result of (2) in the form of a contingency table for each gene.</p></list-item><list-item><p>Combine the contingency tables that have been summarized for each dataset.</p></list-item></list>
+</p>
+        <p>When there are three datasets to be combined, the datasets can be added as a single entry, as shown in <xref ref-type="table" rid="T2">Table 2</xref>, after the transformation of each dataset by rank.</p>
+      </sec>
+      <sec>
+        <title>Identification of significant genes from a combined dataset</title>
+        <p>After the summarization of gene expression ratios in the form of a contingency table for each gene, as shown in <xref ref-type="table" rid="T3">Table 3</xref>, a nonparametric statistical method was applied to the datasets for independence testing between gene expression patterns and experimental groups. The test statistics are calculated as follows for each gene:</p>
+        <p>
+          <disp-formula>
+            <graphic xlink:href="gni-10-23-e001"/>
+          </disp-formula>
+        </p>
+        <p>When the sample size is small - generally <italic>&#xCA;(n<sub>ij</sub>)</italic> less than 5 - Fisher's exact test is recommended rather than chi-square test.</p>
+        <p>The significant genes can be selected by an independence test between the phenotypes and gene expressions using this type of summarized dataset. <italic>c<sub>i</sub></italic> and <italic>r<sub>i</sub></italic> represent the marginal sums of the <italic>i<sup>th</sup></italic> column and row, respectively. <italic>n<sub>ij</sub></italic> is the number of experiments belonging to E<sub>i</sub> and P<sub>j</sub>, and <italic>n</italic> represents the total number of experiments.</p>
+      </sec>
+    </sec>
+    <sec sec-type="results">
+      <title>Results</title>
+      <p>The clinical information and expression levels of two datasets are summarized in <xref ref-type="table" rid="T4">Table 4</xref> and <xref ref-type="fig" rid="F1">Fig. 1</xref>. Subgroup and sex were similarly distributed in the two datasets. The distributions of other factors were not included.</p>
+      <p>The scale of expression levels in the two datasets was different; the expression values of Data 2004 ranged from 0.01 to 740, and those of Data 2005 were from 0.1 to 19,773. The expression patterns of the two datasets can be explored in <xref ref-type="fig" rid="F1">Fig. 1</xref>.</p>
+      <p>Lots of outliers are shown in <xref ref-type="fig" rid="F1">Fig. 1A</xref> in the two datasets containing whole gene sets. However, in subsets of significant genes, the expression ranges got narrow, and the outliers were decreased (<xref ref-type="fig" rid="F1">Fig. 1B</xref>). The expressions of tumor tissues in Data 2004 were upregulated and varied compared with normal tissues. If there was no outlier with a maximum value in the 14th tumor tissue in Data 2004, the expressions of the two different groups would be clearly distinguished. Any clear differences in expression were not shown between the two groups in Data 2005.</p>
+      <sec>
+        <title>Upregulated 51 genes in oral squamous cell carcinoma</title>
+        <p>To identify differently expressed genes between normal and tumor tissues, we performed chi-square test using a combined microarray dataset. Fifty-one significant genes were selected from a combined dataset with p-value less than 0.005, which were upregulated in OSCC tissues. The significance level can be controlled, and more genes can be selected with a lower significance level. These selected genes are summarized in <xref ref-type="table" rid="T5">Table 5</xref>.</p>
+        <p>Many genes among the selected genes were known as cancer-related genes. STAT1 [<xref ref-type="bibr" rid="B6">6</xref>], SKP2 [<xref ref-type="bibr" rid="B7">7</xref>], IFI16 [<xref ref-type="bibr" rid="B8">8</xref>], RHEB [<xref ref-type="bibr" rid="B9">9</xref>], FIF44 [<xref ref-type="bibr" rid="B10">10</xref>], SOD2 [<xref ref-type="bibr" rid="B11">11</xref>, <xref ref-type="bibr" rid="B12">12</xref>], and GREM1 [<xref ref-type="bibr" rid="B11">11</xref>] are related to OSCC. <xref ref-type="table" rid="T6">Table 6</xref> [<xref ref-type="bibr" rid="B13">13</xref>-<xref ref-type="bibr" rid="B56">56</xref>] summarizes the previous studies that have published the relations of selected genes with cancer.</p>
+      </sec>
+      <sec>
+        <title>Expression pattern of the identified genes</title>
+        <p>To investigate whether the different experimental groups could be classified with significant genes, an unsupervised hierarchical clustering method was applied to the significant gene set (<xref ref-type="fig" rid="F2">Fig. 2</xref>).</p>
+        <p>The normal group consisted of 4 tissues and showed significantly lower expression levels when compared with the tumor group. In <xref ref-type="fig" rid="F2">Fig. 2</xref>, we investigated the classification availability of the identified genes in Data 2004, not in a combined dataset, because the two datasets have different expression scales.</p>
+      </sec>
+      <sec>
+        <title>Network analysis</title>
+        <p>Based on all identified genes, new and expanded pathway maps and connections and specific gene-gene interactions were inferred, functionally analyzed, and used to build on the existing pathway using the Ingenuity Pathway Analysis (IPA) knowledge base [<xref ref-type="bibr" rid="B57">57</xref>].</p>
+        <p>To generate networks in this work, the knowledge base was queried for interactions between the identified genes and all other genes stored in the database. Four networks were found to be significant in OSCC. The network with the highest score (Network 1, score = 36) was generated, with 17 identified genes (<xref ref-type="table" rid="T7">Table 7</xref>, <xref ref-type="fig" rid="F3">Fig. 3</xref>).</p>
+        <p>In the network diagram, STAT1 and SOD2 neighbored with NMI and AURKA, respectively. The expression levels of STAT1 and SOD2 could be expected to be related with those of NMI and SOD2. Actually, the expressions of STAT1 and SOD2 were strongly positively correlated with NMI (r = 0.95) and AURKA (r = 0.87), respectively.</p>
+      </sec>
+    </sec>
+    <sec sec-type="discussion">
+      <title>Discussion</title>
+      <p>OSCC is associated with substantial mortality and morbidity [<xref ref-type="bibr" rid="B58">58</xref>]. To identify potential biomarkers for early detection of invasive OSCC, microarray experiments have been conducted, and these kinds of microarray datasets have accumulated rapidly in the public database. However, there are many datasets that include insufficient sample sizes for detecting significant genes by statistical analysis. Therefore, this study attempted to combine several microarray datasets from a public database to identify significant candidates as biomarkers.</p>
+      <p>In a microarray data analysis, the information from different datasets obtained under different experimental conditions may be inconsistent even though they are performed with the same research objectives. Moreover, even when the datasets are generated by the same platform, the data agreement may be affected by technical variations between laboratories. In such cases, it could be necessary to use a combined dataset after adjusting for the differences between such datasets for detecting the more reliable information. Combining datasets is especially useful in OSCC microarray datasets, because there are many datasets with insufficient sample sizes for analysis [<xref ref-type="bibr" rid="B4">4</xref>, <xref ref-type="bibr" rid="B5">5</xref>, <xref ref-type="bibr" rid="B59">59</xref>, <xref ref-type="bibr" rid="B60">60</xref>].</p>
+      <p>For identifying significant genes classifying tumor and normal groups, we achieved two microarray datasets from a public database, GEO. They included 20 and 27 samples, and each sample size was unbalanced between the different groups. By combining these two datasets, the sample size was increased, and we had a sufficient sample size for statistical analysis, even though it was still unbalanced. When these datasets were combined, we used the rank of gene expression, because the scale of gene expression was different. In this study, we identified 51 significant genes from a combined dataset, and this number could be increased or decreased by the significance level (we used 0.005). The selected 51 genes were upregulated in tumor tissues. Many of the selected genes were proven to be cancer-related genes by previous studies.</p>
+      <p>SOD2 is associated with lymph node metastasis in OSCC and may provide predictive values for the diagnosis of metastasis [<xref ref-type="bibr" rid="B10">10</xref>]. Metastasis is a critical event in OSCC progression. An SOD2 variant has also been associated with increased breast cancer and ovarian cancer risk in previous studies [<xref ref-type="bibr" rid="B47">47</xref>, <xref ref-type="bibr" rid="B61">61</xref>]. TopBP1 included eight BRCT domains (originally identified in BRCA1), and it was proposed as a breast cancer susceptibility gene [<xref ref-type="bibr" rid="B18">18</xref>, <xref ref-type="bibr" rid="B62">62</xref>].</p>
+      <p>By semiquantitative reverse transcription PCR analysis, RHEB was shown to be upregulated in OSCC [<xref ref-type="bibr" rid="B9">9</xref>]. In salivary cancer, survival probability rates dropped when Skp2 was overexpressed [<xref ref-type="bibr" rid="B7">7</xref>]. Overexpression of Skp2 is associated with the reduction of p27 (KIP1) expression and may have a role in the progression of OSCC [<xref ref-type="bibr" rid="B25">25</xref>].</p>
+      <p>The expression of RCN2 was linearly related to the tumor mass increase, and its expression was increased in breast cancer [<xref ref-type="bibr" rid="B16">16</xref>]. PTPRK was proven as a candidate gene of colorectal cancer [<xref ref-type="bibr" rid="B19">19</xref>], and it is a functional tumor suppressor in Hodgkin lymphoma cells [<xref ref-type="bibr" rid="B20">20</xref>]. DMTF1 was shown to be amplified in adenocarcinoma of the gastroesophageal junction, residing at 7q21 by aCGH experiments [<xref ref-type="bibr" rid="B21">21</xref>]. FEZ1 was involved in ovarian carcinogenesis, and its reduction or loss could be an aid to the clinical management of patients affected by ovarian carcinoma [<xref ref-type="bibr" rid="B22">22</xref>]. It is also a known tumor suppressor gene in breast cancer and gastric cancer [<xref ref-type="bibr" rid="B23">23</xref>, <xref ref-type="bibr" rid="B63">63</xref>].</p>
+      <p>Other ovarian cancer-related genes were NMI [<xref ref-type="bibr" rid="B27">27</xref>, <xref ref-type="bibr" rid="B28">28</xref>] and FANCI [<xref ref-type="bibr" rid="B44">44</xref>]; breast cancer-related genes were COX11 [<xref ref-type="bibr" rid="B42">42</xref>], MELK [<xref ref-type="bibr" rid="B33">33</xref>], and FANCI [<xref ref-type="bibr" rid="B44">44</xref>] among the selected genes. MELK was known to be associated with shorter survival in glioblastoma [<xref ref-type="bibr" rid="B34">34</xref>].</p>
+      <p>TTK was associated with progression and metastasis of advanced cervical cancers after radiotherapy [<xref ref-type="bibr" rid="B29">29</xref>, <xref ref-type="bibr" rid="B30">30</xref>]. It might also be a relevant candidate as a new target in cancer therapy, since it plays relevant roles in mitotic progression and the spindle checkpoint [<xref ref-type="bibr" rid="B31">31</xref>, <xref ref-type="bibr" rid="B32">32</xref>]. Aurora kinase A (AURKA) was associated with skin tumors [<xref ref-type="bibr" rid="B36">36</xref>] and colorectal cancer [<xref ref-type="bibr" rid="B37">37</xref>, <xref ref-type="bibr" rid="B38">38</xref>].</p>
+      <p>In previous studies, OSCC-related genes among the selected genes were STAT1 [<xref ref-type="bibr" rid="B14">14</xref>], SKP2 [<xref ref-type="bibr" rid="B7">7</xref>, <xref ref-type="bibr" rid="B25">25</xref>], IFI16 [<xref ref-type="bibr" rid="B8">8</xref>], RHEB [<xref ref-type="bibr" rid="B9">9</xref>], IFI44 [<xref ref-type="bibr" rid="B64">64</xref>], SOD2 [<xref ref-type="bibr" rid="B10">10</xref>-<xref ref-type="bibr" rid="B12">12</xref>], and GREM1 [<xref ref-type="bibr" rid="B11">11</xref>]. The gene set, which has not been proven as OSCC-related genes until now, could be expected to be possibly proven as OSCC-related genes by biological evaluation.</p>
+      <p>In this study, we identified significant genes related with OSCC from two microarray datasets in a public database. For this, we transformed microarray datasets using ranks of gene expressions with different expression scales, even though they were constructed under the same experimental conditions. This method could be useful when using multiple datasets that are created for the same research purpose, By combining these accumulated datasets, we can detect more reliable information due to the increased sample size. It saves time and money and avoids repeating experiments.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by the Priority Research Centers Program through the National Research Foundation of Korea (NRF), funded by the Ministry of Education, Science and Technology (2011-0031396).</p>
+    </ack>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sparano</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Quesnelle</surname>
+              <given-names>KM</given-names>
+            </name>
+            <name>
+              <surname>Kumar</surname>
+              <given-names>MS</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Sylvester</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Feldman</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-wide profiling of oral squamous cell carcinoma by array-based comparative genomic hybridization</article-title>
+          <source>Laryngoscope</source>
+          <year>2006</year>
+          <volume>116</volume>
+          <fpage>735</fpage>
+          <lpage>741</lpage>
+          <pub-id pub-id-type="pmid">16652080</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smeets</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Brakenhoff</surname>
+              <given-names>RH</given-names>
+            </name>
+            <name>
+              <surname>Ylstra</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>van Wieringen</surname>
+              <given-names>WN</given-names>
+            </name>
+            <name>
+              <surname>van de Wiel</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Leemans</surname>
+              <given-names>CR</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetic classification of oral and oropharyngeal carcinomas identifies subgroups with a different prognosis</article-title>
+          <source>Cell Oncol</source>
+          <year>2009</year>
+          <volume>31</volume>
+          <fpage>291</fpage>
+          <lpage>300</lpage>
+          <pub-id pub-id-type="pmid">19633365</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>KY</given-names>
+            </name>
+            <name>
+              <surname>Ki</surname>
+              <given-names>DH</given-names>
+            </name>
+            <name>
+              <surname>Jeung</surname>
+              <given-names>HC</given-names>
+            </name>
+            <name>
+              <surname>Chung</surname>
+              <given-names>HC</given-names>
+            </name>
+            <name>
+              <surname>Rha</surname>
+              <given-names>SY</given-names>
+            </name>
+          </person-group>
+          <article-title>Improving the prediction accuracy in classification using the combined data sets by ranks of gene expressions</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2008</year>
+          <volume>9</volume>
+          <fpage>283</fpage>
+          <pub-id pub-id-type="pmid">18554423</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Toruner</surname>
+              <given-names>GA</given-names>
+            </name>
+            <name>
+              <surname>Ulger</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Alkan</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Galante</surname>
+              <given-names>AT</given-names>
+            </name>
+            <name>
+              <surname>Rinaggio</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wilk</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Association between gene expression profile and tumor invasion in oral squamous cell carcinoma</article-title>
+          <source>Cancer Genet Cytogenet</source>
+          <year>2004</year>
+          <volume>154</volume>
+          <fpage>27</fpage>
+          <lpage>35</lpage>
+          <pub-id pub-id-type="pmid">15381369</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>O'Donnell</surname>
+              <given-names>RK</given-names>
+            </name>
+            <name>
+              <surname>Kupferman</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Singhal</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Weber</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>O'Malley</surname>
+              <given-names>B</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Gene expression signature predicts lymphatic metastasis in squamous cell carcinoma of the oral cavity</article-title>
+          <source>Oncogene</source>
+          <year>2005</year>
+          <volume>24</volume>
+          <fpage>1244</fpage>
+          <lpage>1251</lpage>
+          <pub-id pub-id-type="pmid">15558013</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hiroi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Mori</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Sakaeda</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Shimada</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Ohmori</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>STAT1 represses hypoxia-inducible factor-1-mediated transcription</article-title>
+          <source>Biochem Biophys Res Commun</source>
+          <year>2009</year>
+          <volume>387</volume>
+          <fpage>806</fpage>
+          <lpage>810</lpage>
+          <pub-id pub-id-type="pmid">19646959</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ben-Izhak</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Akrish</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Gan</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Nagler</surname>
+              <given-names>RM</given-names>
+            </name>
+          </person-group>
+          <article-title>Skp2 and salivary cancer</article-title>
+          <source>Cancer Biol Ther</source>
+          <year>2009</year>
+          <volume>8</volume>
+          <fpage>153</fpage>
+          <lpage>158</lpage>
+          <pub-id pub-id-type="pmid">19029817</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>De Andrea</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Gioia</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Mondini</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Azzimonti</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Ren&#xF2;</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Pecorari</surname>
+              <given-names>G</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Effects of IFI16 overexpression on the growth and doxorubicin sensitivity of head and neck squamous cell carcinoma-derived cell lines</article-title>
+          <source>Head Neck</source>
+          <year>2007</year>
+          <volume>29</volume>
+          <fpage>835</fpage>
+          <lpage>844</lpage>
+          <pub-id pub-id-type="pmid">17510972</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chakraborty</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Mohiyuddin</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Gopinath</surname>
+              <given-names>KS</given-names>
+            </name>
+            <name>
+              <surname>Kumar</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Involvement of TSC genes and differential expression of other members of the mTOR signaling pathway in oral squamous cell carcinoma</article-title>
+          <source>BMC Cancer</source>
+          <year>2008</year>
+          <volume>8</volume>
+          <fpage>163</fpage>
+          <pub-id pub-id-type="pmid">18538015</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ye</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>BS</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Sheng</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Peng</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Proteomic based identification of manganese superoxide dismutase 2 (SOD2) as a metastasis marker for oral squamous cell carcinoma</article-title>
+          <source>Cancer Genomics Proteomics</source>
+          <year>2008</year>
+          <volume>5</volume>
+          <fpage>85</fpage>
+          <lpage>94</lpage>
+          <pub-id pub-id-type="pmid">18460737</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ye</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Temam</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Ziober</surname>
+              <given-names>BL</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Schwartz</surname>
+              <given-names>JL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Transcriptomic dissection of tongue squamous cell carcinoma</article-title>
+          <source>BMC Genomics</source>
+          <year>2008</year>
+          <volume>9</volume>
+          <fpage>69</fpage>
+          <pub-id pub-id-type="pmid">18254958</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liu</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Jiang</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Shi</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Ye</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>MicroRNA-222 regulates cell invasion by targeting matrix metalloproteinase 1 (MMP1) and manganese superoxide dismutase 2 (SOD2) in tongue squamous cell carcinoma cell lines</article-title>
+          <source>Cancer Genomics Proteomics</source>
+          <year>2009</year>
+          <volume>6</volume>
+          <fpage>131</fpage>
+          <lpage>139</lpage>
+          <pub-id pub-id-type="pmid">19487542</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>ZJ</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Jiang</surname>
+              <given-names>YM</given-names>
+            </name>
+            <name>
+              <surname>Ran</surname>
+              <given-names>YL</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>ZH</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>W</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Screening and sero-immunoscreening of ovarian epithelial cancer associative antigens</article-title>
+          <source>Zhonghua Fu Chan Ke Za Zhi</source>
+          <year>2007</year>
+          <volume>42</volume>
+          <fpage>834</fpage>
+          <lpage>839</lpage>
+          <pub-id pub-id-type="pmid">18476518</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hiroi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Mori</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Sekine</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Sakaeda</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Shimada</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Ohmori</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Mechanisms of resistance to interferon-gamma-mediated cell growth arrest in human oral squamous carcinoma cells</article-title>
+          <source>J Biol Chem</source>
+          <year>2009</year>
+          <volume>284</volume>
+          <fpage>24869</fpage>
+          <lpage>24880</lpage>
+          <pub-id pub-id-type="pmid">19596857</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Laimer</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Spizzo</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Obrist</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Gastl</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Brunhuber</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Sch&#xE4;fer</surname>
+              <given-names>G</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>STAT1 activation in squamous cell cancer of the oral cavity: a potential predictive marker of response to adjuvant chemotherapy</article-title>
+          <source>Cancer</source>
+          <year>2007</year>
+          <volume>110</volume>
+          <fpage>326</fpage>
+          <lpage>333</lpage>
+          <pub-id pub-id-type="pmid">17559122</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cavallo</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Astolfi</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Iezzi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Cordero</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Lollini</surname>
+              <given-names>PL</given-names>
+            </name>
+            <name>
+              <surname>Forni</surname>
+              <given-names>G</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>An integrated approach of immunogenomics and bioinformatics to identify new Tumor Associated Antigens (TAA) for mammary cancer immunological prevention</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2005</year>
+          <volume>6</volume>
+          <issue>Suppl 4</issue>
+          <fpage>S7</fpage>
+          <pub-id pub-id-type="pmid">16351756</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Luo</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Cheung</surname>
+              <given-names>HW</given-names>
+            </name>
+            <name>
+              <surname>Subramanian</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Sharifnia</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Okamoto</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>X</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Highly parallel identification of essential genes in cancer cells</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2008</year>
+          <volume>105</volume>
+          <fpage>20380</fpage>
+          <lpage>20385</lpage>
+          <pub-id pub-id-type="pmid">19091943</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Going</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <name>
+              <surname>Nixon</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Dornan</surname>
+              <given-names>ES</given-names>
+            </name>
+            <name>
+              <surname>Boner</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Donaldson</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Morgan</surname>
+              <given-names>IM</given-names>
+            </name>
+          </person-group>
+          <article-title>Aberrant expression of TopBP1 in breast cancer</article-title>
+          <source>Histopathology</source>
+          <year>2007</year>
+          <volume>50</volume>
+          <fpage>418</fpage>
+          <lpage>424</lpage>
+          <pub-id pub-id-type="pmid">17448016</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B19">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Starr</surname>
+              <given-names>TK</given-names>
+            </name>
+            <name>
+              <surname>Allaei</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Silverstein</surname>
+              <given-names>KA</given-names>
+            </name>
+            <name>
+              <surname>Staggs</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Sarver</surname>
+              <given-names>AL</given-names>
+            </name>
+            <name>
+              <surname>Bergemann</surname>
+              <given-names>TL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A transposon-based genetic screen in mice identifies genes altered in colorectal cancer</article-title>
+          <source>Science</source>
+          <year>2009</year>
+          <volume>323</volume>
+          <fpage>1747</fpage>
+          <lpage>1750</lpage>
+          <pub-id pub-id-type="pmid">19251594</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Flavell</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Baumforth</surname>
+              <given-names>KR</given-names>
+            </name>
+            <name>
+              <surname>Wood</surname>
+              <given-names>VH</given-names>
+            </name>
+            <name>
+              <surname>Davies</surname>
+              <given-names>GL</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Reynolds</surname>
+              <given-names>GM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Down-regulation of the TGF-beta target gene, PTPRK, by the Epstein-Barr virus encoded EBNA1 contributes to the growth and survival of Hodgkin lymphoma cells</article-title>
+          <source>Blood</source>
+          <year>2008</year>
+          <volume>111</volume>
+          <fpage>292</fpage>
+          <lpage>301</lpage>
+          <pub-id pub-id-type="pmid">17720884</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>van Dekken</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Vissers</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Tilanus</surname>
+              <given-names>HW</given-names>
+            </name>
+            <name>
+              <surname>Kuo</surname>
+              <given-names>WL</given-names>
+            </name>
+            <name>
+              <surname>Tanke</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>Rosenberg</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genomic array and expression analysis of frequent high-level amplifications in adenocarcinomas of the gastro-esophageal junction</article-title>
+          <source>Cancer Genet Cytogenet</source>
+          <year>2006</year>
+          <volume>166</volume>
+          <fpage>157</fpage>
+          <lpage>162</lpage>
+          <pub-id pub-id-type="pmid">16631473</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Califano</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Pignata</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Pisano</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Greggi</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Laurelli</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Losito</surname>
+              <given-names>NS</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>FEZ1/LZTS1 protein expression in ovarian cancer</article-title>
+          <source>J Cell Physiol</source>
+          <year>2010</year>
+          <volume>222</volume>
+          <fpage>382</fpage>
+          <lpage>386</lpage>
+          <pub-id pub-id-type="pmid">19885841</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Dong</surname>
+              <given-names>XY</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Gu</surname>
+              <given-names>F</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Down-regulation of tumor suppressor gene FEZ1/LZTS1 in breast carcinoma involves promoter methylation and associates with metastasis</article-title>
+          <source>Breast Cancer Res Treat</source>
+          <year>2009</year>
+          <volume>116</volume>
+          <fpage>471</fpage>
+          <lpage>478</lpage>
+          <pub-id pub-id-type="pmid">18686028</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B24">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fabris</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Basso</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Del Favero</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Meggiato</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Piccoli</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Angonese</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Renal handling of amylase and immunoreactive trypsin in pancreatic cancer and chronic pancreatitis</article-title>
+          <source>Clin Physiol Biochem</source>
+          <year>1990</year>
+          <volume>8</volume>
+          <fpage>30</fpage>
+          <lpage>37</lpage>
+          <pub-id pub-id-type="pmid">1691065</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shintani</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Mihara</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Hino</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Nakashiro</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Hamakawa</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Skp2 and Jab1 expression are associated with inverse expression of p27(KIP1) and poor prognosis in oral squamous cell carcinomas</article-title>
+          <source>Oncology</source>
+          <year>2003</year>
+          <volume>65</volume>
+          <fpage>355</fpage>
+          <lpage>362</lpage>
+          <pub-id pub-id-type="pmid">14707456</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B26">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hayes</surname>
+              <given-names>DC</given-names>
+            </name>
+            <name>
+              <surname>Secrist</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Bangur</surname>
+              <given-names>CS</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Harlan</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Multigene real-time PCR detection of circulating tumor cells in peripheral blood of lung cancer patients</article-title>
+          <source>Anticancer Res</source>
+          <year>2006</year>
+          <volume>26</volume>
+          <fpage>1567</fpage>
+          <lpage>1575</lpage>
+          <pub-id pub-id-type="pmid">16619573</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B27">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fillmore</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Mitra</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Xi</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Ju</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Scammell</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Shevde</surname>
+              <given-names>LA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Nmi (N-Myc interactor) inhibits Wnt/beta-catenin signaling and retards tumor growth</article-title>
+          <source>Int J Cancer</source>
+          <year>2009</year>
+          <volume>125</volume>
+          <fpage>556</fpage>
+          <lpage>564</lpage>
+          <pub-id pub-id-type="pmid">19358268</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B28">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Quaye</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Ramus</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Gentry-Maharaj</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>H&#xF8;gdall</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>DiCioccio</surname>
+              <given-names>RA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Tagging single-nucleotide polymorphisms in candidate oncogenes and susceptibility to ovarian cancer</article-title>
+          <source>Br J Cancer</source>
+          <year>2009</year>
+          <volume>100</volume>
+          <fpage>993</fpage>
+          <lpage>1001</lpage>
+          <pub-id pub-id-type="pmid">19240718</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B29">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harima</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Ikeda</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Utsunomiya</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Shiga</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Komemushi</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Kojima</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Identification of genes associated with progression and metastasis of advanced cervical cancers after radiotherapy by cDNA microarray analysis</article-title>
+          <source>Int J Radiat Oncol Biol Phys</source>
+          <year>2009</year>
+          <volume>75</volume>
+          <fpage>1232</fpage>
+          <lpage>1239</lpage>
+          <pub-id pub-id-type="pmid">19857786</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B30">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kono</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Mizukami</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Daigo</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Takano</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Masuda</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Yoshida</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Vaccination with multiple peptides derived from novel cancer-testis antigens can induce specific T-cell responses and clinical responses in advanced esophageal cancer</article-title>
+          <source>Cancer Sci</source>
+          <year>2009</year>
+          <volume>100</volume>
+          <fpage>1502</fpage>
+          <lpage>1509</lpage>
+          <pub-id pub-id-type="pmid">19459850</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B31">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>de C&#xE1;rcer</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>P&#xE9;rez de Castro</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Malumbres</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Targeting cell cycle kinases for cancer therapy</article-title>
+          <source>Curr Med Chem</source>
+          <year>2007</year>
+          <volume>14</volume>
+          <fpage>969</fpage>
+          <lpage>985</lpage>
+          <pub-id pub-id-type="pmid">17439397</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B32">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Suda</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Tsunoda</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Daigo</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Nakamura</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Tahara</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of human leukocyte antigen-A24-restricted epitope peptides derived from gene products upregulated in lung and esophageal cancers as novel targets for immunotherapy</article-title>
+          <source>Cancer Sci</source>
+          <year>2007</year>
+          <month>9</month>
+          <day>02</day>
+          <comment>[Epub]. <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1111/j.1349-7006.2007.00603.x">http://dx.doi.org/10.1111/j.1349-7006.2007.00603.x</ext-link></comment>
+        </element-citation>
+      </ref>
+      <ref id="B33">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pickard</surname>
+              <given-names>MR</given-names>
+            </name>
+            <name>
+              <surname>Green</surname>
+              <given-names>AR</given-names>
+            </name>
+            <name>
+              <surname>Ellis</surname>
+              <given-names>IO</given-names>
+            </name>
+            <name>
+              <surname>Caldas</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Hedge</surname>
+              <given-names>VL</given-names>
+            </name>
+            <name>
+              <surname>Mourtada-Maarabouni</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Dysregulated expression of Fau and MELK is associated with poor prognosis in breast cancer</article-title>
+          <source>Breast Cancer Res</source>
+          <year>2009</year>
+          <volume>11</volume>
+          <fpage>R60</fpage>
+          <pub-id pub-id-type="pmid">19671159</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B34">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kappadakunnel</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Eskin</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Dong</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Nelson</surname>
+              <given-names>SF</given-names>
+            </name>
+            <name>
+              <surname>Mischel</surname>
+              <given-names>PS</given-names>
+            </name>
+            <name>
+              <surname>Liau</surname>
+              <given-names>LM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Stem cell associated gene expression in glioblastoma multiforme: relationship to survival and the subventricular zone</article-title>
+          <source>J Neurooncol</source>
+          <year>2010</year>
+          <volume>96</volume>
+          <fpage>359</fpage>
+          <lpage>367</lpage>
+          <pub-id pub-id-type="pmid">19655089</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B35">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ga&#x142;eza-Kulik</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Zebracka</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Szpak-Ulczok</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Czarniecka</surname>
+              <given-names>AK</given-names>
+            </name>
+            <name>
+              <surname>Kukulska</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Gubala</surname>
+              <given-names>E</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Expression of selected genes involved in transport of ions in papillary thyroid carcinoma</article-title>
+          <source>Endokrynol Pol</source>
+          <year>2006</year>
+          <volume>57</volume>
+          <issue>Suppl A</issue>
+          <fpage>26</fpage>
+          <lpage>31</lpage>
+          <pub-id pub-id-type="pmid">17091453</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B36">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Torchia</surname>
+              <given-names>EC</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Sheng</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Katayama</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Fitzpatrick</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Brinkley</surname>
+              <given-names>WR</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A genetic variant of Aurora kinase A promotes genomic instability leading to highly malignant skin tumors</article-title>
+          <source>Cancer Res</source>
+          <year>2009</year>
+          <volume>69</volume>
+          <fpage>7207</fpage>
+          <lpage>7215</lpage>
+          <pub-id pub-id-type="pmid">19738056</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B37">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Etzel</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Amos</surname>
+              <given-names>CI</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Viscofsky</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Lindor</surname>
+              <given-names>NM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetic variants in the cell cycle control pathways contribute to early onset colorectal cancer in Lynch syndrome</article-title>
+          <source>Cancer Causes Control</source>
+          <year>2009</year>
+          <volume>20</volume>
+          <fpage>1769</fpage>
+          <lpage>1777</lpage>
+          <pub-id pub-id-type="pmid">19690970</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B38">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kaestner</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Stolz</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Bastians</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Determinants for the efficiency of anticancer drugs targeting either Aurora-A or Aurora-B kinases in human colon carcinoma cells</article-title>
+          <source>Mol Cancer Ther</source>
+          <year>2009</year>
+          <volume>8</volume>
+          <fpage>2046</fpage>
+          <lpage>2056</lpage>
+          <pub-id pub-id-type="pmid">19584233</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B39">
+        <label>39</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Alimirah</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Davis</surname>
+              <given-names>FJ</given-names>
+            </name>
+            <name>
+              <surname>Choubey</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>IFI16 in human prostate cancer</article-title>
+          <source>Mol Cancer Res</source>
+          <year>2007</year>
+          <volume>5</volume>
+          <fpage>251</fpage>
+          <lpage>259</lpage>
+          <pub-id pub-id-type="pmid">17339605</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B40">
+        <label>40</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Howell</surname>
+              <given-names>RD</given-names>
+            </name>
+            <name>
+              <surname>Alfonso</surname>
+              <given-names>DT</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kong</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Wittig</surname>
+              <given-names>JC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>IFI16 inhibits tumorigenicity and cell proliferation of bone and cartilage tumor cells</article-title>
+          <source>Front Biosci</source>
+          <year>2007</year>
+          <volume>12</volume>
+          <fpage>4855</fpage>
+          <lpage>4863</lpage>
+          <pub-id pub-id-type="pmid">17569615</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B41">
+        <label>41</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ortega-Paino</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Fransson</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Ek</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Borrebaeck</surname>
+              <given-names>CA</given-names>
+            </name>
+          </person-group>
+          <article-title>Functionally associated targets in mantle cell lymphoma as defined by DNA microarrays and RNA interference</article-title>
+          <source>Blood</source>
+          <year>2008</year>
+          <volume>111</volume>
+          <fpage>1617</fpage>
+          <lpage>1624</lpage>
+          <pub-id pub-id-type="pmid">18024791</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B42">
+        <label>42</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Ghoussaini</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Healey</surname>
+              <given-names>CS</given-names>
+            </name>
+            <name>
+              <surname>Humphreys</surname>
+              <given-names>MK</given-names>
+            </name>
+            <name>
+              <surname>Platte</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Newly discovered breast cancer susceptibility loci on 3p24 and 17q23.2</article-title>
+          <source>Nat Genet</source>
+          <year>2009</year>
+          <volume>41</volume>
+          <fpage>585</fpage>
+          <lpage>590</lpage>
+          <pub-id pub-id-type="pmid">19330027</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B43">
+        <label>43</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhi</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>JB</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Krause</surname>
+              <given-names>DS</given-names>
+            </name>
+            <name>
+              <surname>Xiao</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>NJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Fanconi anemia complementation group FANCD2 protein serine 331 phosphorylation is important for fanconi anemia pathway function and BRCA2 interaction</article-title>
+          <source>Cancer Res</source>
+          <year>2009</year>
+          <volume>69</volume>
+          <fpage>8775</fpage>
+          <lpage>8783</lpage>
+          <pub-id pub-id-type="pmid">19861535</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B44">
+        <label>44</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barroso</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Pita</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Arias</surname>
+              <given-names>JI</given-names>
+            </name>
+            <name>
+              <surname>Menendez</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Zamora</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Blanco</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The Fanconi anemia family of genes and its correlation with breast cancer susceptibility and breast cancer features</article-title>
+          <source>Breast Cancer Res Treat</source>
+          <year>2009</year>
+          <volume>118</volume>
+          <fpage>655</fpage>
+          <lpage>660</lpage>
+          <pub-id pub-id-type="pmid">19536649</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B45">
+        <label>45</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>ES</given-names>
+            </name>
+            <name>
+              <surname>Son</surname>
+              <given-names>DS</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>SH</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Jo</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Han</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Prediction of recurrence-free survival in postoperative non-small cell lung cancer patients by using an integrated model of clinical information and gene expression</article-title>
+          <source>Clin Cancer Res</source>
+          <year>2008</year>
+          <volume>14</volume>
+          <fpage>7397</fpage>
+          <lpage>7404</lpage>
+          <pub-id pub-id-type="pmid">19010856</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B46">
+        <label>46</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Skrzycki</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Majewska</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Podsiad</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Czeczot</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Expression and activity of superoxide dismutase isoenzymes in colorectal cancer</article-title>
+          <source>Acta Biochim Pol</source>
+          <year>2009</year>
+          <volume>56</volume>
+          <fpage>663</fpage>
+          <lpage>670</lpage>
+          <pub-id pub-id-type="pmid">19902052</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B47">
+        <label>47</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Olson</surname>
+              <given-names>SH</given-names>
+            </name>
+            <name>
+              <surname>Carlson</surname>
+              <given-names>MD</given-names>
+            </name>
+            <name>
+              <surname>Ostrer</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Harlap</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Stone</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Winters</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetic variants in SOD2, MPO, and NQO1, and risk of ovarian cancer</article-title>
+          <source>Gynecol Oncol</source>
+          <year>2004</year>
+          <volume>93</volume>
+          <fpage>615</fpage>
+          <lpage>620</lpage>
+          <pub-id pub-id-type="pmid">15196853</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B48">
+        <label>48</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lorch</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>TO</given-names>
+            </name>
+            <name>
+              <surname>Schmoll</surname>
+              <given-names>HJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Bortezomib inhibits cell-cell adhesion and cell migration and enhances epidermal growth factor receptor inhibitor-induced cell death in squamous cell cancer</article-title>
+          <source>Cancer Res</source>
+          <year>2007</year>
+          <volume>67</volume>
+          <fpage>727</fpage>
+          <lpage>734</lpage>
+          <pub-id pub-id-type="pmid">17234784</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B49">
+        <label>49</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lorch</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Klessner</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>JK</given-names>
+            </name>
+            <name>
+              <surname>Getsios</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>YL</given-names>
+            </name>
+            <name>
+              <surname>Stack</surname>
+              <given-names>MS</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Epidermal growth factor receptor inhibition promotes desmosome assembly and strengthens intercellular adhesion in squamous cell carcinoma cells</article-title>
+          <source>J Biol Chem</source>
+          <year>2004</year>
+          <volume>279</volume>
+          <fpage>37191</fpage>
+          <lpage>37200</lpage>
+          <pub-id pub-id-type="pmid">15205458</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B50">
+        <label>50</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Crighton</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Wilkinson</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Ryan</surname>
+              <given-names>KM</given-names>
+            </name>
+          </person-group>
+          <article-title>DRAM links autophagy to p53 and programmed cell death</article-title>
+          <source>Autophagy</source>
+          <year>2007</year>
+          <volume>3</volume>
+          <fpage>72</fpage>
+          <lpage>74</lpage>
+          <pub-id pub-id-type="pmid">17102582</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B51">
+        <label>51</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Crighton</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Wilkinson</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>O'Prey</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Syed</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>PR</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>DRAM, a p53-induced modulator of autophagy, is critical for apoptosis</article-title>
+          <source>Cell</source>
+          <year>2006</year>
+          <volume>126</volume>
+          <fpage>121</fpage>
+          <lpage>134</lpage>
+          <pub-id pub-id-type="pmid">16839881</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B52">
+        <label>52</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mackay</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Urruticoechea</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Dixon</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Dexter</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Fenwick</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Ashworth</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Molecular response to aromatase inhibitor treatment in primary breast cancer</article-title>
+          <source>Breast Cancer Res</source>
+          <year>2007</year>
+          <volume>9</volume>
+          <fpage>R37</fpage>
+          <pub-id pub-id-type="pmid">17555561</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B53">
+        <label>53</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Turashvili</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Bouchal</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Baumforth</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Dziechciarkova</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Ehrmann</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Novel markers for differentiation of lobular and ductal invasive breast carcinomas by laser microdissection and microarray analysis</article-title>
+          <source>BMC Cancer</source>
+          <year>2007</year>
+          <volume>7</volume>
+          <fpage>55</fpage>
+          <pub-id pub-id-type="pmid">17389037</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B54">
+        <label>54</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fields</surname>
+              <given-names>AP</given-names>
+            </name>
+            <name>
+              <surname>Justilien</surname>
+              <given-names>V</given-names>
+            </name>
+          </person-group>
+          <article-title>The guanine nucleotide exchange factor (GEF) Ect2 is an oncogene in human cancer</article-title>
+          <source>Adv Enzyme Regul</source>
+          <year>2010</year>
+          <volume>50</volume>
+          <fpage>190</fpage>
+          <lpage>200</lpage>
+          <pub-id pub-id-type="pmid">19896966</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B55">
+        <label>55</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boelens</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Kok</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>van der Vlies</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>van der Vries</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Sietsma</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Timens</surname>
+              <given-names>W</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genomic aberrations in squamous cell lung carcinoma related to lymph node or distant metastasis</article-title>
+          <source>Lung Cancer</source>
+          <year>2009</year>
+          <volume>66</volume>
+          <fpage>372</fpage>
+          <lpage>378</lpage>
+          <pub-id pub-id-type="pmid">19324446</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B56">
+        <label>56</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hirata</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Yamabuki</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Miki</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Ito</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Tsuchiya</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Fujita</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Involvement of epithelial cell transforming sequence-2 oncoantigen in lung and esophageal cancer progression</article-title>
+          <source>Clin Cancer Res</source>
+          <year>2009</year>
+          <volume>15</volume>
+          <fpage>256</fpage>
+          <lpage>266</lpage>
+          <pub-id pub-id-type="pmid">19118053</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B57">
+        <label>57</label>
+        <element-citation publication-type="webpage">
+          <source>Ingenuity Systems</source>
+          <date-in-citation>Accessed, 2011 Oct 3</date-in-citation>
+          <comment>Avaiable from: <ext-link ext-link-type="uri" xlink:href="http://www.injenuity.com">http://www.injenuity.com</ext-link></comment>
+        </element-citation>
+      </ref>
+      <ref id="B58">
+        <label>58</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>M&#xE9;ndez</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Houck</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Fan</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Lohavanichbutr</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Doody</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Gene expression profiling identifies genes predictive of oral squamous cell carcinoma</article-title>
+          <source>Cancer Epidemiol Biomarkers Prev</source>
+          <year>2008</year>
+          <volume>17</volume>
+          <fpage>2152</fpage>
+          <lpage>2162</lpage>
+          <pub-id pub-id-type="pmid">18669583</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B59">
+        <label>59</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Severino</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Alvares</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Michaluart</surname>
+              <given-names>P</given-names>
+              <suffix>Jr</suffix>
+            </name>
+            <name>
+              <surname>Okamoto</surname>
+              <given-names>OK</given-names>
+            </name>
+            <name>
+              <surname>Nunes</surname>
+              <given-names>FD</given-names>
+            </name>
+            <name>
+              <surname>Moreira-Filho</surname>
+              <given-names>CA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Global gene expression profiling of oral cavity cancers suggests molecular heterogeneity within anatomic subsites</article-title>
+          <source>BMC Res Notes</source>
+          <year>2008</year>
+          <volume>1</volume>
+          <fpage>113</fpage>
+          <pub-id pub-id-type="pmid">19014556</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B60">
+        <label>60</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gemenetzidis</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Bose</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Riaz</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Chaplin</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Young</surname>
+              <given-names>BD</given-names>
+            </name>
+            <name>
+              <surname>Ali</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>FOXM1 upregulation is an early event in human squamous cell carcinoma and it is enhanced by nicotine during malignant transformation</article-title>
+          <source>PLoS One</source>
+          <year>2009</year>
+          <volume>4</volume>
+          <fpage>e4849</fpage>
+          <pub-id pub-id-type="pmid">19287496</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B61">
+        <label>61</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Knight</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Onay</surname>
+              <given-names>UV</given-names>
+            </name>
+            <name>
+              <surname>Wells</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Shi</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>Andrulis</surname>
+              <given-names>IL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetic variants of GPX1 and SOD2 and breast cancer risk at the Ontario site of the Breast Cancer Family Registry</article-title>
+          <source>Cancer Epidemiol Biomarkers Prev</source>
+          <year>2004</year>
+          <volume>13</volume>
+          <fpage>146</fpage>
+          <lpage>149</lpage>
+          <pub-id pub-id-type="pmid">14744747</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B62">
+        <label>62</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liu</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Bellam</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>HY</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Stockard</surname>
+              <given-names>CR</given-names>
+            </name>
+            <name>
+              <surname>Grizzle</surname>
+              <given-names>WE</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Regulation of p53 by TopBP1: a potential mechanism for p53 inactivation in cancer</article-title>
+          <source>Mol Cell Biol</source>
+          <year>2009</year>
+          <volume>29</volume>
+          <fpage>2673</fpage>
+          <lpage>2693</lpage>
+          <pub-id pub-id-type="pmid">19289498</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B63">
+        <label>63</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vecchione</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Ishii</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Shiao</surname>
+              <given-names>YH</given-names>
+            </name>
+            <name>
+              <surname>Trapasso</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Rugge</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Tamburrino</surname>
+              <given-names>JF</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Fez1/lzts1 alterations in gastric carcinoma</article-title>
+          <source>Clin Cancer Res</source>
+          <year>2001</year>
+          <volume>7</volume>
+          <fpage>1546</fpage>
+          <lpage>1552</lpage>
+          <pub-id pub-id-type="pmid">11410489</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B64">
+        <label>64</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Serrano-Fern&#xE1;ndez</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>M&#xF6;ller</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Goertsches</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Fiedler</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Koczan</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Thiesen</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Time course transcriptomics of IFNB1b drug therapy in multiple sclerosis</article-title>
+          <source>Autoimmunity</source>
+          <year>2010</year>
+          <volume>43</volume>
+          <fpage>172</fpage>
+          <lpage>178</lpage>
+          <pub-id pub-id-type="pmid">19883335</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Comparison of expression levels of two datasets. (A) Whole gene set. (B) Selected gene set.</p>
+      </caption>
+      <graphic xlink:href="gni-10-23-g001"/>
+    </fig>
+    <fig id="F2" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Expression patterns of the selected 51 genes. These genes were upregulated in oral squamous cell carcinoma tissues, and normal and tumor groups were clearly classified with these genes.</p>
+      </caption>
+      <graphic xlink:href="gni-10-23-g002"/>
+    </fig>
+    <fig id="F3" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Network with the highest score (Network 1). Functional relationships between genes based on known interactions in Ingenuity Pathway Analysis (IPA) knowledge are described.</p>
+      </caption>
+      <graphic xlink:href="gni-10-23-g003"/>
+    </fig>
+    <table-wrap id="T1" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Summary of two microarray datasets from GEO and the combined dataset</p>
+      </caption>
+      <graphic xlink:href="gni-10-23-i001"/>
+      <table-wrap-foot>
+        <fn>
+          <p>GEO, Gene Expression Omnibus.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="T2" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>Combination of contingency tables for three datasets (<italic>t<sub>ij</sub></italic> = <italic>a<sub>ij</sub></italic> + <italic>b<sub>ij</sub></italic> + <italic>c<sub>ij</sub></italic>)</p>
+      </caption>
+      <graphic xlink:href="gni-10-23-i002"/>
+      <table-wrap-foot>
+        <fn>
+          <p>P1, P2, and P3 represent the three different phenotypes. E1, E2, and E3 represent three groups by rank of gene expressions. a<sub>ij</sub>, b<sub>ij</sub>, and c<sub>ij</sub> are the numbers of experiments belonging to P<sub>j</sub> and E<sub>i</sub> at the same time in data A, data B, and data C, respectively.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="T3" position="float">
+      <label>Table 3</label>
+      <caption>
+        <p>Summary of discretized data using ranks of gene expressions</p>
+      </caption>
+      <graphic xlink:href="gni-10-23-i003"/>
+    </table-wrap>
+    <table-wrap id="T4" position="float">
+      <label>Table 4</label>
+      <caption>
+        <p>Summary of two microarray datasets</p>
+      </caption>
+      <graphic xlink:href="gni-10-23-i004"/>
+    </table-wrap>
+    <table-wrap id="T5" position="float">
+      <label>Table 5</label>
+      <caption>
+        <p>Summary of selected 51 upregulated genes</p>
+      </caption>
+      <graphic xlink:href="gni-10-23-i005"/>
+    </table-wrap>
+    <table-wrap id="T6" position="float">
+      <label>Table 6</label>
+      <caption>
+        <p>Association of the selected genes and cancer</p>
+      </caption>
+      <graphic xlink:href="gni-10-23-i006"/>
+      <table-wrap-foot>
+        <fn>
+          <p>OSCC, oral squamous cell carcinoma.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="T7" position="float">
+      <label>Table 7</label>
+      <caption>
+        <p>Four networks generated by upregulated genes in OSCC</p>
+      </caption>
+      <graphic xlink:href="gni-10-23-i007"/>
+      <table-wrap-foot>
+        <fn>
+          <p>OSCC, oral squamous cell carcinoma.</p>
+          <p><sup>a</sup>Genes in bold were identified in this study; other genes were neither on the expression array data used in this work nor changed significantly; <sup>b</sup>A score &gt; 3 was considered significant.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

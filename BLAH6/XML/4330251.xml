@@ -1,0 +1,681 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25705155</article-id>
+      <article-id pub-id-type="pmc">4330251</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2014.12.4.171</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Original Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title><italic>In silico</italic> Identification of <italic>SFRP1</italic> as a Hypermethylated Gene in Colorectal Cancers</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Jongbum</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Sangsoo</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="A1">Department of Bioinformatics and Life Science, Soongsil University, Seoul 156-743, Korea.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +82-2-820-0457, Fax: +82-2-824-4383, <email>sskimb@ssu.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2014</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>31</day>
+        <month>12</month>
+        <year>2014</year>
+      </pub-date>
+      <volume>12</volume>
+      <issue>4</issue>
+      <fpage>171</fpage>
+      <lpage>180</lpage>
+      <history>
+        <date date-type="received">
+          <day>17</day>
+          <month>10</month>
+          <year>2014</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>19</day>
+          <month>11</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>19</day>
+          <month>11</month>
+          <year>2014</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2014 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2014</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">http://creativecommons.org/licenses/by-nc/3.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Aberrant DNA methylation, as an epigenetic marker of cancer, influences tumor development and progression. We downloaded publicly available DNA methylation and gene expression datasets of matched cancer and normal pairs from the Cancer Genome Atlas Data Portal and performed a systematic computational analysis. This study has three aims to screen genes that show hypermethylation and downregulated patterns in colorectal cancers, to identify differentially methylated regions in one of these genes, <italic>SFRP1</italic>, and to test whether the SFRP genes affect survival or not. Our results show that 31 hypermethylated genes had a negative correlation with gene expression. Among them, <italic>SFRP1</italic> had a differentially methylated pattern at each methylation site. We also show that SFRP1 may be a potential biomarker for colorectal cancer survival.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>colorectal cancer</kwd>
+        <kwd>DNA Methylation</kwd>
+        <kwd>frizzled related protein-1</kwd>
+        <kwd>survival analysis</kwd>
+      </kwd-group>
+      <funding-group>
+        <award-group>
+          <funding-source country="KR">Ministry of Knowledge Economy</funding-source>
+          <award-id>10040231</award-id>
+        </award-group>
+      </funding-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>The Encyclopedia of DNA Elements (ENCODE) project, launched in 2003 by the US National Human Genome Research Institute (NHGRI), has accelerated the study of various aspects of epigenetics [<xref rid="B1" ref-type="bibr">1</xref>], among which DNA methylation has been one of the most actively studied areas [<xref rid="B2" ref-type="bibr">2</xref>]. DNA methylation refers to the chemical conversion of a cytosine nucleotide in DNA to 5-methylcytosine by DNA methyltransferase. This phenomenon usually takes place at the genomic region where a cytosine is immediately followed by a guanine and where the dinucleotide is enriched more than expected from the G + C content of the genome. Such CpG islands (CGIs) are typically found in the promoter region of a gene, regulating its expression [<xref rid="B3" ref-type="bibr">3</xref>].</p>
+      <p>Tumor suppressor genes (TSGs), including DNA repair genes that repair DNA mismatch during DNA replication, maintain the normal activities of cells, preventing cancer development. On the other hand, their hypermethylation may repress their expression, influencing the development and growth of cancer cells. Moreover, TSG expression may cause gene silencing through the hypermethylation of CGIs, and such a paradigm opens up a new avenue of cancer diagnosis and treatment based on DNA methylation profiles [<xref rid="B4" ref-type="bibr">4</xref>].</p>
+      <p>In cancer cells, genes that play important roles in cell growth and differentiation, such as TSG, DNA repair genes, and apoptosis-related genes, show downregulation in expression due to hypermethylation in their promoter regions. For example, the expression of p16, a well-known TSG, is downregulated due to its promoter hypermethylation [<xref rid="B5" ref-type="bibr">5</xref>], and DNA repair genes, such as <italic>BRCA1</italic> and <italic>hMLH1</italic>, are also hypermethylated, repressing their gene expression [<xref rid="B6" ref-type="bibr">6</xref>].</p>
+      <p>It appears that hypermethylation profiles in CGIs may be useful targets for cancer treatment. Some DNA methylation inhibitors have been used as anticancer agents, paving a new avenue for the development of anticancer therapeutics [<xref rid="B7" ref-type="bibr">7</xref>]. Gene expression profiles have been used in cancer diagnosis and prognosis, but mRNA levels usually fluctuate temporally or are greatly influenced by environmental cues, resulting in unstable diagnostic sensitivity. On the other hand, DNA hypermethylation can show high specificity and sensitivity in cancer diagnosis [<xref rid="B8" ref-type="bibr">8</xref>]. Furthermore, its molecular diagnosis is gaining more and more acceptance due to its availability through real-time and quantitative blood testing [<xref rid="B9" ref-type="bibr">9</xref>]. In this study, we surveyed colon cancer data to look for genes that show hypermethylation, and investigated their effects on patient survival.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>Data</title>
+        <p>The Cancer Genome Atlas (TCGA), launched in 2009, aimed to analyze the genomic features through sequencing of about 30 different types of cancers. We downloaded the microarray datasets on gene expression and DNA methylation of colorectal cancer and normal samples from the following URL: <ext-link ext-link-type="uri" xlink:href="https://tcga-data.nci.nih.gov/tcga/dataAccessMatrix.htm">https://tcga-data.nci.nih.gov/tcga/dataAccessMatrix.htm</ext-link> (the "Data Type" field was selected as "Clinical," "DNA Methylation," and "Expression-Genes"). There were 12 matched cancer/normal pairs of both data types, and these were defined as the discovery set. The microarray platforms were UNC_AgilentG4502A_07_3 and Illumina Infinium Human DNA Methylation 27 (Illumina, San Diego, CA, USA) for gene expression and DNA methylation, respectively. For the methylation data, the so-called M-value was calculated as the log<sub>2</sub> ratio of the intensities of the methylated probe versus unmethylated one, and the beta-value was the ratio of the methylated probe intensity and the overall intensity, either methylated or unmethylated [<xref rid="B9" ref-type="bibr">9</xref>].</p>
+        <p>For the clinical outcome analysis, we downloaded an expanded dataset from the URL, totaling 524 samples (202 samples on the Illumina Infinium Human DNA Methylation27 platform and 322 samples on the Illumina Infinium Human DNA Methylation450 platform), and 419 samples with clinical information were used in the survival analysis. For these samples, we downloaded a text file on tumor stage, last contact days, and vital status.</p>
+      </sec>
+      <sec>
+        <title>Identification of hypermethylated and downregulated genes</title>
+        <p>The discovery dataset was used for gene selection. Illumina Infinium Human DNA Methylation27 level 2 data were screened for differentially methylated regions (DMRs), where the median M of the tumor samples was greater than +1 and that of the matched normal samples was less than -1 [<xref rid="B9" ref-type="bibr">9</xref>]. For each gene, the mean mRNA expression level in tumor samples was compared to that in normal samples. Genes showing at least 4-fold down-regulation were selected. DAVID (<ext-link ext-link-type="uri" xlink:href="http://david.abcc.ncifcrf.gov/">http://david.abcc.ncifcrf.gov/</ext-link>) was used for the functional annotation of the gene list.</p>
+      </sec>
+      <sec>
+        <title>Survival analysis</title>
+        <p>Survival analysis was undertaken with the survival package in R (version 2.13.0). Survival time was represented by the days since cancer diagnosis in the hospital until the last contact date. The survival time of the patients who were still alive at the last contact date were treated as censored. Kaplan-Meier survival plot and Cox regression analysis were also performed with the survival package. In order to partition patients into two groups according to methylation level, the cutoff point was determined by the maximally selected rank statistics method, available in the R maxstat package.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Results and Discussion</title>
+      <sec>
+        <title>Hypermethylated and downregulated genes in colorectal cancer</title>
+        <p>We used the discovery set (12 pairs of colorectal tumor and matched normal samples) to survey genes showing correlating differential DNA methylation and differential gene expression. All methylation probes (n = 27,578) were annotated by the name of the neighboring gene and were matched to the gene expression matrix. In order to look for the probes that were specifically hypermethylated only in tumors, we used the M-value of the methylation data; the median M of tumors (n = 12) was greater than 1, while the matched normal samples (n = 12) had a median M of less than -1. There were 634 such probes. We also identified 707 genes showing more than 4-fold downregulation in tumor samples compared to their matched normal samples. There were 31 genes that were shared by those two lists (<xref ref-type="table" rid="T1">Table 1</xref>). <xref ref-type="fig" rid="F1">Fig. 1</xref> shows the scatterplot of the mean differential methylation versus mean differential expression of these 31 genes (red points) on the background of 27,578 methylation probes (grey points). At the sample level, these 31 genes showed a negative correlation between methylation and expression (<xref ref-type="fig" rid="F2">Fig. 2</xref>).</p>
+      </sec>
+      <sec>
+        <title>Gene ontology and pathway analysis</title>
+        <p>Gene ontology analysis using DAVID revealed that the 31 genes were enriched in the Wnt receptor signaling pathway (Fisher exact = 9.6E-5); 4 genes-<italic>RSPO2</italic>, <italic>RSPO3</italic>, <italic>SFRP1</italic>, and <italic>SFRP2</italic>-belonged to this pathway (<xref ref-type="table" rid="T2">Table 2</xref>). Site of Frizzled proteins (SFRP) genes interact directly with Wnt, the ligand of the Wnt signaling pathway Frizzled (Fz) receptor, inhibiting the binding of Wnt to Fz receptor [<xref rid="B10" ref-type="bibr">10</xref>].</p>
+        <p>The Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway diagram (<ext-link ext-link-type="uri" xlink:href="http://www.genome.jp/kegg/">http://www.genome.jp/kegg/</ext-link>) also confirmed that Wnt and SFRP regulate the Wnt signaling pathway at the upstream level (<xref ref-type="fig" rid="F3">Fig. 3</xref>).</p>
+      </sec>
+      <sec>
+        <title>Wnt signaling pathway-related genes in colorectal cancer</title>
+        <p>Both the <italic>SFRP1</italic> and <italic>SFRP2</italic> genes are known to show DNA hypermethylation in colorectal cancers; their relatively low expression causes upregulation of Wnt signaling and thus tumor cell proliferation [<xref rid="B11" ref-type="bibr">11</xref>]. Wnt2, a member of the Wnt gene family, and <italic>SFRP1</italic> showed drastically opposite gene expression patterns in the discovery dataset (<xref ref-type="fig" rid="F4">Fig. 4</xref>). Given the premise that downregulation of <italic>SFRP1</italic> and <italic>SFRP2</italic> due to DNA hypermethylation deteriorates the inhibition of the Wnt ligand signaling pathway, we surveyed the gene expression profile of the pathway genes, including SFRP. The significance of the differential expression of each gene was measured by t test using the discovery dataset. The p-value distributions were compared between the genes involved in Wnt signaling (n = 151) and those that were not involved in Wnt signaling (n = 17,658) using Wilcoxon rank-sum test. The genes involved in Wnt signaling showed more significant differential expression than the others (p = 0.01658). <italic>SFRP1</italic> and <italic>WNT2</italic> were among the top ranked genes of the pathway (<xref ref-type="fig" rid="F5">Fig. 5</xref>).</p>
+      </sec>
+      <sec>
+        <title>DMR of SFRP1 gene in colorectal cancer</title>
+        <p>Illumina Human DNA Methylation27 and 450 are microarray platforms that can measure the methylation values of promoter regions, with 27,578 and 331,182 probes, respectively. On the former platform, there are four probes in the promoter region of <italic>SFRP1</italic>, and their methylation status varies probe to probe, while the latter has 33 additional probes for <italic>SFRP1</italic>. We examined which probes showed hypermethylation and correlated with expression change using the expanded dataset, for which both data types were available (n = 203). Among the four <italic>SFRP1</italic> probes that were shared between the two platforms, one of them (cg06166767, chr8:41287005) did not show hypermethylation, while the other three showed similar hypermethylation (<xref ref-type="fig" rid="F6">Fig. 6</xref>). <xref ref-type="table" rid="T3">Table 3</xref> shows the correlation between differential methylation and differential expression, which was measured using linear regression, revealing a significant correlation of cg15839448 (chr8:41285687) (p = 0.1E-9). R/Bioconductor package methy Analysis was used to depict the chromosomal location in relation to CGI, along with the methylation beta-value, as a heat map (<xref ref-type="fig" rid="F7">Fig. 7</xref>), confirming the variation among probes. Aberrant methylation patterns of SFRP have been reported not only in colorectal cancers but also in gastric cancers [<xref rid="B12" ref-type="bibr">12</xref>], breast cancers [<xref rid="B10" ref-type="bibr">10</xref>], and pancreatic cancers [<xref rid="B13" ref-type="bibr">13</xref>]. From TCGA, we downloaded 12 matched pairs for each cancer of the following organs: bladder, breast, esophageal, kidney, liver, lung, pancreas, prostate, stomach, and uterine corpus endometrium. Except for liver and endometrial cancers, the DNA methylation levels of both <italic>SFRP1</italic> and <italic>SFRP2</italic> were consistently higher in cancers than in the normal counterparts (<xref ref-type="fig" rid="F8">Fig. 8</xref>). It should be noted that in colorectal cancers, the mean methylation M-value of the tumor samples was greater than 0. While stomach cancers (STAD) also showed a mean M of greater than 0, the difference between the tumor and normal sample was not as large as in colorectal cancers. In all other cancers, the mean M was below 0, implying marginal hypermethylation at most.</p>
+      </sec>
+      <sec>
+        <title>Survival analysis: SFRP methylation in association with clinical factors</title>
+        <p>It is well known that the survival rate of colorectal cancer is negatively correlated with the tumor stage: the higher the stage, the poorer the survival. We confirmed this trend in the expanded dataset (n = 419). Stages IIA and IIB were merged into stage II, and similarly, stages IIIA, IIIB, and IIIC were merged into stage III. The Kaplan-Meier survival curves showed, as expected, lower survival for higher stages (<xref ref-type="fig" rid="F9">Fig. 9</xref>). The Cox regression analyses also indicated a significant association of stage IV with survival rate (mean hazard ratio 6.083) (95% confidence interval [CI], 1.778 to 20.812; p = 0.004) (<xref ref-type="table" rid="T4">Table 4</xref>).</p>
+        <p>Upon confirming the anticipated survival trends by stage in the expanded dataset, we tested whether the methylation level of <italic>SFRP1</italic> correlated with the survival rate. Among the four methylation probes, cg15839448 was chosen, as its methylation level showed the most consistent correlation with the expression level of <italic>SFRP1</italic>. In order to separate the samples into two groups that showed a survival difference according to <italic>SFRP1</italic> methylation beta-values, we used maximally selected rank statistics, implemented in R (the maxstat package), yielding the cutoff point (beta-value = 0.598) (<xref ref-type="fig" rid="F10">Fig. 10A</xref>). Similarly, cg23207990 was chosen for <italic>SFRP2</italic>, yielding the cutoff point (beta-value = 0.713) (<xref ref-type="fig" rid="F10">Fig. 10B</xref>).</p>
+        <p>The group with highly methylated <italic>SFRP1</italic> showed poorer survival than the other group (p = 0.0181) (<xref ref-type="fig" rid="F11">Fig. 11A</xref>). On the other hand, <italic>SFRP2</italic> methylation did not exhibit a significant relationship (p = 0.107) (<xref ref-type="fig" rid="F11">Fig. 11B</xref>). The corresponding hazard ratios from the Cox regression analysis were 1.93 (95% CI, 1.119 to 3.329) and 1.703 (95% CI, 0.892 to 3.25) for <italic>SFRP1</italic> and <italic>SFRP2</italic>, respectively (<xref ref-type="table" rid="T4">Table 4</xref>). As higher tumor stage shows a higher risk rate in the cumulative hazard curve (<xref ref-type="fig" rid="F12">Fig. 12A</xref>), higher <italic>SFRP1</italic> methylation also increases the risk rate (<xref ref-type="fig" rid="F12">Fig. 12B</xref>).</p>
+        <p>In conclusion, hypermethylation of SFRP genes has been linked to the downregulation of their expression in colorectal cancers [<xref rid="B11" ref-type="bibr">11</xref>]. Here, we confirm it using independent TCGA datasets. The evidence was stronger for <italic>SFRP1</italic> but only marginal for <italic>SFRP2</italic>. We also demonstrate that promoter hypermethylation of <italic>SFRP1</italic> is linked to poor survival of colorectal cancer patients.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by the Industrial Strategic Technology Development Program, 10040231, "Bioinformatics platform development for next-generation bioinformation analysis," funded by the Ministry of Knowledge Economy (MKE, Korea).</p>
+    </ack>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <collab>ENCODE Project Consortium</collab>
+          <person-group person-group-type="author">
+            <name>
+              <surname>Birney</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Stamatoyannopoulos</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Dutta</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Guig&#xF3;</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Gingeras</surname>
+              <given-names>TR</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Identification and analysis of functional elements in 1% of the human genome by the ENCODE pilot project</article-title>
+          <source>Nature</source>
+          <year>2007</year>
+          <volume>447</volume>
+          <fpage>799</fpage>
+          <lpage>816</lpage>
+          <pub-id pub-id-type="pmid">17571346</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Esteller</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Epigenetics in cancer</article-title>
+          <source>N Engl J Med</source>
+          <year>2008</year>
+          <volume>358</volume>
+          <fpage>1148</fpage>
+          <lpage>1159</lpage>
+          <pub-id pub-id-type="pmid">18337604</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bird</surname>
+              <given-names>AP</given-names>
+            </name>
+          </person-group>
+          <article-title>CpG-rich islands and the function of DNA methylation</article-title>
+          <source>Nature</source>
+          <year>1986</year>
+          <volume>321</volume>
+          <fpage>209</fpage>
+          <lpage>213</lpage>
+          <pub-id pub-id-type="pmid">2423876</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Berdasco</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Esteller</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Aberrant epigenetic landscape in cancer: how cellular identity goes awry</article-title>
+          <source>Dev Cell</source>
+          <year>2010</year>
+          <volume>19</volume>
+          <fpage>698</fpage>
+          <lpage>711</lpage>
+          <pub-id pub-id-type="pmid">21074720</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Foster</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Wong</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <name>
+              <surname>Barrett</surname>
+              <given-names>MT</given-names>
+            </name>
+            <name>
+              <surname>Galloway</surname>
+              <given-names>DA</given-names>
+            </name>
+          </person-group>
+          <article-title>Inactivation of p16 in human mammary epithelial cells by CpG island methylation</article-title>
+          <source>Mol Cell Biol</source>
+          <year>1998</year>
+          <volume>18</volume>
+          <fpage>1793</fpage>
+          <lpage>1801</lpage>
+          <pub-id pub-id-type="pmid">9528751</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Baylin</surname>
+              <given-names>SB</given-names>
+            </name>
+            <name>
+              <surname>Esteller</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Rountree</surname>
+              <given-names>MR</given-names>
+            </name>
+            <name>
+              <surname>Bachman</surname>
+              <given-names>KE</given-names>
+            </name>
+            <name>
+              <surname>Schuebel</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Herman</surname>
+              <given-names>JG</given-names>
+            </name>
+          </person-group>
+          <article-title>Aberrant patterns of DNA methylation, chromatin formation and gene expression in cancer</article-title>
+          <source>Hum Mol Genet</source>
+          <year>2001</year>
+          <volume>10</volume>
+          <fpage>687</fpage>
+          <lpage>692</lpage>
+          <pub-id pub-id-type="pmid">11257100</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Issa</surname>
+              <given-names>JP</given-names>
+            </name>
+          </person-group>
+          <article-title>DNA methylation as a therapeutic target in cancer</article-title>
+          <source>Clin Cancer Res</source>
+          <year>2007</year>
+          <volume>13</volume>
+          <fpage>1634</fpage>
+          <lpage>1637</lpage>
+          <pub-id pub-id-type="pmid">17363514</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Levenson</surname>
+              <given-names>VV</given-names>
+            </name>
+            <name>
+              <surname>Melnikov</surname>
+              <given-names>AA</given-names>
+            </name>
+          </person-group>
+          <article-title>DNA methylation as clinically useful biomarkers-light at the end of the tunnel</article-title>
+          <source>Pharmaceuticals (Basel)</source>
+          <year>2012</year>
+          <volume>5</volume>
+          <fpage>94</fpage>
+          <lpage>113</lpage>
+          <pub-id pub-id-type="pmid">24288045</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Du</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>CC</given-names>
+            </name>
+            <name>
+              <surname>Jafari</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Kibbe</surname>
+              <given-names>WA</given-names>
+            </name>
+            <name>
+              <surname>Hou</surname>
+              <given-names>L</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Comparison of Beta-value and M-value methods for quantifying methylation levels by microarray analysis</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2010</year>
+          <volume>11</volume>
+          <fpage>587</fpage>
+          <pub-id pub-id-type="pmid">21118553</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Veeck</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Niederacher</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>An</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Klopocki</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Wiesmann</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Betz</surname>
+              <given-names>B</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Aberrant methylation of the Wnt antagonist SFRP1 in breast cancer is associated with unfavourable prognosis</article-title>
+          <source>Oncogene</source>
+          <year>2006</year>
+          <volume>25</volume>
+          <fpage>3479</fpage>
+          <lpage>3488</lpage>
+          <pub-id pub-id-type="pmid">16449975</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Qi</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>YQ</given-names>
+            </name>
+            <name>
+              <surname>Luo</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Tao</surname>
+              <given-names>WH</given-names>
+            </name>
+          </person-group>
+          <article-title>Hypermethylation and expression regulation of secreted frizzled-related protein genes in colorectal tumor</article-title>
+          <source>World J Gastroenterol</source>
+          <year>2006</year>
+          <volume>12</volume>
+          <fpage>7113</fpage>
+          <lpage>7117</lpage>
+          <pub-id pub-id-type="pmid">17131472</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kinoshita</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Nomoto</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kodera</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Koike</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Fujiwara</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Nakao</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Decreased expression and aberrant hypermethylation of the SFRP genes in human gastric cancer</article-title>
+          <source>Hepatogastroenterology</source>
+          <year>2011</year>
+          <volume>58</volume>
+          <fpage>1051</fpage>
+          <lpage>1056</lpage>
+          <pub-id pub-id-type="pmid">21830441</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bu</surname>
+              <given-names>XM</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>CH</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Gao</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Dai</surname>
+              <given-names>XW</given-names>
+            </name>
+          </person-group>
+          <article-title>Hypermethylation and aberrant expression of secreted frizzled-related protein genes in pancreatic cancer</article-title>
+          <source>World J Gastroenterol</source>
+          <year>2008</year>
+          <volume>14</volume>
+          <fpage>3421</fpage>
+          <lpage>3424</lpage>
+          <pub-id pub-id-type="pmid">18528941</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Scatterplot of differential methylation versus differential expression. A total of 27,578 methylation probes are plotted in grey, while those probes showing downregulated expression by 4-fold or more (&#x394; expression &lt; -2) and methylation value (M value) change of +1 or more are plotted as red points.</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-g001"/>
+    </fig>
+    <fig id="F2" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Negative correlation between gene expression and DNA methylation in 31 selected genes. Each circle represents a sample.</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-g002"/>
+    </fig>
+    <fig id="F3" orientation="portrait" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Wnt signaling pathway from Kyoto Encyclopedia of Genes and Genomes (KEGG) (SFRP genes are in red box).</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-g003"/>
+    </fig>
+    <fig id="F4" orientation="portrait" position="float">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Heat map of <italic>WNT2</italic> and <italic>SFRP1</italic> in the discovery dataset. The 12 samples on the left are normal, while the 12 samples on the right are tumors.</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-g004"/>
+    </fig>
+    <fig id="F5" orientation="portrait" position="float">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Wilcoxon rank-sum test with Wnt signaling-related genes and the others. Three Wnt signaling pathway genes, <italic>SFRP1</italic> (-17.76), <italic>SFRP2</italic> (-5.98), and <italic>WNT2</italic> (-13.84), are marked by red ticks in the rug plot.</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-g005"/>
+    </fig>
+    <fig id="F6" orientation="portrait" position="float">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Differential methylation in four <italic>SFRP1</italic> probes (tumor, 166; normal, 37).</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-g006"/>
+    </fig>
+    <fig id="F7" orientation="portrait" position="float">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Methylation heat map of four <italic>SFRP1</italic> probes. <italic>SFRP1</italic> is marked by a vertical red line in the ideogram of chromosome 8, while tracks of CpG islands and exon-intron structures are shown. The heat map in methylation profile track shows the methylation beta-values of the four probes (cg06166767, cg13398291, cg15839448, and cg22418909 from left to right). Each row of the heat map represents one of the samples, which are ordered as shown by the The Cancer Genome Atlas (TCGA) sample codes. The last two digits of the TCGA sample codes represent sample types: "01" for tumor sample and "11" for matched normal.</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-g007"/>
+    </fig>
+    <fig id="F8" orientation="portrait" position="float">
+      <label>Fig. 8</label>
+      <caption>
+        <p>Comparison of <italic>SFRP1</italic> (left panel) and <italic>SFRP2</italic> (right panel) methylation among 11 cancer types. Each cancer type is shown by the boxplot of normal samples, followed by that of tumor samples. Colorectal cancers are enclosed by red boxes.</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-g008"/>
+    </fig>
+    <fig id="F9" orientation="portrait" position="float">
+      <label>Fig. 9</label>
+      <caption>
+        <p>Survival curves by colorectal cancer stage.</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-g009"/>
+    </fig>
+    <fig id="F10" orientation="portrait" position="float">
+      <label>Fig. 10</label>
+      <caption>
+        <p>SFRP gene cutoff points by maximally selected rank statistic. The cutoff points are marked by vertical dotted lines at 0.598 and 0.713 for <italic>SFRP1</italic> (A) and <italic>SFRP2</italic> (B), respectively.</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-g010"/>
+    </fig>
+    <fig id="F11" orientation="portrait" position="float">
+      <label>Fig. 11</label>
+      <caption>
+        <p>Survival curves of <italic>SFRP1</italic> (A) and <italic>SFRP2</italic> (B) by methylation beta-values. X-axis represents survival time in days.</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-g011"/>
+    </fig>
+    <fig id="F12" orientation="portrait" position="float">
+      <label>Fig. 12</label>
+      <caption>
+        <p>Cumulative hazard curve of colorectal cancer by stage (A) and <italic>SFRP1</italic> methylation (B) values. X-axis represents survival time in days.</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-g012"/>
+    </fig>
+    <table-wrap id="T1" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Differentially hypermethylated and downregulated genes</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-i001"/>
+      <table-wrap-foot>
+        <fn>
+          <p><sup>a</sup>Illumina human methylation probes; <sup>b</sup>The genic region of the probe is given within parentheses as promoter (p), 5'-UTR (5u), first exon (1e), first intron (1i), and unknown (?); <sup>c</sup>Linear regression analysis.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="T2" orientation="portrait" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>Differentially hypermethylated and downregulated genes</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-i002"/>
+    </table-wrap>
+    <table-wrap id="T3" orientation="portrait" position="float">
+      <label>Table 3</label>
+      <caption>
+        <p>Differentially hypermethylated and downexpressed genes</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-i003"/>
+      <table-wrap-foot>
+        <fn>
+          <p><sup>a</sup>Linear regression analysis.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="T4" orientation="portrait" position="float">
+      <label>Table 4</label>
+      <caption>
+        <p>Hazard ratio of colorectal patients by tumor stage and SFRP methylation status</p>
+      </caption>
+      <graphic xlink:href="gni-12-171-i004"/>
+      <table-wrap-foot>
+        <fn>
+          <p>HR, hazard ratio; CI, confidence interval.</p>
+          <p><sup>a</sup>Cox Proportional-Hazards Regression.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

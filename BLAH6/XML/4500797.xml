@@ -1,0 +1,920 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26175661</article-id>
+      <article-id pub-id-type="pmc">4500797</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2015.13.2.40</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Original Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Genetic Architecture of Transcription and Chromatin Regulation</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Kwoneel</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Bang</surname>
+            <given-names>Hyoeun</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lee</surname>
+            <given-names>Kibaick</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Choi</surname>
+            <given-names>Jung Kyoon</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="A1">Department of Bio and Brain Engineering, Korea Advanced Institute of Science and Technology (KAIST), Daejeon 305-701, Korea.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +82-42-350-4327, Fax: +82-42-350-4310, <email>jungkyoon@kaist.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>30</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>13</volume>
+      <issue>2</issue>
+      <fpage>40</fpage>
+      <lpage>44</lpage>
+      <history>
+        <date date-type="received">
+          <day>07</day>
+          <month>5</month>
+          <year>2015</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>10</day>
+          <month>6</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>11</day>
+          <month>6</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2015 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">http://creativecommons.org/licenses/by-nc/3.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>DNA microarray and next-generation sequencing provide data that can be used for the genetic analysis of multiple quantitative traits such as gene expression levels, transcription factor binding profiles, and epigenetic signatures. In particular, chromatin opening is tightly coupled with gene transcription. To understand how these two processes are genetically regulated and associated with each other, we examined the changes of chromatin accessibility and gene expression in response to genetic variation by means of quantitative trait loci mapping. Regulatory patterns commonly observed in yeast and human across different technical platforms and experimental designs suggest a higher genetic complexity of transcription regulation in contrast to a more robust genetic architecture of chromatin regulation.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>epigenetic process</kwd>
+        <kwd>gene expression</kwd>
+        <kwd>quantitative trait loci</kwd>
+        <kwd>regulatory regions</kwd>
+      </kwd-group>
+      <funding-group>
+        <award-group>
+          <funding-source country="KR">National Research Foundation of Korea</funding-source>
+          <award-id>2013M3A9C4078139</award-id>
+        </award-group>
+        <award-group>
+          <funding-source country="KR">Korean Federation of Science and Technology Societies</funding-source>
+          <award-id>141S-4-3-0035</award-id>
+        </award-group>
+      </funding-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>Quantitative trait loci (QTL) mapping has been widely used to discover underlying genetic factors that can explain particular phenotypes of interest. Thanks to DNA microarray technology, the expression phenotype of thousands of genes was associated with the genotypes across the whole genome in expression QTL mapping [<xref rid="B1" ref-type="bibr">1</xref><xref rid="B2" ref-type="bibr">2</xref><xref rid="B3" ref-type="bibr">3</xref><xref rid="B4" ref-type="bibr">4</xref><xref rid="B5" ref-type="bibr">5</xref><xref rid="B6" ref-type="bibr">6</xref><xref rid="B7" ref-type="bibr">7</xref>]. Recent advent of next-generation sequencing technology has enabled a genetic profiling of chromatin traits as well as more in-depth analyses of gene expression variation. Especially, the mechanisms controlling chromatin accessibility have been of particular interest because of their importance in a wide spectrum of DNA regulation processes. For example, Degner et al. [<xref rid="B8" ref-type="bibr">8</xref>] utilized DNaseI hypersensitivity assay coupled with high-throughput sequencing (DNase-seq) to map genome-wide chromatin accessibility to the genotypes across 70 human individuals, for which a previous RNA-sequencing (RNA-seq)-based expression QTL study revealed new insights into the genetic regulation of transcription [<xref rid="B5" ref-type="bibr">5</xref>]. In yeast, expression QTL mapping has been performed for the genetic dissection of transcription regulation in a cross between two parental strains of <italic>Saccharomyces cerevisiae</italic> (BY4716 and RM11-1a) based on DNA microarrays [<xref rid="B1" ref-type="bibr">1</xref><xref rid="B2" ref-type="bibr">2</xref><xref rid="B9" ref-type="bibr">9</xref><xref rid="B10" ref-type="bibr">10</xref><xref rid="B11" ref-type="bibr">11</xref>]. In order to generate a matched dataset of chromatin accessibility for this set of yeast individuals, we carried out Formaldehyde-Assisted Isolation of Regulatory Elements followed by sequencing (FAIRE-seq) for a total of 96 segregants from the cross of BY4716 and RM11-1a [<xref rid="B12" ref-type="bibr">12</xref>].</p>
+      <p>In this study, we sought to dissect the genetic architecture of the regulation of gene expression and chromatin accessibility by analysing previous data generated in yeast and human based on different technical platforms and experimental designs. Our main goal was to find differences in the overall regulatory structure between open chromatin and gene expression. We were also interested to determine whether the two distant species, namely yeast and human, would be different in genetic regulatory architecture and to estimate the effect of the technical or experimental differences in genotyping and measuring the quantitative traits.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>Processing of human genotype data</title>
+        <p>Genotype data from the HapMap project [<xref rid="B13" ref-type="bibr">13</xref>] and 1000 Genomes Project [<xref rid="B14" ref-type="bibr">14</xref>] for 70 Yoruba (YRI) lymphoblastoid cell lines were used for DNase-seq analysis [<xref rid="B8" ref-type="bibr">8</xref>]. The genotype of each single nucleotide polymorphism (SNP) locus was estimated based on the Bayesian framework by means of the BIMBAM tool [<xref rid="B15" ref-type="bibr">15</xref>] and the genotype estimates were made available at <ext-link ext-link-type="uri" xlink:href="http://eqtl.uchicago.edu/dsQTL_data/GENOTYPES/">http://eqtl.uchicago.edu/dsQTL_data/GENOTYPES/</ext-link>. We first selected 2,157,286 genetic markers (SNPs) with the minor allele frequency greater than 30%. To reduce complexity and ease interpretation, we focused on the genetic variants that can change the function of the protein (non-synonymous SNPs) or the abundance of the protein (SNPs associated with the expression level of a nearby gene). The SIFT tool [<xref rid="B16" ref-type="bibr">16</xref>] was used to identify non-synonymous SNPs. We performed expression QTL mapping as described below and identified SNPs that were associated (p &lt; 10<sup>-5</sup>) in <italic>cis</italic> (within 200 kb from the nearest gene). Taken together, 7,211 SNPs were identified for QTL mapping.</p>
+      </sec>
+      <sec>
+        <title>Processing of human gene expression data</title>
+        <p>RNA-seq data for 69 YRI lymphoblastoid cell lines [<xref rid="B5" ref-type="bibr">5</xref>] were downloaded from <ext-link ext-link-type="uri" xlink:href="http://eqtl.uchicago.edu/RNA_Seq_data/results">http://eqtl.uchicago.edu/RNA_Seq_data/results</ext-link>. A total of 18,147 genes were used after normalization to zero mean and unit variance.</p>
+      </sec>
+      <sec>
+        <title>Processing of human chromatin accessibility data</title>
+        <p>DNase-seq data for 70 YRI lymphoblastoid cell lines [<xref rid="B8" ref-type="bibr">8</xref>] were downloaded from <ext-link ext-link-type="uri" xlink:href="http://eqtl.uchicago.edu/dsQTL_data/MAPPED_READS/">http://eqtl.uchicago.edu/dsQTL_data/MAPPED_READS/</ext-link>. Sequence reads from multiple replicates for each sample were combined and F-Seq [<xref rid="B17" ref-type="bibr">17</xref>] was run to identify the peaks of the reads from each sample. Statistical significance of the peak was determined by fitting the data to a gamma distribution to obtain the p-value (script obtained from the F-Seq authors). p &lt; 10<sup>-3</sup> was used to identify significant peaks from each sample. The overlapping peaks across the YRI individuals were merged into a single peak by using the mergeBED command of BEDTools [<xref rid="B18" ref-type="bibr">18</xref>], resulting in a total of 265,130 accessible chromatin regions. For each sample, the number of the DNase-seq reads mapped to each region was counted and the read count was normalized as previously suggested [<xref rid="B19" ref-type="bibr">19</xref><xref rid="B20" ref-type="bibr">20</xref>] to obtain normalized chromatin accessibility, which was then further normalized to zero mean and unit variance across the YRI samples. Accessible regions falling on promoters or enhancers were identified based on chromatin annotation by Ernst et al. [<xref rid="B21" ref-type="bibr">21</xref>]. A total of 45,781 chromatin regions were found to reside in active promoters, weak promoters, poised promoters, strong enhancers, and weak enhancers annotated in the GM12878 lymphoblastoid cell line.</p>
+      </sec>
+      <sec>
+        <title>Processing of yeast data</title>
+        <p>Genotype and gene expression microarray data [<xref rid="B10" ref-type="bibr">10</xref>] used in previous expression QTL studies [<xref rid="B1" ref-type="bibr">1</xref><xref rid="B2" ref-type="bibr">2</xref><xref rid="B9" ref-type="bibr">9</xref>] for &gt;100 segregants from a cross between two parental strains of yeast (BY4716 and RM11-1a) were obtained. As previously suggested [<xref rid="B22" ref-type="bibr">22</xref>], adjacent genetic markers with less than three genotypic mismatches across the yeast strains were merged into the average genotype profile, resulting in 1,533 unique markers. We employed the microarray dataset of normalized expression levels of 5,352 genes as previously used [<xref rid="B10" ref-type="bibr">10</xref>]. FAIRE experiments were performed based on the published protocol [<xref rid="B23" ref-type="bibr">23</xref>]. The FAIRE-seq data for the 96 yeast strains from our previous work [<xref rid="B12" ref-type="bibr">12</xref>] is available at the Gene Expression Omnibus (GEO) database with accession number GSE33466. Briefly, we identified open chromatin regions in 96 yeast segregants by means of F-Seq [<xref rid="B17" ref-type="bibr">17</xref>]. The overlapping peaks across the 96 strains were merged into a single peak by using BEDTools [<xref rid="B18" ref-type="bibr">18</xref>], resulting in a total of 7,527 accessible chromatin regions. For each sample, the number of the FAIRE-seq reads mapped to each region was counted and the read count was normalized as previously suggested [<xref rid="B19" ref-type="bibr">19</xref><xref rid="B20" ref-type="bibr">20</xref>] to obtain normalized chromatin accessibility, which was then further normalized to zero mean and unit variance across the 96 segregants.</p>
+      </sec>
+      <sec>
+        <title><italic>Trans</italic>-QTL analysis</title>
+        <p>Sixty-three human samples were commonly present in the RNA-seq [<xref rid="B5" ref-type="bibr">5</xref>] and DNase-seq [<xref rid="B8" ref-type="bibr">8</xref>] data, and 96 yeast segregants in the microarray and FAIRE-seq data. Therefore, we used the common samples for our QTL mapping. Linear regression was carried out leading to 2,100,341 chromatin associations and 975,333 expression associations in human, and 110,802 chromatin linkages and 164,217 expression linkages in yeast at p &lt; 0.01. Genetic markers farther than 200 kb from the nearest gene in human and 100 kb in yeast were identified to examine regulatory relationships acting in trans. For each trait (gene or accessible chromatin region) and regulatory locus (genetic marker), the number of associations or linkages was obtained and divided by the total number of associations at a given p-value.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Results and Discussion</title>
+      <p>For a systematic comparative analysis of chromatin regulation and transcription regulation, we carried out QTL mapping in a unified analytical framework by applying the identical statistical methods and criteria for open chromatin and gene expression data in yeast and human (Methods and <xref ref-type="fig" rid="F1">Fig. 1</xref>). From the human chromatin accessibility data [<xref rid="B8" ref-type="bibr">8</xref>], we selected chromatin sites at the promoter or enhancer (as defined by Ernst et al. [<xref rid="B21" ref-type="bibr">21</xref>]). Yeast and human QTL mapping was different in the genetics setting (linkage vs. association) and technical platforms (DNA microarray vs. RNA-seq and FAIRE-seq vs. DNase-seq) (<xref ref-type="fig" rid="F1">Fig. 1</xref>).</p>
+      <p>We selected significant <italic>trans</italic>-associations based on the p-value of linear regression and then examined the distribution of linkages between regulatory loci (genetic markers) and quantitative traits (gene expression levels or chromatin accessibility). First, there were particular regulatory loci that were associated with a large number of target chromatin traits but not with gene expression traits both in human and yeast (<xref ref-type="fig" rid="F2">Fig. 2</xref>). Second, expression traits than chromatin traits were associated with a greater number of regulatory loci (<xref ref-type="fig" rid="F3">Fig. 3</xref>). This trend was consistently found when varying p-values were used (<xref ref-type="fig" rid="F4">Fig. 4</xref>). Intriguingly, the number of targets for chromatin regulatory loci is more dispersed resulting in outliers with extremely many targets while the average number is lower as compared to the pattern of expression regulatory loci (grey vs. white in the upper panel of <xref ref-type="fig" rid="F4">Fig. 4</xref>). On the other hand, the number of associated regulatory loci was much greater for gene expression traits in terms of the outliers and average as well (grey vs. white in the lower panel of <xref ref-type="fig" rid="F4">Fig. 4</xref>).</p>
+      <p>These findings can be interpreted as follows. There are a few regulatory hotspots that are responsible for a large number of chromatin sites. Most regulatory loci, however, tend to influence fewer chromatin traits than gene expression traits. Different biological functions are expected between the promiscuous and specific chromatin regulators. On the other hand, gene expression seems to be more reactive to genetic variation when judged by the number of associated regulatory loci. This may imply that transcription processes receive more regulatory inputs than chromatin regulation, in which case chromatin accessibility may not be a good predictor of precise gene expression levels. There was a remarkable consistency of the data for two evolutionarily distant species across different technical platforms and experimental settings, thereby supporting the biological implications of the findings while ruling out the possibility of technical artifacts.</p>
+      <p>Based on these findings, we propose that chromatin regulation mechanisms have evolved a stable genetic architecture while the transcription regulatory network maintains high genetic complexity and connectivity and is more susceptible to mutations. First, the lower number of associations per chromatin trait suggests that chromatin structure is more robust to genetic perturbation. On the contrary, gene expression traits have more associations, increasing the probability of targets being associated with mutations. Second, chromatin associations are biased to a handful of loci responsible for an extremely large number of chromatin sites. As long as these hotspot loci are protected from mutations, the perturbation of chromatin regulation architecture could be minimized. In contrast, the average number of associations is high for transcription regulatory loci, increasing the overall effect of single mutations. Given the higher probability of expression traits being associated with mutations and the greater influence of individual mutations on transcription, it is conceivable that phenotypic diversity is more likely to be created in response to genetic variation at the level of transcription processes downstream of chromatin regulation steps.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by the KAIST Future Systems Healthcare Project and by a grant [2013M3A9C4078139] from the National Research Foundation of Korea. This work was also supported by Brain Pool Program through the Korean Federation of Science and Technology Societies (141S-4-3-0035).</p>
+    </ack>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brem</surname>
+              <given-names>RB</given-names>
+            </name>
+            <name>
+              <surname>Yvert</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Clinton</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Kruglyak</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Genetic dissection of transcriptional regulation in budding yeast</article-title>
+          <source>Science</source>
+          <year>2002</year>
+          <volume>296</volume>
+          <fpage>752</fpage>
+          <lpage>755</lpage>
+          <pub-id pub-id-type="pmid">11923494</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brem</surname>
+              <given-names>RB</given-names>
+            </name>
+            <name>
+              <surname>Storey</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Whittle</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kruglyak</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Genetic interactions between polymorphisms that affect gene expression in yeast</article-title>
+          <source>Nature</source>
+          <year>2005</year>
+          <volume>436</volume>
+          <fpage>701</fpage>
+          <lpage>703</lpage>
+          <pub-id pub-id-type="pmid">16079846</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cheung</surname>
+              <given-names>VG</given-names>
+            </name>
+            <name>
+              <surname>Spielman</surname>
+              <given-names>RS</given-names>
+            </name>
+            <name>
+              <surname>Ewens</surname>
+              <given-names>KG</given-names>
+            </name>
+            <name>
+              <surname>Weber</surname>
+              <given-names>TM</given-names>
+            </name>
+            <name>
+              <surname>Morley</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Burdick</surname>
+              <given-names>JT</given-names>
+            </name>
+          </person-group>
+          <article-title>Mapping determinants of human gene expression by regional and genome-wide association</article-title>
+          <source>Nature</source>
+          <year>2005</year>
+          <volume>437</volume>
+          <fpage>1365</fpage>
+          <lpage>1369</lpage>
+          <pub-id pub-id-type="pmid">16251966</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Morley</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Molony</surname>
+              <given-names>CM</given-names>
+            </name>
+            <name>
+              <surname>Weber</surname>
+              <given-names>TM</given-names>
+            </name>
+            <name>
+              <surname>Devlin</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Ewens</surname>
+              <given-names>KG</given-names>
+            </name>
+            <name>
+              <surname>Spielman</surname>
+              <given-names>RS</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetic analysis of genome-wide variation in human gene expression</article-title>
+          <source>Nature</source>
+          <year>2004</year>
+          <volume>430</volume>
+          <fpage>743</fpage>
+          <lpage>747</lpage>
+          <pub-id pub-id-type="pmid">15269782</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pickrell</surname>
+              <given-names>JK</given-names>
+            </name>
+            <name>
+              <surname>Marioni</surname>
+              <given-names>JC</given-names>
+            </name>
+            <name>
+              <surname>Pai</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>Degner</surname>
+              <given-names>JF</given-names>
+            </name>
+            <name>
+              <surname>Engelhardt</surname>
+              <given-names>BE</given-names>
+            </name>
+            <name>
+              <surname>Nkadori</surname>
+              <given-names>E</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Understanding mechanisms underlying human gene expression variation with RNA sequencing</article-title>
+          <source>Nature</source>
+          <year>2010</year>
+          <volume>464</volume>
+          <fpage>768</fpage>
+          <lpage>772</lpage>
+          <pub-id pub-id-type="pmid">20220758</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rockman</surname>
+              <given-names>MV</given-names>
+            </name>
+            <name>
+              <surname>Kruglyak</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Genetics of global gene expression</article-title>
+          <source>Nat Rev Genet</source>
+          <year>2006</year>
+          <volume>7</volume>
+          <fpage>862</fpage>
+          <lpage>872</lpage>
+          <pub-id pub-id-type="pmid">17047685</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schadt</surname>
+              <given-names>EE</given-names>
+            </name>
+            <name>
+              <surname>Monks</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Drake</surname>
+              <given-names>TA</given-names>
+            </name>
+            <name>
+              <surname>Lusis</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Che</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Colinayo</surname>
+              <given-names>V</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetics of gene expression surveyed in maize, mouse and man</article-title>
+          <source>Nature</source>
+          <year>2003</year>
+          <volume>422</volume>
+          <fpage>297</fpage>
+          <lpage>302</lpage>
+          <pub-id pub-id-type="pmid">12646919</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Degner</surname>
+              <given-names>JF</given-names>
+            </name>
+            <name>
+              <surname>Pai</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>Pique-Regi</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Veyrieras</surname>
+              <given-names>JB</given-names>
+            </name>
+            <name>
+              <surname>Gaffney</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <name>
+              <surname>Pickrell</surname>
+              <given-names>JK</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>DNase I sensitivity QTLs are a major determinant of human expression variation</article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>482</volume>
+          <fpage>390</fpage>
+          <lpage>394</lpage>
+          <pub-id pub-id-type="pmid">22307276</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yvert</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Brem</surname>
+              <given-names>RB</given-names>
+            </name>
+            <name>
+              <surname>Whittle</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Akey</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Foss</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>EN</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Trans-acting regulatory variation in Saccharomyces cerevisiae and the role of transcription factors</article-title>
+          <source>Nat Genet</source>
+          <year>2003</year>
+          <volume>35</volume>
+          <fpage>57</fpage>
+          <lpage>64</lpage>
+          <pub-id pub-id-type="pmid">12897782</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brem</surname>
+              <given-names>RB</given-names>
+            </name>
+            <name>
+              <surname>Kruglyak</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>The landscape of genetic complexity across 5,700 gene expression traits in yeast</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2005</year>
+          <volume>102</volume>
+          <fpage>1572</fpage>
+          <lpage>1577</lpage>
+          <pub-id pub-id-type="pmid">15659551</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Choi</surname>
+              <given-names>JK</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>YJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Epigenetic regulation and the variability of gene expression</article-title>
+          <source>Nat Genet</source>
+          <year>2008</year>
+          <volume>40</volume>
+          <fpage>141</fpage>
+          <lpage>147</lpage>
+          <pub-id pub-id-type="pmid">18227874</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>SC</given-names>
+            </name>
+            <name>
+              <surname>Jung</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Seo</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>HS</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetic landscape of open chromatin in yeast</article-title>
+          <source>PLoS Genet</source>
+          <year>2013</year>
+          <volume>9</volume>
+          <fpage>e1003229</fpage>
+          <pub-id pub-id-type="pmid">23408895</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <collab>International HapMap Consortium</collab>
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frazer</surname>
+              <given-names>KA</given-names>
+            </name>
+            <name>
+              <surname>Ballinger</surname>
+              <given-names>DG</given-names>
+            </name>
+            <name>
+              <surname>Cox</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Hinds</surname>
+              <given-names>DA</given-names>
+            </name>
+            <name>
+              <surname>Stuve</surname>
+              <given-names>LL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A second generation human haplotype map of over 3.1 million SNPs</article-title>
+          <source>Nature</source>
+          <year>2007</year>
+          <volume>449</volume>
+          <fpage>851</fpage>
+          <lpage>861</lpage>
+          <pub-id pub-id-type="pmid">17943122</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <collab>1000 Genomes Project Consortium</collab>
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abecasis</surname>
+              <given-names>GR</given-names>
+            </name>
+            <name>
+              <surname>Altshuler</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Auton</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Brooks</surname>
+              <given-names>LD</given-names>
+            </name>
+            <name>
+              <surname>Durbin</surname>
+              <given-names>RM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A map of human genome variation from population-scale sequencing</article-title>
+          <source>Nature</source>
+          <year>2010</year>
+          <volume>467</volume>
+          <fpage>1061</fpage>
+          <lpage>1073</lpage>
+          <pub-id pub-id-type="pmid">20981092</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Guan</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Stephens</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Practical issues in imputation-based association mapping</article-title>
+          <source>PLoS Genet</source>
+          <year>2008</year>
+          <volume>4</volume>
+          <fpage>e1000279</fpage>
+          <pub-id pub-id-type="pmid">19057666</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ng</surname>
+              <given-names>PC</given-names>
+            </name>
+            <name>
+              <surname>Henikoff</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>SIFT: Predicting amino acid changes that affect protein function</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2003</year>
+          <volume>31</volume>
+          <fpage>3812</fpage>
+          <lpage>3814</lpage>
+          <pub-id pub-id-type="pmid">12824425</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boyle</surname>
+              <given-names>AP</given-names>
+            </name>
+            <name>
+              <surname>Guinney</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Crawford</surname>
+              <given-names>GE</given-names>
+            </name>
+            <name>
+              <surname>Furey</surname>
+              <given-names>TS</given-names>
+            </name>
+          </person-group>
+          <article-title>F-Seq: a feature density estimator for high-throughput sequence tags</article-title>
+          <source>Bioinformatics</source>
+          <year>2008</year>
+          <volume>24</volume>
+          <fpage>2537</fpage>
+          <lpage>2538</lpage>
+          <pub-id pub-id-type="pmid">18784119</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Quinlan</surname>
+              <given-names>AR</given-names>
+            </name>
+            <name>
+              <surname>Hall</surname>
+              <given-names>IM</given-names>
+            </name>
+          </person-group>
+          <article-title>BEDTools: a flexible suite of utilities for comparing genomic features</article-title>
+          <source>Bioinformatics</source>
+          <year>2010</year>
+          <volume>26</volume>
+          <fpage>841</fpage>
+          <lpage>842</lpage>
+          <pub-id pub-id-type="pmid">20110278</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B19">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Choi</surname>
+              <given-names>JK</given-names>
+            </name>
+          </person-group>
+          <article-title>Contrasting chromatin organization of CpG islands and exons in the human genome</article-title>
+          <source>Genome Biol</source>
+          <year>2010</year>
+          <volume>11</volume>
+          <fpage>R70</fpage>
+          <pub-id pub-id-type="pmid">20602769</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Choi</surname>
+              <given-names>JK</given-names>
+            </name>
+            <name>
+              <surname>Bae</surname>
+              <given-names>JB</given-names>
+            </name>
+            <name>
+              <surname>Lyu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>TY</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>YJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Nucleosome deposition and DNA methylation at coding region boundaries</article-title>
+          <source>Genome Biol</source>
+          <year>2009</year>
+          <volume>10</volume>
+          <fpage>R89</fpage>
+          <pub-id pub-id-type="pmid">19723310</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ernst</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kheradpour</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Mikkelsen</surname>
+              <given-names>TS</given-names>
+            </name>
+            <name>
+              <surname>Shoresh</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Ward</surname>
+              <given-names>LD</given-names>
+            </name>
+            <name>
+              <surname>Epstein</surname>
+              <given-names>CB</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Mapping and analysis of chromatin state dynamics in nine human cell types</article-title>
+          <source>Nature</source>
+          <year>2011</year>
+          <volume>473</volume>
+          <fpage>43</fpage>
+          <lpage>49</lpage>
+          <pub-id pub-id-type="pmid">21441907</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>SI</given-names>
+            </name>
+            <name>
+              <surname>Pe'er</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Dudley</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Church</surname>
+              <given-names>GM</given-names>
+            </name>
+            <name>
+              <surname>Koller</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Identifying regulatory mechanisms using individual variation reveals key role for chromatin modification</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2006</year>
+          <volume>103</volume>
+          <fpage>14062</fpage>
+          <lpage>14067</lpage>
+          <pub-id pub-id-type="pmid">16968785</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Giresi</surname>
+              <given-names>PG</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>McDaniell</surname>
+              <given-names>RM</given-names>
+            </name>
+            <name>
+              <surname>Iyer</surname>
+              <given-names>VR</given-names>
+            </name>
+            <name>
+              <surname>Lieb</surname>
+              <given-names>JD</given-names>
+            </name>
+          </person-group>
+          <article-title>FAIRE (Formaldehyde-Assisted Isolation of Regulatory Elements) isolates active regulatory elements from human chromatin</article-title>
+          <source>Genome Res</source>
+          <year>2007</year>
+          <volume>17</volume>
+          <fpage>877</fpage>
+          <lpage>885</lpage>
+          <pub-id pub-id-type="pmid">17179217</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <title>Data analysis scheme. Relationships between the genetic regulatory loci and the quantitative traits (chromatin accessibility or gene expression) were explored in yeast and human. Data from different experimental settings and technical platforms were integrated into a unified analytical framework. RNA-seq, RNA-sequencing; FAIRE-seq, Formaldehyde-Assisted Isolation of Regulatory Elements followed by sequencing; DNase-seq, DNaseI hypersensitivity assay coupled with high-throughput sequencing; QTL, quantitative trait loci.</title>
+      </caption>
+      <graphic xlink:href="gni-13-40-g001"/>
+    </fig>
+    <fig id="F2" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <title>Manhattan plots displaying the chromosomal distribution of regulatory loci and (x axis) and the number of associations for each locus divided by the total number of associations (i.e., percentage on the y axis) at a given p-value in human (p &lt; 0.01) and yeast (p &lt; 0.05). QTL, quantitative trait loci.</title>
+      </caption>
+      <graphic xlink:href="gni-13-40-g002"/>
+    </fig>
+    <fig id="F3" orientation="portrait" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <title>Manhattan plots displaying the chromosomal distribution of target traits (x axis) and the number of associations for each trait divided by the total number of associations (i.e., percentage on the y axis) at a given p-value in human (p &lt; 0.01) and yeast (p &lt; 0.05). QTL, quantitative trait loci.</title>
+      </caption>
+      <graphic xlink:href="gni-13-40-g003"/>
+    </fig>
+    <fig id="F4" orientation="portrait" position="float">
+      <label>Fig. 4</label>
+      <caption>
+        <title>Box plots showing the percentage of associations for each regulatory locus (upper) or quantitative trait (lower) from chromatin quantitative trait loci (QTL) and expression QTL mapping on a log scale in human (left) and yeast (right).</title>
+      </caption>
+      <graphic xlink:href="gni-13-40-g004"/>
+    </fig>
+  </floats-group>
+</article>
+</pmc-articleset>

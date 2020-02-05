@@ -1,0 +1,1013 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="review-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GNI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25705151</article-id>
+      <article-id pub-id-type="pmc">4330247</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2014.12.4.145</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Review Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>A Review of Three Different Studies on Hidden Markov Models for Epigenetic Problems: A Computational Perspective</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lee</surname>
+            <given-names>Kyung-Eun</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+          <xref ref-type="aff" rid="A2">2</xref>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Park</surname>
+            <given-names>Hyun-Seok</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+          <xref ref-type="aff" rid="A2">2</xref>
+          <xref ref-type="aff" rid="A3">3</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="A1"><label>1</label>Ewha Information and Telecommunication Institute, Ewha Womans University, Seoul 120-750, Korea.</aff>
+      <aff id="A2"><label>2</label>Bioinformatics Laboratory, School of Engineering, Ewha Womans University, Seoul 120-750, Korea.</aff>
+      <aff id="A3"><label>3</label>Center for Convergence Research of Advanced Technologies, Ewha Womans University, Seoul 120-750, Korea.</aff>
+      <author-notes>
+        <corresp>Corresponding author: Tel: +82-2-3277-2831, Fax: +82-2-3277-2306, <email>neo@ewha.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2014</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>31</day>
+        <month>12</month>
+        <year>2014</year>
+      </pub-date>
+      <volume>12</volume>
+      <issue>4</issue>
+      <fpage>145</fpage>
+      <lpage>150</lpage>
+      <history>
+        <date date-type="received">
+          <day>17</day>
+          <month>10</month>
+          <year>2014</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>23</day>
+          <month>11</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>23</day>
+          <month>11</month>
+          <year>2014</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2014 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2014</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">http://creativecommons.org/licenses/by-nc/3.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Recent technical advances, such as chromatin immunoprecipitation combined with DNA microarrays (ChIp-chip) and chromatin immunoprecipitation-sequencing (ChIP-seq), have generated large quantities of high-throughput data. Considering that epigenomic datasets are arranged over chromosomes, their analysis must account for spatial or temporal characteristics. In that sense, simple clustering or classification methodologies are inadequate for the analysis of multi-track ChIP-chip or ChIP-seq data. Approaches that are based on hidden Markov models (HMMs) can integrate dependencies between directly adjacent measurements in the genome. Here, we review three HMM-based studies that have contributed to epigenetic research, from a computational perspective. We also give a brief tutorial on HMM modelling-targeted at bioinformaticians who are new to the field.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>chromatin states</kwd>
+        <kwd>epigenomics</kwd>
+        <kwd>hidden Markov models</kwd>
+        <kwd>noncoding DNA</kwd>
+      </kwd-group>
+      <funding-group>
+        <award-group>
+          <funding-source country="KR">Ewha Information and Telecommunication Institute &amp; Center for Convergence Research of Advanced Technologies</funding-source>
+        </award-group>
+      </funding-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>Many researchers have shown that formal language theory is an appropriate tool in analyzing various biological sequences [<xref rid="B1" ref-type="bibr">1</xref>, <xref rid="B2" ref-type="bibr">2</xref>]. The hidden Markov model (HMM) is most closely related to regular grammars, because an n-gram is a subsequence of n items from a given sequence, and language models that are built from n-grams are actually (n-1)-order Markov models. However, the research of modeling biological sequences has usually focused on nucleotide or amino acid sequences that encode RNA or interact with proteins [<xref rid="B3" ref-type="bibr">3</xref>, <xref rid="B4" ref-type="bibr">4</xref>, <xref rid="B5" ref-type="bibr">5</xref>, <xref rid="B6" ref-type="bibr">6</xref>, <xref rid="B7" ref-type="bibr">7</xref>, <xref rid="B8" ref-type="bibr">8</xref>, <xref rid="B9" ref-type="bibr">9</xref>, <xref rid="B10" ref-type="bibr">10</xref>, <xref rid="B11" ref-type="bibr">11</xref>, <xref rid="B12" ref-type="bibr">12</xref>]. On the other hand, noncoding DNA regions, which occupy approximately 98% of human DNA, have not been considered for HMM-based analysis. The reason is partially due to the fact that a large proportion of noncoding DNA has been believed to have no known biological functions.</p>
+      <p>However, recent technical advances, such as chromatin immunoprecipitation sequencing (ChIP-seq), DNase I hypersensitive sites sequencing (DNase-seq), formaldehyde-assisted isolation of regulatory elements (FAIRE) [<xref rid="B13" ref-type="bibr">13</xref>, <xref rid="B14" ref-type="bibr">14</xref>], and computational epigenetics, have started to convert unannotated noncoding DNA into highly annotated functional areas [<xref rid="B15" ref-type="bibr">15</xref>, <xref rid="B16" ref-type="bibr">16</xref>]. The work is analogous to dissecting the region that constitutes the noncoding DNA and understanding the type of meaning each element contains. For this reason, the field of epigenetics has received a boost of attention and is currently among the fastest moving areas in molecular biology. However, epigenetic mechanisms are highly interwoven in a complex network of interactions. Disentangling this network is an important goal of epigenetic research. Thus, various bioinformatic challenges arise from the analysis of epigenetic data, and HMMs have played a significant role in solving important epigenetic problems, as HMMs are well suited to the task of discovering unobserved 'hidden' states from 'observed' sequences in their spatial genomic context.</p>
+      <p>In this paper, we give a tutorial review of the design of HMMs and their applications to solve various computational epigenetic problems. We selected three representative works to compare different designs of HMMs for various computational epigenetic problems: the Li et al. [<xref rid="B17" ref-type="bibr">17</xref>] two-hidden-state HMM to determine transcription factor binding sites, the Xu et al. [<xref rid="B18" ref-type="bibr">18</xref>] three-hidden-state HMM to compare histone modification sites, and the Ernst and Kellis [<xref rid="B19" ref-type="bibr">19</xref>] multi-state multivariate HMM to analyze systematic state dynamics of human cells. We want to clarify the fact that this review is by no means exhaustive and that there exist many other types of HMMs for computational epigenetic problems.</p>
+    </sec>
+    <sec>
+      <title>HMMs and Their Design Issues</title>
+      <p>An HMM is a statistical model that can be used to describe observable events that depend on hidden factors. An HMM consists of two stochastic processes: an invisible process of hidden states based on a Markov chain and a visible process of observable symbols. A first-order HMM can be defined formally as a quintuple (S, &#x3C0;, &#x2211;, a, e), where S = {1, 2, . . . , n} is a finite set of hidden states; &#x3C0; is vector of size n defining the starting probability distribution; &#x2211; = 1, 2, . . . , m is a finite set of output symbols; a<sub>ij</sub> is a two-dimensional matrix of transition probabilities of moving from state i to state j; and e<sub>i</sub>(x) is an n &#xD7; m matrix of emission probabilities of generating symbol x in state i. The key property of a Markov chain is that the probability of each symbol xi depends only on the value of the preceding symbol <italic>x</italic><sub>i-1</sub> [i.e., <italic>P</italic>(<italic>x</italic><sub>i</sub> &#x2223;<italic>x</italic><sub>i-1</sub>)], not on the entire previous sequence [i.e., <italic>P</italic>(<italic>x</italic><sub>i</sub> &#x2223;<italic>x</italic><sub>i -1</sub>, . . . , <italic>x</italic><sub>1</sub>)].</p>
+      <p>In the bioinformatics context, a nucleic one for genes, genomes, amino acids, or RNA is a sequence. And sequences can represent functional regions in the genome. Whereas previous studies of coding DNAs and promoters usually modeled their HMMs using nucleotide or amino acid sequences as their output symbols, recent HMM studies that are related to epigenomics tend to model their HMMs using chromatin marks in bins of equal length as output symbols, replacing the traditional nucleotide or amino acid sequences.</p>
+      <p>To explain the difference, let us consider a simple example. Suppose that adjacent regions of genomic sequences are divided into multiple 10-bp bins (though unrealistic), as in <xref ref-type="fig" rid="F1">Fig. 1</xref>, in which some kinds of chromatin marks or methylation profiles are annotated. Suppose also that we define two imaginary methylated states, 'M' (in green color) and 'U' (in orange color), based on some kinds of epigenetic profiles.</p>
+      <p>Let us consider a toy HMM for <xref ref-type="fig" rid="F1">Fig. 1</xref>. Given random training data, we try to determine five parameters of the HMM. An HMM is usually visualized as a directed graph with vertices corresponding to the states and the edges representing pairs of states with transition probability a<sub>ij</sub> and emission probability ei(j), as in <xref ref-type="fig" rid="F2">Fig. 2</xref>. The graph defines the topology of the model, while the emission and the transition probabilities define the parameters of the model. The given HMM tries to capture the statistical differences in the two hidden states of 'M' and 'U.' The transition probability represents the change of the methylation state in the underlying Markov chain. According to <xref ref-type="fig" rid="F2">Fig. 2A</xref>, there is a 20% chance of moving from state 'M' to state 'U' (a<sub>MU</sub>), an 80% chance of staying in state 'M' (a<sub>MM</sub>), a 10% chance of moving from state 'U' to state 'M' (a<sub>UM</sub>), and a 90% chance of staying in 'U' (a<sub>UU</sub>). The probability of starting from M and U is 60% and 40%, respectively. M and U use different sets of emission probabilities to reflect the symbol statistics. In epigenetic studies, emission symbols are not nucleotide or amino acid sequences. Rather, emission symbols are usually defined as a value or even a vector of chromatin marks.</p>
+      <p><xref ref-type="fig" rid="F2">Fig. 2A</xref> is an ergodic HMM. An ergodic HMM is one for which the underlying Markov chain is irreducible and admits a unique stationary distribution. In contrast, a left-to-right version of an instantiated HMM in <xref ref-type="fig" rid="F2">Fig. 2B</xref> is an HMM with a Markov chain that starts in a particular initial state, traverses intermediate states, and terminates in a final state. Each circle shape represents a hidden state. The random variable xt is the hidden state at time t. The variables 'M' and 'U' are the observations at time t (with S<sub>t</sub> &#x2208; {M, U}). The arrows in the diagram denote conditional dependencies. Unlike an ergodic HMM, the chain may not go backwards while traversing the trellis.</p>
+    </sec>
+    <sec>
+      <title>Different HMM Designs for Identifying DNA Methylation Patterns</title>
+      <p>Genome-wide mapping of epigenetic information follows a basic three-stage design process [<xref rid="B13" ref-type="bibr">13</xref>]: conversion of the epigenetic information into genetic information, application of standard DNA techniques, and computational analysis to infer the epigenetic information. All experimental methods for epigenomic annotation generate large amounts of data and require efficient ways of processing the data. In the remainder of this review, we show how HMMs have contributed to answering important epigenetic questions by summarizing HMM-based bioinformatic works, from a computational perspective. <xref ref-type="table" rid="T1">Table 1</xref> summarizes the HMM parameters of the three studies that will be reviewed in this paper, in the order of the hidden state complexity.</p>
+    </sec>
+    <sec>
+      <title>Two-State HMMs to Differentiate Non-Enriched Genomic Regions from Enriched Ones</title>
+      <p>Li et al. [<xref rid="B17" ref-type="bibr">17</xref>] developed a method to determine transcription factor binding sites from chromatin immunoprecipitation combined with DNA microarrays (ChIP-chip) experiments on an Affymetrix tiling array of chromosomes 21 and 22. Owing to the Affymetrix array characteristics and genome sequence similarity, probes with the same 25-mer sequence tend to be spotted at different locations on the chips. Two-stage procedures were employed to filter out short-range repetitive probe measurements prior to downstream analysis. Then, tiling array data from various experiments were gathered to normalize and model the behavior of each individual probe, where the behavior of each probe was modeled as a normal distribution. Finally, a two-hidden-state (ChIP-enriched state and nonenriched state) HMM was built to estimate the probability of enrichment at each probe location.</p>
+      <p>Given J potential binding sites along chromosomes covered by K total probes, the initial probabilities and transition probabilities of HMM were characterized, as in <xref ref-type="fig" rid="F3">Fig. 3</xref>. Initial probabilities were set to J/K for the ChIP-enriched state and to 1 - J/K for the nonenriched state. Transition probabilities were set to J/K for transition to a different state and 1 - J/K for staying in the same state. The emission probability distribution of probe in a single dataset was set to N(&#xB5;<sub>i</sub> + 2&#x3C3;<sub>i</sub>, (1.5&#x3C3;<sub>i</sub>)<sup>2</sup>) for the ChIP-enriched state and N(&#xB5;<sub>i</sub>, &#x3C3;<sub>i</sub><sup>2</sup>) for the nonenriched state (where &#xB5;<sub>i</sub> and &#x3C3;<sub>i</sub> are the mean and standard deviation, respectively, of probe <italic>i</italic>). The parameters were based on previous results with the Affymetrix SNP arrays [<xref rid="B20" ref-type="bibr">20</xref>].</p>
+      <p>Other methods that are based on two-state HMMs for the identification of methylated regions were proposed [<xref rid="B22" ref-type="bibr">22</xref>, <xref rid="B23" ref-type="bibr">23</xref>, <xref rid="B24" ref-type="bibr">24</xref>, <xref rid="B25" ref-type="bibr">25</xref>]. A common characteristic of these studies is the modeling of two different populations of measurements to differentiate nonenriched regions from enriched ones. Ji and Wong [<xref rid="B22" ref-type="bibr">22</xref>] suggested TileMap, which is an effective statistical tool to identify genomic loci that show transcriptional or protein binding patterns of interest. Martin-Magniette et al. [<xref rid="B23" ref-type="bibr">23</xref>] proposed ChIP-mix, which is a statistical method based on the mixture of regression to classify probes in ChIP-chip experiments. Johannes et al. [<xref rid="B24" ref-type="bibr">24</xref>] presented a parametric classification method for genomewide comparisons of chromatin profiles between multiple ChIP samples. In Moghaddam et al. [<xref rid="B25" ref-type="bibr">25</xref>], they showed that H3K4me2 and H3K27me3 distribution patterns were similar overall in various Arabidopsis thaliana accessions and remained largely unchanged in their F1 progeny [<xref rid="B25" ref-type="bibr">25</xref>].</p>
+    </sec>
+    <sec>
+      <title>Three-State HMMs for ChIP Analysis</title>
+      <p>One general limitation of the methods in the previous section is that they only enable binary classification. For this reason, a three-state HMM has been proposed for the analysis of so-called differential histone modification sites (DHMSs) of H3K27me3 by Xu et al. [<xref rid="B18" ref-type="bibr">18</xref>]. To capture the histone modifications on the whole-genome scale, Xu et al. [<xref rid="B18" ref-type="bibr">18</xref>] proposed a qualitative analysis for the genome-wide comparison of histone modification sites by computationally comparing two ChIP-seq libraries generated from different cell types or experimental conditions. To do that, the whole genome was partitioned into 1-kb bins, and the number of centers of ChIP fragments was counted and normalized in each bin, generating a profile of ChIP fragment counts.</p>
+      <p>Based on the observations of ChIP fragment counts, <xref ref-type="fig" rid="F4">Fig. 4</xref> shows an HMM to infer the states of histone modification changes at each genomic location. The HMM is characterized by three features: the prior probability of the start state, the emission probability, and the transmission probability. A DHMS was defined as a bin in which the ratio of intensities between two profiles (L1 and L2) is larger than &#x3C4; (L1-enriched DHMSs) or smaller than 1/&#x3C4; (L2-enriched DHMSs), where &#x3C4; is a predetermined threshold [<xref rid="B19" ref-type="bibr">19</xref>]. Based on the definition of a DHMS, the state Si takes one of the following three values: &#x3B1;<sub>0</sub> if 1/&#x3C4; &#x2264; <italic>p</italic>(<sub>1,i</sub>)/<italic>p</italic>(<sub>2,i</sub>) &#x2264; &#x3C4;; &#x3B1;<sub>1</sub> if <italic>p</italic>(<sub>1,i</sub>)/<italic>p</italic>(<sub>2,i</sub>) &gt; &#x3C4;; and &#x3B1;<sub>2</sub> if <italic>p</italic>(<sub>1,i</sub>)/<italic>p</italic>(<sub>2,i</sub>) &lt; 1/&#x3C4;. (For a region of k bins, the notation x<sub>1,i</sub>, x<sub>2,i</sub> was used for the ChIP fragment counts in L1 and L2, and the notation <italic>p</italic><sub>1,i</sub>, <italic>p</italic><sub>2,i</sub> was used for the intensity in L1 and L2, respectively, at the ith bin in that region.) The initial state is fixed to take the value of &#x3B1;<sub>0</sub>, since the region is assumed to start from the genomic locations where the histone modification is depleted in both libraries. The emission probability P(<italic>x</italic><sub>1,i</sub>, <italic>x</italic><sub>2,i</sub> &#x2223;<italic>s</italic><sub>i</sub>) was calculated as in <xref ref-type="fig" rid="F4">Fig. 4</xref> by integrating <italic>p</italic><sub>1,i</sub> and <italic>p</italic><sub>2,i</sub> over all possible values constrained by <italic>s</italic><sub>i</sub>. The transmission probability table was trained using the Baum-Welch algorithm [<xref rid="B21" ref-type="bibr">21</xref>].</p>
+      <p>Other methods of three-state HMMs for the identification of methylated regions have been proposed. Seifert et al. [<xref rid="B26" ref-type="bibr">26</xref>] also proposed a three-state HMM specifically designed for the analysis of Arabidopsis MeDIP-chip data to differentiate between unmethylated ('U'), methylated ('M'), and highly methylated regions ('I'). They utilized a three-state HMM with state-specific multivariate Gaussian emission densities to analyze methylation levels of chromosomal regions in methylation profiles. Arand et al. [<xref rid="B27" ref-type="bibr">27</xref>] suggested a four-state HMM (fully methylated, not methylated on both sides, methylated only on the lower strand, and methylated only on the upper strand) to determine the methylation status of both DNA strands.</p>
+    </sec>
+    <sec>
+      <title>Multiple-State and Multivariate HMMs for Analyzing Systematic State Dynamics of Human Cells</title>
+      <p>High-dimensional multivariate datasets occur in a large number of problem domains. In many cases, these datasets have either a sequential or temporal structure. To uncover which combinations of histone modifications are biologically meaningful, Ernst and Kellis [<xref rid="B19" ref-type="bibr">19</xref>] took a drastically different approach from others, particularly in two aspects: automatic determination of hidden states and usage of a massive amount of multivariate data as observed sequences. They applied unsupervised learning methodologies, converting the ChIP-seq dataset from the Broad Histone track into discrete annotation maps of 51 chromatin elements across the human genome. <xref ref-type="fig" rid="F5">Fig. 5</xref> summarizes their approach: genomic profiling, binarization, model learning, and annotation.</p>
+      <p><xref ref-type="fig" rid="F5">Fig. 5A</xref> shows that the profiles are represented as <italic>X</italic>1 ={<italic>x</italic><sub>1,1</sub>, <italic>x</italic><sub>1,2</sub>, ..., <italic>x</italic><sub>1,m</sub>}, where <italic>x</italic><sub>i,j</sub> is the fragment count at the jth bin in Li and m is the number of bins. As input, it receives a list of aligned reads for each chromatin mark, which are automatically converted into presence or absence calls for each mark across the genome. <xref ref-type="fig" rid="F5">Fig. 5B</xref> shows that the profile data were binarized separately at 200-base-pair resolution, based on a Poisson background model. The chromatin states were learned from the binarized data using a multivariate HMM. <xref ref-type="fig" rid="F5">Fig. 5C</xref> shows a two-stage nested initialization procedure of hidden states. Ernst and Kellis [<xref rid="B19" ref-type="bibr">19</xref>] used an iterative learning expectation-maximization approach to infer state emission and transition parameters, with the best Bayesian Information Criterion (BIC). <xref ref-type="fig" rid="F5">Fig. 5D</xref> shows that each 200-base-pair interval was then assigned to its most likely state under the model. The model assumes a fixed number of 51 distinct hidden states, including promoter-associated, transcription-associated, active intergenic, large-scale repressed, and repeat-associated states.</p>
+      <p>Originally, Jaschek and Tanay [<xref rid="B28" ref-type="bibr">28</xref>] discussed the necessity of automatic determination of hidden states in designing HMMs. Ernst et al. [<xref rid="B29" ref-type="bibr">29</xref>] later proposed a more stable 15-state model that showed distinct biological enrichments [<xref rid="B19" ref-type="bibr">19</xref>].</p>
+    </sec>
+    <sec sec-type="conclusions">
+      <title>Conclusion</title>
+      <p>In this paper, we reviewed three different types of HMMs and their applications in order of the complexity of the hidden states, from a purely computational perspective. HMMs provide a sound mathematical framework for modeling and analyzing epigenetic data. The appropriate method for the analysis of DNA methylation depends upon the goals of the study. Researchers can design the most appropriate HMMs for their specific research needs and continued improvements in analysis methods make the study of DNA methylation more accessible.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was partially supported by the Ewha Information and Telecommunication Institute &amp; Center for Convergence Research of Advanced Technologies.</p>
+    </ack>
+    <ref-list>
+      <ref id="B1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Park</surname>
+              <given-names>HS</given-names>
+            </name>
+            <name>
+              <surname>Galbadrakh</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>YM</given-names>
+            </name>
+          </person-group>
+          <article-title>Recent progresses in the linguistic modeling of biological sequences based on formal language theory</article-title>
+          <source>Genomics Inform</source>
+          <year>2011</year>
+          <volume>9</volume>
+          <fpage>5</fpage>
+          <lpage>11</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Searls</surname>
+              <given-names>DB</given-names>
+            </name>
+          </person-group>
+          <article-title>The language of genes</article-title>
+          <source>Nature</source>
+          <year>2002</year>
+          <volume>420</volume>
+          <fpage>211</fpage>
+          <lpage>217</lpage>
+          <pub-id pub-id-type="pmid">12432405</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Munch</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Krogh</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Automatic generation of gene finders for eukaryotic species</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2006</year>
+          <volume>7</volume>
+          <fpage>263</fpage>
+          <pub-id pub-id-type="pmid">16712739</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Durbin</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Eddy</surname>
+              <given-names>SR</given-names>
+            </name>
+            <name>
+              <surname>Krogh</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Mitchison</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <source>Biological Sequence Analysis: Probabilistic Models of Proteins and Nucleic Acids</source>
+          <publisher-loc>Cambridge</publisher-loc>
+          <publisher-name>Cambridge University Press</publisher-name>
+          <year>1998</year>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pachter</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Alexandersson</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Cawley</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Applications of generalized pair hidden Markov models to alignment and gene finding problems</article-title>
+          <source>J Comput Biol</source>
+          <year>2002</year>
+          <volume>9</volume>
+          <fpage>389</fpage>
+          <lpage>399</lpage>
+          <pub-id pub-id-type="pmid">12015888</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liang</surname>
+              <given-names>KC</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Anastassiou</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian basecalling for DNA sequence analysis using hidden Markov models</article-title>
+          <source>IEEE/ACM Trans Comput Biol Bioinform</source>
+          <year>2007</year>
+          <volume>4</volume>
+          <fpage>430</fpage>
+          <lpage>440</lpage>
+          <pub-id pub-id-type="pmid">17666762</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lottaz</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Iseli</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Jongeneel</surname>
+              <given-names>CV</given-names>
+            </name>
+            <name>
+              <surname>Bucher</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>Modeling sequencing errors by combining Hidden Markov models</article-title>
+          <source>Bioinformatics</source>
+          <year>2003</year>
+          <volume>19</volume>
+          <issue>Suppl 2</issue>
+          <fpage>ii103</fpage>
+          <lpage>ii112</lpage>
+          <pub-id pub-id-type="pmid">14534179</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Won</surname>
+              <given-names>KJ</given-names>
+            </name>
+            <name>
+              <surname>Hamelryck</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Prugel-Bennett</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Krogh</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>An evolutionary method for learning HMM structure: prediction of protein secondary structure</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2007</year>
+          <volume>8</volume>
+          <fpage>357</fpage>
+          <pub-id pub-id-type="pmid">17888163</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Borovok</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Aharonowitz</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Sharan</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Bafna</surname>
+              <given-names>V</given-names>
+            </name>
+          </person-group>
+          <article-title>A sequence-based filtering method for ncRNA identification and its application to searching for riboswitch elements</article-title>
+          <source>Bioinformatics</source>
+          <year>2006</year>
+          <volume>22</volume>
+          <fpage>e557</fpage>
+          <lpage>e565</lpage>
+          <pub-id pub-id-type="pmid">16873520</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yoon</surname>
+              <given-names>BJ</given-names>
+            </name>
+            <name>
+              <surname>Vaidyanathan</surname>
+              <given-names>PP</given-names>
+            </name>
+          </person-group>
+          <article-title>Structural alignment of RNAs using profile-csHMMs and its application to RNA homology search: overview and new results</article-title>
+          <source>IEEE Trans Automat Contr</source>
+          <year>2008</year>
+          <volume>53</volume>
+          <fpage>10</fpage>
+          <lpage>25</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harmanci</surname>
+              <given-names>AO</given-names>
+            </name>
+            <name>
+              <surname>Sharma</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Mathews</surname>
+              <given-names>DH</given-names>
+            </name>
+          </person-group>
+          <article-title>Efficient pairwise RNA structure prediction using probabilistic alignment constraints in Dynalign</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2007</year>
+          <volume>8</volume>
+          <fpage>130</fpage>
+          <pub-id pub-id-type="pmid">17445273</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Weinberg</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Ruzzo</surname>
+              <given-names>WL</given-names>
+            </name>
+          </person-group>
+          <article-title>Sequence-based heuristics for faster annotation of non-coding RNA families</article-title>
+          <source>Bioinformatics</source>
+          <year>2006</year>
+          <volume>22</volume>
+          <fpage>35</fpage>
+          <lpage>39</lpage>
+          <pub-id pub-id-type="pmid">16267089</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shen</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Waterland</surname>
+              <given-names>RA</given-names>
+            </name>
+          </person-group>
+          <article-title>Methods of DNA methylation analysis</article-title>
+          <source>Curr Opin Clin Nutr Metab Care</source>
+          <year>2007</year>
+          <volume>10</volume>
+          <fpage>576</fpage>
+          <lpage>581</lpage>
+          <pub-id pub-id-type="pmid">17693740</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bailey</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Krajewski</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Ladunga</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Lefebvre</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Practical guidelines for the comprehensive analysis of ChIP-seq data</article-title>
+          <source>PLoS Comput Biol</source>
+          <year>2013</year>
+          <volume>9</volume>
+          <fpage>e1003326</fpage>
+          <pub-id pub-id-type="pmid">24244136</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <collab>ENCODE Project Consortium</collab>
+          <article-title>The ENCODE (ENCyclopedia Of DNA Elements) Project</article-title>
+          <source>Science</source>
+          <year>2004</year>
+          <volume>306</volume>
+          <fpage>636</fpage>
+          <lpage>640</lpage>
+          <pub-id pub-id-type="pmid">15499007</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <collab>ENCODE Project Consortium</collab>
+          <article-title>An integrated encyclopedia of DNA elements in the human genome</article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>489</volume>
+          <fpage>57</fpage>
+          <lpage>74</lpage>
+          <pub-id pub-id-type="pmid">22955616</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Meyer</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>XS</given-names>
+            </name>
+          </person-group>
+          <article-title>A hidden Markov model for analyzing ChIP-chip experiments on genome tiling arrays and its application to p53 binding sequences</article-title>
+          <source>Bioinformatics</source>
+          <year>2005</year>
+          <volume>21</volume>
+          <issue>Suppl 1</issue>
+          <fpage>i274</fpage>
+          <lpage>i282</lpage>
+          <pub-id pub-id-type="pmid">15961467</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xu</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>CL</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Sung</surname>
+              <given-names>WK</given-names>
+            </name>
+          </person-group>
+          <article-title>An HMM approach to genome-wide identification of differential histone modification sites from ChIP-seq data</article-title>
+          <source>Bioinformatics</source>
+          <year>2008</year>
+          <volume>24</volume>
+          <fpage>2344</fpage>
+          <lpage>2349</lpage>
+          <pub-id pub-id-type="pmid">18667444</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B19">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ernst</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kellis</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Discovery and characterization of chromatin states for systematic annotation of the human genome</article-title>
+          <source>Nat Biotechnol</source>
+          <year>2010</year>
+          <volume>28</volume>
+          <fpage>817</fpage>
+          <lpage>825</lpage>
+          <pub-id pub-id-type="pmid">20657582</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lieberfarb</surname>
+              <given-names>ME</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Lechpammer</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Tanenbaum</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>Febbo</surname>
+              <given-names>PG</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-wide loss of heterozygosity analysis from laser capture microdissected prostate cancer using single nucleotide polymorphic allele (SNP) arrays and a novel bioinformatics platform dChipSNP</article-title>
+          <source>Cancer Res</source>
+          <year>2003</year>
+          <volume>63</volume>
+          <fpage>4781</fpage>
+          <lpage>4785</lpage>
+          <pub-id pub-id-type="pmid">12941794</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Baum</surname>
+              <given-names>LE</given-names>
+            </name>
+            <name>
+              <surname>Petrie</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Soules</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Weiss</surname>
+              <given-names>N</given-names>
+            </name>
+          </person-group>
+          <article-title>A maximization technique occurring in the statistical analysis of probabilistic functions of Markov chains</article-title>
+          <source>Ann Math Stat</source>
+          <year>1970</year>
+          <volume>41</volume>
+          <fpage>164</fpage>
+          <lpage>171</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ji</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Wong</surname>
+              <given-names>WH</given-names>
+            </name>
+          </person-group>
+          <article-title>TileMap: create chromosomal map of tiling array hybridizations</article-title>
+          <source>Bioinformatics</source>
+          <year>2005</year>
+          <volume>21</volume>
+          <fpage>3629</fpage>
+          <lpage>3636</lpage>
+          <pub-id pub-id-type="pmid">16046496</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Martin-Magniette</surname>
+              <given-names>ML</given-names>
+            </name>
+            <name>
+              <surname>Mary-Huard</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>B&#xE9;rard</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Robin</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>ChIPmix: mixture model of regressions for two-color ChIP-chip analysis</article-title>
+          <source>Bioinformatics</source>
+          <year>2008</year>
+          <volume>24</volume>
+          <fpage>i181</fpage>
+          <lpage>i186</lpage>
+          <pub-id pub-id-type="pmid">18689822</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B24">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Johannes</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Wardenaar</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Colom&#xE9;-Tatch&#xE9;</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Mousson</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>de Graaf</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Mokry</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Comparing genome-wide chromatin profiles using ChIP-chip or ChIP-seq</article-title>
+          <source>Bioinformatics</source>
+          <year>2010</year>
+          <volume>26</volume>
+          <fpage>1000</fpage>
+          <lpage>1006</lpage>
+          <pub-id pub-id-type="pmid">20208068</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moghaddam</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Roudier</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Seifert</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>B&#xE9;rard</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Magniette</surname>
+              <given-names>ML</given-names>
+            </name>
+            <name>
+              <surname>Ashtiyani</surname>
+              <given-names>RK</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Additive inheritance of histone modifications in Arabidopsis thaliana intra-specific hybrids</article-title>
+          <source>Plant J</source>
+          <year>2011</year>
+          <volume>67</volume>
+          <fpage>691</fpage>
+          <lpage>700</lpage>
+          <pub-id pub-id-type="pmid">21554454</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B26">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seifert</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Cortijo</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Colom&#xE9;-Tatch&#xE9;</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Johannes</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Roudier</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Colot</surname>
+              <given-names>V</given-names>
+            </name>
+          </person-group>
+          <article-title>MeDIP-HMM: genome-wide identification of distinct DNA methylation states from high-density tiling arrays</article-title>
+          <source>Bioinformatics</source>
+          <year>2012</year>
+          <volume>28</volume>
+          <fpage>2930</fpage>
+          <lpage>2939</lpage>
+          <pub-id pub-id-type="pmid">22989518</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B27">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Arand</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Spieler</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Karius</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Branco</surname>
+              <given-names>MR</given-names>
+            </name>
+            <name>
+              <surname>Meilinger</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Meissner</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>In vivo control of CpG and non-CpG DNA methylation by DNA methyltransferases</article-title>
+          <source>PLoS Genet</source>
+          <year>2012</year>
+          <volume>8</volume>
+          <fpage>e1002750</fpage>
+          <pub-id pub-id-type="pmid">22761581</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B28">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jaschek</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Tanay</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Spatial clustering of multivariate genomic and epigenomic information</article-title>
+          <source>Res Comput Mol Biol</source>
+          <year>2009</year>
+          <volume>5541</volume>
+          <fpage>170</fpage>
+          <lpage>183</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B29">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ernst</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kheradpour</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Mikkelsen</surname>
+              <given-names>TS</given-names>
+            </name>
+            <name>
+              <surname>Shoresh</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Ward</surname>
+              <given-names>LD</given-names>
+            </name>
+            <name>
+              <surname>Epstein</surname>
+              <given-names>CB</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Mapping and analysis of chromatin state dynamics in nine human cell types</article-title>
+          <source>Nature</source>
+          <year>2011</year>
+          <volume>473</volume>
+          <fpage>43</fpage>
+          <lpage>49</lpage>
+          <pub-id pub-id-type="pmid">21441907</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="F1" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>A sample sequence, divided in 10-bp bins, annotated with two hidden states: M and U.</p>
+      </caption>
+      <graphic xlink:href="gni-12-145-g001"/>
+    </fig>
+    <fig id="F2" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>A Toy hidden Markov model (HMM) and its 5 parameters. (A) An ergodic model of a toy HMM. (B) An equivalent left-to-right version of the HMM in Fig. 2A (picture adapted from the cs262 class slides by S. Batzoglou with permission).</p>
+      </caption>
+      <graphic xlink:href="gni-12-145-g002"/>
+    </fig>
+    <fig id="F3" orientation="portrait" position="float">
+      <label>Fig. 3</label>
+      <caption>
+        <p>A Two-state hidden Markov model (HMM) [<xref rid="B17" ref-type="bibr">17</xref>].</p>
+      </caption>
+      <graphic xlink:href="gni-12-145-g003"/>
+    </fig>
+    <fig id="F4" orientation="portrait" position="float">
+      <label>Fig. 4</label>
+      <caption>
+        <p>A three-state hidden Markov model (HMM) [<xref rid="B18" ref-type="bibr">18</xref>].</p>
+      </caption>
+      <graphic xlink:href="gni-12-145-g004"/>
+    </fig>
+    <fig id="F5" orientation="portrait" position="float">
+      <label>Fig. 5</label>
+      <caption>
+        <p>A multivariate, multi-state hidden Markov model (HMM) [<xref rid="B19" ref-type="bibr">19</xref>]. (A) Genomic profiling. To apply the model, the genome was divided into 200-base-pair nonoverlapping intervals, within which each of the count of 41 marks that mapped to the interval was annotated. (B) Binarization. For each 200-bp interval, the input ChIP-Seq sequence tag count is processed into a binary presence/absence call. (C) Learning. Each model was scored based on the log-likelihood of the model minus a penalization on the model complexity, determined by the Bayesian Information Criterion (BIC). (D) Annotation and analysis. The vector of 41 numerical values was assigned, each representing the result of a different biochemical assay, and each of the 200-base-pair intervals was assigned to its most likely state under the model (picture adapted from the cs262 class slides by S. Batzoglou with permission).</p>
+      </caption>
+      <graphic xlink:href="gni-12-145-g005"/>
+    </fig>
+    <table-wrap id="T1" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Five parameters of two-, three-, and multi-state hidden Markov models (HMMs) [<xref rid="B17" ref-type="bibr">17</xref>, <xref rid="B18" ref-type="bibr">18</xref>, <xref rid="B19" ref-type="bibr">19</xref>]</p>
+      </caption>
+      <graphic xlink:href="gni-12-145-i001"/>
+      <table-wrap-foot>
+        <fn>
+          <p>ChIP, chromatin immunoprecipitation; DHMS, differential histone modification site; NA, not acquired.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>

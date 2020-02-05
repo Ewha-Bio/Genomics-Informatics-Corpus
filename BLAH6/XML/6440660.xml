@@ -1,0 +1,1237 @@
+<?xml version="1.0" ?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset><article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genomics Inform</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genomics Inform</journal-id>
+      <journal-id journal-id-type="publisher-id">GI</journal-id>
+      <journal-title-group>
+        <journal-title>Genomics &amp; Informatics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1598-866X</issn>
+      <issn pub-type="epub">2234-0742</issn>
+      <publisher>
+        <publisher-name>Korea Genome Organization</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">30602083</article-id>
+      <article-id pub-id-type="pmc">6440660</article-id>
+      <article-id pub-id-type="doi">10.5808/GI.2018.16.4.e22</article-id>
+      <article-id pub-id-type="publisher-id">gi-2018-16-4-e22</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Original Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Genome-Based Virus Taxonomy with the ICTV Database Extension</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">http://orcid.org/0000-0002-0624-9451</contrib-id>
+          <name>
+            <surname>Kang</surname>
+            <given-names>Shinduck</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid" authenticated="false">http://orcid.org/0000-0001-8285-0882</contrib-id>
+          <name>
+            <surname>Kim</surname>
+            <given-names>Young-Chang</given-names>
+          </name>
+          <xref rid="c1-gi-2018-16-4-e22" ref-type="corresp">*</xref>
+        </contrib>
+        <aff id="af1-gi-2018-16-4-e22">Department of Microbiology, Chungbuk National University, Cheongju 28644, 
+<country>Korea</country></aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="c1-gi-2018-16-4-e22"><label>*</label>Corresponding author: Tel: +82-43-261-2302, Fax: +82-50-4477-6563, E-mail: <email>youngkim@chungbuk.ac.kr</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2018</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>28</day>
+        <month>12</month>
+        <year>2018</year>
+      </pub-date>
+      <volume>16</volume>
+      <issue>4</issue>
+      <elocation-id>e22</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>17</day>
+          <month>5</month>
+          <year>2018</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>23</day>
+          <month>12</month>
+          <year>2018</year>
+        </date>
+        <date date-type="accepted">
+          <day>23</day>
+          <month>12</month>
+          <year>2018</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright &#xA9; 2018 by the Korea Genome Organization</copyright-statement>
+        <copyright-year>2018</copyright-year>
+        <license>
+          <license-p>It is identical to the Creative Commons Attribution Non-Commercial License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>In 1966, the International Classification of Viruses (ICNV) was established to standardize the naming of viruses. In 1975, the organization was renamed &#x201C;International Committee on Taxonomy of Viruses (ICTV),&#x201D; by which it is still known today. The primary virus classification provided by ICTV in 1971 was for viruses infecting vertebrates, which includes 19 genera, 2 families, and 24 unclassified groups. Presently, the 10th virus taxonomy has been published. However, the early classification of viruses was based on clinical results &#x201C;<italic>in vivo</italic>&#x201D; and &#x201C;<italic>in vitro</italic>,&#x201D; as well as on the shape of the Phenotype virus. Due to the development of next-generation sequencing and the accompanying bioinformatics analysis pipelines, a reconstruction of the classification system has been proposed. At a meeting held in Boston, USA between June 9&#x2013;11, 2016, there was even an in-depth discussion regarding the classification of viruses using metagenomic data. One suggested activity that arose from the meeting was that viral taxonomy should be reconstructed, based on genotype and bioinformatics analysis &#x201C;<italic>in silico</italic>.&#x201D; This article describes our efforts to achieve this goal by construction of a web-based system and the extension of an associated database, based on ICTV taxonomy. This virus taxonomy web system was designed specifically to extend the virus taxonomy up to strain and isolation, which was then connected with the NCBI database to facilitate searches for specific viral genes; there are also links to journals provided by the EMBL RESTful API that improves accessibility for academic groups.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>ICTV DB extension</kwd>
+        <kwd>virus history</kwd>
+        <kwd>virus taxonomy searching web</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>Presently, there are 3,279 virus reference genomes registered in NCBI. More than 1.8 million sequences are included in GenBank (<ext-link ext-link-type="uri" xlink:href="https://www.ncbi.nlm.nih.gov/genbank/">https://www.ncbi.nlm.nih.gov/genbank/</ext-link>) [<xref rid="b1-gi-2018-16-4-e22" ref-type="bibr">1</xref>]. The number of whole-genome sequences in GenBank is rapidly increasing, as shown in <xref rid="f1-gi-2018-16-4-e22" ref-type="fig">Fig. 1</xref>. Currently, only about 1,800 genome sequences have been assigned to species in International Committee on Taxonomy of Viruses (ICTV); the remaining 1,400 sequences have not been classified as species. Although ICTV is responsible for viral classification, it does not have the capacity to immediately formulate the naming conventions and taxonomy for the large number of viral sequences that is submitted to the organization.</p>
+      <p>However, with the advent of next-generation sequencing and the enhancement of NCBI GenBank data, the classical ICTV method of viral classification based on phenotypic parameters has been converting to a classification based on genotypic classification due to improvements in the speed and accuracy associated with virus taxonomy. Recently, a metagenomic method based on genotype was proposed as an approach to aid virus taxonomy [<xref rid="b2-gi-2018-16-4-e22" ref-type="bibr">2</xref>]. However, this creates a requirement for an appropriate data handling and analysis pipeline to cope with such needs.</p>
+      <p>Since the development of web servers in 1993, bioinformatics data have been provided through browser-based systems. Many analysis tools, such as MSA, BLAST, and Genome Browser, have been developed for end users. In the case of ICTV taxonomy and naming, the initial ICTVdB was developed with flat data (DELTA: DEscription Language for TAxonomy), which was not connected to other databases. ICTVdB did not contain any sequence information but was used for phylogenetic analysis [<xref rid="b3-gi-2018-16-4-e22" ref-type="bibr">3</xref>]. Presently, the 10th ICTV virus taxonomy has been published and is available on the ICTV website (<ext-link ext-link-type="uri" xlink:href="http://ictv.global/report/">http://ictv.global/report/</ext-link>). However, there is no easy approach to NCBI GenBank data based on ICTV taxonomy, strain, or isolation information for selected viral species, because ICTV taxonomy has only been providing up to the species level. Also, web-based ICTV taxonomy does not provide direct PubMed access, which facilitates academic searches. As a result, our virus taxonomy website reinforces this problem and extends the related tables in the ICTV database.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>ICTV taxonomy and virus history</title>
+        <p>The gene sequences submitted to NCBI are recorded in GenBank format with a unique key that is generated by the combination of the accession number and version number. The accession number consists of 1 letter and 5 numerals or 2 letters and 6 numerals for nucleotides and 3 letters and 5 numerals for proteins. The GenBank format is structurally divided into meta information, feature information, and sequence information. In this system, due to the types of viral targets, only &#x201C;gbvrl&#x201D; data among NCBI GenBank data are collected and used (<ext-link ext-link-type="ftp" xlink:href="ftp://ftp.ncbi.nlm.nih.gov/genbank">ftp://ftp.ncbi.nlm.nih.gov/genbank</ext-link>). Currently, it is available from &#x201C;gbvrl1.seq.gz&#x201D; to &#x201C;gbvrl51. seq.gz&#x201D; (2017/12/20). However, GenBank data are highly redundant due to frequently overlapping submissions. This means that computing or parsing after collecting or manipulating GenBank data is an extremely inefficient process. Therefore, NCBI has provided RefSeq data to minimize redundancy, and there are presently 9,557 complete viral genomic RefSeq sequences. Meanwhile, in International Classification of Viruses (ICNV; the name before being revised to ICTV), the first virus taxonomy of 1,971 included 19 genera and 2 families (<italic>Papovaviridae</italic> and <italic>Picornaviridae</italic>), while 24 groups were unassigned until the appropriate classification levels were determined [<xref rid="b4-gi-2018-16-4-e22" ref-type="bibr">4</xref>]. In the current 10th virus taxonomy on the ICTV website, based on the final version (&#x201C;ICTVMasterSpeciesList2016v1.3&#x201D;), there are 4,404 species, whereas there are 9,556 complete genome sequences of viral species in GenBank RefSeq (<xref rid="t1-gi-2018-16-4-e22" ref-type="table">Table 1</xref>).</p>
+        <p>The goal in our web-based system is to extend the basic information in the ICTV taxonomy database in order to include strain and isolate group and to provide raw data of genomic sequences, as well as history and PubMed information for user-chosen viruses. As a prerequisite, the 10th ICTV taxonomy, which is the most recent, must be parsed. However, ICTV does not provide taxonomy history through OpenAPI. Thus, we collected the data on the taxonomy history and the linked node information via web scraping.</p>
+      </sec>
+      <sec>
+        <title>Virus taxonomy database</title>
+        <p>We collected the ICTV taxonomy from the &#x201C;ICTV Master Species List,&#x201D; which was officially announced in ICTV in 2016 (<xref rid="t2-gi-2018-16-4-e22" ref-type="table">Table 2</xref>); the taxonomy history was obtained by web scraping. Furthermore, in order to extend the resource including strain and isolation information and to connect to the viral GenBank information, we downloaded &#x201C;gbvrl1.seq.gz&#x201D;~&#x201C;gbvrl51.seq.gz&#x201D; (the GenBank virus file) using an FTP protocol and classified the data according to ICTV taxonomy criteria. Currently, the classification table, which is designed in the current ICTV database, includes classification name, classification level, release number and year, classification ID (composed of 8 digits), the most recent classification change ID (composed of 8 digits), parent classification name, change status, and proposal documents [<xref rid="b5-gi-2018-16-4-e22" ref-type="bibr">5</xref>].</p>
+        <p>However, in our web-based system, the current ICTV database was redesigned and divided as the tables in our database (<xref rid="t3-gi-2018-16-4-e22" ref-type="table">Table 3</xref>). Specifically, to enhance the database and to make useful linkages for NCBI accession, the NCBI Taxonomy items described in <xref rid="t3-gi-2018-16-4-e22" ref-type="table">Table 3</xref> and the items parsed by web scraping were built as an &#x201C;ICTV history&#x201D; table and &#x201C;ICTV Taxonomy&#x201D; table in <xref rid="t3-gi-2018-16-4-e22" ref-type="table">Table 3</xref>, respectively. The &#x201C;2016 ICTV Species&#x201D; table consists of the data parsed by the ICTV Master Species List (2016, v1.3).</p>
+      </sec>
+      <sec>
+        <title>Web construction</title>
+        <p>Our web-based system includes the traditional taxonomy (order, family, subfamily, genus, and species), as well as the information regarding strain and isolate. Furthermore, users can easily access journals containing information related to the published virus GenBank via the EMBL RESTful protocol [<xref rid="b6-gi-2018-16-4-e22" ref-type="bibr">6</xref>] and directly download and reuse NCBI FASTA and &#x201C;gbk&#x201D; file via the Entrez openAPI [<xref rid="b7-gi-2018-16-4-e22" ref-type="bibr">7</xref>]. However, the information of the chosen PubMed and strain and isolate are based on NCBI accession in (<xref rid="t3-gi-2018-16-4-e22" ref-type="table">Table 3</xref>). The journal search is connected by the parameters of the HTML <italic>get</italic> method, which is indicated by the PubMed ID. Web scraping methods were used to build the &#x201C;ICTV history&#x201D; table in our database after extracting meaningful information from the NCBI raw data. The tables in our database form the foundation of the web system. In the Spring framework, the web system consists of Java, which is independent of the operating system. According to the user commands, the internal parsing process is executed by pipelines that are implemented by the BioPython module. The internal parsing process extracts the information of the virus taxonomy, history, and reference articles from XML data, which are produced by the EMBL RESTful API, and text files of the NCBI virus GenBank. The overall process map for the web system is described in <xref rid="f2-gi-2018-16-4-e22" ref-type="fig">Fig. 2</xref>.</p>
+      </sec>
+    </sec>
+    <sec sec-type="other">
+      <title>Results and Discussion</title>
+      <p>The aim of this study was to evaluate and develop a computerized system that is fused with bioinformatics. Specifically, we focused on implementing an environment that extends the capabilities of the ICTV web system and connects to PubMed in order to enhance searches performed by academic groups. We extended and rebuilt the database and extracted meaningful data using a pipeline that parses XML, text, and web contents. Henceforth, this computerized system will be continually extended and used as a web tool that can detect new viral types and classify them rapidly and accurately. Recently, a new virus classification system based on metagenomics has been proposed. Thus, web-based virus taxonomy could augment the quality by adding virus classification, which is derived by viral metagenomics analysis [<xref rid="b8-gi-2018-16-4-e22" ref-type="bibr">8</xref>]. We suggest that the web system, analytical pipelines, and extended database we describe herein could be used to add these metagenomics data to ICTV taxonomy data.</p>
+    </sec>
+    <sec sec-type="supplementary-material">
+      <title>Supplement. Detail description of ICTV Extension DB</title>
+      <p>Supplementary data can be found with this article online at <ext-link ext-link-type="uri" xlink:href="https://doi.org/10.5808/GI.2018.16.4.e22">https://doi.org/10.5808/GI.2018.16.4.e22</ext-link>.</p>
+      <sec>
+        <title>1. Table Specification</title>
+        <sec>
+          <title>1-1.Table Specification of &#x201C;ICTV History&#x201D; (<xref rid="t3-gi-2018-16-4-e22" ref-type="table">Table 3</xref>)</title>
+          <table-wrap id="t4-gi-2018-16-4-e22" orientation="portrait" position="anchor">
+            <table frame="box" rules="all">
+              <tbody>
+                <tr>
+                  <td colspan="8" valign="middle" align="center" content-type="background-color:#C0C0C0" rowspan="1">Table Specification</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">System Name</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">SVI</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Date</td>
+                  <td colspan="2" valign="top" align="center" rowspan="1">2018.03.20</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Registrant</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">S.D.Kang</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Table Name</td>
+                  <td colspan="7" valign="top" align="left" rowspan="1">TN_ICTV_HIS</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Table Description</td>
+                  <td colspan="7" valign="top" align="left" rowspan="1">ICTV History Description Table</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Column</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Type</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Length</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">NULL</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">PK</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">FK</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Default</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Column Description</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">taxon_node</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">8</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Taxonomy Node</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ictv_nm</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">22</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Virus Name</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ictv_taxon_new</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">150</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Taxonomy New Name</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">mod_year</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">4</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Modification Year</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">mod_status</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">22</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Modification Status</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ictv_taxon_old</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">150</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Taxonomy Old Name</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ictv_taxon_ref</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">150</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Taxonomy Reference</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1"/>
+                  <td valign="top" align="right" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td colspan="8" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Index Definition</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">NO</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Index</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Column ID</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Order</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1"/>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td colspan="2" valign="top" align="center" rowspan="1"/>
+                  <td colspan="2" valign="top" align="center" rowspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td colspan="2" valign="top" align="center" rowspan="1"/>
+                </tr>
+                <tr>
+                  <td colspan="8" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">DDL</td>
+                </tr>
+                <tr>
+                  <td colspan="8" valign="top" align="left" rowspan="1">
+<preformat>
+CREATE TABLE tn_ictv_his(taxon_node character varying(8) COLLATE utf8_bin,
+ictv_nm character varying(22) COLLATE utf8_bin ,ictv_taxon_new character varying(150) COLLATE
+utf8_bin ,mod_year character varying(4) COLLATE utf8_bin,
+mod_status character varying(22) COLLATE utf8_bin ,ictv_taxon_old character varying(150)
+COLLATE utf8_bin ,ictv_taxon_ref character varying(150) COLLATE utf8_bin
+) COLLATE utf8_bin REUSE_OID;
+</preformat></td>
+                </tr>
+              </tbody>
+            </table>
+          </table-wrap>
+        </sec>
+        <sec>
+          <title>1-2.Table Specification of &#x201C;2016 ICTVSpecies&#x201D;(<xref rid="t3-gi-2018-16-4-e22" ref-type="table">Table 3</xref>)</title>
+          <table-wrap id="t5-gi-2018-16-4-e22" orientation="portrait" position="anchor">
+            <table frame="box" rules="all">
+              <tbody>
+                <tr>
+                  <td colspan="8" valign="middle" align="center" content-type="background-color:#C0C0C0" rowspan="1">Table Specification</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">System Name</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">SVI</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Date</td>
+                  <td colspan="2" valign="top" align="center" rowspan="1">2018.03.20</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Registrant</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">S.D.Kang</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Table Name</td>
+                  <td colspan="7" valign="top" align="left" rowspan="1">TN_ICTV_2016_v13</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Table Description</td>
+                  <td colspan="7" valign="top" align="left" rowspan="1">2016 ICTV Species List (Version 13)</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Column</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Type</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Length</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">NULL</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">PK</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">FK</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Default</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Column Description</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ictv_order</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">255</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Order Name</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ictv_family</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">255</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Family Name</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ictv_subfamily</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">255</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Subfamily Name</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ictv_genus</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">255</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Genus Name</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ictv_spe ecies</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">4096</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Species Name</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ictv_main_species</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">CHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">1</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Main Species</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ncbi_acces</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">255</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">NCBI Accession</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">isolate</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">255</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">NCBI Isolation</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">gene_com</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">255</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Genome Composition</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ictv_status</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">255</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Last Change Status</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">proposal</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">500</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Proposal Link</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">taxon_node</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">8</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Taxonomy Node ID</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1"/>
+                  <td valign="top" align="right" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td colspan="8" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Index Definition</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">NO</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Index</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Column ID</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Order</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1"/>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" rowspan="1" colspan="1">1</td>
+                  <td colspan="2" valign="top" align="left" rowspan="1">pk</td>
+                  <td colspan="2" valign="top" align="left" rowspan="1">taxon_node</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">1</td>
+                  <td colspan="2" valign="top" align="center" rowspan="1"/>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td colspan="2" valign="top" align="left" rowspan="1"/>
+                  <td colspan="2" valign="top" align="left" rowspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td colspan="2" valign="top" align="center" rowspan="1"/>
+                </tr>
+                <tr>
+                  <td colspan="8" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">DDL</td>
+                </tr>
+                <tr>
+                  <td colspan="8" valign="top" align="left" rowspan="1">
+<preformat>
+CREATE TABLE tn_ictv_2016_v13(ictv_order character varying(255) COLLATE utf8_bin,
+ictv_family character varying(255) COLLATE utf8_bin,
+ictv_subfamily character varying(255) COLLATE utf8_bin,
+ictv_genus character varying(255) COLLATE utf8_bin,
+ictv_spe ecies character varying(4096) COLLATE utf8_bin,
+ictv_main_species character(1) COLLATE utf8_bin,
+ncbi_acces character varying(255) COLLATE utf8_bin,
+isolate character varying(255) COLLATE utf8_bin,
+gene_com character varying(255) COLLATE utf8_bin,
+ictv_status character varying(255) COLLATE utf8_bin,
+proposal character varying(500) COLLATE utf8_bin,
+taxon_node character varying(8) COLLATE utf8_bin NOT NULL
+) COLLATE utf8_bin REUSE_OID;
+ALTER TABLE tn_ictv_2016_v13 ADD CONSTRAINT pk PRIMARY KEY (taxon_node);
+</preformat></td>
+                </tr>
+              </tbody>
+            </table>
+          </table-wrap>
+        </sec>
+        <sec>
+          <title>1-3.Table Specification of &#x201C;ICTV Taxonomy Nodes&#x201D; (<xref rid="t3-gi-2018-16-4-e22" ref-type="table">Table 3</xref>)</title>
+          <table-wrap id="t6-gi-2018-16-4-e22" orientation="portrait" position="anchor">
+            <table frame="box" rules="all">
+              <tbody>
+                <tr>
+                  <td colspan="8" valign="middle" align="center" content-type="background-color:#C0C0C0" rowspan="1">Table Specification</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">System Name</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">SVI</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Date</td>
+                  <td colspan="2" valign="top" align="center" rowspan="1">2018.03.20</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Registrant</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">S.D.Kang</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Table Name</td>
+                  <td colspan="7" valign="top" align="left" rowspan="1">ICTV_TAXON_NODE_ID</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Table Description</td>
+                  <td colspan="7" valign="top" align="left" rowspan="1">Taxonomy ID for All Virus Taxonomy Name</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Column</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Type</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Length</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">NULL</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">PK</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">FK</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Default</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Column Description</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">taxon_node</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">8</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ICTV Taxonomy Node ID</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">class_nm</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">12</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Class Name</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ictv_nm</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">22</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1">Virus Name</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1"/>
+                  <td valign="top" align="right" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td colspan="8" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Index Definition</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">NO</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Index</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Column ID</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Order</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1"/>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" rowspan="1" colspan="1">1</td>
+                  <td colspan="2" valign="top" align="left" rowspan="1">pk</td>
+                  <td colspan="2" valign="top" align="left" rowspan="1">taxon_node</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">1</td>
+                  <td colspan="2" valign="top" align="center" rowspan="1"/>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td colspan="2" valign="top" align="left" rowspan="1"/>
+                  <td colspan="2" valign="top" align="left" rowspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td colspan="2" valign="top" align="center" rowspan="1"/>
+                </tr>
+                <tr>
+                  <td colspan="8" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">DDL</td>
+                </tr>
+                <tr>
+                  <td colspan="8" valign="top" align="left" rowspan="1">
+<preformat>
+CREATE TABLE ictv_taxon_node_id(
+taxon_node character varying(8) COLLATE utf8_bin NOT NULL,
+class_nm character varying(12) COLLATE utf8_bin,
+ictv_nm character varying(22) COLLATE utf8_bin
+) COLLATE utf8_bin REUSE_OID;
+ALTER TABLE ictv_taxon_node_id ADD CONSTRAINT pk PRIMARYKEY (taxon_node);
+</preformat></td>
+                </tr>
+              </tbody>
+            </table>
+          </table-wrap>
+        </sec>
+        <sec>
+          <title>1-4.Table Specification of &#x201C;NCBI Taxonomy&#x201D; (<xref rid="t3-gi-2018-16-4-e22" ref-type="table">Table 3</xref>)</title>
+          <table-wrap id="t7-gi-2018-16-4-e22" orientation="portrait" position="anchor">
+            <table frame="box" rules="all">
+              <tbody>
+                <tr>
+                  <td colspan="8" valign="middle" align="center" content-type="background-color:#C0C0C0" rowspan="1">Table Specification</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">System Name</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">SVI</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Date</td>
+                  <td colspan="2" valign="top" align="center" rowspan="1">2018.03.20</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Registrant</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">S.D.Kang</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Table Name</td>
+                  <td colspan="7" valign="top" align="left" rowspan="1">NCBI_GB_STRAIN_ISOLATION</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Table Description</td>
+                  <td colspan="7" valign="top" align="left" rowspan="1">Taxonomy, Species,Strain and Isolation Info for NCBI GenBank</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Column</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Type</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Length</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">NULL</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">PK</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">FK</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Default</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Column Description</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ncbi_acces</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">255</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ncbi_genus</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">255</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ncbi_spe ecies</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">4096</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ncbi_taxon</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">4096</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ncbi_strain</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">255</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1">ncbi_isolate</td>
+                  <td valign="top" align="left" rowspan="1" colspan="1">VARCHAR</td>
+                  <td valign="top" align="right" rowspan="1" colspan="1">255</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">Y</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td valign="top" align="left" rowspan="1" colspan="1"/>
+                  <td valign="top" align="left" rowspan="1" colspan="1"/>
+                  <td valign="top" align="right" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td colspan="8" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Index Definition</td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">NO</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Index</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">Column ID</td>
+                  <td valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1" colspan="1">Order</td>
+                  <td colspan="2" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1"/>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" rowspan="1" colspan="1">1</td>
+                  <td colspan="2" valign="top" align="left" rowspan="1">pk</td>
+                  <td colspan="2" valign="top" align="left" rowspan="1">ncbi_acces</td>
+                  <td valign="top" align="center" rowspan="1" colspan="1">1</td>
+                  <td colspan="2" valign="top" align="center" rowspan="1"/>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td colspan="2" valign="top" align="left" rowspan="1"/>
+                  <td colspan="2" valign="top" align="left" rowspan="1"/>
+                  <td valign="top" align="center" rowspan="1" colspan="1"/>
+                  <td colspan="2" valign="top" align="center" rowspan="1"/>
+                </tr>
+                <tr>
+                  <td colspan="8" valign="top" align="center" content-type="background-color:#C0C0C0" rowspan="1">DDL</td>
+                </tr>
+                <tr>
+                  <td colspan="8" valign="top" align="left" rowspan="1">
+<preformat>
+CREATE TABLE ncbi_gb_refseq_taxon(
+ncbi_acces character varying(255) NOT NULL,
+ncbi_genus character varying(255),
+ncbi_spe ecies character varying(4096),
+ncbi_taxon character varying(4096),
+ncbi_strain character varying(255),
+ncbi_isolate character varying(255)
+) COLLATE iso88591_bin;
+ALTER TABLE ncbi_gb_refseq_taxon ADD CONSTRAINT pk PRIMARY KEY (ncbi_acces);
+</preformat></td>
+                </tr>
+              </tbody>
+            </table>
+          </table-wrap>
+        </sec>
+      </sec>
+      <sec>
+        <title>2. System Diagram</title>
+        <p>
+<fig id="f3-gi-2018-16-4-e22" orientation="portrait" position="anchor"><caption><p>System and Data ppub Diagram (Used Cubrid 9.x DBMS)</p></caption><graphic xlink:href="gi-2018-16-4-e22f3"/></fig></p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by an intramural research grant of Chungbuk National University in 2015.</p>
+    </ack>
+    <fn-group>
+      <fn id="fn1-gi-2018-16-4-e22">
+        <p>
+          <bold>Authors&#x2019; contribution</bold>
+        </p>
+        <p>Conceptualization: YCK</p>
+        <p>Data curation: SK</p>
+        <p>Formal analysis: SK</p>
+        <p>Methodology: SK, YCK</p>
+        <p>Writing &#x2013; original draft: SK</p>
+        <p>Writing &#x2013; review &amp; editing: SK, YCK</p>
+      </fn>
+      <fn id="fn2-gi-2018-16-4-e22" fn-type="COI-statement">
+        <p>
+          <bold>Conflicts of Interest</bold>
+        </p>
+        <p>No potential conflicts of interest relevant to this article was reported.</p>
+      </fn>
+    </fn-group>
+    <ref-list>
+      <title>References</title>
+      <ref id="b1-gi-2018-16-4-e22">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Benson</surname>
+              <given-names>DA</given-names>
+            </name>
+            <name>
+              <surname>Cavanaugh</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Clark</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Karsch-Mizrachi</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Lipman</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <name>
+              <surname>Ostell</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>GenBank</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2013</year>
+          <volume>41</volume>
+          <fpage>D36</fpage>
+          <lpage>D42</lpage>
+          <pub-id pub-id-type="pmid">23193287</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b2-gi-2018-16-4-e22">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Simmonds</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>Methods for virus classification and the challenge of incorporating metagenomic sequence data</article-title>
+          <source>J Gen Virol</source>
+          <year>2015</year>
+          <volume>96</volume>
+          <fpage>1193</fpage>
+          <lpage>1206</lpage>
+          <pub-id pub-id-type="pmid">26068186</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b3-gi-2018-16-4-e22">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cientific</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Atabases</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>The universal virus database ictvdb</article-title>
+          <source>Syst Zool</source>
+          <year>1974</year>
+          <volume>23</volume>
+          <fpage>50</fpage>
+          <lpage>57</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b4-gi-2018-16-4-e22">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Adams</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Lefkowitz</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>King</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Harrach</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>RL</given-names>
+            </name>
+            <name>
+              <surname>Knowles</surname>
+              <given-names>NJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>50 years of the International Committee on Taxonomy of Viruses: progress and prospects</article-title>
+          <source>Arch Virol</source>
+          <year>2017</year>
+          <volume>162</volume>
+          <fpage>1441</fpage>
+          <lpage>1446</lpage>
+          <pub-id pub-id-type="pmid">28078475</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b5-gi-2018-16-4-e22">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lefkowitz</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>Dempsey</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>Hendrickson</surname>
+              <given-names>RC</given-names>
+            </name>
+            <name>
+              <surname>Orton</surname>
+              <given-names>RJ</given-names>
+            </name>
+            <name>
+              <surname>Siddell</surname>
+              <given-names>SG</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>DB</given-names>
+            </name>
+          </person-group>
+          <article-title>Virus taxonomy: the database of the International Committee on Taxonomy of Viruses (ICTV)</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2018</year>
+          <volume>46</volume>
+          <fpage>D708</fpage>
+          <lpage>D717</lpage>
+          <pub-id pub-id-type="pmid">29040670</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b6-gi-2018-16-4-e22">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lopez</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Cowley</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>McWilliam</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Using EMBL-EBI services via web interface and programmatically via web services</article-title>
+          <source>Curr Protoc Bioinformatics</source>
+          <year>2014</year>
+          <volume>48</volume>
+          <fpage>3.12.1</fpage>
+          <lpage>3.12.50</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b7-gi-2018-16-4-e22">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McEntyre</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Linking up with Entrez</article-title>
+          <source>Trends Genet</source>
+          <year>1998</year>
+          <volume>14</volume>
+          <fpage>39</fpage>
+          <lpage>40</lpage>
+          <pub-id pub-id-type="pmid">9448465</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b8-gi-2018-16-4-e22">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Simmonds</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Adams</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Benk&#x151;</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Breitbart</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Brister</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Carstens</surname>
+              <given-names>EB</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Consensus statement: virus taxonomy in the age of metagenomics</article-title>
+          <source>Nat Rev Microbiol</source>
+          <year>2017</year>
+          <volume>15</volume>
+          <fpage>161</fpage>
+          <lpage>168</lpage>
+          <pub-id pub-id-type="pmid">28134265</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="f1-gi-2018-16-4-e22" orientation="portrait" position="float">
+      <label>Fig. 1</label>
+      <caption>
+        <p>GenBank sequences (A) and whole-genome sequences (B) published over time.</p>
+      </caption>
+      <graphic xlink:href="gi-2018-16-4-e22f1"/>
+    </fig>
+    <fig id="f2-gi-2018-16-4-e22" orientation="portrait" position="float">
+      <label>Fig. 2</label>
+      <caption>
+        <p>(A, B) Search for strain and isolate from NCBI GenBank files and connection to PubMed via the EMBL RESTful API. ICTV, International Committee on Taxonomy of Viruses.</p>
+      </caption>
+      <graphic xlink:href="gi-2018-16-4-e22f2"/>
+    </fig>
+    <table-wrap id="t1-gi-2018-16-4-e22" orientation="portrait" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Number of viruses classified or sequenced in the 10th ICTV Taxonomy and GenBank</p>
+      </caption>
+      <table frame="hsides" rules="rows">
+        <thead>
+          <tr>
+            <th valign="bottom" align="center" rowspan="1" colspan="1">Virus taxonomy</th>
+            <th valign="bottom" align="center" rowspan="1" colspan="1">ICTV</th>
+            <th valign="bottom" align="center" rowspan="1" colspan="1">RefSeq</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Order</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">8</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">-</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Family</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">122</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">-</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Subfamily</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">35</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">-</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Genus</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">735</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">-</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Species</td>
+            <td valign="top" align="right" rowspan="1" colspan="1">4,404</td>
+            <td valign="top" align="center" rowspan="1" colspan="1">9,556</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tfn1-gi-2018-16-4-e22">
+          <p>ICTV, International Committee on Taxonomy of Viruses.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="t2-gi-2018-16-4-e22" orientation="portrait" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>Current ICTV DB</p>
+      </caption>
+      <table frame="hsides" rules="rows">
+        <thead>
+          <tr>
+            <th valign="bottom" align="center" rowspan="1" colspan="1">ICTV items</th>
+            <th valign="bottom" align="center" rowspan="1" colspan="1">Example 1</th>
+            <th valign="bottom" align="center" rowspan="1" colspan="1">Example 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Taxon name</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Measles virus</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Measles morbillivirus</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Taxon level</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Species</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Species</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Release number</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">30</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">31</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Release year</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">2015</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">2016</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Taxon ID (stable)</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">19750163</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">19750163</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Node ID (new with each release)</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">20151044</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">20161044</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Parent taxon</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Morbillivirus</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Morbillivirus</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Last change</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Move</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Rename</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Proposal</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">2015.Pneumoviridae. pdf</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">2016.Paramyxovir idaespren.pdf</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tfn2-gi-2018-16-4-e22">
+          <p>ICTV DB, International Committee on Taxonomy of Viruses database.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="t3-gi-2018-16-4-e22" orientation="portrait" position="float">
+      <label>Table 3</label>
+      <caption>
+        <p>Modified virus taxonomy tables (PK: primary key)</p>
+      </caption>
+      <table frame="hsides" rules="rows">
+        <thead>
+          <tr>
+            <th valign="bottom" align="center" rowspan="1" colspan="1">ICTV history</th>
+            <th valign="bottom" align="center" rowspan="1" colspan="1">2016 ICTV species</th>
+            <th valign="bottom" align="center" rowspan="1" colspan="1">ICTV taxonomy</th>
+            <th valign="bottom" align="center" rowspan="1" colspan="1">NCBI taxonomy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">ICTV taxon node</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">ICTV order</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Taxon node (PK)</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">NCBI accession (PK)</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">ICTV name</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">ICTV family</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Taxon type</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">NCBI genus</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">ICTV new taxon</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">ICTV subfamily</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">Taxon name</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">NCBI species</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Modification year</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">ICTV genus</td>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1">NCBI taxon</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">Modification status</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">ICTV species</td>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1">NCBI strain</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">ICTV old taxon</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">ICTV main species</td>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1">NCBI isolate</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" rowspan="1" colspan="1">ICTV proposal</td>
+            <td valign="top" align="left" rowspan="1" colspan="1">NCBI accession<break/>Isolation name<break/>Gene type<break/>ICTV status<break/>ICTV proposal</td>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+            <td valign="top" align="left" rowspan="1" colspan="1"/>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tfn3-gi-2018-16-4-e22">
+          <p>Refer to &#x201C;Supplementary Material&#x201D; for a detailed table description of the International Committee on Taxonomy of Viruses (ICTV) Extension database.</p>
+        </fn>
+        <fn id="tfn4-gi-2018-16-4-e22">
+          <p>Accessible URL address: <ext-link ext-link-type="uri" xlink:href="http://synb.chungbuk.ac.kr:8080/ICTV">http://synb.chungbuk.ac.kr:8080/ICTV</ext-link>.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+</pmc-articleset>
