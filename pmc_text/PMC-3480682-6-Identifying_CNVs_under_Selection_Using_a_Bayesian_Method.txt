@@ -1,0 +1,10 @@
+Likelihood for allele counts
+The data of codominant markers consist of allele counts obtained from samples of size nij. We use αijk to denote the number of alleles k observed at locus i in the sample from subpopulation j. Thus, nij = Σkαijk. The full dataset can be presented as a matrix N = { aij }, where aij = { αij1, αij2, ..., αijKi } is the allele count at locus i for subpopulation j. The observed allele frequencies, aij, can be considered as sampled from the true alleles frequencies and therefore can be described by the multinomial distribution:
+(6)
+We adopt the multinomial-Dirichlet distribution as a marginal distribution of aij, the allele frequency counts at a locus within a subpopulation, and the reasons of its adoption are explained in Foll and Gaggiotti [26]:
+The joint likelihood for allele counts is obtained by multiplying across all loci and populations:
+(7)
+Since the allele frequencies in the ancestral population pi = { pik } are unknown, they are estimated by introducing a noninformative Dirichlet prior, pi ~ Dir (1, … , 1), into the Bayesian model [27].
+The full Bayesian model is given by
+(8)
+Following Beaumont and Balding [22], the Gaussian prior distributions are used for the population effects βj and for the locus effects αi. Their means and variances are chosen to improve convergence and for each to have non-negligible density over almost the whole interval from 0 to 1.

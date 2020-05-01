@@ -1,0 +1,8 @@
+Gene selection
+Although the pre-screening process greatly reduced the number of genes, there remained the problem of an ill-posed model, since the sample size was very small compared to the number of features. Therefore, sequential variable selection using a multiple Cox regression model was not applicable. To solve such a problem, as presented below, multiple Cox regression using penalized partial likelihood was used for variable selection and shrinkage estimation.
+β ^ = argmin β 1 n [ Σ s = 1 S - X i s t + log { Σ i ∈ R s exp ( X i s t β ) } ] + P α , λ ( β ) ,
+where Pα,λ(β)=Σc=1Cλ(δ∣βc∣+0.5(1-δ)βc2)+Σg=1Gλ(δ∣βg∣+0.5(1-δ)βg2) is the penalty function. Note that C and G are the indicator sets of clinical and genetic variables, respectively.
+Modified partial likelihood was also used to select clinical variables more favorably, since some clinical variables have already been reported to be significant.
+P γ , α , λ ( β ) = Σ c = 1 C λ γ ( δ ∣ β c ∣ + 0.5 ( 1 - δ ) β c 2 ) + Σ g = 1 ∣ G ˜ ∣ λ ( δ ∣ β g ∣ + 0.5 ( 1 - δ ) β g 2 )
+Thus, the penalty factor γ is used to reduce the penalty of clinical variables.
+The partial likelihood estimation process explained above is implemented in the R package “glmnet,” also known as “coxnet” [15].

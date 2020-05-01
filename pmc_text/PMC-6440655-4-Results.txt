@@ -1,0 +1,6 @@
+Measurements of gene expression
+The following are the measurements of gene expression used in the public databases. Read counts are simply the number of reads overlapping a given feature such as a gene. Counts are often used by the methods identifying differentially expressed genes as a counting model, such as a Poisson or negative binomial, which naturally represents them. Fragments per kilobase of exon per million reads are much more complicated. Fragment means fragment of DNA; therefore, the two reads that comprise a paired-end read count as one. Per kilobase of exon means the count of fragments is then normalized by dividing by the total length of all exons in the gene (or transcript).
+F P K M g = R C g R C p c 10 3 * L 10 6 = R C g * 10 9 R C p c * L ,
+where, RCg is number of reads mapped to the gene, RCpc is number of reads mapped to all protein-coding (exon) genes, and L is length of the gene in base pairs. TPM is a measurement of the proportion of transcripts in mRNA. TPM is probably the most stable unit across experiments, although you still should not compare it across experiments.
+T P M g = R C g L g * 1 ∑ j R C j L k * 10 6 ,
+where, RCg is the number of reads mapped for each gene and Lg is the length of the gene.

@@ -1,0 +1,23 @@
+SNP sets
+Because the components of SNPs seem to be related to the performance of risk prediction, we used two data sources (i.e., the GWAS catalog and KARE cohort). First, we collected the SNPs, p1, from a GWAS catalog in all populations and an Asian population only. Second, the SNPs were selected by single-variant association test using logistic regression, with adjustments for age, sex, area (namely, rural area of Anseong and urban area of Ansan), and body mass index (BMI). We chose the top-ranked p2 SNPs by the order of p-values from the KARE cohort. In Table 2, we have categorized five SNP sets.
+(1) ALL (SNPs only reported in the GWAS catalog)
+(2) ASIAN (SNPs only reported in the GWAS catalog with an Asian population)
+(3) KARE (only top-ranked p2 SNPs in the KARE cohort)
+(4) ALL + KARE (combined SNPs in the GWAS catalog and KARE cohort)
+(5) ASIAN + KARE (combined SNPs in the GWAS catalog with an Asian population and the KARE cohort)
+Stage 1: Variable selection
+In the KARE dataset, we separated 3,985 individuals (1,042 T2D subjects, 2,943 normal subjects) into a training set of 3,180 individuals (830 T2D subjects, 2,350 normal subjects) and a test set of 805 individuals (212 T2D subjects, 593 normal subjects) (see Fig. 1). The variable selection was performed using 5-fold cross-validation (CV) on the training set. We describe the details below.
+The phenotype yi of subject i = 1, …, n was set as a dependent variable (T2D = 1, normal = 0), and the genotype xij of the j-th SNP (j = 1, …, p) for subject i was set as an independent variable with an additive genetic model (AA = 0, Aa = 1, aa=2, where A and a indicate the major and minor alleles, respectively).
+For variable selection, the following SLR was conducted. logP(yi=1)1−P(yi=1)=β0+∑j=1pβjxij+γ1AGEi+γ2SEXi+γ3AREAi+γ4BMIi, where β0 and βj are the intercept and effect sizes of SNPs, respectively. γ1, γ2, γ3, and γ4 represent the age, sex, area (namely, rural and urban areas), and BMI of the i-th individuals, respectively. For the given covariates, the selection of SNPs was determined by a stepwise procedure based on Akaike’s information criterion [35]. The stepwise procedure was conducted using the R-package MASS [36].
+The penalized method solves the following: minβ0, β, γ∑i=1n(yi−β0−X′iβ−COV′iγ)2+Pλ(β), where Xi = (xi1, …, xij, …, xip)T and COVi = (AGEi, SEXi, AREAi, BMIi)T for the i-th subject, β = (β1, …, βj, …, βp)T, and γ = (γ1, γ2, γ3, γ4)T. Lasso and EN penalties are defined as Pλ(β) = λΣ|β| and Pλ(β) = λ[(1 − α)Σ|β| + αΣβ2], respectively. λ and α are a tuning parameter and a weight of a value between 0 to 1, respectively. All penalized methods were conducted using the R-package glmnet [37].
+Then, we defined five sets as follows:
+(1) One set: set of SNPs that have a non-zero coefficient at least one time among the 5-fold CV
+(2) Two set: set of SNPs that have a non-zero coefficient at least two times among the 5-fold CV
+(3) Three set: set of SNPs that have a non-zero coefficient at least three times among the 5-fold CV
+(4) Four set: set of SNPs that have a non-zero coefficient at least four times among the 5-fold CV
+(5) Five set: set of SNPs having non-zero coefficients in the 5-fold CV,
+where one set ⊃ two set ⊃ three set ⊃ four set ⊃ five set.
+Stage 2: Construction of risk prediction models
+For construction of the risk prediction model, we considered 9 combinations of variable selection and prediction methods (i.e., SLR-SLR, SLR-LASSO, SLR-EN, LASSO-SLR, LASSO-LASSO, LASSO-EN, EN-SLR, EN-LASSO, and EN-EN). For each combination, we constructed prediction models using the entire KARE training dataset (n = 3,180).
+Stage 3: Evaluation of risk prediction models
+For evaluating the risk prediction performance, we needed to assess both internally and externally to determine the performance of the prediction models. To validate the risk prediction methods, we used internal and external validation datasets from the KARE testing dataset (n = 805) and an external replication dataset (n = 4,723), respectively. In both the internal and external validation datasets, we used the AUC of the receiver operator characteristic (ROC) curve, which is widely used for risk prediction performance [3839]. The ROC curve is a graphical plot of sensitivity (true positive rate) against 1 – specificity (false-positive rate) across all possible threshold values. A summary measure of ROC curves, such as AUC, is indicated as the discriminative accuracy. An AUC score close to 0.5 reflects random chance, while AUC values closer to 1 indicate perfect accuracy.

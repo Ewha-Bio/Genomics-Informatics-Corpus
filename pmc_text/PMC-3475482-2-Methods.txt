@@ -1,0 +1,23 @@
+Concepts and definitions
+Let Σ = {A, C, G, T} be a set of DNA alphabets, where A, C, G, and T are called DNA characters or bases. A DNA sequence S is an ordered list of DNA alphabets. S is denoted by 〈c1, c2, ..., cl〉, where ci ∈ Σ and |S| denotes the length of sequence S. A sequence with length n is called an n-sequence. A sequence database D is a set of tuples 〈sid, S〉, where sid is a sequence ID. The sum of the lengths of all sequences in D is denoted as |D|=|S1|+|S2|...|Sn|
+Definition 1 (Patter)
+A pattern is a contiguous sub-sequence of DNA sequence S drawn from Σ = {A, C, G, T}. A sequence α = 〈a1, a2, ..., an〉 is called a contiguous sub-sequence of another sequence β = 〈b1, b2, ..., bm〉, and β is a contiguous super-sequence of α, denoted as α⊆β, if there exists integers 1 ≤ j1 ≤ j2 ≤ ... ≤ jn ≤ m and ji+1 = ji + 1 for 1 ≤ i ≤ n-1 such that a1 = bj1, a2 = bj2, ..., an = bjn. We can also say that α is contained by β. In our paper, we use the term "(sub)-sequence" to describe "contiguous (sub)-sequence" in brief.
+Definition 2 (Support)
+Given a pattern P and a sequence S, the number of occurrences of P in S is called the support of pattern P in sequence S, denoted as Sup(P, Si). For DNA sequence database D, the support of P in D is defined as .
+Definition 3 (Confidence)
+Given a pattern P = P1, P2, ..., Pq and a DNA sequence database D, the confidence of P1P2 with respect to P1 is defined as Conf(P1P2, P1) = Sup(P1P2,D)/Sup(P1,D).
+For example, the character "A" occurs 10 times and "AT" occurs 7 times, and in database D in Table 1, Conf(AT,A) = 7/10 = 0.7.
+Definition 4 (Pattern probability)
+Given a pattern P = P1, P2, ..., Pq (Pi is a DNA alphabet) and a DNA sequence database D, the pattern probability of P in D is defined as , where Pr(Pi, D) = # of occurrences of an alphabet Pi/|D|.
+For example, the pattern probability of pattern "ATCG" in Table 1 is Pr(ATCG,D) = Pr(A,D) × Pr(T,D) × Pr(C,D) × Pr(G,D) = (10/55) × (18/55) × (12/55) × (15/55) = 0.182 × 0.372 × 0.218 × 0.273 = 0.00403.
+Definition 5 (Information)
+The information carried by a DNA character or base in DNA sequence database D is defined as I(c) = -log|C|Pr(c,D), where |C| is the number of distinct characters in D and Pr(c) is the probability of c occurs in D.
+For example, the occurrence probability of character A in Table 1 is Pr(A,D) = # of occurence(A)/|D|. So, the probability of character A is Pr(A,D) = 10/55 = 0.182 in our example database. Then, the information of character A in D is, I(A) = -log|C|Pr(A,D) = -log4(0.182) = 1.228.
+Definition 6 (Pattern information)
+Given a pattern P = P1, P2, ..., Pq and a DNA sequence database D, the pattern information of P in D is defined as I(P) = -log|C|Pr(P,D) = I(P1) + I(P2) +......+ I(Pq).
+For example, the pattern information of pattern "ATCG" is I(ATCG,D) = I(A,D) + I(T,D) + I(C,D) + I(G,D) = 1.228 + 0.713 + 1.098 + 0.9365 = 3.9755 in Table 1.
+Definition 7 (Information gain)
+Given a pattern P = P1, P2, ..., Pq and a DNA sequence database D, the pattern information gain of P in D is defined as IG(P) = I(P) × Support(P).
+For example, the information gain of pattern "ATCG" is IG(ATCG,D) = 3.9755 * 5 = 19.8775 in Table 1.
+Definition 8 (Finding interesting patterns)
+Given a sequence database D and user-specified min_conf and min_in_gain, the problem of finding interesting patterns is to find the complete set of interesting patterns, such that IG(P) and Conf(P) are greater than min_in_gain and min_conf , respectively.

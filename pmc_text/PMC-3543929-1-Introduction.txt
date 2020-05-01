@@ -1,0 +1,18 @@
+In formal language theory a language is simply a set of strings of characters drawn from some alphabet, where the alphabet (terminal) is a set of symbols. When we consider biological sequences simply as a language in the context of formal language theory (treating DNA, RNA, or protein sequences just as strings of alphabets of four nucleotides or 20 amino acids), a grammatical inference method based on formal language theory can be applied [1-3].
+Nevill-Manning and Witten [4] pioneered the attempt to produce the context-free grammarof biological sequences in an automatic way. This task can be formalized as the problem of finding the smallest context-free grammar by recursively replacing the repeats by a new symbol. The algorithm builds a hierarchy of phrases by forming a new rule out of existing pairs of symbols, including non-terminal symbols.
+For example, if we consider the string "atattattatt," the simplest way to represent the string by context-free grammar is the following:
+<Grammar 0>
+S → atattattatt
+The most frequently occurring sequence in the string is "at," which occurs four times. Thus, introducing a new nonterminal symbol, 'A,' and creating a new rule for this yields the following modified grammar:
+<Grammar 1>
+S → AAtAtAt
+A → at,
+where the grammar consists of a start symbol (i.e., S), two terminal symbols (i.e., a, t) represented by lowercase letters, two non-terminal symbols (i.e., S, A) represented by uppercase letters, and two production rules (i.e., S → AAtAtAt, A → at) with a left- and a right-hand side consisting of a sequence of these symbols.
+Repeatedly replacing the frequently occurring patterns "At," again to a new nonterminal symbol, B, gives the following modified grammar:
+<Grammar 2>
+S → ABBB
+A → at
+B→ At,
+where the grammar consists of a start symbol (i.e., S), two terminal symbols (i.e., a, t), three non-terminal symbols (i.e., S, A, B), and three production rules (i.e., S → ABBB, A → at, B → At).
+By applying the three production rules by replacing an occurrence of the nonterminals on the left-hand side of the production rule with those that appear on the right-hand side, the string "atattattatt" can be derived from the non-terminal S by constantly applying a series of derivations: S → ABBB → atBBB → atAtBB → atattBB → atattAtB → atattattB → atattattAt → atattattatt.
+Based on this concept, grammar-based compression algorithms have shown some success for various applications [4-7]. Especially, grammar can capture distant repetitions occurring far apart, which was a limitation of sliding window approaches. However, grammar-based compression algorithms at this moment do not show the best performance for compression itself [6]. Thus, our motivation of this study is not to develop a new algorithm or find the most efficient way to compress biological sequences for storage purposes. Our sole purpose of developing a new tool is to investigate any grammatical traits of biological sequences, based on formal language theory.

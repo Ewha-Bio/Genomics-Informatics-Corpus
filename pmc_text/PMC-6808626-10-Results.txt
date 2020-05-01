@@ -1,0 +1,5 @@
+Speed
+In order to evaluate speed of our web service, we created a set of 10,000 randomly selected PubMed abstracts, (1) which we sent to the web service directly to obtain “default” dependency parses, and (2) which we first tagged for named entities using OGER, and then sent to the web service to obtain “improved” parses. Table 1 lists the time it took our tool to complete the dependency parsing step for both cases.
+We attribute this decrease in processing time to the diminished complexity of computing the parses.
+In a practical setting, however, our web service needs to recompute token offsets in order to correctly integrate NERs in the token stream.
+While spaCy in the “default” case does this in a internally optimized fashion, our service currently is not optimized to the same degree, which in practice results in overall lower processing times. The integration of NERs still produces an advantage, as the generated parses avoid some errors that otherwise would have been generated (see below). In practice, when using the web service over the network, total processing time will be around 0.3 s per abstract.

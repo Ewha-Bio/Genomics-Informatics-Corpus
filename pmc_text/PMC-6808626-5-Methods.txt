@@ -1,0 +1,6 @@
+Input format
+Input is provided either as plain text or as a JSON string. The latter may either contain just a text field, or additionally annotations in PubAnnotation's JSON format (http://www.pubannotation.org/docs/annotation-format/) (Fig. 2).
+The input is then internally converted into a spaCy object. From there, spaCy is used to perform tokenization, PoS tagging and dependency parsing, taking into account existing annotations if available.
+This is done by tokenizing the text provided, and iterating through the given annotations to form a new sequence of tokens. This new sequence keeps the NER annotations as individual tokens and does not break them down further. In case of conflicting and overlapping annotations, we use the leftmost longest match.
+Using this new token sequence, a new spaCy representation object is created on which dependency parsing is performed.
+If no annotations are provided manually, our web service will automatically call another service to automatically obtain named entity annotations. While this could be any service, it is currently set to using OGER.

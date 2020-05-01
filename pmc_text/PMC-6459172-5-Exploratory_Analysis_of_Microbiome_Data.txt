@@ -1,0 +1,23 @@
+Diversity analysis
+The diversity of the microbiome is an important indicator of the good or bad conditions of the ecosystem, with larger microbiome diversity being usually associated to better health status. Microbiome diversity can be assessed through multiple ecological indices that can be divided into two kind of measures, alpha and beta diversity. Alpha diversity measures the variability of species within a sample while beta diversity accounts for the differences in composition between samples. The R package vegan provides a large set of diversity measures [19].
+Alpha diversity: within sample diversity
+The most important measure of alpha diversity is richness, defined as the number of different species present in an environment. Richness is estimated by the observed richness, Robs, the number of different species observed in the sample. The observed richness tends to underestimate the real richness in the environment, where the less frequent species are likely to be undetected. There are different indices that adjust for this and try to estimate the hidden part that has not been detected. One of the most extended richness measure is Chao1 index defined as
+𝑅 𝐶 ℎ 𝑎 𝑜 1   =   𝑅 𝑜 𝑏 𝑠   + 𝑓 1 ( 𝑓 1   −   1 ) 2 ( 𝑓 2   +   1 )
+where f1 is the number of species observed only once and f2 is the number of species observed twice.
+Another important indicator of alpha diversity is evenness, which measures the homogeneity in abundance of the different species in a sample. A commonly used measure of evenness is the Shannon index defined as
+𝑅 S ℎ 𝑎 𝑛 𝑛 𝑜 𝑛   =   − ∑ i = 1 k p i log p i
+where pi represents the relative abundances of the i-th taxon.
+Beta diversity: between samples diversity
+Beta diversity measures the differences in microbiome composition between samples. There is a wide range of ecological distances or dissimilarities for measuring how close are two microbial compositions. The most commonly used are Bray-Curtis, UniFrac and weighted UniFrac distances. We also define the Aitchison distance which is a proper distance for compositional data.
+Let p1= (p11,…,p1k ) and p2= (p21,…,p2k ) denote the microbiome relative abundance of two different samples.
+Bray-Curtis is defined as follows:
+d B C p 1 , p 2 = ∑ i = 1 k p 1 i - p 2 i ∑ i = 1 k p 1 i + p 2 i
+UniFrac family of distances [20] consider the phylogenetic tree that represents the evolutionary relationships among the different taxa. The phylogenetic tree can be obtained from the bioinformatic pipelines, such as mothur and QIIME. For a tree with r branches, let b = (b1,…,br) represent the length of the different branches in the phylogenetic tree, and q1= (q11,… ,q1r), and q2= (q21,… ,q2r) the relative abundances associated to each branch for the first and the second sample, respectively.
+The unweighted UniFrac distance measures the relative length of those branches that lead exclusively to species present in only one of the two samples with respect to the total length of all branches in the tree:
+d U ( b , q 1 , q 2 ) = ∑ i = 1 r b i I q 1 i > 0 - I q 2 i > 0 ∑ i = 1 r b i I q 1 i + q 2 i > 0
+The unweighted UniFrac distance only takes into account the presence or absence of the taxa but Lozupone et al. [20] also introduced the weighted UniFrac distance that includes information on the relative abundance of each taxa and is defined as follows:
+d W ( b , q 1 , q 2 ) = ∑ i = 1 r b i q 1 i - q 2 i ∑ i = 1 r b i q 1 i + q 2 i I q 1 i + q 2 i > 0
+For a proper CoDA analysis, a distance must be subcompositionally dominant, which means that the distance between two points in a multi-dimensional space should always be larger than their distance when projected in a lower dimensional space (sub-composition). Most commonly used distances in microbiome analysis, such as, the Bray-Curtis and the weighted and unweighted UniFrac distances are not sub-compositionally dominant, and this may induce sub-compositionally incoherencies that question the reliability of the results of any distance-based analysis [8,11,21].
+The Aitchison distance is a sub-compositionally coherent distance defined as the Euclidean distance after the clr-transformation of the compositions. Given two compositions x1 and x2, the Aitchison distance is given by
+𝑑 𝐴 ( x 1 ,   x 2   )   =   𝑑 𝐸   ( 𝑐 𝑙 𝑟 ( x 1 ) ,   𝑐 𝑙 𝑟 ( x 2 ) )
+where dE denotes Euclidean distance.

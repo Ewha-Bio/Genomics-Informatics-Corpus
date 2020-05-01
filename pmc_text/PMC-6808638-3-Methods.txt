@@ -1,0 +1,4 @@
+Model construction and validation
+To construct our DNN model, we utilized TensorFlow 1.13.1 as our machine learning library with Python 3.6.0 [16].
+We chose tf.contrib.learn.DNNClassifier for model construction. For the hyperparameters of our model, we set the dropout rate at 0.15, we chose the Adam optimizer, and we fixed the learning rate at 1e-5. The activation function was leaky_relu and the number of layers was 4. The numbers of neurons of the layers were 512, 256, 128, and 16, respectively (Fig. 2). When we constructed our model under these hyperparameter settings, we set the number of learning steps as 5,000. An Nvidia Titan RTX 24GB was used for the GPU.
+In order to obtain measurements for the performance of our model, accuracy was calculated using the predicted values from the training set and the test set; then, receiver operating characteristic curves and the area under the curve (AUC) were obtained by the roc-curve function in the scikit-learn package.

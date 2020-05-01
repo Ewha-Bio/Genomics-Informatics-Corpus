@@ -1,0 +1,16 @@
+Hardware setup and optimization of the Neo4j graph DB
+We set up a high-performance computer server (80 CPUs and 1 TB RAM) for the graph database to support the storage and analysis of billions of different biological networks and relationships. Also, we optimized the server by performance tuning of the installed Neo4j (Table 1) following the Neo4j operations manual [16]. The performance tuning included the following three steps (Fig. 1).
+Memory configuration
+The performance of Neo4j for a data search depends on the available memory to hold the entire graph database [17]. If less memory is used than what the constructed graph database requires, a swap between the memory and hard disk should occur, but frequent swaps between memory and hard disk inevitably slow down the search speed. Thus, large memory is needed and should also be set up for Neo4j for full usage of the system memory. The memory configuration includes three steps: (1) OS memory sizing, (2) page cache memory sizing, and (3) heap memory sizing.
+OS memory sizing
+The OS memory size is as follows:
+OS memory = 1 GB + (Size of graph.db/index) + (Size of graph.db/schema).
+Thus, we allocated 768 GB of memory to page cache memory and heap memory according to the DB file size. According to the Neo4j document:
+Actual OS allocation = Available RAM − (Page cache + Heap size).
+We allocated 100 GB for system memory and the rest to page cache and heap size.
+Page cache sizing
+Page cache is used when accessing Neo4j data stored on a hard disk. When the size of the entire data is larger than the page cache memory, a swap occurs, frequently resulting in high disk access cost and reduced performance. A basic option is to allocate 4 GB of memory based on the size of the graph DB data directory size (NEO4J_HOME/data/graph.db/neostore.\*.db). However, as our current data are larger than 10 GB, we resized the dbms.memory.pagecache.size parameter to above 200 GB.
+Heap sizing
+Based on Java, Neo4j can use more memory as heap memory in a Java Virtual Machine (JVM) is increased. Because more heap memory increases the performance greatly, we allocated 300 GB of memory to heap sizing. Thus, we set the dbms.memory.heap.initial_size parameter from 8 GB to 300 GB and the dbms.memory.heap.max_size parameter from 8 GB to 300 GB.
+Disk access configuration
+Logical transaction logs can occur in system and data recovery after an unexpected system shutdown. They are also used for backup at online status. These transaction log files are renewed when their size exceeds a pre-defined size (default 25 MB). Because these processes also affect system performance, we optimized the parameters. The open file limit of most LINUX servers is 1,024. However, because Neo4j stores data as numerous index files, it frequently accesses many files. Thus, we changed the open file limit to 400,000.

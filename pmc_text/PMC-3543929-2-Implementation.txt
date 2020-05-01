@@ -1,0 +1,28 @@
+We have developed a slightly modified version of Sequitur [4] called JSequitur for automatically creating hierarchical structures of sequences [8], as in Fig. 1. Our main contribution is to improve Sequitur to work better in a graphic user interface (GUI) environment, as our main interest was in studying the generated grammar, rather than enhancing the compression rate itself. JSequitur is implemented in Java and organized into six classes, as in Fig. 2: Sequitur, Symbol, Guard, Terminal, Nonterminal, and Rule. Sequitur class is called first and connects with all of the other classes. Symbol class is the connecter class, which streams sequences of input to the system. Rule class accesses Terminal and NonTerminal classes in order to create rules. Guard class, which is based on digram uniqueness, is responsible for rule confirmation.
+Thus, our string compression algorithm operates by reading in a new symbol and processing it by appending it to the top-level string and then examining the last symbols of that string; it then applies zero or more of the following transformations until none applies anywhere in the grammar; it then repeats the cycle by reading in a new symbol.
+The following production rules, which have been created automatically, are an exemplary output of applying JSequitur to the partial sequence of the TERT gene (175 bp, "gcccccgggtgtccctgtcacgtgcagggtgagtgaggcgcggtccccgggtgtc cctgtcacgtgcagggtgagtgaggcgcggtccccgggtgtccctgtcacgtgcag ggtgagtgaggcgcggtcccc"):
+R0 → g R1 R2 R3 R4 R5 R6 R7 R6 R8 R5 R9 R1 R3 R4 R10 R11 g a R4 a R12 R13 R14 R7 R15 R8 R16 R10 R14 c
+R1 → c c
+R2 → R1 c
+R3 → R11 R17 R2 R18
+R4 → R17 g
+R5 → R16 R13 R19
+R6 → t R2
+R7 → R19 R4
+R8 → R18 R4
+R9 → t R1
+R10 → a a
+R11 → R12 R17
+R12 → g g
+R13 → c g
+R14 → R19 R15
+R15 → R9 c
+R16 → R10 R11 g a R4 a R12
+R17 → g t
+R18 → t R17 R10 c
+R19 → R13 g,
+where the grammar consists of a start symbol (i.e., R0), four terminal symbols (i.e., a, t, g, c), 20 non-terminal symbols (i.e., R0-R19), and 20 production rules for each nonterminal. In summary, the partial sequence of 175 bp of the TERT gene could be compressed to 37 symbols with 20 rules.
+For testing purposes, 104 cancerous genes from 6 cancer types (bladder, breast, endometrial, leukemia, lung, and melanoma) were initially chosen, and JSequitur was applied. Table 1 shows the result of applying one of the string compression algorithms of JSequitur to these genes.
+The rule column in Table 1 shows the number of generated rules from the context-free grammar, while the ratio column shows the ratios of the compressed sequences vs. the original sequences.
+Fig. 3 is a sorted diagram in the order of the length of the original sequence. In this specific case, it shows that the length of the original sequence influences the compression rate of the target sequence, even though there are many other factors that influence compression rate. For example, compression rate can also be influenced by the algorithm itself, depending on whether we replace the longest pattern first or the most frequently occurring pattern first.
+We also compared some mouse genes to find any homologous traits in regards to compression rate and hierarchical structure of the grammar. For example, we compared human MUC1 (Homo sapiens, 5,279 bp) with mouse MUC1 (Mus musculus, 5,614 bp), and the compression rates for these two sequences were 0.180 and 0.195, respectively. For the ARHA genes, the compression rate for human ARHA (68,833 bp) was 0.140, whereas that for mouse ARHA (41,255 bp) was 0.157. Thus, the distance on the evolutionary tree can be measured by compression algorithms, to a certain extent.

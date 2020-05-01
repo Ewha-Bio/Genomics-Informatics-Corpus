@@ -1,0 +1,21 @@
+SNP sets
+First, based on three different populations—overall population, Asian-only population, and Korean-only population —we collected the SNPs registered in the GWAS catalog for BMI. Second, the SNPs were selected by single-SNP analysis using linear regression with adjustments for sex, age, and area. We chose the SNPs based on the p-values. We considered the following seven SNP sets:
+(1) ASIAN-100 (GWAS catalog [Asia] + Single-SNP analysis, number of SNPs = 100)
+(2) KOREAN-100 (GWAS catalog [Korea] + single-SNP analysis, number of SNPs = 100)
+(3) ALL-200 (GWAS catalog [All] + single-SNP analysis, number of SNPs = 200)
+(4) ASIAN-200 (GWAS catalog [Asia] + single-SNP analysis, number of SNPs = 200)
+(5) KOREAN-200 (GWAS catalog [Korea] + single-SNP analysis, number of SNPs = 200)
+(6) GWAS-ALL (GWAS catalog [All], number of SNPs = 136)
+(7) GWAS-ASIAN (GWAS catalog [Asia], number of SNPs = 16)
+Step 1: Variable selection
+In the KARE data, out of 8,838 individuals, we randomly selected 1,767 for test sets and composed the training set with the rest of the 7,071 participants. We selected SNPs using 5-fold cross-validation (CV) of the training set. In this case, we used SLR, LASSO, and EN to select SNPs.
+The SLR model is one of the most widely used models. Let yi be a quantitative phenotype for subject i = 1, …, n; xij be the value of SNP j = 1, …, p for subject i; code be 0, 1, and 2 for the number of minor alleles; and εi be the error term for subject i. The SLR model is yi = β0 + β1xi1 + ... + βpxip + γ1sexi + γ2agei + γ3areai + εi, where β0 and βj are the intercept and effect sizes of SNPs, respectively. γ1, γ2, and γ3 represent the sex, age, and area of the i-th individual, respectively. Variable selection was performed by a MSE-based stepwise procedure. The stepwise procedure was performed using the R package “MASS” [25].
+The LASSO and EN estimates of β were obtained by minimizing ∑i=1nyi-β0-β1χ1i-…-βpχpi-γ1sexi-γ2agei-γ3areai2+λ1∑j=1p|βj| and ∑i=1nyi-β0-β1χ1i-…-βpχpi-γ1sexi-γ2agei-γ3areai2+λ1∑j=1p|βj|+λ2∑j=1pβj2, respectively. The tuning parameters λ1 and λ2 are estimated using CV. The penalized methods were performed using the R package “glmnet” [26].
+Then, we defined five groups.
+(1) Group 1 (consists of SNPs that appeared at least one time in the 5-fold CV)
+(2) Group 2 (consists of the SNPs that appeared at least two times in the 5-fold CV)
+(3) Group 3 (consists of the SNPs that appeared at least three times in the 5-fold CV)
+(4) Group 4 (consists of the SNPs that appeared at least four times in the 5-fold CV)
+(5) Group 5 (consists of the SNPs that appeared in all 5-fold CVs)
+Step 2: Quantitative prediction
+To build a quantitative prediction model, we used the same prediction methods that were applied for the variable selection step for the comparison of these three methods in the variable selection and quantitative prediction. Each prediction model was created by using 7,071 training individuals via 5-fold CV. To compare the performance of the quantitative prediction models, we calculated the MSE by applying each quantitative prediction model using the test set (n = 1,767).

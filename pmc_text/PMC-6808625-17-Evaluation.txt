@@ -1,0 +1,8 @@
+Results with the best configuration
+To train our system, we tested several configurations with various levels, which are now described:
+‒ Pre-trained embeddings: Total of eight models, from general domain and in-domain.
+‒ POS: Yes (using POS) and No (without POS information)
+‒ Gazetteer: Yes (with gazetteer) and No (without gazetteer)
+‒ Affixes: Yes (with affix information) and No (without affix information).
+We trained our systems until convergence, that is until no improvement was identified in the development set for at least 10 epochs. In addition, given that the number of samples from the classes No Normalizables and Unclear are too small, we decided to discard those classes. This led our NER system to have the goal of identifying Proteins and Normalizable chemicals. First of all, to narrow down the search space, we turned off all additional features and just tested the word embeddings. Once the best embedding was found, we fixed it and tested the other configurations.
+In Table 1, we present the result of our system regarding the metrics mentioned in Section 4.7. The final setting is: POS with Gazetteer turned one. One can notice that there is not a great difference between the validation and the test set in all metrics, thus meaning that no overfitting occurred.

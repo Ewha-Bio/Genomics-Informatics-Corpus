@@ -1,0 +1,12 @@
+Annotation and visualization (step 7)
+The main input format for the ChIPSeeker package [13] is a bed file. ‘readPeakFile’ reads data from the input file and stores them in a data.frame or Granges object.
+ChIP peaks coverage plot (Step 7-2)
+The ‘Covplot’ function calculates the coverage of peak regions over chromosomes and generates a figure (Fig. 3). The ‘weightCol’ argument indicates the peak score, and ‘V5’ means the fifth column.
+Heatmap and average profiling of chip peaks binding to transcription start site regions (Fig. 4A and 4B) (step 7-3)
+First, transcription start site (TSS) regions are prepared by invoking the ‘getPromoter’ function. Then, peaks are mapped to the TSS regions, generating tagMatrix. The ‘tagHeatmap’ function plots the heatmap based on the tagMatrix data. The ‘plotAvgProf’ function plots the average profile of the peaks binding to TSS regions (i.e., 5′ to 3′) based on read count frequency.
+Peak annotation (step 7-4)
+The TSS region, defined by default from −3 kb to +3 kb; the Txdb, and the corresponding annoDb of interest (here, Homo sapiens) should be provided for gene annotation. Then, the annotatePeak function generates annotation information for the given input. Basically, the position and strand information of the nearest genes are reported. The distance from the peak to the TSS of the nearest gene is also reported. The genomic region of the peak is reported in the annotation column. Since some annotations may overlap, the ‘annotePeak’ package adopts the following priority in the genomic annotation: Promoter → 5′ UTR → 3′ UTR → Exon → Intron → Downstream → Intergenic.
+Visualization of genomic annotation (step 7-4)
+The ‘annotatePeak’ function assigns peaks to genomic annotation in the “annotation” column of the output, which includes whether a peak is in the TSS, exon, 5′ untranslated region (UTR), or 3′ UTR or intronic or intergenic. The ‘plotAnnoPie’ function provides a pie chart of peak annotations by genomic region (Fig. 5). The distribution of genomic annotation can also be visualized by a histogram (Fig. 6).
+Functional enrichment analysis (step 7-5)
+The annotated genes can be used as an input for functional enrichment analysis. The ‘seq2gene’ function changes peak information into gene information, which is used by the ‘enrichPathway’ function for pathway enrichment analysis (Fig. 7).
