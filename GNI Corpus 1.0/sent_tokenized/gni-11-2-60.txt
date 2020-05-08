@@ -1,0 +1,261 @@
+Human Transcriptome and Chromatin Modifications: An ENCODE Perspective.
+
+A decade-long project, led by several international research groups, called the Encyclopedia of DNA Elements (ENCODE), recently released an unprecedented amount of data.
+
+The ambitious project covers transcriptome, cistrome, epigenome, and interactome data from more than 1,600 sets of experiments in human.
+
+To make use of this valuable resource, it is important to understand the information it represents and the techniques that were used to generate these data.
+
+In this review, we introduce the data that ENCODE generated, summarize the observations from the data analysis, and revisit a computational approach that ENCODE used to predict gene expression, with a focus on the human transcriptome and its association with chromatin modifications.
+
+In September 2012, 30 research papers, including 6 in Nature, were published online (http://www.nature.com/encode/) about genomescale data from a decade-long project, the Encyclopedia of DNA Elements (ENCODE) [1].
+
+Aiming to delineate all functional elements encoded in the human genome [1-4], the ENCODE project examined 1% of the human genome in its pilot phase and scaled up to the whole genome in its second phase.
+
+It released data from more than 1,600 sets of experiments from 147 types of tissues [4].
+
+These data include a catalog of human protein-coding and noncoding RNAs as well as protein-DNA interactions, chromatin and DNA accessibility, histone modifications, DNA methylation, and long-range chromosomal interactions.
+
+The ENCODE consortium reported that 80.4% of the human genome serves some type of known biochemical function [4].
+
+The unprecedented volume and span of this study will make it an excellent resource for biological analyses.
+
+On the other hand, it can be overwhelming for a researcher to access and interpret the data.
+
+ENCODE also developed novel (or refined existing) techniques for data generation and computational analyses.
+
+These techniques are by no means restricted to ENCODE and can be employed in a wide array of applications.
+
+Because of the vast span of ENCODE, we will limit our scope to the human transcriptome and its association with chromatin modifications in this review.
+
+We aim to introduce the data that ENCODE generated and the techniques (both experimental and computational) that were used to generate them.
+
+We summarize the observations that ENCODE found.
+
+We also provide a detailed discussion of a machine learning method that was used to predict gene expression from chromatin modifications with higher accuracy than its predecessors.
+
+ENCODE releases a reference gene set (GENCODE) and RNA expression catalogs
+The ENCODE project has produced a reference gene set, referred to as GENCODE (http://www.gencodegenes.org) [18].
+
+GENCODE (version 7) identified a comprehensive set of 20,687 protein-coding and 9,640 manually curated long noncoding RNA (lncRNA) loci (representing 15,512 noncoding transcripts/isoforms).
+
+Currently, in version 15, it has 20,447 coding genes and 13,249 lncRNA loci (representing 22,531 noncoding transcripts/isoforms).
+
+For this reference gene set, GENCODE used manual gene annotation from the Human and Vertebrate Analysis and Annotation (HAVANA) group (http://www.sanger.ac.uk/research/projects/vertebrategenome/havana/) and automatic gene annotation from Ensembl [19].
+
+To construct a comprehensive RNA expression catalog, ENCODE sequenced RNA (using RNA-seq) from 15 different cell lines in multiple subcellular fractions [18].
+
+The expression catalog in multiple cell types provides the transcriptome of coding and noncoding genes, short (<200 bp) and long (>200 bp) in length, polyadenylated or nonpolyadenylated, as well as the compartment in cells where RNAs in each type are populated.
+
+Long noncoding RNAs
+LncRNAs are nonprotein-coding transcripts longer than 200 nucleotides.
+
+LncRNAs have been known to have similar characteristics as coding RNAs.
+
+They are polyadenylated, associated with chromatin signatures, and have multiexonic structure [20, 21].
+
+Some lncRNAs use identical or almost identical transcription initiation complexes [22] and sometimes overlap with protein-coding genes and can be transcribed from either strand [22, 23].
+
+GENECODE interrogated the properties of 15,512 lncRNAs.
+
+Table 2 summarizes the comparison between lncRNAs and coding RNAs.
+
+Expressed lncRNAs have an activating histone modification profile similar to that of protein-coding genes, with slightly excess levels of both silencing (H3K27me3) and activating (H3K36me3) marks in lncRNAs [24].
+
+Although many lncRNAs are polyadenylated, they are significantly enriched in nonpolyadenylated transcripts compared with coding RNAs [24].
+
+As expected, the lncRNAs have significantly lower protein potentials compared with mRNAs.
+
+Interestingly, they are biased toward two-exon transcripts and predominately localized in the chromatin and nucleus, while coding RNAs are predominantly observed in the cytosol; only 6% of them have a 2-exon structure.
+
+In order to identify the function and targets of lncRNAs, Derrien et al.
+
+[24] investigated the correlation between lncRNAs and coding RNAs; both positive and negative correlations were found.
+
+Overall, the number of positive correlations was larger than the negative correlations.
+
+Compared with trans-acting lncRNAs, cis-acting lncRNAs showed more positive correlations.
+
+Interestingly, lncRNAs that intersected protein-coding exons in the antisense orientation showed a strong pattern of coexpression [24].
+
+They also checked sequence conservation by BLASTing human lncRNAs against all available mammalian genomes.
+
+Around 30% (n = 4,546) of lncRNAs appeared to have arisen in the primate lineage, and 0.7% (n = 101) of them appeared to be human-specific [24].
+
+RNA splicing
+Recent studies suggest that many pre-mRNA processing events are cotranscriptional [25-27].
+
+RNA imaging found that splicing can follow the completion of transcription [28].
+
+Tilgner et al.
+
+[29] investigated cotranscriptional splicing by interrogating RNA fractions from several cellular compartments in K562 cells.
+
+They found that only a tiny fraction of exons were found to be surrounded completely by an unspliced intron in chromatin-associated RNA.
+
+This suggests that splicing is already occurring during transcription [18, 29].
+
+The strong enrichment of spliceosomal small nuclear RNAs (snRNAs) in the chromatin-associated fraction compared with other fractions also supports cotranscriptional splicing.
+
+These observations confirm the idea that chromatin structure could play a role in splicing [7, 30-34].
+
+However, for alternative exons and lncRNAs, splicing tends to occur later and might remain unspliced in some cases [29].
+
+RNA editing
+Li et al.
+
+[35] reported 10,210 exonic sites in the human genome where an RNA sequence did not match with the DNA sequence, suggestive of RNA editing.
+
+However, there have been debates about whether their observations occurred by sequencing error, gene duplication, mapping error, or read-end misalignment [36-38].
+
+Park et al.
+
+[39] developed a pipeline to filter sequencing artifacts in identifying RNA editing.
+
+They found that the majority of non-A-to-G variants came from incorrect read mapping across splice junctions.
+
+Most of the edits they found were A-to-G(I) variants, which corresponds with recent observations [40] but differs from Li et al.
+
+'s report [35] of a substantial number of noncanonical single nucleotide variant edits in the RNA of human lymphoblastoid cells.
+
+Most A-to-G(I) edits were located in introns and untranslated regions, with only a fraction of sites reproducibly edited across multiple cell lines.
+
+Pseudogenes
+Pseudogenes have been considered nonfunctional sequences of genomic DNA that lost their coding potential due to disruptive mutations, such as frameshifts and premature stop codons [41-44].
+
+Recent studies have shown that pseudogenes can regulate their parent genes [45-49].
+
+Using manual annotation, with the assistance of computational pipelines, GENCODE created a database called Pseudogene Decoration Resource (psiDR).
+
+psiDR provides a variety of information on 11,216 peudogenes, including transcription activity, chromatin features, functional genomics, and evolutionary constraints [50].
+
+Transcribed pseudogenes show enhanced chromatin accessibility and enrichment with histone marks, although they are lower than those of coding genes.
+
+The majority of pseudogenes contains no or very few transcription factor binding sites (TFBSs), but the differences between the number of TFBSs associated with transcribed and nontranscribed pseudogenes are significant.
+
+Small RNAs
+GENCODE also categorized 7,054 small RNAs into 2,756 micro RNAs (miRNAs), snRNAs, small nucleolar RNAs (snoRNAs), and transfer RNAs (tRNAs).
+
+They found that miRNAs and tRNAs were abundant in cytosol, snoRNAs were in the nucleus, and snRNAs were in both the nucleus and cytosol.
+
+snRNAs were found abundantly in the chromatin-associated RNA fractions, which further supports predominant splicing during transcription.
+
+Enhancer RNAs
+RNAs at enhancers (eRNAs) were first characterized by observing transcription activities at the promoter-distal CREB binding protein-binding sites in mouse cortical neurons [51].
+
+The bidirectional property of eRNAs and their association with gene expression were further studied using nascent RNAs from global run-on sequencing (GROseq) data [52, 53].
+
+ENCODE used RNA assays to detect transcription activity.
+
+Besides the bidirectional property, ENCODE identified transcriptional initiation using cap analysis gene expression (CAGE) [54] signals.
+
+Interestingly, they found polyadenylated eRNAs, although most eRNAs were prevalent in the nonpolyadenylated form.
+
+They also observed that histone marks associated with eRNAs were the factors for transcriptional initiation and elongation: H3K27ac, H3K79me2, and RNA polymerase.
+
+These lines of evidence suggest regulatory functions of eRNAs.
+
+Enabled by the unprecedented volume of data generated by the ENCODE project, Dong et al.
+
+[57] performed a very interesting study that attempted to predict gene expression from chromatin features using machine learning techniques.
+
+As usually practiced, a machine learning study is composed of a series of procedures that typically involve data collection, data representation, model building, and testing.
+
+Using machine learning terminology, the response variables here are gene expression patterns that are predicted/modeled, while the predictors or features are various chromatin measures.
+
+Chromatin data were collected from the ENCODE project with 11 chromatin modifications, one histone variant, and DNase I hypersensitivity, all mapped in seven cell lines (Table 3).
+
+Gene expression data were from different cellular compartments, using two different RNA isolation approaches and sequenced with different technologies (Table 3).
+
+With such diversity of RNA sources, Dong et al.
+
+[57] answered not only the general question of whether gene expression can be predicted with satisfactory accuracy but also the questions of whether different RNA sources that are sequenced by different technologies can be predicted differently using the same chromatin features.
+
+The gene expression data are relatively easy to represent.
+
+They were separated into two classes: transcriptional start site (TSS)-based and transcript-based (Tx-based).
+
+TSS-based expression data are read counts within a 101-bp window centered on the TSS, which measures transcriptional initiation.
+
+Tx-based expression data are summarized read counts from the whole transcript, which measures transcriptional elongation.
+
+However, the representation of chromatin data seems to be tricky and requires further research.
+
+Dong et al.
+
+[57] used a strategy called "bestbin," which considers the chromatin signals across the entire gene body, including 2-kb flanking regions.
+
+It basically segregates each genic region into equal bins of 100 bp and summarizes the chromatin signals within each.
+
+A training dataset was used to identify the bin that correlates most with gene expression, and the learned parameter values were applied to testing data.
+
+Other strategies [58, 59] are possible, but the "bestbin" strategy was found to be superior [57].
+
+RNA sequencing data are known to contain very little or no background noise, with a large portion of the genes having 0 read counts.
+
+Therefore, the response variables become a mixture of a 0 component and a positive counting component.
+
+Neither a classifier nor regression method seems to be able to capture the variability of both.
+
+To deal with the challenge, a two-step approach was used by [57], so that a classifier first categorized genes as "expressed" or "unexpressed," Then, a regression method was used to predict the expression levels of the expressed genes.
+
+The final prediction is the product of the classifier and the regression method.
+
+To test the performance of their approach, each dataset was separated into a training set and a testing set.
+
+On the training set, the "best bin" and a few other parameters were determined.
+
+After that, a 10-fold crossvalidation was performed on the testing set to evaluate the model.
+
+AUC [60] was used to represent the accuracy of the classifier.
+
+Two criteria were used to represent the accuracy of the regression method.
+
+Pearson correlation coefficient (PCC) was used to measure the similarity between the predicted value and experimental value.
+
+Root mean square error was used to measure the disparity between the predicted value and experimental value.
+
+Overall, the two-step model achieved very satisfactory performance, with a PCC > 0.9 for a number of datasets and a PCC > 0.8 for 71% of the whole data.
+
+Looking at the two steps separately, the AUC can be as high as 0.95 for the classifier, and the PCC can be as high as 0.77 for the regression method when predicting CAGE-measured polyA+ cytosolic RNA expression in K562 cells.
+
+Similar performance was achieved in other datasets.
+
+It was also found that H3K9ac and H3K4me3 are the most important predictors for the classifier, strengthening their roles as activation marks at TSSs.
+
+In contrast, H3K79me2 and H3K36me3 are the most important predictors for the regression methods, strengthening their roles as elongation marks at gene bodies.
+
+These findings show that the two-step model not only improved the accuracy of prediction but also enabled the identification of the chromatin features that are associated with different transcriptional roles.
+
+During the past decade, the ENCODE project has evolved into a genomewide scale, and the dataset it generated has expanded in quantity as well as in scope.
+
+The ENCODE project has provided a global view about the human transcriptome and most noticeably found that the transcribed region of the human genome is more abundant than we previously thought.
+
+This finding significantly reduced the so-called intergenic regions, as defined in the traditional sense.
+
+The quantitative measurement of RNA species in several cellular compartments as well as their polyadenylation provided a comprehensive view of RNA generation.
+
+In this review, we have revisited the characteristics of both coding and noncoding transcripts in association with their structures and locations in cells.
+
+Besides the human transcriptome and the associated chromatin modification data that we discussed, the ENCODE consortium also mapped transcription factor binding sites and their associated DNA motifs, as well as DNA methylation and long-range chromosomal interactions [4].
+
+In parallel, the Roadmap Epigenomics Project (http://www.roadmapepigenomics.org) and International Human Epigenome Consortium (http://www.ihec-epigenomes.org) have been accumulating data of a similar scale to understand the human genome in other tissues and conditions.
+
+It is remarkable that the ENCODE data altogether have associated more than 80% of the human genome with some type of biochemical function so far, and the coverage will continue to increase as we map additional protein-DNA interactions in the near future.
+
+It has now become very clear that so-called "junk DNA" is not evolutionarily vestigial but has specific structural or biochemical functions.
+
+While data generation has been a major goal of ENCODE, the need to integrate the current datasets is becoming more and more important.
+
+Computational approaches have been developed to exploit the ENCODE data at to a fuller potential.
+
+For instance, chromatin features were used to model gene expression [57, 61]; integrative methods were developed to annotate genomes [62-64]; visualization tools were developed to investigate epigenomic regulation at a global scale (also see ngs.plot at https://code.google.com/p/ngsplot/) [65, 66]; and large regulatory networks were reconstructed, based on TFs and DNaseI footprinting [67, 68].
+
+The network-based approach as well as the chromosomal interactions [69] provided novel angles in studying gene regulation at higher levels.
+
+New approaches to integrate the large amount of data to provide new biological insights are on the horizon.
+
+Quality metrics of chromatin modification ChIP-seq data employed by ENCODE
+Comparison of lncRNAs and coding RNAs
+Summary of data collected for modeling gene expression using chromatin features
+

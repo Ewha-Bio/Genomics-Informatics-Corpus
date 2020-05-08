@@ -1,0 +1,114 @@
+COEX-Seq: Convert a Variety of Measurements of Gene Expression in RNA-Seq.
+
+Next generation sequencing (NGS), a high-throughput DNA sequencing technology, is widely used for molecular biological studies.
+
+In NGS, RNA-sequencing (RNA-Seq), which is a short-read massively parallel sequencing, is a major quantitative transcriptome tool for different transcriptome studies.
+
+To utilize the RNA-Seq data, various quantification and analysis methods have been developed to solve specific research goals, including identification of differentially expressed genes and detection of novel transcripts.
+
+Because of the accumulation of RNA-Seq data in the public databases, there is a demand for integrative analysis.
+
+However, the available RNA-Seq data are stored in different formats such as read count, transcripts per million, and fragments per kilobase million.
+
+This hinders the integrative analysis of the RNA-Seq data.
+
+To solve this problem, we have developed a web-based application using Shiny, COEX-seq (Convert a Variety of Measurements of Gene Expression in RNA-Seq) that easily converts data in a variety of measurement formats of gene expression used in most bioinformatic tools for RNA-Seq.
+
+It provides a workflow that includes loading data set, selecting measurement formats of gene expression, and identifying gene names.
+
+COEX-seq is freely available for academic purposes and can be run on Windows, Mac OS, and Linux operating systems.
+
+Source code, sample data sets, and supplementary documentation are available as well.
+
+Next generation sequencing (NGS), a high-throughput DNA sequencing technology, is widely used for molecular biological studies.
+
+In NGS, the RNA-sequencing (RNA-Seq), which is a short-read massively parallel sequencing, is a major quantitative transcriptome tool for many types of transcriptome studies, such as mRNA and miRNA.
+
+To utilize the RNA-Seq data, various quantification and analysis methods have been developed to solve specific research goals, including identifying differentially expressed genes and detection of novel transcripts.
+
+With the accumulation of RNA-Seq data in the public databases, there is a demand for integrative analysis, and its development is an ongoing challenge [1].
+
+However, the available RNA-Seq data are stored in different formats.
+
+In particular, in the public databases such as GEO (Gene Expression Omnibus, https://www.ncbi.nlm.nih.gov/geo/), ArrayEXpress (https://www.ebi.ac.uk/arrayexpress/), The Cancer Genome Atlas (TCGA), the quantitative measurements of the processed RNA-Seq data sets are available in various formats, which are not unified.
+
+The following are different formats of measurements provided by the public databases.
+
+Read count routinely refers to the number of reads that align to a particular region.
+
+Counts per million mapped reads are counts scaled by the number of sequenced fragments multiplied by one million.
+
+Transcripts per million (TPM) is a measurement of the proportion of transcripts in a pool of RNA.
+
+Reads per kilobase of exon per million reads mapped (RPKM) and the more generic fragments per kilobase million (FPKM), which substitutes reads in RPKM with fragments, are essentially the same measurements [2–5].
+
+Utilizing different quantitative measurements provided by the public databases hinders the integrative analysis.
+
+Like recount2, a project is underway to provide results from various databases through a single analytical pipeline [6].
+
+To solve this problem, we aimed to develop a web-based application using Shiny, COEX-seq (COnvert a variety of measurements of gene EXpression in RNA-Seq) that easily converts data in a variety of measurement formats of gene expression used in most bioinformatic tools for RNA-Seq.
+
+Fig.
+
+1 shows the graphical user interface for COEX-seq, which consists of two parts.
+
+The first is handling data and formats (loading data set, selecting measurements of gene expression, and identification of gene names).
+
+The second part reports the converted data and depicts their boxplots.
+
+COEX-seq
+COEX-seq is a web-based application using Shiny (Shiny; a web application framework for R) [7, 8] that converts a variety of measurements of gene expression in RNA-Seq experiments.
+
+It provides a workflow that includes loading data set, selecting measurements of gene expression, and identifying gene names.
+
+COEX-seq is freely available for academic purposes and can be run on Windows, Mac OS and Linux operating systems.
+
+Source code, sample data sets, and supplementary documentation are available at https://github.com/kimsc77/COEX-seq.
+
+Measurements of gene expression
+The following are the measurements of gene expression used in the public databases.
+
+Read counts are simply the number of reads overlapping a given feature such as a gene.
+
+Counts are often used by the methods identifying differentially expressed genes as a counting model, such as a Poisson or negative binomial, which naturally represents them.
+
+Fragments per kilobase of exon per million reads are much more complicated.
+
+Fragment means fragment of DNA; therefore, the two reads that comprise a paired-end read count as one.
+
+Per kilobase of exon means the count of fragments is then normalized by dividing by the total length of all exons in the gene (or transcript).
+
+F P K M g = R C g R C p c 10 3 * L 10 6 = R C g * 10 9 R C p c * L ,
+where, RCg is number of reads mapped to the gene, RCpc is number of reads mapped to all protein-coding (exon) genes, and L is length of the gene in base pairs.
+
+TPM is a measurement of the proportion of transcripts in mRNA.
+
+TPM is probably the most stable unit across experiments, although you still should not compare it across experiments.
+
+T P M g = R C g L g * 1 ∑ j R C j L k * 10 6 ,
+where, RCg is the number of reads mapped for each gene and Lg is the length of the gene.
+
+Relationship between TPM and FPKM
+The relationship between TPM and FPKM is derived by Pachter (2011) [9] in review of transcript quantification method, using Eq.
+
+(10)–(13) in Pachter’s study [9].
+
+T P M g = R C g L g * 1 ∑ j R C j L k * 10 6 ∝ R C g L g * N * 1 ∑ j R C j L k * N ∝ R C g L g * N * 10 9 ,
+where N = ∑tRCt is the total number of mapped reads.
+
+If FPKM is available, then TPM can be easily computed as
+T P M g = ( F P K M g ∑ j F P K M g ) × 10 6 .
+
+Recently, based on the advances in NGS technologies, various quantification and analysis methods have been developed for the transcriptome studies.
+
+In addition, with the accumulation of RNA-Seq data sets in the public databases, there is a demand for integrative analysis; therefore, it has become an active research field.
+
+However, the available RNA-Seq data are stored in different formats such as read count, TPM, and FPKM.
+
+This hinders the integrative analysis of the RNA-Seq data.
+
+To solve this problem, we have developed a web-based application using Shiny, COEX-seq that easily converts data in a variety of measurement formats of gene expression used in most bioinformatic tools for RNA-Seq.
+
+Thus, COEX-seq is very useful to use with other analysis tools developed using R.
+Graphical user interface of COEX-seq (COnvert a variety of measurements of gene EXpression in RNA-Seq).
+

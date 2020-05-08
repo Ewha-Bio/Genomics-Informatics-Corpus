@@ -1,0 +1,72 @@
+ManBIF: a Program for Mining and Managing Biobank Impact Factor Data.
+
+Biobank Impact Factor (BIF), which is a very effective criterion to evaluate the activity of biobanks, can be estimated by the citation information of biobanks from scientific papers.
+
+We have developed a program, ManBIF, to investigate the citation information from PDF files in the literature.
+
+The program manages a dictionary for expressions to represent biobanks and their resources, mines the citation information by converting PDF files to text files and searching with a dictionary, and produces a statistical report file.
+
+It can be used as an important tool by biobanks.
+
+Availability: ManBIF and its manual are available at http://cgs.
+
+cdc.
+
+go.
+
+kr/manbifKeywords: biobank, Biobank Impact Factor DataBiobanks, as repository organizations, are getting more and more important, not only nationwide but also worldwide.
+
+As their roles and functions are being expanded to effectively maintain and distribute biological resources, international cooperation and competition is getting very active.
+
+BIF (Biobank Impact Factor), a comparative index of citation information of biobanks in scientific papers, is used as a major criterion of biobank activity (Zika, 2010).
+
+As a biobank can be represented with several names, including abbreviations and a full name, a dedicated program is required to search for multiple biobanks against multiple literature files.
+
+We have developed ManBIF, a program, to search for Biobank citation information from PDF files in the literature to produce a summary report.
+
+ManBIF is composed of three modules for text extraction, indexing, and searching (Fig.
+
+1).
+
+The first module converts PDF files to text files and extracts the full text for searching.
+
+The converted files   are stored in the ManBIF database.
+
+The second module analyzes each full text into tokens after removing unnecessary words, and the tokens are indexed and stored in the database.
+
+The last module searches the indexed tokens for biobank expressions in the ManBIF biobank dictionary (Fig.
+
+2), which can be edited for managing biobank name databases.
+
+The search results of all hits against all biobanks are summarized into a report.
+
+ManBIF was implemented with Java, and many libraries and tools were used.
+
+iText (Lowagie and Soares, 2010) was used to treat and convert PDF files.
+
+The PDF files are converted with library functions.
+
+Lucene (Gospodnetic, 2010) was used as a text search engine to support high-performance indexing and searching.
+
+jxl (GPL, 2009) was used for generating Excel files.
+
+ManBIF can read Excel files and produce search result files in Excel format.
+
+The search results are summarized as a ‘biobanks vs paper hits’ table, and more detailed results are also shown, including the detailed hit information for each biobank (Fig.
+
+3).
+
+ManBIF analyzes PDF files to search for diverse expressions of all biobanks with high-performance indexing and a user-friendly interface.
+
+The program can be used practically for evaluating the activity of biobanks in a given interval.
+
+The program can be improved for more precise and categorical searches.
+
+Searching by sections of papers, that is, ‘Abstract,’ ‘Introduction,’ ‘Methods,’ and ‘Results,’ can be more helpful to analyze precisely.
+
+Showing marked hit regions directly on PDF files can be more powerful in confirming and analyzing hit information.
+
+The search feature for resource names or IDs related to biobanks could also be implemented for improvement.
+
+Such an evolution could make the program an important tool for biobanks.
+
