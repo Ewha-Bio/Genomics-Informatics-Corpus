@@ -1,0 +1,74 @@
+New Approach to the Analysis of Palindromic Structure in Genome Sequences.
+
+PABAP (Palindrome Analysis by BLAST Program) is an analysis system that identifies palindromic sequences from a large genome sequence up to several megabases long.
+
+It uses NCBI BLAST as a searching engine, and data processing such as alignment filtration and detection of inverted repeats which satisfy user- defined parameters is performed by manipulating data after populating into a MySQL database.
+
+PABAP outperforms publicly available palindrome search program in that it can detect large palindrome with internal spacer at a faster speed from bacterial genomes.
+
+It is a standalone application and is freely available for noncommercial users.
+
+Palimdromic sequence is a region in DNA containing a pair of inverted repeats, /.e., a region whose 5’-to-3’ sequence is identical on each DNA strand.
+
+Palindromic sequences include inverted repeats having central gap (spacer) and quasipalindromes with nonidentical pair of repeats.
+
+These structures are widespreadin the natural plasmids, viral and bacterial genomes, eukaryotic chromosomes and cell organelles.
+
+In case of prokaryotes, they may serve as binding sites for regulatory proteins, while short perfect palindromes are known as recognition sites for type II restriction-modification systems (Gelfand and Koonin,1997; Rocha et al., 2001).
+
+Apparently, they often serve as site
+
+for protein-DNA interaction and mediate important cellular functions.
+
+Another important property of such motifs is their potential to form intra-strand hydrogen bonds within DNA molecules or in corresponding RNA transcripts.
+
+Therefore, they are contained in genes encoding functional RNA molecules, the structure of which depends on the formation of proper intra-strand bonding, and in different c/s-acting genetic elements, like terminators, attenuators, plasmid and viral origins of replication.
+
+Protein binding and secondary structure formation are also modes of action for inverted repeats and related motifs in eukaryotic cells.
+
+For example, palindromes with a spacer of one nucleotide were identified in yeast sequences regulating cellular response to the accumulation of unfolded proteins in the endoplasmic reticulum (Mori et al., 1998) and a heterodimeric complex was isolated that binds two palindromic sequences in the promoter region of the human erbB-2 gene (Chen and Gill, 1996).
+
+In mouse B lymphoma cells, palindromic and potential stem-loop motifs were identified as break-points during class switch recombination (Tashiro et al., 2001); and the formation of intra-strand secondary structures is essential in the
+
+process of immunoglobulin gene rearrangement known as V(D)J joining (Cuomo et al., 1996).
+
+We developed a web application PABAP that can identify palindrome sequence using genome-scale sequence as an input.
+
+In this application, self-against-self BLASTN (Altschul et al., 1990)search is employed to find out symmetric hits that can be used for identifying true palindromic sequences or inverted repeats after filtering process with customizable parameters.
+
+Fig.1 shows the processing flow for this application.
+
+First, users provide a FASTA-formatted sequence as an input.
+
+Threshold values that are used for running BLAST and filtering hits after homology search are given simultaneously at the data input page.
+
+After formatting input sequence to generate BLAST-compatible database, BLASTN search is executed using the input sequence also as a query without low complexity filter.
+
+Output is set to tabular format to facilitate loading results directly into a MySQL database.
+
+Filtering is then carried out onto the data records to eliminate 1) self-matches that exactly overlap the same position within
+
+the sequence and 2) matches below threshold values, such as alignment length, sequence identity and gap size.
+
+Only matches in the opposite direction to the query sequences with spacer length below a threshold are then reported.
+
+Results are represented by a table and an image (PDF file) that shows the position of palindromic regions on the input sequence scale (Fig.2).
+
+We compared the performance of PABAP with PALINDROME, a program in publicly available EMBOSS package ( http://emboss.sourceforge.net/ ).
+
+Time required for finding pure palindromic sequences or inverted repeats heavily depends on the input sequence length and BLAST search parameters (Table 1).
+
+The most crucial parameter determining sensitivity was E value cutoff; larger than 50,000 is recommended for detection of palindromes with short repeat units.
+
+In most cases, PABAP surpassed PALINDROME in terms of execution speed.
+
+PALINDROME was best suitable only for identification of true palindromes from sequences several kilobases long.
+
+Our application is superior to PALINDROME in finding symmetrical
+
+duplication at a gene level or inverted repeats flanking a genomic sequence that are target sites for site-specific recombination.
+
+We have successfully applied this strategy for finding inverted repeats at the end of putative IS elements from the genome sequence of a Corynebacterium species (unpublished data).
+
+The strong point of PABAP lies in faster speed, flexible parameter setting, ability to identify inverted repeats with atypical geometry (long repeat units or spacers) or low identities, and graphical output that enable us to envisage palindromic sequence context at a genome level.
+

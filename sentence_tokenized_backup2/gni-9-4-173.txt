@@ -1,0 +1,256 @@
+Gene Expression Signatures for Compound Response in Cancers.
+
+Recent trends in generating multiple, largescale datasets provide new challenges to manipulating the relationship of different types of components, such as gene expression and drug response data.
+
+Integrative analysis of compound response and gene expression datasets generates an opportunity to capture the possible mechanism of compounds by using signature genes on diverse types of cancer cell lines.
+
+Here, we integrated datasets of compound response and gene expression profiles on NCI60 cell lines and constructed a network, revealing the relationship for 801 compounds and 341 gene probes.
+
+As examples, obtusol, which shows an exclusive sensitivity on a small number of colon cell lines, is related to a set of gene probes that have unique overexpression in colon cell lines.
+
+We also found that the SLC7A11 gene, a direct target of miR26b, might be a key element in understanding the action of many diverse classes of anticancer compounds.
+
+We demonstrated that this network might be useful for studying the mechanisms of varied compound response on diverse cancer cell lines.
+
+Keywords: NCI60, drug response, gene expression, integrating, networkThe interest in studying mechanisms of compounds and finding new compounds with better efficacy than known anticancer drugs has recently increased due to the decreasing number and increasing cost of newly released anticancer drugs (Xu and Cote, 2011).
+
+NCI60 project as a predictive model of drug response and gene expression was developed by the US National Cancer Institute (NCI) (Shoemaker, 2006).
+
+This panel of 60 cell lines includes nine distinct tumor types: leukemia (LN), colon (CO), lung (nonsmall cell lung cancer) (NSCLC), CNS, renal (REN), melanoma (ME), ovarian (OVR), breast (BR) and prostate (PRO) (Table 1) (Scudiero et al., 1988).
+
+From the Developmental Therapeutics Program (DTP) of NCI/NIH, multiple highthroughput screening data are available, including drug response data (Weinstein, 2006), gene expression data (Blower et al., 2007), DNA copy number change data (Ikediobi et al., 2006), protein analysis (Nishizuka et al., 2003), DNA methylation (Ehrich et al., 2008), functional target analysis (Lee et al.
+
+1994), and  reverse phase protein array (RPPA) analysis (Shankavaram et al., 2007) and so on.
+
+The NCI drug stock is made of more than 100,000 compounds, and the screening data for more than 40,000 compounds is publicly   available (http://dtp.
+
+cancer.
+
+gov/).
+
+The cell line response to the compounds is quantified by GI50 value，the concentration required to inhibit the growth of an exposed cell line culture to 50% relative to the untreated control.
+
+Recently, the construction of biophysical network models of numerous components has contributed to our understanding of the relationship between different types of biological responses (Pe'er and Hacohen, 2011).
+
+A critical question remaining is how to interpret the network and take out the new biological insights or knowledge.
+
+Our approach to this question is to calculate the simple Pearson correlation coefficient (PCC) (Liu et al., 2007) (Jobson et al., 2007) of drug response and gene expression profile over diverse NCI60 cell lines.
+
+It is possible to obtain a certain number of significant correlations between gene expression and compound response on subsets of cancer samples.
+
+In this research, our goal is to create a global network including all known compound data and gene expression profiles, and to subtract specific networks of genes and compounds revealing unique mechanisms of compound action.
+
+Data of compound response (GI50) on NCI60 cell lines was downloaded from the NCI Developmental Therapeutics Program (DTP) site (www.
+
+//dtp.
+
+nci.
+
+nih.
+
+gov).
+
+The GI50 data released in August 2004 was used in this study.
+
+They provided more than 40,000 compounds with a GI50 value to characterize compound sensitivity to diverse NCI60 cancer cell lines.
+
+GI50 is defined as the concentration of a compound required to inhibit cell growth by 50% after exposed to the compound for 48 hours in comparison with untreated cells.
+
+GI50 values were further transformed to －logGI50 to linearly profile the compounds’ sensitivity.
+
+The 2D structures and chemical names of compounds were also obtained through the DTP website of NCI.
+
+Compound data were further filtered based upon several criteria; the number of missing data on 60 cell lines ＜5, the standard deviation (SD) of compound response ＞0.1, and －logGI50＞5 in at least one cell line.
+
+In order to remove compounds with many missing data (eg, GI50 value), we chose compounds with missing data on only less than 5 cell lines.
+
+We also selected compounds with relatively varied response on diverse cell lines by removing compounds with consistent response on all 60 cell lines (ie, SD＜0.1) (Deeken et al., 2009).
+
+Furthermore, compounds with no significant potency in any cell lines were removed.
+
+Thus, we selected compounds with －logGI50＞5 (i. e., GI50＜10μM) on at least one cell line.
+
+NCI60 gene expression data was also downloaded from the DTP website.
+
+NCI60 gene expression data generated using Affymetrix u133A/B microarrays and processed using the MAS5 normalization algorithm (Zhou and Rocke, 2005).
+
+Data for a total of 44,928 gene probes screened on 59 cell lines (data missing on NCIH23 cell line) were retrieved.
+
+Gene probes with a standard deviation of ＞2 across all 59 cell lines and a fold change of ＞4 over the median value on at least one cell line were selected for the further analysis.
+
+Pearson’s correlation coefficient (PCC) and its pvalue between compounds and genes were calculated using drug response and gene expression data on 59 NCI60 cell lines.
+
+The criteria of PCC＞0.7 and pvalue＜0.01 were applied to select compoundgene relationship for further analysis.
+
+Finally, the network was constructed for links between compounds and genes using Cytoscape (http://www.
+
+cytoscape.
+
+org/) (Merico et al., 2009).
+
+The forcelayout algorithm was applied to optimize the topology of network (Garcia et al., 2007).
+
+The 2D structures and annotation of compounds were displayed by MarvinSketch developed by ChemAxon (http://www.
+
+chemaxon.
+
+com/).
+
+The structural similarity among compounds was calculated by Pipeline Pilot (Chu et al., 2009).
+
+Hierarchical clustering of compound and gene expression data was carried out using complete linkage algorithm (Williams et al., 1976) (http://bonsai.
+
+hgc.
+
+jp/~mdehoon/software/cluster/).
+
+Tree Viewer was used to visualize the clustered data (http://www.
+
+treeview.
+
+net).
+
+All figures were edited using Adobe Illustrator CS3 (http://www.
+
+adobe.
+
+com).
+
+Among 48,151 compounds, a total of 6,652 compounds satisfied the filtration criteria (see methods section for details).
+
+They showed a significant response (－logGI50＜5) on at least one cell lines and demonstrated varied response on 60 cell lines with missing data on less than 5 cell lines.
+
+We carried out a clustering analysis of GI50 data for these 6,652 compounds over 60 cell lines (Fig.1A).
+
+Three major patterns were observed in the com  pound classification: sensitive or resistant responses on most cell lines, and some compounds exhibiting both sensitive and resistant responses in a cell linedependent manner.
+
+Many of them showed a difference of over ＞100-fold in GI50 values among cell lines, which implied a cell line-specific mechanism of the drug action.
+
+For example, compounds in the bottom area of the heatmap in Fig.1A showed resistant response (－logGI50=∼－4) on most cell lines (green colors), while a few cell lines gave -logGI50＞5 (red colors).
+
+A total of 9 different lineage groups are represented by NCI60 cell lines.
+
+Leukemia cell lines tended to have relatively sensitive response to the majority of cell lines, although they were clustered in two separate groups.
+
+They were clustered together with some lung cell lines.
+
+All of CNS cell lines were clustered together in a large group, and they were resistant to more numbers of compounds than other lineage groups.
+
+Melanoma groups were shown to distribute in separate clusters from CNS cell lines.
+
+Overall, cell lines did not show lineage specific clustering patterns of drug responses; however, we could find some unique clustering patterns in lineage groups，such as Leukemia, CNS and Melanoma cells.
+
+Among 6,652 compounds with varied responses on NCI60 cell lines, we further selected 801 compounds that exhibited a significant correlation with gene probes in the DNA microarray data on NCI60 cell lines (Fig.1B).
+
+Their GI50 profile showed positive or negative correlations with the expression profile of at least one gene probe in the DNA microarray data.
+
+We focused on these compounds for the networkbased analysis of compound and gene probe pairs.
+
+In the analysis of gene expression profile from DNA microarray data, lineage-oriented clustering patterns were more obvious than in the compound response profile (Fig.2).
+
+We used a total of 5,635 filtered gene probes for this analysis (See Methods section for details of filtration).
+
+Among the 9 different lineages of NCI60 cell lines, Leukemia, CNS and colon cell lines were completely clustered together on a lineage basis (Fig.2A).
+
+Melanoma and Renal groups were also wellclustered with only one exception.
+
+Most lung cell lines were included in a single cluster.
+
+This observation was roughly consistent with clustering patterns in the compound response.
+
+Relatively homogeneous characteristics in cell lines within a lineage group (leukemia, CNS and melanoma) were observed through gene expression analysis, which explains the similar compound responses among cell lines of common lineages.
+
+However, cell lines of breast and ovary did not show a lineageoriented clustering pattern, indicating that they are more heterogeneous than those in other lineage groups.
+
+Thus, the analysis of compound responses on these lineages require furthers sub-clustering of cell lines to find improved correlations between compound response and gene expression profiles.
+
+We could also identify unique gene signatures for several lineage groups.
+
+A large number of upregulated gene signatures were observed in melanoma cell lines.
+
+In the cases of leukemia and colon cell lines, significant gene signatures were found with both up and down regulated patterns.
+
+CNS also exhibited a small lineage-specific gene signature, while renal cell lines did not show any signature groups with a significant expression pattern.
+
+Among these 5,635 gene probes, we further selected 341 gene probes with a significant correlation with the GI50 profile of a compound in Fig.1 (Fig.2B).
+
+They were used for the following networkbased analysis.
+
+In conclusion, gene expression profiles reveal lineage specific clustering patterns, indicating that gene signatures effectively represent the distinct biological features in the lineage-based analysis of cell lines.
+
+In the other hand, the compound response data shows relatively complicated patterns in the lineage clustering, indicating that the compound response is the outcome of complicated mechanisms beyond lineagespecific features.
+
+Thus, combining the GI50 with gene expression data on NCI60 panel might provide a new tool for understanding lineage-specific versus nonlineagespecific mechanisms in drug action.
+
+A largescale correlation study between compound response and gene expression was carried out using NCI60 cell lines.
+
+The relationship was analyzed on a network which represents similarity of GI50s of a compound and fold change of a gene probe over 59 cell lines (Fig.3).
+
+Totals of 801 compounds and 341 gene probes had at least one counterpart with a significantly high correlation (PCC＞0.7 & pvalue＜0.01).
+
+Most of the selected gene probes had more than one connected compound that mediated interconnection among gene probes, resulting in a globular shape in the overall network topology.
+
+However, a small number of compounds and gene probes showed an isolated network containing only one or a few number of compoundgene probe pairs.
+
+The data provide a useful resource for studying and predicting the mechanism of drug actions on diverse cancer cells.
+
+To further explore this network, we picked up two subnetworks to examine the correlations between the involved components.
+
+Firstly, as shown in the Fig.4, compound of NSC710203 (Obtusol) shows a close relationship with 207463_x_at, 204818_at, and 3421_x_at.
+
+Obtusol is known to have an antibacterial activity (Vai rappan et al., 2001; Vairappan, 2003).
+
+Among three related gene probes, both 207463_x_at, and 3421_ x_at represent the PRSS3 gene, which can promotes tumor growth and metastasis of human pancreatic cancer (Jiang et al., 2010).
+
+Another gene probe 204818_at is HSD17B2, which can regulate intracellular levels of granulosa cells (GCs) (Svechnikova et al., 2007).
+
+These two genes, PRSS3 and HSD17B2 are predicted as Obtusol related genes.
+
+Interestingly, Obtusol showed a relatively strong sensitivity on only a small number of colon cancer cell lines, while it had no significant sensitivity on all of other cell lines (Fig.4B).
+
+The related genes, PRSS3 and HSD17B2, showed a unique upregulation on most of colon cell lines.
+
+It seems that unique functions of these genes in colon cancer cell lines might be related to the mechanism of action of Obtusol.
+
+However, in order to explain the specificity of Obtusol on a narrow range of colon cell lines, it requires further sub-classification of gene signatures within the cell lines of colon cancers.
+
+Another subnetwork includes a gene probe, 209921_ at, and a total of 39 related compounds (Fig.5).
+
+209921_at presents SLC7A11 (solute carrier family 7 (anionic amino acid transporter light chain, xc system), member 11), which has been known as a direct target of miR-26b.
+
+Its expression is remarkably increased in both breast cancer cell lines and clinical samples (Liu et al., 2011).
+
+MiR-26b is a down-regulated gene in human breast cancer cell lines which can impairs viability and triggers apoptosis of human MCF7 cells (Davoren et al., 2008).
+
+Based on 2D chemical similarity, 27 out of 39 compounds were clustered into 6 groups.
+
+The chemical names of cluster centers, their biological (or chemical) information and the number of compounds in each cluster were summarized in Table 2.
+
+NSC249956 (Chapliatrin) is isolated from Liatris gracills, which has many antitumor constituents (Gravuer et al., 2003).
+
+NSC34821 (2 Propen1one, 2[(dimethylamino)methyl] 1(2nitro phenyl),hydrochloride) is a similar chemical of alkylaminopropiophenone which is known to have a potent antineoplastic activity (Huang and Hall, 1996).
+
+NSC708044 (2butenoic acid, 4,4dicyano4[(phenylmethylene)amino],methyl ester, (Z,E)(9CI)) has an effect on chemoresistance, mediated by glutathione transport system (Dai et al., 2007).
+
+NSC654206 (Naphthsaritone) and its related compounds was used in the treatment and control of insulin resistance and hyperglycemia (Cote and Goodman, 1973).
+
+NSC138333 (Cyclohexanone, 2,6bis (4(1,3dihydro2Hpyrrolo[3,4b]quinolin2ylcarbonyl)2 oxotetrahydro3furanyl)methyl acetate), one of pyrrolo quinoline derivative, is a potent inhibitor for PI3kinase related kinases (Peng et al., 2002).
+
+NSC38533 (Cyclohexanone,2,6bis(4morpholinylmethyl),dihydrochloride) can be as a potential drug for the treatment of the ERnegative breast cancer MDAMB231 and SKBr3 human breast cancer cells (SomersEdgar et al., 2011).
+
+It is implied that SLC7A11 plays an essential role in the action of these 6 compound classes.
+
+We have demonstrated that the networkbased analysis of compound response and expression patterns is a new promising approach to categorize compounds and predict the mechanism of action.
+
+In conclusion, we attempted to integrate compound and gene expression data on diverse cancer cell lines.
+
+It enabled us to find many unexpected relationships between genes and compounds.
+
+Previously, most of analysis have focused on finding gene signatures (Ballif et al., 2011) or compounds clusters (Takigawa et al., 2011), and there are few reports on the cross analysis of compound and gene expression data on diverse cell types.
+
+In the present study, we built a network of compound gene relationships on 59 diverse cell lines retrieved from NCI60 datasets.
+
+Patterns in subnetworks provided new clues on the possible mechanisms of compounds.
+
+This research was supported by Sookmyung Women’s University Research Grants 110030120.
+

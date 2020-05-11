@@ -1,0 +1,238 @@
+Development of a Knowledge Base for Korean.
+
+Pharmacogenomics Research Network
+
+Pharmacogenomics research requires an intelligent in­ tegration of large-scale genomic and clinical data with
+
+public and private knowledge resources.
+
+We developed a web-based knowledge base for KPRN (Korea Pharmacogenomics Research Network, http://kprn.snubi .
+
+org/).
+
+Four major types of information is integrated; ge­ netic variation, drug information, disease information, and literature annotation.
+
+Eighteen Korean pharmacoge­ nomics research groups in collaboration have submitted 859 genotype data sets for 91 disease-related genes.
+
+Integrative analysis and visualization of the large collec­ tion of data supported by integrated biomedical path­ ways and ontology resources are provided with a user-friendly interface and visualization engine empowered by Generic Genome Browser.
+
+Human Genome map is nearly completed.
+
+Pharmacoge­ netics and Pharmacogenomics which deal with the ge­ netic or genomic basis underlying variable drug re­ sponses in individuals have become the center of inter­ est all over the world.
+
+In this situation, it is recognized that pharmacogenomic and pharmacogenetic studies form a field of study that can be applied in clinical medi­ cine at the earliest time.
+
+And many biomedicalogists are interested in this field because they believe that it can make individualized therapy possible.
+
+It is expected that a technique of individual therapy in genetic basis will be put to practical use in patient
+
+treatment within 10 years.
+
+Experts in this field have tried to apply the technique to a part of treatment with drugs although there still remains limitation.
+
+At present, there is a centralized database, Pharm GKB(Klein eta/., 2001) (Pharmacogenomics Knowledge Base), where researchers store the outcome of the phar­ macogenomics study world wide.
+
+PharmGKB provides the functions in which we can collect and search for the result of study about what drug response occurs in in­ dividuals according to genetic variation.
+
+The standard of data model for pharmacogenomics data, however, is not present, yet.
+
+Moreover, it is hard to find a database ex­ cept PharmGKB which collects pharmacogenomics data.
+
+As a group of large research collaboration, KPRN felt the need of having its own repository system with in­ tegrated biomedical resources.
+
+The present study intends to deal with pharmacogenomics data repository system being developed in KPRN.
+
+Its goals include central­ ization of the domestic pharmacogenomics data, pre­ venting duplication of similiar research, and information­ sharing among the joint research team as well as with the general research community.
+
+It intends to provide ge­ nomic function information about sequence variance as well as expression, extending it to be knowledge-based.
+
+1.
+
+PharmGKB XML schema
+
+PharmGKB    is    a    Knowledge-base    developed    at
+
+the Stanford University for the function of searching and retrieving the result of research in pharmacogenomics ( http://www.pharmgkb.org/ ).
+
+Its XML schema explains information about sequence variation, drug data, and phenotype data.
+
+It describes the information of side effects from a drug treatment that are caused by sequence variation.
+
+One can find the details of the schema at http://www.pharmgkb.org/schema/index.html/ .
+
+2.
+
+Aperon drug database
+
+We use the drug database made in Aperon(Kaiser, 2005) to capture the name of drug.
+
+Presently, Aperon is also used by PharmGKB.
+
+It catalogs 3,885 drug names, 9,176 generic names, and 9,177 trade name.
+
+3.
+
+Medical Subjects Heading (MeSH)
+
+MeSHMeSH(Schulman etal., 2000), a thesaurus made by NLM (National Library of Medicine), is used for indexing an article in MEDLINE.
+
+It provides a consistent way for searching the information that includes different terms for the same concepts.
+
+For instance, a malignant tumor can be ordinarily named either 'neoplasm' or 'cancer*.
+
+In MeSH, however, neoplasm is adopted.
+
+Also, MeSH
+
+terms old people 'aged'.
+
+4.
+
+USCS GoldenPat
+
+Our knowledge base uses the GoldenPath(Kent et al., 2005; Karolchik etal., 2003) developed at the University of California to capture the position where a sequence variation occurred.
+
+GoldenPath enables the use of absolute coordinate system for a position of variation on Human Chromosome Map, allowing a consistent positioning of variations and annotation on the basis of the position of variation.
+
+ChromosomeNumber: BasePosition
+
+For example, 'chr2:23451703' indicates the 23451703 rd position on the 2nd chromosome.
+
+5.
+
+Genew (Human Gene Nomenclature Database)
+
+We use the gene name provided by Genew(Wain et al.,
+
+2002) to associate it with the information of a sequence variation.
+
+Genew is the precisely verified database by editors in HGNC (Human Gene Nomenclature Committee) for denominating name and symbol of human gene.
+
+This database includes gene name, gene symbol, and alias symbol.
+
+6.
+
+Generic Genome Browser (GGB)
+
+We use GGB(Stein etal., 2002) (Generic Genome Browser) to display information of both sequence variance and Human genome which are collected.
+
+It is possible for GGB to show sequence-based information such as genome contig, genome information, STS (Sequence Tag Site), SNP (Single Nucleotide Polymorphism), so on and so forth by track.
+
+And also the GGB is designed to be able to be linked with other databases as each of track information.
+
+We adopted this browser to indicate the information of allele frequency entered by users.
+
+To store and search pharmacogenomics data, we de­ fined and modeled the relationship between sequence variance information, drug information, and phenotype information that describe pharmacokinetic or pharmaco-
+
+
+dynamic effect which is different in sequence variance for dosage.
+
+For the standardization of entering information for sequence variance, we use the Gene Symbol provided by Genew.
+
+We accept MeSH terms as the standard for disease names in phenotype data.
+
+The drug names are taken from Aperon database.
+
+The relationship of each of information is illustrated in Fig.1.
+
+In order to add literature annotation information, we have developed a system for inputting highly curated annotation of each gene, drug, and phenotype from documents published already.
+
+Fig.2 shows such a form through which users can input data in­ to the system.
+
+We accomplish the visualization of in­ formation of sequence variance by integrating the func­ tionalities supported by the Generic Genome Browser.
+
+1) Information of Sequence variance
+
+This part describes information of experiment about se­
+
+quence information genotyped (i.e.
+
+allele position, al­ leles, allele frequency, and amino acid transition and Gene symbol).
+
+Actually, the marking rule in indicating allele po­ sition exists already.
+
+For example, "CYP2C9, Arg144Cys" means that amino acid transition occurs at the 144th po­ sition of CYP2C9 gene, changing Arg to Cys.
+
+But the re­ sult may vary depending where the experimenter count as the 1st position of the gene.
+
+Thus we adopt an abso­ lute coordinate system by using GoldenPath position.
+
+It prevents ambiguity which is caused by using relative po­ sition information and we need it to combine our data­ base with the others.
+
+To mark alleles, we adopted the for­ mat described below.
+
+The notation of amino acid transition is designed to understand one or three-letter codes.
+
+There are two categories in allele frequency, control frequency and case frequency.
+
+The former corresponds to searching for frequency in healthy volunteers, the latter in patients.
+
+We used the Genew system to check what gene the
+
+
+information of a sequence variation be included by.
+
+For a gene, more than one symbols may exist.
+
+In case of an alpha-1 -B glycoprotein, alias symbols are A1B, ABG, GAB, HTSY2477 and so on.
+
+So, we need an official gene symbol that represents them for preventing ambiguity caused by redundancy.
+
+We use 23,449 official symbols now.
+
+2) Drug information
+
+We use the drug database made in Aperon to input the name of drug.
+
+Presently, it is also used by PharmGKB.
+
+The Aperon drug database consists of 3,885 drug names, 9,176 generic names, and 9,177 trade names.
+
+When users search or retrieve drug name, generic name, and trade name simultaneously, it gives proper drug name to users to use.
+
+3) Phenotype information
+
+The phenotype that the gene in point shows when a drug is administered into normal group/patient group is described in phenotype information.
+
+We use the MeSH
+
+term to describe disease name used for input and classify phenotype into five categories used in PharmGKB.
+
+This system uses EAV (Entity-Attribute-Value) model(Anjoy eta/., 2003) because each phenotype information is input in each category but cannot be input as unified or abbreviated form.
+
+4) Literature Annotation
+
+We developed a Literature Annotation system to search for the information of pharmacogenomics that is published already because we intend to get literature information which is highly curated by researchers.
+
+The Literature Annotation consists of PubMed information, keyword, abstract, related gene, drug, and disease information that can be input and retrieved.
+
+5) Visualization using Generic Genome Browser
+
+We used Generic Genome Browser (GGB) to visualize
+
+information of sequence variance.
+
+It is possible for GGB to show sequence-based information by tracks.
+
+Also it is designed to be able to be linked with other databases as each of track information.
+
+We modified this browser to indicate the information of allele frequency entered by users (Fig.3).
+
+This paper introduces the knowledge base for KPRN we have developed for storing and searching for pharmaco­ genomics data with integrated biomedical resources.
+
+The system includes sequence information from phar- macogenomic experiment, drug data, phenotype data coincided with the drug data, literature annotation, and visualization of sequence variance information.
+
+We used thesaurus in MeSH, Genew and many standard systems for building the knowledge base to describe gene in­ formation, drug information, phenotype information.
+
+The system enables to link with other public databases for in­ put information and helps understand pharmacoge­ nomics data by means of visualization.
+
+At present, 859 genotype data sets are integrated for 91 genes by the 18 research groups.
+
+The number of input data will ex­ ponentially increase in the near future.
+
+Except for the PharmGKB in Stanford, there has been no standard for storing pharmacogenomics data.
+
+But we think that ours is a valuable effort to create our own knowledge base for understanding and using pharmaco­ genomics data.
+
+We hope it will server for the develop­ ment of a standard for collaborative and integrative phar­ macogenomics research.
+
