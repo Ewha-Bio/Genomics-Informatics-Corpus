@@ -1,4 +1,4 @@
-A Primer for Disease Gene Prioritization Using Next-Generation Sequencing Data.
+Title: A Primer for Disease Gene Prioritization Using Next-Generation Sequencing Data
 
 High-throughput next-generation sequencing (NGS) technology produces a tremendous amount of raw sequence data.
 
@@ -52,15 +52,18 @@ Such a FASTQ file will contain ~15 million raw 100-bp sequences.
 
 To identify the causal genes from this raw data, a variant gene prioritization pipeline usually involves three stages or phases of data processing: 1) raw sequence processing and mapping, 2) variant discovery and genotyping, and 3) disease gene filtering and/or prioritization.
 
-Phase 1: Raw sequence processing and mapping
-Overview
+Title: Phase 1: Raw sequence processing and mapping
+
+Title: Overview
+
 The goal of Phase 1 is to preprocess the FASTQ file and evaluate the quality of the raw reads and then to map or align the sequences to the reference genome-that is, to find the best location on the reference genome where each sequence might have originated.
 
 Successfully mapped sequences are annotated with information that includes the location on a specific chromosome and how well the sequence matches the reference genome.
 
 After initial mapping, there are several subsequent recalibration steps to improve the mapping results.
 
-Preprocessing
+Title: Preprocessing
+
 The raw FASTQ file contains all of the raw sequences, some of which are of low quality.
 
 The overall quality should be evaluated, and the lower-quality reads should be removed before mapping to the reference genome to improve mapping efficiency.
@@ -79,7 +82,8 @@ FASTX-Toolkit (http://hannonlab.cshl.edu/fastx_toolkit/) provides a set of comma
 
 Cutadapt (https://github.com/marcelm/cutadapt) can be used for trimming short reads to remove potential adapter contamination.
 
-Mapping
+Title: Mapping
+
 Once high-quality sequence data are obtained, a number of bioinformatics programs, including Mosaik [7], MAQ (http://maq.sourceforge.net/), mrFAST [8], BWA [9], Bowtie2 [10], SOAP2 [11], and Subread [12], can be used to perform short-read sequence alignment to the reference genome.
 
 Several recent studies provided a detailed description and comparison of the alignment programs [5, 13], although it could be difficult to choose among aligners, because benchmark results vary across studies [10, 12, 14].
@@ -100,7 +104,8 @@ After mapping the reads, the final output file from most software is typically i
 
 In some cases, the SAM file is converted to its binary format (BAM) using SAMtools [18] to reduce the file size and optimize computation performance.
 
-Recalibration
+Title: Recalibration
+
 After the initial mapping procedure, subsequent recalibration steps are typically employed to improve the mapping results, such as performing local realignment or de novo assembly for regions that contain insertions/deletions (indels), removing PCR duplicates, and recalibrating the base quality scores.
 
 Indel realignment is a highly recommended post-BAM processing procedure.
@@ -129,8 +134,10 @@ In such a scenario, keeping one copy of each of the consensus sequences may be s
 
 However, keeping a copy of the original file is highly recommended after data compression.
 
-Phase 2: Variant discovery and genotyping
-Overview
+Title: Phase 2: Variant discovery and genotyping
+
+Title: Overview
+
 In many scenarios, only the sites that differ from the reference genome are of interest, because sites that are identical to the reference genome are not expected to be related to pathological conditions.
 
 Once raw sequences are properly mapped to the reference genome, the next step is to find all positions in an individual's genome that differed from the reference.
@@ -143,7 +150,8 @@ The output of variant calling contains all the variants and related information.
 
 Sites that are identical to the reference genome (i.e., invariant sites) are usually not included in the output variant file.
 
-Variant discovery and genotyping
+Title: Variant discovery and genotyping
+
 A number of variant calling software packages can be used to identify variants and call individual genotypes.
 
 Some of the commonly used software programs are SAMtools [18], freebayes (http://github.com/ekg/freebayes), SNPtools [20], GATK UnifiedGenotyper, and GATK HaplotypeCaller.
@@ -182,7 +190,8 @@ In general, structural variations (SVs) and copy number variations (CNVs) are mo
 
 For SVs and CNVs, it is generally recommended to apply a combination of several tools and take the overlapping variant sites for high-confidence calls [17].
 
-Genotype phasing and refinement
+Title: Genotype phasing and refinement
+
 After the initial variant discovery and recalibration, variant genotyping and/or phasing are performed to provide critical information for downstream medical and population genetic studies that require accurate haplotype structures.
 
 For example, Mendelian diseases may be caused by a compound heterozygote event where heterogeneous mutations are found on different chromosomes.
@@ -195,8 +204,10 @@ GATK PhaseByTransmission incorporates pedigree data to assist genotype calling, 
 
 Statistical imputation of genotypes can be processed by several programs, such as Beagle [23,24], IMPUTE2 [25], and MACH [26].
 
-Phase 3: Disease gene filtering and/or prioritization
-Overview
+Title: Phase 3: Disease gene filtering and/or prioritization
+
+Title: Overview
+
 A typical variant call pipeline will produce approximately 3 million variants from one whole-genome sequencing data set and more than 20 thousand variants from one whole-exome sequencing data set [27].
 
 Because disease causing mutations might just be several "needles" in this tremendous "haystack" of variants, rigorous algorithms and high-quality databases are essential to accurately locate the candidate genes.
@@ -205,7 +216,8 @@ This process is done either by filtering out variants that are not likely to car
 
 Unlike Phase 1 and Phase 2, which have largely converged to well-formed computation workflows and platform-free file formats (e.g., FASTQ, BAM, and VCF formats), Phase 3 has more variations in the tools and workflows to suit the different needs of various research or clinical projects.
 
-Annotation
+Title: Annotation
+
 Although many different strategies can be used to search for disease-causing mutations, some general procedures are shared.
 
 The first step, variant annotation, typically investigates the potential pathogenic impact of a variant, before any subsequent filtering or prioritizing.
@@ -256,7 +268,8 @@ It worth noting that Polyphen2 provides two different prediction models that use
 
 SNAP [36] is another tool that uses various protein information, such as the secondary structure and conservation, to predict the functional effect of a variant.
 
-Filtering
+Title: Filtering
+
 After variant annotation, two types of disease-gene identification strategies are commonly employed.
 
 A filter-based approach uses a series of criteria to sort out variants or genes that are unlikely to be causative, given a disease model.
@@ -285,7 +298,8 @@ However, caution should be taken when studying common, complex diseases, because
 
 For instance, common diseases could be caused by common variants that have incomplete penetrance (i.e., not all individuals carrying the variant will have the disease).
 
-Ranking
+Title: Ranking
+
 To overcome the difficulties associated with hard filtering, a prioritizing approach ranks each gene or feature based on the cumulative disease risk of potential deleterious variants.
 
 As an example, the VAAST tool kit performs the composite likelihood ratio test to determine the risk of a gene or a feature [30, 31].
@@ -316,7 +330,8 @@ Alternatives to these two basic methods are also available [40].
 
 For example, by default, the VAAST program combines all variants that have less than three copies in a gene into one pseudo-site for scoring.
 
-Pathway analysis
+Title: Pathway analysis
+
 Pathway analysis is an alternative way to search for deleterious genes.
 
 The assumption is that a single mutation in a single gene may not be very harmful but that a combination of mutations in several genes causes the disease.
@@ -341,7 +356,8 @@ We start from raw sequence FASTQ files and assume no quality control has been pe
 
 Please note that each tool is likely to require dependent files, such as the reference genome, the 1000 Genome variants, dbSNP variants, and the genome feature file in GFF3 format, etc.
 
-Sequence mapping
+Title: Sequence mapping
+
 - Raw sequence quality control.
 
 FastQC can be used to perform graphical quality checks on the raw sequence.
@@ -364,7 +380,8 @@ The Picard MarkDuplicates tool is then used to mark and remove duplicated sequen
 
 Next, GATK's BaseRecalibrator tool is used to recalibrate the base quality scores, and PrintReads is used to output the final, analysis-ready reads in BAM format.
 
-Variant discovery
+Title: Variant discovery
+
 - Initial variant discovery.
 
 The GATK UnifiedGenotyper tool is used to perform initial raw variant calling and output VCF files.
@@ -381,7 +398,8 @@ Low-quality SNPs are then removed by imposing a filtering step, based on a user-
 
 After SNPs and indels are reprocessed, the GATK CombineVariants tool is used to combine the recalibrated SNPs and indels.
 
-Disease gene prioritization
+Title: Disease gene prioritization
+
 - Variant annotation.
 
 VCF files are converted to genome variation format (GVF) format using the VAAST vaast_converter tool.
@@ -436,7 +454,8 @@ Nevertheless, many challenges remain, and we would like to highlight a few: 1) d
 
 For example, a number of variant discovery tools for SV and CNV use different file formats and need to be converted to the more standard format for downstream analysis [17]; 2) more standardized, automated workflows need to be developed to accommodate different data and projects and minimize the user interaction, such that different research groups can perform independent data analysis and the results can be easily compared; and 3) large, high-quality, and unified databases are essential for disease gene identification/prioritization, and continuous efforts from the scientific community are needed.
 
-In addition to the challenges, a number of improvements that are urgently needed for current analysis pipeline are being actively developed and implemented:
+Title: In addition to the challenges, a number of improvements that are urgently needed for current analysis pipeline are being actively developed and implemented:
+
 - Sequence mapping.
 
 Apply haplotype-based mapping and de novo assembly to reduce mismatches and increasing specificity.

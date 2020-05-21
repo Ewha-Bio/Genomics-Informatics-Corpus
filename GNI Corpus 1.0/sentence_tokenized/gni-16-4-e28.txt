@@ -1,4 +1,4 @@
-STADIUM: Species-Specific tRNA Adaptive Index Compendium.
+Title: STADIUM: Species-Specific tRNA Adaptive Index Compendium
 
 Due to the increasing interest in synonymous codons, several codon bias-related terms were introduced.
 
@@ -42,7 +42,7 @@ This may affect the speed of translation [9] and protein folding [10].
 
 Thus, from the level of each codon in the mRNA to whole organisms, a measure to reflect translational efficiency based on tRNA abundance should be required.
 
-For this purpose, a new metric, the tRNA adaptive index (tAI), was suggested by dos Reis et al.11], which differs from previously used measures, such as the codon usage index and the codon adaptive index (CAI) [12], in that the tAI is calculated with intracellular tRNA abundance.
+For this purpose, a new metric, the tRNA adaptive index (tAI), was suggested by dos Reis et al.[11], which differs from previously used measures, such as the codon usage index and the codon adaptive index (CAI) [12], in that the tAI is calculated with intracellular tRNA abundance.
 
 To calculate the tAI, parameters that represent the codon-anticodon’s wobble interactions are used to anticipate tRNA abundances, and the values were inferred by gene expression profiles in budding yeast (Saccharomyces cerevisiae) in the first version of tAI [12].
 
@@ -70,10 +70,12 @@ Weight values for each tRNA of set A and set B were obtained from stAIcalc and t
 
 According to NCBI taxonomy [21], overall, 148 species were classified into five kingdoms.
 
-The values of stAI for the two sets were calculated in different ways.
+Title: The values of stAI for the two sets were calculated in different ways.
 
 For each species in set A, species-specific relative adaptiveness values (wi) of 61 codons were obtained by the value provided by stAIcalc; then, the stAI of a gene (g) was calculated by obtaining the geometric mean of relative adaptiveness values of codons in the gene as follows:
-s t A I g = ( ∏ k = 1 l g w i k g ) 1 / l g ,
+
+Title: s t A I g = ( ∏ k = 1 l g w i k g ) 1 / l g ,
+
 where ikg is the codon defined by the kth triplet in gene g and lg is the length of the gene in codons (except the stop codons).
 
 For set B, the values were calculated by stand-alone software provided by stAIcalc with inputs of CDS and tRNA copy numbers obtained from GtRNAdb.
@@ -102,9 +104,7 @@ Values for set A were obtained from precalculated values in stAIcalc; those for 
 
 Indeed, differences between set A and set B were observed for some codons (Fig.2D–F).
 
-Sabi et al.
-
-(2017) [17] stated that the values provided by stAIcalc were calculated based on the NCBI genome.
+Sabi et al.(2017) [17] stated that the values provided by stAIcalc were calculated based on the NCBI genome.
 
 Thus, the differences may be caused by the difference between coding sequences that were stored in the NCBI genome at the time when stAIcalc was constructed.
 
@@ -120,7 +120,8 @@ This seems to be caused by the fact that ribosomal proteins are pivotal house-ke
 
 Likewise, we expect subsequent studies of pathway-based comparisons of stAI values to help find rules that govern what kinds of biological processes need more tRNA adaptation and how they are to be regulated.
 
-Web server implementation
+Title: Web server implementation
+
 We constructed a web server, named STADIUM (Species-specific tRNA adaptive index compendium; http://stadium.pmrc.re.kr).
 
 The codes for STADIUM were written in the R programming language (version 3.4.4) with the package ‘shiny,’ which is a web application framework.

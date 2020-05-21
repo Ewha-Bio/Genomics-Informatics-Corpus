@@ -1,4 +1,4 @@
-Statistical Analysis of Metagenomics Data.
+Title: Statistical Analysis of Metagenomics Data
 
 Understanding the role of the microbiome in human health and how it can be modulated is becoming increasingly relevant for preventive medicine and for the medical management of chronic diseases.
 
@@ -140,8 +140,10 @@ Moreover, observed raw abundances and the total number of reads per sample are n
 
 These characteristics of microbiome abundance data clearly fall into the notion of compositional data.
 
-Compositional data are defined as a vector of strictly positive real numbers
-x   =   ( x 1 ,   …   ,   x k   ) ;   x 𝑖   >   0   ,   𝑖   ∈   { 1 ,   …   ,   k }
+Title: Compositional data are defined as a vector of strictly positive real numbers
+
+Title: x   =   ( x 1 ,   …   ,   x k   ) ;   x 𝑖   >   0   ,   𝑖   ∈   { 1 ,   …   ,   k }
+
 with a constraint or non-informative total sum.
 
 The elements of a composition are called components or parts.
@@ -152,12 +154,14 @@ Except for the fact that microbiome abundance tables contain many zeros, microbi
 
 Aitchison introduced the log-ratio approach and laid the foundations of Compositional Data Analysis (CoDA).
 
-Mathematically, the assertion that the relevant information is contained in the ratios between the components implies that two proportional compositions are equally informative and this induces equivalence classes of vectors carrying the same information.
+Title: Mathematically, the assertion that the relevant information is contained in the ratios between the components implies that two proportional compositions are equally informative and this induces equivalence classes of vectors carrying the same information.
 
 Two vectors are compositionally equivalent if they are proportional.
 
 Each equivalence class has a representative in the unit simplex defined as:
-S   k   =   {   x   =   ( x 1 ,   …   ,   x k   ) ,   x 𝑖 > 0   ,   ∑ i = 1 k x 1 = 1 }
+
+Title: S   k   =   {   x   =   ( x 1 ,   …   ,   x k   ) ,   x 𝑖 > 0   ,   ∑ i = 1 k x 1 = 1 }
+
 The simplex is thus the sample space of compositional data.
 
 In microbiome analysis, for example, both the raw counts and their transformation into relative abundances or proportions belong to the same equivalence class and they carry the same relative information.
@@ -174,38 +178,46 @@ In the context of microbiome analysis this principle is important because we usu
 
 Ignoring the compositional nature of microbiome data can result in spurious correlations and sub-compositional incoherencies.
 
-Aitchison [11] put the basis of CoDA by introducing what is now called the Aitchison's log-ratio approach.
+Title: Aitchison [11] put the basis of CoDA by introducing what is now called the Aitchison's log-ratio approach.
 
 The log-ratio analysis was introduced in order to meet the principle of scale invariance; as stated by Aitchison [11], “any meaningful (scale-invariant) function of a composition can be expressed in terms of ratios of its components.” Because the logarithmic transformation makes ratios mathematically more tractable, the simplest invariant function is given by the log-ratio between two components, that is:
-𝑓 ( x )   =   log   (     x 𝑖 x 𝑗   )   ,   𝑖 , 𝑗   ∈   { 1 ,   …   ,   k }
-The generalization of a log-ratio is a log-contrast function defined as a linear combination of logarithms of the components with the restriction that the sum of the coefficients is equal to 0:
-𝑓 ( x )   = ∑ i = 1 k a i log ( x i ) ; s o   t h a t   ∑ i = 1 k a i = 0
+
+Title: 𝑓 ( x )   =   log   (     x 𝑖 x 𝑗   )   ,   𝑖 , 𝑗   ∈   { 1 ,   …   ,   k }
+
+Title: The generalization of a log-ratio is a log-contrast function defined as a linear combination of logarithms of the components with the restriction that the sum of the coefficients is equal to 0:
+
+Title: 𝑓 ( x )   = ∑ i = 1 k a i log ( x i ) ; s o   t h a t   ∑ i = 1 k a i = 0
+
 Log-contrast functions are suitable for CoDA because they are scale invariant.
 
 As an alternative to working in the simplex, several data transformations have been proposed that transform compositional data to the real space where classical statistical analysis can be applied.
 
 All of them are based on log-ratios between components.
 
-The additive log-ratio transformation (alr) is the first proposal introduced by Aitchison [11].
+Title: The additive log-ratio transformation (alr) is the first proposal introduced by Aitchison [11].
 
 Taking one part as the reference, for instance xk, the alr transformation is defined as:
-𝑎 𝑙 𝑟 ( x 1 ,   …   ,   x k   )   =   log x 1 x k , .
+
+Title: 𝑎 𝑙 𝑟 ( x 1 ,   …   ,   x k   )   =   log x 1 x k , .
 
 .
 
 .
 
 , log x k - 1 x k
-Aitchison also defined the centered log-ratio transformation (clr) to treat the parts symmetrically.
+
+Title: Aitchison also defined the centered log-ratio transformation (clr) to treat the parts symmetrically.
 
 The clr transformation is given by:
-𝑐 𝑙 𝑟 ( x 1 ,   …   ,   x k   )   = log x 1 g ( x ) , .
+
+Title: 𝑐 𝑙 𝑟 ( x 1 ,   …   ,   x k   )   = log x 1 g ( x ) , .
 
 .
 
 .
 
 , log x k g ( x )
+
 where g(x)=∏xi1/k is the geometric mean of the composition.
 
 One characteristic of the clr transformation is that the transformed components are restricted to have a sum equal to zero and this implies that some common statistical analyses cannot be applied after the clr transformation because of a singular covariance matrix.
@@ -214,7 +226,7 @@ The third alternative is the isometric log-ratio transformation (ilr) and consis
 
 It overcomes the problem of the singular covariance matrix present in the clr-transformation.
 
-For a detailed description see Egozcue et al.12].
+For a detailed description see Egozcue et al.[12].
 
 The main element of a microbiome study is the microbiome abundance table, a matrix of counts, X, with n rows (samples) and k columns (taxa) where each entry xij provides the number of sequences (reads) corresponding to taxon j in sample i.
 
@@ -224,7 +236,8 @@ Apart from the abundance table, other elements that may be available for microbi
 
 Several R and Bioconductor packages, such as phyloseq, are designed to facilitate the integration of all these elements in a microbiome analysis [13].
 
-Normalization
+Title: Normalization
+
 The large variability of the total counts per sample prevents meaningful comparisons of raw abundances between individuals.
 
 This is usually addressed through normalization of raw counts before the analysis.
@@ -237,7 +250,7 @@ Rarefaction is not recommended because it entails the loss of important informat
 
 More sophisticated normalization techniques are implemented in some R packages, such as, DESeq [15] or edgeR [16], initially developed for RNA-seq analysis, that are also used for microbiome differential abundance testing.
 
-See Weiss et al.17] for a comparison and discussion on the performance of different normalization methods for microbiome analysis.
+See Weiss et al.[17] for a comparison and discussion on the performance of different normalization methods for microbiome analysis.
 
 CoDA techniques do not require the normalization step because the log-ratio approach involves working with ratios between components and this cancels the effect of the total counts per sample.
 
@@ -247,9 +260,10 @@ Microbiome abundance tables are sparse, they contain many zeros, and this should
 
 The simplest approach is to replace zeros by a small pseudo-count or to add a small constant to all the elements of the abundance matrix.
 
-As an alternative, Martín-Fernández et al.18] propose the Bayesian-Multiplicative treatment, a zero replacement involving Bayesian inference and a modification of the non-zero values so that the original ratios between the non-zero components are preserved.
+As an alternative, Martín-Fernández et al.[18] propose the Bayesian-Multiplicative treatment, a zero replacement involving Bayesian inference and a modification of the non-zero values so that the original ratios between the non-zero components are preserved.
 
-Diversity analysis
+Title: Diversity analysis
+
 The diversity of the microbiome is an important indicator of the good or bad conditions of the ecosystem, with larger microbiome diversity being usually associated to better health status.
 
 Microbiome diversity can be assessed through multiple ecological indices that can be divided into two kind of measures, alpha and beta diversity.
@@ -258,8 +272,9 @@ Alpha diversity measures the variability of species within a sample while beta d
 
 The R package vegan provides a large set of diversity measures [19].
 
-Alpha diversity: within sample diversity
-The most important measure of alpha diversity is richness, defined as the number of different species present in an environment.
+Title: Alpha diversity: within sample diversity
+
+Title: The most important measure of alpha diversity is richness, defined as the number of different species present in an environment.
 
 Richness is estimated by the observed richness, Robs, the number of different species observed in the sample.
 
@@ -268,16 +283,21 @@ The observed richness tends to underestimate the real richness in the environmen
 There are different indices that adjust for this and try to estimate the hidden part that has not been detected.
 
 One of the most extended richness measure is Chao1 index defined as
-𝑅 𝐶 ℎ 𝑎 𝑜 1   =   𝑅 𝑜 𝑏 𝑠   + 𝑓 1 ( 𝑓 1   −   1 ) 2 ( 𝑓 2   +   1 )
+
+Title: 𝑅 𝐶 ℎ 𝑎 𝑜 1   =   𝑅 𝑜 𝑏 𝑠   + 𝑓 1 ( 𝑓 1   −   1 ) 2 ( 𝑓 2   +   1 )
+
 where f1 is the number of species observed only once and f2 is the number of species observed twice.
 
-Another important indicator of alpha diversity is evenness, which measures the homogeneity in abundance of the different species in a sample.
+Title: Another important indicator of alpha diversity is evenness, which measures the homogeneity in abundance of the different species in a sample.
 
 A commonly used measure of evenness is the Shannon index defined as
-𝑅 S ℎ 𝑎 𝑛 𝑛 𝑜 𝑛   =   − ∑ i = 1 k p i log p i
+
+Title: 𝑅 S ℎ 𝑎 𝑛 𝑛 𝑜 𝑛   =   − ∑ i = 1 k p i log p i
+
 where pi represents the relative abundances of the i-th taxon.
 
-Beta diversity: between samples diversity
+Title: Beta diversity: between samples diversity
+
 Beta diversity measures the differences in microbiome composition between samples.
 
 There is a wide range of ecological distances or dissimilarities for measuring how close are two microbial compositions.
@@ -288,29 +308,38 @@ We also define the Aitchison distance which is a proper distance for composition
 
 Let p1= (p11,…,p1k ) and p2= (p21,…,p2k ) denote the microbiome relative abundance of two different samples.
 
-Bray-Curtis is defined as follows:
-d B C p 1 , p 2 = ∑ i = 1 k p 1 i - p 2 i ∑ i = 1 k p 1 i + p 2 i
+Title: Bray-Curtis is defined as follows:
+
+Title: d B C p 1 , p 2 = ∑ i = 1 k p 1 i - p 2 i ∑ i = 1 k p 1 i + p 2 i
+
 UniFrac family of distances [20] consider the phylogenetic tree that represents the evolutionary relationships among the different taxa.
 
 The phylogenetic tree can be obtained from the bioinformatic pipelines, such as mothur and QIIME.
 
 For a tree with r branches, let b = (b1,…,br) represent the length of the different branches in the phylogenetic tree, and q1= (q11,… ,q1r), and q2= (q21,… ,q2r) the relative abundances associated to each branch for the first and the second sample, respectively.
 
-The unweighted UniFrac distance measures the relative length of those branches that lead exclusively to species present in only one of the two samples with respect to the total length of all branches in the tree:
-d U ( b , q 1 , q 2 ) = ∑ i = 1 r b i I q 1 i > 0 - I q 2 i > 0 ∑ i = 1 r b i I q 1 i + q 2 i > 0
-The unweighted UniFrac distance only takes into account the presence or absence of the taxa but Lozupone et al.20] also introduced the weighted UniFrac distance that includes information on the relative abundance of each taxa and is defined as follows:
-d W ( b , q 1 , q 2 ) = ∑ i = 1 r b i q 1 i - q 2 i ∑ i = 1 r b i q 1 i + q 2 i I q 1 i + q 2 i > 0
+Title: The unweighted UniFrac distance measures the relative length of those branches that lead exclusively to species present in only one of the two samples with respect to the total length of all branches in the tree:
+
+Title: d U ( b , q 1 , q 2 ) = ∑ i = 1 r b i I q 1 i > 0 - I q 2 i > 0 ∑ i = 1 r b i I q 1 i + q 2 i > 0
+
+Title: The unweighted UniFrac distance only takes into account the presence or absence of the taxa but Lozupone et al.[20] also introduced the weighted UniFrac distance that includes information on the relative abundance of each taxa and is defined as follows:
+
+Title: d W ( b , q 1 , q 2 ) = ∑ i = 1 r b i q 1 i - q 2 i ∑ i = 1 r b i q 1 i + q 2 i I q 1 i + q 2 i > 0
+
 For a proper CoDA analysis, a distance must be subcompositionally dominant, which means that the distance between two points in a multi-dimensional space should always be larger than their distance when projected in a lower dimensional space (sub-composition).
 
 Most commonly used distances in microbiome analysis, such as, the Bray-Curtis and the weighted and unweighted UniFrac distances are not sub-compositionally dominant, and this may induce sub-compositionally incoherencies that question the reliability of the results of any distance-based analysis [8,11,21].
 
-The Aitchison distance is a sub-compositionally coherent distance defined as the Euclidean distance after the clr-transformation of the compositions.
+Title: The Aitchison distance is a sub-compositionally coherent distance defined as the Euclidean distance after the clr-transformation of the compositions.
 
 Given two compositions x1 and x2, the Aitchison distance is given by
-𝑑 𝐴 ( x 1 ,   x 2   )   =   𝑑 𝐸   ( 𝑐 𝑙 𝑟 ( x 1 ) ,   𝑐 𝑙 𝑟 ( x 2 ) )
+
+Title: 𝑑 𝐴 ( x 1 ,   x 2   )   =   𝑑 𝐸   ( 𝑐 𝑙 𝑟 ( x 1 ) ,   𝑐 𝑙 𝑟 ( x 2 ) )
+
 where dE denotes Euclidean distance.
 
-Ordination
+Title: Ordination
+
 The goal of ordination plots is the visualization of beta diversity for identification of possible data structures.
 
 The multidimensional data is represented into a reduced number of orthogonal axes while keeping the main trends of the data and preserving the distances among samples as much as possible.
@@ -333,9 +362,10 @@ The procedure starts with a random configuration and the optimal representation 
 
 Ordination plots can be obtained with the R and Bioconductor packages vegan and phyloseq, among others [13,19].
 
-Alternatively, a CoDA ordination approach can be followed by performing PCA after the clr or ilr transformation as implemented by Le Cao et al.24] in the context of the multivariate statistical framework mixMC.
+Alternatively, a CoDA ordination approach can be followed by performing PCA after the clr or ilr transformation as implemented by Le Cao et al.[24] in the context of the multivariate statistical framework mixMC.
 
-Multivariate differential abundance testing
+Title: Multivariate differential abundance testing
+
 Multivariate differential abundance testing refers to a global test of differences in microbial composition between two or more groups of samples.
 
 We can distinguish between distance-based or model-based approaches.
@@ -352,18 +382,24 @@ Significance is evaluated through permutations to generate a distribution of the
 
 A related and popular distance-based approach is the analysis of similarities [26], implemented in the function “anosim” of the vegan R package.
 
-An interesting model-based approach for multivariate microbiome analysis is Kernel machine regression (KMR), that extends PERMANOVA to a regression framework [27].
+Title: An interesting model-based approach for multivariate microbiome analysis is Kernel machine regression (KMR), that extends PERMANOVA to a regression framework [27].
 
 KMR is a semi-parametric regression model that includes a nonparametric component.
 
 The model can be expressed as a semiparametric linear regression model when the response variable is continuous
-𝑦 𝑖   =   𝛽 0   +   𝛽   ′ 𝑍 𝑖   +   ℎ ( 𝑋 𝑖   )   +   𝜖 i
-or as a semiparametric logistic regression model for a dichotomous response variable
-𝑙 𝑜 𝑔 𝑖 𝑡 ( 𝑦 𝑖   )   =   𝛽 0   +   𝛽   ′ 𝑍 𝑖   +   ℎ ( 𝑋 𝑖 )   +   𝜖 𝑖  
-In the context of microbiome analysis, X is the microbiome abundance matrix and the non-parametric component h(X) measures the relationship between microbiome composition and the outcome.
+
+Title: 𝑦 𝑖   =   𝛽 0   +   𝛽   ′ 𝑍 𝑖   +   ℎ ( 𝑋 𝑖   )   +   𝜖 i
+
+Title: or as a semiparametric logistic regression model for a dichotomous response variable
+
+Title: 𝑙 𝑜 𝑔 𝑖 𝑡 ( 𝑦 𝑖   )   =   𝛽 0   +   𝛽   ′ 𝑍 𝑖   +   ℎ ( 𝑋 𝑖 )   +   𝜖 𝑖  
+
+Title: In the context of microbiome analysis, X is the microbiome abundance matrix and the non-parametric component h(X) measures the relationship between microbiome composition and the outcome.
 
 This association can be tested according to the following hypothesis:
-𝐻 0 :   ℎ ( 𝑋 )   =   0     𝑣 𝑠     𝐻 1 :   ℎ ( 𝑋 )   ≠   0
+
+Title: 𝐻 0 :   ℎ ( 𝑋 )   =   0     𝑣 𝑠     𝐻 1 :   ℎ ( 𝑋 )   ≠   0
+
 The nonparametric component is related to a Kernel matrix that is a transformation of the distance matrix D of pairwise distances between individuals.
 
 KMR is implemented for microbiome analysis in the R package MiRKAT [28].
@@ -374,11 +410,11 @@ Rivera-Pinto [29] has implemented this adaptation in the R package MiRKAT-CoDA.
 
 The algorithm also includes a weighted version that allows the identification of the taxa that are more relevant for the joint association.
 
-Among the different model-based methods for microbiome differential abundance testing we highlight the work by La Rosa et al.30] that consider the Dirichlet-Multinomial distribution for hypothesis testing, power and sample size calculations.
+Among the different model-based methods for microbiome differential abundance testing we highlight the work by La Rosa et al.[30] that consider the Dirichlet-Multinomial distribution for hypothesis testing, power and sample size calculations.
 
 The proposed methods are implemented in the R package HMP.
 
-Le Cao et al.24] propose the multivariate statistical framework mixMC where they perform sparse partial least squares discriminant analysis (sPLS-DA), implemented in the R package mixOmics [31].
+Le Cao et al.[24] propose the multivariate statistical framework mixMC where they perform sparse partial least squares discriminant analysis (sPLS-DA), implemented in the R package mixOmics [31].
 
 In order to acknowledge the compositional structure of microbiome data, they apply sPLS-DA after the clr transformation.
 
@@ -386,7 +422,8 @@ PLS-DA maximizes the covariance between linear combinations of the taxa and the 
 
 The sparse version of PLS-DA uses Lasso penalized regression [32] and thus, it performs variable selection that enables the identification of the taxa that are most associated with the outcome.
 
-Univariate differential abundance testing
+Title: Univariate differential abundance testing
+
 When significant global differences in microbiome composition are detected between groups of samples, a natural question arises: which particular taxa are responsible of that global difference?
 
 A common strategy to answer this question is to test every taxa separately for association with the response variable.
@@ -421,16 +458,20 @@ The ALDEx2 algorithm uses a Dirichlet-multinomial model to infer the multivariat
 
 After clr transformation it performs the Wilcoxon rank test (two groups) or Kruskal-Wallis tests (more than two groups).
 
-Microbial signatures
-Recently, Rivera-Pinto et al.37] have proposed a new CoDA approach for microbiome analysis that is aimed to the identification of microbial signatures, groups of microbial taxa that are predictive of a phenotype of interest.
+Title: Microbial signatures
+
+Title: Recently, Rivera-Pinto et al.[37] have proposed a new CoDA approach for microbiome analysis that is aimed to the identification of microbial signatures, groups of microbial taxa that are predictive of a phenotype of interest.
 
 The identification of microbial signatures involves both modeling and variable selection: modeling the response variable and identifying the smallest number of taxa with the highest prediction or classification accuracy.
 
 In order to fulfill the principles of CoDA, instead of analyzing individual abundances, we analyze the relative abundances between two groups of taxa, also referred as the abundance balance between the two groups, a concept that is formally defined as follows:
-Let x =(x1,x2,...,xk) be the microbial composition of k taxa and, among these k taxa, let's consider two disjoint subgroups of taxa, group A and group B, with composition abundances denoted by xA and xB, each group with kA and kB different taxa and indexed by IA and IB, respectively.
+
+Title: Let x =(x1,x2,...,xk) be the microbial composition of k taxa and, among these k taxa, let's consider two disjoint subgroups of taxa, group A and group B, with composition abundances denoted by xA and xB, each group with kA and kB different taxa and indexed by IA and IB, respectively.
 
 The abundance balance between A and B, denoted by B(A,B), is defined as the log-ratio between the geometric mean abundances of the two groups of taxa as follows:
-B ( 𝐴 ,   𝐵 )   =   𝐶   ∙   𝑙 𝑜 𝑔 ∏ 𝑖 ∈ 𝐼 𝐴   x i 1 k A ∏ 𝑗 ∈ 𝐼 𝐵   x i 1 k B
+
+Title: B ( 𝐴 ,   𝐵 )   =   𝐶   ∙   𝑙 𝑜 𝑔 ∏ 𝑖 ∈ 𝐼 𝐴   x i 1 k A ∏ 𝑗 ∈ 𝐼 𝐵   x i 1 k B
+
 where C is a normalization constant.
 
 The larger the values of balance B(A,B), the more abundant is group A with respect to group B.

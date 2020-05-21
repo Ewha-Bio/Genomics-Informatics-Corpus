@@ -1,4 +1,4 @@
-FusionScan: accurate prediction of fusion genes from RNA-Seq data.
+Title: FusionScan: accurate prediction of fusion genes from RNA-Seq data
 
 Identification of fusion gene is of prominent importance in cancer research field because of their potential as carcinogenic drivers.
 
@@ -36,7 +36,7 @@ Basic idea is to identify the split reads and discordant read pairs that map to 
 
 Subsequently, the exact fusion point is determined from the split reads where single mate reads overlap the fusion junction, with the fusion-encompassing reads used as supporting evidence.
 
-Early approaches following this scheme include FusionSeq [7], ChimeraScan [8], deFuse [9], FusionMap [10], TopHat-Fusion [11], and FusionHunter [12], as extensively reviewed by Wang et al.13].
+Early approaches following this scheme include FusionSeq [7], ChimeraScan [8], deFuse [9], FusionMap [10], TopHat-Fusion [11], and FusionHunter [12], as extensively reviewed by Wang et al.[13].
 
 However, their performance varies dramatically in terms of precision, sensitivity (recall), and computational costs according to the mapping methods, filtering strategies, and parameter optimization.
 
@@ -70,7 +70,8 @@ We have compared the performance with other widely used programs using both expe
 
 Our analysis demonstrated that careful mapping and extensive filtering processes were essential for good performance.
 
-FusionScan algorithm
+Title: FusionScan algorithm
+
 The goal of FusionScan is to identify fusion transcripts composed of combination of intact exons with high sensitivity and specificity.
 
 Thus, FusionScan requires multiple split reads that join intact exons of two different genes.
@@ -91,7 +92,8 @@ Each step is optimized for reliable detection of fusion genes with high sensitiv
 
 To avoid confusion from naming, we will call two genes involved in the fusion as the head and tail genes according to the transcription direction of 5′→3′, and two exons adjacent to the fusion boundary as fusion exons.
 
-Preprocessing and mapping
+Title: Preprocessing and mapping
+
 A proper preprocessing to identify discordant reads and accurate alignment are the important starting points both for removing reads from normal transcripts for fast processing and for obtaining genuine split reads without loss.
 
 We find that these are the critical steps affecting the overall performance that have been overlooked in many cases.
@@ -124,11 +126,10 @@ Since this is the most time-consuming step, FusionScan supports the multi-thread
 
 (4) Statistics of preprocessing and mapping are shown in Fig.1 for the K562 RNA-Seq data of paired-end sequencing from the Encyclopedia of DNA Elements (ENCODE) project.
 
-Final number of remapped reads that may include the fusion candidates (2 ≤ no.
+Final number of remapped reads that may include the fusion candidates (2 ≤ no.of alignments ≤ 11) was reduced to 8.5% of the original data, thus speeding up down-stream analysis significantly.
 
-of alignments ≤ 11) was reduced to 8.5% of the original data, thus speeding up down-stream analysis significantly.
+Title: Fusion detection
 
-Fusion detection
 FusionScan scans all read alignments looking for split reads whose aligned loci are apart by more than 50 kilo base pairs (kbp) in the genome, a condition that most known gene fusions satisfy.
 
 To ensure reliable alignment, we demand the minimum aligned length ≥ 20 bp on both sides and that the aligned parts cover more than 50% of the entire read.
@@ -161,10 +162,12 @@ Split reads satisfying all conditions given above are the seed reads that would 
 
 For K562 cell line data shown in Fig.1, the exon boundary condition and realignment against the synthetic chimeric transcript reduced the number of candidates considerably, and we obtained 92 fusion gene pairs for the filtering procedure.
 
-Filtering steps
-Since most programs for fusion gene prediction yield too many false-positives, extensive filtering is essential for reliable performance.
+Title: Filtering steps
+
+Title: Since most programs for fusion gene prediction yield too many false-positives, extensive filtering is essential for reliable performance.
 
 In an effort to enhance the precision of the prediction (i.e., small number of false-positives), we have implemented several filtering strategies to prevent accidental alignment leading to false split reads as follows:
+
 (1) Homology filter was applied if the nucleotides of 14 bp length before and after the fusion point were homologous to the original sequences of two participating genes.
 
 Bl2seq was used to detect homology with the word size of 10.
@@ -189,7 +192,8 @@ The workflow in Fig.1 shows that (1) the homology filter was not effective for t
 
 However, the condition of multiple seed reads was most critical to yield only 4 fusion candidates.
 
-Curative tools
+Title: Curative tools
+
 Even after using various elaborate filters described above, it is often necessary for users to examine the alignment explicitly.
 
 We have developed several tools to facilitate visual inspection by users.
@@ -236,8 +240,10 @@ For TopHat-Fusion, we used the output from the TopHat-Fusion-Post that reduced t
 
 The feature of blacklist was not used for fair comparison.
 
-Comparison of fusion discovery tools using experimental data from three cancer cell lines
-The data
+Title: Comparison of fusion discovery tools using experimental data from three cancer cell lines
+
+Title: The data
+
 NCI-H660 is a prostate cancer cell line where two fusion genes (TMPRSS2-ERG and EEF2-SLC25A42) have been verified to play important roles in tumorigenesis.
 
 We downloaded the RNA-Seq data from the FusionSeq website [7], which included 6.5 million paired-end reads of 51 bp long.
@@ -256,13 +262,14 @@ The Caltech RNA-Seq group includes RNA-Seq data of MCF-7 cell line as well (SRR5
 
 The data contains 40 million reads of paired-end sequencing with 76 bp read length.
 
-Sakarya et al.35] independently studied gene fusions in the MCF-7 cell line using 80 million reads produced by SOLiD paired-end sequencing.
+Sakarya et al.[35] independently studied gene fusions in the MCF-7 cell line using 80 million reads produced by SOLiD paired-end sequencing.
 
 They validated 23 gene fusions using TaqMan fusion assays, which were used as gold standards for our benchmark test.
 
 Three data sets of cancer cell lines from public resources represent diverse situations such as different cell types, sequencing depth, single and paired reads, and different read lengths, thus being expected to provide objective result in the comparison test.
 
-Performance comparison
+Title: Performance comparison
+
 The result from six programs for fusion detection based on RNA-Seq data is summarized in Table 2.
 
 For fair comparison, we filtered out all cases with the number of seed reads = 1 since FusionScan required the number of seed reads ≥ 2.
@@ -289,7 +296,7 @@ Thus, it is important to note that FusionScan achieved the precision rate of 60%
 
 The difference with other programs is substantial, including FusionHunter that achieved excellent performance in recent comparison test by the SOAPfusion study [20].
 
-It should be noted that one fusion case of C16orf45-ABCC1 was not predicted by all programs, which may suggest that fusion reads for this case were not present in the Caltech RNA-Seq data unlike the SOLiD sequencing data by Sakarya et al.35].
+It should be noted that one fusion case of C16orf45-ABCC1 was not predicted by all programs, which may suggest that fusion reads for this case were not present in the Caltech RNA-Seq data unlike the SOLiD sequencing data by Sakarya et al.[35].
 
 Excluding this case, the recall rate of FusionScan increases to 81.5%.
 
@@ -303,14 +310,16 @@ Importantly, FusionScan had only one singleton prediction, which strongly suppor
 
 FusionMap, deFuse, and SOAPfuse had a number of singleton predictions, most of those being expected to be false-positives.
 
-Comparison of fusion discovery tools using simulation data sets
+Title: Comparison of fusion discovery tools using simulation data sets
+
 Testing with experimental datasets is objective and reliable since it reflects diverse situations and experimental conditions that could not be mimicked in simulation studies.
 
 However, the scope of benchmark test is limited with small number of known fusion cases and with experimental settings under specific conditions.
 
 Thus, we carried out the benchmark test using simulation datasets as well to estimate the performance of each program in different conditions such as variable read length and coverage.
 
-Preparing the simulation data
+Title: Preparing the simulation data
+
 Positive cases of fusion gene were artificially constructed by joining two exons of randomly chosen genes, isoforms, and exons in the given order.
 
 Adjacent genes were avoided in the selection to exclude read-through transcripts.
@@ -331,7 +340,8 @@ Weakness of not taking imbalanced sequencing depth or sequencing errors into acc
 
 The list of 10,000 fusion cases and simulated paired-end sequencing data are available at the website.
 
-Performance comparison
+Title: Performance comparison
+
 The precision and recall curves from six different programs for fusion detection are shown in Fig.4 for various sequencing depths and read lengths.
 
 Here, we used the default settings of each program for the minimum number of seed reads, instead of demanding two seed reads at least as for the experimental datasets.
@@ -354,7 +364,8 @@ Overall, the simulated test showed that three programs (FusionScan, SOAPfuse, an
 
 TopHat-Fusion’s prediction is reliable, but it misses many true positives as well.
 
-Implementation and computational resources
+Title: Implementation and computational resources
+
 FusionScan algorithm was developed using Java (JDK1.7) and Python languages.
 
 It further requires many third-party programs such as Bowtie2, SSAHA2, BLAT, bl2seq, samtools and FASTX-Toolkit.
@@ -469,6 +480,7 @@ CPU time and memory usage are shown in hours and GB, respectively.
 
 RNA sequencing data for K562 cell line from the Encyclopedia of DNA Elements (ENCODE) project (SRR521464) was analyzed on a 64-bit machine AMD Opteron Processor 6176 (2.3 GHz, 8 core) with 32 GB RAM.
 
-Comparison of RNA-Seq alignment programs
-Identification of known fusion genes by various fusion detection tools
+Title: Comparison of RNA-Seq alignment programs
+
+Title: Identification of known fusion genes by various fusion detection tools
 

@@ -1,4 +1,4 @@
-The OAuth 2.0 Web Authorization Protocol for the Internet Addiction Bioinformatics (IABio) Database.
+Title: The OAuth 2.0 Web Authorization Protocol for the Internet Addiction Bioinformatics (IABio) Database
 
 Internet addiction (IA) has become a widespread and problematic phenomenon as smart devices pervade society.
 
@@ -71,7 +71,8 @@ In section III, IABio is designed.
 In section IV, the designed IABio is explained.
 
 Our study closes with conclusions in section V.
-Addiction genome database
+Title: Addiction genome database
+
 A genome database has many merits, such as predicting the occurrence of disease and thus preventing and swiftly diagnosing it, which leads to early treatment; determining the prognosis accurately by selecting the treatment of a certain gene; and evaluating the effectiveness of treatment.
 
 It has been difficult to verify the connection between addiction and genes in the past, but some attempts have been made to identify the DNA responsible for addiction in the last decade.
@@ -88,7 +89,8 @@ It is necessary that a database be built for addiction and that a service provis
 
 Therefore, an integrated database is required to support genome research and analysis.
 
-IUA/OAuth 2.0
+Title: IUA/OAuth 2.0
+
 Genes, proteins, and neuroimages require tight security, because they are very sensitive information in terms of personal information privacy.
 
 To use such information, medical standards should be complied and proper guidelines should be used.
@@ -149,14 +151,16 @@ The IABio platform service can be applied with medical information security guid
 
 To design the proposed service model, our study explains the analysis of requirements, the structure of the platform service, the contents of the service, and the user authorization method.
 
-Analysis of requirements
+Title: Analysis of requirements
+
 It is necessary to analyze the complicated requirements of the system to design and develop the IABio platform service.
 
 Because security is very important to a medical information system, it requires user identification.
 
 In addition, the data exchange method, integrated data composition, and services should be specified.
 
-User identification
+Title: User identification
+
 It is needed to analyze patients' genomic data concerning IA for treatment and prevention and to provide them with customized service.
 
 To do so, an integrated data analysis system is required and should work with all genomic information.
@@ -171,7 +175,8 @@ The integrated analysis risk results do not include individual patient informati
 
 Therefore, each researcher can search, enter data, and modify genomic data he manages and can search out integrated analysis outcomes.
 
-Standard-based biological data exchange
+Title: Standard-based biological data exchange
+
 To subdivide access from each researcher, access control is needed or else the server manager can not even read the genomic data.
 
 Therefore, a server manager can only control information that the genome manager has access to.
@@ -180,21 +185,24 @@ To do so, the authorization server and IABio server have to be separated physica
 
 Medical information standard-based guidelines and access control are necessary for authorization and approval.
 
-Integrated biological data platform
+Title: Integrated biological data platform
+
 Biological data (gene, protein, and brain structure image) have different identifier values.
 
 However, if several pieces of genomic data for one patient have more than one identifier, it is against data integrity, because information for one patient is duplicated.
 
 In addition, because genome information entered by each data manager is created in different systems, an identification system is needed.
 
-Web portal service
+Title: Web portal service
+
 Access to an integrated database requires an accessible service and web portal service in which the authorization and approval procedure has been established, which is necessary to search data related to a genome.
 
 Therefore, it is necessary to provide an integrated service using a security system suitable for medical standards.
 
 Accordingly, a web portal is designed using OAuth 2.0.
 
-Provision of data analysis output
+Title: Provision of data analysis output
+
 IA risk factors should be provided through integrated analysis based on data entered by each researcher and user.
 
 Integrated information should be provided for single nucleotide polymorphisms (SNP) and protein markers related to IA.
@@ -205,7 +213,8 @@ After risk factors that are highly relevant to IA are determined through the int
 
 To compose such a sophisticated system, our study uses medical standard guidelines in designing the genome database platform.
 
-IABio service architecture
+Title: IABio service architecture
+
 Aiming to provide a genome database platform for IA, our study designs the IABio platform service structure in consideration of medical standard security and requirements as shown in Fig.2.
 
 By relevance to the genome, the users are divided into gene researcher, protein researcher, brain imaging researcher, and senior researcher.
@@ -268,7 +277,8 @@ Because IABio service model proposed in our study can ensure safe access to info
 
 It can be applied to several platforms as well as studies related to IA.
 
-IABio service architecture
+Title: IABio service architecture
+
 Fig.3 shows the authorization processing procedure of the token method and the service contents that each user is provided in the use case diagram.
 
 Four actors consist of a researcher, database, web portal, and authorization server.
@@ -293,7 +303,8 @@ The researcher requests data output to monitor the analysis results and related 
 
 Token authorization contents are analyzed for a second time to check if the researcher is legitimate for data confirmation before the analysis results and entered information are retrieved.
 
-OAuth 2.0-based authorization model
+Title: OAuth 2.0-based authorization model
+
 In this study, the IUA guideline [5] and OAuth 2.0 [6] are used to design and realize IABio.
 
 Researchers should obtain access authorization to use IABio and the concerned data.
@@ -322,7 +333,8 @@ The second authorization step proceeds with authorization for database access on
 
 Our study uses this 2-step authorization in designing and developing IABio.
 
-System environment
+Title: System environment
+
 Fig.5 shows the system environment in which the IABio system is composed with OAuth 2.0 of a medical information standard environment.
 
 The system environment has the structure of a hardware and development environment.
@@ -389,7 +401,8 @@ Furthermore, because MPI uses Hash 256, each user can confirm which data are int
 
 The Bio-Marker database is composed so as to receive the entry of gene data, protein data, and brain imaging data.
 
-Security evaluation
+Title: Security evaluation
+
 OAuth 2.0 has a weakness for vulnerable replay attacks.
 
 In this study, a replay attack can solve problems by using the 2-step access authorization.
@@ -410,7 +423,8 @@ Thus, an attacker can not access the IABio database, because the attacker does n
 
 EC1 and EC2 can be obtained only from the pre-consultation process.
 
-Implementation screen
+Title: Implementation screen
+
 The IABio platform uses the authorization server provided in Naver API [12].
 
 Therefore, it can acquire an authorization token in Naver and can have access to the portal by using it.

@@ -1,4 +1,4 @@
-Short Reads Phasing to Construct Haplotypes in Genomic Regions That Are Associated with Body Mass Index in Korean Individuals.
+Title: Short Reads Phasing to Construct Haplotypes in Genomic Regions That Are Associated with Body Mass Index in Korean Individuals
 
 Genome-wide association (GWA) studies have found many important genetic variants that affect various traits.
 
@@ -52,7 +52,8 @@ The complexity and the time can be reduced by analyzing smaller regions that are
 
 We cataloged all possible 44 haplotype blocks within the LD blocks of significant SNPs for BMI.
 
-Overall pipeline of the analysis
+Title: Overall pipeline of the analysis
+
 The NGS raw data were mapped to reference sequences using an alignment tool.
 
 The significant SNPs for BMI were selected from the GWA result data.
@@ -63,8 +64,9 @@ For each LD block, the heterozygous variants from the short reads were phased wi
 
 Finally, the phased haplotypes harboring the significant SNPs were cataloged (Fig.1).
 
-Genotyping, imputation, and GWA analysis
-The Korean samples and genotype data used in this study have been described by Cho et al.11].
+Title: Genotyping, imputation, and GWA analysis
+
+The Korean samples and genotype data used in this study have been described by Cho et al.[11].
 
 Briefly, through the Korea Association Resource (KARE) project, a total of 10,038 participants were recruited from Ansan and Anseong population-based cohorts, aged 40 to 69.
 
@@ -78,14 +80,16 @@ The threshold of genome-wide significance was set at p < 5 × 10-4.
 
 The significant SNPs were clustered into LD blocks (r2 > 0.9) using HaploView [13].
 
-NGS data analysis
+Title: NGS data analysis
+
 We downloaded previously published whole-genome NGS data from the TIARA database, sequenced at Seoul National University College of Medicine (TIARA; http://tiara.gmi.ac.kr) [14].
 
 The short reads from seven samples (AK3, AK4, AK5, AK6, AK7, AK14, and AK20) were mapped to the human reference genome (hg19) using the alignment algorithm in Genomic Short-read Nucleotide Alignment Program (GSNAP) [15].
 
 From the resulting BAM file, we selected the mapped reads within the LD blocks that encompassed the significant SNPs from the BMI GWA result using the Samtools view function [16], creating a separate BAM file for each LD block.
 
-Heterozygous SNP calling and phasing
+Title: Heterozygous SNP calling and phasing
+
 The heterozygous SNPs were phased using the phase function in Samtools, version 0.1.19-44428cd [17].
 
 The Samtools phase algorithm calls heterozygous SNPs automatically and phases those that segregate on the same DNA fragment as inferred from paired-end read information in the BAM file.
@@ -96,7 +100,8 @@ We confirmed the heterozygous SNPs through independent calling using the Samtool
 
 Whenever an LD block split into multiple phased haplotype blocks, we kept those that encompassed the significant SNPs from the GWAS.
 
-GWA analysis
+Title: GWA analysis
+
 The genotype data of 8,842 samples in a total of 10,038 participants in the KARE were analyzed to find significant SNPs associated with BMI in Korean individuals.
 
 Among the total of 1,827,004 loci, 435 loci were identified using a p-value cutoff (p < 5 × 10-4) from the GWAS.
@@ -111,7 +116,8 @@ These 53 LD blocks contained all 435 significant loci.
 
 Thus, a typical LD block included multiple significant loci.
 
-Phasing short reads
+Title: Phasing short reads
+
 We downloaded whole-genome paired-end NGS data of seven samples from the TIARA database to discover haplotypes with the SNPs associated with BMI within the 53 LD blocks from the GWA analysis.
 
 We mapped the short reads to the human reference genome (hg19), and those reads with bad mapping quality (mapping quality <5) were filtered out.
@@ -126,7 +132,8 @@ Not all of the SNPs in an LD block were always phased into a contiguous haplotyp
 
 Whenever multiple haplotype blocks were found for a given LD block, we kept only those that encompassed the significant SNPs identified from the GWAS.
 
-Construction of the haplotype blocks
+Title: Construction of the haplotype blocks
+
 After phasing heterozygous SNPs using Samtools, we searched for phased haplotypes that harbored significant risk alleles for BMI from the GWA analysis results.
 
 We found 44 haplotype blocks in 23 of 53 LD blocks.
@@ -143,7 +150,8 @@ On the other hand, bp 57900630, which participated in the same haplotype, has no
 
 In Table 2, 16 LD blocks were shared by several individuals, while the rest of the LD blocks were carried by single individuals.
 
-Distribution of haplotype blocks
+Title: Distribution of haplotype blocks
+
 We calculated the average space between alleles in a haplotype block from our results.
 
 For example, AK4, AK5, and AK7 share CGCC at bps 182065282, 182065314, 182065341, and 182065351 in chromosome 4 (Table 2).
@@ -246,6 +254,7 @@ As a result, a haplotype catalog can be constructed, including haplotypes with s
 
 Boxplots of average space between alleles (A) and the number of alleles in haplotype blocks (B).
 
-Representative LD blocks from the GWA resultsa
-Haplotypes with significant SNPsa
+Title: Representative LD blocks from the GWA resultsa
+
+Title: Haplotypes with significant SNPsa
 

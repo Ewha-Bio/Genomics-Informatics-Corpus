@@ -1,4 +1,4 @@
-In silico Identification of SFRP1 as a Hypermethylated Gene in Colorectal Cancers.
+Title: In silico Identification of SFRP1 as a Hypermethylated Gene in Colorectal Cancers
 
 Aberrant DNA methylation, as an epigenetic marker of cancer, influences tumor development and progression.
 
@@ -42,7 +42,8 @@ Furthermore, its molecular diagnosis is gaining more and more acceptance due to 
 
 In this study, we surveyed colon cancer data to look for genes that show hypermethylation, and investigated their effects on patient survival.
 
-Data
+Title: Data
+
 The Cancer Genome Atlas (TCGA), launched in 2009, aimed to analyze the genomic features through sequencing of about 30 different types of cancers.
 
 We downloaded the microarray datasets on gene expression and DNA methylation of colorectal cancer and normal samples from the following URL: https://tcga-data.nci.nih.gov/tcga/dataAccessMatrix.htm (the "Data Type" field was selected as "Clinical," "DNA Methylation," and "Expression-Genes").
@@ -57,7 +58,8 @@ For the clinical outcome analysis, we downloaded an expanded dataset from the UR
 
 For these samples, we downloaded a text file on tumor stage, last contact days, and vital status.
 
-Identification of hypermethylated and downregulated genes
+Title: Identification of hypermethylated and downregulated genes
+
 The discovery dataset was used for gene selection.
 
 Illumina Infinium Human DNA Methylation27 level 2 data were screened for differentially methylated regions (DMRs), where the median M of the tumor samples was greater than +1 and that of the matched normal samples was less than -1 [9].
@@ -68,7 +70,8 @@ Genes showing at least 4-fold down-regulation were selected.
 
 DAVID (http://david.abcc.ncifcrf.gov/) was used for the functional annotation of the gene list.
 
-Survival analysis
+Title: Survival analysis
+
 Survival analysis was undertaken with the survival package in R (version 2.13.0).
 
 Survival time was represented by the days since cancer diagnosis in the hospital until the last contact date.
@@ -79,7 +82,8 @@ Kaplan-Meier survival plot and Cox regression analysis were also performed with 
 
 In order to partition patients into two groups according to methylation level, the cutoff point was determined by the maximally selected rank statistics method, available in the R maxstat package.
 
-Hypermethylated and downregulated genes in colorectal cancer
+Title: Hypermethylated and downregulated genes in colorectal cancer
+
 We used the discovery set (12 pairs of colorectal tumor and matched normal samples) to survey genes showing correlating differential DNA methylation and differential gene expression.
 
 All methylation probes (n = 27,578) were annotated by the name of the neighboring gene and were matched to the gene expression matrix.
@@ -96,14 +100,16 @@ Fig.1 shows the scatterplot of the mean differential methylation versus mean dif
 
 At the sample level, these 31 genes showed a negative correlation between methylation and expression (Fig.2).
 
-Gene ontology and pathway analysis
+Title: Gene ontology and pathway analysis
+
 Gene ontology analysis using DAVID revealed that the 31 genes were enriched in the Wnt receptor signaling pathway (Fisher exact = 9.6E-5); 4 genes-RSPO2, RSPO3, SFRP1, and SFRP2-belonged to this pathway (Table 2).
 
 Site of Frizzled proteins (SFRP) genes interact directly with Wnt, the ligand of the Wnt signaling pathway Frizzled (Fz) receptor, inhibiting the binding of Wnt to Fz receptor [10].
 
 The Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway diagram (http://www.genome.jp/kegg/) also confirmed that Wnt and SFRP regulate the Wnt signaling pathway at the upstream level (Fig.3).
 
-Wnt signaling pathway-related genes in colorectal cancer
+Title: Wnt signaling pathway-related genes in colorectal cancer
+
 Both the SFRP1 and SFRP2 genes are known to show DNA hypermethylation in colorectal cancers; their relatively low expression causes upregulation of Wnt signaling and thus tumor cell proliferation [11].
 
 Wnt2, a member of the Wnt gene family, and SFRP1 showed drastically opposite gene expression patterns in the discovery dataset (Fig.4).
@@ -118,7 +124,8 @@ The genes involved in Wnt signaling showed more significant differential express
 
 SFRP1 and WNT2 were among the top ranked genes of the pathway (Fig.5).
 
-DMR of SFRP1 gene in colorectal cancer
+Title: DMR of SFRP1 gene in colorectal cancer
+
 Illumina Human DNA Methylation27 and 450 are microarray platforms that can measure the methylation values of promoter regions, with 27,578 and 331,182 probes, respectively.
 
 On the former platform, there are four probes in the promoter region of SFRP1, and their methylation status varies probe to probe, while the latter has 33 additional probes for SFRP1.
@@ -143,7 +150,8 @@ While stomach cancers (STAD) also showed a mean M of greater than 0, the differe
 
 In all other cancers, the mean M was below 0, implying marginal hypermethylation at most.
 
-Survival analysis: SFRP methylation in association with clinical factors
+Title: Survival analysis: SFRP methylation in association with clinical factors
+
 It is well known that the survival rate of colorectal cancer is negatively correlated with the tumor stage: the higher the stage, the poorer the survival.
 
 We confirmed this trend in the expanded dataset (n = 419).
@@ -228,8 +236,11 @@ Cumulative hazard curve of colorectal cancer by stage (A) and SFRP1 methylation 
 
 X-axis represents survival time in days.
 
-Differentially hypermethylated and downregulated genes
-Differentially hypermethylated and downregulated genes
-Differentially hypermethylated and downexpressed genes
-Hazard ratio of colorectal patients by tumor stage and SFRP methylation status
+Title: Differentially hypermethylated and downregulated genes
+
+Title: Differentially hypermethylated and downregulated genes
+
+Title: Differentially hypermethylated and downexpressed genes
+
+Title: Hazard ratio of colorectal patients by tumor stage and SFRP methylation status
 

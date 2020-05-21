@@ -1,4 +1,4 @@
-Protein Backbone Torsion Angle-Based Structure Comparison and Secondary Structure Database Web Server.
+Title: Protein Backbone Torsion Angle-Based Structure Comparison and Secondary Structure Database Web Server
 
 Structural information has been a major concern for biological and pharmaceutical studies for its intimate relationship to the function of a protein.
 
@@ -56,7 +56,8 @@ The utility of protein structure comparison, based on the backbone torsional rep
 
 Details of the classification scheme of secondary structures, the comparison method, and the similarity measurements are as follows.
 
-Secondary structure determination
+Title: Secondary structure determination
+
 Three categories of "helix," "extended," and "others" were used for the classification of the secondary structures of each residue.
 
 Secondary structure determination for each residue referred to the backbone torsion angle values.
@@ -69,35 +70,46 @@ Residues with backbone torsion angles belonging to other ranges were classified 
 
 The range was determined based on typical Ramachandran plots.
 
-Pair-wise structure alignment
-Two measurements (RamRMSD and logPr) were used to determine the structural similarity of two aligned proteins, as described in the previous structure alignment study [1].
+Title: Pair-wise structure alignment
+
+Title: Two measurements (RamRMSD and logPr) were used to determine the structural similarity of two aligned proteins, as described in the previous structure alignment study [1].
 
 RamRMSD was named for the value representing the distance of the two points of the residues on the Ramachandran plots of the two proteins.
 
-While RamRMSD is the root mean square deviation of the Euclidean distance of the φ and ψ angles of matched residues, which is similar to the measurement of Δt used by Karpen et al.3], logPr is the statistical quantity that describes the probability that a closer alignment than observed is possible.
+While RamRMSD is the root mean square deviation of the Euclidean distance of the φ and ψ angles of matched residues, which is similar to the measurement of Δt used by Karpen et al.[3], logPr is the statistical quantity that describes the probability that a closer alignment than observed is possible.
 
 In this study, both the geometric distance of RamRMSD and statistical quantity of logPr were utilized for the assessment of the structural similarity [2].
 
 The Euclidean distance can be defined as follows:
-D = (Δφ2 + Δψ2)1/2,
-where D is the distance and
-Δφ2 = (φ1 - φ2)2, if (φ1 - φ2)2 ≤ 1802
-(360 - |φ1 - φ2|)2, if (φ1 - φ2)2 > 1802
-Δψ2 = (ψ1 - ψ2)2, if (ψ1 - ψ2)2 ≤ 1802
-(360 - |ψ1 - ψ2|)2, if (ψ1 - ψ2)2 > 1802,
-where φ1 and φ2 are φ angles from each residue and ψ1 and ψ2 are ψ angles from each residue.
+
+Title: D = (Δφ2 + Δψ2)1/2,
+
+Title: where D is the distance and
+
+Title: Δφ2 = (φ1 - φ2)2, if (φ1 - φ2)2 ≤ 1802
+
+Title: (360 - |φ1 - φ2|)2, if (φ1 - φ2)2 > 1802
+
+Title: Δψ2 = (ψ1 - ψ2)2, if (ψ1 - ψ2)2 ≤ 1802
+
+Title: (360 - |ψ1 - ψ2|)2, if (ψ1 - ψ2)2 > 1802,
+
+Title: where φ1 and φ2 are φ angles from each residue and ψ1 and ψ2 are ψ angles from each residue.
 
 Conditional terms are added to find the smallest distance between any two angles with our -180° to +180° notation; i.e., for example, not to consider the distance of two angles, +180° and -180°, as 360° apart rather than 0° apart.
 
 The RamRMSD would be as follows:
+
 where n is the total number of residues to be compared and Dk is the distance of points of kth residues of each protein on each Ramachandran plot as defined above.
 
 RMSD is weak to small number of local deviations [4].
 
 logPr circumvents this problem of the RMSD and is defined as the logarithm of the mean probability of finding a closer angular similarity than the observed similarity in a random environment between each torsion angle pair of compared chains.
 
-If the difference of the φ and ψ angles is defined as a vector Ω (ωφ1, ωψ1, ωφ2, ωψ2, … , ωφn, ωψn), where ωφk is the difference of two φ angles of the kth amino acid of each n-residue-long string and ωψk is the difference of two ψ angles of the kth amino acid of each n-residue-long string, the constant probability density function ρ (ω) and the Pr-value in a random environment could be mathematically written as follows:
-where ω is the angular difference, and
+Title: If the difference of the φ and ψ angles is defined as a vector Ω (ωφ1, ωψ1, ωφ2, ωψ2, … , ωφn, ωψn), where ωφk is the difference of two φ angles of the kth amino acid of each n-residue-long string and ωψk is the difference of two ψ angles of the kth amino acid of each n-residue-long string, the constant probability density function ρ (ω) and the Pr-value in a random environment could be mathematically written as follows:
+
+Title: where ω is the angular difference, and
+
 where n is the number of total residues being compared and every angular difference is presumed to be statistically independent.
 
 Because multiplied values range from 0 to 1, the Pr-value is more strongly dependent for small values than for large values.
@@ -112,7 +124,8 @@ Global alignment with no gaps was performed using these two measurements.
 
 The comparison frame was shifted by a single residue for each frame with boundary conditions for the most similar alignment.
 
-Parameter settings for alignments and clustering
+Title: Parameter settings for alignments and clustering
+
 Global alignment with a gap open penalty of 13, extension penalty of 3, and free end gap penalty was conducted for sequences of 30 proteases and 30 kinases.
 
 A UPGMA algorithm with bootstrapping of 100 replicates was used for tree construction from a sequence of proteases.
@@ -129,14 +142,17 @@ Trees were generated from a distance matrix using the FITCH program of the PHYLI
 
 The Geneious workbench was used for graphical representation of trees.
 
-Receiver operating characteristic (ROC) curve analysis
-ROC curve analysis illustrates the accuracy of a binary classifier with graphical representation of the specificity and sensitivity with varying threshold for the discrimination of true and false pairs on a plot.
+Title: Receiver operating characteristic (ROC) curve analysis
+
+Title: ROC curve analysis illustrates the accuracy of a binary classifier with graphical representation of the specificity and sensitivity with varying threshold for the discrimination of true and false pairs on a plot.
 
 After setting a threshold for the delineation of positive and negative classes, true positive (TP), true negative (TN), false positive (FP), and false negative (FN) are defined.
 
 The sensitivity, or true positive rate (TPR), and specificity, or true negative rate (TNR), are defined as follows:
+
 ,
-while numerical ROC values are also defined as follows:
+Title: while numerical ROC values are also defined as follows:
+
 where Ti signifies the number of true positives ranked ahead of the ith false positive.
 
 An ROC curve was drawn following these calculations.

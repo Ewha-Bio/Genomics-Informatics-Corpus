@@ -1,4 +1,4 @@
-Use of Graph Database for the Integration of Heterogeneous Biological Data.
+Title: Use of Graph Database for the Integration of Heterogeneous Biological Data
 
 Understanding complex relationships among heterogeneous biological data is one of the fundamental goals in biology.
 
@@ -54,13 +54,13 @@ Nowadays, graph databases are widely used in many fields, including computer sci
 
 In the biological community, several researchers have begun to adopt the graph database for biological network analyses.
 
-For example, Lysenko et al.10] showed that the graph database can effectively store and represent disease networks and is a suitable structure to establish for various hypotheses.
+For example, Lysenko et al.[10] showed that the graph database can effectively store and represent disease networks and is a suitable structure to establish for various hypotheses.
 
-Henkel et al.12] showed that the graph database is a useful tool for effectively storing heterogeneous data and establishing various models.
+Henkel et al.[12] showed that the graph database is a useful tool for effectively storing heterogeneous data and establishing various models.
 
-Mullen et al.13] showed that the graph database can find novel usage (that is, drug repositioning) through the traversing of various relationships between a gene and disease.
+Mullen et al.[13] showed that the graph database can find novel usage (that is, drug repositioning) through the traversing of various relationships between a gene and disease.
 
-Balaur et al.14] showed that the graph database is effective in investigating correlation between genetic and epigenetic factors in genetic and epigenetic data of colon cancer.
+Balaur et al.[14] showed that the graph database is effective in investigating correlation between genetic and epigenetic factors in genetic and epigenetic data of colon cancer.
 
 In this work, we set up a graph database and tested its performance in storing and retrieving heterogeneous and complex biological networks.
 
@@ -68,19 +68,22 @@ We used Neo4j (http://neo4j.com/), one of the most frequently used graph databas
 
 We found that Neo4j is superior to MySQL in querying complex relationships among heterogeneous data.
 
-Selection of graph database engine
+Title: Selection of graph database engine
+
 Among the many graph databases available, we chose Neo4j, an open-source graph database based on Java, for our primary graph database, owing to several advantages.
 
 Its major advantages include (1) the use of a graph model of relationships for intuitive information searches; (2) stability by providing full ACID (Access, Create, Insert, Delete) transaction; (3) flexible extension above billions of nodes, relationships, and properties; (4) use of Java, which is easy to maintain and is applicable to diverse operating systems (OSs); and (5) easy-to-use API based on the REST interface and Java API [15].
 
-Hardware setup and optimization of the Neo4j graph DB
+Title: Hardware setup and optimization of the Neo4j graph DB
+
 We set up a high-performance computer server (80 CPUs and 1 TB RAM) for the graph database to support the storage and analysis of billions of different biological networks and relationships.
 
 Also, we optimized the server by performance tuning of the installed Neo4j (Table 1) following the Neo4j operations manual [16].
 
 The performance tuning included the following three steps (Fig.1).
 
-Memory configuration
+Title: Memory configuration
+
 The performance of Neo4j for a data search depends on the available memory to hold the entire graph database [17].
 
 If less memory is used than what the constructed graph database requires, a swap between the memory and hard disk should occur, but frequent swaps between memory and hard disk inevitably slow down the search speed.
@@ -89,18 +92,22 @@ Thus, large memory is needed and should also be set up for Neo4j for full usage 
 
 The memory configuration includes three steps: (1) OS memory sizing, (2) page cache memory sizing, and (3) heap memory sizing.
 
-OS memory sizing
-The OS memory size is as follows:
+Title: OS memory sizing
+
+Title: The OS memory size is as follows:
+
 OS memory = 1 GB + (Size of graph.db/index) + (Size of graph.db/schema).
 
-Thus, we allocated 768 GB of memory to page cache memory and heap memory according to the DB file size.
+Title: Thus, we allocated 768 GB of memory to page cache memory and heap memory according to the DB file size.
 
 According to the Neo4j document:
+
 Actual OS allocation = Available RAM − (Page cache + Heap size).
 
 We allocated 100 GB for system memory and the rest to page cache and heap size.
 
-Page cache sizing
+Title: Page cache sizing
+
 Page cache is used when accessing Neo4j data stored on a hard disk.
 
 When the size of the entire data is larger than the page cache memory, a swap occurs, frequently resulting in high disk access cost and reduced performance.
@@ -109,14 +116,16 @@ A basic option is to allocate 4 GB of memory based on the size of the graph DB d
 
 However, as our current data are larger than 10 GB, we resized the dbms.memory.pagecache.size parameter to above 200 GB.
 
-Heap sizing
+Title: Heap sizing
+
 Based on Java, Neo4j can use more memory as heap memory in a Java Virtual Machine (JVM) is increased.
 
 Because more heap memory increases the performance greatly, we allocated 300 GB of memory to heap sizing.
 
 Thus, we set the dbms.memory.heap.initial_size parameter from 8 GB to 300 GB and the dbms.memory.heap.max_size parameter from 8 GB to 300 GB.
 
-Disk access configuration
+Title: Disk access configuration
+
 Logical transaction logs can occur in system and data recovery after an unexpected system shutdown.
 
 They are also used for backup at online status.
@@ -131,12 +140,14 @@ However, because Neo4j stores data as numerous index files, it frequently access
 
 Thus, we changed the open file limit to 400,000.
 
-Hardware setup and optimization of the MySQL DB
+Title: Hardware setup and optimization of the MySQL DB
+
 We optimized the server through performance tuning of the installed MySQL following the MySQL operations manual.
 
 The performance tuning included the following two steps: (1) storage engine and (2) parameters of the MySQL environment.
 
-Storage engine
+Title: Storage engine
+
 MySQL has a variety of storage engines, each with its own characteristics.
 
 We chose InnoDB among them.
@@ -149,8 +160,10 @@ Although InnoDB is slightly slower than MyISAM, InnoDB guarantees data integrity
 
 InnoDB loads indexes and data into memory for retrieval processing, so allocating more memory improves performance.
 
-Parameters of MySQL server
-Optimization of Disk I/O
+Title: Parameters of MySQL server
+
+Title: Optimization of Disk I/O
+
 Disk searching is a huge performance bottleneck.
 
 This problem becomes more apparent when the amount of data becomes too large to effectively cache it.
@@ -165,7 +178,8 @@ To avoid degradation in the performance of InnoDB, use direct I/O for InnoDB-rel
 
 To optimize the log file I/O, we set the innodb_log_file_size parameter from default to 120 Gb (15% of innodb_b uffer_pool_size).
 
-Optimization of memory use
+Title: Optimization of memory use
+
 MySQL allocates buffers and cache to improve the performance of database operations.
 
 The default setting is designed to start the MySQL server on a virtual machine with approximately 512 MB of RAM.
@@ -182,10 +196,12 @@ The join_buffer_size and sort_buffer_size parameters were set from default to 4 
 
 The read_buffer_size, max_heap_table_size, and thread cache parameters were set from default to the maximum allowed value.
 
-Collection of diverse information for graph DB
+Title: Collection of diverse information for graph DB
+
 We collected diverse biological network information (genetic variation-gene, protein-protein, drug-gene, drug-disease, gene-disease, transcription factor-target genes) from the web and classified them into five layers (Tables 2 and 3).
 
-Data processing and modeling
+Title: Data processing and modeling
+
 After data collection, we first classified each data into nodes (i.e., gene, protein, disease, drug, etc.)
 
 and relationships (i.e., gene-disease, disease-drug, or SNP-gene) and removed redundant and ambiguous nodes and relationships (Fig.2).
@@ -194,7 +210,8 @@ Then, we integrated and expanded all nodes and relationships (Fig.3).
 
 Next, we created data models for each type of node and relationship (Figs.4 and 5).
 
-Comparison of Neo4j after optimization
+Title: Comparison of Neo4j after optimization
+
 We tested how the optimization of the Neo4j system improved its performance.
 
 We compared two servers: optimized versus non-optimized servers.
@@ -209,7 +226,8 @@ We measured the time to return results by performing a query to retrieve all dat
 
 When the two servers were queried using the same search term, the optimized server returned results in 138 ms, while the non-optimized server returned results in 316 ms for the same query (Fig.6).
 
-Comparison of search speed between two databases
+Title: Comparison of search speed between two databases
+
 Traditionally, most biological data have been stored in relational database systems.
 
 While relational database systems are useful for hierarchical and structural storage and search of various data, they may be less well suited for the storage and search of data with heavy relationships.
@@ -226,7 +244,8 @@ When the two databases (MySQL and Neo4j) were queried using the same search term
 
 For the 4-layer search, Neo4j took 20.128 s, while MySQL was unable to return a result (Fig.7).
 
-Examples of graph database usage
+Title: Examples of graph database usage
+
 The graph database provides a flexible search for complex relationships, as well as a fast search for relationships among multiple nodes.
 
 We show here two examples of using a graph database.
@@ -349,7 +368,9 @@ Examples of using a graph database to find biologically meaningful information.
 
 Comparison of the nodes in the shortest path and the nodes in the other path (A) and flexible extension of the existing graph database with a new type of information (B).
 
-List of parameters for optimization [16]
-A list of collected public databases for building graph databases
-A layer to distinguish the relationships among various biological data
+Title: List of parameters for optimization [16]
+
+Title: A list of collected public databases for building graph databases
+
+Title: A layer to distinguish the relationships among various biological data
 

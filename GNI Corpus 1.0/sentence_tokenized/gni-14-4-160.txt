@@ -1,4 +1,4 @@
-Efficient Strategy to Identify Gene-Gene Interactions and Its Application to Type 2 Diabetes.
+Title: Efficient Strategy to Identify Gene-Gene Interactions and Its Application to Type 2 Diabetes
 
 Over the past decade, the detection of gene-gene interactions has become more and more popular in the field of genome-wide association studies (GWASs).
 
@@ -34,7 +34,7 @@ Particularly, the inference on a biological mechanism is complicated because of 
 
 In general, statisticians define a statistical interaction as a departure from additivity in a linear model using a selected measurement scale [2].
 
-However, as was pointed by Wang et al.3], if one aims to infer biological interactions, statistically modeled interactions and main effect terms should not be interpreted separately [2].
+However, as was pointed by Wang et al.[3], if one aims to infer biological interactions, statistically modeled interactions and main effect terms should not be interpreted separately [2].
 
 In this paper, we detected gene-gene interactions with a likelihood ratio test.
 
@@ -52,7 +52,7 @@ Including logistic regression analysis for detecting gene-gene interactions, new
 
 However, analyzing a large number of SNPs in a GWAS is computationally very intensive, and various approaches, such as MDR [5], BEAM [6], Random Jungle [7], PLINK [8], and BOolean Operation-based Screening and Testing (BOOST), have been proposed to enable gene-gene interactions on a genome-wide scale.
 
-In this paper, we considered BOOST method, proposed by Wan et al.9].
+In this paper, we considered BOOST method, proposed by Wan et al.[9].
 
 BOOST uses a non-iteratively estimated measure that is approximately equal to the maximum likelihood estimators for a log-linear model, and it is used to select pairs of SNPs with a specified threshold.
 
@@ -100,7 +100,8 @@ We analyzed 8,842 participants (4,183 males and 4,659 females) with 352,228 auto
 
 We found some promising gene-gene interactions with the proposed method, and they will be investigated further in our future follow-up studies.
 
-The KARE cohort
+Title: The KARE cohort
+
 The KARE project started in 2007 and recruited 10,000 participants aged between 49 to 60 years from Ansung and Ansan, in the Gyeonggi Province of South Korea.
 
 About 50 million autosomal SNPs were genotyped with the Affymetrix Genome-Wide Human SNP arrary 5.0 [14].
@@ -113,12 +114,14 @@ We also eliminated subjects with gender inconsistencies, those whose identity by
 
 As a result, we analyzed 8,773 participants (4,117 males and 4,656 females) with 304,245 SNPs.
 
-Definition of T2D
+Title: Definition of T2D
+
 An individual was coded as a T2D patient if the condition satisfied the World Health Organization (WHO) diabetes diagnostic criteria: fasting plasma glucose (glu0) ≥ 126 mg/dL, plasma glucose (glu120) ≥ 200 mg/dL 2 h after an oral dose, or glycated hemoglobin (HbA1c) ≥ 6.5%.
 
 A total of 1,169 subjects were diagnosed as cases, and the other individuals were considered controls.
 
-Notations
+Title: Notations
+
 We assume that there are L SNPs and n subjects.
 
 Genotypes at SNP l are denoted by Xl, where l = 1, …, L, and Y indicates the disease status: 1 for case and 2 for control.
@@ -129,7 +132,8 @@ For instance, AA indicates a homozygous reference genotype, Aa indicates the het
 
 For simplicity, we denote the homozygous reference genotype, heterozygous genotype, and homozygous variant genotype as 1, 2, and 3, respectively.
 
-Review of BOOST
+Title: Review of BOOST
+
 The logistic regression model with only a main effect for two SNPs, p and q, can be modeled by the following form: logP(Y=1|Xp=i,Xp=j)P(Y=2|Xp=i,Xp=j)=β0+βiχp+βjχq, and denote its log-likelihood as LM.
 
 The logistic regression model with main effects and interaction terms is logP(Y=1|Xp=i,Xq=j)P(Y=2|Xp=i,Xq=j)=β0+βiXp+βjχq+βijχpχq.
@@ -165,7 +169,7 @@ Therefore, it can be utilized to approximate LH.
 
 If we let LKSA be the likelihood based on KSA, then we get following equation: 2L^S-L^KSA=2n·DKLπ^ijk‖p^ijkK, and it can be calculated easily on the basis of the contingency table.
 
-Through simulation analysis by Wan et al.9], 2L^S-L^KSA is known to be an upper bound of 2L^S-L^H, and they are almost identical if they are larger than 25.
+Through simulation analysis by Wan et al.[9], 2L^S-L^KSA is known to be an upper bound of 2L^S-L^H, and they are almost identical if they are larger than 25.
 
 The default value of the threshold τ in BOOST is 30, and its corresponding p-value is 4.89 × 10−6 [9].
 
@@ -175,7 +179,8 @@ If 2L^S-L^KSA>τ, the interaction will be considered in the next testing stage; 
 
 All of the non-significant SNP pairs would be filtered out in this manner in the screening stage.
 
-Two-stage gene-gene interaction analyses
+Title: Two-stage gene-gene interaction analyses
+
 We first apply the BOOST approach to select the promising pairs of SNPs with the a priori chosen τ. τ can be selected based on the available computing facility, and we set τ = 30 for our analyses.
 
 After filtering SNP pairs from the first stage with BOOST, we apply the logistic regression.
@@ -235,6 +240,7 @@ This insignificance is partially attributable to the insufficient sample size.
 
 With advances in genotyping/sequencing technology, genotyping costs will be much lower, and therefore, in the near future, sufficiently large samples will become available for genegene interaction analyses, which may lead us to a better understanding of human diseases.
 
-Results for top 10 highest interaction p-values between two SNPs in the KARE dataset
-The association genes of the SNPs of the top 10 highest p-value interaction pairs
+Title: Results for top 10 highest interaction p-values between two SNPs in the KARE dataset
+
+Title: The association genes of the SNPs of the top 10 highest p-value interaction pairs
 

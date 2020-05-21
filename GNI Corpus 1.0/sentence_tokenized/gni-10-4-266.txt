@@ -1,4 +1,4 @@
-Developing JSequitur to Study the Hierarchical Structure of Biological Sequences in a Grammatical Inference Framework of String Compression Algorithms.
+Title: Developing JSequitur to Study the Hierarchical Structure of Biological Sequences in a Grammatical Inference Framework of String Compression Algorithms
 
 Grammatical inference methods are expected to find grammatical structures hidden in biological sequences.
 
@@ -20,22 +20,34 @@ This task can be formalized as the problem of finding the smallest context-free 
 
 The algorithm builds a hierarchy of phrases by forming a new rule out of existing pairs of symbols, including non-terminal symbols.
 
-For example, if we consider the string "atattattatt," the simplest way to represent the string by context-free grammar is the following:
-<Grammar 0>
-S → atattattatt
-The most frequently occurring sequence in the string is "at," which occurs four times.
+Title: For example, if we consider the string "atattattatt," the simplest way to represent the string by context-free grammar is the following:
+
+Title: <Grammar 0>
+
+Title: S → atattattatt
+
+Title: The most frequently occurring sequence in the string is "at," which occurs four times.
 
 Thus, introducing a new nonterminal symbol, 'A,' and creating a new rule for this yields the following modified grammar:
-<Grammar 1>
-S → AAtAtAt
-A → at,
+
+Title: <Grammar 1>
+
+Title: S → AAtAtAt
+
+Title: A → at,
+
 where the grammar consists of a start symbol (i.e., S), two terminal symbols (i.e., a, t) represented by lowercase letters, two non-terminal symbols (i.e., S, A) represented by uppercase letters, and two production rules (i.e., S → AAtAtAt, A → at) with a left- and a right-hand side consisting of a sequence of these symbols.
 
-Repeatedly replacing the frequently occurring patterns "At," again to a new nonterminal symbol, B, gives the following modified grammar:
-<Grammar 2>
-S → ABBB
-A → at
-B→ At,
+Title: Repeatedly replacing the frequently occurring patterns "At," again to a new nonterminal symbol, B, gives the following modified grammar:
+
+Title: <Grammar 2>
+
+Title: S → ABBB
+
+Title: A → at
+
+Title: B→ At,
+
 where the grammar consists of a start symbol (i.e., S), two terminal symbols (i.e., a, t), three non-terminal symbols (i.e., S, A, B), and three production rules (i.e., S → ABBB, A → at, B → At).
 
 By applying the three production rules by replacing an occurrence of the nonterminals on the left-hand side of the production rule with those that appear on the right-hand side, the string "atattattatt" can be derived from the non-terminal S by constantly applying a series of derivations: S → ABBB → atBBB → atAtBB → atattBB → atattAtB → atattattB → atattattAt → atattattatt.
@@ -66,27 +78,48 @@ Guard class, which is based on digram uniqueness, is responsible for rule confir
 
 Thus, our string compression algorithm operates by reading in a new symbol and processing it by appending it to the top-level string and then examining the last symbols of that string; it then applies zero or more of the following transformations until none applies anywhere in the grammar; it then repeats the cycle by reading in a new symbol.
 
-The following production rules, which have been created automatically, are an exemplary output of applying JSequitur to the partial sequence of the TERT gene (175 bp, "gcccccgggtgtccctgtcacgtgcagggtgagtgaggcgcggtccccgggtgtc cctgtcacgtgcagggtgagtgaggcgcggtccccgggtgtccctgtcacgtgcag ggtgagtgaggcgcggtcccc"):
-R0 → g R1 R2 R3 R4 R5 R6 R7 R6 R8 R5 R9 R1 R3 R4 R10 R11 g a R4 a R12 R13 R14 R7 R15 R8 R16 R10 R14 c
-R1 → c c
-R2 → R1 c
-R3 → R11 R17 R2 R18
-R4 → R17 g
-R5 → R16 R13 R19
-R6 → t R2
-R7 → R19 R4
-R8 → R18 R4
-R9 → t R1
-R10 → a a
-R11 → R12 R17
-R12 → g g
-R13 → c g
-R14 → R19 R15
-R15 → R9 c
-R16 → R10 R11 g a R4 a R12
-R17 → g t
-R18 → t R17 R10 c
-R19 → R13 g,
+Title: The following production rules, which have been created automatically, are an exemplary output of applying JSequitur to the partial sequence of the TERT gene (175 bp, "gcccccgggtgtccctgtcacgtgcagggtgagtgaggcgcggtccccgggtgtc cctgtcacgtgcagggtgagtgaggcgcggtccccgggtgtccctgtcacgtgcag ggtgagtgaggcgcggtcccc"):
+
+Title: R0 → g R1 R2 R3 R4 R5 R6 R7 R6 R8 R5 R9 R1 R3 R4 R10 R11 g a R4 a R12 R13 R14 R7 R15 R8 R16 R10 R14 c
+
+Title: R1 → c c
+
+Title: R2 → R1 c
+
+Title: R3 → R11 R17 R2 R18
+
+Title: R4 → R17 g
+
+Title: R5 → R16 R13 R19
+
+Title: R6 → t R2
+
+Title: R7 → R19 R4
+
+Title: R8 → R18 R4
+
+Title: R9 → t R1
+
+Title: R10 → a a
+
+Title: R11 → R12 R17
+
+Title: R12 → g g
+
+Title: R13 → c g
+
+Title: R14 → R19 R15
+
+Title: R15 → R9 c
+
+Title: R16 → R10 R11 g a R4 a R12
+
+Title: R17 → g t
+
+Title: R18 → t R17 R10 c
+
+Title: R19 → R13 g,
+
 where the grammar consists of a start symbol (i.e., R0), four terminal symbols (i.e., a, t, g, c), 20 non-terminal symbols (i.e., R0-R19), and 20 production rules for each nonterminal.
 
 In summary, the partial sequence of 175 bp of the TERT gene could be compressed to 37 symbols with 20 rules.
@@ -139,5 +172,5 @@ JSequitur class diagram.
 
 Compression rates in relation to gene length.
 
-One hundred four genes and their compression rates
+Title: One hundred four genes and their compression rates
 

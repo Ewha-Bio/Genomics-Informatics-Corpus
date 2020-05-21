@@ -1,4 +1,4 @@
-Effects of Single Nucleotide Polymorphism Marker Density on Haplotype Block Partition.
+Title: Effects of Single Nucleotide Polymorphism Marker Density on Haplotype Block Partition
 
 Many researchers have found that one of the most important characteristics of the structure of linkage disequilibrium is that the human genome can be divided into non-overlapping block partitions in which only a small number of haplotypes are observed.
 
@@ -36,9 +36,9 @@ However, their investigation in [9] used an operational definition for haplotype
 
 Several different methods for haplotype block partitioning have been developed and implemented in distributable software.
 
-Among them, Haploview carries three different methods for haplotype block partitioning each of which adopts a different operational definition for haplotype blocks: confidence interval (CI) method by Gabriel et al.8], four gamete test (FGT) by Wang et al.9], and solid spine (SS) method [10].
+Among them, Haploview carries three different methods for haplotype block partitioning each of which adopts a different operational definition for haplotype blocks: confidence interval (CI) method by Gabriel et al.[8], four gamete test (FGT) by Wang et al.[9], and solid spine (SS) method [10].
 
-More recently, following the haplotype block definition of Gabriel et al.8], some computationally efficient algorithms have been also released and these include MIG++ [12] and S-MIG++ [13].
+More recently, following the haplotype block definition of Gabriel et al.[8], some computationally efficient algorithms have been also released and these include MIG++ [12] and S-MIG++ [13].
 
 MIG++ is also implemented in PLINK 1.9 with additional modification for computational efficiency [14].
 
@@ -62,13 +62,15 @@ For reference panel to construct experimental datasets we use the 1000 Genomes P
 
 From our investigation, we found that low sampling ratio under 50% cannot guarantee marker-independent haplotype partition results for all methods and the haplotype blocks constructed from full density data tend to be divided into small length blocks compared to the results from low density data.
 
-Haplotype block partition methods
+Title: Haplotype block partition methods
+
 We compare the results of five haplotype block partition methods applied to the experimental datasets sampled from the 1000 Genomes Project dataset and the HapMap dataset with various marker density scenarios.
 
 The description of each haplotype block partition method follows.
 
-Haploview (CI, FGT, and SS)
-The haplotype visualization software Haploview [10] implements three haplotype block partition methods, the CI method by Gabriel et al.8], the FGT method by Wang et al.9], and SS method [10].
+Title: Haploview (CI, FGT, and SS)
+
+The haplotype visualization software Haploview [10] implements three haplotype block partition methods, the CI method by Gabriel et al.[8], the FGT method by Wang et al.[9], and SS method [10].
 
 In the CI method, the algorithm first classifies each pair of markers into one of three categories in terms of the LD measure D′ [317]: (1) “strong LD” if the one-sided upper 95% confidence bound of D′ is >0.98 and the lower bound is >0.7, (2) “strong evidence for historical recombination” if the upper confidence bound of D′ is <0.9, (3) “non-informative” otherwise.
 
@@ -90,14 +92,15 @@ The SS method defines the region as an LD blocks if the first and last markers i
 
 In the LD chart, the square matrix of a pairwise LD measure where the (i,j)-element represents the strength of LD between ith and jth markers, the spine of strong LD stretches along the edge of the triangular block pattern.
 
-MIG++ and S-MIG++
+Title: MIG++ and S-MIG++
+
 There have been several attempts to accelerates the speed and improve memory performance of the CI method in Haploview.
 
 Such attempts include MIG++ [12] and S-MIG++ [13] both of which can reduce the time/memory complexity by omitting unnecessary computations.
 
 The MIG++ saves runtime and memory by omitting the computations of regions which have shown insufficient cases of strong LD.
 
-In addition, to improve the runtime/memory of the algorithm, the MIG++ uses a method based on an approximated estimator of the variance of D′ proposed by Zapata et al.18] instead of the likelihood-based method proposed by Wall and Pritchard [19] used in Haploview [10].
+In addition, to improve the runtime/memory of the algorithm, the MIG++ uses a method based on an approximated estimator of the variance of D′ proposed by Zapata et al.[18] instead of the likelihood-based method proposed by Wall and Pritchard [19] used in Haploview [10].
 
 The MIG++ algorithm is now implemented in PLINK 1.9 [14], but in PLINK 1.9, the CI of D′ is estimated based on the maximum likelihood method by Wall and Pritchard [19] with improved efficiency in estimating diplotype frequencies [132021].
 
@@ -107,7 +110,8 @@ The S-MIG++ algorithm improves the MIG++ by first sampling small fraction of all
 
 In this way, S-MIG++ could reduce the search space much more than MIG++.
 
-Experimental evaluation
+Title: Experimental evaluation
+
 The experiments have been conducted using the 1000 Genomes phase1 release 3 (1000G) data of East Asian populations (286 individuals from Japanese [JPT], Han Chinese from Beijing [CHB], and Han Chinese form South China [CHS]) [15] and HapMap phase III (HapMap) dataset of 170 individuals from JPT and CHB populations [16].
 
 We used phased genotype data of 75,582 SNPs with minor allele frequency of 0.05 and without indel polymorphisms in chromosome 22 (chr22: 16,050,612–51,243,297) in 1000G dataset, and the phased genotype data of 13,994 SNPs in chromosome 22 (chr22: 16,180,203–51,219,006) in HapMap dataset after applying the same pruning criteria as the case of 1000G.
@@ -176,7 +180,7 @@ We observed that using only 20% of the original markers, the number of blocks pr
 
 The effect of the density on the discovery of common haplotype blocks using a subset of the original marker set was almost linear for CI, PLINK-MIG++, and S-MIG++, and even exponential for FGT and SS methods as the density increases.
 
-We could observe that the three haplotype block partition methods (CI, PLINK-MIG++, and S-MIG++) based on the definition of haplotype block by Gabriel et al.8] tend to preserve more common blocks compared to the other two methods (FGT and SS) with low density marker sets.
+We could observe that the three haplotype block partition methods (CI, PLINK-MIG++, and S-MIG++) based on the definition of haplotype block by Gabriel et al.[8] tend to preserve more common blocks compared to the other two methods (FGT and SS) with low density marker sets.
 
 However, even for CI, PLINK-MIG++, and S-MIG++, the proportions of common blocks preserved with low density marker set decrease to below about 20% using 40% of the original markers when we decide 80% overlap as the common blocks considering only non-singleton blocks.
 
@@ -224,5 +228,5 @@ Two haplotype blocks obtained from each of two datasets are said to be common bl
 
 SNP, single nucleotide polymorphism; CI, confidence interval; FGT, four gamete test; SS, solid spine.
 
-A summary of haplotype block partition results obtained for chromosome 22 region of experiment datasets of various sampling ratio sampled from the 1000G dataset and the HapMap dataset
+Title: A summary of haplotype block partition results obtained for chromosome 22 region of experiment datasets of various sampling ratio sampled from the 1000G dataset and the HapMap dataset
 

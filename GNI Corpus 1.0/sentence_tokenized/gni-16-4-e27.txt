@@ -1,4 +1,4 @@
-A Short Report on the Markov Property of DNA Sequences on 200-bp Genomic Units of Roadmap Genomics ChromHMM Annotations: A Computational Perspective.
+Title: A Short Report on the Markov Property of DNA Sequences on 200-bp Genomic Units of Roadmap Genomics ChromHMM Annotations: A Computational Perspective
 
 The non-coding DNA in eukaryotic genomes encodes a language that programs chromatin accessibility, transcription factor binding, and various other activities.
 
@@ -30,7 +30,8 @@ By using highly variable 200-bp units as our control group, we were able to isol
 
 The process is explained in detail in the following sections and the basic steps include: combining 127 BED files into a single file, sorting 200-bp units by the frequency of chromatin variability, filtering out highly variable 200-bp units, building 5th order Markov Models, and evaluating prediction accuracy.
 
-Combining 127 BED files into a single file
+Title: Combining 127 BED files into a single file
+
 The Roadmap Epigenomics consortium has released a 15-state model of BED files from a joint analysis of 111 consolidated epigenomes with 16 additional epigenomes from the ENCODE project [2] in total 127 BED files for public download [11].
 
 We downloaded 125 ChromHMM BED files from the Roadmap Genomics (E001.bed through E128.bed files).
@@ -67,7 +68,8 @@ Each row of the integrated BED file is composed of eighteen entries from the ori
 
 For example, chr1: 12,800–13,000 unit in bottom of Fig.1 shows that this specific 200-bp unit is annotated 28 times as state 5 (TxWK), 4 times as state 7 (Enh), and 94 times as state 15 (Quies) throughout the original 127 BED files, whereas occurrence count numbers of all remaining chromatin states for this unit are zero, for the 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, and 14 states.
 
-Filtering out highly variable 200-bp units
+Title: Filtering out highly variable 200-bp units
+
 Since the details of the dynamics of chromatin state conversions among different cell types was reported it was noted that extensive signal variation exists in regulatory regions [7].
 
 So, we needed a way to quantify signal variation in regulatory regions.
@@ -108,7 +110,8 @@ Based on the newly integrated BED file, we assigned a dominant chromatin state f
 
 In this way, it was possible to assign just one or two dominant chromatin states for most of the 200bp units of the entire human genome.
 
-Building two-state fifth order Markov models for each of the 15 chromatin states
+Title: Building two-state fifth order Markov models for each of the 15 chromatin states
+
 A Hidden Markov model (HMM) is a probabilistic model.
 
 The key property of a Markov chain is that the probability of each symbol xi depends only on the value of the preceding symbol xi−1 [i.e., P(xi |xi−1)], not on the entire previous sequence [i.e., P(xi |xi−1, … , x1)].
@@ -125,7 +128,7 @@ Thus, the 200-bp units were subdivided into 15 chromatin states, based on domina
 
 Then, based on chromatin variability of each 200-bp unit, we further divided the 200-bp units into two groups for each of the chromatin state: highly variable units and invariable units.
 
-Fig.3 visualizes our approach.
+Title: Fig.3 visualizes our approach.
 
 After we assigned a dominant chromatin state for each 200-bp unit, the integrated BED file was sorted according to chromatin variability count and frequency counts, for each of the 15 chromatin states.
 
@@ -136,6 +139,7 @@ By trial and error, we rebuilt newer Markov chains by iteratively analyzing the 
 Samples were stratified by chromosomes into strictly non-overlapping training, and testing sets.
 
 A total of 720,000 200-bp units were trained were used for training HMM models:
+
 1 , 000   units × 2   groups × 24   chromosomes × 15   states .
 
 And an additional 72,000 200-bp units were tested for prediction accuracy.
@@ -160,7 +164,8 @@ Investigating the dynamics of chromatin state conversions of highly variable uni
 
 Among eight active chromatin states, the order of prediction accuracy can be sorted as follows.
 
-1 _ TssA > 2 _ TssAFlnk > 6 _ EnhG > 7 _ Enh > 3 _ TxFlnk > 8 _ ZNF / Rpts > 4 _ Tx > 5 _ TxWk
+Title: 1 _ TssA > 2 _ TssAFlnk > 6 _ EnhG > 7 _ Enh > 3 _ TxFlnk > 8 _ ZNF / Rpts > 4 _ Tx > 5 _ TxWk
+
 Among seven inactive chromatin states, 10_TssBiv and 11_BivFlnk, and 12_EnhBiv showed a high precision rate above 90%.
 
 These results and additional properties of the model suggest that n-grams related to invariant chromatin regions are an inherent and biologically-informative feature of the genome.
@@ -215,7 +220,9 @@ Statistical distribution of variability counts of each chromatin state of 200-bp
 
 Initial two-state HMMs to differentiate non-enriched genomic regions from enriched ones for each of the 15 chromatin states for binary classification.
 
-Frequency distributions of some exemplary 200-bp units: highly variable vs. invariable units
-Prediction accuracy
-Average occurrence frequencies of ‘L’ HMM models for each of the 15 chromatin state
+Title: Frequency distributions of some exemplary 200-bp units: highly variable vs. invariable units
+
+Title: Prediction accuracy
+
+Title: Average occurrence frequencies of ‘L’ HMM models for each of the 15 chromatin state
 

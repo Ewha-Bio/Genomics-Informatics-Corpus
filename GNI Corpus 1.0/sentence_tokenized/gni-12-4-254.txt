@@ -1,4 +1,4 @@
-The Usage of an SNP-SNP Relationship Matrix for Best Linear Unbiased Prediction (BLUP) Analysis Using a Community-Based Cohort Study.
+Title: The Usage of an SNP-SNP Relationship Matrix for Best Linear Unbiased Prediction (BLUP) Analysis Using a Community-Based Cohort Study
 
 Best linear unbiased prediction (BLUP) has been used to estimate the fixed effects and random effects of complex traits.
 
@@ -18,7 +18,7 @@ SNP-GBLUP has the merit to be able to predict genetic values through SNP effects
 
 Many important human traits are moderately to highly heritable [1].
 
-Yang et al.2] found that roughly 45% of the genetic variance of human height can be explained by the regression on common single-nucleotide polymorphisms (SNPs).
+Yang et al.[2] found that roughly 45% of the genetic variance of human height can be explained by the regression on common single-nucleotide polymorphisms (SNPs).
 
 So-called dark matter of the genome in human height complex traits, especially, can be explained by the existence of gene-by-gene or gene-by-environment interactions [3,4,5].
 
@@ -42,7 +42,7 @@ SNPs can be the representatives of genetic factors.
 
 Therefore, the invisible but real SNP effects can be translated into numerical values.
 
-BLUP, including best linear unbiased estimation (BLUE), is a standard method for predicting the random effects and fixed effects of a mixed model [6].
+Title: BLUP, including best linear unbiased estimation (BLUE), is a standard method for predicting the random effects and fixed effects of a mixed model [6].
 
 In general, random effects can be SNP effects, and fixed effects can be factors, such as sex.
 
@@ -63,6 +63,7 @@ X and Z are the design matrices.
 The random effects and residual error effects are assumed to have a normal distribution as u~MVN(0,Gu) and e~MVN(0,R), where MVN indicates a multivariate normal distribution and E(y) = Xb, cov(u, e') = 0.
 
 The general solution using the maximum likelihood (ML) method, which shows the effects of b and u, is in the form of: (2)
+
 Here, Gu-1 is the inverse matrix of the variance-covariance matrix of random effects, which indicates the SNP-SNP variance-covariance matrix.
 
 The GRM, G, can be calculated using R package "rrBLUP."
@@ -103,7 +104,8 @@ Despite the use of many SNPs, we did not achieve satisfactory heritability resul
 
 However, it was consistent with the results, which showed that 45% of height variance can be explained by considering all SNPs simultaneously.
 
-Data preparation
+Title: Data preparation
+
 We used the Ansan-Anseong cohort dataset in Korea.
 
 This dataset was established for a Korean chronic diseases study, with Ansan and Anseong representing urban and rural areas of Korea, respectively.
@@ -130,21 +132,24 @@ The EM imputation algorithm was used for the GRM, because we dealt with high-den
 
 The REML method is used in a rather small size sample instead of the ML method.
 
-The method of statistical SNP-SNP variance-covariance matrix calculation
-From the regression Eq.
+Title: The method of statistical SNP-SNP variance-covariance matrix calculation
 
-(1), Henderson [19] used the ML method to derive the BLUP equation, which is in the form: f(y, u) = g(y|u)h(u) = g(Xb + Zu + e|u)h(u) = g(e)m(u).
+Title: From the regression Eq.(1), Henderson [19] used the ML method to derive the BLUP equation, which is in the form: f(y, u) = g(y|u)h(u) = g(Xb + Zu + e|u)h(u) = g(e)m(u).
 
 (3)
-Then, we used Zu as the independent variable instead of u, which denotes the breeding value or genetic value Zu for the derivation of BLUP.
+
+Title: Then, we used Zu as the independent variable instead of u, which denotes the breeding value or genetic value Zu for the derivation of BLUP.
 
 We assumed the normality condition of the genetic value Zu and random effect u.
 
 Based on these assumptions, the variance-covariance matrix of genetic values, Zu, is the GRM, G. f(y, Zu) = g(y|Zu)h(Zu) = g(e)m(Zu) = g(e)k(u)(4)
-From Eqs.
+
+Title: From Eqs.
 
 (3) and (4), (5)
-(6)
+
+Title: (6)
+
 Eqs.
 
 (5) and (6) represent the probability density function (pdf) of the BLUP model (Eq.
@@ -156,8 +161,9 @@ Eqs.
 (5) and (6) are equivalent, and we can easily know that Gu-1 = ZTG-1Z.
 
 This important relationship links the SNP-SNP variance covariance matrix Gu to the GRM G.
-The generalized least squares for the BLUP
-We used the "rrBLUP" package for calculating the G matrix and predicting the genetic values of men's height complex traits.
+Title: The generalized least squares for the BLUP
+
+Title: We used the "rrBLUP" package for calculating the G matrix and predicting the genetic values of men's height complex traits.
 
 "rrBLUP" uses a practically generalized least squares (GLS) solution for the BLUP.
 
@@ -170,17 +176,21 @@ One was SNP-BLUP, which is assumed to be IID between SNPs, and the other was SNP
 We will call this the SNP-SNP relationship matrix.
 
 (7) (8)
-The Sherman-Morrison-Woodbury lemma
-From the relationship Gu-1 = ZTG-1Z, we should calculate the inverse matrix of the Gu-1 matrix.
+
+Title: The Sherman-Morrison-Woodbury lemma
+
+Title: From the relationship Gu-1 = ZTG-1Z, we should calculate the inverse matrix of the Gu-1 matrix.
 
 Because a lot of time was needed for calculating the inverse matrix directly, we used the Sherman-Morrison-Woodbury (SMW) lemma [20, 21, 22, 23].
 
 The formula was as follows: (A + YGZ*)-1 = A-1 - A-1Y(G-1 + Z*A-1Y)-1Z*A-1,(9) where A and G are both invertible, and A + YGZ* are invertible if and only if G-1 + Z*A-1 Y are invertible.
 
 Practically, to reduce the error, we used A as the identity matrix (I matrix), and the practically used formula was as follows: (10)
+
 Calculating the SNP-SNP relationship matrix Gu using the lemma was faster than the direct calculation, because we used larger SNPs than the sample size.
 
-Genetic value prediction and SNP-GBLUP
+Title: Genetic value prediction and SNP-GBLUP
+
 The result of the genetic value prediction is shown in Fig.1 (Fig.1A, G-BLUP; Fig.1B, SNP-BLUP; Fig.1C, SNP-GBLUP).
 
 These results show the genetic value variances are nearly identical between G-BLUP and SNP-GBLUP.
@@ -201,7 +211,8 @@ The estimated residual error variance was 21.39 in the three BLUP cases.
 
 The fixed effect was 166.6 (men) and 153.3 (women) in both G-BLUP and SNP-GBLUP and 167.4 (men) and 154.1 (women) in SNP-BLUP.
 
-SNP-SNP relationship matrix
+Title: SNP-SNP relationship matrix
+
 Supplementary Table 2 shows the calculated 1-8th SNP components of the Gu square matrix obtained using the SMW lemma.
 
 The variance components (diagonal parts) were the values close to 1.
@@ -210,14 +221,13 @@ It suggests that the Gu matrix can be interpreted as the SNP-SNP relationship ma
 
 The covariance components can be interpreted as the SNP-SNP relationships or, in other words, SNP-SNP interaction terms, because the variance components represent the SNPs' relationships themselves.
 
-Estimated heritability
+Title: Estimated heritability
+
 We estimated the narrow-sense heritability (h2) using simple regression between the genetic values and the height phenotypic values.
 
 The heritability was 0.24 in G-BLUP and SNP-GBLUP and 0.20 in SNP-BLUP.
 
-According to Yang et al.
-
-'s article [2], only 45% of variance can be explained by total SNPs.
+According to Yang et al.'s article [2], only 45% of variance can be explained by total SNPs.
 
 Therefore, our estimated heritability was not poor, and of the generally accepted narrow-sense heritability of 0.8, we explained 33% in G-BLUP and SNP-GBLUP.
 
@@ -227,7 +237,8 @@ Also, we found the method that is widely applicable, SNP-GBLUP, because it can p
 
 It is impossible in G-BLUP, and Gu matrix components can be used widely, such as in genome-wide association studies (GWASs), because they can be interpreted as representing the interaction terms between SNPs.
 
-SNP-GBLUP and its applicability
+Title: SNP-GBLUP and its applicability
+
 The G-BLUP uses the GRM.
 
 This matrix contains the information between individuals.
@@ -258,7 +269,8 @@ The accurately calculated SNP effects through SNP-GBLUP can be classified into l
 
 Low-effect SNPs can be excluded, and Bayesian BLUP can exploit only high-effect SNPs [24, 25, 26].
 
-Heritability and the GLS approach in BLUP
+Title: Heritability and the GLS approach in BLUP
+
 Narrow-sense heritability (h2) reflects the additive effects of QTL.
 
 The estimated heritability from our data was smaller than the generally accepted heritability.

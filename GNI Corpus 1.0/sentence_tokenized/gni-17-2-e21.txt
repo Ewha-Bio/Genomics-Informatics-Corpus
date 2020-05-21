@@ -1,4 +1,4 @@
-Improving spaCy dependency annotation and PoS tagging web service using independent NER services.
+Title: Improving spaCy dependency annotation and PoS tagging web service using independent NER services
 
 Dependency parsing is often used as a component in many text analysis pipelines.
 
@@ -38,7 +38,7 @@ We proposed to build a public web service that can be used by researchers and ot
 
 We report on its efficacy here.
 
-The most recent extensive evaluation of existing dependency parsers has been performed by Choi et al.11].
+The most recent extensive evaluation of existing dependency parsers has been performed by Choi et al.[11].
 
 They evaluate 10 different off-the-shelf parsers for accuracy and speed; reporting labeled attachment scores (LAS) of 85% to 90%.
 
@@ -52,7 +52,7 @@ Since the publication of the previously mentioned evaluation of dependency parse
 
 Amongs them, spaCy was updated to employ a neural network to improve performance [7].
 
-As Yang et al.15] show, however, domain adaptation remains an issue.
+As Yang et al.[15] show, however, domain adaptation remains an issue.
 
 Our web service is implemented using Flask (http://flask.pocoo.org/), a Python library that facilitates the creating of web interfaces, and the aforementioned spaCy (https://spacy.io).
 
@@ -62,7 +62,8 @@ For our approach, we added a further processing step between “tokenization” 
 
 Then we pass the adjusted token offsets to the dependency parsing module.
 
-Input format
+Title: Input format
+
 Input is provided either as plain text or as a JSON string.
 
 The latter may either contain just a text field, or additionally annotations in PubAnnotation's JSON format (http://www.pubannotation.org/docs/annotation-format/) (Fig.2).
@@ -83,28 +84,32 @@ If no annotations are provided manually, our web service will automatically call
 
 While this could be any service, it is currently set to using OGER.
 
-Output format
+Title: Output format
+
 The resulting object is then converted back into JSON, and token offsets are computed.
 
 The output format is PubAnnotation JSON, and can directly be uploaded to PubAnnotation.
 
 This also allows to make use of PubAnnotation's annotation visualizer, TextAE, as seen in Fig.3.
 
-Usage
+Title: Usage
+
 The code for our web service is publicly available (https://github.com/OntoGene/blah5), and installation is straight-forward.
 
 For demonstration purposes, we are running an instance of the web service.
 
 Improved dependency annotations can be obtained using curl or wget in the fashion shown in Fig.4.
 
-Adaptation
+Title: Adaptation
+
 The application can be run locally, provided the necessary Python libraries are available.
 
 To add other independent web services to provide NER information, refer to the documentation of the code.
 
 We evaluated our service in two regards: speed and accuracy.
 
-Speed
+Title: Speed
+
 In order to evaluate speed of our web service, we created a set of 10,000 randomly selected PubMed abstracts, (1) which we sent to the web service directly to obtain “default” dependency parses, and (2) which we first tagged for named entities using OGER, and then sent to the web service to obtain “improved” parses.
 
 Table 1 lists the time it took our tool to complete the dependency parsing step for both cases.
@@ -119,7 +124,8 @@ The integration of NERs still produces an advantage, as the generated parses avo
 
 In practice, when using the web service over the network, total processing time will be around 0.3 s per abstract.
 
-Accuracy
+Title: Accuracy
+
 We expect our service to perform well in situations where multi-word named entities cause problems for the parser.
 
 Below we demonstrate two examples in which our service performs well in such situations.
@@ -156,8 +162,9 @@ Default dependency parse for sentence Testis-specific serine/threonine protein k
 
 Improved dependency parse.
 
-Default dependency parse for the sentence “Prevalence and mutation analysis of short/branched chain acyl-CoA dehydrogenase deficiency (SBCADD) detected.”
+Title: Default dependency parse for the sentence “Prevalence and mutation analysis of short/branched chain acyl-CoA dehydrogenase deficiency (SBCADD) detected.”
+
 Improved dependency parse (“short/branched chain acyl-CoA dehydrogenase deficiency” abbreviated for display).
 
-Time required to process a batch of 10,000 PubMed abstracts, in the default case (without prior named entity recognition) and with added named entity recognition
+Title: Time required to process a batch of 10,000 PubMed abstracts, in the default case (without prior named entity recognition) and with added named entity recognition
 

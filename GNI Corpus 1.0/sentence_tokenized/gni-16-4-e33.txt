@@ -1,4 +1,4 @@
-Multi-block Analysis of Genomic Data Using Generalized Canonical Correlation Analysis.
+Title: Multi-block Analysis of Genomic Data Using Generalized Canonical Correlation Analysis
 
 Recently, there have been many studies in medicine related to genetic analysis.
 
@@ -52,7 +52,8 @@ Therefore, in the present study, we adopt GCCA to figure out the associations be
 
 We applied Korean Association Resource (KARE) data and analyzed the possibility and limitations of multi-block analysis methods for genomic data.
 
-Multi-block dataset
+Title: Multi-block dataset
+
 We focused on analyzing a multi-block dataset, considering the characteristics of each block.
 
 The multi-block dataset is a data type of horizontally concatenating more than two variable blocks.
@@ -73,7 +74,8 @@ Multiomics, the typical multi-block dataset in the medical field, means a new bi
 
 It usually focuses on associations between SNPs and traits, considering varying phenotypes.
 
-Generalized canonical correlation analysis
+Title: Generalized canonical correlation analysis
+
 Among various methods of dealing with a multi-block dataset, GCCA is used in this paper.
 
 Since it is extended from CCA, we start with an explanation of CCA.
@@ -82,7 +84,7 @@ CCA is a method of inferring information from cross-covariance matrices.
 
 If there are two vectors X = (x1, ···, xn) and Y = (y1, ···, ym) of random variables and if there are correlations among the variables, the linear combinations of xi and yj to maximize the correlation with each other—termed canonical variables— are found through CCA [10].
 
-GCCA is a way of extending CCA to adapt to more than two sets of random variables after removing dependencies within each set.
+Title: GCCA is a way of extending CCA to adapt to more than two sets of random variables after removing dependencies within each set.
 
 The basic structure of CCA is to derive a new linear combination of the variables, called canonical variables, constituting each set and to estimate the correlation between canonical variables.
 
@@ -97,10 +99,13 @@ GCCA based on covariance uses the variance of ‘block scores’ to compute the 
 For instance, in an Xk variable block, we can denote ak = (ak1 ak2 ··· akpk)′ as the coefficients for each variable in Xk block.
 
 Therefore, the canonical variables, yk (k = 1, ···, K), are expressed as:
-y 1 = X 1   a 1 = a 11   X 11 + ⋯ + a 1 p 1 X 1 p 1 ⋮ y K = X K   a K = a K 1   X K 1 + ⋯ + a K p K X K p K
+
+Title: y 1 = X 1   a 1 = a 11   X 11 + ⋯ + a 1 p 1 X 1 p 1 ⋮ y K = X K   a K = a K 1   X K 1 + ⋯ + a K p K X K p K
+
 The optimization problem is as follows.
 
-argmax { a 1 , a 2 ⋯ a k } ∑ i , j = 1 , i ≠ j K c i j g ( c o v ( X i a i , X j a j ) )
+Title: argmax { a 1 , a 2 ⋯ a k } ∑ i , j = 1 , i ≠ j K c i j g ( c o v ( X i a i , X j a j ) )
+
 The optimization problem tries to find coefficients of each block a1, a2, ···, aK that would maximize the weighted summation of the covariance of the two components.
 
 The cij in the equation implies the relationship between variable block Xi and Xj.
@@ -115,7 +120,8 @@ A design matrix C = (cjk) is pre-specified by the user to express the relationsh
 
 The element cjk is equal to 1 if block j and block k are connected and 0 otherwise [12, 13].
 
-Data description: KARE
+Title: Data description: KARE
+
 In this paper, we use data from the KARE project, which was initiated in 2007 to undertake a large-scale genome-wide association analysis among the 10,038 participants of two areas: Anseong and Ansan.
 
 It was established as part of the Korean Genome Epidemiology study (KoGES) in 2001, providing genomic and clinical variables for over 260 traits [14].
@@ -232,7 +238,8 @@ When we draw the first canonical variables U1 , V1 , W1 and the second variables
 
 In this paper, we first explain the relationship between blocks and then discuss the relationship within the blocks.
 
-Between-block relationship
+Title: Between-block relationship
+
 Once we conducted GCCA in SAS/IML, we could get information on the canonical variables and coefficients for each variable in the block.
 
 From the canonical variable value, we calculated the correlation between blocks, because the first and second canonical variables could represent most of the data.
@@ -265,7 +272,8 @@ The phenotype block’s observations are densely populated near the center (0,0)
 
 We can regard a sample that is located farther from center (0,0) is more influential for each SNP, phenotype, or disease block.
 
-Within-block relationship
+Title: Within-block relationship
+
 If we looked at each block’s variable plot, we can also understand how each variable in the block affects the canonical variable.
 
 The variable plot demonstrates how the variables are positioned within block; therefore, the goal is figuring out the internal relationship between variables.
@@ -354,8 +362,11 @@ Variable plot of each group.
 
 SUP, suprailiac skinfold; SUB, subscapular skinfold; BMI, body mass index; WHR, waist-hip ratio; WC, waist circumference; HYP, hypertension; DIA, diabetes.
 
-Disease frequency according to group
-Simple logistic regression coefficients for diseases
-Correlation between blocks
-Generalized canonical correlation results
+Title: Disease frequency according to group
+
+Title: Simple logistic regression coefficients for diseases
+
+Title: Correlation between blocks
+
+Title: Generalized canonical correlation results
 

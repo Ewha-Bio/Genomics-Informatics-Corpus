@@ -1,4 +1,4 @@
-Estimation of the Genetic Substitution Rate of Hanwoo and Holstein Cattle Using Whole Genome Sequencing Data.
+Title: Estimation of the Genetic Substitution Rate of Hanwoo and Holstein Cattle Using Whole Genome Sequencing Data
 
 Despite the importance of mutation rate, some difficulties exist in estimating it.
 
@@ -42,11 +42,11 @@ Using HSF, we estimated the genetic substitution rates of the genes of the Hanwo
 
 Kumar and Subramanian [1] estimated the substitution rate in the mammalian genes using amino acid degenerate sites and evolutionary distance.
 
-Lee et al.2] obtained the nonsynonymous SNPs, splice-site variants and coding indels in the Bovine genome including Hanwoo.
+Lee et al.[2] obtained the nonsynonymous SNPs, splice-site variants and coding indels in the Bovine genome including Hanwoo.
 
 They used whole-genome resequencing.
 
-Melka et al.3] used Bovine SNP 50 beadchip to identify genomic differences between Hanwoo and Holstein.
+Melka et al.[3] used Bovine SNP 50 beadchip to identify genomic differences between Hanwoo and Holstein.
 
 In our analysis, we used whole-genome sequencing to estimate substitution rates of Hanwoo and Holstein and identified genomic differences between Hanwoo and Holstein using gene ontology (GO) analysis.
 
@@ -86,7 +86,8 @@ The generation times of Hanwoo and Holstein were set to be 5 years.
 
 Then, the genetic substitution rates of the genes were calculated and those features were surveyed.
 
-Data preparation
+Title: Data preparation
+
 In this study, we used a whole-genome sequence data set consisting of 23 Hanwoo and 10 Holstein from NCBI Sequence Read Archive database (PRJNA210523, PRJNA210521, and PRJNA210519).
 
 We used fastQC software to perform a quality check on the raw sequence data [11].
@@ -115,8 +116,9 @@ The number of total SNPs was 37,484,886 and after using minor allele frequency; 
 
 The estimated transition/transversion ratio (tr/tv ratio) was calculated to be 2.24 using SnpEff [16].
 
-The relationship between evolutionary distance and founder number
-Evolutionary distance is linear to mutation rate and substitution rate [17, 18].
+Title: The relationship between evolutionary distance and founder number
+
+Title: Evolutionary distance is linear to mutation rate and substitution rate [17, 18].
 
 Evolutionary distance is proportional to the harmonic number of of sample size (a1) because the sample size can increase the number of SNPs.
 
@@ -126,10 +128,12 @@ While Watterson’s theta estimator (θ^=#segregating sitesa1) have been used i
 
 HSF concept assumes that the initial found number after migration would not be equal to 1 like SNPchips.
 
-Biologically, that initial migration number was no., is very natural.
+Biologically, that initial migration number was not 1, is very natural.
 
 a1 is the harmonic number of sample size n. We defined the evolutionary distance as the following:
-(1) d = fa 1 μ t
+
+Title: (1) d = fa 1 μ t
+
 , where d is evolutionary distance, f is the HSF, a1 is the harmonic number of sample size, μ is the substitution rate, and t is the divergence time between the species and reference species.
 
 The evolutionary distance model was K2P [7, 19].
@@ -140,28 +144,26 @@ We set the tr/tv ratio to be 2.24, and the divergence time to be 4,000 years ago
 
 The increase in the number of SNPs could be caused by sample size and HSF.
 
-HSF estimation via simulation
+Title: HSF estimation via simulation
+
 To estimate HSF, we simulated the average substitution rate of SNP chip data.
 
 We assumed the SNP number of general SNP chip data.
 
 The SNP chip data have 30,000‒50,000 SNPs in total, and the founder number can be assumed to be close to “1.” We simulated using the following parameters: the number of SNPs would be 30,000‒50,000 and the harmonic number of sample size would be 4‒6.
 
-Using Eq.
-
-(1), the expected value of the substitution rate was 3 × 10-10 to 5 × 10-10 (/bp/y).
+Using Eq.(1), the expected value of the substitution rate was 3 × 10-10 to 5 × 10-10 (/bp/y).
 
 Using the result, we set the average substitution rate to be 4 × 10-10.
 
-This was a similar result to Roach et al.22] who estimated the average mutation rate of human as 10-8 order per generation.
+This was a similar result to Roach et al.[22] who estimated the average mutation rate of human as 10-8 order per generation.
 
-The HSF of Hanwoo and Holstein was estimated using Eq.
-
-(1).
+The HSF of Hanwoo and Holstein was estimated using Eq.(1).
 
 The evolutionary distances of the Hanwoo and Holstein population across chromosomes were calculated and then average HSF of Hanwoo (23 individuals) and Holstein (10 individuals) were estimated using the substitution rates of each chromosome.
 
-Genetic substitution rate estimation of genes
+Title: Genetic substitution rate estimation of genes
+
 After estimating HSF, we calculated each gene’s substitution rate in Hanwoo and Holstein populations.
 
 The bovine gene catalog was retrieved from the ensemble website (http://www.ensembl.org).
@@ -172,7 +174,8 @@ We surveyed the genes that had the highest and lowest substitution rates.
 
 We compared the genetic substitution rates of Hanwoo with those of Holstein.
 
-HSF estimation
+Title: HSF estimation
+
 We estimated HSF of Hanwoo and Holstein.
 
 The HSF of Hanwoo and Holstein were 351 ± 46 (mean ± SD) and 279 ± 39 (mean ± SD), respectively.
@@ -183,7 +186,8 @@ Fig.1 shows the number of SNPs across chromosomes in Hanwoo and Holstein.
 
 The difference in the number of SNPs across chromosomes might be mainly due to the number of individuals i.e., 23 and 10 in Hanwoo and Holstein, respectively.
 
-Substitution rate
+Title: Substitution rate
+
 Fig.2 shows the density of Hanwoo (Fig.2A) and Holstein (Fig.2B) substitution rates.
 
 The density of substitution rates showed the presence of a region in which the density showed significant decrease and increase.
@@ -198,7 +202,8 @@ It shows that the distribution of substitution rates between Hanwoo and Holstein
 
 Fig.4 shows the genetic substitution rate of Holstein against that of Hanwoo.
 
-GO in Hanwoo and Holstein
+Title: GO in Hanwoo and Holstein
+
 Table 1 shows the results of a DAVID analysis of GO terms for genes with low substitution rates (Hanwoo ＜ 7 × 10-11; Holstein ＜ 6.5 × 10-11).
 
 The criteria was substitution rates below diving regions.
@@ -221,7 +226,8 @@ This was concordant with the simulation study of substitution rates (see Materia
 
 We used the pseudocount 10-13 where the substitution rate in Holstein was estimated at zero to calculate the ratios.
 
-HSF estimation
+Title: HSF estimation
+
 The HSF can be viewed as the number of individuals requiring to explain the substitution rates present in a population.
 
 In SNP chip data, the HSF can be as close as 1.
@@ -248,11 +254,10 @@ The evolutionary distance can be assumed to be linear with HSF and the harmonic 
 
 Like Watterson’s theta estimator, the number of SNPs increases with sample size and thus we assumed that the evolutionary distance was linear with the harmonic mean of sample size (a1).
 
-Because HSF represents the independent substitution unit in the population, thus is linear with the number of SNPs in the population as Eq.
+Because HSF represents the independent substitution unit in the population, thus is linear with the number of SNPs in the population as Eq.(1).
 
-(1).
+Title: Substitution diving region
 
-Substitution diving region
 The gene ontology (GO terms) analysis for genes with the lowest substitution rates in Hanwoo and Holstein showed that regulatory genes belong to the low substitution rate gene set.
 
 Regulatory genes might be protected genes.
@@ -263,7 +268,8 @@ Such diving regions might not be the special case in Hanwoo or Holstein.
 
 This could provide evidence of differentiation between protected genes and unprotected genes.
 
-GO results differentiating Hanwoo from Holstein
+Title: GO results differentiating Hanwoo from Holstein
+
 The differentiation of Hanwoo from Holstein was identified by comparing the genetic substitution rate at the gene level.
 
 In GO analysis of differentially substituted genes between Hanwoo and Holstein, the blood and circulatory system terms were most common.
@@ -292,6 +298,7 @@ The substitution rates of Holstein against Hanwoo.
 
 It showed the nonlinearlity of substitution rates between Hanwoo and Holstein.
 
-Gene ontology terms (GO terms) with low substitution rates of 7 × 10-11 and 6.5 × 10-11 in Hanwoo and Holstein, respectively
-GO of the genes based on Hanwoo/Holstein substitution rate ratio
+Title: Gene ontology terms (GO terms) with low substitution rates of 7 × 10-11 and 6.5 × 10-11 in Hanwoo and Holstein, respectively
+
+Title: GO of the genes based on Hanwoo/Holstein substitution rate ratio
 

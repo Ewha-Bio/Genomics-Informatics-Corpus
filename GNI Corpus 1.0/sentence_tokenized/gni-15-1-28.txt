@@ -1,4 +1,4 @@
-DNA Methylation Profiles of Blood Cells Are Distinct between Early-Onset Obese and Control Individuals.
+Title: DNA Methylation Profiles of Blood Cells Are Distinct between Early-Onset Obese and Control Individuals
 
 Obesity is a highly prevalent, chronic disorder that has been increasing in incidence in young patients.
 
@@ -38,11 +38,11 @@ Recently, the role of epigenetic regulation in the pathogenesis of multifactoria
 
 With the advent of high-throughput DNA methylation profiling technologies, it is now possible to discover novel genes and markers for the early screening and accurate diagnosis of obesity on a genome-wide scale.
 
-For example, Wang et al.8] compared the DNA methylation profiles obtained from the peripheral blood cells of seven young obese and seven normal individuals using the Illumina HumanMethylation27 BeadChip Kit, with a resolution of ~27,000 CpG sites.
+For example, Wang et al.[8] compared the DNA methylation profiles obtained from the peripheral blood cells of seven young obese and seven normal individuals using the Illumina HumanMethylation27 BeadChip Kit, with a resolution of ~27,000 CpG sites.
 
 They identified a number of potential markers (e.g., CpG sites located at the promoters of UBASH3A and TRIM3) that showed differential methylation between obese and control individuals and subsequently validated the loci with pyrosequencing.
 
-Almen et al.9] used the same chip to identify DNA methylation markers associated with both age and obesity.
+Almen et al.[9] used the same chip to identify DNA methylation markers associated with both age and obesity.
 
 Since these genome-wide studies have mainly focused on marker discovery, in-depth genomic analyses (e.g., exploration of the relationship between differentially methylated CpG sites and other genomic features or gene expression) are still largely uninvestigated.
 
@@ -54,7 +54,8 @@ Recognizing that DNA methylation can be used as a predictive marker for obesity,
 
 The putative functions of those genes harboring the differentially methylated CpGs were also investigated.
 
-Patient and control samples
+Title: Patient and control samples
+
 The subjects in this study were selected from a cohort that was part of a community-based prevention and management program of childhood obesity in a rural area of Korea (Chungju, Chungcheongbuk-do).
 
 Twelve participants, six obese children with a high body mass index and six children with a normal body weight, were randomly selected for this pilot study (Table 1).
@@ -65,7 +66,8 @@ Since the subjects of this study were minors, informed consent for all individua
 
 This study, including the consent procedure, has been approved by the Institutional Review Board (KIRB-00524-010) at The Catholic University of Korea, College of Medicine.
 
-DNA methylation and expression profiling
+Title: DNA methylation and expression profiling
+
 The samples for DNA methylation and gene expression profiling experiments were prepared as follows.
 
 Blood from each individual was collected into two EDTA tubes (3 mL).
@@ -82,7 +84,7 @@ Then, the data was normalized using the beta mixture quantile method [10].
 
 The methylation levels of individual CpG sites were estimated as beta-values, which are the ratio of intensities between locus-specific methylated and unmethylated bead-bound probes.
 
-For statistical analysis, the DNA methylation level at each CpG site was converted to an M-value using the logit transformation as recommended by Du et al.11] and Marabita et al.12].
+For statistical analysis, the DNA methylation level at each CpG site was converted to an M-value using the logit transformation as recommended by Du et al.[11] and Marabita et al.[12].
 
 The probes annotated as NCBI's reference SNP ID (rs ID) numbers were removed, then the methylation status of a total of 485,512 CpG sites were used for the analysis.
 
@@ -96,14 +98,16 @@ The DNA methylation and DNA expression profile datasets were submitted to ArrayE
 
 DNA and RNA from 12 subjects were loaded onto a single 12-well chip for methylation and gene expression analyses, respectively, so that batch effect adjustment did not need to be considered.
 
-Unsupervised clustering
+Title: Unsupervised clustering
+
 Hierarchical clustering for both gene expression and DNA methylation was carried out using the R package.
 
 Euclidean distance was used as a distance metric, and single-linkage clustering was adopted.
 
 For gene expression profiles, highly variable genes were selected using the mean absolute deviation, and clustering analyses were conducted using these 1,000 selected genes.
 
-Statistical analysis
+Title: Statistical analysis
+
 Hypermethylated and hypomethylated CpG sites identified in each sample were partitioned using a Gaussian mixture model [13], based on the distribution of the M-values in each sample.
 
 For each sample, the Expectation-Maximization algorithm was run 100 times with different seed values, and the model with the largest likelihood value was chosen as the best-fit model within the 100 experiments.
@@ -114,12 +118,14 @@ The analyses were performed using the R mixtools package [14].
 
 The differentially methylated CpG sites and the differentially expressed genes were identified using the empirical Bayes model implemented in the limma package [15].
 
-Chromatic region identification
+Title: Chromatic region identification
+
 Chromatin statuses were obtained from ChromHMM results [16], coordinated using human genome build 37 (hg19), which was downloaded from the University of California, Santa Cruz (UCSC) Encyclopedia of DNA Elements (ENCODE) as a Browser Extensible Data (BED) format.
 
 The chromatin state at the differentially methylated CpG sites was determined by finding overlaps with the regions defined in the dataset given in the software.
 
-Differences in DNA methylation and gene expression patterns between obese and normal individuals
+Title: Differences in DNA methylation and gene expression patterns between obese and normal individuals
+
 We first investigated whether gene expression levels and/or DNA methylation profiles can distinguish obese individuals from control individuals with normal body weights (n = 6 in each group).
 
 To this end, we performed unsupervised hierarchical clustering analyses using gene expression profiles.
@@ -144,7 +150,8 @@ In addition, the hypermethylated CpG sites of obese individuals tended to have l
 
 The overall M-value distribution between obese and control individuals suggests that the difference in methylation between two groups may be subtle, but our analyses revealed the CpG sites in obese individuals may have less frequent hypomethylation and hypermethylation compared to controls.
 
-The extent of DNA methylation varies across the genome
+Title: The extent of DNA methylation varies across the genome
+
 To investigate the level of CpG methylation with respect to nearby genes or CGIs, we categorized the CpG sites into six regional categories: the 3′ untranslated region (UTR), 5′ UTR, first exon, gene body, TSS200, and TSS1500.
 
 TSS200 and TSS1500 represent the 200 bp and 1,500 bp regions upstream of the transcription start site (TSS), respectively.
@@ -165,7 +172,8 @@ Moreover, CGIs were usually hypomethylated (the ratio was 0.23), but the 5′ an
 
 The observed overall pattern of DNA methylation with respect to nearby genes or CGIs agrees well with previous reports: CpG sites at promoters with active transcription have less DNA methylation compared to downstream compartments such as the gene body, and CpG sites at CGIs are relatively free from methylation.
 
-The genomic and epigenomic landscape of differentially methylated CpG sites in obesity
+Title: The genomic and epigenomic landscape of differentially methylated CpG sites in obesity
+
 We next identified the CpG sites differentially methylated between obese and control individuals.
 
 A total of 6,041 differentially methylated CpG sites were identified to have a significance level of p < 0.001.
@@ -216,7 +224,8 @@ For instance, 96.6% of CpG sites in active promoter regions, as well as 95.7% an
 
 In contrast to the promoter regions, 95.7% of the differentially methylated CpG sites in transcriptional regions, annotated in ChromHMM as transcriptional transition, elongation, or weak transcription, showed lower DNA methylation levels in obese children.
 
-Functional relationships between DNA methylation markers and obesity
+Title: Functional relationships between DNA methylation markers and obesity
+
 We next identified 21 genes with significant enrichment of differentially methylated CpG sites in the obese children (Fisher's exact test; p < 0.001) (Supplementary Fig.3).
 
 The CpG sites in the enriched genes were mainly obese-hypomethylated and located mostly in the gene body region, which was expected given the overall distribution of differentially methylated CpG sites.
@@ -372,5 +381,5 @@ p-values from Fisher's exact tests are shown at the upper side on each bar.
 
 (B) Proportions of obese-hypermethlylated and obese-hypomethylated CpG sites are shown across 15 chromHMM-annotated chromatin states.
 
-Clinical information for the 12 individuals
+Title: Clinical information for the 12 individuals
 

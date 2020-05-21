@@ -1,4 +1,4 @@
-Understanding Epistatic Interactions between Genes Targeted by Non-coding Regulatory Elements in Complex Diseases.
+Title: Understanding Epistatic Interactions between Genes Targeted by Non-coding Regulatory Elements in Complex Diseases
 
 Genome-wide association studies have proven the highly polygenic architecture of complex diseases or traits; therefore, single-locus-based methods are usually unable to detect all involved loci, especially when individual loci exert small effects.
 
@@ -44,14 +44,16 @@ For systematic annotation, therefore, we have suggested extensive non-coding var
 
 In this work, we illustrate how this annotation method can be used to establish a reasonable genetic model in complex diseases.
 
-KARE data
+Title: KARE data
+
 We used 352,228 single-nucleotide polymorphisms (SNPs) genotyped using Affymetrix Genomewide Human SNP Array 5.0 (genomic coordinates hg18; Affymetrix Inc., Santa Clara, CA, USA) for 8,842 Korean individuals from the KARE project.
 
 We converted hg18 to hg19 using the liftOver tool from UCSC (http://genome.ucsc.edu/cgi-bin/hgLiftOver) and converted Affymetrix ID to dbSNP reference cluster ID using the annotation file offered by Affymetrix (http://affymetrix.com).
 
 In this study, we focused on DM, HT, and CAD (myocardial infarction and CAD) and considered people who did not have any disease as the controls (Table 1).
 
-Epistasis detection using GPU-based Boolean Operation-based Screening and Testing
+Title: Epistasis detection using GPU-based Boolean Operation-based Screening and Testing
+
 We applied GPU-based Boolean Operation-based Screening and Testing (GBOOST) to analyze epistatic interaction effects from the genomewide SNP data [6].
 
 Stage I: screening-in the screening stage, BOOST evaluated all pairwise interactions using the Kirkwood superposition approximation.
@@ -62,7 +64,8 @@ After that, GBOOST conducted a χ2 test with four degrees of freedom (df = 4) an
 
 The numbers of interactions tested were 226,507, 251,344, and 151,090 in DM, HT, and CAD, respectively; thus, the genome-wide significance levels were 4.41e-08, 3.98e-08, and 6.62e-08 using Bonferroni correction.
 
-Enrichment of epistatic SNPs in regulatory elements
+Title: Enrichment of epistatic SNPs in regulatory elements
+
 To test for the enrichment of epistatic SNPs (Table 2) in regulatory elements, we overlapped SNPs with enhancers (see below) and footprints data.
 
 We obtained genomic DNase I footprints across 41 cell types from the Encyclopedia of DNA Elements (ENCODE) Project (The ENCODE Project Consortium 2012; http://genome.ucsc.edu/ENCODDE/downloads.html).
@@ -73,7 +76,8 @@ To determine whether the observed count was significantly greater than expected 
 
 The level of significance (p-value) was computed as the proportion of counts that were equal to or larger than the observed count from the null distribution.
 
-Target gene mapping to SNPs using regulatory elements
+Title: Target gene mapping to SNPs using regulatory elements
+
 We used all transcript annotations from GENCODE.v19, which contains 20,242 protein-coding genes.
 
 The promoter was defined as the region 1.5 kb upstream of the transcription start site of a gene.
@@ -84,7 +88,7 @@ In the case of SNPs that were not assigned using the promoter, we assigned genes
 
 We obtained genomewide multiple-cell-type enhancer data from previous studies [9, 10].
 
-Maurano et al.9] identified distal enhancer-to-promoter connections using DNase I profiles across 349 diverse cell types, and Andersson et al.10] identified extensive active enhancers and their target promoters by using Cap Analysis Gene Expression (CAGE) data based on the FANTOM5 panel of ~400 distinct cell types.
+Maurano et al.[9] identified distal enhancer-to-promoter connections using DNase I profiles across 349 diverse cell types, and Andersson et al.[10] identified extensive active enhancers and their target promoters by using Cap Analysis Gene Expression (CAGE) data based on the FANTOM5 panel of ~400 distinct cell types.
 
 We collected a total of 663,583 pairs of enhancers and target genes.
 
@@ -92,7 +96,8 @@ If an SNP was not assigned, we looked for the closest SNP in LD based on CHB/JPT
 
 The summary of the number of assigned genes is shown in Table 3.
 
-Enrichment of the affected genes in the known gene set
+Title: Enrichment of the affected genes in the known gene set
+
 We downloaded DM-, HT-, and CAD-related gene information from Phenopedia (HuGE Navigator, version 2.0) [12].
 
 The HuGE Navigator is an integrated knowledge-based database of genetic associations that have been extensively explored, based on the literature, and is continuously updated from PubMed (http://www.ncbi.nlm.nih.gov/pubmed/).
@@ -183,7 +188,9 @@ Uncolored circles connected by gray lines with colored circles indicate genes kn
 
 The colored lines indicate the epistatic interactions detected in DM (green), HT (blue) and CAD (red) patients.
 
-Summary of KARE data used
-Summary of detected epistatic interactions
-Target gene assignment and enrichment analysis using known DB across diseases
+Title: Summary of KARE data used
+
+Title: Summary of detected epistatic interactions
+
+Title: Target gene assignment and enrichment analysis using known DB across diseases
 

@@ -1,4 +1,4 @@
-Comparison of Two Meta-Analysis Methods: Inverse-Variance-Weighted Average and Weighted Sum of Z-Scores.
+Title: Comparison of Two Meta-Analysis Methods: Inverse-Variance-Weighted Average and Weighted Sum of Z-Scores
 
 The meta-analysis has become a widely used tool for many applications in bioinformatics, including genome-wide association studies.
 
@@ -54,8 +54,9 @@ We examine this connection between the two methods both analytically and empiric
 
 Finally, using real data analysis utilizing the Wellcome Trust Case Control Consortium data, we demonstrate that the two methods can give distinct results in certain study designs.
 
-Inverse variance-weighted average method
-We first describe the two methods for the fixed effects model meta-analysis: the IVW and weighted SZ.
+Title: Inverse variance-weighted average method
+
+Title: We first describe the two methods for the fixed effects model meta-analysis: the IVW and weighted SZ.
 
 The fixed effects model assumes that all studies in a meta-analysis share a single true effect size [2182223].
 
@@ -64,7 +65,8 @@ The underlying mathematical model of the observed effect Xi can be shown as: Xi 
 In order to integrate multiple observed effect sizes X1,…,XC from multiple studies, the weighted mean approach has been suggested [22], X¯=∑WiXi∑Wi.
 
 (2)
-A choice of weight Wi is not immediately evident, but several attempts were made to identify the optimal weight of the methods based on empirical evidence [172024].
+
+Title: A choice of weight Wi is not immediately evident, but several attempts were made to identify the optimal weight of the methods based on empirical evidence [172024].
 
 Ideally, one needs to put more weight on the studies with more precision against studies with lower precision [32526].
 
@@ -83,21 +85,25 @@ It is common practice to consider the estimated variance Vi as the true variance
 The inverse variance-weighted average effect size estimator is the weighted mean of Xi with the weights [22]: Wi = Vi−1.
 
 (3)
+
 Given these weights, the standard error of the average effect size X¯ becomes SEX¯=∑Wi−1.
 
 The statistical significance can be tested by constructing a z-score statistic of IVW as follows, which asymptotically follows N(0,1) under the null hypothesis of no effects.
 
-Z I V W = X ¯ S E ( X ¯ ) = ∑ W i X i ∑ W i (4)
+Title: Z I V W = X ¯ S E ( X ¯ ) = ∑ W i X i ∑ W i (4)
+
 The p-value of the two-tailed significance test is p = 2Φ(−|ZIVW|), (5) where Φ is the standard normal cumulative distribution function.
 
-Weighted SZ
-Another popular method for the fixed effects model meta-analysis is calculating the weighted SZ from the follows studies.
+Title: Weighted SZ
+
+Title: Another popular method for the fixed effects model meta-analysis is calculating the weighted SZ from the follows studies.
 
 Let Zi be the z-score from study i, whichN(0,1) under the null hypothesis of no effects.
 
 Then, the weighted SZ statistic is ZSZ=∑wSZ, iZi∑wSZ, i2.
 
 (6)
+
 By the characteristic of a normal distribution, ZSZ also follows N(0,1) under the null hypothesis.
 
 To combine z-scores from multiple studies, a per-study sample size was suggested as weights of each study, as follows [210]: wSZ, i=Ni , (7) where Ni is sample size of the study.
@@ -110,9 +116,11 @@ Then, we show that the two methods are connected, by using both analytical deriv
 
 Finally, we demonstrate a situation in which the two methods can give different results using real data.
 
-Optimality of IVW
-IVW maximizes likelihood function
-We will define that a method is optimal if the method achieves a specific goal more effectively than any other method.
+Title: Optimality of IVW
+
+Title: IVW maximizes likelihood function
+
+Title: We will define that a method is optimal if the method achieves a specific goal more effectively than any other method.
 
 We show that IVW is optimal in two different aspects: (1) the summary estimator gives the greatest likelihood than any other estimator and (2) the summary estimator's variance is smaller than the variance of any other estimator.
 
@@ -123,11 +131,13 @@ Suppose that we have a series of n studies with observed effect sizes Xi, i = 1,
 The probability density function of each observation is given by fXi|µ, σi2=12πσi2e−Xi−µ22σi2.
 
 (8)
+
 Because −lnL(µ,σi2|X1,…,Xn) will be minimized at d(−lnLµ, σi2X1, …, Xn)dµ=0 , we can obtain the maximum likelihood (ML) estimator:  µ^=∑i=1nσi2−1Xi∑i=1nσi2−1, (9) which is equivalent to the IVW statistic X¯ in equation (2).
 
 Therefore, the inverse variance-weighted average method is optimal in the sense that it maximizes the likelihood of observations with the optimized weight of Wi = (σi2)−1 [2122].
 
-IVW achieves minimum variance
+Title: IVW achieves minimum variance
+
 IVW is optimal in the sense that the IVW estimator achieves minimum variance.
 
 In short, IVW achieves minimum variance by the properties of maximum likelihood estimator (MLE).
@@ -136,8 +146,10 @@ MLE has the following property, as shown by Greene [27]: if the sampling is from
 
 Thus, by this property and under these conditions, we can conclude that IVW achieves minimum variance, because IVW is the MLE and MVUE [27].
 
-Optimality of SZ
-SZ maximizes the non-centrality parameter
+Title: Optimality of SZ
+
+Title: SZ maximizes the non-centrality parameter
+
 SZ combines z-scores from multiple studies to construct a new z-score.
 
 Therefore, in SZ, we are not interested in the estimator of Xi.
@@ -150,11 +162,12 @@ By maximizing the non-centrality parameter, we can maximize the statistical powe
 
 Among all possible weights that can construct a weighted SZ, we want to find the weights that will maximize the non-centrality parameter.
 
-The optimal weights of the weighted SZ can be found by the Cauchy-Schwarz inequality.
+Title: The optimal weights of the weighted SZ can be found by the Cauchy-Schwarz inequality.
 
 We will make an assumption that Zi=Xi/Vi.
 
 (10)
+
 That is, we assume that our z-score is defined as the effect size estimate divided by the standard error, which is the common definition of a z-score.
 
 In some applications, there can be different ways to define a z-score statistic, and for those definitions, the connection between z-score and effect size may not be apparent.
@@ -163,20 +176,22 @@ However, in practice, this assumption holds approximately over a wide range of a
 
 Below, we will show that in the situation of a 2 × 2 table, even if we obtain a z-score in a different way, it approximates a z-score that is obtained by using effect size and its standard error.
 
-Under the fixed effect model assumption that assumes E[Xi] = µ, the z-score, Zi, follows a normal distribution ZSZ~N(λ,1), where λ is a non-centrality parameter with λ=∑i=1nwSZ, i(µ/Vi)/∑i=1nwSZ, i2.
+Title: Under the fixed effect model assumption that assumes E[Xi] = µ, the z-score, Zi, follows a normal distribution ZSZ~N(λ,1), where λ is a non-centrality parameter with λ=∑i=1nwSZ, i(µ/Vi)/∑i=1nwSZ, i2.
 
 Now, we want to obtain the weight wi that maximizes lambda.
 
 The optimal weight can be obtained by using the Cauchy-Schwarz inequality, as follows [1221]: λ=∑i=1nwSZ, i∑i=1nwSZ, i2•1Vi≤µ∑i=1nwSZ, i2∑i=1nwSZ, i2∑i=1n1Vi.
 
 (11)
-The equality is achieved when wSZ, i∑i=1nwSZ, i2=k•1Vi, (12) where the terms ∑i=1nwSZ, i2 and k are constants.
+
+Title: The equality is achieved when wSZ, i∑i=1nwSZ, i2=k•1Vi, (12) where the terms ∑i=1nwSZ, i2 and k are constants.
 
 Thus, the optimal weight is wSZ, i=1/Vi.
 
 Then, the resulting weighted SZ can be constructed as ZSZ=∑i=1nSEXi−1Zi∑i=1nSEXi−2.
 
 (13)
+
 This result provides us with the intuition that SZ is optimal only when we weight z-scores by the inverse of the standard errors of effect sizes.
 
 That is why previous studies have weighted z-scores by Ni, because in many applications, the variance Vi is inversely proportional to the sample size Ni.
@@ -191,8 +206,10 @@ Below, we will show by simulations that we can have some power loss by using jus
 
 However, the approximation of this weight Ni will be optimal when no heterogeneity can be found between the minor allele frequencies [2].
 
-Equality of IVW and SZ under certain assumptions
-Analytical derivation
+Title: Equality of IVW and SZ under certain assumptions
+
+Title: Analytical derivation
+
 Here, we show that the two methods IVW and SZ are equivalent under certain assumptions.
 
 We have shown that IVW is optimal in the sense that the estimator is MLE and achieves minimum variance, and SZ is optimal in the sense that it maximizes the non-centrality parameter.
@@ -201,20 +218,22 @@ Although both methods can be considered optimal, their goals and how they are op
 
 Despite the fact that the two methods are optimized differently with different goals, we show that the resulting statistics are equivalent, in the sense that their z-scores (and therefore their p-values) are equivalent.
 
-Again, we assume the definition of z-score Zi=XiVi, which is assumed in Eq.
-
-(18).
+Again, we assume the definition of z-score Zi=XiVi, which is assumed in Eq.(18).
 
 We assume that SZ uses SE(Xi)−1 as weights for z-scores, rather than only using sample sizes.
 
 Then, we can show, by simple algebra: ZSZ=∑iSEXi−1Zi∑iSEXi−2=∑iWiXi∑iWi=ZIVW, (14) which demonstrates that the two methods are exactly equivalent if we use SE(Xi)−1 as weights for SZ.
 
-Empirical simulation
-To empirically investigate the equality of IVW and SZ, we compared the power of the two methods.
+Title: Empirical simulation
+
+Title: To empirically investigate the equality of IVW and SZ, we compared the power of the two methods.
 
 We assumed the following null and alternative hypotheses:
-H0:µ = 0
-H1:µ ≠ 0
+
+Title: H0:µ = 0
+
+Title: H1:µ ≠ 0
+
 That is, we tested if the mean effect is non-zero.
 
 To generate simulation sets of meta-analysis studies, we used the common simulation framework for simulating genetic association studies.
@@ -247,7 +266,7 @@ Fig.1 shows that the two methods showed the same power in both situations: under
 
 This result complements our analytical results that the two methods are equivalent if SZ uses SE(Xi)−1 as weights.
 
-Additionally, we compared the two methods with another method, the weighted SZ, which uses the inverse squared root sample size as the weight (SZ_N).
+Title: Additionally, we compared the two methods with another method, the weighted SZ, which uses the inverse squared root sample size as the weight (SZ_N).
 
 SZ_N was equivalent to IVW and SZ_SE in terms of power, when there was no heterogeneity in MAF (Fig.1A).
 
@@ -257,7 +276,8 @@ This result demonstrates that using only sample size as the weight can be subopt
 
 Nevertheless, the power drop of using only sample size as the weight was quite small (i.e., at γ = 1.15, the power of IVW and SZ_SE was 58.24%, but the power of SZ_N was 57.23%, with only 1.01% power loss.)
 
-Situations in which IVW and SZ can give distinct results
+Title: Situations in which IVW and SZ can give distinct results
+
 In this section, we demonstrate a situation in which IVW and SZ can give distinct results.
 
 As we have shown above, SZ whose weights are given as SE(Xi)−1(SZ_SE) is analytically equivalent to IVW.

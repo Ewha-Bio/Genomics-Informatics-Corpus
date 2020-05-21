@@ -1,4 +1,4 @@
-The Construction of Regulatory Network for Insulin-Mediated Genes by Integrating Methods Based on Transcription Factor Binding Motifs and Gene Expression Variations.
+Title: The Construction of Regulatory Network for Insulin-Mediated Genes by Integrating Methods Based on Transcription Factor Binding Motifs and Gene Expression Variations
 
 Type 2 diabetes mellitus is a complex metabolic disorder associated with multiple genetic, developmental and environmental factors.
 
@@ -44,7 +44,8 @@ We identified about 560 genes differentially expressed between before and after 
 
 Furthermore, we report a reliable regulatory network cont-rolling insulin-mediated genes by integrating motif-based approach using iRegulon and expression-based approach using Genomica; thereby present some benefits for the construction.
 
-Study samples
+Title: Study samples
+
 We downloaded and re-analyzed a previous published mRNA expression microarray data set measured on Affymetrix Human Genome U95A Array (Affymetrix, Santa Clara, CA, USA) from the Gene Expression Omnibus (GEO) database (GSE22309) [5].
 
 This data was measured in human skeletal muscle cell of human individuals: 20 insulin sensitive, 20 insulin resistant, and 15 diabetic patients for before and after insulin treatment.
@@ -53,14 +54,16 @@ We used only the insulin sensitive group.
 
 Total of 12,626 probes were monitored, and we considered genes which are protein-coding gene.
 
-Insulin-mediated genes
+Title: Insulin-mediated genes
+
 To select differential genes before and after insulin treatment in 20 insulin sensitive individuals, we carried out paired t test and calculated gene expression fold change.
 
 Using local commands of R program, we selected insulin-responsive genes which were significantly dysregulated at p-value (paired t test) < 0.01 (corresponding to FDR [13] ≤ 0.05) and fold change > 1.2 (Fig.1).
 
 We looked for enriched GO terms of the insulin responsive genes using DAVID Functional Annotation Tool [14].
 
-Search for candidate TFs based on regulatory motif and chromatin immunoprecipitation-sequencing
+Title: Search for candidate TFs based on regulatory motif and chromatin immunoprecipitation-sequencing
+
 The regulatory factors for insulin-responsive genes were searched using the iRegulon app in Cytoscapev3.2.1.
 
 iRegulon detects the TFs and their targets by scanning known TF-binding promoter motifs as well as the predicted motifs discovered from the Encyclopedia of DNA Elements (ENCODE) Project chromatin immunoprecipitation-sequencing data.
@@ -71,7 +74,8 @@ Other options were taken as default.
 
 We executed iRegulon and looked for TFs for each down and up regulated genes.
 
-Construction of regulatory networks based on expression value
+Title: Construction of regulatory networks based on expression value
+
 With TFs searched by iRegulon, we tried to construct regulatory network modules which can explain situation of expressions of target genes based on expression level.
 
 This construction was carried out using Genomica [12], which is an analysis and visualization tool for genomic data.
@@ -82,7 +86,8 @@ It identifies regulatory network modules from gene expression data based on prob
 
 The options "Max number of modules" and "Min experiments per context" were set at 4.
 
-Insulin-targeted gene set
+Title: Insulin-targeted gene set
+
 The expression data of 20 insulin sensitive individuals downloaded from GEO (GSE22309) were analyzed to find genes controlled by insulin.
 
 In addition, the data contain expression values of transcripts before and after insulin treatment for each sample.
@@ -99,7 +104,8 @@ As the resulting list of terms is redundant, the lists were prunedmanually (Tabl
 
 Most of the terms were compatible with insulin response and overlapped to GO terms which have been known from previous studies [5].
 
-TF discovery based on motif using iRegulon
+Title: TF discovery based on motif using iRegulon
+
 We tried to discover the regulatory TFs for the insulin-treated gene set using iRegulon in Cytoscape.
 
 For each down- and up-regulated gene set, we predicted 25 TFs of the target genes based on motif in upstream 20 kb of the target genes.
@@ -108,7 +114,8 @@ As shown in Fig.2, target genes are linked to multiple TFs.
 
 A single TF targeted about 138 genes in average.
 
-Construction of regulatory network using Genomica
+Title: Construction of regulatory network using Genomica
+
 We tried to explain the expression variations of target genes with those of TFs identified by iRegulon.
 
 Firstly, we checked correlation between expression of YY1, which is a predicted TF by iRegulon and known for an insulin signaling gene, and mean of those of target genes.
@@ -195,5 +202,5 @@ The upper part of the figure represents a dendrogram for a combination of regula
 
 The lower part shows a heat map for the expression profiling of up-regulated target genes by insulin treatment (row and column indicate genes and individuals, respectively).
 
-The enriched GO terms of insulin-responsive genes
+Title: The enriched GO terms of insulin-responsive genes
 

@@ -1,4 +1,4 @@
-Prediction of Metal Ion Binding Sites in Proteins from Amino Acid Sequences by Using Simplified Amino Acid Alphabets and Random Forest Model.
+Title: Prediction of Metal Ion Binding Sites in Proteins from Amino Acid Sequences by Using Simplified Amino Acid Alphabets and Random Forest Model
 
 Metal binding proteins or metallo-proteins are important for the stability of the protein and also serve as co-factors in various functions like controlling metabolism, regulating signal transport, and metal homeostasis.
 
@@ -60,9 +60,10 @@ Several simplified amino acid alphabets have been proposed, which have been appl
 
 Various computational predictor has used simplified amino acids to predict the solubility on overexpression, remote homology detection [19], and identify the defensin peptide family [24], effects of cofactors on conformation transition [25], DNA-binding proteins [26], heat shock protein families [27], inter-residue interaction [28], protein adaptation to mutation [29], and protein disorder [30].
 
-In the present study, a random forest algorithm has been deployed to predict metal ion binding protein based on the simplified amino acids proposed by Murphy et al.21].
+In the present study, a random forest algorithm has been deployed to predict metal ion binding protein based on the simplified amino acids proposed by Murphy et al.[21].
 
-Dataset construction
+Title: Dataset construction
+
 All the protein sequences were downloaded from the UniProt database [31] available at http://www.uniprot.org/.
 
 The downloaded sequences, annotated as metal containing, were grouped into eight subsets.
@@ -77,7 +78,7 @@ All proteins containing calcium, cobalt, copper, magnesium, manganese, nickel, o
 
 The workflow of dataset construction is shown in Fig.1.
 
-The problem of the imbalanced dataset can be solved as proposed by Cohen et al.34].
+The problem of the imbalanced dataset can be solved as proposed by Cohen et al.[34].
 
 Firstly, they pre-processes the data to re-establish class balance (either by upsizing the minority class or downsizing the majority class).
 
@@ -87,7 +88,8 @@ In this study, we pre-processed the data which contains a balanced set of metal 
 
 For this construction, non–metallo-proteins datasets sequences were randomly selected in order to have balanced set of metal and non-metal binding proteins for each metal ion, respectively.
 
-Feature extraction by simplified amino acid alphabets
+Title: Feature extraction by simplified amino acid alphabets
+
 In order to investigate the effect of a particular class of amino acids on metal ion binding, the 20 amino acids were grouped into various classes based on certain common properties and the composition of the reduced sets of amino acids was considered.
 
 Feature extraction is done using the simplified amino acid alphabet.
@@ -100,26 +102,30 @@ A simplified amino acid alphabet of 18 characters was used (Table 1).
 
 It is based on three independent amino acid classifications.
 
-Conformational similarity
+Title: Conformational similarity
+
 Conformational similarity indices are proposed by Chakrabarti and Pal [28] based on different residues are computed using the distribution of the main-chain and side-chain torsion angles and values have been used to cluster amino acids in proteins.
 
 In this method, the conformational similarity of the 20 amino acids based on torsion angles, which contains seven clusters ([CMQLEKRA], [P], [ND], [G], [HWFY], [S], and [TIV]) are used to represent variables.
 
-BLOSUM 50 substitution matrix
-The BLOSUM-50 matrix is proposed by Cannata et al.35].
+Title: BLOSUM 50 substitution matrix
+
+The BLOSUM-50 matrix is proposed by Cannata et al.[35].
 
 The matrix is deduced from amino acid pair frequencies in aligned blocks of a protein sequence database and is widely used for sequence alignment and comparison.
 
 The BLOSUM 50 matrix that they group together on the basis of the possibility of foldable structures and consists of the clusters: [P], [KR], [EDNQ], [ST], [AG], [H], [CILMV], and [YWF].
 
-Hydrophobicity
-The hydrophobicity scale by Rose et al.36] is correlated to the average area of buried amino acids in globular proteins.
+Title: Hydrophobicity
+
+The hydrophobicity scale by Rose et al.[36] is correlated to the average area of buried amino acids in globular proteins.
 
 This results in a scale which is not showing the helices of a protein, but rather the surface accessibility.
 
 It is based on the hydrophobicity scale which consists of the following cluster: [CFILMVW], [AG], [PH], [EDRK], and [NQSTY].
 
-Random forest predictions
+Title: Random forest predictions
+
 Random forest is a classification algorithm [37] that uses an ensemble of tree-structured classifiers.
 
 The random forest is a popular algorithm that has been used in designing computational predictors for various biological problems.
@@ -140,18 +146,18 @@ In this study, the original samples are randomly divided into k = 10 parts in th
 
 Each of these parts is chosen one by one for assessment, and the remaining nine of 10 samples are for model selection in the inner loop where a type of cross-validation using the so-called out-of-bag samples is performed.
 
-Measurement of classifier’s performance
+Title: Measurement of classifier’s performance
+
 When the predictor was focused on the problem of distinguishing proteins containing a certain type of metal ion from proteins that do not contain any type of metal, it is important that both sets contain the same number of proteins; otherwise, several figures of merit that are commonly used to monitor the prediction reliability would be seriously biased.
 
 The reliability of the predictions was monitored with the following quantities.
 
 If a protein of type 1 must be distinguished from a protein of type 2, a prediction was considered to be a true-positive if type 1 was correctly predicted; it was considered to be a true-negative if type 2 was correctly predicted; it was considered to be a false-negative if a type 1 protein was predicted to be a type 2 protein; and it was considered to be a false-positive if a type 2 protein was predicted to be a type 1 protein.
 
-Consequently, the following figures of merit, the sensitivity, the specificity, the accuracy, the Mathews correlation are computed [41] as shown in the Eq.
+Consequently, the following figures of merit, the sensitivity, the specificity, the accuracy, the Mathews correlation are computed [41] as shown in the Eq.(1) below.
 
-(1) below.
+Title: (1) A c c = T P + T N T P + F P + T N + F N , S n = T P T P + F N , S p = T N T N + F P M C C = ( T P × T N ) - ( F N × F P ) ( T P + F N ) ( T N + F P ) ( T P + F P ) ( T N + F N )
 
-(1) A c c = T P + T N T P + F P + T N + F N , S n = T P T P + F N , S p = T N T N + F P M C C = ( T P × T N ) - ( F N × F P ) ( T P + F N ) ( T N + F P ) ( T P + F P ) ( T N + F N )
 By using a simplified amino acid alphabet based on three independent amino acid classifications, amino acid cluster variables were obtained.
 
 Conformational similarity contains seven clusters: [CMQLEKRA], [P], [ND], [G], [HWFY], [S], and [TIV].
@@ -164,10 +170,9 @@ Out of 20 amino acid clusters, cluster [P] and [AG] which are present in more th
 
 The 18 variables are represented with percentage of occurrence as follows.
 
-(2) p c a a , i = 100 n a a , i n r e s i ,
-The percentage of occurrence pcaa,i of the amino acid aa in the ith protein was computed for each of the 20 types of amino acids in each protein as per Eq.
+Title: (2) p c a a , i = 100 n a a , i n r e s i ,
 
-(2).
+The percentage of occurrence pcaa,i of the amino acid aa in the ith protein was computed for each of the 20 types of amino acids in each protein as per Eq.(2).
 
 The protein sequences represented by the amino acid percentage of occurrence using 18 variables were employed with random forest algorithm using Weka suite.
 
@@ -249,14 +254,23 @@ Construction of dataset used for prediction.
 
 The performance graph of the Random forest classifier using feature selection (10-fold cross validation for cobalt ion prediction).
 
-The 18 variables, obtained by merging three simplified alphabets of amino acid residues used to represent protein sequences
-Overall prediction performance of the classifier in predicting individual metal ion binding sites
-Feature selection of variables in improving the performance of copper ion prediction against proteins that lack metal ions
-Feature selection of variables in improving the performance of calcium ion prediction against proteins that lack metal ions
-Feature selection of variables in improving the performance of cobalt ion prediction against proteins that lack metal ions
-Feature selection of variables in improving the performance of iron ion prediction against proteins that lack metal ions
-Feature selection of variables in improving the performance of magnesium ion prediction against proteins that lack metal ions
-Feature selection of variables in improving the performance of manganese ion prediction against proteins that lack metal ions
-Feature selection of variables in improving the performance of nickel ion prediction against proteins that lack metal ions
-Feature selection of variables in improving the performance of zinc metal ion prediction against proteins that lack metal ions
+Title: The 18 variables, obtained by merging three simplified alphabets of amino acid residues used to represent protein sequences
+
+Title: Overall prediction performance of the classifier in predicting individual metal ion binding sites
+
+Title: Feature selection of variables in improving the performance of copper ion prediction against proteins that lack metal ions
+
+Title: Feature selection of variables in improving the performance of calcium ion prediction against proteins that lack metal ions
+
+Title: Feature selection of variables in improving the performance of cobalt ion prediction against proteins that lack metal ions
+
+Title: Feature selection of variables in improving the performance of iron ion prediction against proteins that lack metal ions
+
+Title: Feature selection of variables in improving the performance of magnesium ion prediction against proteins that lack metal ions
+
+Title: Feature selection of variables in improving the performance of manganese ion prediction against proteins that lack metal ions
+
+Title: Feature selection of variables in improving the performance of nickel ion prediction against proteins that lack metal ions
+
+Title: Feature selection of variables in improving the performance of zinc metal ion prediction against proteins that lack metal ions
 

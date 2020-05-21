@@ -1,4 +1,4 @@
-Improving the CONTES method for normalizing biomedical text entities with concepts from an ontology with (almost) no training data.
+Title: Improving the CONTES method for normalizing biomedical text entities with concepts from an ontology with (almost) no training data
 
 Entity normalization, or entity linking in the general domain, is an information extraction task that aims to annotate/bind multiple words/expressions in raw text with semantic references, such as concepts of an ontology.
 
@@ -74,7 +74,8 @@ CONTES showed great performance on the BB normalization task of BioNLP Shared Ta
 
 Analysis of the results suggested that even mispredicted concepts were not far from the ontology of the expected concepts.
 
-Dimension reduction and concept embeddings
+Title: Dimension reduction and concept embeddings
+
 The CONTES method has been evaluated as a normalization task of BB from the BioNLP Shared Task of 2016 (http://2016.bionlp-st.org/tasks/bb2).
 
 This task consists of normalizing entity mentions, in the raw text, with concepts of the OntoBiotope ontology.
@@ -85,14 +86,16 @@ In comparison, the Gene Ontology contains around 50,000 concepts and the Unified
 
 CONTES does not currently address normalization with these large ontologies, due to its high dimension, but rather implies the representation of the ontology concepts.
 
-Overgeneralization
+Title: Overgeneralization
+
 CONTES takes advantage of the ontology structure given by a set of Is-A relations between concepts.
 
 The representation of the ontology structure into SSO vectors allows CONTES to generalize training examples, and classify terms never seen before with more general concepts.
 
 However, error analysis on the BB development set showed that CONTES tends to overgeneralize its predictions, and often predicts too general concepts.
 
-Out-of-vocabulary words
+Title: Out-of-vocabulary words
+
 CONTES uses the Word2Vec-CBOW and Word2Vec-SkipGram methods to produce word embeddings, and these methods do not compute valid representations for out-of-vocabulary words.
 
 Thus, CONTES does not yet address the problem of the out-of-vocabulary words.
@@ -103,12 +106,14 @@ For example, in French or Spanish, most verbs have more than forty different inf
 
 These languages contain many word forms that occur rarely (or not at all) in the training corpus, making it difficult to learn good word representations.
 
-Materials
+Title: Materials
+
 For our experiments, we use the current source code of CONTES (https://github.com/ArnaudFerre/CONTES), and datasets and the OntoBiotope ontology from the BB normalization task of the BioNLP Shared Task 2016.
 
 We also downscaled word embeddings computed from a reduced corpus (40,000 words), in order to speed up the experimental cycle.
 
-Dimensionality-reduction techniques
+Title: Dimensionality-reduction techniques
+
 We aimed to reduce the dimension of the SSO to make CONTES scalable to larger ontologies.
 
 We have used three well-known techniques to reduce the dimension of the semantic space of the ontology: principal component analysis (PCA), multidimensional scaling (MDS), and t-distributed Stochastic Neighbor Embedding (t-SNE).
@@ -119,7 +124,8 @@ Here, t-SNE is a nonlinear method to reduce dimensions, with the aim to retain t
 
 All these methods can be used with the machine learning Python library scikit-learn (https://scikit-learn.org/stable/).
 
-Concept embeddings
+Title: Concept embeddings
+
 Another solution to overcome the problem of high-dimensional vectors of ontology concepts, in CONTES, is to directly learn embeddings for each concept.
 
 With the success of the word-embedding methods, we considered graph-based embeddings, and used Node2Vec [10] to compute the concept vectors (SSO) of ontologies for CONTES.
@@ -130,12 +136,14 @@ The approach relies on a maximization of the likelihood of preserving neighborho
 
 It considers the hypothesis that highly connected nodes of the same community have similar embeddings, and that nodes having similar structural roles in networks, have similar embeddings [10].
 
-For CONTES, Node2Vec has the advantage of being applicable to ontologies, and it also directly provides low-dimensional vectors.
+Title: For CONTES, Node2Vec has the advantage of being applicable to ontologies, and it also directly provides low-dimensional vectors.
 
 Although nodes in ontologies are not generally highly connected, as can be the social network graphs for example, we expect that Node2Vec can also be suitable for ontologies by providing low-dimensional vectors for ontology concepts, based on the neighborhoods expressed in relationships such as “Is-A” and “sameAs.”
+
 The experiments with Node2vec allowed us to obtain compact vector representations for the Ontobiotope concepts, which opens the possibility for larger ontologies.
 
-Overgeneralization
+Title: Overgeneralization
+
 Our hypothesis was that CONTES overgeneralization is caused by giving too much weight to the individual concept ancestors, in the vectors representing the ontology structure.
 
 CONTES uses the “Ancestry” method where each concept is represented as a vector having a number of dimensions equal to the total number of concepts in the ontology.
@@ -152,7 +160,8 @@ We experimented with a method where the dimension value is decreased using a fun
 
 The function is wd, where w is the decay factor whose range is [0,1], and d is the number of intermediate concepts between the target concept and its ancestor (zero for itself, one for its direct parent).
 
-Out-of-vocabulary words
+Title: Out-of-vocabulary words
+
 New words currently required to recalculate the word embeddings in CONTES.
 
 Methods like FastText are designed to obtain embeddings for words even if they are unknown from the training data.
@@ -165,10 +174,11 @@ It also considers each word as a bag of character n-grams and gives the word rep
 
 To investigate the effects of unknown words, FastText is added to CONTES as another method, and we have conducted experiments with a subset of the datasets of the BB normalization task.
 
-Dimension reduction
+Title: Dimension reduction
+
 As shown in [7], the PCA and MDS methods had similar behavior, and they both reduced the performance of the CONTES method (Fig.1).
 
-The score is based on the semantic similarity proposed by Wang et al.12].
+The score is based on the semantic similarity proposed by Wang et al.[12].
 
 The gap is small when the reduction is low, but increases beyond the acceptable performance threshold when it reaches 60% reduction.
 
@@ -178,7 +188,8 @@ The sklearn description of the method mentions that “It is highly recommended 
 
 The initial goal of the method is indeed to enable a 2D/3D representation of a high-dimensional space.
 
-Overgeneralization
+Title: Overgeneralization
+
 We experimented the aforementioned function for computing SSO by varying the decay factor from zero to one, by steps of 0.1.
 
 With a decay factor of one, the function produces the same vectors as the original “Ancestry” method.
@@ -195,16 +206,16 @@ The results are shown in Fig.2.
 
 The strict measure is necessarily lower, since it does not reward generalization or near-misses.
 
-With the semantic similarity measure, we reproduced the results published in Ferre et al.’s study [13] where “Ancestry” (decay = 1) outperforms “One Hot” (decay = 0).
-
-We also demonstrated an optimal decay factor between 0.6 and 0.7 that further improves CONTES performance.
+With the semantic similarity measure, we reproduced the results published in Ferre et al.’s study [13] where “Ancestry” (decay = 1) outperforms “One Hot” (decay = 0).We also demonstrated an optimal decay factor between 0.6 and 0.7 that further improves CONTES performance.
 
 With the strict measure, we notice that “One Hot” is the best representation.
 
-Out-of-vocabulary words
+Title: Out-of-vocabulary words
+
 Concerning out-of-vocabulary words, our experiments showed no significant difference in performance between FastText and Word2vec.
 
-Perspectives and conclusion
+Title: Perspectives and conclusion
+
 In this work, we addressed some important issues to normalize biomedical text entities using concepts of ontologies, in the context of small training data.
 
 Reduction of dimensions, in the representation of the concepts, appears to be a central issue when trying to support large ontologies.

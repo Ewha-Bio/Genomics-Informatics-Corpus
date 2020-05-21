@@ -1,4 +1,4 @@
-Evaluation and Interpretation of Transcriptome Data Underlying Heterogeneous Chronic Obstructive Pulmonary Disease.
+Title: Evaluation and Interpretation of Transcriptome Data Underlying Heterogeneous Chronic Obstructive Pulmonary Disease
 
 Chronic obstructive pulmonary disease (COPD) is a type of progressive lung disease, featured by airflow obstruction.
 
@@ -54,7 +54,7 @@ For example, inflammatory markers in COPD from the Bergen COPD cohort study have
 
 Recently, major biological and clinical discoveries have been allowed by great technical advances in next-generation sequencing techniques.
 
-Kim et al.10] analyzed RNA sequencing (RNA-seq) data of 98 COPD lung tissue samples and 91 normal samples classified by the GOLD definition.
+Kim et al.[10] analyzed RNA sequencing (RNA-seq) data of 98 COPD lung tissue samples and 91 normal samples classified by the GOLD definition.
 
 In this study, they identified differentially expressed genes (DEGs) and isoforms (DEIs) between COPD and normal tissue.
 
@@ -68,14 +68,15 @@ Especially, the importance of mitochondrial proteins was revitalized through our
 
 The analysis pipeline used in this study could be used to classify heterogeneous gene expression profiles and predict potential candidates for COPD pathogenesis.
 
-Exploratory analysis of gene expression profiles
+Title: Exploratory analysis of gene expression profiles
+
 Raw RNA-seq data from 98 male COPD and 91 normal samples were downloaded from the Gene Expression Omnibus database (GSE57148, https://www.ncbi.nlm.nih.gov/geo/).
 
 The reads were aligned to the human genome (hg19) using tophat (v2.0.9) and bowtie2 (v2.1.0.0), along with—segment-length 50—segment-mismatches 1 [11,12].
 
 The expression levels of individual transcripts by fragments per kilobase of exon per million fragments mapped (FPKM) were calculated by Cufflinks (v2.21) [13].
 
-A total of 1,420 DEGs previously identified by Kim et al.10] were used for comparison purposes.
+A total of 1,420 DEGs previously identified by Kim et al.[10] were used for comparison purposes.
 
 Principal component analysis (PCA) was performed with DEGs, and a three-dimensional plot was drawn in R. p-values in the bar graph were estimated by student’s t test.
 
@@ -83,7 +84,8 @@ After 500 repeats with the e1071 library in R, the classification power of certa
 
 The performance of individual classification models, estimating sensitivity and specificity, was measured by computing area under the curve (AUC) values with the Receiver Operating characteristic Curve in R (ROCR) package.
 
-Measurement of VJ recombination events
+Title: Measurement of VJ recombination events
+
 Unmapped reads were collapsed, such that repeatedly appearing reads were regarded as a single read.
 
 The read count of each sequence was sorted in descending order, and the top 10,000 reads were selected from individual samples.
@@ -96,7 +98,8 @@ Alpha and beta diversity levels were calculated by vegan and the betapart librar
 
 A dot plot and a violin plot were visualized using R. p-values were calculated by permutation test with 1,000 permutations.
 
-Pipeline to remove heterogeneity
+Title: Pipeline to remove heterogeneity
+
 To remove transcriptome heterogeneity, DeMix [15], a statistical tool for deconvolving mixed transcriptomes, was used for 2,803 variable genes with a coefficient of variation of over 0.5 due to the high requirement of computer memory.
 
 In order to identify DEGs confidently, three different tests (t-test, Wilcoxon test, and median difference test) were performed with 1,000 permutations.
@@ -109,7 +112,8 @@ Functional and pathway enrichment assays of DEGs were carried out by DAVID [17].
 
 Biological terms with p-values less than 0.01 were considered significant.
 
-COPD-related subnetworks
+Title: COPD-related subnetworks
+
 PhenomeExpress [18] was used to build vital subnetworks in COPD.
 
 Phenotypes relevant to COPD were used as seeds to construct the subnetworks.
@@ -122,7 +126,8 @@ Functional enrichment of subnetworks was examined by the Biological Networks Gen
 
 Subnetworks enriched with specific functions were selected for further consideration.
 
-Pipeline to predict protein subcellular localization
+Title: Pipeline to predict protein subcellular localization
+
 Protein subcellular localization was examined and predicted using the analysis scheme suggested by Liu and Hu [21] and support vector machine (SVM).
 
 Information on protein interactions and subcellular localization was obtained from ConsensusPathDB [19] and the Human Protein Atlas [22], respectively.
@@ -131,8 +136,9 @@ Gene expression profiles were converted into a matrix of maximal information coe
 
 Training and prediction with SVM were carried out with the e1071 library in R. The MICs for a protein pair were computed in individual COPD and normal samples, and the protein pairs with an absolute difference (delta MIC > 0.4) of 2 MICs were randomly defined as differentially co-expressed gene pairs (DCGPs).
 
-Evaluation of heterogeneity in COPD data
-In a previous study by Kim et al.10], 1,420 DEGs between COPD and normal subjects were identified by student’s t-test and edgeR in Biocoductor [24].
+Title: Evaluation of heterogeneity in COPD data
+
+In a previous study by Kim et al.[10], 1,420 DEGs between COPD and normal subjects were identified by student’s t-test and edgeR in Biocoductor [24].
 
 To see the Euclidean distance and relatedness between COPD and normal subjects, PCA was performed (Fig.1A).
 
@@ -174,7 +180,8 @@ Other immunoglobulins (IGH and IGL) and TCRs (TCRA and TCRB) showed similar patt
 
 From these analyses, the COPD samples could be regarded 9 as heterogeneous in the mild stage of COPD.
 
-Reduction of heterogeneity of COPD samples
+Title: Reduction of heterogeneity of COPD samples
+
 A workflow, including the prediction of estimates and the deconvolution process, was set up to resolve the issue of complexity (Fig.2A).
 
 The critical steps in the pipeline were the prediction of estimates and deconvolution.
@@ -203,10 +210,11 @@ The expression levels of TNF and CSF2 were not significantly different between C
 
 These results suggest that the gene expression profiles of heterogeneous samples can be normalized in good agreement with known patterns through the deconvolution process.
 
-DEGs and biologically relevant subnetworks
+Title: DEGs and biologically relevant subnetworks
+
 DEGs—80 up-regulated genes and 757 down-regulated genes in COPD—could be 10 identified by applying the following conditions: genes with absolute fold-change over 1.25 and p-values less than 0.01 (Fig.3A, Supplementary Table 1).
 
-Of them, 66 (82.5%) up-regulated genes and 501 (66.2%) down-regulated genes overlapped with the 1,420 genes previously identified by Kim et al.10].
+Of them, 66 (82.5%) up-regulated genes and 501 (66.2%) down-regulated genes overlapped with the 1,420 genes previously identified by Kim et al.[10].
 
 However, PCA of the DEGs showed a clear difference between COPD samples and normal samples (Fig.3B).
 
@@ -236,7 +244,8 @@ In contrast, functions related to the regulation of transcription, vesicle-media
 
 Whereas the term ‘general antigen presenting and presentation’ was enriched in DEGs, their function was confined to MHC class II in a subnetwork.
 
-DCGPs and protein sublocalization changes
+Title: DCGPs and protein sublocalization changes
+
 One emergent subnetwork associated with vesicle-mediated transport might be linked to the possibility that changes in protein subcellular localization play an important role in COPD development.
 
 Protein localization was predicted, based on gene expression profiles (Fig.5A).
@@ -279,7 +288,7 @@ Collectively, proteins targeting mitochondria might be influenced by mitochondri
 
 COPD is a complex and heterogeneous disease, and thus, it is not easy to investigate the pathogenesis and diagnosis of COPD [3].
 
-Previously, Kim et al.10] performed RNA-seq analysis with 98 COPD samples and 91 normal samples.
+Previously, Kim et al.[10] performed RNA-seq analysis with 98 COPD samples and 91 normal samples.
 
 However, DEGs identified by a simple calculation of fold-change in gene expression level might not be useful—especially in this study: COPD versus normal (Fig.1A).
 

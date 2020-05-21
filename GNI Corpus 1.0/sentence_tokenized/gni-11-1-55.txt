@@ -1,4 +1,4 @@
-siMacro: A Fast and Easy Data Processing Tool for Cell-Based Genomewide siRNA Screens.
+Title: siMacro: A Fast and Easy Data Processing Tool for Cell-Based Genomewide siRNA Screens
 
 Growing numbers of studies employ cell line-based systematic short interfering RNA (siRNA) screens to study gene functions and to identify drug targets.
 
@@ -44,7 +44,8 @@ It allows one-step, fast, and easy suppression of outlier values; normalization;
 
 The tool processes the data points associated with a 2-condition genomewide screen with biological triplicates on a standard laptop computer in less than 1 minute.
 
-Prerequisite
+Title: Prerequisite
+
 We assume the screen was done in 96- or 384-well plates and passed the standard quality control metric (by Z or Z' factor, for example).
 
 siMacro is robust against sporadic bad wells from triplicate experiments but will not censor an entire plate compromised by massive failure, such as broad contamination.
@@ -53,12 +54,14 @@ We also assume siRNAs in the library plate are randomly distributed, which is ge
 
 siMacro currently supports 1- or 2-condition screens.
 
-Input data
-siMacro requires all the individual plate readouts be put into an Excel spreadsheet with the field headers: day or cell batch, plate name, well name, and raw data columns per siRNA or a pool (Fig.1C).
+Title: Input data
+
+Title: siMacro requires all the individual plate readouts be put into an Excel spreadsheet with the field headers: day or cell batch, plate name, well name, and raw data columns per siRNA or a pool (Fig.1C).
 
 siMacro allows only numerical data field values except for manually censored "bad" wells masked by 'NA.'
 
-Normalization
+Title: Normalization
+
 Most popular normalization protocols employ either on-plate control-based or sample-based methods.
 
 Although there is no golden rule for this, we prefer the latter for most siRNA screens, as 1) cell-based siRNA screening is vulnerable to within-plate variation, such as an edge effect and column/row effects that are not corrected by on-board controls [4], and 2) because siRNA hits are often rare within a given test plate, the majority of samples proxies the mock control.
@@ -73,7 +76,8 @@ As many liquid dispensers move row-wise, a row effect is very common in the siRN
 
 If the hits/plate is less than 10 per 96-well plate and accompanied by a significant row effect, row-median normalization is a better choice.
 
-Censoring bad wells
+Title: Censoring bad wells
+
 Sporadic bad wells are often manually censored one by one, which is inefficient and error-prone in large-scale screens.
 
 If the experiment is done in triplicate or more, bad wells can be detected automatically by the inflated coefficient of variation (CV) among the replicates.
@@ -86,7 +90,8 @@ This significantly reduces false positives but can also overcorrect.
 
 Therefore, siMacro reports flags for all genes with censored wells to aid user decisions with regard to exclusion from downstream analysis.
 
-Standardization and hit scoring
+Title: Standardization and hit scoring
+
 A unified scoring scheme is employed that accounts for batch effects from multiday experiments.
 
 Under the assumption of normality, the Z-score, which indicates how many standard deviations an observation is away from the mean, is an intuitive scoring metric.

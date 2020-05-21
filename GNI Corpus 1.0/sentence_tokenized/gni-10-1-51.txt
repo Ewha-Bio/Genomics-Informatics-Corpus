@@ -1,4 +1,4 @@
-An Efficient Approach to Mining Maximal Contiguous Frequent Patterns from Large DNA Sequence Databases.
+Title: An Efficient Approach to Mining Maximal Contiguous Frequent Patterns from Large DNA Sequence Databases
 
 Mining interesting patterns from DNA sequences is one of the most challenging tasks in bioinformatics and computational biology.
 
@@ -44,7 +44,7 @@ When mining long frequent concatenated sequences, however, this method becomes i
 
 Therefore, it is impractical to apply PrefixSpan to mine long contiguous sequences, like biological datasets.
 
-Pan et al.8] proposed to use a variable length spanning tree to mine maximal concatenated frequent subsequences and developed algorithms, called MacosFSpan and MacosVSpan, based on the PrefixSpan approach.
+Pan et al.[8] proposed to use a variable length spanning tree to mine maximal concatenated frequent subsequences and developed algorithms, called MacosFSpan and MacosVSpan, based on the PrefixSpan approach.
 
 MacosVSpan is efficient for mining long concatenated frequent sub-sequences, whereas MacosFSpan has some limitations, because it constructs length-4 fixed length candidate sequences first and recursively mines length-5, length-6 candidate sequences, etc.
 
@@ -52,17 +52,17 @@ This is very time consuming, because in a practical DNA sequence database, a sub
 
 Another problem is that both MacosVSpan and MacosFSpan use the pointer-offset pair to represent the suffixes inside the in-memory pseudo PDB, which is not enough to represent the huge number of suffixes in a physical PDB.
 
-Kang et al.9] have claimed that their algorithm is more efficient than the MacosVSpan algorithm, but it was based on MacosFSpan, which needed multiple scans of the database.
+Kang et al.[9] have claimed that their algorithm is more efficient than the MacosVSpan algorithm, but it was based on MacosFSpan, which needed multiple scans of the database.
 
-Recently, Zerin et al.10] have proposed an indexed-based method to find the frequent contiguous sequences with single database scanning.
+Recently, Zerin et al.[10] have proposed an indexed-based method to find the frequent contiguous sequences with single database scanning.
 
-This approach builds the fixed-length spanning tree in a way similar to Kang et al.9], but it records the sequence IDs and starting position of the fixed length patterns with frequency in the leaf node of the tree.
+This approach builds the fixed-length spanning tree in a way similar to Kang et al.[9], but it records the sequence IDs and starting position of the fixed length patterns with frequency in the leaf node of the tree.
 
 Although this approach shows better results than its predecessors in terms of space, time complexity is still not acceptable.
 
 A practical DNA sequence database contains a large number of sequences, where a sub-sequence may occur multiple times in the same sequence.
 
-Therefore, we envisage using the concept of the suffix tree in terms of the variable length spanning tree of Pan et al.8] to have the full advantages of prefix matching.
+Therefore, we envisage using the concept of the suffix tree in terms of the variable length spanning tree of Pan et al.[8] to have the full advantages of prefix matching.
 
 Another aspect to consider is the size of real DNA sequence databases, which is ever increasing.
 
@@ -74,7 +74,8 @@ In this paper, we propose a suffix tree-based approach for maximal contiguous fr
 
 We also introduce a combined main memory- and disk-based approach for mining maximal contiguous frequent patterns from extra large DNA sequence databases that can not fit into the main memory.
 
-Concepts and definitions
+Title: Concepts and definitions
+
 Let Σ = {A, C, G, T} be a set of DNA alphabets, where A, C, G, and T are called DNA characters or four bases; A is for adenine, C for cytosine, G for guanine, and T for thiamine.
 
 A DNA sequence S is an ordered list of DNA alphabets.
@@ -103,12 +104,14 @@ S = 〈CGTGATT〉 is a frequent contiguous sub-sequence of length 7 since both s
 
 Moreover, it is one of the maximal frequent contiguous sub-sequences, because there is no contiguous frequent super-sequence of 〈CGTGATT〉 with a minimum support of 2.
 
-Definition (Projection)
+Title: Definition (Projection)
+
 Let a sequence S = (α + β); then, α is a prefix of S and β is called a projection of S w.r.t.
 
 prefix α.
 
-Definition (Projected database)
+Title: Definition (Projected database)
+
 Let α be a frequent contiguous sequence in a sequence database S. Then, α-PDB is the collection of postfixes of sequences in S, w.r.t.
 
 prefix α.
@@ -117,12 +120,14 @@ For the database in Table 1, for example, 〈C〉-PDB consists of eight postfix 
 
 We have the following lemma regarding the PDB for the mining of maximal contiguous frequent patterns.
 
-Lemma (Projected database)
+Title: Lemma (Projected database)
+
 Let D be a DNA sequence database such that α is prefix(s) of the sequences in the database.
 
 Considering the sub-sequence and super-sequence relationship in terms of contiguity, the size of α-PDB cannot exceed the size of D, which means |Dα| ≤ |D|.
 
-Proof
+Title: Proof
+
 The lemma is regarding the size of a projected database.
 
 Obviously, the α-PDB can have same suffix sequences as the original database D only if α appears in every sequence in D. Otherwise, if only those suffixes in D that are super-sequences of α will appear in the α-PDB, then α-PDB cannot contain more sequences than D. For every sequence γ in D such that γ is a super-sequence of α, γ appears in the α-PDB in whole only if α is a prefix of γ.
@@ -142,7 +147,8 @@ So, the size of the PDB cannot exceed the size of original database.
 
 This claims that any PDB created from a database that fits into the main memory will certainly be fitted into the main memory.
 
-Maximal contiguous frequent suffix tree algorithm
+Title: Maximal contiguous frequent suffix tree algorithm
+
 We describe our algorithm, called Maximal Contiguous Frequent Suffix tree algorithm (MCFS), to discover maximal contiguous frequent patterns from DNA sequence datasets.
 
 Let us assume for now that the DNA sequence database can be fit into the main memory.
@@ -205,7 +211,8 @@ The third step scans the suffix tree and finds the set of all maximal contiguous
 
 It first finds the set of contiguous frequent sub-sequences and then finds the set of maximal contiguous frequent patterns by checking the properties of maximality.
 
-An illustrative example
+Title: An illustrative example
+
 Let us demonstrate the MCFS algorithm using the database of Table 1.
 
 〈A〉-PDB contains only super-sequences of suffixes storing all sub-sequences physically.
@@ -238,7 +245,8 @@ Now, we scan the 'frequent file' presented by Table 3 and check if the maximalit
 
 Finally, we have five maximal contiguous frequent patterns written into the output file (Table 4).
 
-MCFS algorithm on extra large DNA sequence database
+Title: MCFS algorithm on extra large DNA sequence database
+
 When a DNA sequence database is too large (e.g., 100 GB or more) to fit into the memory, we have to store it on a disk.
 
 In this case, different mining techniques are needed, and partitioning is one such technique.
@@ -391,8 +399,11 @@ increasing minimum support in partitioning approach (on Homo sapiens GRCh37.64 D
 
 MCFS, Maximal Contiguous Frequent Suffix tree algorithm.
 
-A DNA sequence database
-Minimized physical projected databases (DBs)
-Contents of the frequent file
-Contents of the output file
+Title: A DNA sequence database
+
+Title: Minimized physical projected databases (DBs)
+
+Title: Contents of the frequent file
+
+Title: Contents of the output file
 

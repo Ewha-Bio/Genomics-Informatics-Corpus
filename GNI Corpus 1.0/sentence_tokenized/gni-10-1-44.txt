@@ -1,4 +1,4 @@
-Efficient Mining of Interesting Patterns in Large Biological Sequences.
+Title: Efficient Mining of Interesting Patterns in Large Biological Sequences
 
 Pattern discovery in biological sequences (e.g., DNA sequences) is one of the most challenging tasks in computational biology and bioinformatics.
 
@@ -52,9 +52,9 @@ Using the projected database, however, every expansion of sequential patterns ne
 
 The problem of finding the frequent maximal contiguous pattern from sequences more than two has been introduced in [5-8].
 
-In addition, Yang et al.9] have proposed an interesting technique to find periodic patterns in a sequence of events.
+In addition, Yang et al.[9] have proposed an interesting technique to find periodic patterns in a sequence of events.
 
-Lu et al.10] have proposed a pattern discovery algorithm that can identify over-represented patterns inside DNA sequences by introducing a new measurement system.
+Lu et al.[10] have proposed a pattern discovery algorithm that can identify over-represented patterns inside DNA sequences by introducing a new measurement system.
 
 Another efficient algorithm, MacosVSpan [11], has been proposed, which gets the maximal subsequence of each data item by fixed-length spanning and finally looks for frequent maximal contiguous patterns using a suffix tree.
 
@@ -62,26 +62,27 @@ Although this approach reduces recursive execution for expanding sequence patter
 
 For long data sequences, the projected database grows much faster in comparison with the original database.
 
-Kang et al.12] have proposed an approach to improve MacosVSpan using a fixed-length spanning tree, where each node maintains the frequency of subsequence overlapping.
+Kang et al.[12] have proposed an approach to improve MacosVSpan using a fixed-length spanning tree, where each node maintains the frequency of subsequence overlapping.
 
 In this approach, all the candidates are produced first, including frequent and nonfrequent patterns; then, each candidate is scanned through the database to see whether it is frequent or not.
 
 This is obviously very time and memory-consuming.
 
-Recently, Zerin et al.13] proposed a position-based fast method to find contiguous frequent patterns, which needs to scan the database only once to construct the fixed length spanning tree.
+Recently, Zerin et al.[13] proposed a position-based fast method to find contiguous frequent patterns, which needs to scan the database only once to construct the fixed length spanning tree.
 
-This approach builds the fixed length spanning tree in the same fashion as Kang et al.12] but records the sequence identification (ID) and starting position of the fixed length pattern with the frequency in the leaf node of the tree, showing better results than the previous methods.
+This approach builds the fixed length spanning tree in the same fashion as Kang et al.[12] but records the sequence identification (ID) and starting position of the fixed length pattern with the frequency in the leaf node of the tree, showing better results than the previous methods.
 
-Rashid et al.14] have also proposed an efficient approach to mining significant contiguous frequent patterns from DNA sequences by constructing the fixed length spanning tree and by using a threshold that reduces the number of candidates.
+Rashid et al.[14] have also proposed an efficient approach to mining significant contiguous frequent patterns from DNA sequences by constructing the fixed length spanning tree and by using a threshold that reduces the number of candidates.
 
 In this paper, we further develop this approach by proposing an index-based method, where the sequence ID and the staring position of each sequence are recorded in the leaf node of the tree as a variable length array.
 
 If a fixed-length pattern occurs multiple times in a sequence, we put the sequence ID as an index and put the start positions of the fixed length patterns in the variable length array.
 
-As a result, this approach significantly reduces memory space more than Zerin et al.13].
+As a result, this approach significantly reduces memory space more than Zerin et al.[13].
 
-Concepts and definitions
-Let Σ = {A, C, G, T} be a set of DNA alphabets, where A, C, G, and T are called DNA characters or bases.
+Title: Concepts and definitions
+
+Title: Let Σ = {A, C, G, T} be a set of DNA alphabets, where A, C, G, and T are called DNA characters or bases.
 
 A DNA sequence S is an ordered list of DNA alphabets.
 
@@ -90,7 +91,9 @@ S is denoted by 〈c1, c2, ..., cl〉, where ci ∈ Σ and |S| denotes the lengt
 A sequence database D is a set of tuples 〈sid, S〉, where sid is a sequence ID.
 
 The sum of the lengths of all sequences in D is denoted as |D|=|S1|+|S2|...|Sn|
-Definition 1 (Patter)
+
+Title: Definition 1 (Patter)
+
 A pattern is a contiguous sub-sequence of DNA sequence S drawn from Σ = {A, C, G, T}.
 
 A sequence α = 〈a1, a2, ..., an〉 is called a contiguous sub-sequence of another sequence β = 〈b1, b2, ..., bm〉, and β is a contiguous super-sequence of α, denoted as α⊆β, if there exists integers 1 ≤ j1 ≤ j2 ≤ ... ≤ jn ≤ m and ji+1 = ji + 1 for 1 ≤ i ≤ n-1 such that a1 = bj1, a2 = bj2, ..., an = bjn.
@@ -99,22 +102,26 @@ We can also say that α is contained by β.
 
 In our paper, we use the term "(sub)-sequence" to describe "contiguous (sub)-sequence" in brief.
 
-Definition 2 (Support)
+Title: Definition 2 (Support)
+
 Given a pattern P and a sequence S, the number of occurrences of P in S is called the support of pattern P in sequence S, denoted as Sup(P, Si).
 
 For DNA sequence database D, the support of P in D is defined as .
 
-Definition 3 (Confidence)
+Title: Definition 3 (Confidence)
+
 Given a pattern P = P1, P2, ..., Pq and a DNA sequence database D, the confidence of P1P2 with respect to P1 is defined as Conf(P1P2, P1) = Sup(P1P2,D)/Sup(P1,D).
 
 For example, the character "A" occurs 10 times and "AT" occurs 7 times, and in database D in Table 1, Conf(AT,A) = 7/10 = 0.7.
 
-Definition 4 (Pattern probability)
+Title: Definition 4 (Pattern probability)
+
 Given a pattern P = P1, P2, ..., Pq (Pi is a DNA alphabet) and a DNA sequence database D, the pattern probability of P in D is defined as , where Pr(Pi, D) = # of occurrences of an alphabet Pi/|D|.
 
 For example, the pattern probability of pattern "ATCG" in Table 1 is Pr(ATCG,D) = Pr(A,D) × Pr(T,D) × Pr(C,D) × Pr(G,D) = (10/55) × (18/55) × (12/55) × (15/55) = 0.182 × 0.372 × 0.218 × 0.273 = 0.00403.
 
-Definition 5 (Information)
+Title: Definition 5 (Information)
+
 The information carried by a DNA character or base in DNA sequence database D is defined as I(c) = -log|C|Pr(c,D), where |C| is the number of distinct characters in D and Pr(c) is the probability of c occurs in D.
 For example, the occurrence probability of character A in Table 1 is Pr(A,D) = # of occurence(A)/|D|.
 
@@ -122,23 +129,27 @@ So, the probability of character A is Pr(A,D) = 10/55 = 0.182 in our example dat
 
 Then, the information of character A in D is, I(A) = -log|C|Pr(A,D) = -log4(0.182) = 1.228.
 
-Definition 6 (Pattern information)
+Title: Definition 6 (Pattern information)
+
 Given a pattern P = P1, P2, ..., Pq and a DNA sequence database D, the pattern information of P in D is defined as I(P) = -log|C|Pr(P,D) = I(P1) + I(P2) +......+ I(Pq).
 
 For example, the pattern information of pattern "ATCG" is I(ATCG,D) = I(A,D) + I(T,D) + I(C,D) + I(G,D) = 1.228 + 0.713 + 1.098 + 0.9365 = 3.9755 in Table 1.
 
-Definition 7 (Information gain)
+Title: Definition 7 (Information gain)
+
 Given a pattern P = P1, P2, ..., Pq and a DNA sequence database D, the pattern information gain of P in D is defined as IG(P) = I(P) × Support(P).
 
 For example, the information gain of pattern "ATCG" is IG(ATCG,D) = 3.9755 * 5 = 19.8775 in Table 1.
 
-Definition 8 (Finding interesting patterns)
+Title: Definition 8 (Finding interesting patterns)
+
 Given a sequence database D and user-specified min_conf and min_in_gain, the problem of finding interesting patterns is to find the complete set of interesting patterns, such that IG(P) and Conf(P) are greater than min_in_gain and min_conf , respectively.
 
-Surprising pattern-mining algorithm
+Title: Surprising pattern-mining algorithm
+
 The method for mining surprising contiguous patterns from a DNA sequence database proceeds as follows.
 
-For constructing the fixed length spanning tree, we follow the method suggested by Kang et al.12] - that is, read the database sequences and, starting from the first of each sequence, move the position one by one of the fixed length window throughout the sequence (Fig.1).
+For constructing the fixed length spanning tree, we follow the method suggested by Kang et al.[12] - that is, read the database sequences and, starting from the first of each sequence, move the position one by one of the fixed length window throughout the sequence (Fig.1).
 
 We put the sequence ID and the starting position in the leaf node of the tree as a variable length array, in addition to the frequency of the pattern moving of the window.
 
@@ -168,7 +179,7 @@ This process is recursively followed for all the candidates with the same length
 
 The spanning tree is shown in Fig.3, which is constructed based on the database available in Table 1.
 
-We have constructed a fixed-length spanning tree using the method suggested by Zerin et al.13] but put the sequence ID and the staring position in the leaf node of the tree as a variable length array.
+We have constructed a fixed-length spanning tree using the method suggested by Zerin et al.[13] but put the sequence ID and the staring position in the leaf node of the tree as a variable length array.
 
 Once the tree is constructed like Fig.3, retrieval of the tree can obtain contiguous subsequences with length-4, satisfying the satisfying minimum information gain threshold and minimum confidence threshold.
 
@@ -194,9 +205,9 @@ Following the same process, the obtained length-6 surprising patterns are 〈CGT
 
 Here, we scan the whole database only once to construct the fixed-length spanning tree and then never scan the database again.
 
-On the other hand, using an index-based method and min_in_gain and min_conf thresholds, our proposed approach consumes less memory and faster execution than Zerin et al.13].
+On the other hand, using an index-based method and min_in_gain and min_conf thresholds, our proposed approach consumes less memory and faster execution than Zerin et al.[13].
 
-We compare the performance of the proposed approach with Zerin et al.13] for searching contiguous subsequences.
+We compare the performance of the proposed approach with Zerin et al.[13] for searching contiguous subsequences.
 
 For this purpose, we use a randomly generated DNA sequence database and a real DNA sequence database.
 
@@ -208,13 +219,13 @@ The real DNA sequence database is downloaded from the bio-mirror portal (http://
 
 All programs are written in Microsoft Visual C++ 6.0 and run with the Windows XP operating system on a Pentium dual core 2.13 GHz CPU with 1 GB main memory.
 
-In the first experiment, we compare the memory usage of our approach and Zerin et al.13] by varying the sequence length.
+In the first experiment, we compare the memory usage of our approach and Zerin et al.[13] by varying the sequence length.
 
 Fig.5 shows the memory usage according to the sequence length change, where we used our generated database for construction of the spanning tree with a fixed length 7.
 
 Here, we used information gain threshold, min_in_gain = 35(%) and minimum confidence threshold, min_conf = 30(%).
 
-From this experiment, we can see that the proposed approach has efficient improvement over Zerin et al.13].
+From this experiment, we can see that the proposed approach has efficient improvement over Zerin et al.[13].
 
 When the sequence length becomes longer, it shows better performance in comparison with the existing algorithm.
 
@@ -284,5 +295,5 @@ change of min_in_gain.
 
 (A, B) Impact of confidence threshold on mining time.
 
-Example of a DNA sequence database
+Title: Example of a DNA sequence database
 

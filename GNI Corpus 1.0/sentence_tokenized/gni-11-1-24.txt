@@ -1,4 +1,4 @@
-Bioinformatics Interpretation of Exome Sequencing: Blood Cancer.
+Title: Bioinformatics Interpretation of Exome Sequencing: Blood Cancer
 
 We had analyzed 10 exome sequencing data and single nucleotide polymorphism chips for blood cancer provided by the PGM21 (The National Project for Personalized Genomic Medicine) Award program.
 
@@ -32,12 +32,14 @@ Furthermore, driver genes were also inferred from network and pathway analyses.
 
 Protein structure prediction was used to predict putative structural changes by somatic mutations and also possibly their functional changes.
 
-Dataset
+Title: Dataset
+
 Whole-exome sequencing data of tumor/normal paired samples from 10 individuals with blood cancer were obtained in FASTQ format from PGM21 (The National Project for Personalized Genomic Medicine).
 
 For 10 of the samples, the genotype information from single nucleotide poymorphism (SNP) chip was additionally obtained (but not the raw data).
 
-Data processing and quality control (QC)
+Title: Data processing and quality control (QC)
+
 The QC of sequencing reads was performed with NGS QC Toolkit, and the high-quality reads were aligned to the human reference genome (hg19, http://genome.ucsc.edu) using BWA (http://bio-bwa.sourceforge.net/) [1] with default parameteres.
 
 Picard (http://picard.sourceforge.net) was used to remove PCR duplicates.
@@ -52,7 +54,8 @@ Variant genotyping for each sample was performed with UnifiedGenotyper of GATK, 
 
 The genomic annotation of variants was performed with custom-made scripts and refSeq information.
 
-Identification of somatic mutations
+Title: Identification of somatic mutations
+
 We had developed a bioinformatics pipeline for this award program (Fig.1).
 
 VarScan [2] was used to identify somatic mutations.
@@ -71,12 +74,14 @@ The total numbers of candidates for each filtering step are summarized in Fig.1.
 
 We found somatic mutations in samples G10, G08, and G09, but they were not NS/SS/I.
 
-Comparison with genotypes from SNP chip
+Title: Comparison with genotypes from SNP chip
+
 To compare with genotypes from SNP chip, the genotyping was performed using UnifiedGenotyper with the intervals, including all the coordinates of SNP chip and the option-output_mode EMIT_ALL_SITES.
 
 For each sample with genotype information from SNP chip, overall genotype concordance, non-reference sensitivity, and non-reference discrepancy rate were calculated according to the guide of GATK VariantEval using the genotypes with DP ≥ 5.
 
-Genotype comparison of samples
+Title: Genotype comparison of samples
+
 The multi-sample SNP genotyping was performed with UnifiedGenotyper to compare the genotypes on the variant positions where all samples were able to be genotyped.
 
 The filtration scheme was the same as above.
@@ -87,40 +92,58 @@ The distances were divided by the number of the variant positions.
 
 Heatmap and similarity matrix were used to visualize the distances.
 
-Genome annotation
+Title: Genome annotation
+
 We used in-house genome annotation pipelines and various databaes, as summarized below.
 
-Genomic annotation: refGene
-Human Genome Variation Society (HGVS) nomenclature: nucleotide (non-coding, coding), protein
-SIFT - tolerant amino acid substitutions
-MutationAssessor
-phyloP46way_vertebrate
-GERP; GERP_element: rsScore
-RepeatMasker
-Tandem repeat definition
-dbSNP 137; Common, Flagged, Mult
-Korean variation database (54 Personal Genomes)
-OMIM morbid genes
-Oncogenes and tumor suppressors from Ariadne Pathway Studio
-Detection of LOH and SCNA by SCHALE
-Detection LOH and SCNA was performed with custom-made software SCHALE (Fig.2).
+Title: Genomic annotation: refGene
+
+Title: Human Genome Variation Society (HGVS) nomenclature: nucleotide (non-coding, coding), protein
+
+Title: SIFT - tolerant amino acid substitutions
+
+Title: MutationAssessor
+
+Title: phyloP46way_vertebrate
+
+Title: GERP; GERP_element: rsScore
+
+Title: RepeatMasker
+
+Title: Tandem repeat definition
+
+Title: dbSNP 137; Common, Flagged, Mult
+
+Title: Korean variation database (54 Personal Genomes)
+
+Title: OMIM morbid genes
+
+Title: Oncogenes and tumor suppressors from Ariadne Pathway Studio
+
+Title: Detection of LOH and SCNA by SCHALE
+
+Title: Detection LOH and SCNA was performed with custom-made software SCHALE (Fig.2).
 
 For the positions where the genotypes were heterozygous in normal samples, the values of LOH and SCNA were calculated.
 
 The values of LOH were calculated by the equation:
-LOH = | RT - 0.5 | - | RN - 0.5 |, where RN is the count of reads supporting a non-reference allele divided by the total depth in the normal sample and RT is in tumor sample.
+
+Title: LOH = | RT - 0.5 | - | RN - 0.5 |, where RN is the count of reads supporting a non-reference allele divided by the total depth in the normal sample and RT is in tumor sample.
 
 The values of SCNA were calculated by the equation:
+
 SCNA = log2(tumor depth/normal depth), where the depths were normalized using R library tweeDEseq.
 
 The values of LOH and SCNA were segmented together using R library DNAcopy with the parameters alpha = 0.01 and undo.SD = 2.
 
 The segments and values were plotted for each chromosome with the idiograms in R library SNPchip.
 
-Network analysis
+Title: Network analysis
+
 Ingenuity Pathway Analysis (IPA) was used to perform the network study of the identified somatically mutated genes and the genes in the LOH region.
 
-Protein structure modeling
+Title: Protein structure modeling
+
 Before the structural modeling, the protein features related to the somatic mutations were found by BLAST on UniProt (10 most similar proteins, expectation value = 1e-30) and residue mapping.
 
 Homology modeling was performed using MODELLER (http://salilab.org/modeller) with the templates 1LWD for IDH2, 3KSY for RASGEF1B, and 2O8B for MSH4.
@@ -129,7 +152,8 @@ Molecular dynamics simulation was performed with GROMACS (http://pubs.acs.org/do
 
 The structural images were drawn using PyMOL (http://www.pymol.org/).
 
-QC and results
+Title: QC and results
+
 We had used several methods to check the qualities of sequence reads.
 
 First, we used NGS QC Tools [4] to confirm sequence qualities (Supplementary Table 1).
@@ -138,7 +162,8 @@ Overall, they had a very good quality, according to NGS QC Tools results.
 
 Template length (library size) was also evenly distributed for all samples (Supplementary Fig.1).
 
-Reference genome mapping
+Title: Reference genome mapping
+
 About 98% of reads were mapped onto the human reference genome (UCSC Genome Browser, hg19), summarized in Supplementary Table 2.
 
 After a duplicate removal step, 77.85% reads were retained; each sample had up to 25% duplicates.
@@ -147,7 +172,8 @@ Eighty-nine percent of target areas covered at least 10 sequence reads, which is
 
 We did not get target enrichment kit information from PGM21, so we had compared coverage information from several kits and concluded that SureSelect All Exon 50Mb was used for exome sequencing.
 
-Genotyping by GATK and comparison with SNP chip
+Title: Genotyping by GATK and comparison with SNP chip
+
 In order to check the genotyping parameters we had used, 10 SNP chip results were compared.
 
 Because SNP chip data were genotypes, we could not infer copy number changes; we could only calculate concordance between exome sequencing and SNP chip.
@@ -186,7 +212,8 @@ For such reasons, G10 was possibly contaminated and therefore rejected from our 
 
 In conclusion, we had used only 8 sample pairs for discovery of somatic mutations, LOH, and SCNA.
 
-A list of somatic mutations
+Title: A list of somatic mutations
+
 After removal of SNPs and indels from dbSNP137 [6] and an in-house Korean database, 27 somatic mutations (NS/SS/I) were discovered from 8 samples.
 
 Among them, NPM1 showed a TCTG internal tandem insertion.
@@ -215,7 +242,8 @@ It means that somatic mutations can play a different role, depending on cancer.
 
 In AML, other than the well-known TP53 mutation, genes, such as FLT3, TET2, and NPM1, show somatic mutations and are the driver genes [7].
 
-Discovery of LOH and SCAN by SCHALE
+Title: Discovery of LOH and SCAN by SCHALE
+
 We had used SCHALE to discover LOH and SCNA.
 
 It appears that sample G06 has many LOHs and SCNAs, but an incorrect sample pair can give those results (Supplementary Fig.3).
@@ -248,7 +276,8 @@ Many genes in LOH regions are included in this network.
 
 We can infer that those genes with somatic mutations and LOH can interact with each other (Fig.7).
 
-Network and pathway analyses
+Title: Network and pathway analyses
+
 Using 26 genes, we had used IPA (http://www.ingenuity.com/) [8] for network and pathway analyses.
 
 It can be summarized in two major networks (Table 2).
@@ -265,7 +294,8 @@ But overall, somatic mutation frequency in the top network is much higher than t
 
 IPA analysis reports are summarized in Supplementary Table 8.
 
-Protein structure modeling
+Title: Protein structure modeling
+
 We have examined protein features related to residues substituted by the identified 27 somatic mutations and found the features of 19 mutations (Table 3).
 
 The mutation of CEBPA generates a duplication of an amino acid that affects the original helical secondary structure.
@@ -302,7 +332,7 @@ We had done IPA analysis with 26 genes, giving the "Cancer, Hematological Diseas
 
 Since those 3 genes have many edges in the result, we could conclude that those genes are indirect evidence of driver genes.
 
-The second network is related with "Cell Death and Survival," and it includes IDH2 and PHF6 genes, the same as G05's top network.
+Title: The second network is related with "Cell Death and Survival," and it includes IDH2 and PHF6 genes, the same as G05's top network.
 
 So far, our conclusion is that 8 samples are related with the "Cancer, Hematological Disease, Cell Cycle Network" but sample G05 is related with the "Cell Death and Survival Network."
 
@@ -368,9 +398,13 @@ Location of somatic mutation in protein structure.
 
 (C) MSH4.
 
-A list of functionally important somatic mutations in 8 samples
-Two top networks inferred from Ingenuity Pathway Analysis
-Protein residues in which somatic mutation is located
-Protein structure modeling
-Somatic mutation profile of three leukemia studies
+Title: A list of functionally important somatic mutations in 8 samples
+
+Title: Two top networks inferred from Ingenuity Pathway Analysis
+
+Title: Protein residues in which somatic mutation is located
+
+Title: Protein structure modeling
+
+Title: Somatic mutation profile of three leukemia studies
 

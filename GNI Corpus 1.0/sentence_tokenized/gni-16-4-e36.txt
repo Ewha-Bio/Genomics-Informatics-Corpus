@@ -1,4 +1,4 @@
-COEX-Seq: Convert a Variety of Measurements of Gene Expression in RNA-Seq.
+Title: COEX-Seq: Convert a Variety of Measurements of Gene Expression in RNA-Seq
 
 Next generation sequencing (NGS), a high-throughput DNA sequencing technology, is widely used for molecular biological studies.
 
@@ -54,7 +54,8 @@ The first is handling data and formats (loading data set, selecting measurements
 
 The second part reports the converted data and depicts their boxplots.
 
-COEX-seq
+Title: COEX-seq
+
 COEX-seq is a web-based application using Shiny (Shiny; a web application framework for R) [7, 8] that converts a variety of measurements of gene expression in RNA-Seq experiments.
 
 It provides a workflow that includes loading data set, selecting measurements of gene expression, and identifying gene names.
@@ -63,7 +64,8 @@ COEX-seq is freely available for academic purposes and can be run on Windows, Ma
 
 Source code, sample data sets, and supplementary documentation are available at https://github.com/kimsc77/COEX-seq.
 
-Measurements of gene expression
+Title: Measurements of gene expression
+
 The following are the measurements of gene expression used in the public databases.
 
 Read counts are simply the number of reads overlapping a given feature such as a gene.
@@ -76,25 +78,28 @@ Fragment means fragment of DNA; therefore, the two reads that comprise a paired-
 
 Per kilobase of exon means the count of fragments is then normalized by dividing by the total length of all exons in the gene (or transcript).
 
-F P K M g = R C g R C p c 10 3 * L 10 6 = R C g * 10 9 R C p c * L ,
+Title: F P K M g = R C g R C p c 10 3 * L 10 6 = R C g * 10 9 R C p c * L ,
+
 where, RCg is number of reads mapped to the gene, RCpc is number of reads mapped to all protein-coding (exon) genes, and L is length of the gene in base pairs.
 
 TPM is a measurement of the proportion of transcripts in mRNA.
 
 TPM is probably the most stable unit across experiments, although you still should not compare it across experiments.
 
-T P M g = R C g L g * 1 ∑ j R C j L k * 10 6 ,
+Title: T P M g = R C g L g * 1 ∑ j R C j L k * 10 6 ,
+
 where, RCg is the number of reads mapped for each gene and Lg is the length of the gene.
 
-Relationship between TPM and FPKM
-The relationship between TPM and FPKM is derived by Pachter (2011) [9] in review of transcript quantification method, using Eq.
+Title: Relationship between TPM and FPKM
 
-(10)–(13) in Pachter’s study [9].
+The relationship between TPM and FPKM is derived by Pachter (2011) [9] in review of transcript quantification method, using Eq.(10)–(13) in Pachter’s study [9].
 
-T P M g = R C g L g * 1 ∑ j R C j L k * 10 6 ∝ R C g L g * N * 1 ∑ j R C j L k * N ∝ R C g L g * N * 10 9 ,
-where N = ∑tRCt is the total number of mapped reads.
+Title: T P M g = R C g L g * 1 ∑ j R C j L k * 10 6 ∝ R C g L g * N * 1 ∑ j R C j L k * N ∝ R C g L g * N * 10 9 ,
+
+Title: where N = ∑tRCt is the total number of mapped reads.
 
 If FPKM is available, then TPM can be easily computed as
+
 T P M g = ( F P K M g ∑ j F P K M g ) × 10 6 .
 
 Recently, based on the advances in NGS technologies, various quantification and analysis methods have been developed for the transcriptome studies.

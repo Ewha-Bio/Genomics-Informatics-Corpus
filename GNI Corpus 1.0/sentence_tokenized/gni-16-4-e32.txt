@@ -1,4 +1,4 @@
-Ovarian Cancer Prognostic Prediction Model Using RNA Sequencing Data.
+Title: Ovarian Cancer Prognostic Prediction Model Using RNA Sequencing Data
 
 Ovarian cancer is one of the leading causes of cancer-related deaths in gynecological malignancies.
 
@@ -66,7 +66,8 @@ Clinical variables were selected, based on their influence on the outcome.
 
 Among 365 HGSC cases, the median survival time for the samples was 43.9 months, and the censoring proportion of the data was 55%.
 
-Pre-processing
+Title: Pre-processing
+
 HGSC patient data collected from the GDC portal can be separated into two categories.
 
 Since RNA-seq data from the GDC portal consist of raw count data, normalization was required to control for the sample bias and gene length bias.
@@ -91,12 +92,14 @@ Clinical data and RNA-Seq data were integrated and divided into training and tes
 
 To avoid unwanted effects of censoring, balanced sampling in terms of censoring status was used to make the training and test sets have the same censoring rate.
 
-Analysis plan
+Title: Analysis plan
+
 In this study, we considered a prediction model and process in terms of performance and interpretability.
 
 The main steps of our analysis were as follows: (1) gene filtration, (2) pre-screening, (3) gene marker selection, and (4) integrated study of selected gene markers and the final prediction model.
 
-Gene filtration
+Title: Gene filtration
+
 Gene filtration for low expression is important because it can reduce false positives [12].
 
 Sampling noise that is added during the sequencing process can also be removed by gene filtration.
@@ -105,7 +108,8 @@ In this study, a 20% zero proportion threshold was selected, as this value is co
 
 Gene filtration was performed only on the training set.
 
-Pre-screening
+Title: Pre-screening
+
 Pre-screening of gene markers was used after gene filtration.
 
 This process is necessary for actual computation and controlling false positives.
@@ -130,26 +134,30 @@ Next, genes were selected, based on individual p-values.
 
 Both methods were jointly applied to select candidate gene markers.
 
-Gene selection
+Title: Gene selection
+
 Although the pre-screening process greatly reduced the number of genes, there remained the problem of an ill-posed model, since the sample size was very small compared to the number of features.
 
 Therefore, sequential variable selection using a multiple Cox regression model was not applicable.
 
 To solve such a problem, as presented below, multiple Cox regression using penalized partial likelihood was used for variable selection and shrinkage estimation.
 
-β ^ = argmin β 1 n [ Σ s = 1 S - X i s t + log { Σ i ∈ R s exp ( X i s t β ) } ] + P α , λ ( β ) ,
+Title: β ^ = argmin β 1 n [ Σ s = 1 S - X i s t + log { Σ i ∈ R s exp ( X i s t β ) } ] + P α , λ ( β ) ,
+
 where Pα,λ(β)=Σc=1Cλ(δ∣βc∣+0.5(1-δ)βc2)+Σg=1Gλ(δ∣βg∣+0.5(1-δ)βg2) is the penalty function.
 
 Note that C and G are the indicator sets of clinical and genetic variables, respectively.
 
 Modified partial likelihood was also used to select clinical variables more favorably, since some clinical variables have already been reported to be significant.
 
-P γ , α , λ ( β ) = Σ c = 1 C λ γ ( δ ∣ β c ∣ + 0.5 ( 1 - δ ) β c 2 ) + Σ g = 1 ∣ G ˜ ∣ λ ( δ ∣ β g ∣ + 0.5 ( 1 - δ ) β g 2 )
+Title: P γ , α , λ ( β ) = Σ c = 1 C λ γ ( δ ∣ β c ∣ + 0.5 ( 1 - δ ) β c 2 ) + Σ g = 1 ∣ G ˜ ∣ λ ( δ ∣ β g ∣ + 0.5 ( 1 - δ ) β g 2 )
+
 Thus, the penalty factor γ is used to reduce the penalty of clinical variables.
 
 The partial likelihood estimation process explained above is implemented in the R package “glmnet,” also known as “coxnet” [15].
 
-Prediction model building and detailed study of selected genes
+Title: Prediction model building and detailed study of selected genes
+
 Along with selected genetic markers and clinical variables we fitted a multiple Cox regression model.
 
 For further integrated study of the selected gene markers, we grouped patients into two groups in terms of fitted hazard ratios as high- and low-risk groups.
@@ -160,7 +168,8 @@ Also, a functional study for the selected gene markers using a pathway database 
 
 To build and validate the prediction models, the whole dataset was divided into training and test datasets at a 2:1 ratio.
 
-Clinical results
+Title: Clinical results
+
 Descriptive statistics of the clinical information are summarized in Table 1.
 
 First, all categorical variables were represented by dummy variables.
@@ -179,7 +188,8 @@ A total of 6 clinical variables were chosen out of 26 variables.
 
 Among the 6 variables, platinum status and primal therapy outcome were significant for prognosis at a 5% significance level.
 
-Gene marker selection
+Title: Gene marker selection
+
 After applying a 20% zero proportion threshold for filtration, a total of 42,747 genes were selected.
 
 For ease of interpretation, only protein-coding genes and microRNA genes, which numbered up to 18,415 genes, were used.
@@ -204,7 +214,8 @@ Finally, three genes—REN, LEFTY1, and AP1S2—were selected, along with 6 clin
 
 These selected markers are summarized in Table 3.
 
-Integrated study of selected gene markers
+Title: Integrated study of selected gene markers
+
 Along with the selected genetic markers and clinical variables, we fitted a multiple Cox regression model.
 
 The genetic markers chosen for the final model were REN, LEFTY1, and AP1S2.
@@ -231,7 +242,8 @@ Lefty1 is an activator of the TCEA3 gene, the expression of which is related to 
 
 Lastly, AP1S2 has been reported as a prognostic marker of ovarian cancer, and its expression level is differentially changed in drug-resistant cell lines [19, 20].
 
-Prediction model results
+Title: Prediction model results
+
 Two measures of assessment were considered.
 
 One was Harrell’s concordance index, and the other was the 2-year time-dependent area under the receiver operating characteristic curve (AUC) [21, 22].
@@ -282,9 +294,13 @@ Survival curve based on predicted values (3 genetic markers with 6-clinical-vari
 
 Time-dependent receiver operating characteristic (ROC) curves of the three models for the test dataset.
 
-Descriptive statistics for clinical information
-Variable selection results for clinical variables
-Selected gene markers using modified penalized Cox regression
-Comparison of prediction with 3 methods: M1, M2, and M3
-Model coefficients and inferences for proposed model
+Title: Descriptive statistics for clinical information
+
+Title: Variable selection results for clinical variables
+
+Title: Selected gene markers using modified penalized Cox regression
+
+Title: Comparison of prediction with 3 methods: M1, M2, and M3
+
+Title: Model coefficients and inferences for proposed model
 

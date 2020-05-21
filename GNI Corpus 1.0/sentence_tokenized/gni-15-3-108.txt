@@ -1,4 +1,4 @@
-MergeReference: A Tool for Merging Reference Panels for HLA Imputation.
+Title: MergeReference: A Tool for Merging Reference Panels for HLA Imputation
 
 Recently developed computational methods allow the imputation of human leukocyte antigen (HLA) genes using intergenic single nucleotide polymorphism markers.
 
@@ -34,9 +34,10 @@ The merged panel achieved an average 4-digit accuracy of six HLA genes of 93.9%,
 
 MergeReference is freely available at http://software.buhmhan.com/MergeReference.
 
-Step 1.
+Title: Step 1.
 
 Extracting SNP and HLA allele data
+
 Given two reference panels to be merged, we extract SNP data from them using PLINK [12].
 
 Then, we extract HLA genotype information from the reference panel.
@@ -45,9 +46,10 @@ Because each allele in an HLA gene is coded as a binary marker in SNP2HLA format
 
 We use our Python script to perform this extraction.
 
-Step 2.
+Title: Step 2.
 
 Combining SNP data
+
 In this step, we combine the SNP data of the two panels.
 
 First, we select overlapping SNPs that exist in both panels.
@@ -62,19 +64,22 @@ Second, we check and correct the strand flips of the SNPs between the two panels
 
 For A/T and G/C SNPs with strand flips that are difficult to detect, we use frequency information.
 
-Step 3.
+Title: Step 3.
 
 Combining HLA data
+
 We combine the HLA data of the two panels.
 
 As we did in step 2, in order to avoid using imputed values as reference data, we only keep overlapping HLA genes that exist in both panels.
 
-Step 4.
+Title: Step 4.
 
 Creating a merged reference panel
+
 Given the combined SNP data from step 2 and the combined HLA data from step 3, we employ MakeReference software in the SNP2HLA package [4] to construct the new merged reference panel in SNP2HLA format.
 
-Merging Korean and Pan-Asian panels
+Title: Merging Korean and Pan-Asian panels
+
 To test our MergeReference software, we merged the Pan-Asian panel (n=441) [9] and the Korean panel (n=413) [10].
 
 The Korean panel included 4526 SNPs, and the Pan-Asian panel included 4,603 SNPs in the MHC region (chr6:25-34Mb).
@@ -85,7 +90,8 @@ After applying MergeReference, 2,995 overlapping SNPs and the genotype informati
 
 Merging the two panels took less than 10 min on a standard computer (2.7 GHz Intel Core i5 CPU, 8 GB memory).
 
-Merged panel can improve performance
+Title: Merged panel can improve performance
+
 To compare the imputation accuracy of different panels, we used the 61 HapMap Asian samples from Beijing, China (CHB) and Tokyo, Japan (JPT) as benchmark data [11].
 
 We masked the HLA information of these individuals, imputed them, and compared the imputed genotypes to the true genotypes.
@@ -102,7 +108,7 @@ The improvement in performance was notable for HLA-DRB1 (Pan-Asian, 85.2%; Korea
 
 We have developed MergeReference, a software package that provides a streamlined pipeline for combining multiple reference panels into one for HLA imputation.
 
-In a previous study, Kim et al.13] also evaluated the gain in performance of merging reference panels for HLA imputation, although they did not provide a software pipeline.
+In a previous study, Kim et al.[13] also evaluated the gain in performance of merging reference panels for HLA imputation, although they did not provide a software pipeline.
 
 Similar to our work, their results supported the utility of merging panels, particularly when the ethnicities are similar.
 
@@ -134,5 +140,5 @@ The bars indicate 95% confidence intervals.
 
 CHB, Beijing, China; JPT, Tokyo, Japan; HLA, human leukocyte antigen.
 
-Per-HLA gene imputation accuracy in imputing HLA information on 61 HapMap CHB+JPT samples
+Title: Per-HLA gene imputation accuracy in imputing HLA information on 61 HapMap CHB+JPT samples
 

@@ -1,4 +1,4 @@
-CaGe: A Web-Based Cancer Gene Annotation System for Cancer Genomics.
+Title: CaGe: A Web-Based Cancer Gene Annotation System for Cancer Genomics
 
 High-throughput genomic technologies (HGTs), including next-generation DNA sequencing (NGS), microarray, and serial analysis of gene expression (SAGE), have become effective experimental tools for cancer genomics to identify cancer-associated somatic genomic alterations and genes.
 
@@ -72,21 +72,24 @@ Then, we developed a core retrieval program and web interfaces for the main func
 
 The workflow for the database construction and data processing in CaGe is summarized in Fig.1, and the cancer gene annotation page of the CaGe web interface is shown in Fig.2.
 
-Cancer gene and annotation data
+Title: Cancer gene and annotation data
+
 To construct the reported cancer gene database, we used gene sets from the CGC database (released on Dec, 2010) and CGI database (downloaded on Feb, 2011).
 
 The cancer pathways for the cancer pathway gene database construction were assigned based on statistical significance from one-tailed Fisher's exact test for overlapping genes between reported cancer gene sets and canonical pathways from public pathway databases, including KEGG (Release 57.0), BioCarta, and Reactome (downloaded on Feb, 2011).
 
 We also created a gene ID database to convert various input identifiers into standard gene symbols with HUGO Gene Nomenclature Committee (HGNC) (downloaded on Feb, 2011) data for the standard gene symbols and with Entrez Gene (downloaded on Feb, 2011) and UniProt (Release 2011_03) data for the gene IDs, protein IDs, and functional annotations.
 
-Input types
+Title: Input types
+
 Available input types include a list of gene symbols, Entrez gene IDs, or UniProt accessions and output files from prediction tools, such as Sorting Intolerant From Tolerant (SIFT) [10] and PolyPhen [11], which evaluate functional effects of mutations on proteins.
 
 CaGe parses the output of those tools to extract the list of genes that have somatic mutations evaluated as functionally damaging, classify them into previously reported and novel candidate cancer genes, and conduct pathway analyses to give insights into underlying carcinogenic mechanisms.
 
 Thus, CaGe offers straightforward data processing from HGT-based data without additional data conversion.
 
-Cancer gene and pathway annotation workflow
+Title: Cancer gene and pathway annotation workflow
+
 After acquiring user input, CaGe converts various input gene IDs into standard gene symbols, finds known cancer genes and pathways, links various cancer-related annotations to matched genes, and outputs them in the form of tables or text files through the web interface (Fig.3).
 
 Another function of CaGe is to identify over-represented cancer-related or other biological pathways from the input gene list by performing one-tailed Fisher's exact test.
@@ -103,7 +106,8 @@ In addition to the cancer gene and pathway annotation function, CaGe provides a 
 
 The search flows of cancer genes and pathways are connected to each other by crosslinks in the cancer gene information page or pathway information page.
 
-Database and web interface
+Title: Database and web interface
+
 Based on the reported cancer-related gene sets from CGC and CGI, a cancer gene database and a cancer pathway gene database were constructed by the described methods.
 
 In total, 436 CGC-originated and 7181 CGI-originated cancer genes were prepared for the reported cancer gene annotation.
@@ -120,10 +124,12 @@ Main menus, located in the upper part of the main window, are linked to the four
 
 Detailed usages for CaGe are described in the user's guide at http://mgrc.kribb.re.kr/cage/include/cageUserGuide.pdf.
 
-System information
+Title: System information
+
 CaGe was developed using PHP, R, and python languages; MySQL for database management; and Apache for the web server and is operated on a Linux platform with 8-core Intel Xeon CPUs (2.33 GHz) and 24 GB of main memory.
 
-Performance evaluation with small cell lung cancer mutation data
+Title: Performance evaluation with small cell lung cancer mutation data
+
 To assess the capability of CaGe, we annotated genes from candidate mutations for a small cell lung cancer genome (SCLC) [12].
 
 We had 59 genes with predicted functionally damaging mutations after applying 22,910 mutations to the PolyPhen and could annotate 22 previously reported known cancer genes successfully by applying the PolyPhen output for CaGe.
@@ -156,6 +162,7 @@ Cancer gene annotation page of CaGe web interface.
 
 Cancer gene annotation results page of CaGe web interface.
 
-Cancer gene sets and cancer pathway gene sets in the CaGe database
-Annotations for a cancer gene provided by CaGe
+Title: Cancer gene sets and cancer pathway gene sets in the CaGe database
+
+Title: Annotations for a cancer gene provided by CaGe
 

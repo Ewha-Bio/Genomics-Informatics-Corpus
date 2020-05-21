@@ -1,4 +1,4 @@
-A Universal Analysis Pipeline for Hybrid Capture-Based Targeted Sequencing Data with Unique Molecular Indexes.
+Title: A Universal Analysis Pipeline for Hybrid Capture-Based Targeted Sequencing Data with Unique Molecular Indexes
 
 Hybrid capture-based targeted sequencing is being used increasingly for genomic variant profiling in tumor patients.
 
@@ -64,19 +64,22 @@ We put our effort into optimizing the pipeline so as to not make discrepancies b
 
 Furthermore, we show an example of how targeted sequencing experiments can be investigated for their quality from the analysis and how we could take points from the results analysis as feedback for the experiment.
 
-Sample preparation
+Title: Sample preparation
+
 Tumor tissues were dissected from 6 different colorectal cancer patients.
 
 Tumor samples were labeled from 1T to 7T, and sample 4T was omitted.
 
 NA24385 of the HapMap project and AccuRef Quan-Plex NGS Reference Standard Genomic DNA (cat# ARF-1001G-1; AccuRef, Milpitas, CA, USA) were used as positive controls.
 
-Probe design for hybrid capture
+Title: Probe design for hybrid capture
+
 For hybrid capture, all coding sequences of 46 genes and non-coding sequences of some of those genes were targeted.
 
 Pre-designed and customized probe sets were manufactured by Integrated DNA Technologies (IDT, Coralville, IA, USA).
 
-Targeted sequencing data generation
+Title: Targeted sequencing data generation
+
 To analyze UMI-adopted targeted sequencing data, we generated targeted sequencing libraries.
 
 During library generation, UMI sequences were integrated, along with the P5 sequencing adapter.
@@ -85,7 +88,8 @@ Eight libraries were pooled together into one 1.7-mL microtube, and this 8-plex 
 
 Targeted sequencing data of hybrid-capture library were generated using HiSeq series by 150-bp paired-end sequencing.
 
-Data processing
+Title: Data processing
+
 Using BclToFastq, the .bcl file was processed and divided into fastq files of read 1 (R1), read 2 (R2), and UMI.
 
 To generated unmapped bam files, R1.fastq and R2.fastq files were processed using FastqToBam (Fulcrum Genomics/fgbio, v0.7.0) (Fig.1).
@@ -110,7 +114,8 @@ As CallMolecularConsensusReads and FilterConsensusReads generated unmapped bam f
 
 The overall pipeline is shown in Fig.1.
 
-Quality check
+Title: Quality check
+
 UmiAwareMarkDuplicateWithMateCigar (Picard) counted duplicates among the raw reads to estimate duplicate rates.
 
 As this tool is still under development, we recommend a regular check with the developers on further validation.
@@ -213,5 +218,5 @@ Comparison of sequencing coverage from raw reads to filtered reads.
 
 The read coverage calculated from the read counts are shown with bar plots.
 
-Read counts and on-target rates (%)
+Title: Read counts and on-target rates (%)
 

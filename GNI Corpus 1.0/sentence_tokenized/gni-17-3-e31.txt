@@ -1,4 +1,4 @@
-In silico approach to calculate the transcript capacity.
+Title: In silico approach to calculate the transcript capacity
 
 We sought the novel concept, transcript capacity (TC) and analyzed TC.
 
@@ -48,13 +48,13 @@ TC cannot be easily measured in experiments.
 
 We calculated TC using bioinformatics studies.
 
-GWAS can be used for finding significant variants and genes associated with given traits.
+Title: GWAS can be used for finding significant variants and genes associated with given traits.
 
 It is a very efficient and powerful method for detecting genes of significance.
 
 GWAS has been used to discover disease-associated genes and quantitative trait loci genes [3-5].
 
-Lu et al.6] tried to discover new loci associated with body fat percent (BF%) and identified cardiometabolic disease risk genomic factors.
+Lu et al.[6] tried to discover new loci associated with body fat percent (BF%) and identified cardiometabolic disease risk genomic factors.
 
 For TC estimation, we used BF% as the phenotype and performed GWAS.
 
@@ -63,13 +63,15 @@ The beta effect in GWAS denotes the coefficient of the regression model and it c
 The significant markers associated with phenotypes have been used as the significance of the encompassed genes in GWAS.
 
 This is plausible because SNPs is linked at those encompassing genes which are usually called “linkage disequilibrium.”
+
 RNA-seq data provides transcripts’ reads [10,11].
 
 Through transcript reads and gene effects, we calculated TC.
 
 TC analysis can be important because it can be further analyzed the enzyme activity if the protein expression level instead of transcript reads is given.
 
-Data description
+Title: Data description
+
 For GWAS, we used Ansan-Anseong cohort data.
 
 These were for a study of a chronic diseases within Ansan city and Anseong rural areas in Korea.
@@ -96,11 +98,14 @@ The TPM data of the Human Protein atlas is based on the reads per gene.
 
 Thus the gene length was pre-considered for the accurate reads estimation per gene.
 
-Genome-wide association study (GWAS)
-GWAS was performed using GCTA (a tool for genome-wide complex trait analysis) to estimate the beta effects [9,16].
+Title: Genome-wide association study (GWAS)
+
+Title: GWAS was performed using GCTA (a tool for genome-wide complex trait analysis) to estimate the beta effects [9,16].
 
 The following model was:
-(1) y = a + b x + g + e            
+
+Title: (1) y = a + b x + g + e            
+
 where y is the phenotypic value (BF%), a is the mean term, b is the additive beta effect of the candidate SNP for association, x is the SNP genotype indicator variable, g is the polygenic effect, and e is the residual.
 
 The covariates were sex (male and female), area (Ansan and Anseong) and age.
@@ -109,18 +114,19 @@ The age was factored to be 10-age steps.
 
 The b was the beta effect of the SNPs.
 
-TC calculation
-TC was calculated using the following relationships:
-(2) TC = effect   of   gene t r a n s c r i p t   r e a d s
+Title: TC calculation
+
+Title: TC was calculated using the following relationships:
+
+Title: (2) TC = effect   of   gene t r a n s c r i p t   r e a d s
+
 Eq.
 
 (2) uses the gene effect and transcript reads (TPM) to determine the TC.
 
 We assumed that the effect of the gene was proportional to the transcript reads and TC.
 
-The gene effect is proportional to TC as given in Eq.
-
-(2).
+The gene effect is proportional to TC as given in Eq.(2).
 
 If A and B genes’ effect is 10, 10, respectively and transcript reads are 1,000 and 10,000, then TCs of A and B are 0.01 and 0.001.
 
@@ -128,44 +134,41 @@ Thus the capacity of the A transcript is 10-fold stronger than B transcript.
 
 One unit of A transcripts influences 10-fold to the traits in comparison to the B transcripts.
 
-Gene ontology analysis
+Title: Gene ontology analysis
+
 The gene ontology (GO) analysis was performed using DAVID (Database for Annotation, Visualization and Integrated Discovery) [17].
 
 The gene catalogue was retrieved from Ensembl DB (http://www.ensembl.org).
 
 We selected the genes with the highest and lowest TC (top and bottom 5% in TC values) for the GO analysis.
 
-Figure description
+Title: Figure description
+
 Fig.1 shows the flow chart of our analysis.
 
 It explains the procedure of the TC calculation.
 
 The gene effect was calculated using GWAS and TC was calculated using gene effect and TPM.
 
-As shown in Eq.
-
-(2), the TC unit in our analysis is BF%.
+As shown in Eq.(2), the TC unit in our analysis is BF%.
 
 Fig.2 shows the plot of TPM and GWAS beta effect.
 
 The genes with a higher TPM had a smaller beta effect across the board.
 
-According to Eq.
-
-(2), a higher TPM and a smaller beta effect would show a smaller TC.
+According to Eq.(2), a higher TPM and a smaller beta effect would show a smaller TC.
 
 Fig.3 shows the Manhattan plot of –log10(p-value) and the TC across chromosomes.
 
 The p-value was from GWAS results and TC was calculated as shown in Fig.1.
 
-TC calculation and GO analysis
+Title: TC calculation and GO analysis
+
 Table 1 shows the summary statistics (minimum, maximum, average, standard deviation) of GWAS beta effect, TPM and TC.
 
 Table 2. shows the gene information with the lowest p-values (<0.0001) and the estimated TC.
 
-The TC was simply calculated using Eq.
-
-(2).
+The TC was simply calculated using Eq.(2).
 
 Table 3 illustrates genes’ TC information of the highest p-values (top 5% genes in TC value).
 
@@ -187,16 +190,18 @@ The von Willebrand factor (VWF) is not an enzyme and thus, has no catalytic acti
 
 In our analysis, the VWF had high transcript reads and low TC (TPM, 155.1; TC, 0.002 BF%).
 
-GWAS and expression quantitative trait loci
+Title: GWAS and expression quantitative trait loci
+
 We used the GWAS and RNA-seq data associated with body fat.
 
 The expression quantitative trait loci (eQTL) are genomic loci that explain a variation in expression levels of mRNAs (https://en.wikipedia.org/wiki/Expression_quantitative_trait_loci).
 
-Parks et al.19] showed the genetic control of obesity and gut microbiota composition using eQTL analysis.
+Parks et al.[19] showed the genetic control of obesity and gut microbiota composition using eQTL analysis.
 
 In our analysis, the accurate beta effect estimation accompanied by p-value are crucial and thus eQTL analysis can help better estimating TC because eQTL information contains the mRNA expression level.
 
-GWAS p-value and accuracy of TC calculation
+Title: GWAS p-value and accuracy of TC calculation
+
 In GWASs, the significance is guaranteed by the p-value.
 
 The p-value is the criteria to dissect the significant variants and those genes from insignificant ones.
@@ -233,10 +238,11 @@ Inspecting the relationship between TC and GO terms why the lowest TC values are
 
 Likewise, the reason why wound healing and embryo development GO terms have low TC values must be elucidated.
 
-Features of the TC calculation in our study
+Title: Features of the TC calculation in our study
+
 Unlike previous studies that calculate the protein activity, TC calculation is a high-throughput analysis.
 
-Vermeirssen et al.20] used a quantitative in silico analysis to calculate the inhibitory activity of angiotensin I converting enzyme (ACE).
+Vermeirssen et al.[20] used a quantitative in silico analysis to calculate the inhibitory activity of angiotensin I converting enzyme (ACE).
 
 They used an in vivo analysis to calculate ACE activity, also.
 
@@ -260,8 +266,11 @@ The P-value was obtained from the genome-wide association study (GWAS) of the SN
 
 TC was calculated using the GWAS beta effect and transcript per million reads.
 
-Summary statistics of beta effect, TPM, and TC in our analysis
-Genes with the lowest p-values (cutoff 0.0001) and their TC estimation
-GO for the highest (as TC values) top 1% of the genes
-GO for the lowest (as TC values) bottom 1% of the genes
+Title: Summary statistics of beta effect, TPM, and TC in our analysis
+
+Title: Genes with the lowest p-values (cutoff 0.0001) and their TC estimation
+
+Title: GO for the highest (as TC values) top 1% of the genes
+
+Title: GO for the lowest (as TC values) bottom 1% of the genes
 

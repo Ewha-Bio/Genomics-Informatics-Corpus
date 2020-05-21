@@ -1,4 +1,4 @@
-Multiple Group Testing Procedures for Analysis of High-Dimensional Genomic Data.
+Title: Multiple Group Testing Procedures for Analysis of High-Dimensional Genomic Data
 
 In genetic association studies with high-dimensional genomic data, multiple group testing procedures are often required in order to identify disease/trait-related genes or genetic regions, where multiple genetic sites or variants are located within the same gene or genetic region.
 
@@ -60,7 +60,8 @@ For group selection procedure, we employ group lasso.
 
 These four statistical methods are also applied to real high-dimensional DNA methylation data where DNA methylation beta values of CpG sites from approximately 12,000 genes between ovarian cancer cases and healthy controls were generated from Illumina Infinium Human-Methylation27K Beadchip (Illumina Inc., San Diego, CA, USA).
 
-Principal component analysis
+Title: Principal component analysis
+
 PCA is one of the most common statistical approaches to data dimension reduction [9].
 
 It basically transforms multiple variables to have orthogonality so the first principal component can be expressed as a weighted linear combination of variables.
@@ -73,7 +74,8 @@ Then, a phenotypic association of the principal component can be tested based on
 
 Statistical approaches based on PCA have been widely applied to analysis of high-dimensional genomic data [101112].
 
-Hotelling's T2 test
+Title: Hotelling's T2 test
+
 Hotelling's T2 test is one of the representative multivariate tests used when significant differences between the mean vectors of two multivariate data sets are tested.
 
 It is known as a powerful multivariate test as long as data satisfies necessary assumptions such as random samples, multivariate normality and equivalent variance and covariance matrices between two groups.
@@ -84,7 +86,8 @@ We also applied the Hotelling's T2 test for each gene or genetic region to test 
 
 We employed an R package ‘Hotelling’ for simulation studies and real data analysis.
 
-Permutation test
+Title: Permutation test
+
 Permutation test is a nonparametric statistical test used when an underlying distribution of genetic data is not need to be assumed.
 
 If the derivation of a theoretical distribution of a test statistic is challenging, permutation test can be employed to compute an empirical p-value of the test statistic.
@@ -99,7 +102,8 @@ After we obtain the empirical distribution of –∑i=1Klogpi, we can easily cal
 
 This permutation based test for genomic data with a group structure has been demonstrated to be very efficient and powerful when we need to aggregate the information of multiple genetic sites [15].
 
-Group lasso
+Title: Group lasso
+
 Statistical association tests above should be conducted to each gene or each genetic region one at a time, so the individual tests cannot consider genetic correlations among genes.
 
 But, genes linked with each other on genetic pathways or genes that have an interaction effects on a phenotype outcome can have a functional relationship with each other.
@@ -154,7 +158,8 @@ Group lasso has been widely applied for analysis of high-dimensional genomic dat
 
 We used an R package ‘gglasso’ for simulation studies and real data analysis.
 
-Simulation studies
+Title: Simulation studies
+
 In this simulation study, we compared true positive rates of three group testing procedures and one selection procedure such as PCA, Hotelling's T2 test, permutation test, and group lasso selection procedure when the same number of genes is identified by four statistical methods.
 
 We conducted two different simulation studies, where the first simulation assumed that all genes are independent with each other and the second simulation assumed that genes are correlated with each other according to a given network information.
@@ -257,7 +262,8 @@ This is due to relatively high correlation among genetic sites in the same genes
 
 We have already seen that the true positive rates of Hotelling's T2 test were drastically decreased as the correlation was increasing in the first simulation study.
 
-Analysis of ovarian cancer DNA methylation data
+Title: Analysis of ovarian cancer DNA methylation data
+
 Next, we applied four statistical methods to real ovarian cancer DNA methylation data.
 
 Ovarian cancer DNA methylation data generated from Illumina Infinium Human-Methylation27K Beadchip has been already applied to identify CpG sites and genes associated with ovarian cancer from some different studies [192021].
@@ -366,5 +372,5 @@ The number of overlapped genes and non-overlapped genes in the top 20 lists of p
 
 The number of overlapped genes and non-overlapped genes in the top 246 lists of principal component analysis (PCA), Hotelling's T2 test, permutation test, and group lasso are displayed in analysis of ovarian cancer DNA methylation data.
 
-Top 20 gene lists and their p-values detected by PCA and Hotelling's T2 test and top 20 gene list selected by group lasso
+Title: Top 20 gene lists and their p-values detected by PCA and Hotelling's T2 test and top 20 gene list selected by group lasso
 

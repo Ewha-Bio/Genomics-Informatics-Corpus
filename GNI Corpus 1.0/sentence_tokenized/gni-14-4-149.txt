@@ -1,4 +1,4 @@
-Prediction of Quantitative Traits Using Common Genetic Variants: Application to Body Mass Index.
+Title: Prediction of Quantitative Traits Using Common Genetic Variants: Application to Body Mass Index
 
 With the success of the genome-wide association studies (GWASs), many candidate loci for complex human diseases have been reported in the GWAS catalog.
 
@@ -76,7 +76,8 @@ Finally, we compared the predictive accuracy by calculating the mean square erro
 
 Overall, our results show that LASSO and SLR provide the smallest MSE value among the compared methods.
 
-Data
+Title: Data
+
 The KARE project, which began in 2007, is an Anseong and Ansan regional society-based cohort.
 
 After applying SNP quality control criteria—Hardy-Weinberg equilibrium p < 10−06, genotype call rates < 95%, and minor allele frequency < 0.01—352,228 SNPs were utilized for analysis.
@@ -87,29 +88,40 @@ Table 1 summarizes the demographic information.
 
 In addition, Fig.1 shows box plots of BMI for the given demographic variables.
 
-Statistical analysis
+Title: Statistical analysis
+
 We selected SNPs from the KARE data analysis based on single-SNP analysis and collected SNPs in the GWAS catalog [24].
 
 Then, we performed two steps to make quantitative prediction models.
 
 First, we selected the variables by using SLR, LASSO, and EN and then built quantitative prediction models by using the same methods.
 
-SNP sets
-First, based on three different populations—overall population, Asian-only population, and Korean-only population —we collected the SNPs registered in the GWAS catalog for BMI.
+Title: SNP sets
+
+Title: First, based on three different populations—overall population, Asian-only population, and Korean-only population —we collected the SNPs registered in the GWAS catalog for BMI.
 
 Second, the SNPs were selected by single-SNP analysis using linear regression with adjustments for sex, age, and area.
 
 We chose the SNPs based on the p-values.
 
 We considered the following seven SNP sets:
-(1) ASIAN-100 (GWAS catalog [Asia] + Single-SNP analysis, number of SNPs = 100)
-(2) KOREAN-100 (GWAS catalog [Korea] + single-SNP analysis, number of SNPs = 100)
-(3) ALL-200 (GWAS catalog [All] + single-SNP analysis, number of SNPs = 200)
-(4) ASIAN-200 (GWAS catalog [Asia] + single-SNP analysis, number of SNPs = 200)
-(5) KOREAN-200 (GWAS catalog [Korea] + single-SNP analysis, number of SNPs = 200)
-(6) GWAS-ALL (GWAS catalog [All], number of SNPs = 136)
-(7) GWAS-ASIAN (GWAS catalog [Asia], number of SNPs = 16)
-Step 1: Variable selection
+
+Title: (1) ASIAN-100 (GWAS catalog [Asia] + Single-SNP analysis, number of SNPs = 100)
+
+Title: (2) KOREAN-100 (GWAS catalog [Korea] + single-SNP analysis, number of SNPs = 100)
+
+Title: (3) ALL-200 (GWAS catalog [All] + single-SNP analysis, number of SNPs = 200)
+
+Title: (4) ASIAN-200 (GWAS catalog [Asia] + single-SNP analysis, number of SNPs = 200)
+
+Title: (5) KOREAN-200 (GWAS catalog [Korea] + single-SNP analysis, number of SNPs = 200)
+
+Title: (6) GWAS-ALL (GWAS catalog [All], number of SNPs = 136)
+
+Title: (7) GWAS-ASIAN (GWAS catalog [Asia], number of SNPs = 16)
+
+Title: Step 1: Variable selection
+
 In the KARE data, out of 8,838 individuals, we randomly selected 1,767 for test sets and composed the training set with the rest of the 7,071 participants.
 
 We selected SNPs using 5-fold cross-validation (CV) of the training set.
@@ -136,12 +148,18 @@ The penalized methods were performed using the R package “glmnet” [26].
 
 Then, we defined five groups.
 
-(1) Group 1 (consists of SNPs that appeared at least one time in the 5-fold CV)
-(2) Group 2 (consists of the SNPs that appeared at least two times in the 5-fold CV)
-(3) Group 3 (consists of the SNPs that appeared at least three times in the 5-fold CV)
-(4) Group 4 (consists of the SNPs that appeared at least four times in the 5-fold CV)
-(5) Group 5 (consists of the SNPs that appeared in all 5-fold CVs)
-Step 2: Quantitative prediction
+Title: (1) Group 1 (consists of SNPs that appeared at least one time in the 5-fold CV)
+
+Title: (2) Group 2 (consists of the SNPs that appeared at least two times in the 5-fold CV)
+
+Title: (3) Group 3 (consists of the SNPs that appeared at least three times in the 5-fold CV)
+
+Title: (4) Group 4 (consists of the SNPs that appeared at least four times in the 5-fold CV)
+
+Title: (5) Group 5 (consists of the SNPs that appeared in all 5-fold CVs)
+
+Title: Step 2: Quantitative prediction
+
 To build a quantitative prediction model, we used the same prediction methods that were applied for the variable selection step for the comparison of these three methods in the variable selection and quantitative prediction.
 
 Each prediction model was created by using 7,071 training individuals via 5-fold CV.
@@ -160,7 +178,8 @@ The SNPs that were reported to be associated with BMI in the GWAS catalog are su
 
 Seven SNP sets are summarized in Table 2.
 
-Step 1: Variable selection
+Title: Step 1: Variable selection
+
 Variable selection in each SNP set was performed via 5-fold CV of the training set.
 
 Fig.2 shows the overlapping number of selected SNPs by the variable selection methods.
@@ -171,7 +190,8 @@ Overall, SLR selected fewer SNPs than LASSO and EN.
 
 All SNPs were selected when EN was used in ASIAN-100, ASIAN-200, and KOREAN-200.
 
-Step 2: Quantitative prediction
+Title: Step 2: Quantitative prediction
+
 We made quantitative prediction models based on SLR, LASSO, and EN using the entire training dataset.
 
 Then, the MSE was calculated by applying the quantitative prediction models to the test dataset.
@@ -250,9 +270,13 @@ The comparison of the results from variables selected by different methods and f
 
 MSE, mean square error; SNP, single-nucleotide polymorphism; ASIAN-100, genome-wide association study (GWAS) catalog (Asia) + single-SNP analysis; KOREAN-100, GWAS catalog (Korea) + single-SNP analysis; ALL-200, GWAS catalog (All) + single-SNP analysis; ASIAN-200, GWAS catalog (Asia) + single-SNP analysis; KOREAN-200, GWAS catalog (Korea) + single-SNP analysis; GWAS-ALL, GWAS catalog (All); GWAS-ASIAN, GWAS catalog (Asia); SLR, stepwise linear regression; LASSO, least absolute shrinkage and selection operator; EN, Elastic-Net.
 
-Demographic variables for KARE cohort
-List of the SNP sets
-The number of overlapping SNPs selected by 5-fold CV for each variable selection method
-MSE values from test dataset
-Development of LASSO-SLR prediction model with one set from ASIAN-100 for predicting BMI
+Title: Demographic variables for KARE cohort
+
+Title: List of the SNP sets
+
+Title: The number of overlapping SNPs selected by 5-fold CV for each variable selection method
+
+Title: MSE values from test dataset
+
+Title: Development of LASSO-SLR prediction model with one set from ASIAN-100 for predicting BMI
 

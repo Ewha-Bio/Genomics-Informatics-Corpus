@@ -1,4 +1,4 @@
-Metabolic Syndrome Prediction Using Machine Learning Models with Genetic and Clinical Information from a Nonobese Healthy Population.
+Title: Metabolic Syndrome Prediction Using Machine Learning Models with Genetic and Clinical Information from a Nonobese Healthy Population
 
 The prevalence of metabolic syndrome (MS) in the nonobese population is not low.
 
@@ -48,7 +48,8 @@ However, no model has been published that combines these clinical and genetic fa
 
 In this study, we constructed a model to predict metabolic syndrome in nonobese people using machine learning algorithms with factors such as age, sex, environmental factors, and lifestyle habits as well as genetic predisposition factors, such as SNPs, and evaluated the performance of the model.
 
-Study population
+Title: Study population
+
 We retrospectively used the Gene-Environmental Interaction and Phenotype (GENIE) database for Koreans; these data were collected from 10,349 healthy individuals who visited Seoul National University Hospital Gangnam Center for a comprehensive health check-up and consented to have their specimens included in a biospecimen repository.
 
 The program for comprehensive health check-ups and the GENIE database is described in another paper [26].
@@ -59,12 +60,14 @@ After at least 10 hours of fasting, peripheral blood samples were obtained from 
 
 SNP genotyping was performed by an Affymetrix Axiom KORV1.1-96 Array (Thermo Fisher Scientific, Santa Clara, CA, USA) at DNA Link Inc. (Seoul, Korea).
 
-Ethics statement
+Title: Ethics statement
+
 The Institutional Review Board of the Seoul National University Hospital approved this study protocol (IRB number H-1807-030-955), and informed consent was waived by the board.
 
 The study was conducted in accordance with the Declaration of Helsinki.
 
-Clinical assessment and definitions
+Title: Clinical assessment and definitions
+
 For this study, metabolic syndrome is defined according to the International Diabetes Federation’s criteria for the South Asian ethnic group [27], that is, the presence of at least 3 of the following metabolic risk factors: increased waist circumference (males ≥ 90 cm; females ≥ 80 cm); elevated blood pressure (≥130/85 mm Hg or the use of medications for hypertension); elevated fasting glucose levels (fasting glucose ≥ 100 mg/dL or the use of medications for hyperglycemia); elevated triglyceride levels (≥150 mg/dL); and reduced HDL cholesterol levels (males < 40 mg/dL, females < 50 mg/dL) or being under treatment for dyslipidemia.
 
 The metabolic score is the sum of the number of metabolic risk factors.
@@ -77,14 +80,16 @@ Physically active was defined as performing at least 150 minutes of vigorous or 
 
 The study was conducted in nonobese individuals whose body mass index (BMI) was less than 25 kg/m2.
 
-Genotyping and quality control
+Title: Genotyping and quality control
+
 Genomic DNA was separated from venous blood samples, and 200 ng was genotyped using a Hybridization on Affymetrix Axiom KORV1.0-96 Array (Thermo Fisher Scientific).
 
 The PLINK program version 1.9 (https://www.cog-genomics.org/plink2) was used for the quality control process for the raw genotype data, resulting in a total of 586,730 SNPs to be used.
 
 SNPs with case and control minor allele frequencies less than 1%, case or control call rates less than 95% or a significant deviation from Hardy–Weinberg equilibrium in the controls (p < 0.0001) were excluded.
 
-SNP selection for analysis
+Title: SNP selection for analysis
+
 To design a model for predicting metabolic syndrome in the nonobese population, we selected the SNPs in two ways.
 
 In the first way, we used the genome-wide association study (GWAS) catalog database.
@@ -95,7 +100,8 @@ In the second way, we performed a GWAS study for metabolic syndrome in our nonob
 
 We included all the SNPs selected using both ways to design the algorithm.
 
-Prediction model design by machine learning tools
+Title: Prediction model design by machine learning tools
+
 For the nonobese population (BMI < 25 kg/m2) population, the clinical information (age, sex, BMI, smoking history, alcohol consumption history, and exercise) and SNPs selected as described above (finally, 10 SNPs were selected: rs3764261, rs247617, rs2266788, rs964184, rs10830963, rs1260326, rs10830962, rs1883025, rs1919128, and rs11757661) were used to perform five types of machine learning analysis, multilayer perceptron (MLP) [28], naïve Bayes classification (NB) [29], random forest classification (RF) [30], decision trees classification (J48) [31], and support vector machine classification (SVM) [32], to predict metabolic syndrome.
 
 The additive model was used for genotype data used.
@@ -114,14 +120,16 @@ Statistical tests were performed using PLINK version 1.9 (https://www.cog-genomi
 
 The study outline is demonstrated in Fig.1.
 
-Statistical analysis
+Title: Statistical analysis
+
 For the GWAS, logistic regression analyses were used, controlling for sex as a covariate in the additive model.
 
 The performance was compared between model A (clinical data input only) and model B (clinical data + genetic data input) by drawing the receiver operating characteristic (ROC) curve and comparing the area under the curve confusion matrix.
 
 Statistical tests were performed using PLINK version 1.9 (https://www.cog-genomics.org/plink2), SAS 9.1 (SAS Institute Inc., Cary, NC, USA) and R 3.2.2 (R Development Core Team; R Foundation for Statistical Computing, Vienna, Austria).
 
-Study population characteristics
+Title: Study population characteristics
+
 The 10,349 participants included 7,502 nonobese individuals.
 
 Metabolic syndrome was observed in 647 (8.6%) persons.
@@ -132,7 +140,8 @@ Age, sex, BMI, smoking status, alcohol consumption status, and exercise status i
 
 The SNP information is described in Table 2.
 
-Overall comparison of the various machine learning tools
+Title: Overall comparison of the various machine learning tools
+
 We used six machine learning methods, namely, MLP, NB, RF, decision tree classification, and SVM.
 
 Table 3 summarizes the performance of each model obtained with the various machine learning tools in the training and test sets.
@@ -145,7 +154,8 @@ NB showed the best sensitivity, 0.38 for model A and 0.42 for model B.
 
 The specificity of NB was 0.79 for model A and 0.80 for model B.
 
-Performance comparison between model A and model B
+Title: Performance comparison between model A and model B
+
 Via the area under the ROC curve (AUC), we compared the performance of model A and model B obtained with NB.
 
 Model B (AUC = 0.69), for which the input factors were the SNP information in addition to the factors used in model A, showed better performance than model A (AUC = 0.65), for which the input factors were age, sex, BMI, smoking status, alcohol consumption status, and exercise status.
@@ -240,7 +250,9 @@ Study flow pipeline.
 
 SNP, single nucleotide polymorphism; MLP, multilayer perceptron; NB, naïve Bayes classification; RF, random forest classification; CT, decision tree classification; SVM, support vector machine classification; BCR, balanced classification rate.
 
-Demographic features of the training and test set populations
-Information on the SNPs used in the algorithm
-Performance comparison among respective machine learning algorithms for predicting metabolic syndrome presence
+Title: Demographic features of the training and test set populations
+
+Title: Information on the SNPs used in the algorithm
+
+Title: Performance comparison among respective machine learning algorithms for predicting metabolic syndrome presence
 

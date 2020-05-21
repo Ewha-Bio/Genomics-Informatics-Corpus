@@ -1,4 +1,4 @@
-Relevance Epistasis Network of Gastritis for Intra-chromosomes in the Korea Associated Resource (KARE) Cohort Study.
+Title: Relevance Epistasis Network of Gastritis for Intra-chromosomes in the Korea Associated Resource (KARE) Cohort Study
 
 Gastritis is a common but a serious disease with a potential risk of developing carcinoma.
 
@@ -46,7 +46,8 @@ We further transformed this SNP network into a relevant gene-gene epistasis netw
 
 A functional analysis was performed on the gene-gene network, and the topological properties of the network were also investigated.
 
-Pre-processing for KARE data
+Title: Pre-processing for KARE data
+
 The KARE genotype data we used in the study initially consisted of 352,228 SNPs and 8,842 samples after the screening by genotype calling and quality control performed [10].
 
 We performed the following additional stages of pre-processing.
@@ -65,7 +66,8 @@ PLINK [17] was used for the calculation of these values.
 
 The resulting dataset consisted of 185,426 SNPs and 3,770 samples for the case-control study.
 
-Mutual information
+Title: Mutual information
+
 We used mutual information measures to assess the strength of the association between a pair of SNPs and the disease status of gastritis.
 
 Mutual information has been widely used to measure dependence or independence between two random variables [11, 12, 18, 19].
@@ -84,21 +86,20 @@ The measure can also be extended to assess the strength of association between a
 
 The extended version of mutual information is as follows: I(X1,X2;Y) = H(X1,X2) + H(Y) - H(X1,X2,Y), where X1 and X2 are random variables for two SNPs, and Y denotes random variables for the disease.
 
-In our recent work [12], we have shown that this measure could identify high-order epistatic interactions both with and without marginal effects by using simulation models, such as in Culverhouse et al.
+In our recent work [12], we have shown that this measure could identify high-order epistatic interactions both with and without marginal effects by using simulation models, such as in Culverhouse et al.'s [20] and Velez et al.'s studies [21].
 
-'s [20] and Velez et al.
-
-'s studies [21].
-
-As the genotype and disease status are represented as discrete values, it is more convenient to consider the random variables as a partition of the combination of the genotypes and disease status.
+Title: As the genotype and disease status are represented as discrete values, it is more convenient to consider the random variables as a partition of the combination of the genotypes and disease status.
 
 Then, the entropy of a random variable X can be represented in terms of the partition as follows:
-where X = {A1, A2,…, An} is a partition on the set of samples S = {A1∪A2∪…∪An}, and no intersections exist between elements in the partition.
+
+Title: where X = {A1, A2,…, An} is a partition on the set of samples S = {A1∪A2∪…∪An}, and no intersections exist between elements in the partition.
 
 The joint entropy of two random variables for the partition of S, X = {A1, A2,…, An} and Y = {B1, B2,…, Bm} is defined as follows:
+
 The entropy also can be extended to the joint entropy of multiple random variables (e.g., 3 or 4 SNPs) naturally.
 
-Extraction of statistically significant epistatic interactions
+Title: Extraction of statistically significant epistatic interactions
+
 As mentioned above, mutual information is a non-parametric measure, and the distribution of values from the population is unknown; therefore, it is difficult to show the statistical significance of values calculated by this measure.
 
 Rather than doing the computationally too-expensive permutation tests for every pair of SNPs, which causes severe multiple testing issues when applied to GWA studies, we adopted the alternative permutation scheme proposed [11].
@@ -113,7 +114,8 @@ If a mutual information value between SNPs and the phenotype from real data is h
 
 To further assess the statistical significance of the identified SNP pairs, we approximated the p-values of the SNP pairs by exploiting the following relationship between χ2 value and mutual information [14]: χ2 ~ 2Nln2·I(X1,X2;Y), where N denotes the number of patients in the study.
 
-Relevance network construction and assessment of significance
+Title: Relevance network construction and assessment of significance
+
 Network analysis is a powerful tool to understand biological systems.
 
 Given the significant epistatic interactions between SNP pairs and disease status detected by the permutation scheme, we constructed SNP-SNP epistatic interaction networks, where SNP represents the node and the significant interaction between SNP pairs represents the edge.
@@ -144,7 +146,8 @@ We used DAVID [23] to validate the biological significance of the networks.
 
 Fig.2 illustrates the overall analysis scheme used in this study.
 
-Statistically significant epistatic interactions in each chromosome
+Title: Statistically significant epistatic interactions in each chromosome
+
 We ran the permutation method for each individual chromosome separately.
 
 As a result, we obtained SNP pairs that were non-randomly associated with the status of gastritis for the given patients.
@@ -165,7 +168,8 @@ Chromosomes 9 and 15 had many significant pairs, but many of those pairs include
 
 There were few significant SNP pairs within the chromosomes, and these pairs were not found in previous studies of gastric disease; therefore, further investigation of the pairs is needed to assess their biological significance.
 
-Network topologies
+Title: Network topologies
+
 Table 2 summarizes the results of the network topology measures (number of nodes and edges, clustering coefficient, and network centralization) for the gene-gene interaction network for each chromosome.
 
 The table shows that all chromosomes showed similar properties: the number of edges is 10-30-fold higher than the number of nodes, and the measurements reveal high clustering coefficients and network centralization.
@@ -178,7 +182,7 @@ In the real world, many biological networks show high average clustering coeffic
 
 The network in chromosome 18 showed the highest clustering coefficient, and we found some hub genes in the network that were reported to be associated with gastric disease.
 
-For example, Uchino et al.26] reported frequent loss of heterozygosity at the deleted in colorectal carcinoma (DCC) locus in gastric cancer.
+For example, Uchino et al.[26] reported frequent loss of heterozygosity at the deleted in colorectal carcinoma (DCC) locus in gastric cancer.
 
 Higher network centralization values show that hub genes highly affect the network [27].
 
@@ -192,7 +196,8 @@ From the results, we determined that there were many close gene-gene interaction
 
 We also found this tendency in most chromosomes.
 
-Enrichment analysis
+Title: Enrichment analysis
+
 We ran an enrichment analysis of the gene-gene interaction network for GO using DAVID [23].
 
 Table 3 summarizes the significantly enriched terms from DAVID.
@@ -205,7 +210,7 @@ Fig.6 presents the internal structure of the sub-network for transcription (GO:0
 
 This network has many zinc finger (ZNF) family genes.
 
-Taniuchi et al.29] reported that zinc-binding protein-89 (ZBP-89), which is related to the ZNF gene family and is a Krüppel-type zinc finger protein, is overexpressed in gastric cancer patients.
+Taniuchi et al.[29] reported that zinc-binding protein-89 (ZBP-89), which is related to the ZNF gene family and is a Krüppel-type zinc finger protein, is overexpressed in gastric cancer patients.
 
 Additionally, interleukin-1 receptor activity (GO:0004908) was significantly enriched in chromosome 2.
 
@@ -269,7 +274,9 @@ Red edges represent frequent SNP-SNP interactions between two genes (>10).
 
 GO, gene ontology; SNP, single-nucleotide polymorphism.
 
-Number of significant SNP pairs in each chromosome
-Network topologies for gene-gene interaction networks for each chromosome
-Significantly enriched GO terms for each chromosome
+Title: Number of significant SNP pairs in each chromosome
+
+Title: Network topologies for gene-gene interaction networks for each chromosome
+
+Title: Significantly enriched GO terms for each chromosome
 

@@ -1,4 +1,4 @@
-GNI Corpus Version 1.0: Annotated Full-Text Corpus of Genomics & Informatics to Support Biomedical Information Extraction.
+Title: GNI Corpus Version 1.0: Annotated Full-Text Corpus of Genomics & Informatics to Support Biomedical Information Extraction
 
 Genomics & Informatics (NLM title abbreviation: Genomics Inform) is the official journal of the Korea Genome Organization.
 
@@ -28,15 +28,14 @@ Then, we converted them into plain text files, using PDFMiner or other optical c
 
 The goal was to transform an image of a text into a readable text.
 
-The next step was annotation.
+Title: The next step was annotation.
 
-According to Bernardi et al.
-
-(2002) [8], the biological literature is characterized by heavy use of domain-specific terminology, wherein more than 12% of words found in biochemistry publications are technical terms.
+According to Bernardi et al.(2002) [8], the biological literature is characterized by heavy use of domain-specific terminology, wherein more than 12% of words found in biochemistry publications are technical terms.
 
 Therefore, we used NLTK module, for general text processing [9, 10], and GENIA tagger for recognizing biological terms [11–13].
 
 The annotation result used as an example sentence from our dataset, “Most RFLP markers (80%) were pepper-derived clones and these markers were evenly distributed all over the genome.” is as follows:
+
 (‘Most’, ‘Most’, ‘JJS’, ‘B-NP’, ‘O’) (‘RFLP’, ‘RFLP’, ‘NN’, ‘I-NP’, ‘B-DNA’) (‘markers’, ‘marker’, ‘NNS’, ‘I-NP’, ‘I-DNA’) (‘(’,‘(’, ‘(’, ‘O’, ‘O’) (‘80’, ‘80’, ‘CD’, ‘B-NP’, ‘O’) (‘%’, ‘%’, ‘NN’, ‘I-NP’, ‘O’) (‘)’,‘)’, ‘)’, ‘O’, ‘O’) (‘were’, ‘be’, ‘VBD’, ‘B-VP’, ‘O’) (‘pepper-derived’, ‘pepper-derived’, ‘JJ’, ‘B-NP’, ‘B-cell_line’) (‘clones’, ‘clone’, ‘NNS’, ‘I-NP’, ‘I-cell_line’) (‘and’, ‘and’, ‘CC’, ‘O’, ‘O’) (‘these’, ‘these’, ‘DT’, ‘B-NP’, ‘O’) (‘markers’, ‘marker’, ‘NNS’, ‘I-NP’, ‘O’) (‘were’, ‘be’, ‘VBD’, ‘B-VP’, ‘O’) (‘evenly’, ‘evenly’, ‘RB’, ‘I-VP’, ‘O’) (‘distributed’, ‘distribute’, ‘VBN’, ‘I-VP’, ‘O’) (‘all’, ‘all’, ‘DT’, ‘B-ADVP’, ‘O’) (‘over’, ‘over’, ‘IN’, ‘B-PP’, ‘O’) (‘the’, ‘the’, ‘DT’, ‘B-NP’, ‘O’) (‘genome’, ‘genome’, ‘NN’, ‘I-NP’, ‘O’) (‘.’, ‘.’, ‘.’, ‘O’, ‘O’).
 
 Four different levels of tags are attached for each word in the example sentence: base form, POS tag, chunk tag, and named-entity tag.

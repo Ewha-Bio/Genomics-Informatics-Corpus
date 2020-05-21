@@ -1,4 +1,4 @@
-misMM: An Integrated Pipeline for Misassembly Detection Using Genotyping-by-Sequencing and Its Validation with BAC End Library Sequences and Gene Synteny.
+Title: misMM: An Integrated Pipeline for Misassembly Detection Using Genotyping-by-Sequencing and Its Validation with BAC End Library Sequences and Gene Synteny
 
 As next-generation sequencing technologies have advanced, enormous amounts of whole-genome sequence information in various species have been released.
 
@@ -54,7 +54,8 @@ In this study, we propose a user-friendly pipeline, called misMM, which automati
 
 These results are verified by using the BAC end-sequence library published in NCBI and the gene synteny relation between Arabidopsis thaliana and B. rapa [28–31].
 
-Data source
+Title: Data source
+
 The end sequences of B. rapa accession Chiifu-401–42, a Chinese cabbage BAC library (KBrH, KBrB, and KBrS), were downloaded from NCBI and used to verify the putative misassembly genome regions.
 
 In order to investigate the gene synteny relation between A. thaliana TAIR10 and B. rapa genome V1.5, the corresponding general feature format (GFF) annotation files and protein sequences of each species were downloaded from http://ensemblgenomes.org and http://brassicadb.org, respectively.
@@ -67,10 +68,9 @@ chinensis)—with distinct morphologies [26].
 
 From the study, genotype data were obtained at a total of 8,176 positions.
 
-Configuration of the misMM pipeline for misassembled block detection
-misMM, a pipeline for genome misassembled block detection, was written in a Linux shell and with Python ver.
+Title: Configuration of the misMM pipeline for misassembled block detection
 
-2.7 in-house codes.
+misMM, a pipeline for genome misassembled block detection, was written in a Linux shell and with Python ver.2.7 in-house codes.
 
 The first step is preprocessing: after loading all GBS raw data files, markers with a missing value of over 8% were filtered out.
 
@@ -92,12 +92,14 @@ All of the work flow of this pipeline is described in Fig.1.
 
 The misMM pipeline scripts can be downloaded from http://sskimbnas.ipdisk.co.kr:80/publist/HDD1/misMM/misMM.tar.gz.
 
-Validation using BAC end sequences
+Title: Validation using BAC end sequences
+
 In order to confirm the misassembled blocks with experimental data, we extracted 41,969 pairs of end sequences from the BAC libraries (KBrS, KBrH, and KBrB) of B. rapa and carried out sequence alignment against the B. rapa reference genome sequence using Nucmer (MUMmer3.23) with the proper options (--maxmatch, use all anchor matches; -g, global alignment; -I, >95%; -r, sort output lines by reference).
 
 The Nucmer results were then filtered for discordant BAC end pairs with one end aligned to the MCB and the other end to the ADB.
 
-Validation using gene synteny relation between A. thaliana and B. rapa
+Title: Validation using gene synteny relation between A. thaliana and B. rapa
+
 For validation with gene synteny, the protein sequence of B. rapa were matched to those of A. thaliana using BLASTP (Blast 2.2.26), and the top four hits for each query were retained.
 
 The tabulated results were then sorted, based on the genomic coordinates of each protein, and the gene synteny relation was examined manually.
@@ -188,9 +190,13 @@ Example of Brassica rapa genetic map made with misMM pipeline.
 
 Red colors indicate misassembled candidate blocks.
 
-Results of misassembled block detection analysis in Brassica rapa with misMM
-Example of validation of BAC end library results
-Information on genes included in example misassembled candidate block
-Example of protein ortholog list, sorted by Brassica rapa gene coordination
-Example of protein ortholog list, sorted by Arabidopsis thaliana gene coordination
+Title: Results of misassembled block detection analysis in Brassica rapa with misMM
+
+Title: Example of validation of BAC end library results
+
+Title: Information on genes included in example misassembled candidate block
+
+Title: Example of protein ortholog list, sorted by Brassica rapa gene coordination
+
+Title: Example of protein ortholog list, sorted by Arabidopsis thaliana gene coordination
 

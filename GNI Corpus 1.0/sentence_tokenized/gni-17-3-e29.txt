@@ -1,4 +1,4 @@
-Analysis of differences in human leukocyte antigen between the two Wellcome Trust Case Control Consortium control datasets.
+Title: Analysis of differences in human leukocyte antigen between the two Wellcome Trust Case Control Consortium control datasets
 
 The Wellcome Trust Case Control Consortium (WTCCC) study was a large genome-wide association study that aimed to identify common variants associated with seven diseases.
 
@@ -64,7 +64,8 @@ The imputation yielded information on HLA alleles, amino acid residues, and intr
 
 Then, we tested the significance of differences in these markers between the control datasets.
 
-Summary of the cohorts
+Title: Summary of the cohorts
+
 A detailed description of the study samples can be found in the original WTCCC GWAS paper [4].
 
 In summary, the WTCCC dataset includes cases of seven major complex diseases: type 1 diabetes, type 2 diabetes, coronary heart disease, hypertension, bipolar disorder, rheumatoid arthritis and Crohn disease, each with ~2,000 individuals, and ~3,000 shared controls from two cohorts.
@@ -77,7 +78,8 @@ The 1958 Birth Cohort (also known as the National Child Development Study) consi
 
 The second control group consists of 1,500 blood donors recruited from the UKBS in England, Scotland, and Wales.
 
-SNP quality control and filtration
+Title: SNP quality control and filtration
+
 In the WTCCC dataset, 4,351 SNPs had already been excluded based on a Hardy-Weinberg equilibrium (HWE) test threshold of p < 5.7 × 10-7 in the combined set of 2,938 controls, as well as 93 SNPs with p-values < 5.7 × 10-7 from either a one- or two-degrees of freedom test for differences between the two control groups.
 
 In this analysis, we only focused on autosomal variants (459,059 SNPs).
@@ -88,7 +90,8 @@ We removed SNPs that showed a genotype failure rate greater than 0.05, SNPs with
 
 After applying these QC criteria to the combined control cohort, we obtained 358,085 SNPs.
 
-Principal component analysis
+Title: Principal component analysis
+
 We conducted principal component analysis (PCA) with PLINK (v1.90b) [10] (--pca) to analyze systematic differences in genome-wide allele frequencies between the two cohorts.
 
 PCA is a popular dimensionality reduction technique that can account for population stratification in genetic data [11].
@@ -103,17 +106,20 @@ The top two and three PCs were used to build two- and three-dimensional PC plots
 
 The top 20 components were used as covariates in the logistic regression for the genome-wide SNPs, as well as in the logistic regression for the HLA binary markers.
 
-Phase 2 HapMap dataset
+Title: Phase 2 HapMap dataset
+
 We obtained the publicly available Phase 2 HapMap data for 270 individual samples from three different populations (Central European [CEU], Yoruba in Ibadan, Nigeria [YRI], and the East Asian combined sample of Japanese in Tokyo and Han Chinese in Beijing [Asian: JPT + CHB]) [12].
 
 We used this dataset to perform PCA to quantify the population structure of the samples.
 
-Kolmogorov-Smirnov test
+Title: Kolmogorov-Smirnov test
+
 The Kolmogorov-Smirnov (K-S) test was used to assess the equality of frequency distributions between the 58C and UKBS cohorts.
 
 We calculated the corresponding D statistic and p-value of the test using the basic stats package in R. p-values were two-sided.
 
-Imputation of HLA alleles
+Title: Imputation of HLA alleles
+
 We used SNP2HLA [5] to impute HLA information for the 58C and UKBS cohorts, where the HLA information was generated as binary markers for (1) HLA alleles, (2) amino acid residues, and (3) intragenic SNPs.
 
 For the reference panel for imputation, we employed the Type I Diabetes Genetics Consortium dataset, which consists of 5,225 individuals of European ancestry [9].
@@ -122,7 +128,8 @@ The genomic region was restricted to the MHC complex region (chr6:29-34Mb, hg18)
 
 As a result, we obtained the imputed genotypes of 8,961 binary markers, which were composed of 424 markers for HLA alleles (e.g., HLA_A_0101; the presence of HLA-A*01:01 allele in the HLA-A gene), 1,276 markers for amino acid residues (e.g., AA_A_245_30020064_V; the presence of valine at the 245th amino acid position of the HLA-A gene), 1,390 markers for intragenic SNPs (e.g., SNP_A_30020064; the intragenic SNP at base position of 30020064 in the HLA-A gene), and 5,871 markers for genomic variants (e.g., rs969931).
 
-Allele frequency difference analysis between the two control cohorts
+Title: Allele frequency difference analysis between the two control cohorts
+
 We performed association tests to compare allele frequencies between the control cohorts.
 
 We used the logistic regression model in PLINK v.1.90b (--logistic) [10].
@@ -135,7 +142,8 @@ For the HLA analysis, we tested all imputed markers, including HLA alleles, amin
 
 Similar to the genome analysis, we included the same top 20 PCs as covariates in the HLA analysis.
 
-Principal component analysis
+Title: Principal component analysis
+
 We first used PCA to analyze differences between the two control cohorts at the population level.
 
 We calculated PCs in four ways: (1) using the 58C cohort only, (2) using the UKBS cohort only, (3) using the two cohorts combined, and (4) using the combined set with the HapMap data (N=270) integrated.
@@ -158,7 +166,8 @@ Fig.1E presents the PCs of the WTCCC merged with three HapMap populations (CEU, 
 
 The plot shows that the 58C, UKBS, and CEU cohorts were grouped together in the PC plot, showing that the two control cohorts had European ancestry homogeneous to the CEU.
 
-SNP allele frequency distribution of the two cohorts
+Title: SNP allele frequency distribution of the two cohorts
+
 We examined the allele frequencies of genome-wide SNPs in the two cohorts, using 358,085 autosomal SNPs from 2,938 samples (total genotyping rate, 0.996).
 
 Table 1 provides descriptive statistics of the allele frequency distribution in each cohort.
@@ -175,7 +184,8 @@ The K-S test returns a D statistic, which refers to the absolute maximum distanc
 
 D was 0.015 and the p-value was 0.819; therefore, we could not reject the null hypothesis that the two datasets were drawn from the same distribution.
 
-Allele frequency association test between the two cohorts
+Title: Allele frequency association test between the two cohorts
+
 Next, we performed a GWAS to detect genomic variants that showed significant differences in the MAF between the two cohorts.
 
 In the original study, the WTCCC performed a similar test to check differences in the allele frequencies between the 58C and UKBS cohorts using genome-wide scans.
@@ -218,7 +228,8 @@ Upon visual inspection, the Q-Q plot appeared slightly more inflated in our anal
 
 An exact comparison of inflation was not possible because the result of the inflation statistic in the original study was not available.
 
-HLA allele frequency distribution of the two cohorts
+Title: HLA allele frequency distribution of the two cohorts
+
 Next, we examined the HLA allele frequencies in each cohort.
 
 We imputed the HLA information using SNP2HLA.
@@ -249,7 +260,8 @@ We then performed the K-S test for each HLA gene, and the results are presented 
 
 All the HLA genes showed non-significant p-values in the K-S test, demonstrating that there was no significant difference in the imputed HLA allele frequencies between the two control cohorts.
 
-HLA association test between the two cohorts
+Title: HLA association test between the two cohorts
+
 Finally, we tested the HLA difference between the two cohorts using logistic regression.
 
 Similar to the genome-wide analysis above, we included the top 20 PCs as covariates to account for regional differences among the samples.
@@ -334,6 +346,7 @@ Red line denotes the expected values under no inflation.
 
 MAF, minor allele frequency.
 
-Summary statistics of MAF for single-nucleotide polymorphisms
-Summary statistics of HLA AF
+Title: Summary statistics of MAF for single-nucleotide polymorphisms
+
+Title: Summary statistics of HLA AF
 

@@ -1,4 +1,4 @@
-Towards cross-platform interoperability for machine-assisted text annotation.
+Title: Towards cross-platform interoperability for machine-assisted text annotation
 
 In this paper, we investigate cross-platform interoperability for natural language processing (NLP) and, in particular, annotation of textual resources, with an eye toward identifying the design elements of annotation models and processes that are particularly problematic for, or amenable to, enabling seamless communication across different platforms.
 
@@ -32,7 +32,7 @@ Our goal is to shed light on the issues that arise when attempting to make these
 
 Our analysis is the result of a collaboration at the 5th Biomedical Linked Annotation Hackathon (BLAH 5, http://blah5.linkedannotation.org) and takes into account both implemented modifications to the three platforms and proposed changes that are not fully implemented at the time of this writing.
 
-Consider the scenario where a researcher wants to investigate recent advances in gene interaction research documented in publications from a “document repository” such as PubMed Central.
+Title: Consider the scenario where a researcher wants to investigate recent advances in gene interaction research documented in publications from a “document repository” such as PubMed Central.
 
 The researcher will select a set of appropriate texts from the repository and apply a named entity recognition (NER) “text analysis service” to identify potential gene mentions in the data.
 
@@ -47,14 +47,17 @@ The revised annotations can then be used to train a machine learning algorithm a
 This overall cycle involving the human-in-the-loop is repeated as many times as necessary until a satisfactory result is obtained.
 
 We consider here three platforms, each of which supports some aspect(s) of the process described above, but none of which provides the entire suite of required tools and resources:
-PubAnnotation
+
+Title: PubAnnotation
+
 PubAnnotation [10] is a repository of annotation data sets.
 
 It aims at (1) linking annotations contributed by various groups through canonical texts, (2) providing an easy and fine-grained access to the linked annotations through dereferenceable URIs, and (3) enabling search across multiple annotation data sets.
 
 It is designed to be an open platform so that it can interact with other systems through a REST API.
 
-The LAPPS Grid
+Title: The LAPPS Grid
+
 The LAPPS Grid [3] provides a large collection of NLP tools exposed as SOAP (Simple Object Access Protocol) web services, together with a variety of resources commonly used in the domain.
 
 The services are made available to users via a web-based workflow development engine (https://galaxy.lappsgrid.org), directly via SOAP calls, and programmatically through Java and Python interfaces.
@@ -67,7 +70,8 @@ LIF documents are meant to be passed along a pipeline of NLP components, where e
 
 Existing views cannot be modified, but their annotations may be copied to a new view if necessary to add or modify names and/or attribute values.
 
-INCEpTION
+Title: INCEpTION
+
 INCEpTION [13] is a text annotation platform that integrates interactive annotation, knowledge management and corpus creation into a single platform.
 
 The system provides “recommenders” that learn from user annotations and provide annotation suggestions.
@@ -98,7 +102,8 @@ By “annotation schema,” we refer to domain-specific categories ranging from 
 
 Fig.1 shows a coreference annotation example represented in the original formats of the three platforms, illustrating their difference.
 
-PubAnnotaton ↔ INCEpTION
+Title: PubAnnotaton ↔ INCEpTION
+
 The PubAnnotation model defines two primary annotation types: “denotations” (to connect text spans with annotations) and “relations” (to connect annotations).
 
 INCEpTION defines three types of annotations (“spans,” “relations,” and “chains”), each of which can be associated with any number of “features.” The two data models largely share important annotation concepts, e.g., denotations/spans, and relations.
@@ -141,7 +146,8 @@ Structured attributes are modeled in UIMA as subtypes of "TOP" (The root of the 
 
 For example, if an entity is associated with a structured attribute called "Author" in UIMA with the fields "first" and "last" this can be represented in PubAnnotation as two simple attributes, "name.first" and "name.last".
 
-PubAnnotaton ↔ LAPPS Grid
+Title: PubAnnotaton ↔ LAPPS Grid
+
 Data interoperability between PubAnnotation and the LAPPS Grid faces many of the same challenges as interoperability between PubAnnotation and INCEpTION; therefore, many of the solutions for INCEpTION ↔ PubAnnotation conversion can be used for the LAPPS Grid as well.
 
 As noted before, PubAnnotation’s annotation model is schemaless or may optionally rely on an external resource, e.g., a RDF schema or OWL ontology.
@@ -182,7 +188,8 @@ Semantic interoperability can often be achieved by mapping names defined in one 
 
 In such cases, manual intervention is required to determine inter-platform correspondences.
 
-LAPPS Grid ↔ INCEpTION
+Title: LAPPS Grid ↔ INCEpTION
+
 The WSEV defines an ontology of annotation types and their attributes that may be referenced from within LIF annotation documents via unique URIs.
 
 Objects produced and consumed by NLP components in LAPPS Grid pipelines are mapped to corresponding terms in the WSEV, which enables ensuring that a given component can use the annotations produced by a previous component.
@@ -215,7 +222,8 @@ In addition to being able to transport data between the platforms, it is also im
 
 To this end, we investigate here the interactions among the three platforms.
 
-PubAnnotation ↔ INCEpTION
+Title: PubAnnotation ↔ INCEpTION
+
 The process-level integration of PubAnnotation and INCEpTION is currently controlled by the INCEpTION side which acts as a client to the PubAnnotation API.
 
 PubAnnotation can be connected as an external document repository to the INCEpTION platform, meaning that its contents can be searched from within the INCEpTION UI and documents of interest to the user can be imported for annotation.
@@ -236,7 +244,8 @@ When viewing annotations, the user may choose in INCEpTION which types to displa
 
 For the sake of simplicity, we consider that one INCEpTION project is exported as one PubAnnotation project and do not attempt to split INCEpTION projects up into multiple PubAnnotation projects, even if that means that viewing the annotated data using PubAnnotation’s native TextAE visualization may be inconvenient.
 
-PubAnnotation ↔ LAPPS Grid
+Title: PubAnnotation ↔ LAPPS Grid
+
 Documents from PubAnnotation are made available in the LAPPS Grid as data sources, that is, services that provide documents for processing by other services.
 
 Documents are retrieved from PubAnnotation using their PubMed ID number.
@@ -247,14 +256,20 @@ The documents may be downloaded from PubAnnotation as text documents with no ann
 
 Annotated documents can also be sent back to the PubAnnotation platform for publication and alignment with the canonical text, so that the annotations are available along with all other published annotations of the same text for others to use.
 
-Several LAPPS Grid services are also made available as annotators on the PubAnnotation platform, so that documents may be annotated directly on the PubAnnotation web site.
+Title: Several LAPPS Grid services are also made available as annotators on the PubAnnotation platform, so that documents may be annotated directly on the PubAnnotation web site.
 
 The tools specifically tuned to biomedical data that are currently available from the LAPPS Grid include:
-• Abner biomedical named entity recognizer
-• PennBio gene tagger
-• TimeML time and event annotator
-• Tokenizer and part of speech tagger from Stanford CoreNLP
-LAPPS Grid ↔ INCEpTION
+
+Title: • Abner biomedical named entity recognizer
+
+Title: • PennBio gene tagger
+
+Title: • TimeML time and event annotator
+
+Title: • Tokenizer and part of speech tagger from Stanford CoreNLP
+
+Title: LAPPS Grid ↔ INCEpTION
+
 INCEpTION integrates interactive annotation support for users to speed up annotating and improve the annotation quality.
 
 One kind of support is implemented in form of so-called recommenders.
@@ -297,7 +312,8 @@ Additionally, we have identified several places where, by including more metadat
 
 For example, PubAnnotation could provide support for storing schema information, thereby removing the need for INCEpTION and the LAPPS Grid to use their own conventions, and thus facilitating conversion of annotations between the platforms.
 
-At the same time, we have identified several area(s) where obstacles to interoperability among the three platforms remain, which are attributable to two major sources:
+Title: At the same time, we have identified several area(s) where obstacles to interoperability among the three platforms remain, which are attributable to two major sources:
+
 (1) Differences in the “overall organization” of annotations (as opposed to the structure of the annotation content itself), i.e., the PubAnnotation organization of annotation sets in projects, the LIF organization into views with accompanying metadata, and the INCEpTION organization as a UIMA hierarchy of objects.
 
 (2) Difficulty of mapping annotation names that do not necessarily have a corresponding object or feature in the other scheme(s).
@@ -348,5 +364,5 @@ UIMA, Unstructured Information Management Architecture; LAPPS, Language Applicat
 
 Named entity annotation in INCEpTION (A), and its conversion into PubAnnotation (B).
 
-Comparison of annotation model features between LAPPS/LIF, INCEpTION, and PubAnnotation
+Title: Comparison of annotation model features between LAPPS/LIF, INCEpTION, and PubAnnotation
 
