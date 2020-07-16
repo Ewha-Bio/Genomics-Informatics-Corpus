@@ -1,0 +1,36 @@
+﻿PrimateDB: Development of Primate Genome DB and Web Service
+
+The comparative analysis of the human and primate genomes including the chimpanzee can reveal unique types of information impossible to obtain from comparing the human genome with the genomes of other vertebrates. PrimateDB is an open depository server that provides primate genome information for the comparative genome research. The database also provides an easy access to variable information within/between the primate genomes and supports analyzed information, such as annotation and retroelements and phylogeny. The comparative analyses of more primate genomes are also being included as the long-term objective.
+
+After the completion of the human genome project, primate genomes including a common chimpanzee are focused for understanding the origin of humanity and human genetic diseases. These genome data are being produced rapidly and massively. However, information of primate genome are scattered throughout several databases.
+
+There are many families of retroelements in primate genomes. As the most successful short interspersed elements (SINEs) in primate genomes, Alu elements have had remarkable proliferation during the primate
+
+radiation and have expanded to more than one million repetitive elements dispersed throughout the human genome (Batzer and Deininger, 2002). Among Alu repeat subfamily, AluY elements might be contributed the driving force for speciation between human and chimpanzee from the common ancestor (Sakaki et al., 2003; Watanabe et al., 2004)
+
+We constructed a database, PrimateDB that integrates primate genomic data and provides several analyzed data on whole-genome scale by bioinformatics methods. In addition the user can easily search variable information about the genomes of primate including genome sequence, annotation information, retroelement information by using the database.
+
+The primate genome database was implemented using the Select Query Language (SQL) from the MySQL database server. Whole genome sequence data of primate mainly from common chimpanzee were
+
+downloaded from Trace archive of NCBI (http://www. ncbi.nih.gov/rraces/trace.cgi) and local alignment with human chromosomes was done by using BLAT (Kent, 2002). The database relies on the build 30 of NCBI human genome and will be updated with each new release. The pre-dataset of each chromosome group was assembled by using ARACHNE (Batzoglou et al., 2002; Jaffe eta!., 2003). For analysis of large scale data from the Trace archive an analytical pipeline was designed by Perl language.
+
+The resulting contigs was annotated by using BLAT to UCSC Human reference sequence (hg17). The assembled sequences written by Perl script were added as a customer track to UCSC genome browser and resulting data were stored in the MySQL database server (Fig. 1).
+
+For the comparison of disease related genes located in human chromosomes with those of primate orthologous chromosomes, complete exon sequences of disease related genes annotated at OMIM (Online Mendelian Inheritance in Man) dataset of NCBI ( http://www.ncbi.nih . gov/ entrez/query.fcgi?db=OMIM) were used for executing
+
+
+phylogemc analyses by WebPHYLIP (Um and Zhang, 1999) and nucleotide substitution types were examined (Fig. 3).
+
+Human, chimpanzee, gorilla, and orangutan genome sequences were retrieved from the UCSC Genome Browser by using human RefSeq. The human and
+
+chimpanzee genome sequences were annotated by using both CENSOR (Version 4.X; http://www.girinst.org ) and RepeatMasker (Smit and Green, unpublished work; http://repeatmasker.genome.washingthon.edu ). The resulting data were stored to MySQL database. Analysis of repeat elements was executed by dividing genome region into UTR, exon and intron, respectively. The outcome of queries can be sequence alignment, genomic locus in
+
+
+which retroelements are embedded and sequence of families and subfamilies, map image, and gene symbol information (Fig. 2). Image of retroelement was made by using GD library.
+
+The database provides links to a variety of related resources on the Internet. Through these links the user can access related human and chimpanzee genome map information available in the UCSC Genome Browser and NCBI and they are used as a reference to the most recent genome map.
+
+The HTML interface for PrimteDB (Fig. 3) is made by using PERL and PHP. There are five web pages: The main page, contig search, retroelement search, reference, and analysis tools. The PrimateDB web interface allows access of data through graphical or list browsing, searching by keywords, names or sequences of repeat family and class. The schematic physical map presents the extent and locations of genes and retroelements in the area defined by the user query. Alignment of the nucleotide sequences queried by user can be retrieved.
+
+Analytic pipeline for comparative approach of primate genome information mainly from the NCBI Trace archive of chimpanzee genome was designed and constructed. Through the analysis system other primate genomes were included and analyzed. As human genome as a reference chimpanzee genome was also compared for the comparative analysis of retroelement from which functional repeat can be analyzed. Based upon the present databases evolutionary analysis of genome of primates including retroelements to understand human uniqueness should be stimulated.
+
