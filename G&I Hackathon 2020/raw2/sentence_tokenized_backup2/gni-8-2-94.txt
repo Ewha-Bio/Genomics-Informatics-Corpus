@@ -1,0 +1,118 @@
+Java DOM Parsers to Convert KGML into SBML and BioPAX Common Exchange Formats.
+
+Integrating various pathway data collections to create new biological knowledge is a challenge, for which novel computational tools play a key role.
+
+For this purpose, we developed the Java-based conversion modules KGML2SBML and KGML2BioPAX to translate KGML (KEGG Markup Language) into a couple of common data exchange formats: SBML (Systems Biology Markup Language) and BioPAX (Biological Pathway Exchange).
+
+We hope that our work will be beneficial for other Java developers when they extend their bioinformatics system into SBML- or BioPAX-aware analysis tools.
+
+This is part of our ongoing effort to develop an ultimate KEGG-based pathway enrichment analysis system.
+
+Recently, various frameworks for the XML formats of biological network information were proposed (Achard et al., 2001; Finney et al., 2006).
+
+Among them, two approaches have gained popularity as promising candidates to be adopted as future standards in the field: SBML and BioPAX (Hucka et al., 2003; Strömbäck et al., 2005).
+
+On the other hand, we have been working on a KEGG-based pathway analysis system in past years (Jang, 2010; Ham, 2007).
+
+Unfortunately, KGML (Kanehisa and Goto, 2000) is not a representative common pathway exchange format.
+
+The KEGG site (http://www.
+
+kegg.
+
+org/) provides metabolic pathway data, not only in KGML format but also in BioPAX (http://www.
+
+biopax.
+
+org/) Level 1 and SBML (http://www.
+
+sbml.
+
+org/) format.
+
+Still, the KEGG site itself does not offer conversion tools.
+
+We were able to find only two conversion tools, called KEGG2SBML (http://sbml.
+
+org/Software/KEGG2SBML) and KEGGconverter (http://www.
+
+grissom.
+
+gr/Keggconverter).
+
+Both KEGG2SBML (Funahashi, 2004) and KEGGconverter (Moutselos et al, 2009) deal only with SBML.
+
+Thus, we decided to develop Javabased KGML2SBML and KGML2BioPAX parsers with a graphical user interface.
+
+These parsers not only convert KGML into SBML but also convert KGML into BioPAX.
+
+BioPAX and SBML are becoming one of the most widely used common data exchange formats that can be widely used to simulate and visualize biological networks (Strömbäck et al., 2005).
+
+Both BioPAX (Level 3) and SBML (Level 1) can encode signaling pathways, metabolic pathways, and regulatory pathways, although SBML can represent finer details (Fig.1).
+
+However, they    are not competing standards.
+
+Rather, they are complementary approaches to describe related phenomena.
+
+SBML is targeted at modeling systems of dynamic biochemical reaction networks.
+
+BioPAX is an RDF (Resource Description Framework) and OWLbased standard and assumes a static view of the network model.
+
+BioPAX does not contain mathematical formulas but provides more detailed information concerning the individual molecules and interactions.
+
+If one’s aim is simulation and computational analysis, then SBML has better API supports than BioPAX.
+
+However, BioPAX is a rich standard when it comes to encoding the interactions, such as genetics.
+
+Unfortunately, BioPAX and SBML, the two most widespread standards for storing pathway data, are semantically different.
+
+Conversion modules between KGML and these two formats may lead to loss or distortion of data.
+
+This seriously limits the automatic integration of models.
+
+To obtain sufficient generality in the model, many details have to be omitted in the model hierarchy.
+
+We implemented the KGML2SBML and KGML2BioPAX parsers, which convert KGML into SBML Level 2, version 4 documents, and BioPAX.
+
+These two parsers are implemented with the Java DOM (Document Object Model) parser and require Java APIs for XML Processing (http://java.
+
+sun.
+
+com/xml/jaxp/index.
+
+html).
+
+The mappings between KGML and these two formats are sum  marized in Fig.2.
+
+KGML2SBML uses the LIGAND database of KEGG as input to generate SBML documents.
+
+For example, KineticLaw in reaction and specific names of compounds can be added in a converted SBML file with the use of KEGG Ligand information.
+
+An exemplary conversion between KGML and SBML is shown in Fig.3.
+
+Conversion between KGML and BioPAX has been done in a similar fashion.
+
+The online SBML Validator (http://sbml.
+
+org/Facilities/Validator) has been used to check the syntax and internal consistency for converted SBML documents.
+
+Also, BioPAX Validator (http://www.
+
+biopax.
+
+org/biopax-validator/index.
+
+html) has been used to check converted BioPAX documents and fix syntatic and semantic errors.
+
+All converted SBML and BioPAX documents are available (https://sourceforge.
+
+net/projects/ngssequencealig/).
+
+Most current simulation and analysis packages already support SBML and BioPAX, and more are in the process of being extended to support them.
+
+Also, most of the top journals in the bioinformatics field encourage authors to prepare models of biochemical reaction networks using common exchange formats and to deposit the model into the BioModels database.
+
+For this reason, we developed simple Java utility tools for converting KGML to SBML and BioPAX.
+
+Making the databases available in common pathway exchange formats would be a first step toward building an open source pathway analysis resource.
+

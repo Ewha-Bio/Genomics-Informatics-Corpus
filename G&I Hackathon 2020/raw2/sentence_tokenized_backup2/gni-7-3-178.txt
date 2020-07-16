@@ -1,0 +1,70 @@
+COCAW: A Genome-wide Pattern Search System for Designing Microbial Probes.
+
+A few bioinformatics tools have been used to find out conserved regions as probes.
+
+We have developed a system based on a heuristic method with web interfaces to find out conserved regions against microbial genomes.
+
+The system runs in real time by using relative entropy in limited narrow regions and detecting similar regions between pair regions with local alignment.
+
+The system could be useful to find out conserved regions as genome-wide scale.
+
+Many bioinformatics tools have been used for biomedical applications, especially for genomebased researches.
+
+A lot of biomedical researches have focused on finding out genetic characteristics related with diseases.
+
+Specifically conserved regions among strains, species or genus can be interpreted as diverse meanings depending on cases.
+
+Specific regions among some microbes can be used for diagnostic purpose, especially when using microarray chips.
+
+Homology search tools such as FASTA (Pearson, 1990), BLAST (Altschul, 1998), ClustalW (Thompson, 2002), BLAT (Kent, 2002) are generally used to find similar regions.
+
+While they can be used to find out specific regions among a given genomes, additional processing should be done to manipulate the homology search results to extract conserved regions.
+
+Since the most popular Primer3 was released, a few programs have been developed for primer design and probe design.
+
+Some programs such as PCR Suite (van Baren, 2004) and BatchPrimer3 (You, 2004) provide userfriendly Primer3 interfaces including webbased environment.
+
+Some programs have been developed for designing very specific primers (Moro, 2009).
+
+iCODEHOP (Boyce, 2009) uses multialignment result from ClustalW.
+
+Genomemasker (Andreson, 2006) and UniPrime (Boutros, 2009) treat genome sequences for primer design.
+
+We have developed COCAW (Comparative Observer for Conserved Areas among Whole genomes), which has web interfaces for the input of multiple genomes and the output of graphical display of detected conserved regions.
+
+Fig.1 shows the general algorithm of COCAW.
+
+Common kmer patterns are detected in genomes as seed patterns for finding out the candidates of conserved pair regions.
+
+To select comparison regions instead of com  paring whole genomes, the information entropy for each k-mer is calculated against whole genomes.
+
+After selecting the regions to be compared based on the information entropy, local alignment is calculated to detect final conserved pair regions.
+
+Fig.2 shows the main web interface of COCAW.
+
+Inputs are (a)∼(d) including a reference genome, compared genomes, the comparison range of the reference genome, and tolerance value of the information entropy comparison.
+
+And the detected conserved regions are displayed at (e)∼(f).
+
+The right shot shows an example of the summary of the searched result, where one genome has a similar region with the reference genome and no similar regions are found between the reference genome and other genomes.
+
+Fig.3 shows the running time analysis of COCAW.
+
+X-axis indicates the number of genomes and Yaxis indicates the running time.
+
+And multiple plots for error cutoffs of information entropy are displayed.
+
+While the running time increases rapidly by the number of compared genomes, it is still very practical for conserved region analysis of species and genus.
+
+COCAW is a tool for scanning multiple genomes for conserved regions and it could be useful for genomewide detection of the patterns as probes among a group of genomes.
+
+Currently it shows the detected conserved regions with a little graphical interface, and it will be upgraded for more practical and informational interface especially for multiple genome processing.
+
+COCAW finds out conserved regions among multiple genomes.
+
+As a groupspecific pattern is an exclusively conserved region, it is not only conserved in the group but also should not be in other genomes.
+
+So for detecting very strict group specific patterns, more complicated and timeconsuming processes are additionally required.
+
+More practical algorithms should be developed for massive number of genomes with practical user interfaces for diverse applications.
+

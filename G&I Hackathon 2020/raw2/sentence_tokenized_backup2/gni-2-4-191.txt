@@ -1,0 +1,192 @@
+The BIOWAY System: A Data Warehouse for Generalized.
+
+Representation & Visualization of Bio-Pathways
+
+Exponentially increasing biopathway data in recent years provide us with means to elucidate the large-scale modular organization of the cell.
+
+Given the existing information on metabolic and regulatory networks, inferring biopathway information through scientific reasoning or data mining of large scale array data or proteomics data get great attention.
+
+Naturally, there is a need for a user-friendly system allowing the user to combine large and diverse pathway data sets from different resources.
+
+We built a data warehouse - BIOWAY - for analyzing and visualizing biological pathways, by integrating and customizing resources.
+
+We have collected many different types of data in regards to pathway information, including metabolic pathway data from KEGG/LIGAND, signaling pathway data from BIND, and protein information data from SWISS-PROT.
+
+In addition to providing general data retrieval mechanism, a successful user interface should provide convenient visualization mechanism since biological pathway data is difficult to conceptualize without graphical representations.
+
+Still, the visual interface in the previous systems, at best, uses static images only for the specific categorized pathways.
+
+Thus, it is difficult to cope with more complex pathways.
+
+In the BIOWAY system, all the pathway data can be displayed in computer generated graphical networks, rather than manually drawn image data.
+
+Furthermore, it is designed in such a
+
+way that all the pathway maps can be expanded or shrinked, by introducing the concept of super node.
+
+A subtle graphic layout algorithm has been applied to best display the pathway data.
+
+General-purpose database integration systems aim at integrating data from remote heterogeneous sources.
+
+Compiled systems can serve as a platform for various special-purpose systems.
+
+EnsEMBL is an excellent example of a successful integration of data and tools for the genome browsing (Wong., 2002; Clamp etal., 2003).
+
+In case of pathway data, PFBP (Protein Function and Biochemical Pathway) project is an on-going project, lead by EBI (van Helden et al., 2001).
+
+Its main output, aMAZE database that is constructed by parsing data from BRENDA, KEGG/LIGAND, and EMP primarily focuses on the metabolic pathways.
+
+Each database has its own ontology and data model and is suitable for the representation of metabolism, gene regulation, and signal transduction.
+
+But it has limitations; it does not yet provide signaling and protein interaction data in their alpha version.
+
+Although KEGG contains metabolic and regulatory pathway information, it contains manually drawn image data rather than machine executable formats.
+
+To make matters worse, it is hard to understand interconnection among pathways because EC(Enzyme Classification) numbers are used in metabolic pathways instead of protein names in regulatory pathways.
+
+There is a consortium, called BIOPAX, which aims to standardize data exchange formats, data models and ontology for biopathways.
+
+By combining the merits of previous systems, we have built a data warehouse, named BIOWAY by integrating and customizing pathway data from various resources (especially focused on pathways regarding agricultural microorganisms).
+
+The BIOWAY system is designed as a three-layer application as shown Fig.1: a layer for data repository(Database Layer), the second layer for analyzing biopathway data(Analysis Layer), and the third level for providing interfaces layer (Visualization Layer).
+
+The BIOWAY system has been uniformly written in Java with ORACLE9i.
+
+For data exchange between analysis and visualization, the system offers an XML export.
+
+There are four representative entity types in BIOWAY: nodes, interactions, pathways, and networks.
+
+The four entity types have recursive hierarchical relationship.
+
+The relationship between nodes is interaction.
+
+A set of interactions is used for the description of pathways.
+
+A network is composed of a set of pathways.
+
+Pathways can be considered as a node in a network.
+
+According to these data model, we show the whole network as pathway of pathways.
+
+Any molecules in a cell are nodes in BIOWAY.
+
+It contains five sub-entity sets: DNA, RNA, protein, complex and compound.
+
+A DNA node contains only a small number of regulatory sequences (eg promoter regions) from BIND since Protein coding DNA data is stored in a separate GENE table.
+
+A RNA node contains snRNA that is a component of snRNP.
+
+Majority of the nodes are proteins whose annotations are extracted from SWISS-PROT, KEGG/LIGAND and BIND (Boeckmann et al., 2003; Kanehisa et a/.,2002; Bader etal., 2003).
+
+The protein information is recognized by SWISS-PROT id and Gl number.
+
+Complexes are the result of interactions and ensemble of nodes that can be co-purified from a cell culture or tissue.
+
+Since complexes are usually joined pathways together, we consider it as a separate component of the entity.
+
+We applied a guideline that the entity found in SWISS-PROT is classified as protein and the entity found in BIND COMPLEX is classified as complex.
+
+Other nodes such as small molecules and compounds might be more difficult to define at present.
+
+We have checked every item for the integration of the molecules from KEGG/LIGAND and BIND databases.
+
+Small molecules such as ATP, NADPH, and NADH should be notified for the computation of biological processes because they participate in complicated interaction steps frequently.
+
+For example, if we compute biological processes A B —> C, given interaction A —* B and B-*C, interacting partner of small molecules would
+
+be too big to handle.
+
+Interactions represent the operations in which nodes participate.
+
+There are two types of interactions: direct interaction (such as reaction, assembly, modification) and regulation (such as catalysis, control).
+
+The interaction between nodes belongs to direct interaction.
+
+Regulation is an interaction between node and interaction.
+
+For example, transcriptional regulation is the interaction between regulatory molecules (node) and transcriptional process(direct interaction between DNA and RNA).
+
+Each interaction has several attributes for example direction.
+
+If it was originated form chemical reaction, it should be contained to represent metabolic pathway.
+
+Pathways are ordered sequences of binary interaction.
+
+BIOWAY aims to describe all kinds of pathways such as genetic network, signal transduction and metabolic pathways by sets of interactions between the nodes.
+
+For the construction of BIOWAY database, we convert the format of raw pathway data from KEGG/LIGAND database to metabolic pathways as shown figure 2 (Kim and Park, 2002).
+
+While a signaling pathway is represented as a series of interactions, metabolic pathway is not.
+
+We want to describe metabolic pathway as a series of interactions like signaling pathway and focus on the possibility that metabolic pathway could represent as a set of binary interactions.
+
+Networks are described as a set of pathways and useful for the representation of crosstalk and interdependency among different kinds of pathways.
+
+Networks are designed for the proteins participating in metabolic and signaling pathway at the same time.
+
+These kinds of proteins are acting as a hub in a cell (Kim et al., 2003).
+
+For example, Raf protein takes part in several kinds of metabolic pathways such as spingolipid, inositol phosphate, starch/sucrose, nicotinate/nicotinamide metabolism, benzoate degradation (in KEGG) and EGFR signaling pathway (in
+
+BIND).
+
+Whereas the crosstalk between pathways in KEGG and BIND database is limited to its own pathway domain, BIOWAY could represent all kinds of pathway under a single schema as illustrated in Fig.2.
+
+This layer consists of several modules: PathViewer, BioTextMiner, 3DViewer, BioPathCad, and PathFinder.
+
+PathFinder is a new tool for computing the entire biopathway based on the binary representation of each reaction.
+
+It has been tested on the 130 metabolic pathways and 8 regulatory pathways.
+
+Given two nodes in the pathway maps, this module will return all the possible paths between nodes, sorted in the order of scoring parameters.
+
+BioPathCad module makes it possible to edit the computer-generated pathway maps.
+
+Much of the design of this module is based on the general CAD system which is usually used in architecture field.
+
+Important background knowledge in bioinformatics is often buried in textual documents.
+
+The role of BioTextMiner module is to search the literature and automatically extract information from abstracts and papers, to provide two essential research support services: accelerating user’s task by partially automating the process to find the relations between genes and gene products, and providing a convenient environment for researchers, annotating (or tagging) the biological literature in response to queries from biological experts.
+
+Text mining methods range from term recognition to extraction of complex relationships of interaction between proteins.
+
+It is expected that text mining in general will provide tools to facilitate the annotation of vast amounts of biological pathways.
+
+This layer is directly related to PathViewer module in Analysis Layer.
+
+GraphLayout module is designed to display pathway data.
+
+A subtle graphic layout algorithm has been applied to best display the pathway data.
+
+We used yFiles which provides a powerful framework for visualization applications.
+
+In the BIOWAY system, users can select the pathways to show more than 2 pathways at a time (Fig.3).
+
+And each specialized pathways could be represented as a single node and this abstraction process has been made to be reversible.
+
+Combining several pathways to make a bigger pathway is possible, due to our layer-based GUI design.
+
+All objects inherit
+
+We have parsed the core information from flat files of KEGG/LIGAND, SWISS-PROT and XML type BIND data.
+
+The information allows data retrieval through user interface (Fig.4).
+
+Current prototype represents range of protein-protein interaction, signaling and metabolic pathway, and network information by simple binary interactions (see Table 1.).
+
+The database will be extended to transcriptional regulation(TRANSFAC), 3D structure database(CATH), protein motif(PROSITE) and disease related gene database(OMIM).
+
+Some of our future plans are to:
+
+• design a mining method for finding a meaningful
+
+pathway.
+
+• fine tune for data model
+
+• suggest data submission form.
+
+Identification of appropriate knowledge discovery problems and development of evaluation methods for data mining results are also our ongoing efforts.
+
+For future versions, the concept of quality(for example, time and condition) and quantity(for example, flux, kinetics,
+

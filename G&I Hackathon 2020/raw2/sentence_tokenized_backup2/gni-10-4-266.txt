@@ -1,0 +1,143 @@
+Developing JSequitur to Study the Hierarchical Structure of Biological Sequences in a Grammatical Inference Framework of String Compression Algorithms.
+
+Grammatical inference methods are expected to find grammatical structures hidden in biological sequences.
+
+One hopes that studies of grammar serve as an appropriate tool for theory formation.
+
+Thus, we have developed JSequitur for automatically generating the grammatical structure of biological sequences in an inference framework of string compression algorithms.
+
+Our original motivation was to find any grammatical traits of several cancer genes that can be detected by string compression algorithms.
+
+Through this research, we could not find any meaningful unique traits of the cancer genes yet, but we could observe some interesting traits in regards to the relationship among gene length, similarity of sequences, the patterns of the generated grammar, and compression rate.
+
+In formal language theory a language is simply a set of strings of characters drawn from some alphabet, where the alphabet (terminal) is a set of symbols.
+
+When we consider biological sequences simply as a language in the context of formal language theory (treating DNA, RNA, or protein sequences just as strings of alphabets of four nucleotides or 20 amino acids), a grammatical inference method based on formal language theory can be applied [1-3].
+
+Nevill-Manning and Witten [4] pioneered the attempt to produce the context-free grammarof biological sequences in an automatic way.
+
+This task can be formalized as the problem of finding the smallest context-free grammar by recursively replacing the repeats by a new symbol.
+
+The algorithm builds a hierarchy of phrases by forming a new rule out of existing pairs of symbols, including non-terminal symbols.
+
+For example, if we consider the string "atattattatt," the simplest way to represent the string by context-free grammar is the following:
+<Grammar 0>
+S → atattattatt
+The most frequently occurring sequence in the string is "at," which occurs four times.
+
+Thus, introducing a new nonterminal symbol, 'A,' and creating a new rule for this yields the following modified grammar:
+<Grammar 1>
+S → AAtAtAt
+A → at,
+where the grammar consists of a start symbol (i.e., S), two terminal symbols (i.e., a, t) represented by lowercase letters, two non-terminal symbols (i.e., S, A) represented by uppercase letters, and two production rules (i.e., S → AAtAtAt, A → at) with a left- and a right-hand side consisting of a sequence of these symbols.
+
+Repeatedly replacing the frequently occurring patterns "At," again to a new nonterminal symbol, B, gives the following modified grammar:
+<Grammar 2>
+S → ABBB
+A → at
+B→ At,
+where the grammar consists of a start symbol (i.e., S), two terminal symbols (i.e., a, t), three non-terminal symbols (i.e., S, A, B), and three production rules (i.e., S → ABBB, A → at, B → At).
+
+By applying the three production rules by replacing an occurrence of the nonterminals on the left-hand side of the production rule with those that appear on the right-hand side, the string "atattattatt" can be derived from the non-terminal S by constantly applying a series of derivations: S → ABBB → atBBB → atAtBB → atattBB → atattAtB → atattattB → atattattAt → atattattatt.
+
+Based on this concept, grammar-based compression algorithms have shown some success for various applications [4-7].
+
+Especially, grammar can capture distant repetitions occurring far apart, which was a limitation of sliding window approaches.
+
+However, grammar-based compression algorithms at this moment do not show the best performance for compression itself [6].
+
+Thus, our motivation of this study is not to develop a new algorithm or find the most efficient way to compress biological sequences for storage purposes.
+
+Our sole purpose of developing a new tool is to investigate any grammatical traits of biological sequences, based on formal language theory.
+
+We have developed a slightly modified version of Sequitur [4] called JSequitur for automatically creating hierarchical structures of sequences [8], as in Fig.1.
+
+Our main contribution is to improve Sequitur to work better in a graphic user interface (GUI) environment, as our main interest was in studying the generated grammar, rather than enhancing the compression rate itself.
+
+JSequitur is implemented in Java and organized into six classes, as in Fig.2: Sequitur, Symbol, Guard, Terminal, Nonterminal, and Rule.
+
+Sequitur class is called first and connects with all of the other classes.
+
+Symbol class is the connecter class, which streams sequences of input to the system.
+
+Rule class accesses Terminal and NonTerminal classes in order to create rules.
+
+Guard class, which is based on digram uniqueness, is responsible for rule confirmation.
+
+Thus, our string compression algorithm operates by reading in a new symbol and processing it by appending it to the top-level string and then examining the last symbols of that string; it then applies zero or more of the following transformations until none applies anywhere in the grammar; it then repeats the cycle by reading in a new symbol.
+
+The following production rules, which have been created automatically, are an exemplary output of applying JSequitur to the partial sequence of the TERT gene (175 bp, "gcccccgggtgtccctgtcacgtgcagggtgagtgaggcgcggtccccgggtgtc cctgtcacgtgcagggtgagtgaggcgcggtccccgggtgtccctgtcacgtgcag ggtgagtgaggcgcggtcccc"):
+R0 → g R1 R2 R3 R4 R5 R6 R7 R6 R8 R5 R9 R1 R3 R4 R10 R11 g a R4 a R12 R13 R14 R7 R15 R8 R16 R10 R14 c
+R1 → c c
+R2 → R1 c
+R3 → R11 R17 R2 R18
+R4 → R17 g
+R5 → R16 R13 R19
+R6 → t R2
+R7 → R19 R4
+R8 → R18 R4
+R9 → t R1
+R10 → a a
+R11 → R12 R17
+R12 → g g
+R13 → c g
+R14 → R19 R15
+R15 → R9 c
+R16 → R10 R11 g a R4 a R12
+R17 → g t
+R18 → t R17 R10 c
+R19 → R13 g,
+where the grammar consists of a start symbol (i.e., R0), four terminal symbols (i.e., a, t, g, c), 20 non-terminal symbols (i.e., R0-R19), and 20 production rules for each nonterminal.
+
+In summary, the partial sequence of 175 bp of the TERT gene could be compressed to 37 symbols with 20 rules.
+
+For testing purposes, 104 cancerous genes from 6 cancer types (bladder, breast, endometrial, leukemia, lung, and melanoma) were initially chosen, and JSequitur was applied.
+
+Table 1 shows the result of applying one of the string compression algorithms of JSequitur to these genes.
+
+The rule column in Table 1 shows the number of generated rules from the context-free grammar, while the ratio column shows the ratios of the compressed sequences vs. the original sequences.
+
+Fig.3 is a sorted diagram in the order of the length of the original sequence.
+
+In this specific case, it shows that the length of the original sequence influences the compression rate of the target sequence, even though there are many other factors that influence compression rate.
+
+For example, compression rate can also be influenced by the algorithm itself, depending on whether we replace the longest pattern first or the most frequently occurring pattern first.
+
+We also compared some mouse genes to find any homologous traits in regards to compression rate and hierarchical structure of the grammar.
+
+For example, we compared human MUC1 (Homo sapiens, 5,279 bp) with mouse MUC1 (Mus musculus, 5,614 bp), and the compression rates for these two sequences were 0.180 and 0.195, respectively.
+
+For the ARHA genes, the compression rate for human ARHA (68,833 bp) was 0.140, whereas that for mouse ARHA (41,255 bp) was 0.157.
+
+Thus, the distance on the evolutionary tree can be measured by compression algorithms, to a certain extent.
+
+We have developed a GUI-based JSequitur, based on string compression algorithms, to examine grammatical traits of biological sequences.
+
+On top of compression capacity, a string compression algorithm is appealing for studying biological sequences, because it can give insights into the structure of these sequences.
+
+Precisely constructed models for linguistic structure can play a vital role in the process of discovery itself.
+
+We also applied JSequitur to analyze 104 cancer genes for testing purposes only.
+
+Even though there are some interesting results in regards to the relationship among gene length, similarity of sequences, the patterns of the generated grammar, and compression rate, our test samples were too small to conclude anything.
+
+Thus, our result should be regarded as preliminary for future research.
+
+We should consider various factors other than grammatical structures and compression rates.
+
+As our main purpose of developing the tool was to examine any grammatical traits of biological sequences, the graphical user interface was important for a semiautomatic screening process.
+
+However, we still need to implement various features to compare gene structures to summarize statistics in regards to grammatical structures and to combine evolutionary trees.
+
+Hopefully, these features will be implemented in the next version of JSequitur.
+
+We also hope to enhance the algorithm more elaborately to handle reversal, translocation, and shuffling.
+
+User interface of JSequitur program.
+
+JSequitur class diagram.
+
+Compression rates in relation to gene length.
+
+One hundred four genes and their compression rates
+
