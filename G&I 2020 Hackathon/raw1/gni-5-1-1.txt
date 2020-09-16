@@ -1,0 +1,205 @@
+Detection of Neural Fates from Random Differentiation: Application of Support Vector Machine.
+
+Embryonic stem cells can be differentiated into various types of cells, requiring a tight regulation of transcription.
+
+Biomarkers related to each lineage of cells are used to guide the differentiation into neural or any other fates.
+
+In previous experiments, we reported the guided differentiation (GD)-specific genes by comparing profiles of random differentiation (RD).
+
+Interestingly 68% of differentially expressed genes in GD cveriap with that of RD, which makes it difficult for us to separate the lineages by examining several markers.
+
+In this paper, we design a prediction model to identify the differentiation into neural fates from any other lineage.
+
+From the profiles of 11,376 genes, 203 differentially expressed genes between neural and random differentiation were selected by random variance T-test with 95% confidence and 5%false dscovery rate.
+
+Based on support vector machine algorithm, we could select 79 marker genes from the 203 informative genes to construct the optimal prediction model.
+
+Here we propose a prediction model for the prediction of neural fates from random differentiation which is constructed with a perfect accuracy.
+
+Development of mammalian central nervous system (CNS) is a complex process involving an orchestrated regulation of structural and regulatory genes through differentiation stages of multi potent stem cells into neurons (Sasai, 1998).
+
+Mouse embryonic stem (ES) cells retain the characteristics of multipotent stem cells exhibiting the infinite self-renewal activity and the differentiation potential into various kinds of lineages (Czyz and Wobus, 2001).
+
+Numerous efforts have been made to induce ES cells into neurons by regulating transcriptions of critical genesin the hope of using these cells for therapy for neurological disorders such as Parkinson’s disease.
+
+In previous works, th an ks to th e microarray technology, we profiled the transcriptions of two dfferentiation model: guided differentiation into DA neurons (GD) and random dfferentiation into EB (RD), and reported neural specific genes by comparing the random differentiation (Lee ef a/., 2006).
+
+However, most differentially expressed genes in GD cverlapped with those of RD.
+
+This makes it dfficult for us to separate the differentiation types by examining several markers.
+
+In this paper, we constructed a prediction model to identify neural differentiation from random differentiation using support vector machine which outperforms in binary classification tasks.
+
+From the profiles of 11,376 genes, we selected 203 differentially expressed genes between neural and random differentiation using a feature selection method which is random variance T-test with 95% confidence and false discovery rate < 0.5%.
+
+Then, we investigated about compact biomarker gene set based on support vector machine algorithm.
+
+We could select 79 marker genes among the 203 informative genes to construct optimal prediction model.
+
+As a result, a prediction model for discriminate neural differentiation from random differentiation is constructed with perfect accuracy.
+
+To detect neural fates from random differentiation, we used microarray dataset which were experimented at previous study (Lee eta/., 2006).
+
+The microarray dataset consists of neural differentiation and random differentiation of embryonic stem cells.
+
+Each differentiation process has 5 stages of cell cultivation.
+
+Guided differentiation to the DA neuron of mouse embryonic stem cells was induced as described previously (Lee ef a/., 2000).
+
+Briefly undifferentiated ES cells (stage 1) were grown on gelatin-coated tissue culture plates in KO-DMEMmeda.To induce EBformation (stage 2), the cells were associated into a single-cell suspension and plated onto non-adherent bacterial culture dishes at a density of 2.5 X 104 cells/cm 2 in the KO medium.
+
+After four days, the cells were transferred to the orignal tissue culture dsh in a serum-free Insulin/Transferrin/SeleniunYFibronectin (ITSF) medium to select the nestin-positive cells (stage 3).
+
+After 6 days of selection, the cells were expanded (stage 4) by transferring to the plate coated with pdyomithine and laminin in N 2 med urn supplemented with laminin/bFGF/ SHH/FGF8.
+
+After 6 days, bFGF was removed to induce the differentiation (stage 5) in N 2 medium supplemented with laminin and ascorbic add for 6 days.
+
+Three independent biological replicates were taken at four stages of dopaminergic differentiation.
+
+For random differentiation, EBs were dissociated and plated onto a tissue culture dish in DMEM with fetal bovine serum and antibiotics for indicated periods.
+
+For random differentiation model, three  biological replicates were made at day 4 (stage 2), 8 (stage 3), 15 (stage 4), and 21 (stage 5) to extract total RNA.
+
+Total RNAs from undifferentiated mouse ES cells were used as a reference group in all the experiments.
+
+Total RNA was prepared by using TriZol reagent (Invitrogen, Calsbard, CA).
+
+The array used in this experiment was the Macrogen Mouse Oligo 11K Chip (Macrogen, Seoul, Korea) as described previously (Park et al., 2002; Kim et al., 2004).
+
+Cy3 and Cy5 fluorescent intensities were determined using the GenePix scanner (Axon Instruments, Union City, CA), and images were analyzed using the GenePix Pro to calculate relative ratios and to determine confidence intervals.
+
+Fluorescent intensity data was imported to an in-house microarray database.
+
+Variance stabilizing  normalization by Huber et al.
+
+was applied with the 'vsn'package in Bioconductor using the R statistical package (Huber ef a/., 2002).
+
+After performing intensity-dependent global LOWESS regression, spatial and intensity dependent effects were managed by pin-group LOWESS normalization following by the approach of Yang et al.
+
+(Yang eta/., 2000).
+
+The gene expression dataset was registered to the Gene Expression Omnibus (http:/Mww.ncbi.nlm.nih.gov/ geo/) under the accession numbers, GSE3527 for random differentiation and GSE3528 for guided differentiation.
+
+In this study, 18 slides which consist of stage 3,4,and 5 expression profiles of GD and RD with biological triplicates are used, because stage 2 was common state between them.
+
+When analyzing expression profiles using machine learning methods, one of the most important processes is feature (gene) selection for the target classes.
+
+Although there are huge amount of genes in a microarray, the number of genes that show strong correlation with a certain class is relatively small.
+
+Hence the selection of the most relevant and informative genes for target classes is important.
+
+Good feature set consists of those highly correlated with a class but are uncorrelated with other classes.
+
+Since support vector machine algorithm doesn’t embed feature selection mechanism, informative features should be selected before the data mining algorithm is run, using some approach that is independent of the data mining task.
+
+To select feature set with discriminative power, various feature selection methods have been used, such as information gain, Gni index, and statistical tests.
+
+In this study, multivariate permutation test with t-statistics was used to identify discriminative genes between RD and GD.
+
+There are a variety of benefits to feature selection (Tan et al., 2005).
+
+Many data mining algorithms work better if the number of attributes in the data is lower, because feature selection can eliminate irrelevant features and reduce noise.
+
+Moreover, feature selection can lead to a more understandable model because the model may involve fewer attributes.
+
+Finally, the amount of time and memory required by the data mining algonthm reduced with feature selection.
+
+Support vector machines (SVMs) which are supervised machine learning techniques, have exhibited superb performance in binary classification tasks (Tan et al., 2005; Vapnik, 1998; Christianini et al., 2002).
+
+Due to robust performance, SMVs have been adopted in a number of applications from text categorization to bioinformatics problems.
+
+Intuitively, SVMs aim at searching fora hyperplane that separates the two classes of data with the largest margin between the hyperplane and the point closest to it.
+
+We used a sequential minimal optimization (SMO) algorithm with a logistic regression model and RBF kernel fortraining a support vector classifier (Christianini et al., 2002; Platt, 1998; Keerthi et al., 2001; Wtten et al., 2005).
+
+The SMO algorithm was derived by taking the idea of the decomposition method to its extreme and optimizing a minimal subset of just two points at each iteration.
+
+The power of this technique resided in the fact that the optimization problem for two data points admitted an analytical solution, eliminating the need to use an iterative quadratic optimizer as part of the algorithm.
+
+To evaluate performance of the prediction model, we trained support vector classifier based on  Leave-Oe-Out Cross-Validation (LOOCV).
+
+LOOCV is simple n-fold cross-validation, where n is the number of samples in the dataset (Tan et al., 2005; Witten et al., 2005).
+
+Each sample in turn was left out, and the SVM algorithm trained all the remaining samples.
+
+It was judged by its correctness on the remaining instance - one or zero for success or failure, respectively.
+
+The results of all n judgments, one for each member of the dataset, were averaged, and that average represented the final error  estimate.
+
+LOOCV had the advantage of utilizing as much data as possible for training.
+
+In addition, the testsets were mutually exclusive and they effectively covered the entire dataset.
+
+The drawback of this approach was that it was computationally expensive to repeat the procedure n times.
+
+Nevertheless, LOOCV seemed to offer a chance of squeezing the maximum out of a small dataset and obtaining as accurate an estimate as possible (Tan et al., 2005).
+
+Multivariate permutation test was applied to evaluate statistical significance of changes in the gene expression between GD and RD.
+
+Q j alite-quantile plot analysis showed that the residual quantiles were deviated from the theoretic quantiles.
+
+Hence we regarded the distribution of the data as abnormal (Wilk etal.,] 968).
+
+Typical T-test assumes that the input dataholds normal distribution.
+
+Therefore we used the multivariate permutation test to collect the genes at a 95% confidence with the false discovery rate of less than 5% (Korn et al., 2004).
+
+The test statistics used were random variance version of T-test for each gene (Wight et al, 2003).
+
+Although T-test was used, the multivariate permutation test was non-parametric and did not require the assumption of normal distributions.
+
+By random variance T-test analysis, we selected 203 differentially expressed genes   (DEGs) between GD and RD.
+
+When we constructed prediction model using support vector machine based on weka environment with aforementioned 203 discriminative genes, the model could predict the target class perfectly by LOOCV (Wright et al., 2003).
+
+Since the number of discriminative genes was relatively numerous, we found the optimal set of marker genes with a perfect accuracy.
+
+A set of experiments were conducted using support vector machine by decreasing the number of the genes which were sorted by their p-value.
+
+When the number of selected genes was less than 79, one RD example was predicted incorrectly as GD (94.4% accuracy).
+
+Therefore, we selected 79 genes as a marker gene set to construct the optimal prediction model (Table 1).
+
+To characterize the 79 marker genes, we analyzed gene ontology (GO) categories of them in GD and RD (The Gene Cytology Consortium, 2000).
+
+This procedure finds gene ontology categories that have higher than expected number of genes dfferenti ally expressed among the different classes of the samples based on random variance T-tests (Wight and Simon, 2003).
+
+Gene ontology analyses were performed based on BRB-arraytools version 3.2.3.
+
+Then we arranged significant GO categories into molecular function, biological process, and cellular component which are presented to Table 2, Table 3, and Table 4 respectively.
+
+Interestingly in the aspect of molecular function, the genes related with lipid transporter activity, structural molecular activity, peptidase activity, DNA binding, hydrolase activity, and protein binding showed a significant variance (Table 2).
+
+Though we constructed the optimal prediction model with perfect accuracy, the number of training samples was relatively small.
+
+Dataset was made up of triplicates biological replicates for each of the 3 differentiation stages of GD and RD.
+
+To avoid the problem of overfitting and bias, we evaluated  our prediction model based on LOOCV.
+
+LOOCV makes prediction model more robust because the greatest possible amount of data is used for training in each case, which presumably increases the chance that the classifier is an accurate one.
+
+Since each GD and RD class had various samples which were taken at different stages, there were some variations among samples in each class according to the degree of differentiation.
+
+Owing to the principle of feature selection, uninformative genes which showed variation of expression in a classwere filtered out.
+
+Through the feature selection process, most of genes whose expression profiles had dynamical changes according to the degree of differentiation   were   excluded   from   training   prediction model.
+
+Hence, the dynamics of gene expression according to differentiation stages was not considered in our prediction model.
+
+Oi the other hand, the characteristic of feature selection made it easy to detect neural fates from random differentiation regardless of differentiation stages.
+
+The results of gene ontology analysis helped interpretation of the characteristics of 79 biomarkers.
+
+This analysis was dfferent than annotating a gene list using GO categories.
+
+The GO analysis computed statistically significant GO categories forgiven gene list.
+
+We have presented a method to detect neural fates from random differentiation of mouse stem cells based on gene expression profiles.
+
+Proposed prediction model which were constructed based on effective statistical feature selection method and support vector machine algorithm performed.
+
+We investigated the compact set of biomarkers with perfect prediction accuracy.
+
+The 79 informative genes were selected as novel candidates of biomarkers for neural fates.
+
+The dataset currently available contains relatively few training examples and a more robust prediction model needs to be constructed using plenty of microarray experiments to put our study to practical use.
